@@ -97,14 +97,15 @@ button.search_btn {
     margin-left: 5px;
     padding: 10px 40px;
 }
-button.increment {
+input.increment {
     background: #00B7FF;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
     border-radius: 4px;
     border: none;
+    font-size: 19px;
     color: #fff;
     margin-left: 5px;
-    padding: 0% 2%;
+    padding: 4% 10%;
 }
 
 input.drop_down_btn {
@@ -133,6 +134,33 @@ input.drop_down_btn {
      text-align: left;
      font-weight: bold;
  }
+.search_result_list{
+
+    overflow-y: scroll;
+    max-height: 50vh;
+    list-style-type: none;
+    padding: 2%;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.search_result_list::-webkit-scrollbar {
+    display: none;
+}
+#mySelectedPlace{
+    display: none;
+}
+.search_result_list_item{
+
+    width: 100%;
+    text-align: left;
+    font-family: Karla;
+    font-size: 15px;
+    outline: none;
+}
+
+.search_result_list li{
+    border-bottom: 1px solid lightgray;
+}
 
 a.drop_down_btn_item{
     font-size: 13px;

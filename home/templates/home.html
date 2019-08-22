@@ -3,7 +3,7 @@
 {% load static %}
 {% block csscontent %}
     <link rel="stylesheet" href="{% static "css/lightpick.css" %}" xmlns:v-on="http://www.w3.org/1999/xhtml"
-          xmlns:v-on="http://www.w3.org/1999/xhtml">
+          xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:v-on="http://www.w3.org/1999/xhtml">
     <link rel="stylesheet" href="{% static "css/home.css" %}">
     <link href="//rawgithub.com/indrimuska/jquery-editable-select/master/dist/jquery-editable-select.min.css"
           rel="stylesheet">
@@ -23,28 +23,35 @@
         <div class="hor_line"></div>
         <div class="content_container">
             <div class="search_content_box" style="padding-bottom: 100px;">
-                <form action="{% url 'results' %}" method="post">
-                    {% csrf_token %}
-                    <div class="row">
-                        <p class="sec_two_head"><span style="color:#00B7FF;">Booking</span> made <span
-                                style="color:#00B7FF;">Simple . . . .</span></p>
-                    </div>
-                    <div class="row" style="padding-bottom: 6px;">
-                        <div>
-                            <input type="text" class="drop_down_btn" readonly data-toggle="dropdown"
-                                   aria-haspopup="true"
-                                   aria-expanded="false" value="Return" name="destinationType" id="destinationType"/>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item drop_down_btn_item" @click="selectDestType(1)">Return</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item drop_down_btn_item" @click="selectDestType(2)">One way</a>
-                            </div>
+
+                {% csrf_token %}
+                <div class="row">
+                    <p class="sec_two_head"><span style="color:#00B7FF;">Booking</span> made <span
+                            style="color:#00B7FF;">Simple . . . .</span></p>
+                </div>
+                <div class="row" style="padding-bottom: 6px;">
+                    <div>
+                        <input type="text" class="drop_down_btn" readonly data-toggle="dropdown"
+                               v-model="form.destinationType"
+                               aria-haspopup="true"
+                               aria-expanded="false" name="destinationType" id="destinationType"/>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item drop_down_btn_item" @click="selectDestType(1)">Return</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item drop_down_btn_item" @click="selectDestType(2)">One way</a>
                         </div>
+                    </div>
                     <div style="margin-left: 2%">
-                        <input type="text" class="drop_down_btn"   readonly  data-toggle="modal" data-target="#passengersModal" value="Passengers" name="noOfPassengers" id="noOfPassengers"/>
+                        <input type="text" class="drop_down_btn" readonly data-toggle="modal"
+                               data-target="#passengersModal"
+                               v-model="form.noOfPassengers"
+                               value="Passengers" name="noOfPassengers" id="noOfPassengers"/>
                     </div>
                     <div style="margin-left: 2%;">
-                        <input type="text" class="drop_down_btn"  style="padding-right: 4%" readonly  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" value="Economy" name="seatType" id="seatType"/>
+                        <input type="text" class="drop_down_btn" style="padding-right: 4%" readonly
+                               data-toggle="dropdown"
+                               v-model="form.seatType"
+                               aria-haspopup="true" aria-expanded="false" name="seatType" id="seatType"/>
                         <div class="dropdown-menu">
                             <a class="dropdown-item drop_down_btn_item" @click="selectSeatType(1)">Economy</a>
                             <div class="dropdown-divider"></div>
@@ -56,39 +63,112 @@
                         </div>
 
                     </div>
-                    <div class="row">
-                        <label class="search_label">
+                    <div class="row" style="margin-top: 2%">
+                        <label class="search_label" @click="openPlaceModal(1)">
                             <h6 style="margin-top: 4%">From :
-                                <select class="places_list" name="placesFrom" id="placesFrom">
-                                    <option v-for="place in mySelectionFrom" :value="place.name">{( place.name )}
-                                    </option>
-                                </select>
-                                <input class="places_list" name="placesFrom" id="placesFrom" list="cities">
-                                <datalist id="cities">
-                                    <option value="Internet Explorer">
-                                </datalist>
+                                <input type="text" class="search_input" v-model="form.placeFrom" readonly
+                                       name="placesFrom" id="placesFrom"/>
                             </h6>
                         </label>
                         <img class="icon_repeat" src="{% static "images/repeat.svg" %}" @click="swapPlaces">
-                        <label class="search_label" style="margin-left: -6px;">
+                        <label class="search_label" style="margin-left: -6px;" @click="openPlaceModal(2)">
                             <h6 style="margin-top: 4%; margin-left: 4%;">To :
-                                <select class="places_list" name="placesTo" id="placesTo" v-model="city"
-                                        v-on:keyup="cityHandler" v-for="place in mySelectionTo">
-                                    <option :value="place.nameCity">{( place.name )} </option>
-                                </select>
+                                <input type="text" class="search_input" v-model="form.placesTo" readonly name="placesTo"
+                                       id="placesTo"/>
                             </h6>
                         </label>
                         <label class="search_label">
                             <h6 style="margin-top: 4%">Departure :
-                                <input type="text" name="dep_date" id="departure_date" class="search_input">
+                                <input type="text" name="dep_date" v-model="form.departure_date" id="departure_date"
+                                       class="search_input">
                             </h6>
                         </label>
                         <label class="search_label"><h6 style="margin-top: 4%">Return :
-                            <input type="text" name="ret_date" id="return_date" class="search_input">
-                        </h6></label>
-                        <button class="search_btn">search</button>
+                            <input type="text" name="ret_date" v-model="form.return_date" id="return_date"
+                                   class="search_input">
+                        </h6>
+                        </label>
+                        <button class="search_btn" onclick="console.log(app.form)">search</button>
                     </div>
-                </form>
+                </div>
+                <div class="modal fade" id="passengersModal" tabindex="-1" role="dialog"
+                     aria-labelledby="passengersModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content" style="width: 80%">
+                            <div class="modal-header">
+                                <h6 class="modal-title" id="passengersModalLabel">Passengers</h6>
+                            </div>
+                            <div class="modal-body">
+                        <span style="padding: 0 2%">
+
+                            <div class="container">
+                              <div class="row">
+                                <div class="col-sm">
+                                  Adults
+                                </div>
+                                <div class="col-sm">
+                                  <input type="button" class="increment" value="-" @click="decrement(1)"
+                                         id="valAdultsDecrement"/>
+
+                                      <input type="text" readonly
+                                             style="padding: 1% 2%; width: 15%; border: none; text-align: center"
+                                             v-model="form.valAdults"/>
+                                   <input type="button" class="increment" id="valAdultsIncrement" value="+"
+                                          @click="increment(1)"/>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="dropdown-divider"></div>
+                            <div class="container">
+                              <div class="row">
+                                <div class="col-sm">
+                                  Children
+                                </div>
+                                <div class="col-sm">
+                                  <input type="button" class="increment" value="-" @click="decrement(2)"
+                                         id="valChildrenDecrement"/>
+
+                                      <input type="text" readonly
+                                             style="padding: 1% 2%; width: 15%; border: none; text-align: center"
+                                             v-model="form.valChildren"/>
+                                   <input type="button" class="increment" value="+" @click="increment(2)"
+                                          id="valChildrenIncrement"/>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="dropdown-divider"></div>
+                         <div class="container">
+                              <div class="row">
+                                <div class="col-sm">
+                                  Infants
+                                </div>
+                                <div class="col-sm">
+                                  <input type="button" class="increment" value="-" @click="decrement(3)"
+                                         id="valInfantsDecrement"/>
+
+                                      <input type="text" readonly
+                                             style="padding: 1% 2%; width: 15%; border: none; text-align: center"
+                                             v-model="form.valInfants"/>
+                                  <input type="button" class="increment" value="+" @click="increment(3)"
+                                         id="valInfantsIncrement"/>
+                                </div>
+                              </div>
+                            </div>
+                        </span>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn" style="width: 50%; background: aliceblue;"
+                                        data-dismiss="modal">Close
+                                </button>
+                                <button type="button" class="btn" style="width: 50%; background: #00B7FF;color: #fff"
+                                        data-dismiss="modal">Save changes
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
@@ -121,33 +201,43 @@
         <!-- Modal -->
         <div class="modal fade" id="placesModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
              aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-dialog " role="document">
                 <div class="modal-content">
                     <div class="modal-body">
                         <div class="row pop2_first">
-                            <div class="col-6" style="text-align:left"><p>From</p></div>
+                            <div class="col-6" style="text-align:left"><p id="placesModalTitle"></p></div>
                             <div class="col-6" style="text-align:right"><p style="color:#8092a9; cursor: pointer;"
-                                                                           @click="clearList">Clear all<i
+                                                                           @click="clearList"><i
                                     class="fa fa-times" style="margin-left:5px"></i></p></div>
                         </div>
                         <div class="row pop2_second">
                             <div class="col-12">
-                                <div class="sel_place">
-                                    <div style="max-height: 25%; overflow-y: scroll">
-                                        <button class="sel_place_btn" v-for="(place, index) of mySelection"
-                                                style="margin: 2%">
-                                            <i class="fa fa-times-circle" style="margin-right:5px"
-                                               @click="clearPlaceItem(index)"></i>
-                                            {( place.name )}
-                                        </button>
-                                    </div>
+                                <div>
+                                    <div style="border: 1px solid #00B7FF; border-radius: 5px; padding: 2%">
+                                        <div style="max-height: 25%; overflow-y: scroll">
+                                            <button class="sel_place_btn" style="margin: 2%" id="mySelectedPlace">
+                                                <i class="fa fa-times-circle" style="margin-right:5px"
+                                                   @click="clearPlaceItem(index)"></i>
+                                            </button>
+                                        </div>
 
-                                    <div class="pop2_hor_line" style="margin:10px 0px"></div>
-                                    <input class="pop2_input" type="text" placeholder="Add new location..."/>
+                                        <div class="pop2_hor_line" style="margin:10px 0px"></div>
+                                        <input class="pop2_input" type="text" v-model="city" @keyup="cityHandler"
+                                               id="search_places_dialog_input" onfocus="this.value=''"
+                                               onblur="this.value=''" placeholder="Add new location..."/>
+                                    </div>
+                                    <ol class="search_result_list">
+                                        <li v-for="(place, index) of searchResultPlaces">
+                                            <button class="btn search_result_list_item" @click="setPlace(place,index)">
+                                                {( place.nameCity )}
+                                            </button>
+                                        </li>
+                                    </ol>
                                 </div>
                             </div>
                         </div>
                     </div>
+
                     <div class="modal-footer">
                         <button class="pop2_footer_left" data-dismiss="modal">Cancel</button>
                         <button class="pop2_footer_right" @click="choosePlaces">Choose</button>
@@ -156,45 +246,7 @@
             </div>
         </div>
 
-        <div class="modal fade" id="passengersModal" tabindex="-1" role="dialog" aria-labelledby="passengersModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content" style="width: 80%">
-                    <div class="modal-header">
-                        <h6 class="modal-title" id="passengersModalLabel">Passengers</h6>
-                    </div>
-                    <div class="modal-body">
-                        <span style="padding: 0 2%">Adults
-                            <span style=" margin-left: 55%;" >
-                                <button class="increment"><h4>-</h4> </button>
-                                    <p style="padding: 1% 2%;">4</p>
-                                <button class="increment"><h4>+</h4></button>
-                            </span>
-                        </span>
-                            <div class="dropdown-divider"></div>
-                        <span style="padding: 0 2%">Children
-                            <span style=" margin-left: 51%;" >
-                                <button class="increment"><h4>-</h4> </button>
-                                    <p style="padding: 1% 2%;">4</p>
-                                <button class="increment"><h4>+</h4></button>
-                            </span>
-                        </span>
-                            <div class="dropdown-divider"></div>
-                        <span style="padding: 0 2%">Infants
-                            <span style=" margin-left: 55%;" >
-                                <button class="increment"><h4>-</h4> </button>
-                                    <p style="padding: 1% 2%;">4</p>
-                                <button class="increment"><h4>+</h4></button>
-                            </span>
-                        </span>
 
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn" style="width: 50%; background: aliceblue;" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn" style="width: 50%; background: #00B7FF;color: #fff">Save changes</button>
-                    </div>
-                </div>
-            </div>
-        </div>
     </section>
 
     <section>
@@ -329,10 +381,8 @@
 {% endblock %}
 {% block jscontent %}
     <script src="//rawgithub.com/indrimuska/jquery-editable-select/master/dist/jquery-editable-select.min.js"></script>
-    <script src="{% static "js/home.js" %}">
-    </script>
-    <script src="{% static "js/lightpick.js" %}">
-    </script>
+    <script src="{% static "js/home.js" %}"></script>
+    <script src="{% static "js/lightpick.js" %}"></script>
     <script>
         let tripButton = document.querySelector(".btn-group");
         let picker = new Lightpick({
@@ -343,7 +393,9 @@
                 var str = '';
                 str += start ? start.format('Do MMMM YYYY') + ' to ' : '';
                 str += end ? end.format('Do MMMM YYYY') : '...';
-                {#document.getElementById('result-3').innerHTML = str;#}
+                app.form.departure_date = start;
+                app.form.return_date = end;
+                // {#document.getElementById('result-3').innerHTML = str;#}
             }
         });
     </script>
