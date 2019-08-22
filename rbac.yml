@@ -39,7 +39,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
   name: ingress-ns
-  namespace: $KUBE_NAMESPACE
+  namespace: 
 rules:
 - apiGroups:
   - ""
@@ -68,7 +68,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   name: ingress-ns-binding
-  namespace: $KUBE_NAMESPACE
+  namespace: 
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
@@ -76,7 +76,7 @@ roleRef:
 subjects:
   - kind: ServiceAccount
     name: default
-    namespace: $KUBE_NAMESPACE
+    namespace: 
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
@@ -89,5 +89,5 @@ roleRef:
 subjects:
   - kind: ServiceAccount
     name: default
-    namespace: $KUBE_NAMESPACE
+    namespace: 
 
