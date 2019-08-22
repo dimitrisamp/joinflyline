@@ -1,0 +1,86 @@
+{% load static %}
+<nav class="navbar-expand-lg navbar-light bg-light text-center border-bottom">
+    <a class="navbar-brand p-0" href="#"><img src="images/Wanderift_black_logo.png" alt=""></a>
+    <button class="navbar-toggler float-right collapsed" type="button" data-toggle="collapse" data-target="#navb"
+            aria-expanded="false">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="navbar-collapse collapse" id="navb" style="">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="{% url "corporate" %}">Corporate Plans</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url "corporate" %}">Subscriptions</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link">Sign In</a>
+            </li>
+            <li class="navbar-logout">
+                <a href="#" class="btn btn-2 bold text-dark">Get Started</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="modal fade" id="signInOptionsModal" tabindex="-1" role="dialog" aria-labelledby="signInOptionsModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content popup_container">
+            <div class="row justify-content-center">
+                <a class="popup_btn_link" href="#">
+                    <div class="col-12 btn_popup" style="text-align:center">
+                        <img class="img_goggle" src="{% static "images/google.png" %}" alt="logo"/>
+                        <p style="margin-left:10px">Sign in with Google
+                        <p>
+                    </div>
+                </a>
+                <div class="col-12" style="margin: 5px 0px 5px 15px;">
+                    <div class="hor_div"></div>
+                    <p>OR</p>
+                    <div class="hor_div"></div>
+                </div>
+                <div class="col-12" style="margin:5px 0px;">
+                    <div class="row pop_tab_block">
+                        <div class="col-4 blue_pop_tab">
+                            <a class="pop_tab_link" href="#"><p style="color:#fff;margin-left:10px;">Sign Up</p></a>
+                        </div>
+                        <div class="col-4">
+                            <a class="pop_tab_link" href="#"><p style="margin: 8px 0px 0px 10px;">Sign In</p></a>
+                        </div>
+                        <div class="col-4">
+                            <a class="pop_tab_link" href="#"><p style="margin: 8px 10px 0px 0px;">Corporate</p></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <input type="email" class="form-control login_input" id="emailAddress"
+                                   placeholder="Email Address">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control login_input" id="id_password"
+                                   placeholder="Password">
+                        </div>
+                    </form>
+                </div>
+
+                <div class="col-12 text_block" style="margin-top:20px;">
+                    <p style="font-size: 12px;line-height: 20px;">The registration and subsequent use of your account is
+                        governed by these <a href="#" style="color: #00B7FF;">Terms of Use</a>. Your Personal Data will
+                        be processed according to our <a href="#" style="color: #00B7FF;">Privacy Policy</a>.
+                    <p>
+                </div>
+                <a class="popup_btn_link" href="#" style="margin-top:15px;">
+                    <div class="col-12 btn_popup_end" style="text-align:center">
+                        <p style="margin-left:10px;color:#fff;">Get Started
+                        <p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

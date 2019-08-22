@@ -1,0 +1,288 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block csscontent %}
+    <link rel="stylesheet" href="{% static "css/custom.css" %}">
+{% endblock %}
+
+{% block content %}
+        {% include "_includes/navbar.html" %}
+
+    <section>
+        <div class="container section-1">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h2 class="page-title">Account</h2>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="container mb100">
+            <div class="row">
+                <div class="col-sm-12">
+                    <ul class="nav my-nav-tabs mt30 pb-1">
+                        <li><a data-toggle="tab" href="#overview" class="active">Overview</a></li>
+                        <li><a data-toggle="tab" href="#billing">Billing</a></li>
+                    </ul>
+                    <div class="tab-content mt30">
+                        <div id="overview" class="tab-pane fade in active show">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="card">
+                                        <div class="card-body shadow">
+                                            <div class="card-title">
+                                                <h3 class="bold p-0">Traveler Information</h3>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="form-group col-sm-6">
+                                                        <label class="pb-2">First Name</label>
+                                                        <input class="form-control" type="text"
+                                                               placeholder="First Name">
+                                                    </div>
+                                                    <div class="form-group col-sm-6">
+                                                        <label class="pb-2">Last Name</label>
+                                                        <input class="form-control" type="text" placeholder="Last Name">
+                                                    </div>
+                                                    <div class="form-group col-sm-6">
+                                                        <label class="pb-2">Email</label>
+                                                        <input class="form-control" type="email" placeholder="Email">
+                                                    </div>
+                                                    <div class="form-group col-sm-6">
+                                                        <label class="pb-2">Date Of Birth</label>
+                                                        <input class="form-control" type="date">
+                                                    </div>
+                                                    <div class="form-group col-sm-6">
+                                                        <label class="pb-2">Gender</label>
+                                                        <input class="form-control" type="text" placeholder="Gender">
+                                                    </div>
+                                                    <div class="form-group col-sm-6">
+                                                        <label class="pb-2">Market</label>
+                                                        <input class="form-control" type="text" placeholder="Market">
+                                                    </div>
+                                                    <div class="form-group col-sm-12 pt-1">
+                                                        <button class="btn btn-1 bold btn-width">Save</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="card-title">
+                                                <h3 class="bold p-0">Change Password</h3>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="form-group col-sm-6">
+                                                        <label class="pb-2">Current Password</label>
+                                                        <input class="form-control" type="text"
+                                                               placeholder="Current password">
+                                                    </div>
+                                                    <div class="form-group col-sm-6">
+                                                        <label class="pb-2">New Password</label>
+                                                        <input class="form-control" type="text"
+                                                               placeholder="New Password">
+                                                    </div>
+                                                    <div class="form-group col-sm-6 pt-1">
+                                                        <button class="btn btn-1 bold btn-width">Update</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="card">
+                                        <div class="card-body shadow">
+                                            <div class="card-title">
+                                                <h3 class="bold p-0">Frequent Flyer Numbers</h3>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="form-group col-sm-6">
+                                                        <label class="pb-2">American Airlines</label>
+                                                        <input class="form-control" type="text" placeholder="Airelines">
+                                                    </div>
+                                                    <div class="form-group col-sm-6">
+                                                        <label class="pb-2">American Airlines</label>
+                                                        <input class="form-control" type="text" placeholder="Airelines">
+                                                    </div>
+                                                    <div class="form-group col-sm-6">
+                                                        <label class="pb-2">American Airlines</label>
+                                                        <input class="form-control" type="text" placeholder="Airelines">
+                                                    </div>
+                                                    <div class="form-group col-sm-6">
+                                                        <label class="pb-2">American Airlines</label>
+                                                        <input class="form-control" type="text" placeholder="Airelines">
+                                                    </div>
+                                                    <div class="form-group col-sm-6">
+                                                        <label class="pb-2">American Airlines</label>
+                                                        <input class="form-control" type="text" placeholder="Airelines">
+                                                    </div>
+                                                    <div class="form-group col-sm-6">
+                                                        <label class="pb-2">American Airlines</label>
+                                                        <input class="form-control" type="text" placeholder="Airelines">
+                                                    </div>
+                                                    <div class="form-group col-sm-12 pt-1">
+                                                        <button class="btn btn-1 bold btn-width">Save</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="billing" class="tab-pane fade in">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="card">
+                                        <div class="card-body shadow">
+                                            <div class="card-title">
+                                                <h3 class="bold p-0">Billing</h3>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="form-group col-12">
+                                                        <label class="pb-2">Credit Card Number</label>
+                                                        <input class="form-control" type="text"
+                                                               placeholder="Card Number">
+                                                    </div>
+                                                    <div class="form-group col-sm-7">
+                                                        <label class="pb-2">Security Code</label>
+                                                        <input class="form-control" type="text"
+                                                               placeholder="Security Code">
+                                                    </div>
+                                                    <div class="form-group col-sm-5">
+                                                        <label class="pb-2">Exp Date</label>
+                                                        <input class="form-control" type="text" placeholder="Exp Date">
+                                                    </div>
+                                                    <div class="form-group col-sm-8">
+                                                        <label class="pb-2">Country</label>
+                                                        <input class="form-control" type="text" placeholder="Country">
+                                                    </div>
+                                                    <div class="form-group col-sm-4">
+                                                        <label class="pb-2">Billing Zip</label>
+                                                        <input class="form-control" type="text"
+                                                               placeholder="Billing Zip">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="card-title">
+                                                <h3 class="bold p-0">Add New Card</h3>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="form-group col-12">
+                                                        <label class="pb-2">Credit Card Number</label>
+                                                        <input class="form-control" type="text"
+                                                               placeholder="Card Number">
+                                                    </div>
+                                                    <div class="form-group col-sm-7">
+                                                        <label class="pb-2">Security Code</label>
+                                                        <input class="form-control" type="text"
+                                                               placeholder="Security Code">
+                                                    </div>
+                                                    <div class="form-group col-sm-5">
+                                                        <label class="pb-2">Exp Date</label>
+                                                        <input class="form-control" type="text" placeholder="Exp Date">
+                                                    </div>
+                                                    <div class="form-group col-sm-8">
+                                                        <label class="pb-2">Country</label>
+                                                        <input class="form-control" type="text" placeholder="Country">
+                                                    </div>
+                                                    <div class="form-group col-sm-4">
+                                                        <label class="pb-2">Billing Zip</label>
+                                                        <input class="form-control" type="text"
+                                                               placeholder="Billing Zip">
+                                                    </div>
+                                                    <div class="form-group col-12 pt-1">
+                                                        <button class="btn btn-1 bold btn-width">Save</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="card">
+                                        <div class="card-body shadow">
+                                            <div class="card-title">
+                                                <h3 class="bold p-0">Subscriptions</h3>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-sm-7">
+                                                        <h4 class="bold m-0">Wanderift Lite $369</h4>
+                                                    </div>
+                                                    <div class="col-sm-5">
+                                                        <button class="btn btn-1 bold">Current Plan</button>
+                                                    </div>
+                                                </div>
+                                                <div class="row mt-3">
+                                                    <div class="col-sm-12">
+                                                        <p class="pl-2 pr-2">- 3 Tokens (3 one-way flights)</p>
+                                                        <p class="pl-2 pr-2">- 1 Unused Token Rolls over</p>
+                                                        <p class="pl-2 pr-2">- No Long Term Commitment</p>
+                                                    </div>
+                                                </div>
+                                                <div class="row mt-3">
+                                                    <div class="col-sm-7">
+                                                        <h4 class="bold m-0">Wanderift Lite $459</h4>
+                                                    </div>
+                                                    <div class="col-sm-5">
+                                                        <button class="btn btn-1 bold">Current Plan</button>
+                                                    </div>
+                                                </div>
+                                                <div class="row mt-3">
+                                                    <div class="col-sm-7">
+                                                        <p class="pl-2 pr-2">- 4 Tokens (4 one-way flights)</p>
+                                                        <p class="pl-2 pr-2">- 2 Unused Token Rolls over</p>
+                                                        <p class="pl-2 pr-2">- No Long Term Commitment</p>
+                                                    </div>
+                                                    <div class="col-sm-5">
+                                                        <button class="btn btn-1 bold">Learn More</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card">
+                                        <div class="card-body shadow">
+                                            <div class="card-title">
+                                                <h3 class="bold p-0">Companion</h3>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <p>Sharing is caring. add your traveler companions below</p>
+                                                    </div>
+                                                    <div class="form-group col-12">
+                                                        <label class="pb-2">Companion One</label>
+                                                        <input class="form-control" type="text"
+                                                               placeholder="companion@gmail.com">
+                                                    </div>
+                                                    <div class="form-group col-12">
+                                                        <label class="pb-2">Companion One</label>
+                                                        <input class="form-control" type="text"
+                                                               placeholder="companion@gmail.com">
+                                                    </div>
+                                                    <div class="col-12 text-right">
+                                                        <a href="#">Add More Companions</a>
+                                                    </div>
+                                                    <div class="form-group col-12 pt-1">
+                                                        <button class="btn btn-1 bold">Send Invite</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    {% include "_includes/footer.html" %}
+{% endblock %}

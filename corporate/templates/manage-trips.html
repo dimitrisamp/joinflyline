@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% block csscontent %}
+
+{% endblock %}
+
+{% block content %}
+    {% include "_includes/corporate_nav.html" %}
+    <section>
+        <div class="container section-1 mb50">
+            <div class="row">
+                <div class="col-xs-12">
+                    <h2 class="page-title">Manage Trips</h2>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container mb100">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="row search-result trending-flight">
+                        <div class="col-sm-6">
+                            <h3 class="page-sub-title ml-2">Upcomming Trips</h3>
+                        </div>
+                        <div class="col-sm-6 text-right">
+                            <button class="btn btn-1 bold mr-2">Book a Flight</button>
+                        </div>
+                        <div class="col-sm-12 mt30">
+                            <div class="row pt-2 pb-2 ml-2 mr-2 shadow result-item">
+                                <div class="col-sm-12 text-center p50">
+                                    <label class="w-100">No upcoming trips... start booking</label>
+                                    <label class="w-100">Today and save</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row search-result trending-flight">
+                        <div class="col-sm-12">
+                            <h3 class="page-sub-title mt-3 ml-2 mr-2">Flights you've been watching</h3>
+                        </div>
+                        <div class="col-sm-12 mt30">
+                            <div class="row pt-2 pb-2 ml-2 mr-2 shadow result-item">
+                                <div class="col-sm-12 text-center p50">
+                                    <label class="w-100">No upcoming trips... start booking</label>
+                                    <label class="w-100">Today and save</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="row search-result trending-flight">
+                        <div class="col-sm-12">
+                            <h3 class="page-sub-title ml-2 mr-2">Previous Trips</h3>
+                        </div>
+                        <div class="col-sm-12 mt30">
+                            <div class="row pt-2 pb-2 ml-2 mr-2 shadow result-item">
+                                <div class="col-sm-12 text-center p50">
+                                    <label class="w-100">No upcoming trips... start booking</label>
+                                    <label class="w-100">Today and save</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {%  include "_includes/footer.html" %}
+{% endblock %}

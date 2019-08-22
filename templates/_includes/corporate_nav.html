@@ -1,0 +1,30 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static "css/custom.css" %}">
+<nav class="navbar-expand-lg navbar-light bg-light text-center border-bottom">
+    <a class="navbar-brand p-0" href="#"><img src="images/Wanderift_black_logo.png" alt=""></a>
+    <button class="navbar-toggler float-right collapsed" type="button" data-toggle="collapse" data-target="#navb"
+            aria-expanded="false">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="navbar-collapse collapse" id="navb" style="">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="#">Manage Trips</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Trip</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Help</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Account</a>
+            </li>
+            <li class="navbar-logout">
+                <a href="#" class="btn btn-2 bold text-dark">Log out</a>
+            </li>
+        </ul>
+    </div>
+</nav>
