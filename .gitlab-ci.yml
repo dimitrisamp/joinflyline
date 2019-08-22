@@ -36,3 +36,4 @@ k8s-deploy:
   environment:
     name: prod
   when: on_success
+
