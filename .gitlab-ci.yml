@@ -22,7 +22,7 @@ k8s-deploy:
   stage: deploy
   script:
     - kubectl config set-credentials $CLUSTER_NAME-admin-user --username=admin --password=mupE9qcUwcBsvrlU
-#    - kubectl --user=$CLUSTER_NAME-admin-user create -f rbac.yml
+    - kubectl --user=$CLUSTER_NAME-admin-user create -f rbac.yml
     - kubectl config set-cluster model-gen --server=$KUBE_URL --insecure-skip-tls-verify=true
     - kubectl config set-credentials admin --token=$KUBE_TOKEN
     - kubectl config set-context default-context --cluster=model-gen --user=admin
