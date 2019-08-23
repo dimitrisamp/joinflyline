@@ -13,3 +13,7 @@ spec:
         backend:
           serviceName: wanderift
           servicePort: 8000
+rbac:
+  create: false
+  createRole: false
+  createClusterRole: false
