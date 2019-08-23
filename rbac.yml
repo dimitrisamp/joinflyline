@@ -21,7 +21,7 @@ kind: Role
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
   name: tiller-manager
-  namespace: default
+  namespace: kube-system
 rules:
 - apiGroups: ["", "batch", "extensions", "apps"]
   resources: ["*"]
@@ -31,11 +31,11 @@ kind: RoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
   name: tiller-binding
-  namespace: default
+  namespace: kube-system
 subjects:
 - kind: ServiceAccount
   name: tiller
-  namespace: default
+  namespace: kube-system
 roleRef:
   kind: Role
   name: tiller-manager
