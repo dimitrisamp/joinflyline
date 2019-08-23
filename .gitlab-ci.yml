@@ -21,14 +21,14 @@ k8s-deploy:
   image: google/cloud-sdk
   stage: deploy
   script:
+    - kubectl create clusterrolebinding cluster-admin-binding --clusterrole cluster-admin --user ${CI_REGISTRY_USER}
     - kubectl config set-cluster model-gen --server=$KUBE_URL --insecure-skip-tls-verify=true
     - kubectl config set-credentials admin --token=$KUBE_TOKEN
     - kubectl config set-context default-context --cluster=model-gen --user=admin
     - kubectl config use-context default-context
-    - kubectl create serviceaccount --namespace kube-system tiller
-    - kubectl create clusterrolebinding tiller-cluster-rule --clusterrole=cluster-admin --serviceaccount=kube-system:tiller
-    - kubectl patch deploy --namespace kube-system tiller-deploy -p '{"spec":{"template":{"spec":{"serviceAccount":"tiller"}}}}'
     - kubectl create -f rbac.yml
+    - helm init --service-account tiller
+    - kubectl create namespace kube-system
     - kubectl delete secret gitlab-registry --ignore-not-found
     - kubectl create secret docker-registry gitlab-registry --docker-server=${CI_REGISTRY} --docker-username=${CI_REGISTRY_USER} --docker-password=${CI_REGISTRY_PASSWORD} --docker-email=${CI_REGISTRY_EMAIL}
     - kubectl apply -f deployment.yml
