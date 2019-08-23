@@ -1,87 +1,42 @@
-apiVersion: rbac.authorization.k8s.io/v1
-kind: Role
-metadata:
-  name: wanderift-app
-rules:
-  - apiGroups:
-      - extensions
-    resources:
-      - ingresses
-    verbs:
-      - get
-      - list
-      - watch
-      - patch
-      - create
-      - update
-      - delete
-  - apiGroups:
-      - ""
-    resources:
-      - configmaps
-      - services
-      - endpoints
-      - pods
-      - configmaps
-    verbs:
-      - get
-      - list
-      - watch
-      - patch
-      - update
-  - apiGroups:
-      - apps
-    resources:
-      - deployments
-    verbs:
-      - get
-      - list
-      - watch
-      - patch
-      - update
-  - apiGroups:
-      - ""
-    resources:
-      - routes
-    verbs:
-      - get
-      - list
-      - watch
-      - patch
-  - update
-  - apiGroups:
-      - ""
-    resources:
-      - routes
-    verbs:
-      - get
-      - list
-      - watch
-      - patch
-      - create
-      - update
-      - delete
-
----
-
 apiVersion: v1
 kind: ServiceAccount
 metadata:
-  creationTimestamp: null
-  name: wanderift-app
-
+  name: wanderift
+  namespace: kube-system
 ---
-
 apiVersion: rbac.authorization.k8s.io/v1
-kind: RoleBinding
+kind: ClusterRoleBinding
 metadata:
-  name: wanderift-app
-  namespace: default
+  name: wanderift
 roleRef:
   apiGroup: rbac.authorization.k8s.io
-  kind: Role
-  name: wanderift-app
+  kind: ClusterRole
+  name: cluster-admin
 subjects:
   - kind: ServiceAccount
-    name: wanderift-app
-    namespace: default
+    name: wanderift
+    namespace: kube-system
+---
+kind: Role
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: wanderift-manager
+  namespace: kube-system
+rules:
+- apiGroups: ["", "batch", "extensions", "apps"]
+  resources: ["*"]
+  verbs: ["*"]
+---
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: wanderift-binding
+  namespace: kube-system
+subjects:
+- kind: ServiceAccount
+  name: tiller
+  namespace: kube-system
+roleRef:
+  kind: Role
+  name: wanderift-manager
+  apiGroup: rbac.authorization.k8s.io
