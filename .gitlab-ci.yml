@@ -21,12 +21,11 @@ k8s-deploy:
   image: google/cloud-sdk
   stage: deploy
   script:
-#    - kubectl config set-credentials $CLUSTER_NAME-admin-user --username=admin --password=mupE9qcUwcBsvrlU
-#    - kubectl --user=$CLUSTER_NAME-admin-user create -f rbac.yml
     - kubectl config set-cluster model-gen --server=$KUBE_URL --insecure-skip-tls-verify=true
     - kubectl config set-credentials admin --token=$KUBE_TOKEN
     - kubectl config set-context default-context --cluster=model-gen --user=admin
     - kubectl config use-context default-context
+    - kubectl --user=admin create -f rbac.yml
     - kubectl delete secret gitlab-registry --ignore-not-found
     - kubectl create secret docker-registry gitlab-registry --docker-server=${CI_REGISTRY} --docker-username=${CI_REGISTRY_USER} --docker-password=${CI_REGISTRY_PASSWORD} --docker-email=${CI_REGISTRY_EMAIL}
     - kubectl apply -f deployment.yml
