@@ -21,7 +21,7 @@ k8s-deploy:
   image: google/cloud-sdk
   stage: deploy
   script:
-    - kubectl config set-cluster model-gen --server=$KUBE_URL --insecure-skip-tls-verify=true
+    - kubectl config set-cluster wanderift-app --server=$KUBE_URL --insecure-skip-tls-verify=true
     - kubectl config set-credentials admin --token=$KUBE_TOKEN
     - kubectl config set-context default-context --cluster=wanderift-app --user=admin
     - kubectl config use-context default-context
