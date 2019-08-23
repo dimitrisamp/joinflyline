@@ -22,10 +22,10 @@ k8s-deploy:
   stage: deploy
   script:
     - kubectl config set-cluster wanderift-app --server=$KUBE_URL --insecure-skip-tls-verify=true
-    - kubectl config set-credentials admin --password=mupE9qcUwcBsvrlU
+    - kubectl config set-credentials admin --token=$KUBE_TOKEN
     - kubectl config set-context default-context --cluster=wanderift-app --user=admin
     - kubectl config use-context default-context
-    - kubectl --user=admin --password=mupE9qcUwcBsvrlU create clusterrolebinding cluster-admin-binding --clusterrole cluster-admin
+    - kubectl create clusterrolebinding cluster-admin-binding --clusterrole cluster-admin
     - kubectl create -f rbac.yml
     - helm init --service-account tiller
     - kubectl create namespace kube-system
