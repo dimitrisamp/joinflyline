@@ -22,12 +22,11 @@ k8s-deploy:
   image: google/cloud-sdk
   stage: deploy
   script:
-  - kubectl config set-cluster wanderift-app --server=$KUBE_URL --insecure-skip-tls-verify=true
+  - kubectl config set-cluster k8s --server=$KUBE_URL
   - kubectl config set-credentials admin --token=$KUBE_TOKEN
-  - kubectl config set-context default-context --cluster=wanderift-app --user=admin
-  - kubectl config use-context default-context
-#  - kubectl create clusterrolebinding cluster-admin-binding --clusterrole cluster-admin --user $(gcloud config get-value account)
-#  - kubectl delete secret gitlab-registry --ignore-not-found
+  - kubectl config set-context default --cluster=k8s --user=admin
+  - kubectl config use-context default
+  - kubectl delete secret gitlab-registry --ignore-not-found
   - kubectl create secret docker-registry gitlab-registry --docker-server=${CI_REGISTRY} --docker-username=${CI_REGISTRY_USER} --docker-password=${CI_REGISTRY_PASSWORD} --docker-email=${CI_REGISTRY_EMAIL}
   - kubectl apply -f rbac.yml
   - kubectl apply -f deployment.yml
