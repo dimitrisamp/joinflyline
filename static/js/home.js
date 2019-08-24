@@ -8,14 +8,14 @@ const app = new Vue({
         noOfPassengers: 'Passengers',
         city: '',
         valPassengers: 1,
-        mySelectedPlace: '',
         form: {
             destinationType: "Return",
             noOfPassengers: "Passengers",
+            destinationTypeId: 'round',
             seatType: 'Economy',
             valAdults: 1,
             valChildren: 0,
-            valInfants: 0,
+            valInfants: 0
         }
     },
     methods: {
@@ -37,107 +37,169 @@ const app = new Vue({
         clearPlaceItem: function (index) {
             this.mySelection.splice(index, 1);
         },
-        swapPlaces: function () {
+
+        search: () => {
+            let formData = new FormData;
+            app.form.departure_date = document.getElementById('departure_date').value;
+            app.form.return_date = document.getElementById('return_date').value;
+
+            formData.append("city_from", app.form.placeFrom);
+            formData.append("city_to", app.form.placesTo);
+            formData.append("dep_date", app.form.departure_date);
+            formData.append("ret_date", app.form.return_date);
+            formData.append("type", app.form.destinationTypeId);
+            formData.append("adults", app.form.valAdults);
+            formData.append("infants", app.form.valInfants);
+            formData.append("children", app.form.valChildren);
+
+            let object = {};
+            formData.forEach(function (value, key) {
+                object[key] = value;
+            });
+            let json = object;
+            console.log(json);
+
+            // The rest of this code assumes you are not using a library.
+            // It can be made less wordy if you use one.
+            const form = document.createElement('form');
+            form.method = "post";
+            form.action = "/results";
+
+            for (const key in json) {
+                if (json.hasOwnProperty(key)) {
+                    const hiddenField = document.createElement('input');
+                    hiddenField.type = 'hidden';
+                    hiddenField.name = key;
+                    hiddenField.value = json[key];
+
+                    form.appendChild(hiddenField);
+                }
+            }
+
+            document.body.appendChild(form);
+            form.submit();
+
+
+            console.log(formData);
+
+        },
+
+        swapPlaces: () => {
 
             let placeFrom = document.getElementById('placesFrom').value;
             let placeTo = document.getElementById('placesTo').value;
 
+            let placeFromId = document.getElementById('placesFrom').placeholder;
+            let placeToId = document.getElementById('placesTo').placeholder;
+
             document.getElementById('placesTo').value = placeFrom;
             document.getElementById('placesFrom').value = placeTo;
+            document.getElementById('placesTo').placeholder = placeFromId;
+            document.getElementById('placesFrom').placeholder = placeToId;
         },
-        setPlace: function (place, index) {
+
+        setPlace: function (placeName, codeIataCity, index) {
             this.searchResultPlaces.splice(index, 1);
             this.searchResultPlaces = [];
-            document.getElementById('mySelectedPlace').innerText = place.nameCity;
+            document.getElementById('mySelectedPlace').innerText = placeName;
+            document.getElementById('mySelectedPlace').placeholder = codeIataCity;
             document.getElementById('mySelectedPlace').style.display = 'block';
         },
+
         selectDestType: (type) => {
             switch (type) {
                 case 1:
-                    document.getElementById('destinationType').value = 'round';
+                    app.form.destinationTypeId = 'round';
+                    app.form.destinationType = 'Return';
                     return;
                 case 2:
-                    document.getElementById('destinationType').value = 'oneway';
+                    app.form.destinationTypeId = 'oneway';
+                    app.form.destinationType = 'One way';
                     return;
                 default:
-                    document.getElementById('destinationType').value = 'round';
+                    app.form.destinationTypeId = 'round';
+                    app.form.destinationType = 'round';
                     return;
             }
         },
 
         selectSeatType: (type) => {
 
-                switch (type) {
-                    case 1:
-                        document.getElementById('seatType').value = 'Economy';
-                        return;
-                    case 2:
-                        document.getElementById('seatType').value = 'Premium Economy';
-                        return;
-                    case 3:
-                        document.getElementById('seatType').value = 'Business';
-                        return;
-                    case 4:
-                        document.getElementById('seatType').value = 'First Class';
-                        return;
-                    default:
-                        document.getElementById('seatType').value = 'Economy';
-                        return;
-                }
-            },
-        choosePlaces: function () {
-            let place = document.getElementById('mySelectedPlace').innerText;
-
-            switch (this.selectionOption) {
+            switch (type) {
                 case 1:
-                    this.form.placeFrom = place;
-                    $('#placesModal').modal('hide');
-                    break;
+                    document.getElementById('seatType').value = 'Economy';
+                    return;
                 case 2:
-                    this.form.placesTo = place;
+                    document.getElementById('seatType').value = 'Premium Economy';
+                    return;
+                case 3:
+                    document.getElementById('seatType').value = 'Business';
+                    return;
+                case 4:
+                    document.getElementById('seatType').value = 'First Class';
+                    return;
+                default:
+                    document.getElementById('seatType').value = 'Economy';
+                    return;
+            }
+        },
+        choosePlaces: function () {
+
+            let place = document.getElementById('mySelectedPlace').innerText;
+            let placeId = document.getElementById('mySelectedPlace').placeholder;
+
+            switch (app.selectionOption) {
+                case 1:
+                    document.getElementById('placesFrom').value = place;
+                    app.form.placeFrom = placeId;
                     $('#placesModal').modal('hide');
-                    break;
+                    return;
+                case 2:
+                    document.getElementById('placesTo').value = place;
+                    app.form.placesTo = placeId;
+                    $('#placesModal').modal('hide');
+                    return;
             }
 
         },
         increment: function (index) {
 
 
-            this.valPassengers = this.form.valAdults + this.form.valChildren + this.form.valInfants;
+            app.valPassengers = app.form.valAdults + app.form.valChildren + app.form.valInfants;
 
 
-            if (this.valPassengers != 9) {
+            if (app.valPassengers != 9) {
 
                 switch (index) {
                     case 1:
 
-                        if (this.form.valAdults != 9) {
-                            this.form.valAdults++;
-                            this.valPassengers++;
+                        if (app.form.valAdults != 9) {
+                            app.form.valAdults++;
+                            app.valPassengers++;
                         } else {
                             document.getElementById('valAdultsIncrement').disable = true;
                         }
-                        this.sumTotalsPassengers();
+                        app.sumTotalsPassengers();
                         return;
                     case 2:
 
-                        if (this.form.valChildren != 8) {
-                            this.form.valChildren++;
-                            this.valPassengers++;
+                        if (app.form.valChildren != 8) {
+                            app.form.valChildren++;
+                            app.valPassengers++;
                         } else {
                             document.getElementById('valChildrenIncrement').disable = true;
                         }
-                        this.sumTotalsPassengers();
+                        app.sumTotalsPassengers();
                         return;
                     case 3:
 
-                        if (this.form.valInfants != this.form.valAdults) {
-                            this.form.valInfants++;
-                            this.valPassengers++;
+                        if (app.form.valInfants != app.form.valAdults) {
+                            app.form.valInfants++;
+                            app.valPassengers++;
                         } else {
                             document.getElementById('valInfantsIncrement').disable = true;
                         }
-                        this.sumTotalsPassengers();
+                        app.sumTotalsPassengers();
                         return;
                 }
             }
@@ -145,62 +207,64 @@ const app = new Vue({
         },
         decrement: function (index) {
 
-            this.valPassengers = this.form.valAdults + this.form.valChildren + this.form.valInfants;
+            app.valPassengers = app.form.valAdults + app.form.valChildren + app.form.valInfants;
 
-            if (this.valPassengers != 1) {
+            if (app.valPassengers != 1) {
 
                 switch (index) {
                     case 1:
 
-                        if (this.form.valAdults != 1) {
-                            this.form.valAdults--;
-                            this.valPassengers--;
-                            if (this.form.valInfants > this.form.valAdults) {
-                                this.valPassengers--;
-                                this.form.valInfants--;
+                        if (app.form.valAdults != 1) {
+                            app.form.valAdults--;
+                            app.valPassengers--;
+                            if (app.form.valInfants > app.form.valAdults) {
+                                app.valPassengers--;
+                                app.form.valInfants--;
                             }
                         } else {
                             document.getElementById('valAdultsIncrement').disable = true;
                         }
-                        this.sumTotalsPassengers();
+                        app.sumTotalsPassengers();
                         return;
                     case 2:
-                        if (this.form.valChildren != 0) {
-                            this.form.valChildren--;
-                            this.valPassengers--;
+                        if (app.form.valChildren != 0) {
+                            app.form.valChildren--;
+                            app.valPassengers--;
                         } else {
                             document.getElementById('valChildrenIncrement').disable = true;
                         }
-                        this.sumTotalsPassengers();
+                        app.sumTotalsPassengers();
                         return;
                     case 3:
-                        if (this.form.valInfants != 0) {
-                            this.form.valInfants--;
-                            this.valPassengers--;
+                        if (app.form.valInfants != 0) {
+                            app.form.valInfants--;
+                            app.valPassengers--;
                         } else {
                             document.getElementById('valInfantsIncrement').disable = true;
                         }
-                        this.sumTotalsPassengers();
+                        app.sumTotalsPassengers();
                         return;
                 }
             }
 
         },
+
         sumTotalsPassengers: function () {
-            if (this.valPassengers == 1) {
-                this.form.noOfPassengers = 'Passengers';
+            if (app.valPassengers == 1) {
+                app.form.noOfPassengers = 'Passengers';
             } else {
-                this.form.noOfPassengers = this.valPassengers + ' Passengers'
+                app.form.noOfPassengers = app.valPassengers + ' Passengers'
             }
         },
+
         openPlaceModal: function (option) {
 
-            this.selectionOption = option;
+            app.selectionOption = option;
 
             let placeFrom = document.getElementById('placesFrom').value;
-            let placeTo = document.getElementById('placesTo').value;
+            let placeTo = document.getElementById('placesTo').value
 
-            switch (this.selectionOption) {
+            switch (app.selectionOption) {
                 case 1:
                     document.getElementById('placesModalTitle').innerText = "From";
                     if (placeFrom == null || placeFrom == '') {
@@ -227,10 +291,3 @@ const app = new Vue({
         }
     }
 });
-// let search = document.getElementById("searchForm");
-//
-// search.addEventListener('submit', function (e) {
-//     e.preventDefault();
-//
-//     console.log(app.form);
-// });

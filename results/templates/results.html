@@ -118,601 +118,587 @@
                     </div>
                 </div>
                 <div class="col-xl-6 search-result">
-                    <div class="row shadow result-item pt-2 pb-2">
-                        <div class="w-100" data-toggle="collapse" data-target="#result-item1">
-                            <div class="col-sm-2 pt-4">
-                                <h3>$174.00</h3>
-                                <label>1 Adult</label>
-                            </div>
-                            <div class="col-sm-7">
-                                <div class="row">
-                                    <div class="col-3 text-center pt-2">
-                                        <img src="{% static "images/american_airlines_logo.png" %}" alt="AA"
-                                             style="width: 25px;">
-                                    </div>
-                                    <div class="col-6">
-                                        <label>9:15 - 10:15</label><br>
-                                        <span>Dallas -> Austin</span>
-                                    </div>
-                                    <div class="col-3">
-                                        <label>Tue 3 Sep</label><br>
-                                        <span>1h 0m</span>
-                                    </div>
+                    {% for flight in data.data %}
+                        <div class="row shadow result-item pt-2 pb-2">
+                            <div class="w-100" data-toggle="collapse" data-target="#result-item1">
+                                <div class="col-sm-2 pt-4">
+                                    <h3>{{ flight.price }}</h3>
+                                    <label>1 Adult</label>
                                 </div>
-                                <div class="row">
-                                    <div class="col-3">
-                                        <hr>
-                                    </div>
-                                    <div class="col-6 pt-2">
-                                        <span class="small">Stays about 1 month in Austin</span>
-                                    </div>
-                                    <div class="col-3">
-                                        <hr>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-3 text-center pt-2">
-                                        <img src="{% static "images/american_airlines_logo.png" %}" alt="AA"
-                                             style="width: 25px;">
-                                    </div>
-                                    <div class="col-6">
-                                        <label>9:15 - 10:15</label><br>
-                                        <span>Dallas -> Austin</span>
-                                    </div>
-                                    <div class="col-3">
-                                        <label>Tue 3 Sep</label><br>
-                                        <span>1h 0m</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-3">
-                            </div>
-                        </div>
-                        <div class="w-100 collapse" id="result-item1">
-                            <hr>
-                            <div class="col-sm-6">
-                                <h4>To Austin</h4>
-                            </div>
-                            <div class="col-sm-6 text-right">
-                                <h4 class="text-grey">5h 0m</h4>
-                            </div>
-                            <div class="col-sm-12">
-                                <div class="card m-0">
-                                    <div class="card-header p-0">
-                                        <h5>Sat 24 Aug</h5>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col-sm-6">
-                                                <h5>Austine Airport, Gardermoen</h5>
-                                            </div>
-                                            <div class="col-sm-6 text-right">
-                                                <h5 class="text-grey">OSL</h5>
-                                            </div>
+                                <div class="col-sm-7">
+                                    <div class="row">
+                                        <div class="col-3 text-center pt-2">
+                                            <img src="{% static "images/american_airlines_logo.png" %}" alt="AA"
+                                                 style="width: 25px;">
                                         </div>
-                                        <div class="row">
-                                            <div class="col-sm-6">
-                                                <h5>8:45</h5>
-                                            </div>
-                                            <div class="col-sm-6 text-right">
-                                                <h5 class="text-grey">Departure</h5>
-                                            </div>
+                                        <div class="col-6">
+                                            <label>9:15 - 10:15</label><br>
+                                            <span>{{ flight.cityFrom }} -> {{ flight.cityTo }}</span>
                                         </div>
-                                        <div class="card" data-toggle="collapse" data-target="#airplane3">
-                                            <div class="card-body">
-                                                <div class="row">
-                                                    <div class="col-2 pt-2">
-                                                        <img src="{% static "images/american_airlines_logo.png" %}"
-                                                             alt="airline"
-                                                             class="img-25">
-                                                    </div>
-                                                    <div class="col-9 d-inline-flex justify-content-between">
-                                                        <div>
-                                                            <label>Finniar</label><br>
-                                                            <label class="text-grey">Airline</label>
-                                                        </div>
-                                                        <label class="text-grey pt-2">1h 20m</label>
-                                                    </div>
-                                                    <div class="col-1 text-right pt-2">
-                                                        <img src="images/arrow.png" style="width: 10px; height: 5px;">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="card-footer collapse" id="airplane3">
-                                                <h5 class="text-grey">Contact info</h5>
-                                                <div class="d-inline-flex justify-content-between w-100 pl-2">
-                                                    <label>Flight No.</label>
-                                                    <label class="text-grey">OSE. 10</label>
-                                                </div>
-                                                <div class="d-inline-flex justify-content-between w-100 pl-2">
-                                                    <label>Flight No.</label>
-                                                    <label class="text-grey">OSE. 10</label>
-                                                </div>
-                                                <div class="d-inline-flex justify-content-between w-100 pl-2">
-                                                    <label>Flight No.</label>
-                                                    <label class="text-grey">OSE. 10</label>
-                                                </div>
-                                                <div class="w-100 p-1 bg-white"></div>
-                                                <h5 class="text-grey">Contact info</h5>
-                                                <div class="d-inline-flex justify-content-between w-100 pl-2">
-                                                    <label>Flight No.</label>
-                                                    <label class="text-grey">OSE. 10</label>
-                                                </div>
-                                                <div class="d-inline-flex justify-content-between w-100 pl-2">
-                                                    <label>Flight No.</label>
-                                                    <label class="text-grey">OSE. 10</label>
-                                                </div>
-                                                <div class="d-inline-flex justify-content-between w-100 pl-2">
-                                                    <label>Flight No.</label>
-                                                    <label class="text-grey">OSE. 10</label>
-                                                </div>
-                                            </div>
+                                        <div class="col-3">
+                                            <label>{{ flight.utc_departure }}</label><br>
+                                            <span>1h 0m</span>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-sm-6">
-                                                <h5>Helsinki</h5>
-                                            </div>
-                                            <div class="col-sm-6 text-right">
-                                                <h5 class="text-grey">HEL</h5>
-                                            </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-3">
+                                            <hr>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-sm-6">
-                                                <h5>8:45</h5>
-                                            </div>
-                                            <div class="col-sm-6 text-right">
-                                                <h5 class="text-grey">Arrival</h5>
-                                            </div>
+                                        <div class="col-6 pt-2">
+                                            <span class="small">Stays about 1 month in Austin</span>
+                                        </div>
+                                        <div class="col-3">
+                                            <hr>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-3 text-center pt-2">
+                                            <img src="{% static "images/american_airlines_logo.png" %}" alt="AA"
+                                                 style="width: 25px;">
+                                        </div>
+                                        <div class="col-6">
+                                            <label>9:15 - 10:15</label><br>
+                                            <span>Dallas -> Austin</span>
+                                        </div>
+                                        <div class="col-3">
+                                            <label>Tue 3 Sep</label><br>
+                                            <span>1h 0m</span>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-sm-12 mt-2 mb-2">
-                                <label class="text-grey pl-4">6h 30m layover</label>
-                            </div>
-                            <div class="col-sm-12">
-                                <div class="card m-0">
-                                    <div class="card-header p-0">
-                                        <h5>Sat 24 Aug</h5>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col-sm-6">
-                                                <h5>Oslo Airport, Gardermoen</h5>
-                                            </div>
-                                            <div class="col-sm-6 text-right">
-                                                <h5 class="text-grey">OSL</h5>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-sm-6">
-                                                <h5>8:45</h5>
-                                            </div>
-                                            <div class="col-sm-6 text-right">
-                                                <h5 class="text-grey">Departure</h5>
-                                            </div>
-                                        </div>
-                                        <div class="card" data-toggle="collapse" data-target="#airplane4">
-                                            <div class="card-body">
-                                                <div class="row">
-                                                    <div class="col-2 pt-2">
-                                                        <img src="{% static "images/american_airlines_logo.png" %}"
-                                                             alt="airline"
-                                                             class="img-25">
-                                                    </div>
-                                                    <div class="col-9 d-inline-flex justify-content-between">
-                                                        <div>
-                                                            <label>Finniar</label><br>
-                                                            <label class="text-grey">Airline</label>
-                                                        </div>
-                                                        <label class="text-grey pt-2">1h 20m</label>
-                                                    </div>
-                                                    <div class="col-1 text-right pt-2">
-                                                        <img src="images/arrow.png" style="width: 10px; height: 5px;">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="card-footer collapse" id="airplane4">
-                                                <h5 class="text-grey">Contact info</h5>
-                                                <div class="d-inline-flex justify-content-between w-100 pl-2">
-                                                    <label>Flight No.</label>
-                                                    <label class="text-grey">OSE. 10</label>
-                                                </div>
-                                                <div class="d-inline-flex justify-content-between w-100 pl-2">
-                                                    <label>Flight No.</label>
-                                                    <label class="text-grey">OSE. 10</label>
-                                                </div>
-                                                <div class="d-inline-flex justify-content-between w-100 pl-2">
-                                                    <label>Flight No.</label>
-                                                    <label class="text-grey">OSE. 10</label>
-                                                </div>
-                                                <div class="w-100 p-1 bg-white"></div>
-                                                <h5 class="text-grey">Contact info</h5>
-                                                <div class="d-inline-flex justify-content-between w-100 pl-2">
-                                                    <label>Flight No.</label>
-                                                    <label class="text-grey">OSE. 10</label>
-                                                </div>
-                                                <div class="d-inline-flex justify-content-between w-100 pl-2">
-                                                    <label>Flight No.</label>
-                                                    <label class="text-grey">OSE. 10</label>
-                                                </div>
-                                                <div class="d-inline-flex justify-content-between w-100 pl-2">
-                                                    <label>Flight No.</label>
-                                                    <label class="text-grey">OSE. 10</label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-sm-6">
-                                                <h5>Helsinki</h5>
-                                            </div>
-                                            <div class="col-sm-6 text-right">
-                                                <h5 class="text-grey">HEL</h5>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-sm-6">
-                                                <h5>8:45</h5>
-                                            </div>
-                                            <div class="col-sm-6 text-right">
-                                                <h5 class="text-grey">Arrival</h5>
-                                            </div>
-                                        </div>
-                                    </div>
+                                <div class="col-sm-3">
                                 </div>
                             </div>
-                            <div class="col-sm-12 mt-2 mb-2">
-                                <label class="text-grey pl-4">Stays about 1 month in Austin</label>
-                            </div>
+                            <div class="w-100 collapse" id="result-item1">
+                                {% for route in flight.route %}
 
-                            <div class="col-sm-6">
-                                <h4>To Dallas</h4>
-                            </div>
-                            <div class="col-sm-6 text-right">
-                                <h4 class="text-grey">5h 0m</h4>
-                            </div>
-                            <div class="col-sm-12">
-                                <div class="card m-0">
-                                    <div class="card-header p-0">
-                                        <h5>Sat 24 Aug</h5>
+                                    <hr>
+                                    <div class="col-sm-6">
+                                        <h4>To {{ route.cityFrom }}</h4>
                                     </div>
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col-sm-6">
-                                                <h5>Dallase Airport, Gardermoen</h5>
+                                    <div class="col-sm-6 text-right">
+                                        <h4 class="text-grey">5h 0m</h4>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <div class="card m-0">
+                                            <div class="card-header p-0">
+                                                <h5>{{ route.local_departure }}</h5>
                                             </div>
-                                            <div class="col-sm-6 text-right">
-                                                <h5 class="text-grey">OSL</h5>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-sm-6">
-                                                <h5>8:45</h5>
-                                            </div>
-                                            <div class="col-sm-6 text-right">
-                                                <h5 class="text-grey">Departure</h5>
-                                            </div>
-                                        </div>
-                                        <div class="card" data-toggle="collapse" data-target="#airplane1">
                                             <div class="card-body">
                                                 <div class="row">
-                                                    <div class="col-2 pt-2">
-                                                        <img src="{% static "images/american_airlines_logo.png" %}"
-                                                             alt="airline"
-                                                             class="img-25">
+                                                    <div class="col-sm-6">
+                                                        <h5>{{ route.airline }}</h5>
                                                     </div>
-                                                    <div class="col-9 d-inline-flex justify-content-between">
-                                                        <div>
-                                                            <label>Finniar</label><br>
-                                                            <label class="text-grey">Airline</label>
+                                                    <div class="col-sm-6 text-right">
+                                                        <h5 class="text-grey">{{ route.flyFrom }}</h5>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-sm-6">
+                                                        <h5>8:45</h5>
+                                                    </div>
+                                                    <div class="col-sm-6 text-right">
+                                                        <h5 class="text-grey">Departure</h5>
+                                                    </div>
+                                                </div>
+                                                <div class="card" data-toggle="collapse" data-target="#airplane3">
+                                                    <div class="card-body">
+                                                        <div class="row">
+                                                            <div class="col-2 pt-2">
+                                                                <img src="{% static "images/american_airlines_logo.png" %}"
+                                                                     alt="airline"
+                                                                     class="img-25">
+                                                            </div>
+                                                            <div class="col-9 d-inline-flex justify-content-between">
+                                                                <div>
+                                                                    <label>Finniar</label><br>
+                                                                    <label class="text-grey">Airline</label>
+                                                                </div>
+                                                                <label class="text-grey pt-2">1h 20m</label>
+                                                            </div>
+                                                            <div class="col-1 text-right pt-2">
+                                                                <img src="{% static "images/arrow.png" %}"
+                                                                     style="width: 10px; height: 5px;">
+                                                            </div>
                                                         </div>
-                                                        <label class="text-grey pt-2">1h 20m</label>
                                                     </div>
-                                                    <div class="col-1 text-right pt-2">
-                                                        <img src="images/arrow.png" style="width: 10px; height: 5px;">
+                                                    <div class="card-footer collapse" id="airplane3">
+                                                        <h5 class="text-grey">Flight info</h5>
+                                                        <div class="d-inline-flex justify-content-between w-100 pl-2">
+                                                            <label>Flight No.</label>
+                                                            <label class="text-grey">{{ route.flight_no }}</label>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="card-footer collapse" id="airplane1">
-                                                <h5 class="text-grey">Contact info</h5>
-                                                <div class="d-inline-flex justify-content-between w-100 pl-2">
-                                                    <label>Flight No.</label>
-                                                    <label class="text-grey">OSE. 10</label>
+                                                <div class="row">
+                                                    <div class="col-sm-6">
+                                                        <h5>{{ route.cityTo }}</h5>
+                                                    </div>
+                                                    <div class="col-sm-6 text-right">
+                                                        <h5 class="text-grey">{{ route.flyTo }}</h5>
+                                                    </div>
                                                 </div>
-                                                <div class="d-inline-flex justify-content-between w-100 pl-2">
-                                                    <label>Flight No.</label>
-                                                    <label class="text-grey">OSE. 10</label>
-                                                </div>
-                                                <div class="d-inline-flex justify-content-between w-100 pl-2">
-                                                    <label>Flight No.</label>
-                                                    <label class="text-grey">OSE. 10</label>
-                                                </div>
-                                                <div class="w-100 p-1 bg-white"></div>
-                                                <h5 class="text-grey">Contact info</h5>
-                                                <div class="d-inline-flex justify-content-between w-100 pl-2">
-                                                    <label>Flight No.</label>
-                                                    <label class="text-grey">OSE. 10</label>
-                                                </div>
-                                                <div class="d-inline-flex justify-content-between w-100 pl-2">
-                                                    <label>Flight No.</label>
-                                                    <label class="text-grey">OSE. 10</label>
-                                                </div>
-                                                <div class="d-inline-flex justify-content-between w-100 pl-2">
-                                                    <label>Flight No.</label>
-                                                    <label class="text-grey">OSE. 10</label>
+                                                <div class="row">
+                                                    <div class="col-sm-6">
+                                                        <h5>8:45</h5>
+                                                    </div>
+                                                    <div class="col-sm-6 text-right">
+                                                        <h5 class="text-grey">Arrival</h5>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-sm-6">
-                                                <h5>Helsinki</h5>
-                                            </div>
-                                            <div class="col-sm-6 text-right">
-                                                <h5 class="text-grey">HEL</h5>
-                                            </div>
+                                    </div>
+                                    <div class="col-sm-12 mt-2 mb-2">
+                                        <label class="text-grey pl-4">6h 30m layover</label>
+                                    </div>
+                                {% endfor %}
+                                <div class="col-sm-12">
+                                    <div class="card m-0">
+                                        <div class="card-header p-0">
+                                            <h5>Sat 24 Aug</h5>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-sm-6">
-                                                <h5>8:45</h5>
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <h5>Oslo Airport, Gardermoen</h5>
+                                                </div>
+                                                <div class="col-sm-6 text-right">
+                                                    <h5 class="text-grey">OSL</h5>
+                                                </div>
                                             </div>
-                                            <div class="col-sm-6 text-right">
-                                                <h5 class="text-grey">Arrival</h5>
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <h5>8:45</h5>
+                                                </div>
+                                                <div class="col-sm-6 text-right">
+                                                    <h5 class="text-grey">Departure</h5>
+                                                </div>
+                                            </div>
+                                            <div class="card" data-toggle="collapse" data-target="#airplane4">
+                                                <div class="card-body">
+                                                    <div class="row">
+                                                        <div class="col-2 pt-2">
+                                                            <img src="{% static "images/american_airlines_logo.png" %}"
+                                                                 alt="airline"
+                                                                 class="img-25">
+                                                        </div>
+                                                        <div class="col-9 d-inline-flex justify-content-between">
+                                                            <div>
+                                                                <label>Finniar</label><br>
+                                                                <label class="text-grey">Airline</label>
+                                                            </div>
+                                                            <label class="text-grey pt-2">1h 20m</label>
+                                                        </div>
+                                                        <div class="col-1 text-right pt-2">
+                                                            <img src="{% static "images/arrow.png" %}"
+                                                                 style="width: 10px; height: 5px;">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="card-footer collapse" id="airplane4">
+                                                    <h5 class="text-grey">Contact info</h5>
+                                                    <div class="d-inline-flex justify-content-between w-100 pl-2">
+                                                        <label>Flight No.</label>
+                                                        <label class="text-grey">OSE. 10</label>
+                                                    </div>
+                                                    <div class="d-inline-flex justify-content-between w-100 pl-2">
+                                                        <label>Flight No.</label>
+                                                        <label class="text-grey">OSE. 10</label>
+                                                    </div>
+                                                    <div class="d-inline-flex justify-content-between w-100 pl-2">
+                                                        <label>Flight No.</label>
+                                                        <label class="text-grey">OSE. 10</label>
+                                                    </div>
+                                                    <div class="w-100 p-1 bg-white"></div>
+                                                    <h5 class="text-grey">Contact info</h5>
+                                                    <div class="d-inline-flex justify-content-between w-100 pl-2">
+                                                        <label>Flight No.</label>
+                                                        <label class="text-grey">OSE. 10</label>
+                                                    </div>
+                                                    <div class="d-inline-flex justify-content-between w-100 pl-2">
+                                                        <label>Flight No.</label>
+                                                        <label class="text-grey">OSE. 10</label>
+                                                    </div>
+                                                    <div class="d-inline-flex justify-content-between w-100 pl-2">
+                                                        <label>Flight No.</label>
+                                                        <label class="text-grey">OSE. 10</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <h5>Helsinki</h5>
+                                                </div>
+                                                <div class="col-sm-6 text-right">
+                                                    <h5 class="text-grey">HEL</h5>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <h5>8:45</h5>
+                                                </div>
+                                                <div class="col-sm-6 text-right">
+                                                    <h5 class="text-grey">Arrival</h5>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-sm-12 mt-2 mb-2">
-                                <label class="text-grey pl-4">6h 30m layover</label>
-                            </div>
-                            <div class="col-sm-12">
-                                <div class="card m-0">
-                                    <div class="card-header p-0">
-                                        <h5>Sat 24 Aug</h5>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col-sm-6">
-                                                <h5>Oslo Airport, Gardermoen</h5>
-                                            </div>
-                                            <div class="col-sm-6 text-right">
-                                                <h5 class="text-grey">OSL</h5>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-sm-6">
-                                                <h5>8:45</h5>
-                                            </div>
-                                            <div class="col-sm-6 text-right">
-                                                <h5 class="text-grey">Departure</h5>
-                                            </div>
-                                        </div>
-                                        <div class="card" data-toggle="collapse" data-target="#airplane2">
-                                            <div class="card-body">
-                                                <div class="row">
-                                                    <div class="col-2 pt-2">
-                                                        <img src="{% static "images/american_airlines_logo.png" %}"
-                                                             alt="airline"
-                                                             class="img-25">
-                                                    </div>
-                                                    <div class="col-9 d-inline-flex justify-content-between">
-                                                        <div>
-                                                            <label>Finniar</label><br>
-                                                            <label class="text-grey">Airline</label>
-                                                        </div>
-                                                        <label class="text-grey pt-2">1h 20m</label>
-                                                    </div>
-                                                    <div class="col-1 text-right pt-2">
-                                                        <img src="images/arrow.png" style="width: 10px; height: 5px;">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="card-footer collapse" id="airplane2">
-                                                <h5 class="text-grey">Contact info</h5>
-                                                <div class="d-inline-flex justify-content-between w-100 pl-2">
-                                                    <label>Flight No.</label>
-                                                    <label class="text-grey">OSE. 10</label>
-                                                </div>
-                                                <div class="d-inline-flex justify-content-between w-100 pl-2">
-                                                    <label>Flight No.</label>
-                                                    <label class="text-grey">OSE. 10</label>
-                                                </div>
-                                                <div class="d-inline-flex justify-content-between w-100 pl-2">
-                                                    <label>Flight No.</label>
-                                                    <label class="text-grey">OSE. 10</label>
-                                                </div>
-                                                <div class="w-100 p-1 bg-white"></div>
-                                                <h5 class="text-grey">Contact info</h5>
-                                                <div class="d-inline-flex justify-content-between w-100 pl-2">
-                                                    <label>Flight No.</label>
-                                                    <label class="text-grey">OSE. 10</label>
-                                                </div>
-                                                <div class="d-inline-flex justify-content-between w-100 pl-2">
-                                                    <label>Flight No.</label>
-                                                    <label class="text-grey">OSE. 10</label>
-                                                </div>
-                                                <div class="d-inline-flex justify-content-between w-100 pl-2">
-                                                    <label>Flight No.</label>
-                                                    <label class="text-grey">OSE. 10</label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-sm-6">
-                                                <h5>Helsinki</h5>
-                                            </div>
-                                            <div class="col-sm-6 text-right">
-                                                <h5 class="text-grey">HEL</h5>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-sm-6">
-                                                <h5>8:45</h5>
-                                            </div>
-                                            <div class="col-sm-6 text-right">
-                                                <h5 class="text-grey">Arrival</h5>
-                                            </div>
-                                        </div>
-                                    </div>
+                                <div class="col-sm-12 mt-2 mb-2">
+                                    <label class="text-grey pl-4">Stays about 1 month in Austin</label>
                                 </div>
-                            </div>
-                            <div class="col-sm-12 mt-2 mb-2 text-right">
-                                <button class="btn btn-1 bold">BOOK FOR $216.00</button>
-                            </div>
-                        </div>
-                    </div>
 
-                    <div class="row shadow result-item pt-2 pb-2">
-                        <div class="col-sm-2 pt-4">
-                            <h3>$174.00</h3>
-                            <label>1 Adult</label>
+                                <div class="col-sm-6">
+                                    <h4>To Dallas</h4>
+                                </div>
+                                <div class="col-sm-6 text-right">
+                                    <h4 class="text-grey">5h 0m</h4>
+                                </div>
+                                <div class="col-sm-12">
+                                    <div class="card m-0">
+                                        <div class="card-header p-0">
+                                            <h5>Sat 24 Aug</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <h5>Dallase Airport, Gardermoen</h5>
+                                                </div>
+                                                <div class="col-sm-6 text-right">
+                                                    <h5 class="text-grey">OSL</h5>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <h5>8:45</h5>
+                                                </div>
+                                                <div class="col-sm-6 text-right">
+                                                    <h5 class="text-grey">Departure</h5>
+                                                </div>
+                                            </div>
+                                            <div class="card" data-toggle="collapse" data-target="#airplane1">
+                                                <div class="card-body">
+                                                    <div class="row">
+                                                        <div class="col-2 pt-2">
+                                                            <img src="{% static "images/american_airlines_logo.png" %}"
+                                                                 alt="airline"
+                                                                 class="img-25">
+                                                        </div>
+                                                        <div class="col-9 d-inline-flex justify-content-between">
+                                                            <div>
+                                                                <label>Finniar</label><br>
+                                                                <label class="text-grey">Airline</label>
+                                                            </div>
+                                                            <label class="text-grey pt-2">1h 20m</label>
+                                                        </div>
+                                                        <div class="col-1 text-right pt-2">
+                                                            <img src="{% static "images/arrow.png" %}"
+                                                                 style="width: 10px; height: 5px;">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="card-footer collapse" id="airplane1">
+                                                    <h5 class="text-grey">Contact info</h5>
+                                                    <div class="d-inline-flex justify-content-between w-100 pl-2">
+                                                        <label>Flight No.</label>
+                                                        <label class="text-grey">OSE. 10</label>
+                                                    </div>
+                                                    <div class="d-inline-flex justify-content-between w-100 pl-2">
+                                                        <label>Flight No.</label>
+                                                        <label class="text-grey">OSE. 10</label>
+                                                    </div>
+                                                    <div class="d-inline-flex justify-content-between w-100 pl-2">
+                                                        <label>Flight No.</label>
+                                                        <label class="text-grey">OSE. 10</label>
+                                                    </div>
+                                                    <div class="w-100 p-1 bg-white"></div>
+                                                    <h5 class="text-grey">Contact info</h5>
+                                                    <div class="d-inline-flex justify-content-between w-100 pl-2">
+                                                        <label>Flight No.</label>
+                                                        <label class="text-grey">OSE. 10</label>
+                                                    </div>
+                                                    <div class="d-inline-flex justify-content-between w-100 pl-2">
+                                                        <label>Flight No.</label>
+                                                        <label class="text-grey">OSE. 10</label>
+                                                    </div>
+                                                    <div class="d-inline-flex justify-content-between w-100 pl-2">
+                                                        <label>Flight No.</label>
+                                                        <label class="text-grey">OSE. 10</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <h5>Helsinki</h5>
+                                                </div>
+                                                <div class="col-sm-6 text-right">
+                                                    <h5 class="text-grey">HEL</h5>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <h5>8:45</h5>
+                                                </div>
+                                                <div class="col-sm-6 text-right">
+                                                    <h5 class="text-grey">Arrival</h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 mt-2 mb-2">
+                                    <label class="text-grey pl-4">6h 30m layover</label>
+                                </div>
+                                <div class="col-sm-12">
+                                    <div class="card m-0">
+                                        <div class="card-header p-0">
+                                            <h5>Sat 24 Aug</h5>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <h5>Oslo Airport, Gardermoen</h5>
+                                                </div>
+                                                <div class="col-sm-6 text-right">
+                                                    <h5 class="text-grey">OSL</h5>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <h5>8:45</h5>
+                                                </div>
+                                                <div class="col-sm-6 text-right">
+                                                    <h5 class="text-grey">Departure</h5>
+                                                </div>
+                                            </div>
+                                            <div class="card" data-toggle="collapse" data-target="#airplane2">
+                                                <div class="card-body">
+                                                    <div class="row">
+                                                        <div class="col-2 pt-2">
+                                                            <img src="{% static "images/american_airlines_logo.png" %}"
+                                                                 alt="airline"
+                                                                 class="img-25">
+                                                        </div>
+                                                        <div class="col-9 d-inline-flex justify-content-between">
+                                                            <div>
+                                                                <label>Finniar</label><br>
+                                                                <label class="text-grey">Airline</label>
+                                                            </div>
+                                                            <label class="text-grey pt-2">1h 20m</label>
+                                                        </div>
+                                                        <div class="col-1 text-right pt-2">
+                                                            <img src="{% static "images/arrow.png" %}"
+                                                                 style="width: 10px; height: 5px;">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="card-footer collapse" id="airplane2">
+                                                    <h5 class="text-grey">Contact info</h5>
+                                                    <div class="d-inline-flex justify-content-between w-100 pl-2">
+                                                        <label>Flight No.</label>
+                                                        <label class="text-grey">OSE. 10</label>
+                                                    </div>
+                                                    <div class="d-inline-flex justify-content-between w-100 pl-2">
+                                                        <label>Flight No.</label>
+                                                        <label class="text-grey">OSE. 10</label>
+                                                    </div>
+                                                    <div class="d-inline-flex justify-content-between w-100 pl-2">
+                                                        <label>Flight No.</label>
+                                                        <label class="text-grey">OSE. 10</label>
+                                                    </div>
+                                                    <div class="w-100 p-1 bg-white"></div>
+                                                    <h5 class="text-grey">Contact info</h5>
+                                                    <div class="d-inline-flex justify-content-between w-100 pl-2">
+                                                        <label>Flight No.</label>
+                                                        <label class="text-grey">OSE. 10</label>
+                                                    </div>
+                                                    <div class="d-inline-flex justify-content-between w-100 pl-2">
+                                                        <label>Flight No.</label>
+                                                        <label class="text-grey">OSE. 10</label>
+                                                    </div>
+                                                    <div class="d-inline-flex justify-content-between w-100 pl-2">
+                                                        <label>Flight No.</label>
+                                                        <label class="text-grey">OSE. 10</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <h5>Helsinki</h5>
+                                                </div>
+                                                <div class="col-sm-6 text-right">
+                                                    <h5 class="text-grey">HEL</h5>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <h5>8:45</h5>
+                                                </div>
+                                                <div class="col-sm-6 text-right">
+                                                    <h5 class="text-grey">Arrival</h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 mt-2 mb-2 text-right">
+                                    <button class="btn btn-1 bold">BOOK FOR $216.00</button>
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-sm-7">
-                            <div class="row">
-                                <div class="col-3 text-center pt-2">
-                                    <img src="{% static "images/american_airlines_logo.png" %}" alt="AA"
-                                         style="width: 25px;">
-                                </div>
-                                <div class="col-6">
-                                    <label>9:15 - 10:15</label><br>
-                                    <span>Dallas -> Austin</span>
-                                </div>
-                                <div class="col-3">
-                                    <label>Tue 3 Sep</label><br>
-                                    <span>1h 0m</span>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-3">
-                                    <hr>
-                                </div>
-                                <div class="col-6 pt-2">
-                                    <span class="small">Stays about 1 month in Austin</span>
-                                </div>
-                                <div class="col-3">
-                                    <hr>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-3 text-center pt-2">
-                                    <img src="{% static "images/american_airlines_logo.png" %}" alt="AA"
-                                         style="width: 25px;">
-                                </div>
-                                <div class="col-6">
-                                    <label>9:15 - 10:15</label><br>
-                                    <span>Dallas -> Austin</span>
-                                </div>
-                                <div class="col-3">
-                                    <label>Tue 3 Sep</label><br>
-                                    <span>1h 0m</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-3">
-                        </div>
-                    </div>
-                    <div class="row shadow result-item pt-2 pb-2">
-                        <div class="col-sm-2 pt-4">
-                            <h3>$174.00</h3>
-                            <label>1 Adult</label>
-                        </div>
-                        <div class="col-sm-7">
-                            <div class="row">
-                                <div class="col-3 text-center pt-2">
-                                    <img src="{% static "images/american_airlines_logo.png" %}" alt="AA"
-                                         style="width: 25px;">
-                                </div>
-                                <div class="col-6">
-                                    <label>9:15 - 10:15</label><br>
-                                    <span>Dallas -> Austin</span>
-                                </div>
-                                <div class="col-3">
-                                    <label>Tue 3 Sep</label><br>
-                                    <span>1h 0m</span>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-3">
-                                    <hr>
-                                </div>
-                                <div class="col-6 pt-2">
-                                    <span class="small">Stays about 1 month in Austin</span>
-                                </div>
-                                <div class="col-3">
-                                    <hr>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-3 text-center pt-2">
-                                    <img src="{% static "images/american_airlines_logo.png" %}" alt="AA"
-                                         style="width: 25px;">
-                                </div>
-                                <div class="col-6">
-                                    <label>9:15 - 10:15</label><br>
-                                    <span>Dallas -> Austin</span>
-                                </div>
-                                <div class="col-3">
-                                    <label>Tue 3 Sep</label><br>
-                                    <span>1h 0m</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-3 pt-2">
-                            <div class="shadow p-3">
-                                <label class="small">Save $32 on this flight when subscribing to Wanderift</label>
-                                <button class="btn btn-1 bold w-100">Learn More</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row shadow result-item pt-2 pb-2">
-                        <div class="col-sm-2 pt-4">
-                            <h3>$174.00</h3>
-                            <label>1 Adult</label>
-                        </div>
-                        <div class="col-sm-7">
-                            <div class="row">
-                                <div class="col-3 text-center pt-2">
-                                    <img src="{% static "images/american_airlines_logo.png" %}" alt="AA"
-                                         style="width: 25px;">
-                                </div>
-                                <div class="col-6">
-                                    <label>9:15 - 10:15</label><br>
-                                    <span>Dallas -> Austin</span>
-                                </div>
-                                <div class="col-3">
-                                    <label>Tue 3 Sep</label><br>
-                                    <span>1h 0m</span>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-3">
-                                    <hr>
-                                </div>
-                                <div class="col-6 pt-2">
-                                    <span class="small">Stays about 1 month in Austin</span>
-                                </div>
-                                <div class="col-3">
-                                    <hr>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-3 text-center pt-2">
-                                    <img src="{% static "images/american_airlines_logo.png" %}" alt="AA"
-                                         style="width: 25px;">
-                                </div>
-                                <div class="col-6">
-                                    <label>9:15 - 10:15</label><br>
-                                    <span>Dallas -> Austin</span>
-                                </div>
-                                <div class="col-3">
-                                    <label>Tue 3 Sep</label><br>
-                                    <span>1h 0m</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-3">
-                        </div>
-                    </div>
+                    {% endfor %}
+                    {#                    <div class="row shadow result-item pt-2 pb-2">#}
+                    {#                        <div class="col-sm-2 pt-4">#}
+                    {#                            <h3>$174.00</h3>#}
+                    {#                            <label>1 Adult</label>#}
+                    {#                        </div>#}
+                    {#                        <div class="col-sm-7">#}
+                    {#                            <div class="row">#}
+                    {#                                <div class="col-3 text-center pt-2">#}
+                    {#                                    <img src="{% static "images/american_airlines_logo.png" %}" alt="AA"#}
+                    {#                                         style="width: 25px;">#}
+                    {#                                </div>#}
+                    {#                                <div class="col-6">#}
+                    {#                                    <label>9:15 - 10:15</label><br>#}
+                    {#                                    <span>Dallas -> Austin</span>#}
+                    {#                                </div>#}
+                    {#                                <div class="col-3">#}
+                    {#                                    <label>Tue 3 Sep</label><br>#}
+                    {#                                    <span>1h 0m</span>#}
+                    {#                                </div>#}
+                    {#                            </div>#}
+                    {#                            <div class="row">#}
+                    {#                                <div class="col-3">#}
+                    {#                                    <hr>#}
+                    {#                                </div>#}
+                    {#                                <div class="col-6 pt-2">#}
+                    {#                                    <span class="small">Stays about 1 month in Austin</span>#}
+                    {#                                </div>#}
+                    {#                                <div class="col-3">#}
+                    {#                                    <hr>#}
+                    {#                                </div>#}
+                    {#                            </div>#}
+                    {#                            <div class="row">#}
+                    {#                                <div class="col-3 text-center pt-2">#}
+                    {#                                    <img src="{% static "images/american_airlines_logo.png" %}" alt="AA"#}
+                    {#                                         style="width: 25px;">#}
+                    {#                                </div>#}
+                    {#                                <div class="col-6">#}
+                    {#                                    <label>9:15 - 10:15</label><br>#}
+                    {#                                    <span>Dallas -> Austin</span>#}
+                    {#                                </div>#}
+                    {#                                <div class="col-3">#}
+                    {#                                    <label>Tue 3 Sep</label><br>#}
+                    {#                                    <span>1h 0m</span>#}
+                    {#                                </div>#}
+                    {#                            </div>#}
+                    {#                        </div>#}
+                    {#                        <div class="col-sm-3">#}
+                    {#                        </div>#}
+                    {#                    </div>#}
+                    {#                    <div class="row shadow result-item pt-2 pb-2">#}
+                    {#                        <div class="col-sm-2 pt-4">#}
+                    {#                            <h3>$174.00</h3>#}
+                    {#                            <label>1 Adult</label>#}
+                    {#                        </div>#}
+                    {#                        <div class="col-sm-7">#}
+                    {#                            <div class="row">#}
+                    {#                                <div class="col-3 text-center pt-2">#}
+                    {#                                    <img src="{% static "images/american_airlines_logo.png" %}" alt="AA"#}
+                    {#                                         style="width: 25px;">#}
+                    {#                                </div>#}
+                    {#                                <div class="col-6">#}
+                    {#                                    <label>9:15 - 10:15</label><br>#}
+                    {#                                    <span>Dallas -> Austin</span>#}
+                    {#                                </div>#}
+                    {#                                <div class="col-3">#}
+                    {#                                    <label>Tue 3 Sep</label><br>#}
+                    {#                                    <span>1h 0m</span>#}
+                    {#                                </div>#}
+                    {#                            </div>#}
+                    {#                            <div class="row">#}
+                    {#                                <div class="col-3">#}
+                    {#                                    <hr>#}
+                    {#                                </div>#}
+                    {#                                <div class="col-6 pt-2">#}
+                    {#                                    <span class="small">Stays about 1 month in Austin</span>#}
+                    {#                                </div>#}
+                    {#                                <div class="col-3">#}
+                    {#                                    <hr>#}
+                    {#                                </div>#}
+                    {#                            </div>#}
+                    {#                            <div class="row">#}
+                    {#                                <div class="col-3 text-center pt-2">#}
+                    {#                                    <img src="{% static "images/american_airlines_logo.png" %}" alt="AA"#}
+                    {#                                         style="width: 25px;">#}
+                    {#                                </div>#}
+                    {#                                <div class="col-6">#}
+                    {#                                    <label>9:15 - 10:15</label><br>#}
+                    {#                                    <span>Dallas -> Austin</span>#}
+                    {#                                </div>#}
+                    {#                                <div class="col-3">#}
+                    {#                                    <label>Tue 3 Sep</label><br>#}
+                    {#                                    <span>1h 0m</span>#}
+                    {#                                </div>#}
+                    {#                            </div>#}
+                    {#                        </div>#}
+                    {#                        <div class="col-sm-3 pt-2">#}
+                    {#                            <div class="shadow p-3">#}
+                    {#                                <label class="small">Save $32 on this flight when subscribing to Wanderift</label>#}
+                    {#                                <button class="btn btn-1 bold w-100">Learn More</button>#}
+                    {#                            </div>#}
+                    {#                        </div>#}
+                    {#                    </div>#}
+                    {#                    <div class="row shadow result-item pt-2 pb-2">#}
+                    {#                        <div class="col-sm-2 pt-4">#}
+                    {#                            <h3>$174.00</h3>#}
+                    {#                            <label>1 Adult</label>#}
+                    {#                        </div>#}
+                    {#                        <div class="col-sm-7">#}
+                    {#                            <div class="row">#}
+                    {#                                <div class="col-3 text-center pt-2">#}
+                    {#                                    <img src="{% static "images/american_airlines_logo.png" %}" alt="AA"#}
+                    {#                                         style="width: 25px;">#}
+                    {#                                </div>#}
+                    {#                                <div class="col-6">#}
+                    {#                                    <label>9:15 - 10:15</label><br>#}
+                    {#                                    <span>Dallas -> Austin</span>#}
+                    {#                                </div>#}
+                    {#                                <div class="col-3">#}
+                    {#                                    <label>Tue 3 Sep</label><br>#}
+                    {#                                    <span>1h 0m</span>#}
+                    {#                                </div>#}
+                    {#                            </div>#}
+                    {#                            <div class="row">#}
+                    {#                                <div class="col-3">#}
+                    {#                                    <hr>#}
+                    {#                                </div>#}
+                    {#                                <div class="col-6 pt-2">#}
+                    {#                                    <span class="small">Stays about 1 month in Austin</span>#}
+                    {#                                </div>#}
+                    {#                                <div class="col-3">#}
+                    {#                                    <hr>#}
+                    {#                                </div>#}
+                    {#                            </div>#}
+                    {#                            <div class="row">#}
+                    {#                                <div class="col-3 text-center pt-2">#}
+                    {#                                    <img src="{% static "images/american_airlines_logo.png" %}" alt="AA"#}
+                    {#                                         style="width: 25px;">#}
+                    {#                                </div>#}
+                    {#                                <div class="col-6">#}
+                    {#                                    <label>9:15 - 10:15</label><br>#}
+                    {#                                    <span>Dallas -> Austin</span>#}
+                    {#                                </div>#}
+                    {#                                <div class="col-3">#}
+                    {#                                    <label>Tue 3 Sep</label><br>#}
+                    {#                                    <span>1h 0m</span>#}
+                    {#                                </div>#}
+                    {#                            </div>#}
+                    {#                        </div>#}
+                    {#                        <div class="col-sm-3">#}
+                    {#                        </div>#}
+                    {#                    </div>#}
                 </div>
                 <div class="col-xl-3">
                     <div class="card">
