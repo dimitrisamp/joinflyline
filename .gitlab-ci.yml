@@ -26,7 +26,7 @@ k8s-deploy:
   - kubectl config set-credentials admin --token=$KUBE_TOKEN
   - kubectl config set-context default-context --cluster=wanderift-app --user=cluster-admin
   - kubectl config use-context default-context
-  - kubectl apply -f rbac.yml
+  - kubectl apply -f rbac.yml --user=admin
   - kubectl create clusterrolebinding cluster-admin-binding --clusterrole=cluster-admin --user=admin
   - kubectl delete secret gitlab-registry --ignore-not-found
   - kubectl create secret docker-registry gitlab-registry --docker-server=${CI_REGISTRY} --docker-username=${CI_REGISTRY_USER} --docker-password=${CI_REGISTRY_PASSWORD} --docker-email=${CI_REGISTRY_EMAIL}
