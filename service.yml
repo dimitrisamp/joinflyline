@@ -3,11 +3,9 @@ kind: Service
 metadata:
   name: wanderift
 spec:
+  ports:
+    - port: 8000
+      targetPort: 8000
+      name: http
   selector:
     app: wanderift
-  ports:
-    - port: 80
-      targetPort: 8000
-      protocol: TCP
-      name: http
-  type: LoadBalancer
