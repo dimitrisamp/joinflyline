@@ -7,7 +7,7 @@ spec:
   - host: wanderift.com
     http:
       paths:
-      - path: /*
+      - path: /
         backend:
           serviceName: wanderift
           servicePort: 80
