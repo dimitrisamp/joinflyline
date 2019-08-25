@@ -7,7 +7,7 @@ spec:
   - name: wanderift-http # ADD THIS
     port: 80
     protocol: TCP
-    targetPort: 80
+    targetPort: 8000
   selector:
     app: wanderift
-  type: NodePort
+
