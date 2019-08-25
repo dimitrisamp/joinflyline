@@ -10,7 +10,7 @@ spec:
   selector:
     app: wanderift
   type: LoadBalancer
-  readinessProbe:
+  livenessProbe:
     httpGet:
       path: /healthz
       port: 80
