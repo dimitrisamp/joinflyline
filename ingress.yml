@@ -12,5 +12,5 @@ spec:
           - path: /
             backend:
               serviceName: wanderift
-              servicePort: 8000
+              servicePort: 80
 
