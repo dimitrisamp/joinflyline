@@ -10,9 +10,9 @@ spec:
   selector:
     app: wanderift
   type: LoadBalancer
-  livenessProbe:
-    httpGet:
-      path: /healthz
-      port: 80
-    initialDelaySeconds: 5
-    periodSeconds: 5
+#  readinessProbe:
+#    httpGet:
+#      path: /healthz
+#      port: 80
+#    initialDelaySeconds: 5
+#    periodSeconds: 5
