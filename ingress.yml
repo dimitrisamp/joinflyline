@@ -1,13 +1,14 @@
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
 metadata:
-  name: wanderift
+  name: wanderift-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-  - host: wanderift.com
-    http:
+  - http:
       paths:
-      - path: /*
+      - path: /
         backend:
           serviceName: wanderift
-          servicePort: wanderift-http
+          servicePort: 80

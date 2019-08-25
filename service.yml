@@ -3,11 +3,9 @@ kind: Service
 metadata:
   name: wanderift
 spec:
-  ports:
-  - name: wanderift-http # ADD THIS
-    port: 80
-    protocol: TCP
-    targetPort: 8000
   selector:
     app: wanderift
-
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8000
