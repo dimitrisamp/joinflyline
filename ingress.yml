@@ -4,7 +4,7 @@ metadata:
   name: wanderift-ingress
 spec:
   rules:
-  - host: wanderift.com
+  - host: admin.thenurturer.co.ke
     http:
       paths:
       - path: /
