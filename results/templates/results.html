@@ -11,6 +11,7 @@
 {% block content %}
     <div class="search-page">
         {% include "_includes/navbar.html" %}
+
         <div class="search-bar">
             <div class="container">
                 <div class="row">
@@ -136,7 +137,7 @@
                                             <span>{{ flight.cityFrom }} -> {{ flight.cityTo }}</span>
                                         </div>
                                         <div class="col-3">
-                                            <label>{{ flight.utc_departure }}</label><br>
+                                            <label>{{ flight.local_departure|date:"SHORT_DATE_FORMAT" }}</label><br>
                                             <span>1h 0m</span>
                                         </div>
                                     </div>

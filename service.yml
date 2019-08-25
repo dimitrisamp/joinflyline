@@ -4,9 +4,10 @@ metadata:
   name: wanderift
 spec:
   ports:
-    - port: 80
-      targetPort: 8000
-      name: http
+  - name: wanderift-http # ADD THIS
+    port: 80
+    protocol: http
+    targetPort: 80
   selector:
     app: wanderift
-
+  type: NodePort
