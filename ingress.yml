@@ -2,12 +2,14 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: wanderift
+annotations:
+  kubernetes.io/ingress.allow-http: "true"
 spec:
   rules:
   - host: wanderift.com
     http:
       paths:
-      - backend:
+      - path: /*
+        backend:
           serviceName: wanderift
           servicePort: wanderift-http
-        path: /
