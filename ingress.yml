@@ -4,11 +4,11 @@ metadata:
   name: wanderift-ingress
 spec:
   rules:
-  - host: admin.thenurturer.co.ke
+  - host: wanderift.com
     http:
       paths:
       - path: /
         backend:
           serviceName: wanderift
-          servicePort: 80
+          servicePort: 8000
 
