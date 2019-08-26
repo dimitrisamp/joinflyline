@@ -4,6 +4,7 @@ metadata:
   name: wanderift-service
   annotations:
     kubernetes.io/ingress.class: "django"
+    kubernetes.io/ingress.global-static-ip-name: "wanderift"
     kubernetes.io/ingress.allow-http: "true"
 spec:
   rules:
