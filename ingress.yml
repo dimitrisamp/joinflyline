@@ -3,14 +3,14 @@ kind: Ingress
 metadata:
   name: wanderift-ingress
   annotations:
-      kubernetes.io/ingress.allow-http: "true"
+    kubernetes.io/ingress.allow-http: "true"
 spec:
   rules:
   - host: admin.thenurturer.co.ke
     http:
       paths:
-      - path: /*
+      - path: /
         backend:
-          serviceName: wanderift
-          servicePort: http
+          serviceName: tabletomodel
+          servicePort: 80
 
