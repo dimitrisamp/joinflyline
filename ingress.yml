@@ -1,16 +1,17 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: wanderift-ingress
+  name: wanderift-service
   annotations:
+    kubernetes.io/ingress.class: "django"
     kubernetes.io/ingress.allow-http: "true"
 spec:
   rules:
-  - host: admin.thenurturer.co.ke
-    http:
-      paths:
-      - path: /
-        backend:
-          serviceName: wanderift
-          servicePort: 80
+    - host: admin.thenurturer.co.ke
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: wanderift-service
+              servicePort: 8000
 
