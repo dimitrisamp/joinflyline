@@ -24,7 +24,7 @@ k8s-deploy:
   script:
   - kubectl config set-cluster wanderift-app --server=$KUBE_URL --insecure-skip-tls-verify=true
   - kubectl config set-credentials admin --token=$KUBE_TOKEN
-  - kubectl config set-context wanderift-django-13935299-dev --cluster=model-gen --user=admin
+  - kubectl config set-context wanderift-django-13935299-dev --cluster=wanderift-app --user=admin
   - kubectl config use-context wanderift-django-13935299-dev
   - kubectl delete secret gitlab-registry --ignore-not-found -n wanderift-django-13935299-dev
   - kubectl create secret docker-registry gitlab-registry --docker-server=${CI_REGISTRY} --docker-username=${CI_REGISTRY_USER} --docker-password=${CI_REGISTRY_PASSWORD} --docker-email=${CI_REGISTRY_EMAIL} -n wanderift-django-13935299-dev
