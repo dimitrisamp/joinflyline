@@ -1,7 +1,7 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: wanderift-ingress
+  name: wanderift-service
 spec:
   rules:
     - host: admin.thenurturer.co.ke
@@ -10,5 +10,4 @@ spec:
           - path: /
             backend:
               serviceName: wanderift-service
-              servicePort: 80
-
+              servicePort: 8000

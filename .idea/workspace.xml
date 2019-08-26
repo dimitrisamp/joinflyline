@@ -3,6 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="34819c67-5192-450b-95db-48815d66061e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.gitlab-ci.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.gitlab-ci.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/admin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/apps.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/migrations/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/models.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/tests.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/views.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/home/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/home/templates/home.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ingress.yml" beforeDir="false" afterPath="$PROJECT_DIR$/ingress.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rbac.yml" beforeDir="false" afterPath="$PROJECT_DIR$/rbac.yml" afterDir="false" />
@@ -10,6 +17,7 @@
       <change beforePath="$PROJECT_DIR$/results/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/results/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service.yml" beforeDir="false" afterPath="$PROJECT_DIR$/service.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/static/js/home.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/home.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/_includes/navbar.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/_includes/navbar.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wanderift/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/wanderift/settings.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -105,7 +113,8 @@
       <workItem from="1566581650545" duration="10468000" />
       <workItem from="1566620978534" duration="6029000" />
       <workItem from="1566654668150" duration="17000000" />
-      <workItem from="1566738235231" duration="5534000" />
+      <workItem from="1566738235231" duration="19825000" />
+      <workItem from="1566809402085" duration="17131000" />
     </task>
     <servers />
   </component>
