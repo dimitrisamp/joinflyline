@@ -1,7 +1,7 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: wanderift-service
+  name: wanderift-ingress
 spec:
   rules:
     - host: admin.thenurturer.co.ke

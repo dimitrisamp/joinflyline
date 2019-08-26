@@ -4,7 +4,7 @@ metadata:
   name: wanderift-service
 spec:
   ports:
-    - port: 81
+    - port: 80
       targetPort: 8000
       protocol: TCP
       name: http
