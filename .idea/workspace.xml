@@ -3,6 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="34819c67-5192-450b-95db-48815d66061e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.gitlab-ci.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.gitlab-ci.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/account/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/account/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/account/templates/accounts.html" beforeDir="false" afterPath="$PROJECT_DIR$/account/templates/accounts.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/account/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/account/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/auth/__init__.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/auth/admin.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/auth/apps.py" beforeDir="false" />
@@ -10,7 +13,9 @@
       <change beforePath="$PROJECT_DIR$/auth/models.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/auth/tests.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/auth/views.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/deployment.yml" beforeDir="false" afterPath="$PROJECT_DIR$/deployment.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/home/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/home/templates/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/home/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/home/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ingress.yml" beforeDir="false" afterPath="$PROJECT_DIR$/ingress.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rbac.yml" beforeDir="false" afterPath="$PROJECT_DIR$/rbac.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/results/templates/results.html" beforeDir="false" afterPath="$PROJECT_DIR$/results/templates/results.html" afterDir="false" />
@@ -18,7 +23,10 @@
       <change beforePath="$PROJECT_DIR$/service.yml" beforeDir="false" afterPath="$PROJECT_DIR$/service.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/static/js/home.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/home.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/_includes/navbar.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/_includes/navbar.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wanderift/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/wanderift/db.sqlite3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wanderift/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/wanderift/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wanderift/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/wanderift/urls.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -39,9 +47,10 @@
   <component name="ProjectId" id="1Pm9QTx6VFsB5Fzl5zYiWoAoKAe" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/static/images" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -50,13 +59,14 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/static/images" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/wanderift/envconf" />
       <recent name="$PROJECT_DIR$/wanderift/env" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/static/images" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -114,7 +124,12 @@
       <workItem from="1566620978534" duration="6029000" />
       <workItem from="1566654668150" duration="17000000" />
       <workItem from="1566738235231" duration="19825000" />
-      <workItem from="1566809402085" duration="17131000" />
+      <workItem from="1566809402085" duration="28748000" />
+      <workItem from="1566881501920" duration="3943000" />
+      <workItem from="1566895409820" duration="3000" />
+      <workItem from="1566927161978" duration="9913000" />
+      <workItem from="1566969318528" duration="7856000" />
+      <workItem from="1566978793116" duration="10000" />
     </task>
     <servers />
   </component>

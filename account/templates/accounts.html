@@ -7,8 +7,9 @@
 {% endblock %}
 
 {% block content %}
+    <section>
         {% include "_includes/navbar.html" %}
-
+    </section>
     <section>
         <div class="container section-1">
             <div class="row">
@@ -37,34 +38,47 @@
                                             </div>
                                             <div class="card-body">
                                                 <div class="row">
-                                                    <div class="form-group col-sm-6">
-                                                        <label class="pb-2">First Name</label>
-                                                        <input class="form-control" type="text"
-                                                               placeholder="First Name">
-                                                    </div>
-                                                    <div class="form-group col-sm-6">
-                                                        <label class="pb-2">Last Name</label>
-                                                        <input class="form-control" type="text" placeholder="Last Name">
-                                                    </div>
-                                                    <div class="form-group col-sm-6">
-                                                        <label class="pb-2">Email</label>
-                                                        <input class="form-control" type="email" placeholder="Email">
-                                                    </div>
-                                                    <div class="form-group col-sm-6">
-                                                        <label class="pb-2">Date Of Birth</label>
-                                                        <input class="form-control" type="date">
-                                                    </div>
-                                                    <div class="form-group col-sm-6">
-                                                        <label class="pb-2">Gender</label>
-                                                        <input class="form-control" type="text" placeholder="Gender">
-                                                    </div>
-                                                    <div class="form-group col-sm-6">
-                                                        <label class="pb-2">Market</label>
-                                                        <input class="form-control" type="text" placeholder="Market">
-                                                    </div>
-                                                    <div class="form-group col-sm-12 pt-1">
-                                                        <button class="btn btn-1 bold btn-width">Save</button>
-                                                    </div>
+                                                    <form action="{% url 'profile' user.id %}" method="post">
+                                                        {% csrf_token %}
+                                                        <div class="form-group col-sm-6">
+                                                            <label class="pb-2">First Name</label>
+                                                            <input class="form-control" type="text"
+                                                                   value="{{ user.first_name }}" name="first_name"
+                                                                   placeholder="First Name">
+                                                        </div>
+                                                        <div class="form-group col-sm-6">
+                                                            <label class="pb-2">Last Name</label>
+                                                            <input class="form-control" type="text"
+                                                                   value="{{ user.last_name }}" name="last_name"
+                                                                   placeholder="Last Name">
+                                                        </div>
+                                                        <div class="form-group col-sm-6">
+                                                            <label class="pb-2">Email</label>
+                                                            <input class="form-control" type="email"
+                                                                   value="{{ user.email }}" name="email"
+                                                                   placeholder="Email">
+                                                        </div>
+                                                        <div class="form-group col-sm-6">
+                                                            <label class="pb-2">Date Of Birth</label>
+                                                            <input class="form-control" value="{{ user.profile.dob }}"
+                                                                   name="dob" type="date">
+                                                        </div>
+                                                        <div class="form-group col-sm-6">
+                                                            <label class="pb-2">Gender</label>
+                                                            <input class="form-control" type="text"
+                                                                   value="{{ user.profile.gender }}" name="gender"
+                                                                   placeholder="Gender">
+                                                        </div>
+                                                        <div class="form-group col-sm-6">
+                                                            <label class="pb-2">Market</label>
+                                                            <input class="form-control" type="text"
+                                                                   value="{{ user.profile.market }}" name="market"
+                                                                   placeholder="Market">
+                                                        </div>
+                                                        <div class="form-group col-sm-12 pt-1">
+                                                            <button class="btn btn-1 bold btn-width">Save</button>
+                                                        </div>
+                                                    </form>
                                                 </div>
                                             </div>
                                             <div class="card-title">
@@ -141,31 +155,46 @@
                                                 <h3 class="bold p-0">Billing</h3>
                                             </div>
                                             <div class="card-body">
-                                                <div class="row">
-                                                    <div class="form-group col-12">
-                                                        <label class="pb-2">Credit Card Number</label>
-                                                        <input class="form-control" type="text"
-                                                               placeholder="Card Number">
+                                                <form method="post" action="{% url "save-card" user.id %}">
+                                                    {% csrf_token %}
+                                                    <div class="row">
+                                                        <div class="form-group col-12">
+                                                            <label class="pb-2">Credit Card Number</label>
+                                                            <input class="form-control" type="text" name="card_number"
+                                                                   value="{{ account.card_number }}"
+                                                                   placeholder="Card Number">
+                                                        </div>
+                                                        <div class="form-group col-sm-7">
+                                                            <label class="pb-2">Security Code</label>
+                                                            <input class="form-control" type="text" name="scv"
+                                                                   value="{{ account.scv }}"
+                                                                   placeholder="Security Code">
+                                                        </div>
+                                                        <div class="form-group col-sm-5">
+                                                            <label class="pb-2">Exp Date</label>
+                                                            <input class="form-control" type="date" name="expiry"
+                                                                   value="{{ account.expiry }}"
+                                                                   placeholder="Exp Date">
+                                                        </div>
+                                                        <div class="form-group col-sm-8">
+                                                            <label class="pb-2">Country</label>
+                                                            <input class="form-control" type="text" name="country"
+                                                                   value="{{ account.country }}"
+                                                                   placeholder="Country">
+                                                        </div>
+                                                        <div class="form-group col-sm-4">
+                                                            <label class="pb-2">Billing Zip</label>
+                                                            <input class="form-control" type="text" name="zip"
+                                                                   value="{{ account.zip }}"
+                                                                   placeholder="Billing Zip">
+                                                        </div>
+                                                        <div class="form-group col-12 pt-1">
+                                                            <button type="submit" class="btn btn-1 bold btn-width">
+                                                                Save
+                                                            </button>
+                                                        </div>
                                                     </div>
-                                                    <div class="form-group col-sm-7">
-                                                        <label class="pb-2">Security Code</label>
-                                                        <input class="form-control" type="text"
-                                                               placeholder="Security Code">
-                                                    </div>
-                                                    <div class="form-group col-sm-5">
-                                                        <label class="pb-2">Exp Date</label>
-                                                        <input class="form-control" type="text" placeholder="Exp Date">
-                                                    </div>
-                                                    <div class="form-group col-sm-8">
-                                                        <label class="pb-2">Country</label>
-                                                        <input class="form-control" type="text" placeholder="Country">
-                                                    </div>
-                                                    <div class="form-group col-sm-4">
-                                                        <label class="pb-2">Billing Zip</label>
-                                                        <input class="form-control" type="text"
-                                                               placeholder="Billing Zip">
-                                                    </div>
-                                                </div>
+                                                </form>
                                             </div>
                                             <div class="card-title">
                                                 <h3 class="bold p-0">Add New Card</h3>

@@ -42,12 +42,10 @@ INSTALLED_APPS = [
     'results',
     'corporate',
     'account',
-    'users',
+    'profiles',
     'faq',
-    'profiles'
+    'oauth'
 ]
-
-# AUTH_USER_MODEL = 'users.'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

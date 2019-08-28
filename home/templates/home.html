@@ -22,29 +22,34 @@
         <div class="content_container">
             <div class="search_content_box" style="padding-bottom: 100px;">
 
-                    {% csrf_token %}
-                    <div class="row">
-                        <p class="sec_two_head"><span style="color:#00B7FF;">Booking</span> made <span
-                                style="color:#00B7FF;">Simple . . . .</span></p>
-                    </div>
-                    <div class="row" style="padding-bottom: 6px;">
-                        <div>
-                            <input type="text" class="drop_down_btn" readonly data-toggle="dropdown"
-                                   aria-haspopup="true"
-                                   aria-expanded="false"  name="destinationType" id="destinationType" v-model="form.destinationType"/>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item drop_down_btn_item" @click="selectDestType(1)">Return</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item drop_down_btn_item" @click="selectDestType(2)">One way</a>
-                            </div>
+                {% csrf_token %}
+                <div class="row">
+                    <p class="sec_two_head"><span style="color:#00B7FF;">Booking</span> made <span
+                            style="color:#00B7FF;">Simple . . . .</span></p>
+                </div>
+                <div class="row" style="padding-bottom: 6px;">
+                    <div>
+                        <input type="text" class="drop_down_btn" readonly data-toggle="dropdown"
+                               aria-haspopup="true"
+                               aria-expanded="false" name="destinationType" id="destinationType"
+                               v-model="form.destinationType"/>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item drop_down_btn_item" @click="selectDestType(1)">Return</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item drop_down_btn_item" @click="selectDestType(2)">One way</a>
                         </div>
+                    </div>
                     <div style="margin-left: 2%">
-                        <input type="text" class="drop_down_btn"   readonly  data-toggle="modal" data-target="#passengersModal"
-                               value="Passengers" name="noOfPassengers" id="noOfPassengers" v-model="form.noOfPassengers"/>
+                        <input type="text" class="drop_down_btn" readonly data-toggle="modal"
+                               data-target="#passengersModal"
+                               value="Passengers" name="noOfPassengers" id="noOfPassengers"
+                               v-model="form.noOfPassengers"/>
                     </div>
                     <div style="margin-left: 2%;">
-                        <input type="text" class="drop_down_btn"  style="padding-right: 4%" readonly  data-toggle="dropdown"
-                               aria-haspopup="true" aria-expanded="false"  name="seatType" id="seatType" v-model="form.seatType"/>
+                        <input type="text" class="drop_down_btn" style="padding-right: 4%" readonly
+                               data-toggle="dropdown"
+                               aria-haspopup="true" aria-expanded="false" name="seatType" id="seatType"
+                               v-model="form.seatType"/>
                         <div class="dropdown-menu">
                             <a class="dropdown-item drop_down_btn_item" @click="selectSeatType(1)">Economy</a>
                             <div class="dropdown-divider"></div>
@@ -70,23 +75,24 @@
                         </label>
                         <label class="search_label">
                             <h6 style="margin-top: 4%">Departure :
-                                <input type="text" name="dep_date"  id="departure_date" class="search_input">
+                                <input type="text" name="dep_date" id="departure_date" class="search_input">
                             </h6>
                         </label>
                         <label class="search_label"><h6 style="margin-top: 4%">Return :
-                            <input type="text" name="ret_date"  id="return_date" class="search_input">
+                            <input type="text" name="ret_date" id="return_date" class="search_input">
                         </h6>
                         </label>
                         <button class="search_btn" @click="search">search</button>
-                        </div>
                     </div>
-                    <div class="modal fade" id="passengersModal" tabindex="-1" role="dialog" aria-labelledby="passengersModalLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content" style="width: 80%">
-                                <div class="modal-header">
-                                    <h6 class="modal-title" id="passengersModalLabel">Passengers</h6>
-                                </div>
-                                <div class="modal-body">
+                </div>
+                <div class="modal fade" id="passengersModal" tabindex="-1" role="dialog"
+                     aria-labelledby="passengersModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content" style="width: 80%">
+                            <div class="modal-header">
+                                <h6 class="modal-title" id="passengersModalLabel">Passengers</h6>
+                            </div>
+                            <div class="modal-body">
                         <span style="padding: 0 2%">
 
                             <div class="container">
@@ -95,10 +101,14 @@
                                   Adults
                                 </div>
                                 <div class="col-sm">
-                                  <input type="button" class="increment" value="-" @click="decrement(1)" id="valAdultsDecrement" />
+                                  <input type="button" class="increment" value="-" @click="decrement(1)"
+                                         id="valAdultsDecrement"/>
 
-                                      <input type="text" readonly style="padding: 1% 2%; width: 15%; border: none; text-align: center" v-model="form.valAdults" id="valAdults"/>
-                                   <input type="button" class="increment" id="valAdultsIncrement" value="+" @click="increment(1)" />
+                                      <input type="text" readonly
+                                             style="padding: 1% 2%; width: 15%; border: none; text-align: center"
+                                             v-model="form.valAdults" id="valAdults"/>
+                                   <input type="button" class="increment" id="valAdultsIncrement" value="+"
+                                          @click="increment(1)"/>
                                 </div>
                               </div>
                             </div>
@@ -110,10 +120,14 @@
                                   Children
                                 </div>
                                 <div class="col-sm">
-                                  <input type="button" class="increment" value="-" @click="decrement(2)" id="valChildrenDecrement"/>
+                                  <input type="button" class="increment" value="-" @click="decrement(2)"
+                                         id="valChildrenDecrement"/>
 
-                                      <input type="text" readonly  style="padding: 1% 2%; width: 15%; border: none; text-align: center" v-model="form.valChildren"  id="valChildren"/>
-                                   <input type="button" class="increment" value="+" @click="increment(2)" id="valChildrenIncrement"/>
+                                      <input type="text" readonly
+                                             style="padding: 1% 2%; width: 15%; border: none; text-align: center"
+                                             v-model="form.valChildren" id="valChildren"/>
+                                   <input type="button" class="increment" value="+" @click="increment(2)"
+                                          id="valChildrenIncrement"/>
                                 </div>
                               </div>
                             </div>
@@ -124,22 +138,30 @@
                                   Infants
                                 </div>
                                 <div class="col-sm">
-                                  <input type="button" class="increment" value="-" @click="decrement(3)" id="valInfantsDecrement" />
+                                  <input type="button" class="increment" value="-" @click="decrement(3)"
+                                         id="valInfantsDecrement"/>
 
-                                      <input type="text" readonly  style="padding: 1% 2%; width: 15%; border: none; text-align: center" v-model="form.valInfants"  id="valInfants"/>
-                                  <input type="button" class="increment" value="+" @click="increment(3)" id="valInfantsIncrement"/>
+                                      <input type="text" readonly
+                                             style="padding: 1% 2%; width: 15%; border: none; text-align: center"
+                                             v-model="form.valInfants" id="valInfants"/>
+                                  <input type="button" class="increment" value="+" @click="increment(3)"
+                                         id="valInfantsIncrement"/>
                                 </div>
                               </div>
                             </div>
                         </span>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn" style="width: 50%; background: aliceblue;" data-dismiss="modal">Close</button>
-                                    <button type="button" class="btn" style="width: 50%; background: #00B7FF;color: #fff" data-dismiss="modal" >Save changes</button>
-                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn" style="width: 50%; background: aliceblue;"
+                                        data-dismiss="modal">Close
+                                </button>
+                                <button type="button" class="btn" style="width: 50%; background: #00B7FF;color: #fff"
+                                        data-dismiss="modal">Save changes
+                                </button>
                             </div>
                         </div>
                     </div>
+                </div>
 
             </div>
         </div>
@@ -184,25 +206,30 @@
                         </div>
                         <div class="row pop2_second">
                             <div class="col-12">
-                                <div >
+                                <div>
                                     <div style="border: 1px solid #00B7FF; border-radius: 5px; padding: 2%">
-                                    <div style="max-height: 25%; overflow-y: scroll">
-                                        <button class="sel_place_btn"   style="margin: 2%" id="mySelectedPlace">
-                                            <i class="fa fa-times-circle" style="margin-right:5px"
-                                               @click="clearPlaceItem(index)"></i>
+                                        <div style="max-height: 25%; overflow-y: scroll">
+                                            <button class="sel_place_btn" style="margin: 2%" id="mySelectedPlace">
+                                                <i class="fa fa-times-circle" style="margin-right:5px"
+                                                   @click="clearPlaceItem(index)"></i>
 
-                                        </button>
+                                            </button>
+                                        </div>
+
+                                        <div class="pop2_hor_line" style="margin:10px 0px"></div>
+                                        <input class="pop2_input" type="text" v-model="city" v-on:keyup="cityHandler"
+                                               id="search_places_dialog_input" onfocus="this.value=''"
+                                               onblur="this.value=''" placeholder="Add new location..."/>
                                     </div>
 
-                                    <div class="pop2_hor_line" style="margin:10px 0px"></div>
-                                    <input class="pop2_input" type="text" v-model="city" v-on:keyup="cityHandler" id="search_places_dialog_input" onfocus="this.value=''" onblur="this.value=''" placeholder="Add new location..."/>
-                                    </div>
-
-                                        <ol class="search_result_list">
-                                            <li  v-for="(place, index) of searchResultPlaces">
-                                               <button class="btn search_result_list_item" @click="setPlace(place.nameCity,place.codeIataCity,index)" >{( place.nameCity )}</button>
-                                            </li>
-                                        </ol>
+                                    <ol class="search_result_list">
+                                        <li v-for="(place, index) of searchResultPlaces">
+                                            <button class="btn search_result_list_item"
+                                                    @click="setPlace(place.nameCity,place.codeIataCity,index)">{(
+                                                place.nameCity )}
+                                            </button>
+                                        </li>
+                                    </ol>
 
                                 </div>
                             </div>
