@@ -3,6 +3,12 @@ kind: Namespace
 metadata:
   name: default
 ---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: gitlab-sa
+  namespace: default
+---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
@@ -27,7 +33,7 @@ rules:
     verbs: ["*", "get", "watch", "list"]
 ---
 apiVersion: rbac.authorization.k8s.io/v1
-# This role binding allows "user" to read pods in the "default" namespace.
+# This role binding allows "jane" to read pods in the "default" namespace.
 kind: RoleBinding
 metadata:
   name: cluster-rb

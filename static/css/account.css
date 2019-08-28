@@ -108,7 +108,7 @@ nav a, .nav.navbar-nav a {
 }
 
 .progress .progress-bar {
-    background-color: #00B5FF !important;
+    background-color: #00B7FF !important;
 }
 
 .total-tokens {
@@ -232,7 +232,7 @@ footer a {
 }
 
 .text-blue {
-    color: #00B5FF;
+    color: #00B7FF;
 }
 
 .search-result .result-item {
@@ -250,6 +250,6 @@ li {
 }
 
 .filter-by-time .nav-item.active .nav-link {
-    background-color: #00B5FF;
+    background-color: #00B7FF;
     color: #fff;
 }

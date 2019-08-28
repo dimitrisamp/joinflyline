@@ -1,4 +1,3 @@
-from django.core.paginator import Paginator
 from django.shortcuts import render
 import requests
 import urllib
@@ -24,14 +23,14 @@ def results_view(request, null=None, *args, **kwargs):
             "infants": request.POST['infants'],
         }
 
-        # search_query = urllib.parse.urlencode(search_query)
-        url = "https://kiwicom-prod.apigee.net/v2/search"
-        response = requests.get(url, params=search_query)
+        search_query = urllib.parse.urlencode(search_query)
+        url = "https://kiwicom-prod.apigee.net/v2/search?" + search_query
+        response = requests.get(url)
 
-        data = response.json()
+        data = json.loads(response.content)
     else:
         data = null
-
+    # print(data)
     context = {
         "title": "Search Results",
         "data": data

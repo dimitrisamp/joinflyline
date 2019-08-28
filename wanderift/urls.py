@@ -17,12 +17,11 @@ from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.urls import path
 
-from account.views import account_view, update_profile, save_card
+from account.views import account_view
 from corporate.views import corporate_view, trips_view, manage_trips_view
 from faq.views import faq_view
 from home.views import home_view
 from results.views import results_view
-from oauth.views import login_user, create_user, forgot_password
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -34,9 +33,7 @@ urlpatterns = [
     path('results', results_view, name="results"),
 
     # Accounts page urls
-    path('accounts/<int:user_id>', account_view, name="accounts"),
-    path('profile/<int:user_id>', update_profile, name="profile"),
-    path('save-card/<int:user_id>', save_card, name="save-card"),
+    path('accounts', account_view, name="accounts"),
 
     # Corporate urls
     path('corporate', corporate_view, name="corporate"),
@@ -44,12 +41,7 @@ urlpatterns = [
     path('manage_corporate-trips', manage_trips_view, name="manage-trips"),
 
     # Faq urls
-    path('faq', faq_view, name="faq"),
-
-    # Auth urls
-    path('login', login_user, name="login"),
-    path('signup', create_user, name="signup"),
-    path('forgot_password', forgot_password, name="forgot_password")
+    path('faq', faq_view, name="faq")
 
 ]
 urlpatterns += staticfiles_urlpatterns()

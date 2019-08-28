@@ -3,10 +3,8 @@ import requests
 import urllib
 
 
-def home_view(request):
-    user = request.user
+def home_view(request, *args, **kwargs):
     context = {
         "title": "Wanderift Home",
-        "user": user
     }
     return render(request, "home.html", context)

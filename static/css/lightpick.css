@@ -212,7 +212,7 @@
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 50%;
-    background-color: #268BD2;
+    background-color: #00B7FF;
     background-image: none;
 }
 
@@ -222,7 +222,7 @@
     border-top-right-radius: 50%;
     border-bottom-right-radius: 50%;
     border-bottom-left-radius: 0;
-    background-color: #268BD2;
+    background-color: #00B7FF;
     background-image: none;
 }
 
@@ -289,5 +289,5 @@
 }
 .lightpick__apply-action {
     color: #fff;
-    background-color: #2495f3;
+    background-color: #00B7FF;
 }

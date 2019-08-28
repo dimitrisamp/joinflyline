@@ -20,4 +20,3 @@ spec:
             - containerPort: 8000
       imagePullSecrets:
         - name: gitlab-registry
-
