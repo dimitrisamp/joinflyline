@@ -1,5 +1,5 @@
 from django.apps import AppConfig
 
 
-class FeedbackConfig(AppConfig):
+class AboutConfig(AppConfig):
     name = 'about'

@@ -22,6 +22,10 @@ from corporate.views import corporate_view, trips_view, manage_trips_view
 from faq.views import faq_view
 from home.views import home_view
 from results.views import results_view
+from news.views import news_view
+from about.views import about_view
+from feedback.views import feedback_view
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -41,7 +45,14 @@ urlpatterns = [
     path('manage_corporate-trips', manage_trips_view, name="manage-trips"),
 
     # Faq urls
-    path('faq', faq_view, name="faq")
+    path('faq', faq_view, name="faq"),
+
+    # News url
+    path('news', news_view, name="news"),
+    # About url
+    path('about', about_view, name="about"),
+    # Feedback url
+    path('feedback', feedback_view, name="feedback")
 
 ]
 urlpatterns += staticfiles_urlpatterns()

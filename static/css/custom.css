@@ -114,6 +114,16 @@ nav {
 .simple-column p {
     font-size: 1.3em;
 }
+.form.card {
+    padding: 15px;
+}
+
+.search_btn.link {
+    background-color: #00B7FF;
+    padding: 8px 25px;
+    color: white;
+    border-radius: 4px;
+}
 
 /*****NEW SEARCH BAR*******/
 .flexed-search-bar {
