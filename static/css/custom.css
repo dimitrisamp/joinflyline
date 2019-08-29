@@ -115,21 +115,23 @@ nav {
 .flexed-search-bar .flexed-search-item label {
     width: 100%;
     margin-left: -8px;
+    height: 50px;
 }
 .flexed-search-bar .flexed-search-item label h6 {
-    font-size: 1em;
+    font-size: 1.2rem;
     margin-left: 5px;
+    margin-top: 14px;
 }
 .flexed-search-bar .flexed-search-item img.icon_repeat {
     position: absolute;
     right: -7px;
-    top: 6px;
+    top: 10px;
     z-index: 9;
     opacity: 0.8;
     width: 30px;
 }
 .flexed-search-bar .flexed-search-item button {
-    padding: 7px 30px;
+    padding: 13px 30px;
 }
 
 /*SMALL DEVICES*/
@@ -145,7 +147,7 @@ nav {
     }
     .flexed-search-bar .flexed-search-item img.icon_repeat {
         left: 48%;
-        top: 28px;
+        top: 38px;
     }
 
     .navbar-collapse {
