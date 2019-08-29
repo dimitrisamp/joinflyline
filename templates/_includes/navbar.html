@@ -1,28 +1,35 @@
 {% load static %}
-<div class="nav_container" style="padding-bottom:10px;">
-    <div class="row">
-        <div class="col-lg-4">
-            <div class="row justify-content-start">
-                <a class="custom_btn_link" href="">
-                    <button class="custom_btn">Get Started</button>
-                </a>
-            </div>
-        </div>
-        <div class="col-lg-4">
-            <div class="row justify-content-center">
-                <a class="custom_img_link" href=""><img class="img_logo" src="{% static "images/Logo.png" %}" alt="logo"></a>
-            </div>
-        </div>
-        <div class="col-lg-4">
-            <div class="row justify-content-end nav_box">
-                <a class="custom_nav_link" href="{% url "corporate" %}">Corporate Plans</a>
-                <a class="custom_nav_link" href="" style="padding-left:40px;">Subscriptions</a>
-                <a class="custom_nav_link" href="" style="padding-left:40px;">Sign In</a>
-            </div>
+<nav>
+    <div class="navbar-expand-lg navbar-light text-center pb-3">
+        <a class="navbar-brand mx-auto" href="#">
+            <img src="{% static "images/Logo.png" %}" alt="" width="140">
+        </a>
+        <button class="navbar-toggler ml-auto collapsed" type="button" data-toggle="collapse" data-target="#navb"
+                aria-expanded="false">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="clearfix"></div>
+
+        <a class="nav_btn_link get_started_btn" href="#">
+            <button class="search_btn">Get started</button>
+        </a>
+
+        <div class="navbar-collapse collapse" id="navb">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item ml-md-4">
+                    <a class="nav-link" href="{% url "faq" %}">Corporate Travels</a>
+                </li>
+                <li class="nav-item ml-md-4">
+                    <a class="nav-link" href="#">Subscriptions</a>
+                </li>
+                <li class="nav-item ml-md-4">
+                    <a class="nav-link" href="#">Sign In</a>
+                </li>
+            </ul>
         </div>
     </div>
-</div>
-
+</nav>
 <div class="modal fade" id="signInOptionsModal" tabindex="-1" role="dialog" aria-labelledby="signInOptionsModalLabel"
      aria-hidden="true">
     <div class="modal-dialog" role="document">

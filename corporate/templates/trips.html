@@ -3,50 +3,94 @@
 {% load static %}
 
 {% block csscontent %}
+    <link rel="stylesheet" href="{% static "css/home.css" %}">
     <link rel="stylesheet" href="{% static "css/trips.css" %}">
+    <link rel="stylesheet" href="{% static "css/custom.css" %}">
 {% endblock %}
 
 {% block content %}
 
-    {% include "_includes/corporate_nav.html" %}
+    <section style="background-color: white; box-shadow: 0 2px 4px whitesmoke; border-bottom: 1px solid whitesmoke;padding: 10px 15px 0 15px;">
+        {% include "_includes/corporate_nav.html" %}
+    </section>
 
-    <main class="container">
-        <section>
-            <div class="search-input__heading">
-                <div class="search-input__text-container">
-                    <h1 class="heading-primary">Good Morning Tom From Good Success</h1>
-                    <h2 class="heading-secondary">
+        <section class="background-colored">
+        <div class="container content-holder">
+            <div class="row">
+                <div class="col-12 col-md">
+                    <h1>Good Morning Tom From Good Success</h1>
+                    <h2>
                         50 Tokens Currently Available
                     </h2>
                 </div>
-                <button class="btn btn--2">Add an Employee</button>
+                <div class="col-12 col-md-auto">
+                    <button class="search_btn">Add an Employee</button>
+                </div>
             </div>
+        </div>
         </section>
 
-        <section class="travel-stats">
-            <div class="travel-stats__heading">
-                <h1 class="heading-primary">Travel Stats</h1>
-                <h2 class="heading-secondary">
-                    Here’s some stats to keep track of your travel
-                </h2>
-            </div>
+        <section class="background-colored">
+        <div class="container content-holder">
+            <div class="row">
+                <div class="col-12">
+                    <h1 class="heading-primary">Travel Stats</h1>
+                    <h2 class="heading-secondary">
+                        Here’s some stats to keep track of your travel
+                    </h2>
+                </div>
 
-            <div class="travel-stats__cards">
-                <div class="travel-stats__card">
-                    <h1 class="heading-primary">$2,500</h1>
-                    <h3 class="heading-tertiary">Estimated Savings</h3>
+                    <div class="col-md-4 mt-4">
+                        <div class="result-item text-center card">
+                            <div class="item-content w-100">
+                                <h3 class="heading-primary">$2,500</h3>
+                                <h5 class="heading-tertiary">Estimated Savings</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mt-4">
+                        <div class="result-item text-center card">
+                            <div class="item-content w-100">
+                                <h3 class="heading-primary">32</h3>
+                                <h5 class="heading-tertiary">Trips Taken</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mt-4">
+                        <div class="result-item text-center card">
+                            <div class="item-content w-100">
+                                <h3 class="heading-primary">Dallas - Austin</h3>
+                                <h5 class="heading-tertiary">Most Popular Trip</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mt-4">
+                        <div class="result-item text-center card">
+                            <div class="item-content w-100">
+                                <h3 class="heading-primary">$2,500</h3>
+                                <h5 class="heading-tertiary">Estimated Savings</h5>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="travel-stats__card">
-                    <h1 class="heading-primary">32</h1>
-                    <h3 class="heading-tertiary">Trips Taken</h3>
-                </div>
-                <div class="travel-stats__card">
-                    <h1 class="heading-primary">Dallas - Austin</h1>
-                    <h3 class="heading-tertiary">Most Popular Trip</h3>
-                </div>
+
+{#                <div class="travel-stats__card">#}
+{#                    <h1 class="heading-primary">$2,500</h1>#}
+{#                    <h3 class="heading-tertiary">Estimated Savings</h3>#}
+{#                </div>#}
+{#                <div class="travel-stats__card">#}
+{#                    <h1 class="heading-primary">32</h1>#}
+{#                    <h3 class="heading-tertiary">Trips Taken</h3>#}
+{#                </div>#}
+{#                <div class="travel-stats__card">#}
+{#                    <h1 class="heading-primary">Dallas - Austin</h1>#}
+{#                    <h3 class="heading-tertiary">Most Popular Trip</h3>#}
+{#                </div>#}
+            </div>
             </div>
         </section>
-        <section class="calendar">
+        <section class="background-colored">
+        <div class="container content-holder">
             <div class="calendar__heading">
                 <h1 class="travel-stats__title heading-primary">
                     Team Travel Calendar
@@ -121,9 +165,10 @@
                     </section>
                     <button class="btn btn--1">Book a Flight</button>
                 </div>
+            </div>
             </section>
         </section>
-    </main>
+    {%  include "_includes/footer.html" %}
 {% endblock %}
 
 {% block jscontent %}

@@ -5,11 +5,12 @@
     <link rel="stylesheet" href="{% static "css/lightpick.css" %}" xmlns:v-on="http://www.w3.org/1999/xhtml"
           xmlns:v-on="http://www.w3.org/1999/xhtml">
     <link rel="stylesheet" href="{% static "css/home.css" %}">
+    <link rel="stylesheet" href="{% static "css/custom.css" %}">
 {% endblock %}
 
 {% block content %}
     <div class="promo_banner">
-        <p class="promo_banner_text">Looking to save thousands on flights? Subscribe to Wanderift and Save
+        <p class="promo_banner_text">Looking to save thousands on flights? Subscribe to Wanderift Lite or Pro and Save
             <button class="promo_btn">Learn More</button>
         <p>
     </div>
@@ -18,71 +19,110 @@
     </section>
 
     <section>
-        <div class="hor_line"></div>
-        <div class="content_container">
-            <div class="search_content_box" style="padding-bottom: 100px;">
+        <div class="container content-holder">
+            <div class="search_content_box">
 
-                    {% csrf_token %}
-                    <div class="row">
-                        <p class="sec_two_head"><span style="color:#00B7FF;">Booking</span> made <span
-                                style="color:#00B7FF;">Simple . . . .</span></p>
-                    </div>
-                    <div class="row" style="padding-bottom: 6px;">
-                        <div>
+                {% csrf_token %}
+
+                <div class="row">
+                    <div class="container">
+                        <div class="col-12 pr-0">
+                            <div class="row">
+                                <div class="col-12">
+                                    <p class="sec_two_head">
+                                        <span style="color:#212529; font-size: 50px;">Travel Made Simple . . .</span>
+                                        <span style="color:#00B7FF; font-size: 50px;">Search ,</span>
+                                        <span style="color:#00B7FF;font-size: 50px;">Book ,</span>
+                                        <span style="color:#00B7FF; font-size: 50px;">Save</span>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="row">
+                        <div class="col-12 mt-2 col-md-auto search-column-dropdown">
+    {#                            <i class="fa fa-refresh fa-flip-horizontal" style="margin-right: -30px;"></i>#}
+                            <img src="{% static "images/icons/arrows_rotating.png" %}" style="width:14px; margin-right: -30px;">
                             <input type="text" class="drop_down_btn" readonly data-toggle="dropdown"
                                    aria-haspopup="true"
                                    aria-expanded="false"  name="destinationType" id="destinationType" v-model="form.destinationType"/>
+
                             <div class="dropdown-menu">
-                                <a class="dropdown-item drop_down_btn_item" @click="selectDestType(1)">Return</a>
+                                <a class="dropdown-item drop_down_btn_item" @click="selectDestType(1)">
+                                     Return
+                                </a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item drop_down_btn_item" @click="selectDestType(2)">One way</a>
                             </div>
                         </div>
-                    <div style="margin-left: 2%">
-                        <input type="text" class="drop_down_btn"   readonly  data-toggle="modal" data-target="#passengersModal"
-                               value="Passengers" name="noOfPassengers" id="noOfPassengers" v-model="form.noOfPassengers"/>
+                        <div class="col-12 mt-2 col-md-auto search-column-dropdown">
+    {#                        <i class="fa fa-user" style="margin-right: -30px;"></i>#}
+                            <img src="{% static "images/icons/man_user.png" %}" style="width:16px; margin-right: -30px;">
+                            <input type="text" class="drop_down_btn"   readonly  data-toggle="modal" data-target="#passengersModal"
+                                   value="Passengers" name="noOfPassengers" id="noOfPassengers" v-model="form.noOfPassengers"/>
+                        </div>
+                        <div class="col-12 mt-2 col-md-auto search-column-dropdown">
+    {#                        <i class="fa fa-usd" style="margin-right: -30px;"></i>#}
+                            <img src="{% static "images/icons/dollar.png" %}" style="width:20px; margin-right: -35px;">
+                            <input type="text" class="drop_down_btn"  readonly  data-toggle="dropdown"
+                                   aria-haspopup="true" aria-expanded="false"  name="seatType" id="seatType" v-model="form.seatType"/>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item drop_down_btn_item" @click="selectSeatType(1)">Economy</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item drop_down_btn_item" @click="selectSeatType(2)">Premium Economy</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item drop_down_btn_item" @click="selectSeatType(3)">Business</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item drop_down_btn_item" @click="selectSeatType(4)">First Class</a>
+                            </div>
+                        </div>
                     </div>
-                    <div style="margin-left: 2%;">
-                        <input type="text" class="drop_down_btn"  style="padding-right: 4%" readonly  data-toggle="dropdown"
-                               aria-haspopup="true" aria-expanded="false"  name="seatType" id="seatType" v-model="form.seatType"/>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item drop_down_btn_item" @click="selectSeatType(1)">Economy</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item drop_down_btn_item" @click="selectSeatType(2)">Premium Economy</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item drop_down_btn_item" @click="selectSeatType(3)">Business</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item drop_down_btn_item" @click="selectSeatType(4)">First Class</a>
+                            <div class="row" style="margin-top: 2%;">
+                        <div class="col-sm-12 flexed-search-bar pl-0">
+                            <div class="flexed-search-item">
+                                <label class="search_label" @click="openPlaceModal(1)">
+                                <h6 style="margin-top: 4%; font-family: karla; font-weight:bold; opacity: .5;">Departure City :
+                                    <input type="text" class="search_input" readonly name="placesFrom" id="placesFrom"/>
+                                </h6>
+                                </label>
+                                <img class="icon_repeat" src="{% static "images/repeat.svg" %}" @click="swapPlaces">
+                            </div>
+                            <div class="flexed-search-item">
+                                <label class="search_label" @click="openPlaceModal(2)">
+                                <h6 style="margin-top: 4%; margin-left: 4%; font-family: karla; font-weight:bold; opacity: .5;">Arrival City :
+                                    <input type="text" class="search_input" readonly name="placesTo" id="placesTo"/>
+                                </h6>
+                                </label>
+                            </div>
+                            <div class="flexed-search-item">
+                                <label class="search_label">
+                                <h6 style="margin-top: 4%; font-family: karla; font-weight:bold; opacity: .5;">Departure Date :
+                                    <input type="text" name="dep_date"  id="departure_date" class="search_input">
+                                </h6>
+                                </label>
+                            </div>
+                            <div class="flexed-search-item">
+                                <label class="search_label">
+                                    <h6 style="margin-top: 4%; font-family: karla; font-weight:bold; opacity: .5;">Return Date :
+                                        <input type="text" name="ret_date"  id="return_date" class="search_input">
+                                    </h6>
+                                </label>
+                            </div>
+                            <div class="flexed-search-item">
+                                <button class="search_btn" style="width: 100%; font-weight: bold;" @click="search">Search </button>
+                            </div>
+                        </div>
+                    </div>
                         </div>
 
                     </div>
-                    <div class="row" style="margin-top: 2%">
-                        <label class="search_label" @click="openPlaceModal(1)">
-                            <h6 style="margin-top: 4%">From :
-                                <input type="text" class="search_input" readonly name="placesFrom" id="placesFrom"/>
-                            </h6>
-                        </label>
-                        <img class="icon_repeat" src="{% static "images/repeat.svg" %}" @click="swapPlaces">
-                        <label class="search_label" style="margin-left: -6px;" @click="openPlaceModal(2)">
-                            <h6 style="margin-top: 4%; margin-left: 4%;">To :
-                                <input type="text" class="search_input" readonly name="placesTo" id="placesTo"/>
-                            </h6>
-                        </label>
-                        <label class="search_label">
-                            <h6 style="margin-top: 4%">Departure :
-                                <input type="text" name="dep_date"  id="departure_date" class="search_input">
-                            </h6>
-                        </label>
-                        <label class="search_label"><h6 style="margin-top: 4%">Return :
-                            <input type="text" name="ret_date"  id="return_date" class="search_input">
-                        </h6>
-                        </label>
-                        <button class="search_btn" @click="search">search</button>
-                        </div>
-                    </div>
-                    <div class="modal fade" id="passengersModal" tabindex="-1" role="dialog" aria-labelledby="passengersModalLabel" aria-hidden="true">
+                </div>
+
+
+            </div>
+        </div>
+
+                <div class="modal fade" id="passengersModal" tabindex="-1" role="dialog" aria-labelledby="passengersModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
-                            <div class="modal-content" style="width: 80%">
+                            <div class="modal-content" style="top: 5%;">
                                 <div class="modal-header">
                                     <h6 class="modal-title" id="passengersModalLabel">Passengers</h6>
                                 </div>
@@ -140,31 +180,24 @@
                             </div>
                         </div>
                     </div>
-
-            </div>
-        </div>
     </section>
 
     <section>
         <div class="hor_line"></div>
         <div class="asset_box">
-            <div class="content_container">
+            <div class="container">
                 <div class="row justify-content-center" style="text-align:center">
-                    <div class="col-lg-3">
-                        <div class="row " style="text-align:left; padding-top:2px;">
-                            <img class="img_asset" src="{% static "images/simple.png" %}" style="width:210px;">
-                        </div>
+                    <div class="col-12 col-md-3 mt-4 m-md-0">
+                        <img class="img_asset" src="{% static "images/simple.png" %}" style="width:210px;">
                     </div>
-                    <div class="col-lg-3" style="padding-right: 80px;padding-bottom: 5px;">
+                    <div class="col-12 col-md-3 mt-4 m-md-0">
                         <img class="img_asset" src="{% static "images/forbes.png" %}">
                     </div>
-                    <div class="col-lg-3" style="padding-right: 60px; padding-top:5px;">
+                    <div class="col-12 col-md-3 mt-4 m-md-0">
                         <img class="img_asset" src="{% static "images/smart.png" %}">
                     </div>
-                    <div class="col-lg-3" style="padding-left: 80px; padding-top:5px;">
-                        <div class="row" style="text-align:center">
-                            <img class="img_asset" src="{% static "images/trip.png" %}">
-                        </div>
+                    <div class="col-12 col-md-3 mt-4 m-md-0">
+                        <img class="img_asset" src="{% static "images/tech-crunch.png" %}">
                     </div>
                 </div>
             </div>
@@ -174,7 +207,7 @@
         <div class="modal fade" id="placesModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
              aria-hidden="true">
             <div class="modal-dialog " role="document">
-                <div class="modal-content">
+                <div class="modal-content" style="top: 160px;">
                     <div class="modal-body">
                         <div class="row pop2_first">
                             <div class="col-6" style="text-align:left"><p id="placesModalTitle"></p></div>
@@ -221,127 +254,131 @@
     </section>
 
     <section>
-        <div class="main_content_section" style="padding-top: 100px;">
+        <div class="container" style="padding-top: 60px;">
             <div class="content_container">
-                <p class="sec_one_head" style="font-size: 45px;">Trending Flights
+                <p class="sec_one_head" style="font-size: 35px;">Trending Flights
                 <p>
-                <p class="sec_one_subhead" style="font-size: 18px; font-weight:400;">Take a look at the current flights
+                <p class="sec_one_subhead" style="font-size: 18px; font-weight:400; margin-bottom: 30px;">Take a look at the current flights
                     Wanderift travelers are searching and booking
 
                 <p>
-                    <div class="row justify-content-end">
-                <p class="sec_one_subhead" style="margin-right: 28px; font-size: 14px;">See All Trending</p></div>
             <div class="row justify-content-start">
                 <div class="col-lg-4">
-                    <img class="img_content" src="">
+                    <img class="img_content" src="{% static "images/lasvegas.jpg" %}">
                     <p class="sec_one_subhead">Dallas (DAL) - Las Vegas (LAS)</p>
-                    <p class="sec_one_subhead" style="font-size:15px; margin-bottom: 10px;">$234 - Round Trip Retail
-                        Price</p>
-                    <p class="sec_one_subhead" style="font-size:15px;">2 Tokens, or $224 - Round Trip Wanderift</p>
+                    <p class="sec_one_subhead" style="font-size:15px; margin-bottom: 8px; font-weight: 600;">$234 - Round Trip Retail Price</p>
+                    <p class="sec_one_subhead" style="font-size:15px; font-weight: 600;">2 Tokens, or $224 - Round Trip Wanderift</p>
                 </div>
                 <div class="col-lg-4">
-                    <img class="img_content" src="">
+                    <img class="img_content" src="{% static "images/newyork.jpg" %}">
                     <p class="sec_one_subhead">San Francisco (SFO) - New York (LGA)</p>
-                    <p class="sec_one_subhead" style="font-size:15px; margin-bottom: 10px;">$234 - Round Trip Retail
-                        Price</p>
-                    <p class="sec_one_subhead" style="font-size:15px;">2 Tokens, or $224 - Round Trip Wanderift</p>
+                    <p class="sec_one_subhead" style="font-size:15px; margin-bottom: 8px; font-weight: 600;">$234 - Round Trip Retail Price</p>
+                    <p class="sec_one_subhead" style="font-size:15px; font-weight: 600;">2 Tokens, or $224 - Round Trip Wanderift</p>
                 </div>
                 <div class="col-lg-4">
-                    <img class="img_content" src="">
+                    <img class="img_content" src="{% static "images/seattle.jpg" %}">
                     <p class="sec_one_subhead">Los Angeles (LAX) - Seattle (SEA)</p>
-                    <p class="sec_one_subhead" style="font-size:15px; margin-bottom: 10px;">$234 - Round Trip Retail
-                        Price</p>
-                    <p class="sec_one_subhead" style="font-size:15px;">2 Tokens, or $224 - Round Trip Wanderift</p>
-                </div>
-            </div>
-            <div class="row justify-content-start sec_two_box">
-                <div class="col-lg-7" style="margin-top: 100px;">
-                    <p class="sec_two_head" style="font-size: 50px;"><span style="color:#00B7FF;">Easy</span> Booking
-                    </p>
-                    <p class="sec_two_subhead" style="font-size: 20px; line-height: 40px;">Lorem ipsum dolor sit amet,
-                        consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliLorem
-                        ipsum dolor sit amet, consectetur</p>
-                    <button class="btn_sec_two">Search Flights</button>
-                </div>
-                <div class="col-lg-5"></div>
-            </div>
-            <div class="row justify-content-end sec_two_box divider">
-                <div class="col-lg-5">
-
-                </div>
-                <div class="col-lg-7" style="margin-top: 100px;">
-                    <div class="row justify-content-end">
-                        <p class="sec_two_head" style="font-size: 50px;">The New Way to <span
-                                style="color:#00B7FF;">Save</span></p>
-                        <p class="sec_two_subhead" style="text-align:right; font-size: 20px; line-height: 40px;">Lorem
-                            ipsum
-                            dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                            dolore magna ali</p>
-                        <button class="btn_sec_two">Learn More</button>
-                    </div>
+                    <p class="sec_one_subhead" style="font-size:15px; margin-bottom: 8px; font-weight: 600;">$234 - Round Trip Retail Price</p>
+                    <p class="sec_one_subhead" style="font-size:15px; font-weight: 600;">2 Tokens, or $224 - Round Trip Wanderift</p>
                 </div>
             </div>
         </div>
-        <div class="content_container divider" style="margin-top: 200px;">
-            <p class="sec_one_head" style="font-size: 45px;">Top Destinations of August
+        <div class="content_container divider" style="margin-top: 80px;">
+            <p class="sec_one_head" style="font-size: 35px;">Top Destinations of August
             <p>
-            <p class="sec_one_subhead" style="font-size: 18px; font-weight:400;">We’ve taken all the flight bookings and
+            <p class="sec_one_subhead" style="font-size: 18px; font-weight:400;  margin-bottom: 30px;">We’ve taken all the flight bookings and
                 listed out the top places our travelers are booking
 
             <p>
-                <div class="row justify-content-end">
-            <p class="sec_one_subhead" style="margin-right: 28px; font-size: 14px;">See All</p></div>
         <div class="row justify-content-start">
             <div class="col-lg-4">
-                <img class="img_content" src="">
-                <p class="sec_one_subhead" style="margin-bottom:10px;">Dallas, TX (DFW)</p>
-                <p class="sec_one_subhead" style="font-size:15px;">Average flight price $233</p>
+                <img class="img_content" src="{% static "images/chicago.jpg" %}">
+                <p class="sec_one_subhead" style="margin-bottom:10px;">Chicago, IL (ORD)</p>
+                <p class="sec_one_subhead" style="font-size:15px; margin-bottom: 8px; font-weight: 600;">Average flight price $233</p>
+                <p class="sec_one_subhead" style="font-size:15px; font-weight: 600;">Most Frequent Carrier, United</p>
             </div>
             <div class="col-lg-4">
-                <img class="img_content" src="">
-                <p class="sec_one_subhead" style="margin-bottom:10px;">Las Vegas, NV (LAS)</p>
-                <p class="sec_one_subhead" style="font-size:15px;">Average flight price $168</p>
+                <img class="img_content" src="{% static "images/miami.jpg" %}">
+                <p class="sec_one_subhead" style="margin-bottom:10px;">Miami, FL (MIA)</p>
+                <p class="sec_one_subhead" style="font-size:15px; margin-bottom: 8px; font-weight: 600;">Average flight price $168</p>
+                <p class="sec_one_subhead" style="font-size:15px; font-weight: 600;">Most Frequent Carrier, American</p>
             </div>
             <div class="col-lg-4">
-                <img class="img_content" src="">
-                <p class="sec_one_subhead" style="margin-bottom:10px;">New York, NY (LGA)</p>
-                <p class="sec_one_subhead" style="font-size:15px;">Average flight price $183</p>
+                <img class="img_content" src="{% static "images/sanfrancisco.jpg" %}">
+                <p class="sec_one_subhead" style="margin-bottom:10px;">San Francisco, CA (SFO)</p>
+                <p class="sec_one_subhead" style="font-size:15px; margin-bottom: 8px; font-weight: 600;">Average flight price $183</p>
+                <p class="sec_one_subhead" style="font-size:15px; font-weight: 600;">Most Frequent Carrier, American</p>
             </div>
         </div>
         </div>
-        <div class="content_container divider_btm" style="padding-top:100px;">
+        <div class="container divider_btm" style="padding-top:100px;">
             <p class="sec_one_head" style="font-size: 45px; margin-bottom: 20px;">News, Updates, Travel Tricks
             <p>
             <p class="sec_one_subhead" style="font-size: 18px; font-weight:400; margin-bottom: 40px;">Always stay in the
                 loup with the hottest travel news and updates
             <p>
-            <div class="row justify-content-center uper_box">
-                <div class="col-lg-5 left_img"></div>
-                <div class="col-lg-7 right_img"></div>
+            <div class="row justify-content-center uper_box m-0">
+                <div class="col-lg-5 left_img align-items-center" style="background-color: #111e42; color: #eff0f2; display:flex; flex-direction:row">
+                    <div class="box-text-content p-5">
+                        <h3 style="font-family: karla; font-weight: bold; font-size: 28px;">
+                            FORBES: Remember Rollover Minutes? This Subscription Service Lets You Roll Over Flights
+                        </h3>
+                        <br>
+                        <button class="search_btn" style="font-weight: bold; font-family: karla;">View Article</button>
+                    </div>
+                </div>
+                <div class="col-lg-7 right_img p-0 mx-auto d-block" style="overflow: hidden;">
+                    <img  style="width:100%; margin-top: -11%;" src="{% static "images/home/rollover_plane.jpg" %}" alt="Rollover Plane">
+                </div>
             </div>
             <div class="row justify-content-center" style="margin-top:30px;">
-                <div class="col-lg-4">
-                    <div class="row shadow_box" style="margin-right: 15px;">
-                        <div class="img_content_uper"></div>
-                        <div class="img_content_lower"></div>
+                <div class="col-lg-4 mt-4">
+                    <div class=" shadow_box">
+                        <div class="img_content_uper" style="overflow: hidden;">
+                            <img  style="width:115%; height: 200px;" src="{% static "images/home/inside_plane.jpg" %}" alt="Rollover Plane">
+                        </div>
+                        <div class="img_content_lower">
+                            <div class="box-text-content p-3">
+                                <h5 style="line-height: 1.25;padding-top: 5px;padding-bottom: 10px; font-family: karla; font-weight: bold;">
+                                    STARTUP STAGE: Wanderift brings subscription model to air travel
+                                </h5>
+                                <button class="search_btn mt-1" style="padding: 5px 15px; font-size: 0.9em; margin-bottom: 10px; font-weight: bold; font-family: karla;">View Article</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="col-lg-4">
-                    <div class="row shadow_box" style="margin-right: 15px;">
-                        <div class="img_content_uper"></div>
-                        <div class="img_content_lower"></div>
+                <div class="col-lg-4 mt-4">
+                    <div class=" shadow_box">
+                        <div class="img_content_uper" style="overflow: hidden;">
+                            <img  style="width:100%; margin-top: -5%;" src="{% static "images/home/american_plane.jpg" %}" alt="Rollover Plane">
+                        </div>
+                        <div class="img_content_lower">
+                            <div class="box-text-content p-3">
+                                <h5 style="line-height: 1.25;padding-top: 5px;padding-bottom: 10px; font-family: karla; font-weight: bold;">
+                                    PYMNTS: Can Air Travel Ticketing Subscriptions Take-off?
+                                </h5>
+                                <button class="search_btn mt-1" style="padding: 5px 15px; font-size: 0.9em; margin-bottom: 10px; font-weight: bold; font-family: karla;">View Article</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="col-lg-4">
-                    <div class="row shadow_box">
-                        <div class="img_content_uper"></div>
-                        <div class="img_content_lower"></div>
+                <div class="col-lg-4 mt-4">
+                    <div class=" shadow_box">
+                        <div class="img_content_uper" style="overflow: hidden;">
+                            <img  style="width:100%;" src="{% static "images/home/flying_plane.jpg" %}" alt="Rollover Plane">
+                        </div>
+                        <div class="img_content_lower">
+                            <div class="box-text-content p-3">
+                                <h5 style="line-height: 1.25;padding-top: 5px;padding-bottom: 10px; font-family: karla; font-weight: bold;">
+                                    Simple Flying: Would A Subscription Airline Model Work?
+                                </h5>
+                                <button class="search_btn mt-1" style="padding: 5px 15px; font-size: 0.9em; margin-bottom: 10px; font-weight: bold; font-family: karla;">View Article</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="row justify-content-end" style="margin-top:1rem"><p class="sec_one_subhead"
-                                                                            style="margin-right: 28px; font-size: 14px; margin-top: 10px;">
-                View All</p></div>
+            <div class="row justify-content-end" style="margin-top:1rem"><p class="sec_one_subhead"style="margin-right: 28px; font-size: 18px; margin-top: 10px;">View All</p></div>
         </div>
         </div>
     </section>

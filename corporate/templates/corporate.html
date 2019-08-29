@@ -2,31 +2,28 @@
 
 {% load static %}
 {% block csscontent %}
+    <link rel="stylesheet" href="{% static "css/home.css" %}">
     <link rel="stylesheet" href="{% static "css/custom.css" %}">
 {% endblock %}
 
 {% block content %}
 
-    {% include "_includes/corporate_nav.html" %}
+    <section style="background-color: white; box-shadow: 0 2px 4px whitesmoke; border-bottom: 1px solid whitesmoke;padding: 10px 15px 0 15px;">
+        {% include "_includes/corporate_nav.html" %}
+    </section>
 
-    <section>
-        <div class="container section-1">
+    <section class="background-colored">
+        <div class="container content-holder">
             <div class="row">
                 <div class="col-sm-12">
                     <h2 class="page-title">Corporate Account</h2>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <section>
-        <div class="container mb100">
-            <div class="row">
                 <div class="col-sm-12">
                     <ul class="nav my-nav-tabs mt30 pb-1">
-                        <li><a data-toggle="tab" href="#home" class="active">Overview</a></li>
-                        <li><a data-toggle="tab" href="#billing">Billing</a></li>
+                        <li class="ml-2"><a data-toggle="tab" href="#home" class="active">Overview</a></li>
+                        <li class="ml-5"><a data-toggle="tab" href="#billing">Billing</a></li>
                     </ul>
+                    <br>
                     <div class="tab-content mt30">
                         <div id="home" class="tab-pane fade in active show">
                             <div class="row">
@@ -83,13 +80,14 @@
                                                         <input class="form-control" type="text"
                                                                placeholder="New Password">
                                                     </div>
-                                                    <div class="form-group col-sm-6 pt-1">
-                                                        <button class="btn btn-1 bold btn-width">Update</button>
+                                                    <div class="form-group col-sm-12 pt-1">
+                                                        <button class="btn search_btn bold btn-width">Update</button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="divider-30"></div>
                                     <div class="card">
                                         <div class="card-body shadow">
                                             <div class="card-title">
@@ -122,13 +120,14 @@
                                                         <input class="form-control" type="text" placeholder="Airelines">
                                                     </div>
                                                     <div class="form-group col-sm-12 pt-1">
-                                                        <button class="btn btn-1 bold btn-width">Save</button>
+                                                        <button class="btn search_btn bold btn-width">Save</button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                                <div class="divider-30 d-block d-md-none"></div>
                                 <div class="col-md-6">
                                     <div class="card">
                                         <div class="card-body shadow">
@@ -143,7 +142,7 @@
                                                 </div>
                                                 <div class="row mt-3">
                                                     <div class="col-sm-7">
-                                                        <div class="progress m-0">
+                                                        <div class="progress corporate-progress m-0">
                                                             <div class="progress-bar" style="width: 40%;"
                                                                  role="progressbar" aria-valuenow="progress"
                                                                  aria-valuemin="0" aria-valuemax="100"></div>
@@ -160,6 +159,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="divider-30"></div>
                                     <div class="card">
                                         <div class="card-body shadow">
                                             <div class="card-body">
@@ -175,6 +175,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="divider-30"></div>
                                     <div class="card">
                                         <div class="card-body shadow">
                                             <div class="card-title">
@@ -193,7 +194,7 @@
                                                                placeholder="Routing Number">
                                                     </div>
                                                     <div class="form-group col-12 pt-1">
-                                                        <button class="btn btn-1 bold w-100">Purchase 60 Tokens for
+                                                        <button class="btn search_btn bold w-100">Purchase 60 Tokens for
                                                             $6,840
                                                         </button>
                                                     </div>
@@ -201,6 +202,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="divider-30"></div>
                                     <div class="card">
                                         <div class="card-body shadow">
                                             <div class="card-title">
@@ -230,6 +232,8 @@
             </div>
         </div>
     </section>
+    {%  include "_includes/footer.html" %}
+
 {% endblock %}
 
 {% block jscontent %}
