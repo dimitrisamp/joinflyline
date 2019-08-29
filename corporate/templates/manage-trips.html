@@ -2,69 +2,67 @@
 
 {% load static %}
 {% block csscontent %}
-    <link rel="stylesheet" href="{% static "css/home.css" %}">
-    <link rel="stylesheet" href="{% static "css/custom.css" %}">
+
 {% endblock %}
 
 {% block content %}
-
-     <section style="background-color: white; box-shadow: 0 2px 4px whitesmoke; border-bottom: 1px solid whitesmoke;padding: 10px 15px 0 15px;">
-        {% include "_includes/corporate_nav.html" %}
+    {% include "_includes/corporate_nav.html" %}
+    <section>
+        <div class="container section-1 mb50">
+            <div class="row">
+                <div class="col-xs-12">
+                    <h2 class="page-title">Manage Trips</h2>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <section class="background-colored">
-
-        <div class="container content-holder">
+    <section>
+        <div class="container mb100">
             <div class="row">
-
-                <div class="col-12">
-                    <h2 class="page-title" style="font-size: 40px; margin-top: 30px; margin-bottom; 20px;">Manage Trips</h2>
-                </div>
-
-                <div class="divider-30"></div>
-
-                <div class="col-md-6 mt-3">
-                    <div class="row">
-                        <div class="col">
-                            <h4 class="page-sub-title">Upcomming Trips</h4>
+                <div class="col-md-6">
+                    <div class="row search-result trending-flight">
+                        <div class="col-sm-6">
+                            <h3 class="page-sub-title ml-2">Upcomming Trips</h3>
                         </div>
-                        <div class="col-auto">
-                            <button class="btn primary-button">Book a Flight</button>
+                        <div class="col-sm-6 text-right">
+                            <button class="btn btn-1 bold mr-2">Book a Flight</button>
                         </div>
-                    </div>
-                    <div class="divider-15"></div>
-                    <div class="result-item text-center card">
-                        <div class="item-content w-100">
-                             <label class="w-100">No upcoming trips... start booking</label>
-                            <label class="w-100">Today and save</label>
+                        <div class="col-sm-12 mt30">
+                            <div class="row pt-2 pb-2 ml-2 mr-2 shadow result-item">
+                                <div class="col-sm-12 text-center p50">
+                                    <label class="w-100">No upcoming trips... start booking</label>
+                                    <label class="w-100">Today and save</label>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="divider-30"></div>
-                    <div class="row">
-                        <div class="col">
-                            <h4 class="page-sub-title" style="margin-top: 40px;">Flights you've been watching</h4>
+                    <div class="row search-result trending-flight">
+                        <div class="col-sm-12">
+                            <h3 class="page-sub-title mt-3 ml-2 mr-2">Flights you've been watching</h3>
                         </div>
-                    </div>
-                    <div class="divider-15"></div>
-                    <div class="result-item text-center card" style="margin-bottom: 100px;">
-                        <div class="item-content w-100">
-                             <label class="w-100">No upcoming trips... start booking</label>
-                            <label class="w-100">Today and save</label>
+                        <div class="col-sm-12 mt30">
+                            <div class="row pt-2 pb-2 ml-2 mr-2 shadow result-item">
+                                <div class="col-sm-12 text-center p50">
+                                    <label class="w-100">No upcoming trips... start booking</label>
+                                    <label class="w-100">Today and save</label>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-
-                <div class="col-md-6 mt-3">
-                    <div class="row">
-                        <div class="col">
-                            <h4 class="page-sub-title">Previous Trips</h4>
+                <div class="col-md-6">
+                    <div class="row search-result trending-flight">
+                        <div class="col-sm-12">
+                            <h3 class="page-sub-title ml-2 mr-2">Previous Trips</h3>
                         </div>
-                    </div>
-                    <div class="divider-15"></div>
-                    <div class="result-item text-center card">
-                        <div class="item-content">
-                             <label class="w-100">No upcoming trips... start booking</label>
-                            <label class="w-100">Today and save</label>
+                        <div class="col-sm-12 mt30">
+                            <div class="row pt-2 pb-2 ml-2 mr-2 shadow result-item">
+                                <div class="col-sm-12 text-center p50">
+                                    <label class="w-100">No upcoming trips... start booking</label>
+                                    <label class="w-100">Today and save</label>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
