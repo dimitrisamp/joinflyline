@@ -142,6 +142,34 @@ nav {
     margin-left: 50%;
 }
 
+.partners-grid-item {
+
+}
+
+.partners-grid-item .card {
+    padding: 30px;
+    margin-top: 30px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.partners-grid-item h4 {
+    font-size: 1.9em;
+    margin-bottom: 30px;
+    justify-self: flex-start;
+}
+.partners-grid-item p,
+.partners-grid-item a {
+    font-size: 1.2em;
+}
+.partners-grid-item p {
+    justify-self: center;
+}
+.partners-grid-item a {
+    justify-self: flex-end;
+}
+
 .search_btn.link {
     background-color: #00B7FF;
     padding: 8px 25px;
