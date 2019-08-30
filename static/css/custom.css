@@ -117,6 +117,30 @@ nav {
 .form.card {
     padding: 15px;
 }
+.team-grid-item {
+    margin: 30px 0;
+    text-align: center;
+    padding: 10px 15px;
+}
+.team-grid-item .img-holder {
+    width: 140px;
+    height: 140px;
+    overflow: hidden;
+    border-radius: 50%;
+    margin: 15px auto;
+    text-align: center;
+}
+.team-grid-item .img-holder .image {
+    position: relative;
+    left: -50%;
+    height: 140px;
+    width: 140px;
+}
+.team-grid-item .img-holder img {
+    height: 100%;
+    width: auto;
+    margin-left: 50%;
+}
 
 .search_btn.link {
     background-color: #00B7FF;

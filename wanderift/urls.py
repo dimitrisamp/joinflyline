@@ -25,6 +25,7 @@ from results.views import results_view
 from news.views import news_view
 from about.views import about_view
 from feedback.views import feedback_view
+from team.views import team_view
 
 
 urlpatterns = [
@@ -52,7 +53,9 @@ urlpatterns = [
     # About url
     path('about', about_view, name="about"),
     # Feedback url
-    path('feedback', feedback_view, name="feedback")
+    path('feedback', feedback_view, name="feedback"),
+    # Team url
+    path('team', team_view, name="team")
 
 ]
 urlpatterns += staticfiles_urlpatterns()
