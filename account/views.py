@@ -7,9 +7,9 @@ from account.models import Account
 
 def account_view(request, user_id):
     user = User.objects.get(pk=user_id)
+    print(user)
     try:
         account = Account.objects.get(user=user)
-        print(account)
     except Account.DoesNotExist:
         account = None
 
@@ -48,18 +48,18 @@ def update_profile(request, user_id):
 
 def save_card(request, user_id):
     user = User.objects.get(pk=user_id)
-
     account = Account()
-    account.card_number = request.POST.get('card_number', None)
-    account.scv = request.POST.get('scv', None)
-    account.expiry = request.POST.get('expiry', None)
-    account.country = request.POST.get('country', None)
-    account.zip = request.POST.get('zip', None)
+    account.card_number = request.POST.get('card_number')
+    account.scv = request.POST.get('scv')
+    account.expiry = request.POST.get('expiry')
+    account.country = request.POST.get('country')
+    account.zip = request.POST.get('zip')
     account.user = user
 
     account.save()
     context = {
         "title": "Accounts",
-        "user": user
+        "user": user,
+        "account": account
     }
     return render(request, "accounts.html", context)

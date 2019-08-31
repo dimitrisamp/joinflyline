@@ -8,6 +8,7 @@ const app = new Vue({
         noOfPassengers: 'Passengers',
         city: '',
         valPassengers: 1,
+        searchParameter: '',
         form: {
             destinationType: "Return",
             noOfPassengers: "Passengers",
@@ -24,8 +25,11 @@ const app = new Vue({
                 url: 'http://aviation-edge.com/v2/public/autocomplete?key=140940-4e6372&city=' + app.city,
                 success: function (data) {
                     if (data) {
-                        data = JSON.parse(data).cities;
+                        console.log(data);
+                       data = JSON.parse(data).cities;
+                        //data = JSON.parse(data).airportsByCities;
                         app.searchResultPlaces = data;
+
                     }
                 }
             });
@@ -78,9 +82,6 @@ const app = new Vue({
 
             document.body.appendChild(form);
             form.submit();
-
-
-            console.log(formData);
 
         },
 
@@ -260,6 +261,8 @@ const app = new Vue({
         openPlaceModal: function (option) {
 
             app.selectionOption = option;
+
+            app.city = '';
 
             let placeFrom = document.getElementById('placesFrom').value;
             let placeTo = document.getElementById('placesTo').value

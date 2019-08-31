@@ -87,7 +87,7 @@
                 </div>
                 <div class="modal fade" id="passengersModal" tabindex="-1" role="dialog"
                      aria-labelledby="passengersModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content" style="width: 80%">
                             <div class="modal-header">
                                 <h6 class="modal-title" id="passengersModalLabel">Passengers</h6>
@@ -193,22 +193,22 @@
         </div>
 
         <!-- Modal -->
-        <div class="modal fade" id="placesModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        <div class="modal fade" id="placesModal" tabindex="-1" role="dialog" aria-labelledby="placesModalCenterTitle"
              aria-hidden="true">
-            <div class="modal-dialog " role="document">
+            <div class="modal-dialog modal-dialog-centered" role="document" >
                 <div class="modal-content">
                     <div class="modal-body">
                         <div class="row pop2_first">
-                            <div class="col-6" style="text-align:left"><p id="placesModalTitle"></p></div>
-                            <div class="col-6" style="text-align:right"><p style="color:#8092a9; cursor: pointer;"
-                                                                           @click="clearList"><i
-                                    class="fa fa-times" style="margin-left:5px"></i></p></div>
+                            <div class="col-6" style="text-align:left; margin-bottom: 2%"><p id="placesModalTitle"></p></div>
+                            <div class="col-6" style="text-align:right">
+                              <!--  <p style="color:#8092a9; cursor: pointer;"  @click="clearList"><i
+                                    class="fa fa-times" style="margin-left:5px"></i></p>--></div>
                         </div>
                         <div class="row pop2_second">
                             <div class="col-12">
                                 <div>
                                     <div style="border: 1px solid #00B7FF; border-radius: 5px; padding: 2%">
-                                        <div style="max-height: 25%; overflow-y: scroll">
+                                        <div class="search_selected_values">
                                             <button class="sel_place_btn" style="margin: 2%" id="mySelectedPlace">
                                                 <i class="fa fa-times-circle" style="margin-right:5px"
                                                    @click="clearPlaceItem(index)"></i>
@@ -218,15 +218,16 @@
 
                                         <div class="pop2_hor_line" style="margin:10px 0px"></div>
                                         <input class="pop2_input" type="text" v-model="city" v-on:keyup="cityHandler"
-                                               id="search_places_dialog_input" onfocus="this.value=''"
-                                               onblur="this.value=''" placeholder="Add new location..."/>
+                                              onfocus="this.value=''" placeholder="Add new location..."/>
                                     </div>
 
                                     <ol class="search_result_list">
                                         <li v-for="(place, index) of searchResultPlaces">
                                             <button class="btn search_result_list_item"
-                                                    @click="setPlace(place.nameCity,place.codeIataCity,index)">{(
-                                                place.nameCity )}
+                                                    @click="setPlace(place.nameCity,place.codeIataCity,index)">
+                                                <i class="fa fa-building" style="padding-right: 2%"></i>
+                                                <i class="fa fa-plane" style="padding-right: 2%" :hidden="true"></i>
+                                                {( place.nameCity )}
                                             </button>
                                         </li>
                                     </ol>

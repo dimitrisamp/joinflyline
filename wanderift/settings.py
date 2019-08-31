@@ -30,6 +30,7 @@ ALLOWED_HOSTS = ['0.0.0.0', '127.0.0.1', 'localhost', '*']
 # Application definition
 
 INSTALLED_APPS = [
+    'django_extensions',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -115,3 +116,5 @@ STATIC_ROOT = ''
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (os.path.join('static'),)
+
+# graph_models --pydot -a -g -o my_project_visualized.png

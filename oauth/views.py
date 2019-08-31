@@ -25,6 +25,7 @@ def login_user(request):
     username = request.POST["email"]
     password = request.POST["password"]
     user = authenticate(username=username, password=password)
+    print(user)
     if user is not None:
         return redirect(account_view, user.id)
     else:

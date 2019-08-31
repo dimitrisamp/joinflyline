@@ -140,11 +140,22 @@ input.drop_down_btn {
     max-height: 50vh;
     list-style-type: none;
     padding: 2%;
+    min-height: 30vh;
     scrollbar-width: none;
     -ms-overflow-style: none;
 }
 .search_result_list::-webkit-scrollbar {
     display: none;
+}
+
+.search_selected_values::-webkit-scrollbar {
+    display: none;
+}
+.search_selected_values{
+    max-height: 25%;
+    overflow-y: scroll;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }
 #mySelectedPlace{
     display: none;
@@ -156,6 +167,7 @@ input.drop_down_btn {
     font-family: Karla;
     font-size: 15px;
     outline: none;
+    color: #7f91a8;
 }
 
 .search_result_list li{
