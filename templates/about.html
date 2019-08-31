@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% block csscontent %}
+    <link rel="stylesheet" href="{% static "css/lightpick.css" %}" xmlns:v-on="http://www.w3.org/1999/xhtml"
+          xmlns:v-on="http://www.w3.org/1999/xhtml">
+    <link rel="stylesheet" href="{% static "css/home.css" %}">
+    <link rel="stylesheet" href="{% static "css/custom.css" %}">
+{% endblock %}
+
+{% block content %}
+    <section style="padding-top: 15px; background-color: white; box-shadow: 0 2px 4px whitesmoke; border-bottom: 1px solid whitesmoke;">
+        {% include "_includes/navbar.html" %}
+    </section>
+
+    <section class="background-colored">
+        <div class="col-12 text-center white-block shadow pt-5 pb-5">
+            <p class="sec_one_head">About<p>
+            <p class="sec_one_subhead">What we offer and how it benefits you<p>
+        </div>
+        <div class="container pt-1">
+            <div class="content_container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="simple-column">
+                            <h1>Just One Headline</h1>
+                            <p>
+                                Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                                when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                                It has survived not only five centuries, but also the leap into electronic typesetting,
+                                remaining essentially unchanged.
+                            </p>
+                        </div>
+                        <div class="simple-column">
+                            <h1>Just Two Headline</h1>
+                            <p>
+                                Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                                when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                                It has survived not only five centuries, but also the leap into electronic typesetting,
+                                remaining essentially unchanged.
+                            </p>
+                        </div>
+                        <div class="simple-column">
+                            <h1>Just Three Headline</h1>
+                            <p>
+                                Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                                when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                                It has survived not only five centuries, but also the leap into electronic typesetting,
+                                remaining essentially unchanged.
+                            </p>
+                        </div>
+                    </div>
+                </div
+            </div>
+        </div>
+    </section>
+
+    <section>
+        {% include "_includes/footer.html" %}
+    </section>
+{% endblock %}
+{% block jscontent %}
+    <script src="{% static "js/home.js" %}"></script>
+    <script src="{% static "js/lightpick.js" %}">
+    </script>
+    <script>
+        let tripButton = document.querySelector(".btn-group");
+        let picker = new Lightpick({
+            field: document.getElementById('departure_date'),
+            secondField: document.getElementById('return_date'),
+            singleDate: false,
+            onSelect: function (start, end) {
+                var str = '';
+                str += start ? start.format('Do MMMM YYYY') + ' to ' : '';
+                str += end ? end.format('Do MMMM YYYY') : '...';
+                {#document.getElementById('result-3').innerHTML = str;#}
+            }
+        });
+    </script>
+{% endblock %}
