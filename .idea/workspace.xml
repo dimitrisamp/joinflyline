@@ -3,21 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="34819c67-5192-450b-95db-48815d66061e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/corporate/templates/corporate.html" beforeDir="false" afterPath="$PROJECT_DIR$/corporate/templates/corporate.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/corporate/templates/manage-trips.html" beforeDir="false" afterPath="$PROJECT_DIR$/corporate/templates/manage-trips.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/corporate/templates/trips.html" beforeDir="false" afterPath="$PROJECT_DIR$/corporate/templates/trips.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/faq/templates/faq.html" beforeDir="false" afterPath="$PROJECT_DIR$/faq/templates/faq.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/home/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/home/templates/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/templates/results.html" beforeDir="false" afterPath="$PROJECT_DIR$/results/templates/results.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/account.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/account.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/custom.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/custom.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/home.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/home.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/lightpick.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/lightpick.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/trips.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/trips.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/_includes/corporate_nav.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/_includes/corporate_nav.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/_includes/footer.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/_includes/footer.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/_includes/navbar.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/_includes/navbar.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wanderift/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/wanderift/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wanderift/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/wanderift/urls.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -126,7 +113,7 @@
       <workItem from="1567021009100" duration="6543000" />
       <workItem from="1567113297085" duration="1850000" />
       <workItem from="1567232098988" duration="3265000" />
-      <workItem from="1567237533749" duration="1842000" />
+      <workItem from="1567237533749" duration="2246000" />
     </task>
     <servers />
   </component>

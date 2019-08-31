@@ -29,6 +29,7 @@ from feedback.views import feedback_view
 from team.views import team_view
 from partners.views import partners_view
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
 
