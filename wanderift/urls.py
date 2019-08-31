@@ -23,11 +23,7 @@ from faq.views import faq_view
 from home.views import home_view
 from results.views import results_view
 from oauth.views import login_user, create_user, forgot_password
-from news.views import news_view
-from about.views import about_view
-from feedback.views import feedback_view
-from team.views import team_view
-from partners.views import partners_view
+from info.views import news_view, about_view, feedback_view, team_view, partners_view
 
 
 urlpatterns = [
@@ -57,15 +53,11 @@ urlpatterns = [
     path('signup', create_user, name="signup"),
     path('forgot_password', forgot_password, name="forgot_password"),
 
-    # News url
+    # Information about Wanderift
     path('news', news_view, name="news"),
-    # About url
     path('about', about_view, name="about"),
-    # Feedback url
     path('feedback', feedback_view, name="feedback"),
-    # Team url
     path('team', team_view, name="team"),
-    # Partners url
     path('partners', partners_view, name="partners")
 
 ]

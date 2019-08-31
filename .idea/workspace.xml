@@ -2,22 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="34819c67-5192-450b-95db-48815d66061e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/partners/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/partners/admin.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/partners/apps.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/partners/migrations/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/partners/models.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/partners/templates/partners.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/partners/tests.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/partners/views.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/team/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/team/admin.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/team/apps.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/team/migrations/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/team/models.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/team/templates/team.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/team/tests.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/team/views.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/admin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/apps.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/migrations/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/models.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/tests.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/views.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/about.html" beforeDir="false" afterPath="$PROJECT_DIR$/info/templates/about.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/faq.html" beforeDir="false" afterPath="$PROJECT_DIR$/info/templates/faq.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/feedback.html" beforeDir="false" afterPath="$PROJECT_DIR$/info/templates/feedback.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/news.html" beforeDir="false" afterPath="$PROJECT_DIR$/info/templates/news.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/partners.html" beforeDir="false" afterPath="$PROJECT_DIR$/info/templates/partners.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/team.html" beforeDir="false" afterPath="$PROJECT_DIR$/info/templates/team.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wanderift/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/wanderift/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wanderift/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/wanderift/urls.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -55,6 +55,8 @@
       <recent name="$PROJECT_DIR$/static/images" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/info/templates" />
+      <recent name="$PROJECT_DIR$/templates" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/wanderift/envconf" />
       <recent name="$PROJECT_DIR$/wanderift/env" />
@@ -125,7 +127,7 @@
       <workItem from="1567021009100" duration="6543000" />
       <workItem from="1567113297085" duration="1850000" />
       <workItem from="1567232098988" duration="3265000" />
-      <workItem from="1567237533749" duration="2770000" />
+      <workItem from="1567237533749" duration="3010000" />
     </task>
     <servers />
   </component>

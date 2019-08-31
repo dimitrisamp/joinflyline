@@ -45,7 +45,8 @@ INSTALLED_APPS = [
     'account',
     'profiles',
     'faq',
-    'oauth'
+    'oauth',
+    'info'
 ]
 
 MIDDLEWARE = [
