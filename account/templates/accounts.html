@@ -23,7 +23,7 @@
         <div class="container mb100">
             <div class="row">
                 <div class="col-sm-12">
-                    <ul class="nav my-nav-tabs mt30 pb-1">
+                    <ul class="nav nav-tabs mt30 pb-1">
                         <li><a data-toggle="tab" href="#overview" class="active">Overview</a></li>
                         <li><a data-toggle="tab" href="#billing">Billing</a></li>
                     </ul>
@@ -38,7 +38,8 @@
                                             </div>
                                             <div class="card-body">
                                                 <div class="row">
-                                                    <form action="{% url 'profile' user.id %}" method="post">
+                                                    <form class="row" action="{% url 'profile' user.id %}"
+                                                          method="post">
                                                         {% csrf_token %}
                                                         <div class="form-group col-sm-6">
                                                             <label class="pb-2">First Name</label>
@@ -96,7 +97,7 @@
                                                         <input class="form-control" type="text"
                                                                placeholder="New Password">
                                                     </div>
-                                                    <div class="form-group col-sm-6 pt-1">
+                                                    <div class="form-group pt-1">
                                                         <button class="btn btn-1 bold btn-width">Update</button>
                                                     </div>
                                                 </div>
@@ -161,73 +162,61 @@
                                                         <div class="form-group col-12">
                                                             <label class="pb-2">Credit Card Number</label>
                                                             <input class="form-control" type="text" name="card_number"
-                                                                   value="{{ account.card_number }}"
                                                                    placeholder="Card Number">
                                                         </div>
                                                         <div class="form-group col-sm-7">
                                                             <label class="pb-2">Security Code</label>
                                                             <input class="form-control" type="text" name="scv"
-                                                                   value="{{ account.scv }}"
                                                                    placeholder="Security Code">
                                                         </div>
                                                         <div class="form-group col-sm-5">
                                                             <label class="pb-2">Exp Date</label>
                                                             <input class="form-control" type="date" name="expiry"
-                                                                   value="{{ account.expiry }}"
                                                                    placeholder="Exp Date">
                                                         </div>
                                                         <div class="form-group col-sm-8">
                                                             <label class="pb-2">Country</label>
                                                             <input class="form-control" type="text" name="country"
-                                                                   value="{{ account.country }}"
                                                                    placeholder="Country">
                                                         </div>
                                                         <div class="form-group col-sm-4">
                                                             <label class="pb-2">Billing Zip</label>
                                                             <input class="form-control" type="text" name="zip"
-                                                                   value="{{ account.zip }}"
                                                                    placeholder="Billing Zip">
                                                         </div>
                                                         <div class="form-group col-12 pt-1">
-                                                            <button type="submit" class="btn btn-1 bold btn-width">
-                                                                Save
+                                                            <button type="submit"
+                                                                    class="btn btn-1 bold bg-primary">
+                                                                Add
                                                             </button>
                                                         </div>
                                                     </div>
                                                 </form>
                                             </div>
                                             <div class="card-title">
-                                                <h3 class="bold p-0">Add New Card</h3>
+                                                <h3 class="bold p-0">My Cards</h3>
                                             </div>
-                                            <div class="card-body">
-                                                <div class="row">
-                                                    <div class="form-group col-12">
-                                                        <label class="pb-2">Credit Card Number</label>
-                                                        <input class="form-control" type="text"
-                                                               placeholder="Card Number">
+                                            <div class="">
+                                                {% for account in user.account_set.all %}
+                                                    <div class="card" style="margin-bottom: 10px">
+                                                        <div class="card-title">
+                                                            {{ user.first_name }} {{ user.last_name }}
+                                                        </div>
+                                                        <div class="card-body">
+                                                            <div>
+                                                                <p>Card Number:
+                                                                    <strong>{{ account.card_number }}</strong>
+                                                                </p>
+                                                            </div>
+                                                            <div>
+                                                                <p>CSV: <strong> {{ account.scv }}</strong></p>
+                                                            </div>
+                                                            <div>
+                                                                <p>Expiry: <strong> {{ account.expiry }}</strong></p>
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                    <div class="form-group col-sm-7">
-                                                        <label class="pb-2">Security Code</label>
-                                                        <input class="form-control" type="text"
-                                                               placeholder="Security Code">
-                                                    </div>
-                                                    <div class="form-group col-sm-5">
-                                                        <label class="pb-2">Exp Date</label>
-                                                        <input class="form-control" type="text" placeholder="Exp Date">
-                                                    </div>
-                                                    <div class="form-group col-sm-8">
-                                                        <label class="pb-2">Country</label>
-                                                        <input class="form-control" type="text" placeholder="Country">
-                                                    </div>
-                                                    <div class="form-group col-sm-4">
-                                                        <label class="pb-2">Billing Zip</label>
-                                                        <input class="form-control" type="text"
-                                                               placeholder="Billing Zip">
-                                                    </div>
-                                                    <div class="form-group col-12 pt-1">
-                                                        <button class="btn btn-1 bold btn-width">Save</button>
-                                                    </div>
-                                                </div>
+                                                {% endfor %}
                                             </div>
                                         </div>
                                     </div>

@@ -1,16 +1,17 @@
-from django.core.paginator import Paginator
-from django.shortcuts import render
-import requests
-import urllib
-import json
+from datetime import datetime
 
+import requests
+from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
+
+from wanderift import settings
 
 
 @csrf_exempt
 def results_view(request, null=None, *args, **kwargs):
     if request.POST:
         search_query = {
+            "limit": "1",
             "apikey": "xklKtpJ5fxZnk4rsDepqOzLUaYYAO9dI",
             "fly_from": request.POST['city_from'],
             "fly_to": request.POST['city_to'],
@@ -21,7 +22,7 @@ def results_view(request, null=None, *args, **kwargs):
             "flight_type": request.POST['type'],
             "adults": request.POST['adults'],
             "children": request.POST['children'],
-            "infants": request.POST['infants'],
+            "infants": request.POST['infants']
         }
 
         # search_query = urllib.parse.urlencode(search_query)
@@ -29,6 +30,7 @@ def results_view(request, null=None, *args, **kwargs):
         response = requests.get(url, params=search_query)
 
         data = response.json()
+        print(data['data'][0]['route'])
     else:
         data = null
 

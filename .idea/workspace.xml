@@ -3,19 +3,45 @@
   <component name="ChangeListManager">
     <list default="true" id="34819c67-5192-450b-95db-48815d66061e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth/admin.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth/apps.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth/migrations/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth/models.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth/tests.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth/views.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/about.html" beforeDir="false" afterPath="$PROJECT_DIR$/info/templates/about.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/faq.html" beforeDir="false" afterPath="$PROJECT_DIR$/info/templates/faq.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/feedback.html" beforeDir="false" afterPath="$PROJECT_DIR$/info/templates/feedback.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/news.html" beforeDir="false" afterPath="$PROJECT_DIR$/info/templates/news.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/partners.html" beforeDir="false" afterPath="$PROJECT_DIR$/info/templates/partners.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/team.html" beforeDir="false" afterPath="$PROJECT_DIR$/info/templates/team.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/account/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/account/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/account/templates/accounts.html" beforeDir="false" afterPath="$PROJECT_DIR$/account/templates/accounts.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/account/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/account/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/corporate/templates/corporate.html" beforeDir="false" afterPath="$PROJECT_DIR$/corporate/templates/corporate.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/corporate/templates/manage-trips.html" beforeDir="false" afterPath="$PROJECT_DIR$/corporate/templates/manage-trips.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/corporate/templates/trips.html" beforeDir="false" afterPath="$PROJECT_DIR$/corporate/templates/trips.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/home/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/home/templates/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/home/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/home/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/oauth/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/oauth/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/profiles/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/profiles/admin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/profiles/apps.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/profiles/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/profiles/migrations/0002_auto_20190827_1905.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/profiles/migrations/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/profiles/models.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/profiles/tests.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/profiles/views.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/templates/results.html" beforeDir="false" afterPath="$PROJECT_DIR$/results/templates/results.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/results/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/css/account.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/account.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/css/custom.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/custom.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/css/home.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/home.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/css/lightpick.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/lightpick.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/css/trips.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/trips.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/_includes/corporate_nav.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/_includes/corporate_nav.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/_includes/footer.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/_includes/footer.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/_includes/navbar.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/_includes/navbar.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/users/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/users/admin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/users/apps.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/users/migrations/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/users/models.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/users/tests.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/users/views.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wanderift/db.sqlite3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wanderift/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/wanderift/db.sqlite3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wanderift/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/wanderift/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wanderift/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/wanderift/urls.py" afterDir="false" />
     </list>
@@ -24,6 +50,36 @@
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="db [2]" type="feb32156:DbDataSourceImpl" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="db [2]" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="db [2]" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="main: schema" type="981a47c2:SqliteImplModel$Schema" />
+      </path>
+    </expand>
+    <select />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -100,6 +156,16 @@
       <method v="2" />
     </configuration>
   </component>
+  <component name="ServiceViewManager">
+    <option name="allServicesViewState">
+      <serviceView>
+        <treeState>
+          <expand />
+          <select />
+        </treeState>
+      </serviceView>
+    </option>
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -128,6 +194,8 @@
       <workItem from="1567113297085" duration="1850000" />
       <workItem from="1567232098988" duration="3265000" />
       <workItem from="1567237533749" duration="3010000" />
+      <workItem from="1567269727078" duration="5437000" />
+      <workItem from="1567350351282" duration="3133000" />
     </task>
     <servers />
   </component>

@@ -7,7 +7,6 @@ from account.views import account_view
 
 
 def create_user(request):
-    print(request.POST)
     username = request.POST.get("email", "admin@gmail.com")
     email = username
     password = request.POST["password"]
@@ -25,7 +24,6 @@ def login_user(request):
     username = request.POST["email"]
     password = request.POST["password"]
     user = authenticate(username=username, password=password)
-    print(user)
     if user is not None:
         return redirect(account_view, user.id)
     else:

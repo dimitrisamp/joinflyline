@@ -12,13 +12,5 @@ class Account(models.Model):
     country = models.CharField(max_length=30, blank=True)
     zip = models.CharField(max_length=20, blank=True)
 
-
-@receiver(post_save, sender=User)
-def create_user_account(sender, instance, created, **kwargs):
-    if created:
-        Account.objects.create(user=instance)
-
-
-@receiver(post_save, sender=User)
-def save_user_account(sender, instance, **kwargs):
-    instance.account.save()
+    def __str__(self):
+        return self

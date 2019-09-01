@@ -1,12 +1,10 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
-import requests
-import urllib
 
 
 def home_view(request):
-    user = request.user
+    print(request.user)
     context = {
         "title": "Wanderift Home",
-        "user": user
     }
     return render(request, "home.html", context)
