@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="{% static "css/lightpick.css" %}" xmlns:v-on="http://www.w3.org/1999/xhtml"
           xmlns:v-on="http://www.w3.org/1999/xhtml">
     <link rel="stylesheet" href="{% static "css/bootstrap-slider.min.css" %}">
-    <link rel="stylesheet" href="{% static "css/home.css" %}">
+{#    <link rel="stylesheet" href="{% static "css/home.css" %}">#}
     <link rel="stylesheet" href="{% static "css/custom.css" %}">
 {% endblock %}
 
@@ -25,7 +25,6 @@
                         <div class="col-12 pr-0">
                             <div class="row">
                                 <div class="col-12 mt-2 col-md-auto search-column-dropdown">
-                                    {#                            <i class="fa fa-refresh fa-flip-horizontal" style="margin-right: -30px;"></i>#}
                                     <img src="{% static "images/icons/arrows_rotating.png" %}"
                                          style="width:14px; margin-right: -30px;">
                                     <input type="text" class="drop_down_btn" readonly data-toggle="dropdown"
@@ -43,7 +42,6 @@
                                     </div>
                                 </div>
                                 <div class="col-12 mt-2 col-md-auto search-column-dropdown">
-                                    {#                        <i class="fa fa-user" style="margin-right: -30px;"></i>#}
                                     <img src="{% static "images/icons/man_user.png" %}"
                                          style="width:16px; margin-right: -30px;">
                                     <input type="text" class="drop_down_btn" readonly data-toggle="modal"
@@ -52,7 +50,6 @@
                                            v-model="form.noOfPassengers"/>
                                 </div>
                                 <div class="col-12 mt-2 col-md-auto search-column-dropdown">
-                                    {#                        <i class="fa fa-usd" style="margin-right: -30px;"></i>#}
                                     <img src="{% static "images/icons/dollar.png" %}"
                                          style="width:20px; margin-right: -35px;">
                                     <input type="text" class="drop_down_btn" readonly data-toggle="dropdown"
@@ -88,8 +85,8 @@
                                     </div>
                                     <div class="flexed-search-item">
                                         <label class="search_label" @click="openPlaceModal(2)">
-                                            <h6 style="font-family: karla; font-weight:bold; opacity: .5;">Arrival City
-                                                :
+                                            <h6 style="margin-left: 4%; font-family: karla; font-weight:bold; opacity: .5;">
+                                                Arrival City :
                                                 <input type="text" class="search_input" readonly name="placesTo"
                                                        id="placesTo"/>
                                             </h6>
@@ -276,6 +273,7 @@
                             </div>
                         </div>
                     </div>
+                    {{ data.data }}
                     <div class="col-xl-6 search-result">
                         {% for flight in data.data %}
                             <div class="row shadow result-item pt-2 pb-2">
@@ -860,6 +858,60 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="placesModal" tabindex="-1" role="dialog" aria-labelledby="placesModalCenterTitle"
+             aria-hidden="true">
+            <div class="modal-dialog " role="document">
+                <div class="modal-content" style="top: 160px;">
+                    <div class="modal-body">
+                        <div class="row pop2_first">
+                            <div class="col-6" style="text-align:left; margin-bottom: 2%"><p id="placesModalTitle"></p>
+                            </div>
+                            <div class="col-6" style="text-align:right">
+                                <!--  <p style="color:#8092a9; cursor: pointer;"  @click="clearList"><i
+                                      class="fa fa-times" style="margin-left:5px"></i></p>--></div>
+                        </div>
+                        <div class="row pop2_second">
+                            <div class="col-12">
+                                <div>
+                                    <div style="border: 1px solid #00B7FF; border-radius: 5px; padding: 2%">
+                                        <div class="search_selected_values">
+                                            <button class="sel_place_btn" style="margin: 2%" id="mySelectedPlace">
+                                                <i class="fa fa-times-circle" style="margin-right:5px"
+                                                   @click="clearPlaceItem(index)"></i>
+
+                                            </button>
+                                        </div>
+
+                                        <div class="pop2_hor_line" style="margin:10px 0px"></div>
+                                        <input class="pop2_input" type="text" v-model="city" v-on:keyup="cityHandler"
+                                               onfocus="this.value=''" placeholder="Add new location..."/>
+                                    </div>
+
+                                    <ol class="search_result_list">
+                                        <li v-for="(place, index) of searchResultPlaces">
+                                            <button class="btn search_result_list_item"
+                                                    @click="setPlace(place.nameCity,place.codeIataCity,index)">
+                                                <i class="fa fa-building" style="padding-right: 2%"></i>
+                                                <i class="fa fa-plane" style="padding-right: 2%" :hidden="true"></i>
+                                                {( place.nameCity )}
+                                            </button>
+                                        </li>
+                                    </ol>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button class="pop2_footer_left" data-dismiss="modal">Cancel</button>
+                        <button class="pop2_footer_right" @click="choosePlaces">Choose</button>
                     </div>
                 </div>
             </div>
