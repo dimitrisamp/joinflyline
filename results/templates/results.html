@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% load static %}
+{% load custom_date %}
 
 {% block csscontent %}
     <link rel="stylesheet" href="{% static "css/lightpick.css" %}" xmlns:v-on="http://www.w3.org/1999/xhtml"
@@ -291,8 +292,8 @@
                                                 <span>{{ flight.cityFrom }} -> {{ flight.cityTo }}</span>
                                             </div>
                                             <div class="col-3">
-                                                <label>{{ flight.local_departure }}</label><br>
-                                                <span>1h 0m</span>
+                                                <label>{{ flight.local_departure| iso_date |date:"SHORT_DATE_FORMAT"}}</label><br>
+                                                <span>{{flight.local_departure| iso_date|time:"H:i:A"}}</span>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -316,8 +317,8 @@
                                                 <span>{{ flight.cityTo }} -> {{ flight.cityFrom }}</span>
                                             </div>
                                             <div class="col-3">
-                                                <label>{{ flight.local_arrival }}</label><br>
-                                                <span>1h 0m</span>
+                                                <label>{{ flight.local_arrival | iso_date |date:"SHORT_DATE_FORMAT"}}</label><br>
+                                                <span>{{flight.local_arrival| iso_date|time:"H:i:A"}}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -366,10 +367,10 @@
                                                                 </div>
                                                                 <div class="col-9 d-inline-flex justify-content-between">
                                                                     <div>
-                                                                        <label>Finniar</label><br>
+                                                                        <label>{{ route.airline }}</label><br>
                                                                         <label class="text-grey">Airline</label>
                                                                     </div>
-                                                                    <label class="text-grey pt-2">1h 20m</label>
+                                                                    <label class="text-grey pt-2">{{ route.local_departure | iso_date |date:"SHORT_DATE_FORMAT"}}</label>
                                                                 </div>
                                                                 <div class="col-1 text-right pt-2">
                                                                     <img src="{% static "images/arrow.png" %}"
