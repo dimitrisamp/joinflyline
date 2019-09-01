@@ -11,7 +11,7 @@ from wanderift import settings
 def results_view(request, null=None, *args, **kwargs):
     if request.POST:
         search_query = {
-            "limit": "1",
+            "limit": "10",
             "apikey": "xklKtpJ5fxZnk4rsDepqOzLUaYYAO9dI",
             "fly_from": request.POST['city_from'],
             "fly_to": request.POST['city_to'],
@@ -30,7 +30,6 @@ def results_view(request, null=None, *args, **kwargs):
         response = requests.get(url, params=search_query)
 
         data = response.json()
-        print(data['data'][0]['route'])
     else:
         data = null
 
