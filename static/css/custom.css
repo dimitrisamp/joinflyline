@@ -12,13 +12,15 @@
 }
 
 .result-item {
-    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-    min-height: 180px;
-    display: flex;
-    justify-content: center;
+    background-color: white;
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 4px;
 }
-.result-item .item-content {
-    padding: 15px;
+.result-item .result-block {
+    cursor: pointer;
+}
+.price-block {
+    min-width: 110px;
 }
 
 
