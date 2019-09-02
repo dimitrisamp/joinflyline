@@ -23,6 +23,15 @@
     min-width: 110px;
 }
 
+.search_btn.book-btn {
+    color: #00b7ff;
+    background-color: white;
+    border: 1px solid #00b7ff;
+    padding: 8px 15px;
+    font-weight: bold;
+    margin: 0;
+}
+
 
 /****************** Navigation ***********/
 nav {
@@ -142,10 +151,6 @@ nav {
     height: 100%;
     width: auto;
     margin-left: 50%;
-}
-
-.partners-grid-item {
-
 }
 
 .partners-grid-item .card {
