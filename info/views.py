@@ -34,3 +34,17 @@ def partners_view(request):
         'title': 'Wanderift Partners'
     }
     render(request, 'partners.html', context)
+
+
+def how_it_works_view(request):
+    context = {
+        'title': 'Wanderift Partners'
+    }
+    render(request, 'how-it-works.html', context)
+
+
+def faq_view(request):
+    context = {
+        "title": "Wanderift faq"
+    }
+    render(request, "faq.html", context)

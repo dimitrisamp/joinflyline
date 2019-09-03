@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="{% static "css/lightpick.css" %}" xmlns:v-on="http://www.w3.org/1999/xhtml"
           xmlns:v-on="http://www.w3.org/1999/xhtml">
     <link rel="stylesheet" href="{% static "css/bootstrap-slider.min.css" %}">
-{#    <link rel="stylesheet" href="{% static "css/home.css" %}">#}
+    {#    <link rel="stylesheet" href="{% static "css/home.css" %}">#}
     <link rel="stylesheet" href="{% static "css/custom.css" %}">
 {% endblock %}
 
@@ -292,8 +292,8 @@
                                                 <span>{{ flight.cityFrom }} -> {{ flight.cityTo }}</span>
                                             </div>
                                             <div class="col-3">
-                                                <label>{{ flight.local_departure| iso_date |date:"SHORT_DATE_FORMAT"}}</label><br>
-                                                <span>{{flight.local_departure| iso_date|time:"H:i:A"}}</span>
+                                                <label>{{ flight.local_departure| iso_date |date:"SHORT_DATE_FORMAT" }}</label><br>
+                                                <span>{{ flight.local_departure| iso_date|time:"H:i:A" }}</span>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -301,7 +301,7 @@
                                                 <hr>
                                             </div>
                                             <div class="col-6 pt-2">
-                                                <span class="small">Stays about {{flight.nightsInDest | default:"0"}} days in {{ flight.cityTo }}</span>
+                                                <span class="small">Stays about {{ flight.nightsInDest | default:"0" }} days in {{ flight.cityTo }}</span>
                                             </div>
                                             <div class="col-3">
                                                 <hr>
@@ -317,8 +317,8 @@
                                                 <span>{{ flight.cityTo }} -> {{ flight.cityFrom }}</span>
                                             </div>
                                             <div class="col-3">
-                                                <label>{{ flight.local_arrival | iso_date |date:"SHORT_DATE_FORMAT"}}</label><br>
-                                                <span>{{flight.local_arrival| iso_date|time:"H:i:A"}}</span>
+                                                <label>{{ flight.local_arrival | iso_date |date:"SHORT_DATE_FORMAT" }}</label><br>
+                                                <span>{{ flight.local_arrival| iso_date|time:"H:i:A" }}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -351,7 +351,7 @@
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-sm-6">
-                                                            <h5>{{route.local_departure| iso_date|time:"H:i:A"}}</h5>
+                                                            <h5>{{ route.local_departure| iso_date|time:"H:i:A" }}</h5>
                                                         </div>
                                                         <div class="col-sm-6 text-right">
                                                             <h5 class="text-grey">Departure</h5>
@@ -370,7 +370,7 @@
                                                                         <label>{{ route.airline }}</label><br>
                                                                         <label class="text-grey">Airline</label>
                                                                     </div>
-                                                                    <label class="text-grey pt-2">{{ route.local_departure | iso_date |date:"SHORT_DATE_FORMAT"}}</label>
+                                                                    <label class="text-grey pt-2">{{ route.local_departure | iso_date |date:"SHORT_DATE_FORMAT" }}</label>
                                                                 </div>
                                                                 <div class="col-1 text-right pt-2">
                                                                     <img src="{% static "images/arrow.png" %}"
@@ -400,7 +400,7 @@
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-sm-6">
-                                                            <h5>{{route.local_arrival | iso_date|time:"H:i:A"}}</h5>
+                                                            <h5>{{ route.local_arrival | iso_date|time:"H:i:A" }}</h5>
                                                         </div>
                                                         <div class="col-sm-6 text-right">
                                                             <h5 class="text-grey">Arrival</h5>

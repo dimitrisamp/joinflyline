@@ -1,7 +1,10 @@
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
+import stripe
 
 from account.models import Account
+
+stripe.api_key = "sk_test_H2ypPKiLEc14JVbd6OpDIWQv00gPMSrkj1"
 
 
 def account_view(request, user_id):
@@ -37,6 +40,13 @@ def update_profile(request, user_id):
         user.profile.dob = request.POST["dob"]
         user.profile.gender = request.POST["gender"]
         user.profile.market = request.POST["market"]
+
+        customer = stripe.Customer.create(
+            description="Customer for" + user.email,
+            name=user.first_name,
+            email=user.email
+        )
+        print(customer['id'])
         user.save()
 
     return redirect('accounts', user_id)

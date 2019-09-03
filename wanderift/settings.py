@@ -45,7 +45,6 @@ INSTALLED_APPS = [
     'corporate',
     'account',
     'profiles',
-    'faq',
     'oauth',
     'info'
 ]

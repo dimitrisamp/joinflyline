@@ -19,12 +19,10 @@ from django.urls import path
 
 from account.views import account_view, update_profile, save_card
 from corporate.views import corporate_view, trips_view, manage_trips_view
-from faq.views import faq_view
 from home.views import home_view
 from results.views import results_view
 from oauth.views import login_user, create_user, forgot_password
-from info.views import news_view, about_view, feedback_view, team_view, partners_view
-
+from info.views import news_view, about_view, feedback_view, team_view, partners_view, how_it_works_view, faq_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -45,9 +43,6 @@ urlpatterns = [
     path('corporate-trips', trips_view, name="trips"),
     path('manage_corporate-trips', manage_trips_view, name="manage-trips"),
 
-    # Faq urls
-    path('faq', faq_view, name="faq"),
-
     # Auth urls
     path('login', login_user, name="login"),
     path('signup', create_user, name="signup"),
@@ -58,7 +53,9 @@ urlpatterns = [
     path('about', about_view, name="about"),
     path('feedback', feedback_view, name="feedback"),
     path('team', team_view, name="team"),
-    path('partners', partners_view, name="partners")
+    path('partners', partners_view, name="partners"),
+    path('how-it-works', how_it_works_view, name="how-it-works"),
+    path('faq', faq_view, name="faq")
 
 ]
 urlpatterns += staticfiles_urlpatterns()

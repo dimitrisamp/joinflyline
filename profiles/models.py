@@ -1,5 +1,5 @@
-from django.db import models
 from django.contrib.auth.models import User
+from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
@@ -9,6 +9,7 @@ class Profile(models.Model):
     market = models.CharField(max_length=30, blank=True)
     gender = models.CharField(max_length=10, blank=True)
     dob = models.DateField(null=True, blank=True)
+    stripe_id = models.CharField(max_length=50, blank=True)
 
 
 @receiver(post_save, sender=User)
