@@ -12,13 +12,24 @@
 }
 
 .result-item {
-    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-    min-height: 180px;
-    display: flex;
-    justify-content: center;
+    background-color: white;
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 4px;
 }
-.result-item .item-content {
-    padding: 15px;
+.result-item .result-block {
+    cursor: pointer;
+}
+.price-block {
+    min-width: 110px;
+}
+
+.search_btn.book-btn {
+    color: #00b7ff;
+    background-color: white;
+    border: 1px solid #00b7ff;
+    padding: 8px 15px;
+    font-weight: bold;
+    margin: 0;
 }
 
 
@@ -140,10 +151,6 @@ nav {
     height: 100%;
     width: auto;
     margin-left: 50%;
-}
-
-.partners-grid-item {
-
 }
 
 .partners-grid-item .card {
