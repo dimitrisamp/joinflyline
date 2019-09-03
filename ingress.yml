@@ -7,7 +7,7 @@ metadata:
     kubernetes.io/ingress.allow-http: "true"
 spec:
   rules:
-    - host: admin.thenurturer.co.ke
+    - host: wanderift.com
       http:
         paths:
           - path: /
