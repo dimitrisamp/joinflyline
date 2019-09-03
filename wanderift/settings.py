@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'corporate',
     'account',
     'profiles',
+    'booking',
     'oauth',
     'info'
 ]
@@ -75,8 +76,8 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
             ],
             'libraries': {
-                'templatetags': 'results.templatetags.custom_date',
-
+                'templatetags':
+                    'results.templatetags.custom_date'
             }
         },
     },

@@ -8,6 +8,7 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     market = models.CharField(max_length=30, blank=True)
     gender = models.CharField(max_length=10, blank=True)
+    phone_number = models.CharField(max_length=20, blank=True)
     dob = models.DateField(null=True, blank=True)
     stripe_id = models.CharField(max_length=50, blank=True)
 

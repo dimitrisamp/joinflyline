@@ -46,7 +46,6 @@ def update_profile(request, user_id):
             name=user.first_name,
             email=user.email
         )
-        print(customer['id'])
         user.save()
 
     return redirect('accounts', user_id)

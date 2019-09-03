@@ -17,12 +17,13 @@ from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.urls import path
 
+from info.views import news_view, about_view, feedback_view, team_view, partners_view, how_it_works_view, faq_view
 from account.views import account_view, update_profile, save_card
 from corporate.views import corporate_view, trips_view, manage_trips_view
-from home.views import home_view
-from results.views import results_view
 from oauth.views import login_user, create_user, forgot_password
-from info.views import news_view, about_view, feedback_view, team_view, partners_view, how_it_works_view, faq_view
+from booking.views import retail_booking_view, traveller_booking_view
+from results.views import results_view
+from home.views import home_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -55,7 +56,10 @@ urlpatterns = [
     path('team', team_view, name="team"),
     path('partners', partners_view, name="partners"),
     path('how-it-works', how_it_works_view, name="how-it-works"),
-    path('faq', faq_view, name="faq")
+    path('faq', faq_view, name="faq"),
 
+    # booking
+    path('retail/<str:booking_token>', retail_booking_view, name="retail"),
+    path('traveller-booking', traveller_booking_view, name="traveller-booking")
 ]
 urlpatterns += staticfiles_urlpatterns()

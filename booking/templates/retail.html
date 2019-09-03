@@ -1,0 +1,249 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% load custom_date %}
+
+{% block csscontent %}
+    <link rel="stylesheet" href="{% static "css/retail.css" %}">
+{% endblock %}
+
+{% block content %}
+    {% include "_includes/navbar.html" %}
+    <section class="mx-auto">
+        <div class="title text-center">
+            <h1>Subscribe to Wanderift</h1>
+            <h2>Start saving on your travel today</h2>
+        </div>
+        <form action="{% url "traveller-booking" %}" method="post">
+            {% csrf_token %}
+            <div class="row">
+                <!-- left side -->
+                <div class="howto col-12 mb-4">
+                    {% for flight in flight.flights %}
+                        <div class="card">
+                            <!-- 1 -->
+                            <div class="row">
+
+                                <div class="col-4 text-left">
+                                    <h2 class="">{{ flight.src_name }}</h2>
+                                    <div class="zero-m">
+                                        <p>Departure</p>
+                                        <h3 class=""><span>{{ flight.local_departure| iso_date |date:"D d M" }}</span></h3>
+                                        <p>{{ flight.local_departure| iso_date|time:"H:i:A" }}</p>
+                                    </div>
+                                </div>
+                                <div class="col-4 text-center">
+                                    <h2 class="">&nbsp;</h2>
+                                    <div class="zero-m">
+                                        <p>&nbsp;</p>
+                                        <h3 class="">0h <span>55m</span></h3>
+                                        <p>&nbsp;</p>
+                                    </div>
+                                </div>
+                                <div class="col-4 text-right">
+                                    <h2 class="">{{ flight.dst_name }}</h2>
+                                    <div class="zero-m">
+                                        <p>&nbsp;</p>
+                                        <h3 class="">Thu <span>08/15</span></h3>
+                                        <p>10:20</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+
+                                <div class="col-4 text-left">
+
+                                    <div class="zero-m">
+                                        <p>Return</p>
+                                        <h3 class="">{{ flight.local_arrival| iso_date |date:"D d M" }}</h3>
+                                        <p>{{ flight.local_arrival| iso_date|time:"H:i:A"}}</p>
+                                    </div>
+                                </div>
+                                <div class="col-4 text-center">
+
+                                    <div class="zero-m">
+                                        <p>&nbsp;</p>
+                                        <h3 class="">1h <span>55m</span></h3>
+                                        <p>&nbsp;</p>
+                                    </div>
+                                </div>
+                                <div class="col-4 text-right">
+
+                                    <div class="zero-m">
+                                        <p>&nbsp;</p>
+                                        <h3 class="">Sat <span>08/15</span></h3>
+                                        <p>10:20</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+
+                <!--      2 section-->
+
+                <div class="howto col-12">
+                    <div class="card card-sm">
+
+                        <h2 class="card-title mb-16">1. Traveler Information</h2>
+
+                        <div class="row">
+                            <div class="col-4">
+                                <h5>First Name</h5>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="first_name">
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <h5>Last Name</h5>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="last_name">
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <h5>Gender</h5>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="gender">
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <h5>Date of Birth</h5>
+                                <div class="form-group">
+                                    <input type="date" class="form-control" name="dob">
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+                <!--      2 section-->
+
+                <!--      3 section-->
+
+                <div class="howto col-12">
+                    <div class="card card-sm">
+
+                        <h2 class="card-title mb-16">2. Contact Information</h2>
+
+                        <div class="row">
+                            <div class="col-6">
+                                <h5>Email Address</h5>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="email">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <h5>Phone Number</h5>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="phone_number">
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+                <!--      3 section-->
+
+                <!--      4 section-->
+
+                <div class=" col-8 " style="height:100%">
+                    <div class="card card-sm " style="padding-bottom: 255px;">
+
+                        <h2 class="card-title">3. Enter Payment Details</h2>
+                        <div class="row">
+                            <div class="col-12">
+                                <h5>Credit Card Number</h5>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="usr" name="card_number"
+                                           placeholder="Card Number">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <h5>Expiration date</h5>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="pwd" name="expiry" placeholder="19/20">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <h5>Security code</h5>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="pwd" name="cvc" placeholder="CVC">
+                                </div>
+                            </div>
+                            <div class="col-8">
+                                <h5>Country</h5>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="pwd" name="country"
+                                           placeholder="Country">
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <h5>Billing Zip</h5>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="pwd" name="zip" placeholder="Zip">
+                                </div>
+                            </div>
+
+                            <div class="">
+                                <button class="btn flex-center bg-lightblue">Pay for Flight</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!--      4 section-->
+                <!--      5 section-->
+                <div class=" col-4">
+                    <div class=" row">
+                        <div class="card card-sm">
+                            <div class="card-title">Order Summary</div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <h3 class="font-weight-bold ">Item</h3>
+                                    <h4 class="">Wanderift Lite(3 Tokens)</h4>
+                                </div>
+                                <div class="col-6">
+                                    <h3 class="font-weight-bold ">Price</h3>
+                                    <h3 class="">$359 per month</h3>
+                                </div>
+                            </div>
+                            <hr/>
+                            <div class="row">
+                                <div class="col-6">
+                                    <h3 class="font-weight-bold">Total</h3>
+                                </div>
+                                <div class="col-6">
+                                    <h3>$359 per month</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--      section-->
+
+                    <div class="howto row">
+                        <div class="card card-sm">
+                            <div class="card-title">Subscribe and save</div>
+                            <h3>
+                                Start saving on your travel today</h3>
+                            <h3>questions@wanderift.com, or click the</h3>
+
+                            <div class="btn flex-center borderblue">
+                                <div class="text-white text-dark">Frequently Asked Questions</div>
+                            </div>
+                            <div class="btn flex-center borderblue">
+                                <div class="text-white text-dark">Frequently Asked Questions</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--       section-->
+
+                </div>
+                <!--      5 section-->
+
+                <!-- right side -->
+            </div>
+        </form>
+    </section>
+{% endblock %}

@@ -8,7 +8,7 @@ from wanderift import settings
 
 
 @csrf_exempt
-def results_view(request, null=None, *args, **kwargs):
+def results_view(request, null=None):
     if request.POST:
         search_query = {
             "limit": "10",
@@ -25,6 +25,7 @@ def results_view(request, null=None, *args, **kwargs):
             "infants": request.POST['infants']
         }
 
+        request.session["search_query"] = search_query
         # search_query = urllib.parse.urlencode(search_query)
         url = "https://kiwicom-prod.apigee.net/v2/search"
         response = requests.get(url, params=search_query)

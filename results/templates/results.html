@@ -275,32 +275,35 @@
                         </div>
                     </div>
                     <div class="col-xl-6 search-result">
-{#                        {% for flight in data.data %}#}
+                        {% for flight in data.data %}
                             <div class="result-item mb-2 shadow">
-                                <div class="result-block w-100 d-flex justify-content-start pt-3 pb-3" data-toggle="collapse" data-target="#result-item1">
+                                <div class="result-block w-100 d-flex justify-content-start pt-3 pb-3"
+                                     data-toggle="collapse" data-target="#result-item1">
                                     <div class="price-block d-flex align-items-center pl-3 pr-3">
                                         <div>
-                                            <h5>${{ flight.price }} 421.00</h5>
+                                            <h5>${{ flight.price }}</h5>
                                             <p class="small text-muted">1 Adult</p>
                                         </div>
                                     </div>
                                     <div class="flight-info-block d-flex flex-column w-100">
                                         <div class="departure-row d-flex justify-content-start">
                                             <div class="pr-3">
-                                                <img src="{% static "images/american_airlines_logo.png" %}" alt="AA" height="40px">
+                                                <img src="{% static "images/american_airlines_logo.png" %}" alt="AA"
+                                                     height="40px">
                                             </div>
                                             <div class="d-flex justify-content-around w-100">
                                                 <div class="">
-                                                    <label class="mb-0"><strong>9:15 - 10:15</strong></label><br>
+                                                    <label class="mb-0"><strong>{{ flight.route.0.local_departure| iso_date|time:"H:i:A" }} - {{ flight.route.0.local_arrival| iso_date|time:"H:i:A" }}</strong></label><br>
                                                     <span class="small text-muted">
-                                                        {{ flight.cityFrom }} Dallas
+                                                        {{ flight.cityFrom }}
                                                         <i class="fa fa-long-arrow-right mr-1 ml-1"></i>
-                                                        {{ flight.cityTo }} Austin
+                                                        {{ flight.cityTo }}
                                                     </span>
                                                 </div>
                                                 <div class="">
-                                                    <label class="mb-0"><strong>{{ flight.local_departure| iso_date |date:"SHORT_DATE_FORMAT"}} Thu 15 Aug</strong></label><br>
-                                                    <span class="small text-muted">{{flight.local_departure| iso_date|time:"H:i:A"}} 0h 55m </span>
+                                                    <label class="mb-0"><strong>{{ flight.local_departure| iso_date |date:"D d M" }}
+                                                    </strong></label><br>
+                                                    <span class="small text-muted">{{ flight.local_departure| iso_date|time:"H:i:A" }} </span>
                                                 </div>
                                                 <div></div>
                                             </div>
@@ -308,120 +311,85 @@
                                         </div>
                                         <div class="flight-divider d-flex justify-content-start text-left mt-3 mb-3">
                                             <span style="width: 50px; border-bottom: 1px solid silver; height: 12px;"></span>
-                                            <p class="small text-muted mb-0 ml-5">Stays about {{ flight.nightsInDest | default:"0" }} days in {{ flight.cityTo }}</p>
+                                            <p class="small text-muted mb-0 ml-5">Stays
+                                                about {{ flight.nightsInDest | default:"0" }} days
+                                                in {{ flight.cityTo }}</p>
                                         </div>
 
 
                                         <div class="arrival-row d-flex justify-content-start">
                                             <div class="pr-3">
-                                                <img src="{% static "images/american_airlines_logo.png" %}" alt="AA" height="40px">
+                                                <img src="{% static "images/american_airlines_logo.png" %}" alt="AA"
+                                                     height="40px">
                                             </div>
                                             <div class="d-flex justify-content-around w-100">
                                                 <div class="">
-                                                    <label class="mb-0"><strong>9:15 - 10:15</strong></label><br>
+                                                    <label class="mb-0"><strong>{{ flight.route.1.local_departure| iso_date|time:"H:i:A" }} - {{ flight.route.1.local_arrival| iso_date|time:"H:i:A" }}</strong></label><br>
                                                     <span class="small text-muted">
-                                                        {{ flight.cityFrom }} Dallas
+                                                        {{ flight.cityTo }}
                                                         <i class="fa fa-long-arrow-right mr-1 ml-1"></i>
-                                                        {{ flight.cityTo }} Austin
+                                                        {{ flight.cityFrom }}
                                                     </span>
                                                 </div>
                                                 <div class="">
-                                                    <label class="mb-0"><strong>{{ flight.local_departure| iso_date |date:"SHORT_DATE_FORMAT"}} Thu 15 Aug</strong></label><br>
-                                                    <span class="small text-muted">{{flight.local_departure| iso_date|time:"H:i:A"}} 0h 55m </span>
+                                                    <label class="mb-0"><strong>{{ flight.local_departure| iso_date |date:"D d M" }}
+                                                    </strong></label><br>
+                                                    <span class="small text-muted">{{ flight.local_departure| iso_date|time:"H:i:A" }}</span>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-{#                                    <div class="">#}
-{#                                        <div class="row">#}
-{#                                            <div class="col-3 text-center pt-2">#}
-{#                                                <img src="{% static "images/american_airlines_logo.png" %}" alt="AA">#}
-{#                                            </div>#}
-{#                                            <div class="col-6">#}
-{#                                                <label>9:15 - 10:15</label><br>#}
-{#                                                <span>{{ flight.cityFrom }} -> {{ flight.cityTo }}</span>#}
-{#                                            </div>#}
-{#                                            <div class="col-3">#}
-{#                                                <label>{{ flight.local_departure| iso_date |date:"SHORT_DATE_FORMAT"}}</label><br>#}
-{#                                                <span>{{flight.local_departure| iso_date|time:"H:i:A"}}</span>#}
-{#                                            </div>#}
-{#                                        </div>#}
-{#                                        <div class="row">#}
-{#                                            <div class="col-3">#}
-{#                                                <hr>#}
-{#                                            </div>#}
-{#                                            <div class="col-6 pt-2">#}
-{#                                                <span class="small">Stays about {{flight.nightsInDest | default:"0"}} days in {{ flight.cityTo }}</span>#}
-{#                                            </div>#}
-{#                                            <div class="col-3">#}
-{#                                                <hr>#}
-{#                                            </div>#}
-{#                                        </div>#}
-{#                                        <div class="row">#}
-{#                                            <div class="col-3 text-center pt-2">#}
-{#                                                <img src="{% static "images/american_airlines_logo.png" %}" alt="AA">#}
-{#                                            </div>#}
-{#                                            <div class="col-6">#}
-{#                                                <label>9:15 - 10:15</label><br>#}
-{#                                                <span>{{ flight.cityTo }} -> {{ flight.cityFrom }}</span>#}
-{#                                            </div>#}
-{#                                            <div class="col-3">#}
-{#                                                <label>{{ flight.local_arrival | iso_date |date:"SHORT_DATE_FORMAT"}}</label><br>#}
-{#                                                <span>{{flight.local_arrival| iso_date|time:"H:i:A"}}</span>#}
-{#                                            </div>#}
-{#                                        </div>#}
-{#                                    </div>#}
-                                    <div></div>
                                 </div>
                                 <div class="result-details collapse" id="result-item1">
-{#                                    {% for route in flight.route %}#}
-                                        <hr>
-                                        <div class="d-flex justify-content-between p-0 pr-2 pl-2">
-                                            <h5>To {{ route.cityFrom }} Austin</h5>
-                                            <p class="mb-0"><strong class="text-muted">0h 55m</strong></p>
-                                        </div>
-                                        <div class="p-2">
-                                            <div class="card m-0" style="border: 0;">
-                                                <div class="card-header p-1" style="border: 1px solid silver;">
-                                                    <p class="mb-0 pl-1">
-                                                        <i class="fa fa-calendar mr-2 text-muted "></i>
-                                                        {{ route.local_departure | date }}
-                                                        Thu 15 Aug
-                                                    </p>
+                                    {#                                    {% for route in flight.route %}#}
+                                    <hr>
+                                    <div class="d-flex justify-content-between p-0 pr-2 pl-2">
+                                        <h5>To {{ route.cityFrom }}</h5>
+                                        <p class="mb-0"><strong class="text-muted">0h 55m</strong></p>
+                                    </div>
+                                    <div class="p-2">
+                                        <div class="card m-0" style="border: 0;">
+                                            <div class="card-header p-1" style="border: 1px solid silver;">
+                                                <p class="mb-0 pl-1">
+                                                    <i class="fa fa-calendar mr-2 text-muted "></i>
+                                                    {{ route.local_departure| iso_date | date:"D d M" }}
+                                                </p>
+                                            </div>
+                                            <div class="card-body p-2">
+                                                <div class="row">
+                                                    <div class="col-sm-6">
+                                                        <p class="mb-0">
+                                                            <strong class="text-muted">
+                                                                <i class="fa fa-map-marker mr-2 text-muted text-primary"
+                                                                   style="margin-left: 2px;"></i>
+                                                                {{ route.airline }} Dallas Love Field
+                                                            </strong>
+                                                        </p>
+                                                    </div>
+                                                    <div class="col-sm-6 text-right">
+                                                        <p class="text-muted mb-0 tex">{{ route.flyFrom }} DAL</p>
+                                                    </div>
                                                 </div>
-                                                <div class="card-body p-2">
-                                                    <div class="row">
-                                                        <div class="col-sm-6">
-                                                            <p class="mb-0">
-                                                                <strong class="text-muted">
-                                                                    <i class="fa fa-map-marker mr-2 text-muted text-primary" style="margin-left: 2px;"></i>
-                                                                    {{ route.airline }} Dallas Love Field
-                                                                </strong>
-                                                            </p>
-                                                        </div>
-                                                        <div class="col-sm-6 text-right">
-                                                            <p class="text-muted mb-0 tex">{{ route.flyFrom }} DAL</p>
-                                                        </div>
+                                                <div class="row">
+                                                    <div class="col-sm-6">
+                                                        <p>
+                                                            <i class="fa fa-clock-o mr-2 text-muted text-primary"></i>
+                                                            {{ route.local_departure| iso_date|time:"H:i:A" }}
+                                                        </p>
                                                     </div>
-                                                    <div class="row">
-                                                        <div class="col-sm-6">
-                                                            <p>
-                                                                <i class="fa fa-clock-o mr-2 text-muted text-primary"></i>
-                                                                {{route.local_departure| iso_date|time:"H:i:A"}}
-                                                            </p>
-                                                        </div>
-                                                        <div class="col-sm-6 text-right">
-                                                            <span class="text-muted">Departure</span>
-                                                        </div>
+                                                    <div class="col-sm-6 text-right">
+                                                        <span class="text-muted">Departure</span>
                                                     </div>
-                                                    <div class="row">
-                                                        <div class="col-12">
-                                                            <p class="small text-muted ml-4">Stays 1 day in Austin</p>
-                                                        </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <p class="small text-muted ml-4">Stays 1 day in Austin</p>
                                                     </div>
-                                                    <div class="d-flex align-items-center">
-                                                        <i class="fa fa-plane mr-2 text-muted w-10 text-primary"></i>
-                                                        <div class="card w-100" data-toggle="collapse" data-target="#airplane3">
+                                                </div>
+                                                <div class="d-flex align-items-center">
+                                                    <i class="fa fa-plane mr-2 text-muted w-10 text-primary"></i>
+                                                    <div class="card w-100" data-toggle="collapse"
+                                                         data-target="#airplane3">
                                                         <div class="card-body p-0">
                                                             <div class="d-flex justify-content-between">
                                                                 <div class="pt-3 pl-5">
@@ -430,10 +398,11 @@
                                                                 </div>
                                                                 <div class="d-inline-flex justify-content-between">
                                                                     <div>
-                                                                        <label>{{ route.airline }} Southwest Airlines</label><br>
+                                                                        <label>{{ route.airline }}
+                                                                            Airlines</label><br>
                                                                         <label class="small text-grey">Airline</label>
                                                                     </div>
-                                                                    <label class="text-grey pt-2">{{ route.local_departure | iso_date |date:"SHORT_DATE_FORMAT" }}</label>
+                                                                    <label class="text-grey pt-2">{{ route.local_departure | iso_date |date:"D d M" }}</label>
                                                                 </div>
                                                                 <div class="col-1 text-right pt-2">
                                                                     <img src="{% static "images/arrow.png" %}"
@@ -445,60 +414,61 @@
                                                             <h5 class="text-grey">Flight info</h5>
                                                             <div class="d-inline-flex justify-content-between w-100 pl-2">
                                                                 <label>Flight No.</label>
-                                                                <label class="text-grey">{{ route.flight_no }} 123</label>
+                                                                <label class="text-grey">{{ route.flight_no }}
+                                                                </label>
                                                             </div>
                                                             <div class="d-inline-flex justify-content-between w-100 pl-2">
                                                                 <label>Seats Remaining</label>
-                                                                <label class="text-grey">{{ flight.availability.seats }} 12</label>
+                                                                <label class="text-grey">{{ flight.availability.seats }}
+                                                                    12</label>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    </div>
+                                                </div>
 
-                                                    <div class="row mt-3">
-                                                        <div class="col-sm-6">
-                                                            <p class="mb-0">
-                                                                <strong class="text-muted">
-                                                                    <i class="fa fa-map-marker mr-2 text-muted text-primary" style="margin-left: 2px;"></i>
-                                                                    {{ route.airline }} Austin-Bergstrom
-                                                                </strong>
-                                                            </p>
-                                                        </div>
-                                                        <div class="col-sm-6 text-right">
-                                                            <p class="text-muted mb-0">{{ route.flyFrom }} AUS</p>
-                                                        </div>
+                                                <div class="row mt-3">
+                                                    <div class="col-sm-6">
+                                                        <p class="mb-0">
+                                                            <strong class="text-muted">
+                                                                <i class="fa fa-map-marker mr-2 text-muted text-primary"
+                                                                   style="margin-left: 2px;"></i>
+                                                                {{ route.airline }} {{ route.cityFrom }}
+                                                                - {{ route.cityTo }}
+                                                            </strong>
+                                                        </p>
                                                     </div>
-                                                    <div class="row">
-                                                        <div class="col-sm-6">
-                                                            <p>
-                                                                <i class="fa fa-clock-o mr-2 text-muted text-primary"></i>
-                                                                {{route.local_departure| iso_date|time:"H:i:A"}}
-                                                            </p>
-                                                        </div>
-                                                        <div class="col-sm-6 text-right">
-                                                            <span class="text-muted">Arival</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-12">
-                                                            <p class="small text-muted ml-4">Stays 1 day in Dallas</p>
-                                                        </div>
+                                                    <div class="col-sm-6 text-right">
+                                                        <p class="text-muted mb-0">{{ route.flyFrom }}</p>
                                                     </div>
                                                 </div>
-                                                 <div class="search-results-buttons text-right">
-                                                    <button class="search_btn">Subscribe and save $43</button>
-                                                    <button class="search_btn book-btn">Book for $431</button>
+                                                <div class="row">
+                                                    <div class="col-sm-6">
+                                                        <p>
+                                                            <i class="fa fa-clock-o mr-2 text-muted text-primary"></i>
+                                                            {{ route.local_departure| iso_date|time:"H:i:A" }}
+                                                        </p>
+                                                    </div>
+                                                    <div class="col-sm-6 text-right">
+                                                        <span class="text-muted">Arrival</span>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <p class="small text-muted ml-4">Stays 1 day in Dallas</p>
+                                                    </div>
                                                 </div>
                                             </div>
+                                            <div class="search-results-buttons text-right">
+                                                <button class="search_btn">Subscribe and save $43</button>
+                                                <a href="{% url 'retail' flight.booking_token %}">
+                                                    <button class="search_btn book-btn"> Book for $431</button>
+                                                </a>
+                                            </div>
                                         </div>
-
-{#                                        <div class="col-sm-12 mt-2 mb-2">#}
-{#                                            <label class="text-grey pl-4">6h 30m layover</label>#}
-{#                                        </div>#}
-{#                                    {% endfor %}#}
+                                    </div>
                                 </div>
                             </div>
-{#                        {% endfor %}#}
+                        {% endfor %}
                     </div>
                     <div class="col-xl-3">
                         <div class="card">
