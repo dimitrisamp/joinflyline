@@ -11,4 +11,4 @@ class Account(models.Model):
     zip = models.CharField(max_length=20, blank=True)
 
     def __str__(self):
-        return self
+        return self.card_number, self.cvc, self.expiry, self.country, self.zip
