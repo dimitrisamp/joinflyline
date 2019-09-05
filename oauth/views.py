@@ -1,9 +1,11 @@
-from django.contrib.auth import authenticate
+from django.contrib import messages
+from django.contrib.auth import authenticate, logout
 from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 
 from account.views import account_view
+from home.views import home_view
 
 
 def create_user(request):
@@ -17,6 +19,7 @@ def create_user(request):
     context = {
         "msg": "passed"
     }
+    messages.SUCCESS(request, 'Registration Successful')
     return render(request, "home.html", context)
 
 
@@ -25,9 +28,11 @@ def login_user(request):
     password = request.POST["password"]
     user = authenticate(username=username, password=password)
     if user is not None:
+        messages.success(request, 'Login Successful')
         return redirect(account_view, user.id)
     else:
-        return HttpResponse("Failed: Your credentials were incorrect", status=401)
+        messages.error(request, 'Failed: Your credentials were incorrect')
+        return redirect(home_view)
 
 
 def forgot_password(request):
@@ -39,3 +44,8 @@ def forgot_password(request):
         return HttpResponse("Password reset successfully", status=200)
     else:
         return HttpResponse("Failed: Email does not exist", status=405)
+
+
+def logout_view(request):
+    logout(request)
+    return redirect(home_view)

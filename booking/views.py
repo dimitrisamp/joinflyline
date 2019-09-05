@@ -95,4 +95,4 @@ def save_booking(request, user):
     headers = {'content-type': 'application/json'}
     url = "https://kiwicom-prod.apigee.net/v2/booking/save_booking"
     response = requests.post(url, params=params, json=booking, headers=headers)
-    pay = response.json()
+    return response.json()

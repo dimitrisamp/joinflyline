@@ -17,34 +17,49 @@
 
         <div class="clearfix"></div>
         <div>
-            <a class="nav_btn_link get_started_btn" href="#" style="padding: 5px">
-                <button class="search_btn">Get started</button>
-            </a>
+            {% if user.is_authenticated %}
+                <a class="nav_btn_link" href="{% url "logout" %}">
+                    <button class="nav-button-logout">Log out</button>
+                </a>
+            {% else %}
+                <a class="nav_btn_link" href="{% url "home" %}">
+                    <button class="custom_btn">Get Started</button>
+                </a>
+            {% endif %}
 
             <div class="navbar-collapse collapse" id="navb" style="padding: 10px">
                 <ul class="navbar-nav ml-auto">
                     {% if user.is_authenticated %}
-                        <li class="nav-item ml-md-4"><a class="custom_nav_link" href="{% url "corporate" %}">Corporate
-                            Plans {{ user.first_name }}</a></li>
-                        <li class="nav-item ml-md-4"><a class="custom_nav_link" href="#" style="padding-left:40px;">Subscriptions</a>
+                        <li class="nav-item ml-md-4">
+                            <a class="custom_nav_link" href="{% url "corporate" %}">Manage Trips </a>
                         </li>
-                        <li class="nav-item ml-md-4"><a class="custom_nav_link" href="{% url "accounts" user.id %}"
-                                                        style="padding-left:40px;">Account</a></li>
+                        <li class="nav-item ml-md-4">
+                            <a class="custom_nav_link" href="{% url "corporate" %}">Trips </a>
+                        </li>
+                        <li class="nav-item ml-md-4">
+                            <a class="custom_nav_link" href="{% url "faq" %}" style="padding-left:40px;">Help</a>
+                        </li>
+                        <li class="nav-item ml-md-4">
+                            <a class="custom_nav_link" href="{% url "accounts" user.id %}" style="padding-left:40px;">Account</a>
+                        </li>
                     {% else %}
-                        <li class="nav-item ml-md-4"><a class="custom_nav_link" href="{% url "corporate" %}">Corporate
-                            Plans</a></li>
-                        <li class="nav-item ml-md-4"><a class="custom_nav_link" href="" style="padding-left:40px;">Subscriptions</a>
+                        <li class="nav-item ml-md-4">
+                            <a class="custom_nav_link" href="{% url "corporate" %}">Corporate Trips </a></li>
+                        <li class="nav-item ml-md-4">
+                            <a class="custom_nav_link" href="" style="padding-left:40px;">Subscriptions</a>
                         </li>
-                        <li class="nav-item ml-md-4"><a class="custom_nav_link" data-toggle="modal"
-                                                        data-target="#signInOptionsModal" href=""
-                                                        style="padding-left:40px;">Sign In</a></li>
+                        <li class="nav-item ml-md-4">
+                            <a class="custom_nav_link" data-toggle="modal" data-target="#signInOptionsModal" href=""
+                               style="padding-left:40px;">Sign In</a>
+                        </li>
                     {% endif %}
                 </ul>
             </div>
         </div>
     </div>
 </nav>
-<div class="modal fade sign-in-modal" id="signInOptionsModal" tabindex="-1" role="dialog" aria-labelledby="signInOptionsModalLabel"
+<div class="modal fade sign-in-modal" id="signInOptionsModal" tabindex="-1" role="dialog"
+     aria-labelledby="signInOptionsModalLabel"
 
      aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -72,7 +87,8 @@
                                role="tab" aria-controls="pills-signin" aria-selected="false">Sign In</a>
                         </li>
                         <li class="nav-item flex-fill text-center">
-                            <a class="nav-link" id="pills-corporate-tab" data-toggle="pill" href="#pills-signup-corporate"
+                            <a class="nav-link" id="pills-corporate-tab" data-toggle="pill"
+                               href="#pills-signup-corporate"
                                role="tab" aria-controls="pills-corporate" aria-selected="false">Corporate</a>
                         </li>
                     </ul>
@@ -116,7 +132,7 @@
                          aria-labelledby="pills-signup-tab">
                         <form class="pl-2 pr-2" method="post" action="{% url "login" %}">
                             {% csrf_token %}
-                             <div class="input-holder pl-2 pr-2">
+                            <div class="input-holder pl-2 pr-2">
                                 <div class="form-group">
                                     <input type="email" class="form-control login_input" name="email"
                                            id="pills-signin_emailAddress"

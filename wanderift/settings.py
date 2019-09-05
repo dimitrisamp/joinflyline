@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 #
 import os
 
+from django.contrib.messages import constants as messages
+
 from .envconf.prod import *
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -40,11 +42,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # My apps
+    'subscriptions',
     'home',
     'results',
     'corporate',
     'account',
-    'profiles',
     'booking',
     'oauth',
     'info'
@@ -124,3 +126,8 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (os.path.join('static'),)
 
 # graph_models --pydot -a -g -o my_project_visualized.png
+
+MESSAGE_TAGS = {
+    messages.ERROR: '',
+    40: 'danger',
+}
