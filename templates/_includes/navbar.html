@@ -29,15 +29,15 @@
                         <li class="nav-item ml-md-4"><a class="custom_nav_link" href="#" style="padding-left:40px;">Subscriptions</a>
                         </li>
                         <li class="nav-item ml-md-4"><a class="custom_nav_link" href="{% url "accounts" user.id %}"
-                                                        style="padding-left:40px;">Account</a></li>
+                                                        style="padding-left:20px;">Account</a></li>
                     {% else %}
                         <li class="nav-item ml-md-4"><a class="custom_nav_link" href="{% url "corporate" %}">Corporate
                             Plans</a></li>
-                        <li class="nav-item ml-md-4"><a class="custom_nav_link" href="" style="padding-left:40px;">Subscriptions</a>
+                        <li class="nav-item ml-md-4"><a class="custom_nav_link" href="" style="padding-left:20px;">Subscriptions</a>
                         </li>
                         <li class="nav-item ml-md-4"><a class="custom_nav_link" data-toggle="modal"
                                                         data-target="#signInOptionsModal" href=""
-                                                        style="padding-left:40px;">Sign In</a></li>
+                                                        style="padding-left:20px;">Sign In</a></li>
                     {% endif %}
                 </ul>
             </div>
@@ -48,7 +48,7 @@
 
      aria-hidden="true">
     <div class="modal-dialog" role="document">
-        <div class="modal-content popup_container">
+        <div class="modal-content popup_container" style="top: 60px;">
             <div class="row justify-content-center">
                 <a class="popup_btn_link w-100 p-3" href="#">
                     <div class="w-100 btn_popup text-center">
