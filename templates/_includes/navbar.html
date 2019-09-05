@@ -2,6 +2,7 @@
 
 {% block csscontent %}
     <link rel="stylesheet" href="{% static "css/home.css" %}">
+    <link rel="stylesheet" href="{% static "css/signin.css" %}">
 {% endblock %}
 
 <nav>
@@ -43,47 +44,47 @@
         </div>
     </div>
 </nav>
-<div class="modal fade" id="signInOptionsModal" tabindex="-1" role="dialog" aria-labelledby="signInOptionsModalLabel"
+<div class="modal fade sign-in-modal" id="signInOptionsModal" tabindex="-1" role="dialog" aria-labelledby="signInOptionsModalLabel"
 
      aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content popup_container">
             <div class="row justify-content-center">
-                <a class="popup_btn_link" href="#">
-                    <div class="col-12 btn_popup" style="text-align:center">
+                <a class="popup_btn_link w-100 p-3" href="#">
+                    <div class="w-100 btn_popup text-center">
                         <img class="img_goggle" src="{% static "images/google.png" %}" alt="logo"/>
-                        <p style="margin-left:10px">Sign in with Google
-                        <p>
+                        Sign in with Google
                     </div>
                 </a>
-                <div class="col-12" style="margin: 5px 0px 5px 15px;">
+                <div class="col-12 sign-in-divider">
                     <div class="hor_div"></div>
                     <p>OR</p>
                     <div class="hor_div"></div>
                 </div>
                 <div class="col-12">
-                    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-                        <li class="nav-item">
+                    <ul class="nav nav-pills mb-3 d-flex" id="pills-tab" role="tablist">
+                        <li class="nav-item flex-fill text-center">
                             <a class="nav-link active" id="pills-signup-tab" data-toggle="pill" href="#pills-signup"
-                               role="tab" aria-controls="pills-signup" aria-selected="true">Signup</a>
+                               role="tab" aria-controls="pills-signup" aria-selected="true">Sign Up</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item flex-fill text-center">
                             <a class="nav-link" id="pills-signin-tab" data-toggle="pill" href="#pills-signin"
-                               role="tab" aria-controls="pills-signin" aria-selected="false">Signin</a>
+                               role="tab" aria-controls="pills-signin" aria-selected="false">Sign In</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact"
-                               role="tab" aria-controls="pills-contact" aria-selected="false">Corporate</a>
+                        <li class="nav-item flex-fill text-center">
+                            <a class="nav-link" id="pills-corporate-tab" data-toggle="pill" href="#pills-signup-corporate"
+                               role="tab" aria-controls="pills-corporate" aria-selected="false">Corporate</a>
                         </li>
                     </ul>
                 </div>
 
-                <div class="tab-content" id="pills-tabContent">
+                <div class="tab-content w-100" id="pills-tabContent">
+
                     <div class="tab-pane fade show active" id="pills-signup" role="tabpanel"
                          aria-labelledby="pills-signup-tab">
-                        <form method="post" action="{% url "signup" %}">
+                        <form class="pl-2 pr-2" method="post" action="{% url "signup" %}">
                             {% csrf_token %}
-                            <div class="modal-body">
+                            <div class="input-holder pl-2 pr-2">
                                 <div class="form-group">
                                     <input type="email" class="form-control login_input" name="email" id="emailAddress"
                                            placeholder="Email Address">
@@ -94,20 +95,18 @@
                                            placeholder="Password">
                                 </div>
                             </div>
-
-                            <div class="col-12 text_block" style="margin-top:20px;">
-                                <p style="font-size: 12px;line-height: 20px;">The registration and subsequent use of
+                            <div class="col-12 text_block text-center" style="margin-top:20px;">
+                                <p class="small">The registration and subsequent use of
                                     your account is governed by these
-                                    <a href="#" style="color: #00B7FF;">Terms of Use</a>. Your
+                                    <a href="#" class="text-primary">Terms of Use</a>. Your
                                     Personal Data will be processed according to our
-                                    <a href="#" style="color: #00B7FF;">Privacy Policy</a>.
+                                    <a href="#" class="text-primary">Privacy Policy</a>.
                                 <p>
                             </div>
                             <a class="popup_btn_link" href="#" style="margin-top:15px;">
-                                <button type="submit" class="col-12 btn_popup_end" style="text-align:center"
+                                <button type="submit" class="search_btn w-100 text-center"
                                         id="signUpButton">
-                                    <p style="margin-left:10px;color:#fff;">Get Started
-                                    <p>
+                                    Get Started
                                 </button>
                             </a>
                         </form>
@@ -115,9 +114,9 @@
 
                     <div class="tab-pane fade" id="pills-signin" role="tabpanel"
                          aria-labelledby="pills-signup-tab">
-                        <form method="post" action="{% url "login" %}">
+                        <form class="pl-2 pr-2" method="post" action="{% url "login" %}">
                             {% csrf_token %}
-                            <div class="modal-body">
+                             <div class="input-holder pl-2 pr-2">
                                 <div class="form-group">
                                     <input type="email" class="form-control login_input" name="email"
                                            id="pills-signin_emailAddress"
@@ -129,12 +128,48 @@
                                            placeholder="Password">
                                 </div>
                             </div>
-
                             <a class="popup_btn_link" href="#" style="margin-top:15px;">
-                                <button type="submit" class="col-12 btn_popup_end" style="text-align:center"
+                                <button type="submit" class="col-12 search_btn" style="text-align:center"
                                         id="pills-signin_signUpButton">
-                                    <p style="margin-left:10px;color:#fff;">Get Started
-                                    <p>
+                                    Get Started
+                                </button>
+                            </a>
+                        </form>
+                    </div>
+
+                    <div class="tab-pane fade" id="pills-signup-corporate" role="tabpanel"
+                         aria-labelledby="pills-signup-corporate-tab">
+                        <form class="pl-2 pr-2" method="post" action="{% url "signup" %}">
+                            {% csrf_token %}
+                            <div class="input-holder pl-2 pr-2">
+                                <div class="form-group">
+                                    <input type="text" class="form-control login_input" name="companyName"
+                                           id="companyName"
+                                           placeholder="Company">
+                                </div>
+                                <div class="form-group">
+                                    <input type="email" class="form-control login_input" name="email"
+                                           id="emailAddressCorporate"
+                                           placeholder="Email Address">
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" class="form-control login_input" name="password"
+                                           id="passwordCorporate"
+                                           placeholder="Password">
+                                </div>
+                            </div>
+                            <div class="col-12 text_block text-center" style="margin-top:20px;">
+                                <p class="small">The registration and subsequent use of
+                                    your account is governed by these
+                                    <a href="#" class="text-primary">Terms of Use</a>. Your
+                                    Personal Data will be processed according to our
+                                    <a href="#" class="text-primary">Privacy Policy</a>.
+                                <p>
+                            </div>
+                            <a class="popup_btn_link" href="#" style="margin-top:15px;">
+                                <button type="submit" class="search_btn w-100 text-center"
+                                        id="signUpCorporateButton">
+                                    Get Started
                                 </button>
                             </a>
                         </form>
