@@ -1,0 +1,159 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block csscontent %}
+
+{% endblock %}
+
+{% block content %}
+    <section class="mx-auto">
+        <div class="title text-center">
+            <h1>Subscribe to Wanderift</h1>
+            <h2>Start saving on your travel today</h2>
+        </div>
+
+        <div class="row">
+            <!-- left side -->
+            <div class="howto col-6">
+                <div class="card">
+                    <!-- 1 -->
+                    <h2 class="card-title mb-40">1. Choose a Plan</h2>
+                    <div class="card sub-card mb-40">
+                        <div class="row">
+                            <div class="col-6 cursor-pointer">
+                                <h4 class="card-title">Wanderift Lite | $369</h4>
+                                <p>3 Tokens (3 one-way flights)</p>
+                                <p>No Long Term Commitment</p>
+                                <p>1 Unused Tokens Rollover</p>
+                            </div>
+                            <div class="col-6 cursor-pointer">
+                                <h4 class="card-title">Wanderift Pro | $459</h4>
+                                <p>4 Tokens (4 one-way flights)</p>
+                                <p>No Long Term Commitment</p>
+                                <p>2 Unused Tokens Rollover</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2 -->
+                    <h2 class="card-title mb-16">2. Add Your Traveler Info</h2>
+                    <h5 class="mb-16">
+                        or <span class="text-lightblue cursor-pointer">sign in</span> to exsisting account
+                    </h5>
+                    <div class="row">
+                        <div class="col-6">
+                            <h5>First Name</h5>
+                            <input type="text">
+                        </div>
+                        <div class="col-6">
+                            <h5>Last Name</h5>
+                            <input type="text">
+                        </div>
+                        <div class="col-6">
+                            <h5>Gender</h5>
+                            <input type="text">
+                        </div>
+                        <div class="col-6">
+                            <h5>Date of Birth</h5>
+                            <input type="text">
+                        </div>
+                        <div class="col-6">
+                            <h5>Email</h5>
+                            <input type="text">
+                        </div>
+                        <div class="col-6">
+                            <h5>Password</h5>
+                            <input type="text">
+                        </div>
+                    </div>
+
+                    <!-- 3 -->
+                    <h2 class="card-title">3. Enter Payment Details</h2>
+                    <div class="row">
+                        <div class="col-12">
+                            <h5>Credit Card Number</h5>
+                            <input type="text">
+                        </div>
+                        <div class="col-6">
+                            <h5>Security Code</h5>
+                            <input type="text">
+                        </div>
+                        <div class="col-6">
+                            <h5>Expiration Date</h5>
+                            <input type="text">
+                        </div>
+                        <div class="col-7">
+                            <h5>Country</h5>
+                            <input type="text">
+                        </div>
+                        <div class="col-5">
+                            <h5>Billing Zip</h5>
+                            <input type="text">
+                        </div>
+                    </div>
+
+                    <!-- accept terms -->
+                    <div class="accept-terms">
+                        <input type="checkbox" class="d-inline-block">
+                        <span>I agree to Wanderift </span>
+                        <span class="text-lightblue">Terms of Use</span>
+                    </div>
+                    <div class="btn flex-center bg-lightblue">
+                        <div class="text-white">Subscribe to Wanderift Lite</div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- right side -->
+            <div class="info col-6">
+                <div class="container">
+                    <!-- lite or pro -->
+                    <div class="role">
+                        <h2 class="title">What is Wanderift Lite or Pro</h2>
+                        <h4>Saving on flights through tokens</h4>
+                        <h4>Always pay the same price for your flights</h4>
+                        <h4>Share or send your tokens with anyone</h4>
+                    </div>
+
+                    <!-- summary -->
+                    <div class="card card-sm">
+                        <div class="card-title">Order Summary</div>
+                        <div class="row">
+                            <div class="col-6">
+                                <h3 class="font-weight-bold mb-16">Item</h3>
+                                <h4 class="mb-12">Wanderift Lite(3 Tokens)</h4>
+                            </div>
+                            <div class="col-6">
+                                <h3 class="font-weight-bold mb-16">Price</h3>
+                                <h3 class="mb-12">$359 per month</h3>
+                            </div>
+                        </div>
+                        <hr/>
+                        <div class="row">
+                            <div class="col-6">
+                                <h3 class="font-weight-bold">Total</h3>
+                            </div>
+                            <div class="col-6">
+                                <h3>$359 per month</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- faq -->
+                    <div class="card card-sm">
+                        <div class="card-title">Still have some questions?</div>
+                        <h3>No worries! Send us an email at</h3>
+                        <h3>questions@wanderift.com, or click the</h3>
+                        <h3>button below to read our FAQ's</h3>
+
+                        <div class="btn flex-center bg-lightblue">
+                            <div class="text-white">Frequently Asked Questions</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

@@ -14,7 +14,7 @@
             <h1>Subscribe to Wanderift</h1>
             <h2>Start saving on your travel today</h2>
         </div>
-        <form action="{% url "traveller-booking" %}" method="post">
+        <form action="{% url 'book' %}" method="post">
             {% csrf_token %}
             <div class="row">
                 <!-- left side -->
