@@ -2,8 +2,6 @@
 
 {% load static %}
 {% block csscontent %}
-    <link rel="stylesheet" href="{% static "css/lightpick.css" %}" xmlns:v-on="http://www.w3.org/1999/xhtml"
-          xmlns:v-on="http://www.w3.org/1999/xhtml">
     <link rel="stylesheet" href="{% static "css/home.css" %}">
     <link rel="stylesheet" href="{% static "css/custom.css" %}">
 {% endblock %}
@@ -376,8 +374,6 @@
 {% endblock %}
 {% block jscontent %}
     <script src="{% static "js/home.js" %}"></script>
-    <script src="{% static "js/lightpick.js" %}">
-    </script>
     <script>
         let tripButton = document.querySelector(".btn-group");
         let picker = new Lightpick({

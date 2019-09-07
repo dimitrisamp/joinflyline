@@ -60,7 +60,7 @@
                             </div>
                             <div class="col-6">
                                 <h5>Date of Birth</h5>
-                                <input type="date" name="dob">
+                                <input type="text" name="dob" id="dob">
                             </div>
                             <div class="col-6">
                                 <h5>Phone Number</h5>
@@ -89,7 +89,7 @@
                             </div>
                             <div class="col-6">
                                 <h5>Expiration Date</h5>
-                                <input type="date" name="expiry">
+                                <input type="text" name="expiry" id="expiry">
                             </div>
                             <div class="col-7">
                                 <h5>Country</h5>
@@ -164,4 +164,16 @@
             </div>
         </div>
     </section>
+{% endblock %}
+
+{% block jscontent %}
+    <script>
+        new Lightpick({
+            field: document.getElementById('dob'),
+        });
+
+        new Lightpick({
+            field: document.getElementById('expiry')
+        });
+    </script>
 {% endblock %}

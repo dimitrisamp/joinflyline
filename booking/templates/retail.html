@@ -28,7 +28,8 @@
                                     <h2 class="">{{ flight.src_name }}</h2>
                                     <div class="zero-m">
                                         <p>Departure</p>
-                                        <h3 class=""><span>{{ flight.local_departure| iso_date |date:"D d M" }}</span></h3>
+                                        <h3 class=""><span>{{ flight.local_departure| iso_date |date:"D d M" }}</span>
+                                        </h3>
                                         <p>{{ flight.local_departure| iso_date|time:"H:i:A" }}</p>
                                     </div>
                                 </div>
@@ -56,7 +57,7 @@
                                     <div class="zero-m">
                                         <p>Return</p>
                                         <h3 class="">{{ flight.local_arrival| iso_date |date:"D d M" }}</h3>
-                                        <p>{{ flight.local_arrival| iso_date|time:"H:i:A"}}</p>
+                                        <p>{{ flight.local_arrival| iso_date|time:"H:i:A" }}</p>
                                     </div>
                                 </div>
                                 <div class="col-4 text-center">
@@ -109,7 +110,7 @@
                             <div class="col-4">
                                 <h5>Date of Birth</h5>
                                 <div class="form-group">
-                                    <input type="date" class="form-control" name="dob">
+                                    <input type="text" id="dob" class="form-control" name="dob">
                                 </div>
                             </div>
 
@@ -163,7 +164,7 @@
                             <div class="col-6">
                                 <h5>Expiration date</h5>
                                 <div class="form-group">
-                                    <input type="text" class="form-control" id="pwd" name="expiry" placeholder="19/20">
+                                    <input type="text" class="form-control" id="expiry" name="expiry" placeholder="19/20">
                                 </div>
                             </div>
                             <div class="col-6">
@@ -246,4 +247,16 @@
             </div>
         </form>
     </section>
+{% endblock %}
+
+{% block jscontent %}
+    <script>
+        new Lightpick({
+            field: document.getElementById('dob'),
+        });
+
+        new Lightpick({
+            field: document.getElementById('expiry')
+        });
+    </script>
 {% endblock %}

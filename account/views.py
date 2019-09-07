@@ -9,7 +9,6 @@ from account.models import Account
 stripe.api_key = "sk_test_H2ypPKiLEc14JVbd6OpDIWQv00gPMSrkj1"
 
 
-@login_required
 def account_view(request, user_id):
     user = User.objects.get(pk=user_id)
     try:
@@ -20,7 +19,6 @@ def account_view(request, user_id):
     if account is not None:
         context = {
             "title": "Accounts",
-            "user": user,
             "account": account
         }
         return render(request, "accounts.html", context)
@@ -28,13 +26,11 @@ def account_view(request, user_id):
         account = {}
         context = {
             "title": "Accounts",
-            "user": user,
             "account": account
         }
         return render(request, "accounts.html", context)
 
 
-@login_required
 def update_profile(request, user_id):
     if request.method == 'POST':
         user = User.objects.get(pk=user_id)
@@ -55,7 +51,6 @@ def update_profile(request, user_id):
     return redirect('accounts', user_id)
 
 
-@login_required
 def save_card(request, user_id):
     if request.method == 'POST':
         user = User.objects.get(pk=user_id)

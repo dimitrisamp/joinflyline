@@ -22,7 +22,6 @@ class Profile(models.Model):
     gender = models.CharField(max_length=10, blank=True)
     phone_number = models.CharField(max_length=20, blank=True)
     dob = models.DateField(null=True, blank=True)
-    stripe_id = models.CharField(max_length=50, blank=True)
 
 
 @receiver(post_save, sender=User)

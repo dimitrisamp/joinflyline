@@ -1,4 +1,4 @@
-from django.contrib import messages
+from django.contrib import messages, auth
 from django.contrib.auth import authenticate, logout
 from django.contrib.auth.models import User
 from django.http import HttpResponse
@@ -19,15 +19,16 @@ def create_user(request):
     context = {
         "msg": "passed"
     }
-    messages.SUCCESS(request, 'Registration Successful')
+    messages.success(request, 'Registration Successful')
     return render(request, "home.html", context)
 
 
 def login_user(request):
     username = request.POST["email"]
     password = request.POST["password"]
-    user = authenticate(username=username, password=password)
+    user = authenticate(request, username=username, password=password)
     if user is not None:
+        auth.login(request, user)
         messages.success(request, 'Login Successful')
         return redirect(account_view, user.id)
     else:
@@ -48,4 +49,5 @@ def forgot_password(request):
 
 def logout_view(request):
     logout(request)
+    messages.success(request, 'Successfully logged out')
     return redirect(home_view)
