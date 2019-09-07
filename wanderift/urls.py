@@ -45,6 +45,9 @@ urlpatterns = [
 
     # booking
     path('retail/<str:booking_token>', retail_booking_view, name="retail"),
-    path('book', traveller_booking_view, name="book")
+    path('book', traveller_booking_view, name="book"),
+
+    # subscriptions
+    path("subscriptions/", include('subscriptions.urls'))
 ]
 urlpatterns += staticfiles_urlpatterns()

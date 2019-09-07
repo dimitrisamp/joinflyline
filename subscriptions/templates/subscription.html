@@ -3,10 +3,11 @@
 {% load static %}
 
 {% block csscontent %}
-
+    <link rel="stylesheet" href="{% static "css/subscription.css" %}">
 {% endblock %}
 
 {% block content %}
+    {% include "_includes/navbar.html" %}
     <section class="mx-auto">
         <div class="title text-center">
             <h1>Subscribe to Wanderift</h1>
@@ -39,70 +40,77 @@
                     <!-- 2 -->
                     <h2 class="card-title mb-16">2. Add Your Traveler Info</h2>
                     <h5 class="mb-16">
-                        or <span class="text-lightblue cursor-pointer">sign in</span> to exsisting account
+                        or <span class="text-lightblue cursor-pointer" data-toggle="modal"
+                                 data-target="#signInOptionsModal">sign in</span> to exsisting account
                     </h5>
-                    <div class="row">
-                        <div class="col-6">
-                            <h5>First Name</h5>
-                            <input type="text">
+                    <form action="{% url "retail" %}" method="post">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-6">
+                                <h5>First Name</h5>
+                                <input type="text" name="first_name">
+                            </div>
+                            <div class="col-6">
+                                <h5>Last Name</h5>
+                                <input type="text" name="last_name">
+                            </div>
+                            <div class="col-6">
+                                <h5>Gender</h5>
+                                <input type="text" name="gender">
+                            </div>
+                            <div class="col-6">
+                                <h5>Date of Birth</h5>
+                                <input type="date" name="dob">
+                            </div>
+                            <div class="col-6">
+                                <h5>Phone Number</h5>
+                                <input type="text" name="phone_number">
+                            </div>
+                            <div class="col-6">
+                                <h5>Email</h5>
+                                <input type="email" name="email">
+                            </div>
+                            <div class="col-6">
+                                <h5>Password</h5>
+                                <input type="password" name="password">
+                            </div>
                         </div>
-                        <div class="col-6">
-                            <h5>Last Name</h5>
-                            <input type="text">
-                        </div>
-                        <div class="col-6">
-                            <h5>Gender</h5>
-                            <input type="text">
-                        </div>
-                        <div class="col-6">
-                            <h5>Date of Birth</h5>
-                            <input type="text">
-                        </div>
-                        <div class="col-6">
-                            <h5>Email</h5>
-                            <input type="text">
-                        </div>
-                        <div class="col-6">
-                            <h5>Password</h5>
-                            <input type="text">
-                        </div>
-                    </div>
 
-                    <!-- 3 -->
-                    <h2 class="card-title">3. Enter Payment Details</h2>
-                    <div class="row">
-                        <div class="col-12">
-                            <h5>Credit Card Number</h5>
-                            <input type="text">
+                        <!-- 3 -->
+                        <h2 class="card-title">3. Enter Payment Details</h2>
+                        <div class="row">
+                            <div class="col-12">
+                                <h5>Credit Card Number</h5>
+                                <input type="text" name="card_number">
+                            </div>
+                            <div class="col-6">
+                                <h5>Security Code</h5>
+                                <input type="number" name="cvc">
+                            </div>
+                            <div class="col-6">
+                                <h5>Expiration Date</h5>
+                                <input type="date" name="expiry">
+                            </div>
+                            <div class="col-7">
+                                <h5>Country</h5>
+                                <input type="text" name="country">
+                            </div>
+                            <div class="col-5">
+                                <h5>Billing Zip</h5>
+                                <input type="text" name="zip">
+                            </div>
                         </div>
-                        <div class="col-6">
-                            <h5>Security Code</h5>
-                            <input type="text">
-                        </div>
-                        <div class="col-6">
-                            <h5>Expiration Date</h5>
-                            <input type="text">
-                        </div>
-                        <div class="col-7">
-                            <h5>Country</h5>
-                            <input type="text">
-                        </div>
-                        <div class="col-5">
-                            <h5>Billing Zip</h5>
-                            <input type="text">
-                        </div>
-                    </div>
 
-                    <!-- accept terms -->
-                    <div class="accept-terms">
-                        <input type="checkbox" class="d-inline-block">
-                        <span>I agree to Wanderift </span>
-                        <span class="text-lightblue">Terms of Use</span>
-                    </div>
-                    <div class="btn flex-center bg-lightblue">
-                        <div class="text-white">Subscribe to Wanderift Lite</div>
-                    </div>
-
+                        <!-- accept terms -->
+                        <div class="accept-terms">
+                            <input type="checkbox" class="d-inline-block">
+                            <span>I agree to Wanderift </span>
+                            <span class="text-lightblue">Terms of Use</span>
+                        </div>
+                        <button class="btn flex-center bg-lightblue" type="submit">
+                            <div class="text-white">Subscribe to Wanderift Lite</div>
+                        </button>
+                    </form>
                 </div>
             </div>
 
