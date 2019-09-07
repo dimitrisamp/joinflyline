@@ -131,6 +131,15 @@ nav {
 .form.card {
     padding: 15px;
 }
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.offer-card.active {
+    border: 1px solid #00b7ff;
+    box-shadow: 0 2px 6px rgba(0, 183, 255, 0.4);
+    z-index: 1;
+}
 
 
 .faq-accordion .card .card-header,
