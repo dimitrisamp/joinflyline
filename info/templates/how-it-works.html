@@ -9,28 +9,9 @@
 {% endblock %}
 
 {% block content %}
-    <noscript>
-        <strong>We're sorry but wanderift doesn't work properly without JavaScript enabled. Please enable it to
-            continue.</strong>
-    </noscript>
     <div>
         <div data-v-6ba57086="">
-            <nav data-v-6ba57086="">
-                <div data-v-6ba57086="" class="left">
-                    <div data-v-6ba57086="" class="btn-outline flex-center cursor-pointer" style="width: 130px;"> Log
-                        out
-                    </div>
-                </div>
-                <div data-v-6ba57086="" class="transform-center">
-                    <img data-v-6ba57086=""
-                         src="{% static "images/logo.ab774c33.png" %}" alt="">
-                </div>
-                <div data-v-6ba57086="" class="d-flex right" style="font-size: 16px;">
-                    <h3 data-v-6ba57086="" class="cursor-pointer" style="font-size: 16px;">Manage Trip</h3>
-                    <h3 data-v-6ba57086="" class="cursor-pointer" style="font-size: 16px;">Trips</h3>
-                    <h3 data-v-6ba57086="" class="cursor-pointer" style="font-size: 16px;">Help</h3>
-                    <h3 data-v-6ba57086="" class="cursor-pointer" style="font-size: 16px;">Account</h3></div>
-            </nav>
+            {% include "_includes/navbar.html" %}
             <section data-v-6ba57086="" id="section__header"><h2 data-v-6ba57086="">Start Saving Thousands on
                 Flights</h2><h4 data-v-6ba57086="" class="mb-40">Subscribe to either Wanderift Lite or Wanderift Pro and
                 get unmatched savings on flights</h4>
