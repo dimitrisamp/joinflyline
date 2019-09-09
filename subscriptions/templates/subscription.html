@@ -3,177 +3,264 @@
 {% load static %}
 
 {% block csscontent %}
-    <link rel="stylesheet" href="{% static "css/subscription.css" %}">
+    <link rel="stylesheet" href="{% static "css/custom.css" %}">
 {% endblock %}
 
 {% block content %}
-    {% include "_includes/navbar.html" %}
-    <section class="mx-auto">
-        <div class="title text-center">
+    <section
+            style="padding-top: 15px; background-color: white; box-shadow: 0 2px 4px whitesmoke; border-bottom: 1px solid whitesmoke;">
+        {% include "_includes/navbar.html" %}
+    </section>
+    <section class="background-colored">
+        <div class="col-12 text-center mt-2 pt-5 pb-4">
             <h1>Subscribe to Wanderift</h1>
-            <h2>Start saving on your travel today</h2>
+            <h4 class="text-muted">Start saving on your travel today</h4>
         </div>
 
-        <div class="row">
-            <!-- left side -->
-            <div class="howto col-6">
-                <div class="card">
-                    <!-- 1 -->
-                    <h2 class="card-title mb-40">1. Choose a Plan</h2>
-                    <div class="card sub-card mb-40">
-                        <div class="row">
-                            <div class="col-6 cursor-pointer">
-                                <h4 class="card-title">Wanderift Lite | $369</h4>
-                                <p>3 Tokens (3 one-way flights)</p>
-                                <p>No Long Term Commitment</p>
-                                <p>1 Unused Tokens Rollover</p>
-                            </div>
-                            <div class="col-6 cursor-pointer">
-                                <h4 class="card-title">Wanderift Pro | $459</h4>
-                                <p>4 Tokens (4 one-way flights)</p>
-                                <p>No Long Term Commitment</p>
-                                <p>2 Unused Tokens Rollover</p>
+        {#        <div class="col-12 text-center mt-5 pt-5 pb-5">#}
+        {#            <h2>How The Subscriptons Work</h2>#}
+        {#            <h5 class="text-muted">Change up your travel plans and start saving on flights today!</h5>#}
+        {#        </div>#}
+
+        <div class="container mt-5">
+            <div class="row">
+                <!-- left side -->
+                <div class="col-12 col-md-6 mb-5">
+                    <div class="card shadow">
+                        <!-- 1 -->
+
+                        <div class="col-12 mx-auto mb-4">
+                            <h4 class="card-title pt-4 mb-4">1. Choose a Plan</h4>
+                            <div class="row pl-3 pr-3">
+                                <div class="col-6 p-3 cursor-pointer card offer-card active" id="lite"
+                                     onclick="$('#liteButton').trigger('click')">
+                                    <h5 class="card-title">Wanderift Lite | $369</h5>
+                                    <p>3 Tokens (3 one-way flights)</p>
+                                    <p>No Long Term Commitment</p>
+                                    <p>1 Unused Tokens Rollover</p>
+                                </div>
+                                <div class="col-6 p-3 cursor-pointer card offer-card" id="pro"
+                                     onclick="$('#proButton').trigger('click')">
+                                    <h5 class="card-title">Wanderift Pro | $459</h5>
+                                    <p>4 Tokens (4 one-way flights)</p>
+                                    <p>No Long Term Commitment</p>
+                                    <p>2 Unused Tokens Rollover</p>
+                                </div>
+                                <input type="radio" name="subscription" value="lite" id="liteButton" hidden checked
+                                       form="subscriptionForm">
+                                <input type="radio" name="subscription" value="pro" id="proButton" hidden
+                                       form="subscriptionForm">
                             </div>
                         </div>
+                        <!-- 2 -->
+                        <div class="col-12">
+                            <h4 class="card-title pt-3 mb-1">2. Add Your Traveler Info</h4>
+                            <h5 class="mb-4">
+                                or <span class="text-lightblue cursor-pointer" data-toggle="modal"
+                                         data-target="#signInOptionsModal">sign in</span> to existing account
+                            </h5>
+                            {% if user.is_authenticated %}
+                                <div class="text-center mt-4 mb-4">
+                                    <button class="search_btn">Subscribe to start booking</button>
+                                </div>
+                            {% else %}
+                                <form action="{% url "subscription" %}" method="post" id="subscriptionForm">
+                                    {% csrf_token %}
+                                    <div class="row">
+                                        <div class="col-6 mb-2">
+                                            <h6>Title</h6>
+                                            <input type="text" name="title">
+                                        </div>
+                                        <div class="col-6 mb-2">
+                                            <h6>First Name</h6>
+                                            <input type="text" name="first_name">
+                                        </div>
+                                        <div class="col-6 mb-2">
+                                            <h6>Last Name</h6>
+                                            <input type="text" name="last_name">
+                                        </div>
+                                        <div class="col-6 mb-2">
+                                            <h6>Gender</h6>
+                                            <input type="text" name="gender">
+                                        </div>
+                                        <div class="col-6 mb-2">
+                                            <h6>Date of Birth</h6>
+                                            <input type="text" name="dob" id="dob">
+                                        </div>
+                                        <div class="col-6 mb-2">
+                                            <h6>Phone Number</h6>
+                                            <input type="text" name="phone_number">
+                                        </div>
+                                        <div class="col-6 mb-2">
+                                            <h6>Email</h6>
+                                            <input type="email" name="email">
+                                        </div>
+                                        <div class="col-6 mb-2">
+                                            <h6>Password</h6>
+                                            <input type="password" name="password">
+                                        </div>
+                                    </div>
+
+                                    <!-- 3 -->
+                                    <h4 class="card-title mt-5 mb-4">3. Enter Payment Details</h4>
+                                    <div class="row">
+                                        <div class="col-6 mb-2">
+                                            <h6>Credit Card Number</h6>
+                                            <input type="text" name="card_number" value="4242424242424242">
+                                        </div>
+                                        <div class="col-6 mb-2">
+                                            <h6>Security Code</h6>
+                                            <input type="number" name="cvc" value="123">
+                                        </div>
+                                        <div class="col-6 mb-2">
+                                            <h6>Expiration Date</h6>
+                                            <input type="text" name="expiry" id="expiry" value="1/12/2020">
+                                        </div>
+                                        <div class="col-6 mb-2">
+                                            <h6>Country</h6>
+                                            <input type="text" name="country">
+                                        </div>
+                                        <div class="col-6 mb-2">
+                                            <h6>Billing Zip</h6>
+                                            <input type="text" name="zip">
+                                        </div>
+                                    </div>
+
+                                    <!-- accept terms -->
+                                    <div class="accept-terms mt-3">
+                                        <input type="checkbox" class="d-inline-block">
+                                        <span>I agree to Wanderift </span>
+                                        <span class="text-primary">Terms of Use</span>
+                                    </div>
+                                    <div class="text-center mt-4 mb-4">
+                                        <button type="submit" class="search_btn">Subscribe to Wanderift Lite</button>
+                                    </div>
+                                </form>
+                            {% endif %}
+                        </div>
+
                     </div>
-
-                    <!-- 2 -->
-                    <h2 class="card-title mb-16">2. Add Your Traveler Info</h2>
-                    <h5 class="mb-16">
-                        or <span class="text-lightblue cursor-pointer" data-toggle="modal"
-                                 data-target="#signInOptionsModal">sign in</span> to exsisting account
-                    </h5>
-                    <form action="{% url "retail" %}" method="post">
-                        {% csrf_token %}
-                        <div class="row">
-                            <div class="col-6">
-                                <h5>First Name</h5>
-                                <input type="text" name="first_name">
-                            </div>
-                            <div class="col-6">
-                                <h5>Last Name</h5>
-                                <input type="text" name="last_name">
-                            </div>
-                            <div class="col-6">
-                                <h5>Gender</h5>
-                                <input type="text" name="gender">
-                            </div>
-                            <div class="col-6">
-                                <h5>Date of Birth</h5>
-                                <input type="text" name="dob" id="dob">
-                            </div>
-                            <div class="col-6">
-                                <h5>Phone Number</h5>
-                                <input type="text" name="phone_number">
-                            </div>
-                            <div class="col-6">
-                                <h5>Email</h5>
-                                <input type="email" name="email">
-                            </div>
-                            <div class="col-6">
-                                <h5>Password</h5>
-                                <input type="password" name="password">
-                            </div>
-                        </div>
-
-                        <!-- 3 -->
-                        <h2 class="card-title">3. Enter Payment Details</h2>
-                        <div class="row">
-                            <div class="col-12">
-                                <h5>Credit Card Number</h5>
-                                <input type="text" name="card_number">
-                            </div>
-                            <div class="col-6">
-                                <h5>Security Code</h5>
-                                <input type="number" name="cvc">
-                            </div>
-                            <div class="col-6">
-                                <h5>Expiration Date</h5>
-                                <input type="text" name="expiry" id="expiry">
-                            </div>
-                            <div class="col-7">
-                                <h5>Country</h5>
-                                <input type="text" name="country">
-                            </div>
-                            <div class="col-5">
-                                <h5>Billing Zip</h5>
-                                <input type="text" name="zip">
-                            </div>
-                        </div>
-
-                        <!-- accept terms -->
-                        <div class="accept-terms">
-                            <input type="checkbox" class="d-inline-block">
-                            <span>I agree to Wanderift </span>
-                            <span class="text-lightblue">Terms of Use</span>
-                        </div>
-                        <button class="btn flex-center bg-lightblue" type="submit">
-                            <div class="text-white">Subscribe to Wanderift Lite</div>
-                        </button>
-                    </form>
                 </div>
-            </div>
 
-            <!-- right side -->
-            <div class="info col-6">
-                <div class="container">
-                    <!-- lite or pro -->
-                    <div class="role">
-                        <h2 class="title">What is Wanderift Lite or Pro</h2>
-                        <h4>Saving on flights through tokens</h4>
-                        <h4>Always pay the same price for your flights</h4>
-                        <h4>Share or send your tokens with anyone</h4>
-                    </div>
+                <!-- right side -->
+                <div class="info col-12 col-md-6 mb-5">
+                    <div class="container">
+                        <!-- lite or pro -->
+                        <div class="role col-12">
+                            <h4 class="title mb-4">What is Wanderift Lite or Pro</h4>
+                            <p>Saving on flights through tokens</p>
+                            <p>Always pay the same price for your flights</p>
+                            <p>Share or send your tokens with anyone</p>
+                        </div>
 
-                    <!-- summary -->
-                    <div class="card card-sm">
-                        <div class="card-title">Order Summary</div>
-                        <div class="row">
-                            <div class="col-6">
-                                <h3 class="font-weight-bold mb-16">Item</h3>
-                                <h4 class="mb-12">Wanderift Lite(3 Tokens)</h4>
+                        <!-- summary -->
+                        <div class="card card-sm p-4 mb-4 shadow" id="liteSummary">
+                            <h4 class="card-title">Order Summary</h4>
+                            <div class="row">
+                                <div class="col-6">
+                                    <h5 class="font-weight-bold mb-16">Item</h5>
+                                    <p class="mb-2">Wanderift Lite(3 Tokens)</p>
+                                </div>
+                                <div class="col-6">
+                                    <h5 class="font-weight-bold mb-16">Price</h5>
+                                    <p class="mb-2">$359 per month</p>
+                                </div>
                             </div>
-                            <div class="col-6">
-                                <h3 class="font-weight-bold mb-16">Price</h3>
-                                <h3 class="mb-12">$359 per month</h3>
+                            <hr/>
+                            <div class="row">
+                                <div class="col-6">
+                                    <h5 class="font-weight-bold">Total</h5>
+                                </div>
+                                <div class="col-6">
+                                    <h6>$359 per month</h6>
+                                </div>
                             </div>
                         </div>
-                        <hr/>
-                        <div class="row">
-                            <div class="col-6">
-                                <h3 class="font-weight-bold">Total</h3>
+
+                        <div class="card card-sm p-4 mb-4 shadow" id="proSummary" style="display: none">
+                            <h4 class="card-title">Order Summary</h4>
+                            <div class="row">
+                                <div class="col-6">
+                                    <h5 class="font-weight-bold mb-16">Item</h5>
+                                    <p class="mb-2">Wanderift Pro(4 Tokens)</p>
+                                </div>
+                                <div class="col-6">
+                                    <h5 class="font-weight-bold mb-16">Price</h5>
+                                    <p class="mb-2">$439 per month</p>
+                                </div>
                             </div>
-                            <div class="col-6">
-                                <h3>$359 per month</h3>
+                            <hr/>
+                            <div class="row">
+                                <div class="col-6">
+                                    <h5 class="font-weight-bold">Total</h5>
+                                </div>
+                                <div class="col-6">
+                                    <h6>$439 per month</h6>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <!-- faq -->
-                    <div class="card card-sm">
-                        <div class="card-title">Still have some questions?</div>
-                        <h3>No worries! Send us an email at</h3>
-                        <h3>questions@wanderift.com, or click the</h3>
-                        <h3>button below to read our FAQ's</h3>
+                        <!-- faq -->
+                        <div class="card card-sm p-4 mb-4 shadow">
+                            <h4 class="card-title">Still have some questions?</h4>
+                            <p>No worries! Send us an email at</p>
+                            <p>questions@wanderift.com, or click the</p>
+                            <p>button below to read our FAQ's</p>
 
-                        <div class="btn flex-center bg-lightblue">
-                            <div class="text-white">Frequently Asked Questions</div>
+                            <div class="text-center mb-4 mt-4">
+                                <button class="search_btn">Frequently Asked Questions</button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+    <section>
+        {% include "_includes/footer.html" %}
+    </section>
 {% endblock %}
 
 {% block jscontent %}
     <script>
-        new Lightpick({
-            field: document.getElementById('dob'),
-        });
+        {% if user.is_authenticated %}
 
-        new Lightpick({
-            field: document.getElementById('expiry')
-        });
+        {% else %}
+            new Lightpick({
+                field: document.getElementById('dob'),
+            });
+
+            new Lightpick({
+                field: document.getElementById('expiry')
+            });
+        {% endif %}
+
+
+        document.getElementById("lite").addEventListener("click", makeActive);
+        document.getElementById("pro").addEventListener("click", makeActive);
+
+        function makeActive($event) {
+            console.log($event.target.id)
+            switch ($event.target.id) {
+                case 'lite':
+                    document.getElementById('liteSummary').style.display = "block";
+                    document.getElementById('proSummary').style.display = "none";
+                    document.getElementById('pro').classList.remove('active');
+                    document.getElementById('lite').className += " active";
+                    break;
+                case 'pro':
+                    document.getElementById('liteSummary').style.display = "none";
+                    document.getElementById('proSummary').style.display = "block";
+                    document.getElementById('lite').classList.remove('active');
+                    document.getElementById('pro').className += " active";
+                    break;
+                default:
+                    document.getElementById('liteSummary').style.display = "block";
+                    document.getElementById('proSummary').style.display = "none";
+                    document.getElementById('pro').classList.remove('active');
+                    document.getElementById('lite').className += " active";
+                    break;
+            }
+        }
     </script>
 {% endblock %}

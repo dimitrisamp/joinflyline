@@ -9,7 +9,8 @@ from account.models import Account
 stripe.api_key = "sk_test_H2ypPKiLEc14JVbd6OpDIWQv00gPMSrkj1"
 
 
-def account_view(request, user_id):
+def account_view(request):
+    user_id = request.user.id
     user = User.objects.get(pk=user_id)
     try:
         account = Account.objects.filter(user=user)
@@ -31,7 +32,8 @@ def account_view(request, user_id):
         return render(request, "accounts.html", context)
 
 
-def update_profile(request, user_id):
+def update_profile(request):
+    user_id = request.user.id
     if request.method == 'POST':
         user = User.objects.get(pk=user_id)
         user.first_name = request.POST["first_name"]
@@ -40,18 +42,13 @@ def update_profile(request, user_id):
         user.profile.dob = request.POST["dob"]
         user.profile.gender = request.POST["gender"]
         user.profile.market = request.POST["market"]
-
-        customer = stripe.Customer.create(
-            description="Customer for" + user.email,
-            name=user.first_name,
-            email=user.email
-        )
         user.save()
     messages.success(request, 'Details updated Successfully')
     return redirect('accounts', user_id)
 
 
-def save_card(request, user_id):
+def save_card(request):
+    user_id = request.user.id
     if request.method == 'POST':
         user = User.objects.get(pk=user_id)
         account = Account()

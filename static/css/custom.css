@@ -82,6 +82,9 @@ nav {
 
 
 /*HELPERS*/
+.no-bg-color {
+    background-color: transparent;
+}
 .divider-15,
 .divider-30 {
     height: 0;
@@ -128,6 +131,63 @@ nav {
 .form.card {
     padding: 15px;
 }
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.offer-card.active {
+    border: 1px solid #00b7ff;
+    box-shadow: 0 2px 6px rgba(0, 183, 255, 0.4);
+    z-index: 1;
+}
+
+
+.faq-accordion .card .card-header,
+.subs-accordion .card .card-header {
+    background-color: whitesmoke;
+}
+.faq-accordion .card .card-header button,
+.subs-accordion .card .card-header button{
+    color: black;
+    font-weight: bold;
+}
+.faq-accordion .card .card-header button:hover,
+.subs-accordion .card .card-header button:hover {
+    text-decoration: none;
+}
+
+.subscription-card .card-header {
+    background-color: #00b7ff;
+    color: white;
+    padding: 15px;
+    height: 140px;
+}
+.subscription-card .card-body {
+    font-weight: bold;
+}
+.subscription-card .card-body ul {
+    list-style: none;
+    margin: 60px 0;
+}
+.subscription-card .card-body ul li {
+    margin-bottom: 15px;
+}
+.subscription-card .card-body .btn {
+    margin: 30px 0;
+}
+
+.main-btn-outline {
+    background-color: white;
+    border: 1px solid #00b7ff;
+    color: #00b7ff;
+    font-weight: bold;
+}
+.main-btn-outline:hover {
+    background-color: #00b7ff;
+    border: 1px solid #00b7ff;
+}
+
+
 .team-grid-item {
     margin: 30px 0;
     text-align: center;

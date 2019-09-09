@@ -1,7 +1,7 @@
 from django.urls import path
 
-from subscriptions.views import retailsub_view
+from subscriptions.views import retail_sub_view
 
 urlpatterns = [
-    path('retail', retailsub_view, name='retail')
+    path('subscription', retail_sub_view, name='subscription')
 ]

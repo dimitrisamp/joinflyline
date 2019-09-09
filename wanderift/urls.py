@@ -32,7 +32,7 @@ urlpatterns = [
     path('results', results_view, name="results"),
 
     # Accounts page urls
-    path('accounts', include("account.urls")),
+    path('accounts/', include("account.urls")),
 
     # Corporate urls
     path('corporates/', include("corporate.urls")),
@@ -48,6 +48,9 @@ urlpatterns = [
     path('book', traveller_booking_view, name="book"),
 
     # subscriptions
-    path("subscriptions/", include('subscriptions.urls'))
+    path("subscriptions/", include('subscriptions.urls')),
+
+    # payments
+    path('pay/', include('payments.urls'))
 ]
 urlpatterns += staticfiles_urlpatterns()
