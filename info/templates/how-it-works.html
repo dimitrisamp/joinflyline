@@ -3,10 +3,8 @@
 {% load static %}
 
 {% block csscontent %}
-    <link rel="stylesheet" href="{% static "css/materialdesignicons.min.css" %}">
     <link rel="stylesheet" href="{% static "css/home.css" %}">
     <link rel="stylesheet" href="{% static "css/custom.css" %}">
-{#    <link rel="stylesheet" href="{% static "css/how-it-works.css" %}">#}
 {% endblock %}
 
 {% block content %}
@@ -14,7 +12,7 @@
         <strong>We're sorry but wanderift doesn't work properly without JavaScript enabled. Please enable it to
             continue.</strong>
     </noscript>
-    <section style="padding-top: 15px; background-color: white; box-shadow: 0 2px 4px whitesmoke; border-bottom: 1px solid whitesmoke;">
+    <section class="navbar-section">
         {% include "_includes/navbar.html" %}
     </section>
     <section>
@@ -23,7 +21,7 @@
                 <div class="container">
                     <div class="row no-gutters">
                         <div class="col-md-8 d-flex">
-                            <div class="card-body d-flex flex-column justify-content-around">
+                            <div class="card-body d-flex flex-column justify-content-around p-0 p-md-2">
                                 <h1 class="card-title">Start Saving Thousands on Flights</h1>
                                 <div class="divider-15"></div>
                                 <h4 class="card-text">
@@ -37,7 +35,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4 text-center">
+                        <div class="col-md-4 mt-3 mt-md-0 text-center">
                           <img src="{% static "images/airplane.png" %}" class="card-img w-75" alt="How it works">
                         </div>
                     </div>
@@ -45,8 +43,8 @@
             </div>
         </div>
         <div class="container">
-            <div class="content_container pt-5 pb-5 w-75">
-                <div class="col-12 text-center mt-5 pt-5 pb-5">
+            <div class="content_container how-it-works pt-5 pb-5">
+                <div class="col-12 text-center mt-md-5 pt-5 pb-5">
                     <h2>How The Subscriptons Work</h2>
                     <h5 class="text-muted">Change up your travel plans and start saving on flights today!</h5>
                 </div>
@@ -116,7 +114,7 @@
                         </div>
                     </div>
                  </div>
-                <div class="col-12 text-center mt-5 pt-5 pb-5">
+                <div class="col-12 text-center mt-md-5 pt-5 pb-5">
                      <h2>Subscription Plans</h2>
                      <h5 class="text-muted">
                          Choose between Lite and Pro. If your travel plans change throughout your subscription,
@@ -162,7 +160,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="col-12 text-center mt-5 pt-5 pb-5">
+                <div class="col-12 text-center mt-md-5 pt-5 pb-5">
                      <h2>Frequently Asked Questions</h2>
                      <h5 class="text-muted">Here are a few words about aireline travel as a subscription</h5>
                  </div>
@@ -232,7 +230,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-12 text-center mt-5 pt-5 pb-5">
+                <div class="col-12 text-center mt-md-5 pt-5 pb-5">
                      <h2>Subscriber Testemonials</h2>
                      <h5 class="text-muted">Here are a few words about aireline travel as a subscription</h5>
                 </div>

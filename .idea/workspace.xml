@@ -3,8 +3,29 @@
   <component name="ChangeListManager">
     <list default="true" id="34819c67-5192-450b-95db-48815d66061e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/booking/templates/retail.html" beforeDir="false" afterPath="$PROJECT_DIR$/booking/templates/retail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/corporate/templates/corporate.html" beforeDir="false" afterPath="$PROJECT_DIR$/corporate/templates/corporate.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/corporate/templates/manage-trips.html" beforeDir="false" afterPath="$PROJECT_DIR$/corporate/templates/manage-trips.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/corporate/templates/trips.html" beforeDir="false" afterPath="$PROJECT_DIR$/corporate/templates/trips.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/home/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/home/templates/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/info/templates/about.html" beforeDir="false" afterPath="$PROJECT_DIR$/info/templates/about.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/info/templates/feedback.html" beforeDir="false" afterPath="$PROJECT_DIR$/info/templates/feedback.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/info/templates/how-it-works.html" beforeDir="false" afterPath="$PROJECT_DIR$/info/templates/how-it-works.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/info/templates/news.html" beforeDir="false" afterPath="$PROJECT_DIR$/info/templates/news.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/info/templates/partners.html" beforeDir="false" afterPath="$PROJECT_DIR$/info/templates/partners.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/info/templates/team.html" beforeDir="false" afterPath="$PROJECT_DIR$/info/templates/team.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/templates/results.html" beforeDir="false" afterPath="$PROJECT_DIR$/results/templates/results.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/css/custom.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/custom.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/css/home.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/home.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/css/how-it-works.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/how-it-works.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/css/navbar.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/navbar.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/css/signin.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/signin.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/Logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/images/Logo.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/subscriptions/templates/subscription.html" beforeDir="false" afterPath="$PROJECT_DIR$/subscriptions/templates/subscription.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/_includes/corporate_nav.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/_includes/corporate_nav.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/_includes/footer.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/_includes/footer.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/_includes/navbar.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/_includes/navbar.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -177,7 +198,7 @@
       <workItem from="1568034130261" duration="2131000" />
       <workItem from="1568046065063" duration="18675000" />
       <workItem from="1568096568510" duration="955000" />
-      <workItem from="1568132438614" duration="194000" />
+      <workItem from="1568132438614" duration="867000" />
     </task>
     <servers />
   </component>

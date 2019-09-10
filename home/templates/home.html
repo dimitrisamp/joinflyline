@@ -2,6 +2,8 @@
 
 {% load static %}
 {% block csscontent %}
+    <link rel="stylesheet" href="{% static "css/lightpick.css" %}" xmlns:v-on="http://www.w3.org/1999/xhtml"
+          xmlns:v-on="http://www.w3.org/1999/xhtml">
     <link rel="stylesheet" href="{% static "css/home.css" %}">
     <link rel="stylesheet" href="{% static "css/custom.css" %}">
 {% endblock %}
@@ -12,23 +14,21 @@
             <a href="{% url "how-it-works" %}"><button class="promo_btn">Learn More</button></a>
         <p>
     </div>
-    <section>
+    <section class="navbar-section">
         {% include "_includes/navbar.html" %}
     </section>
 
     <section>
         <div class="container content-holder">
-            <div class="search_content_box" style="padding-top: 60px;">
+            <div class="search_content_box">
                 <div class="row">
                     <div class="container">
                         <div class="col-12 pr-0">
                             <div class="row">
-                                <div class="col-12">
-                                    <p class="sec_two_head" style="margin-bottom: 20px;">
-                                        <span style="color:#212529; font-size: 50px;">Travel Made Simple . . .</span>
-                                        <span style="color:#00B7FF; font-size: 50px;">Search ,</span>
-                                        <span style="color:#00B7FF;font-size: 50px;">Book ,</span>
-                                        <span style="color:#00B7FF; font-size: 50px;">Save</span>
+                                <div class="col-12 p-0">
+                                    <p class="home-slogan">
+                                        <span>Travel Made Simple . . .</span>
+                                        <span class="text-primary">Search, Book, Save</span>
                                     </p>
                                 </div>
                             </div>
@@ -36,7 +36,7 @@
                             <div class="row" >
                                 <div class="col-12 mt-2 col-md-auto search-column-dropdown">
                                     <img src="{% static "images/icons/arrows_rotating.png" %}"
-                                         style="width:14px; margin-right: -30px;">
+                                         style="">
                                     <input type="text" class="drop_down_btn" readonly data-toggle="dropdown"
                                            aria-haspopup="true"
                                            aria-expanded="false" name="destinationType" id="destinationType"
@@ -52,16 +52,14 @@
                                     </div>
                                 </div>
                                 <div class="col-12 mt-2 col-md-auto search-column-dropdown">
-                                    <img src="{% static "images/icons/man_user.png" %}"
-                                         style="width:16px; margin-right: -30px;">
+                                    <img src="{% static "images/icons/man_user.png" %}">
                                     <input type="text" class="drop_down_btn" readonly data-toggle="modal"
                                            data-target="#passengersModal"
                                            value="Passengers" name="noOfPassengers" id="noOfPassengers"
                                            v-model="form.noOfPassengers"/>
                                 </div>
                                 <div class="col-12 mt-2 col-md-auto search-column-dropdown">
-                                    <img src="{% static "images/icons/dollar.png" %}"
-                                         style="width:20px; margin-right: -35px;">
+                                    <img src="{% static "images/icons/dollar.png" %}">
                                     <input type="text" class="drop_down_btn" readonly data-toggle="dropdown"
                                            aria-haspopup="true" aria-expanded="false" name="seatType" id="seatType"
                                            v-model="form.seatType"/>
@@ -80,11 +78,11 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row" style="margin-top: 2%;">
+                            <div class="row mt-4">
                                 <div class="col-sm-12 flexed-search-bar pl-0">
                                     <div class="flexed-search-item">
                                         <label class="search_label" @click="openPlaceModal(1)">
-                                            <h6 style="font-family: karla; font-weight:bold; opacity: .5;">Departure
+                                            <h6>Departure
                                                 City :
                                                 <input type="text" class="search_input" readonly name="placesFrom"
                                                        id="placesFrom"/>
@@ -95,7 +93,7 @@
                                     </div>
                                     <div class="flexed-search-item">
                                         <label class="search_label" @click="openPlaceModal(2)">
-                                            <h6 style="margin-left: 4%; font-family: karla; font-weight:bold; opacity: .5;">
+                                            <h6>
                                                 Arrival City :
                                                 <input type="text" class="search_input" readonly name="placesTo"
                                                        id="placesTo"/>
@@ -104,7 +102,7 @@
                                     </div>
                                     <div class="flexed-search-item">
                                         <label class="search_label">
-                                            <h6 style="font-family: karla; font-weight:bold; opacity: .5;">Departure
+                                            <h6>Departure
                                                 Date :
                                                 <input type="text" name="dep_date" id="departure_date"
                                                        class="search_input">
@@ -113,14 +111,14 @@
                                     </div>
                                     <div class="flexed-search-item">
                                         <label class="search_label">
-                                            <h6 style="font-family: karla; font-weight:bold; opacity: .5;">Return Date :
+                                            <h6>Return Date :
                                                 <input type="text" name="ret_date" id="return_date"
                                                        class="search_input">
                                             </h6>
                                         </label>
                                     </div>
                                     <div class="flexed-search-item">
-                                        <button class="search_btn" style="width: 120px; font-weight: bold;"
+                                        <button class="search_btn"
                                                 @click="search">Search
                                         </button>
                                     </div>
@@ -137,14 +135,13 @@
 
         <div class="modal fade" id="passengersModal" tabindex="-1" role="dialog" aria-labelledby="passengersModalLabel"
              aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content" style="top: 5%;">
+            <div class="modal-dialog mt-5 pt-1" role="document">
+                <div class="modal-content mt-5">
                     <div class="modal-header">
                         <h6 class="modal-title" id="passengersModalLabel">Passengers</h6>
                     </div>
                     <div class="modal-body">
-                        <span style="padding: 0 2%">
-
+                        <span>
                             <div class="container">
                               <div class="row">
                                 <div class="col-sm">
@@ -154,8 +151,7 @@
                                   <input type="button" class="increment" value="-" @click="decrement(1)"
                                          id="valAdultsDecrement"/>
 
-                                      <input type="text" readonly
-                                             style="padding: 1% 2%; width: 15%; border: none; text-align: center"
+                                      <input type="text" readonly style="padding: 1% 2%; width: 15%; border: none; text-align: center"
                                              v-model="form.valAdults" id="valAdults"/>
                                    <input type="button" class="increment" id="valAdultsIncrement" value="+"
                                           @click="increment(1)"/>
@@ -215,24 +211,19 @@
     </section>
 
     <section>
-        <div class="hor_line"></div>
         <div class="asset_box">
             <div class="container">
-                <div class="row justify-content-center" style="text-align:center">
-                    <div class="col-12 col-md-3 mt-4 m-md-0">
-                        <img class="img_asset" src="{% static "images/simple.png" %}" style="width:210px;">
+                <div class="row justify-content-center">
+                    <div class="col-12 col-md-4 mt-4 m-md-0">
+                      <button class="search_btn  w-100 main-btn-full">4 Tokens Available</button>
                     </div>
                     <div class="d-block d-md-none divider-30"></div>
-                    <div class="col-12 col-md-3 mt-4 m-md-0">
-                        <img class="img_asset" src="{% static "images/forbes.png" %}">
+                    <div class="col-12 col-md-4 mt-4 m-md-0">
+                        <button class="search_btn w-100 main-btn-full">Add More Tokens</button>
                     </div>
                     <div class="d-block d-md-none divider-30"></div>
-                    <div class="col-12 col-md-3 mt-4 m-md-0">
-                        <img class="img_asset" src="{% static "images/smart.png" %}">
-                    </div>
-                    <div class="d-block d-md-none divider-30"></div>
-                    <div class="col-12 col-md-3 mt-4 m-md-0">
-                        <img class="img_asset" src="{% static "images/tech-crunch.png" %}">
+                    <div class="col-12 col-md-4 mt-4 m-md-0">
+                        <button class="search_btn w-100 main-btn-full">Add a Travel Companion</button>
                     </div>
                 </div>
             </div>
@@ -250,7 +241,7 @@
                             <div class="col-6" style="text-align:right">
                                 <!--  <p style="color:#8092a9; cursor: pointer;"  @click="clearList"><i
                                       class="fa fa-times" style="margin-left:5px"></i></p>--></div>
-                        </div>
+                            </div>
                         <div class="row pop2_second">
                             <div class="col-12">
                                 <div>

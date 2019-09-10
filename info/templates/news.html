@@ -2,21 +2,19 @@
 
 {% load static %}
 {% block csscontent %}
-    <link rel="stylesheet" href="{% static "css/lightpick.css" %}" xmlns:v-on="http://www.w3.org/1999/xhtml"
-          xmlns:v-on="http://www.w3.org/1999/xhtml">
     <link rel="stylesheet" href="{% static "css/home.css" %}">
     <link rel="stylesheet" href="{% static "css/custom.css" %}">
 {% endblock %}
 
 {% block content %}
-    <section style="padding-top: 15px; background-color: white; box-shadow: 0 2px 4px whitesmoke; border-bottom: 1px solid whitesmoke;">
+    <section class="navbar-section">
         {% include "_includes/navbar.html" %}
     </section>
 
     <section class="background-colored">
-        <div class="col-12 text-center white-block shadow pt-5 pb-5">
-            <p class="sec_one_head">News, Updates, Travel Tricks<p>
-            <p class="sec_one_subhead">Always stay in the loup with the hottest travel news and updates<p>
+        <div class="col-12 text-center white-block pt-5 pb-5 mt-1">
+            <h1 class="sec_one_head">News, Updates, Travel Tricks</h1>
+            <h4 class="sec_one_subhead text-muted">Always stay in the loup with the hottest travel news and updates</h4>
         </div>
         <div class="container pt-1">
             <div class="content_container">
