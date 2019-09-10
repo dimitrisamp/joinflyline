@@ -30,7 +30,7 @@ def login_user(request):
     if user is not None:
         auth.login(request, user)
         messages.success(request, 'Login Successful')
-        return redirect(account_view, user.id)
+        return redirect(account_view)
     else:
         messages.error(request, 'Failed: Your credentials were incorrect')
         return redirect(home_view)
