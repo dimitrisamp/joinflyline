@@ -23,7 +23,7 @@
                     <button class="nav-button-logout">Log out</button>
                 </a>
             {% else %}
-                <a class="nav_btn_link" href="{% url "home" %}">
+                <a class="nav_btn_link" href="{% url "subscription" %}">
                     <button class="custom_btn">Get Started</button>
                 </a>
             {% endif %}
@@ -31,9 +31,6 @@
             <div class="navbar-collapse collapse p-2" id="navb">
                 <ul class="navbar-nav ml-auto">
                     {% if user.is_authenticated %}
-                         <li class="nav-item ml-md-4">
-                            <a class="custom_nav_link" href="{% url "home" %}">Home</a>
-                        </li>
                         <li class="nav-item ml-md-4">
                             <a class="custom_nav_link" href="{% url "corporate" %}">Manage Trips </a>
                         </li>
@@ -44,12 +41,9 @@
                             <a class="custom_nav_link" href="{% url "faq" %}">Help</a>
                         </li>
                         <li class="nav-item ml-md-4">
-                            <a class="custom_nav_link" href="{% url "accounts" user.id %}">Account</a>
+                            <a class="custom_nav_link" href="{% url "accounts" %}" style="padding-left:40px;">Account</a>
                         </li>
                     {% else %}
-                        <li class="nav-item ml-md-4">
-                            <a class="custom_nav_link" href="{% url "home" %}">Home</a>
-                        </li>
                         <li class="nav-item ml-md-4">
                             <a class="custom_nav_link" href="{% url "corporate" %}">Corporate Plans</a>
                         </li>

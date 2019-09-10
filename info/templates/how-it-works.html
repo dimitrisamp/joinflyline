@@ -30,8 +30,8 @@
                                 </h4>
                                 <div class="divider-30"></div>
                                 <div class="card-buttons">
-                                    <button href="#" class="search_btn">View Plans</button>
-                                    <button href="#" class="search_btn ml-3">FAQ's</button>
+                                    <button href="{% url "subscription" %}" class="search_btn">View Plans</button>
+                                    <button href="{% url "faq" %}" class="search_btn ml-3">FAQ's</button>
                                 </div>
                             </div>
                         </div>
@@ -267,7 +267,7 @@
                 <h3 class="card-title">Ready to Get Started?</h3>
                 <h5 class="card-text text-muted">Time to start saving? Click below and start saving on Flgihts!</h5>
                 <div class="divider-30"></div>
-                <a href="#" class="btn btn-primary">Get Started</a>
+                <a href="{% url "subscription" %}" class="btn btn-primary">Get Started</a>
             </div>
         </div>
     </section>

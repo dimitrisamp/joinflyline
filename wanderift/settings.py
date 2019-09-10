@@ -43,6 +43,7 @@ INSTALLED_APPS = [
 
     # My apps
     'subscriptions',
+    'payments',
     'home',
     'results',
     'corporate',
