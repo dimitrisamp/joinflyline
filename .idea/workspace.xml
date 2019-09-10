@@ -2,9 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="34819c67-5192-450b-95db-48815d66061e" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/wanderift.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/wanderift.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/info/templates/how-it-works.html" beforeDir="false" afterPath="$PROJECT_DIR$/info/templates/how-it-works.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/css/custom.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/custom.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wanderift/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/wanderift/db.sqlite3" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -23,23 +26,7 @@
     <option name="HIDDEN_KINDS">
       <set />
     </option>
-    <expand>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="db [2]" type="feb32156:DbDataSourceImpl" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="db [2]" type="feb32156:DbDataSourceImpl" />
-        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="db [2]" type="feb32156:DbDataSourceImpl" />
-        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="main: schema" type="981a47c2:SqliteImplModel$Schema" />
-      </path>
-    </expand>
+    <expand />
     <select />
   </component>
   <component name="FileTemplateManagerImpl">
@@ -65,20 +52,21 @@
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/static/css" />
+      <recent name="$PROJECT_DIR$/booking" />
+      <recent name="$PROJECT_DIR$/static/images" />
+      <recent name="$PROJECT_DIR$" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/static/css" />
       <recent name="$PROJECT_DIR$/info/templates" />
       <recent name="$PROJECT_DIR$/templates" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/wanderift/envconf" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/static/css" />
-      <recent name="$PROJECT_DIR$/booking" />
-      <recent name="$PROJECT_DIR$/static/images" />
-      <recent name="$PROJECT_DIR$" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -102,7 +90,7 @@
         <env name="PYTHONUNBUFFERED" value="1" />
         <env name="DJANGO_SETTINGS_MODULE" value="wanderift.settings" />
       </envs>
-      <option name="SDK_HOME" value="" />
+      <option name="SDK_HOME" value="C:\Users\Hidajet Tuzlak\Applications\Python\DJANGO\GITLAB\wanderift\venv\Scripts\python.exe" />
       <option name="WORKING_DIRECTORY" value="" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
@@ -166,6 +154,10 @@
       <workItem from="1567529009873" duration="1065000" />
       <workItem from="1567594211499" duration="941000" />
       <workItem from="1567619376159" duration="30174000" />
+      <workItem from="1567886189596" duration="11892000" />
+      <workItem from="1568096812201" duration="12500000" />
+      <workItem from="1568130010921" duration="1235000" />
+      <workItem from="1568133963876" duration="292000" />
     </task>
     <servers />
   </component>

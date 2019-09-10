@@ -94,10 +94,10 @@
 }
 
 
-.faq-accordion .card .card-header,
-.subs-accordion .card .card-header {
-    background-color: whitesmoke;
-}
+/*.faq-accordion .card .card-header,*/
+/*.subs-accordion .card .card-header {*/
+/*    padding: 30px;*/
+/*}*/
 .faq-accordion .card .card-header button,
 .subs-accordion .card .card-header button{
     color: black;
