@@ -93,11 +93,15 @@
     z-index: 1;
 }
 
+.card.testemonial {
+    background-color: #F7f9ff;
+}
 
-/*.faq-accordion .card .card-header,*/
-/*.subs-accordion .card .card-header {*/
-/*    padding: 30px;*/
-/*}*/
+
+.faq-accordion .card .card-header,
+.subs-accordion .card .card-header {
+    background-color: #f7f9ff;
+}
 .faq-accordion .card .card-header button,
 .subs-accordion .card .card-header button{
     color: black;
