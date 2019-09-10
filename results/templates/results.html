@@ -4,10 +4,9 @@
 {% load custom_date %}
 
 {% block csscontent %}
-    <link rel="stylesheet" href="{% static "css/lightpick.css" %}" xmlns:v-on="http://www.w3.org/1999/xhtml"
+     <link rel="stylesheet" href="{% static "css/lightpick.css" %}" xmlns:v-on="http://www.w3.org/1999/xhtml"
           xmlns:v-on="http://www.w3.org/1999/xhtml">
     <link rel="stylesheet" href="{% static "css/bootstrap-slider.min.css" %}">
-    {#    <link rel="stylesheet" href="{% static "css/home.css" %}">#}
     <link rel="stylesheet" href="{% static "css/custom.css" %}">
 {% endblock %}
 
@@ -26,8 +25,7 @@
                         <div class="col-12 pr-0">
                             <div class="row">
                                 <div class="col-12 mt-2 col-md-auto search-column-dropdown">
-                                    <img src="{% static "images/icons/arrows_rotating.png" %}"
-                                         style="width:14px; margin-right: -30px;">
+                                    <img src="{% static "images/icons/arrows_rotating.png" %}">
                                     <input type="text" class="drop_down_btn" readonly data-toggle="dropdown"
                                            aria-haspopup="true"
                                            aria-expanded="false" name="destinationType" id="destinationType"
@@ -43,16 +41,14 @@
                                     </div>
                                 </div>
                                 <div class="col-12 mt-2 col-md-auto search-column-dropdown">
-                                    <img src="{% static "images/icons/man_user.png" %}"
-                                         style="width:16px; margin-right: -30px;">
+                                    <img src="{% static "images/icons/man_user.png" %}">
                                     <input type="text" class="drop_down_btn" readonly data-toggle="modal"
                                            data-target="#passengersModal"
                                            value="Passengers" name="noOfPassengers" id="noOfPassengers"
                                            v-model="form.noOfPassengers"/>
                                 </div>
                                 <div class="col-12 mt-2 col-md-auto search-column-dropdown">
-                                    <img src="{% static "images/icons/dollar.png" %}"
-                                         style="width:20px; margin-right: -35px;">
+                                    <img src="{% static "images/icons/dollar.png" %}">
                                     <input type="text" class="drop_down_btn" readonly data-toggle="dropdown"
                                            aria-haspopup="true" aria-expanded="false" name="seatType" id="seatType"
                                            v-model="form.seatType"/>
@@ -71,11 +67,11 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row" style="margin-top: 2%;">
+                            <div class="row mt-4">
                                 <div class="col-sm-12 flexed-search-bar pl-0">
                                     <div class="flexed-search-item">
                                         <label class="search_label" @click="openPlaceModal(1)">
-                                            <h6 style="font-family: karla; font-weight:bold; opacity: .5;">Departure
+                                            <h6>Departure
                                                 City :
                                                 <input type="text" class="search_input" readonly name="placesFrom"
                                                        id="placesFrom"/>
@@ -86,7 +82,7 @@
                                     </div>
                                     <div class="flexed-search-item">
                                         <label class="search_label" @click="openPlaceModal(2)">
-                                            <h6 style="margin-left: 4%; font-family: karla; font-weight:bold; opacity: .5;">
+                                            <h6>
                                                 Arrival City :
                                                 <input type="text" class="search_input" readonly name="placesTo"
                                                        id="placesTo"/>
@@ -95,7 +91,7 @@
                                     </div>
                                     <div class="flexed-search-item">
                                         <label class="search_label">
-                                            <h6 style="font-family: karla; font-weight:bold; opacity: .5;">Departure
+                                            <h6>Departure
                                                 Date :
                                                 <input type="text" name="dep_date" id="departure_date"
                                                        class="search_input">
@@ -111,7 +107,7 @@
                                         </label>
                                     </div>
                                     <div class="flexed-search-item">
-                                        <button class="search_btn" style="width: 100%; font-weight: bold;"
+                                        <button class="search_btn"
                                                 @click="search">Search
                                         </button>
                                     </div>

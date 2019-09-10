@@ -167,7 +167,7 @@ input.login_input{
     background-color: #00b7ff;
     color: white;
 }
-.form-group input {
+.auth-form .form-group input {
     border: 0;
     font-size: 1.2em;
     text-align: center;

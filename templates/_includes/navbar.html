@@ -2,10 +2,11 @@
 
 {% block csscontent %}
     <link rel="stylesheet" href="{% static "css/home.css" %}">
+    <link rel="stylesheet" href="{% static "css/navbar.css" %}">
     <link rel="stylesheet" href="{% static "css/signin.css" %}">
 {% endblock %}
 
-<nav>
+<nav class="pr-md-3">
     <div class="navbar-expand-lg navbar-light text-center pb-3">
         <a class="navbar-brand mx-auto" href="#">
             <img src="{% static "images/Logo.png" %}" alt="" width="140">
@@ -27,7 +28,7 @@
                 </a>
             {% endif %}
 
-            <div class="navbar-collapse collapse" id="navb" style="padding: 10px">
+            <div class="navbar-collapse collapse p-2" id="navb">
                 <ul class="navbar-nav ml-auto">
                     {% if user.is_authenticated %}
                          <li class="nav-item ml-md-4">
@@ -40,10 +41,10 @@
                             <a class="custom_nav_link" href="{% url "corporate" %}">Trips </a>
                         </li>
                         <li class="nav-item ml-md-4">
-                            <a class="custom_nav_link" href="{% url "faq" %}" style="padding-left:40px;">Help</a>
+                            <a class="custom_nav_link" href="{% url "faq" %}">Help</a>
                         </li>
                         <li class="nav-item ml-md-4">
-                            <a class="custom_nav_link" href="{% url "accounts" user.id %}" style="padding-left:40px;">Account</a>
+                            <a class="custom_nav_link" href="{% url "accounts" user.id %}">Account</a>
                         </li>
                     {% else %}
                         <li class="nav-item ml-md-4">
@@ -53,11 +54,11 @@
                             <a class="custom_nav_link" href="{% url "corporate" %}">Corporate Plans</a>
                         </li>
                         <li class="nav-item ml-md-4">
-                            <a class="custom_nav_link" href="{% url "how-it-works" %}" style="padding-left:20px;">How It Works</a>
+                            <a class="custom_nav_link" href="{% url "how-it-works" %}">How It Works</a>
                         </li>
                         <li class="nav-item ml-md-4">
-                            <a class="custom_nav_link" data-toggle="modal" data-target="#signInOptionsModal" href=""
-                               style="padding-left:20px;">Sign In</a>
+                            <a class="custom_nav_link" data-toggle="modal" data-target="#signInOptionsModal"
+                               href="#">Sign In</a>
                         </li>
                     {% endif %}
                 </ul>
@@ -65,12 +66,11 @@
         </div>
     </div>
 </nav>
-<div class="modal fade sign-in-modal" id="signInOptionsModal" tabindex="-1" role="dialog"
-     aria-labelledby="signInOptionsModalLabel"
 
-     aria-hidden="true">
+<div class="modal fade sign-in-modal" id="signInOptionsModal" tabindex="-1" role="dialog"
+     aria-labelledby="signInOptionsModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
-        <div class="modal-content popup_container" style="top: 60px;">
+        <div class="modal-content popup_container">
             <div class="row justify-content-center">
                 <a class="popup_btn_link w-100 p-3" href="#">
                     <div class="w-100 btn_popup text-center">
@@ -105,7 +105,7 @@
 
                     <div class="tab-pane fade show active" id="pills-signup" role="tabpanel"
                          aria-labelledby="pills-signup-tab">
-                        <form class="pl-2 pr-2" method="post" action="{% url "signup" %}">
+                        <form class="pl-2 pr-2 auth-form" method="post" action="{% url "signup" %}">
                             {% csrf_token %}
                             <div class="input-holder pl-2 pr-2">
                                 <div class="form-group">
@@ -118,7 +118,7 @@
                                            placeholder="Password">
                                 </div>
                             </div>
-                            <div class="col-12 text_block text-center" style="margin-top:20px;">
+                            <div class="col-12 text_block text-center">
                                 <p class="small">The registration and subsequent use of
                                     your account is governed by these
                                     <a href="#" class="text-primary">Terms of Use</a>. Your
@@ -126,7 +126,7 @@
                                     <a href="#" class="text-primary">Privacy Policy</a>.
                                 <p>
                             </div>
-                            <a class="popup_btn_link" href="#" style="margin-top:15px;">
+                            <a class="popup_btn_link" href="#">
                                 <button type="submit" class="search_btn w-100 text-center"
                                         id="signUpButton">
                                     Get Started
@@ -137,7 +137,7 @@
 
                     <div class="tab-pane fade" id="pills-signin" role="tabpanel"
                          aria-labelledby="pills-signup-tab">
-                        <form class="pl-2 pr-2" method="post" action="{% url "login" %}">
+                        <form class="pl-2 pr-2 auth-form" method="post" action="{% url "login" %}">
                             {% csrf_token %}
                             <div class="input-holder pl-2 pr-2">
                                 <div class="form-group">
@@ -151,9 +151,8 @@
                                            placeholder="Password">
                                 </div>
                             </div>
-                            <a class="popup_btn_link" href="#" style="margin-top:15px;">
-                                <button type="submit" class="col-12 search_btn" style="text-align:center"
-                                        id="pills-signin_signUpButton">
+                            <a class="popup_btn_link" href="#">
+                                <button type="submit" class="col-12 search_btn" id="pills-signin_signUpButton">
                                     Get Started
                                 </button>
                             </a>
@@ -162,7 +161,7 @@
 
                     <div class="tab-pane fade" id="pills-signup-corporate" role="tabpanel"
                          aria-labelledby="pills-signup-corporate-tab">
-                        <form class="pl-2 pr-2" method="post" action="{% url "signup" %}">
+                        <form class="pl-2 pr-2 auth-form" method="post" action="{% url "signup" %}">
                             {% csrf_token %}
                             <div class="input-holder pl-2 pr-2">
                                 <div class="form-group">
@@ -181,7 +180,7 @@
                                            placeholder="Password">
                                 </div>
                             </div>
-                            <div class="col-12 text_block text-center" style="margin-top:20px;">
+                            <div class="col-12 text_block text-center">
                                 <p class="small">The registration and subsequent use of
                                     your account is governed by these
                                     <a href="#" class="text-primary">Terms of Use</a>. Your
@@ -189,7 +188,7 @@
                                     <a href="#" class="text-primary">Privacy Policy</a>.
                                 <p>
                             </div>
-                            <a class="popup_btn_link" href="#" style="margin-top:15px;">
+                            <a class="popup_btn_link" href="#">
                                 <button type="submit" class="search_btn w-100 text-center"
                                         id="signUpCorporateButton">
                                     Get Started
@@ -197,7 +196,6 @@
                             </a>
                         </form>
                     </div>
-
                 </div>
             </div>
         </div>

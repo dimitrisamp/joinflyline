@@ -8,22 +8,17 @@
 {% endblock %}
 
 {% block content %}
-    <section style="padding-top: 15px; background-color: white; box-shadow: 0 2px 4px whitesmoke; border-bottom: 1px solid whitesmoke;">
+    <section class="navbar-section">
         {% include "_includes/navbar.html" %}
     </section>
+
     <section class="background-colored">
-        <div class="col-12 text-center mt-2 pt-5 pb-4">
-            <h1>Subscribe to Wanderift</h1>
-            <h4 class="text-muted">Start saving on your travel today</h4>
-        </div>
-
-{#        <div class="col-12 text-center mt-5 pt-5 pb-5">#}
-{#            <h2>How The Subscriptons Work</h2>#}
-{#            <h5 class="text-muted">Change up your travel plans and start saving on flights today!</h5>#}
-{#        </div>#}
-
-        <div class="container mt-5">
+        <div class="container">
             <div class="row">
+            <div class="col-12 text-center pt-5 pb-4  mb-5">
+                <h1>Subscribe to Wanderift</h1>
+                <h4 class="text-muted">Start saving on your travel today</h4>
+            </div>
             <!-- left side -->
             <div class="col-12 col-md-6 mb-5">
                 <div class="card shadow">
@@ -56,58 +51,73 @@
                         <form action="{% url "retail" %}" method="post">
                             {% csrf_token %}
                             <div class="row">
-                                <div class="col-6 mb-2">
-                                    <h6>First Name</h6>
-                                    <input type="text" name="first_name">
+                                <div class="col-12 col-md-6 mb-2">
+                                    <label>First Name</label>
+                                    <div class="form-group">
+                                    <input class="form-control" type="text" name="first_name">
+                                    </div>
                                 </div>
-                                <div class="col-6 mb-2">
-                                    <h6>Last Name</h6>
-                                    <input type="text" name="last_name">
+                                <div class="col-12 col-md-6 mb-2">
+                                    <label>Last Name</label>
+                                    <div class="form-group">
+                                    <input class="form-control" type="text" name="last_name">
+                                    </div>
                                 </div>
-                                <div class="col-6 mb-2">
-                                    <h6>Gender</h6>
-                                    <input type="text" name="gender">
+                                <div class="col-12 col-md-6 mb-2">
+                                    <label>Gender</label>
+                                    <div class="form-group">
+                                    <input class="form-control" type="text" name="gender">
+                                    </div>
                                 </div>
-                                <div class="col-6 mb-2">
-                                    <h6>Date of Birth</h6>
-                                    <input type="text" name="dob" id="dob">
+                                <div class="col-12 col-md-6 mb-2">
+                                    <label>Date of Birth</label>
+                                    <div class="form-group">
+                                    <input class="form-control" type="text" name="dob" id="dob">
+                                    </div>
                                 </div>
-                                <div class="col-6 mb-2">
-                                    <h6>Phone Number</h6>
-                                    <input type="text" name="phone_number">
+                                <div class="col-12 col-md-6 mb-2">
+                                    <label>Phone Number</label>
+                                    <div class="form-group">
+                                    <input class="form-control" type="text" name="phone_number">
+                                    </div>
                                 </div>
-                                <div class="col-6 mb-2">
-                                    <h6>Email</h6>
-                                    <input type="email" name="email">
+                                <div class="col-12 col-md-6 mb-2">
+                                    <label>Email</label>
+                                    <div class="form-group">
+                                    <input class="form-control" type="email" name="email">
+                                    </div>
                                 </div>
-                                <div class="col-6 mb-2">
-                                    <h6>Password</h6>
-                                    <input type="password" name="password">
+                                <div class="col-12 col-md-6 mb-2">
+                                    <label>Password</label>
+                                    <div class="form-group">
+                                    <input class="form-control" type="password" name="password">
+                                    </div>
                                 </div>
                             </div>
+
 
                             <!-- 3 -->
                             <h4 class="card-title mt-5 mb-4">3. Enter Payment Details</h4>
                             <div class="row">
-                                <div class="col-6 mb-2">
-                                    <h6>Credit Card Number</h6>
-                                    <input type="text" name="card_number">
+                                <div class="col-12 col-md-6 form-group mb-2">
+                                    <label>Credit Card Number</label>
+                                    <input class="form-control" type="text" name="card_number">
                                 </div>
-                                <div class="col-6 mb-2">
-                                    <h6>Security Code</h6>
-                                    <input type="number" name="cvc">
+                                <div class="col-12 col-md-6 form-group mb-2">
+                                    <label>Security Code</label>
+                                    <input class="form-control" type="number" name="cvc">
                                 </div>
-                                <div class="col-6 mb-2">
-                                    <h6>Expiration Date</h6>
-                                    <input type="text" name="expiry" id="expiry">
+                                <div class="col-12 col-md-6 form-group mb-2">
+                                    <label>Expiration Date</label>
+                                    <input class="form-control" type="text" name="expiry" id="expiry">
                                 </div>
-                                <div class="col-6 mb-2">
-                                    <h6>Country</h6>
-                                    <input type="text" name="country">
+                                <div class="col-12 col-md-6 form-group mb-2">
+                                    <label>Country</label>
+                                    <input class="form-control" type="text" name="country">
                                 </div>
-                                <div class="col-6 mb-2">
-                                    <h6>Billing Zip</h6>
-                                    <input type="text" name="zip">
+                                <div class="col-12 col-md-6 form-group mb-2">
+                                    <label>Billing Zip</label>
+                                    <input class="form-control" type="text" name="zip">
                                 </div>
                             </div>
 
