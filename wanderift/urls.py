@@ -32,7 +32,7 @@ urlpatterns = [
     path('results', results_view, name="results"),
 
     # Accounts page urls
-    path('accounts/', include("account.urls")),
+    path('account/', include("account.urls")),
 
     # Corporate urls
     path('corporates/', include("corporate.urls")),

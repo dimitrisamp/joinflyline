@@ -10,7 +10,8 @@
 
 {% block content %}
     <div class="promo_banner">
-        <p class="promo_banner_text mb-0">Looking to save thousands on flights? Subscribe to Wanderift Lite or Pro and Save
+        <p class="promo_banner_text mb-0">Looking to save thousands on flights? Subscribe to Wanderift Lite or Pro and
+            Save
             <button class="promo_btn mt-2">Learn More</button>
         </p>
     </div>
@@ -33,7 +34,7 @@
                                 </div>
                             </div>
 
-                            <div class="row" >
+                            <div class="row">
                                 <div class="col-12 mt-2 col-md-auto search-column-dropdown">
                                     <img src="{% static "images/icons/arrows_rotating.png" %}"
                                          style="">
@@ -151,7 +152,8 @@
                                   <input type="button" class="increment" value="-" @click="decrement(1)"
                                          id="valAdultsDecrement"/>
 
-                                      <input type="text" readonly style="padding: 1% 2%; width: 15%; border: none; text-align: center"
+                                      <input type="text" readonly
+                                             style="padding: 1% 2%; width: 15%; border: none; text-align: center"
                                              v-model="form.valAdults" id="valAdults"/>
                                    <input type="button" class="increment" id="valAdultsIncrement" value="+"
                                           @click="increment(1)"/>
@@ -211,23 +213,48 @@
     </section>
 
     <section>
-        <div class="asset_box">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-12 col-md-4 mt-4 m-md-0">
-                      <button class="search_btn  w-100 main-btn-full">4 Tokens Available</button>
-                    </div>
-                    <div class="d-block d-md-none divider-30"></div>
-                    <div class="col-12 col-md-4 mt-4 m-md-0">
-                        <button class="search_btn w-100 main-btn-full">Add More Tokens</button>
-                    </div>
-                    <div class="d-block d-md-none divider-30"></div>
-                    <div class="col-12 col-md-4 mt-4 m-md-0">
-                        <button class="search_btn w-100 main-btn-full">Add a Travel Companion</button>
+        {% if user.is_authenticated %}
+            <div class="asset_box">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-12 col-md-4 mt-4 m-md-0">
+                            <button class="search_btn  w-100 main-btn-full">4 Tokens Available</button>
+                        </div>
+                        <div class="d-block d-md-none divider-30"></div>
+                        <div class="col-12 col-md-4 mt-4 m-md-0">
+                            <button class="search_btn w-100 main-btn-full">Add More Tokens</button>
+                        </div>
+                        <div class="d-block d-md-none divider-30"></div>
+                        <div class="col-12 col-md-4 mt-4 m-md-0">
+                            <button class="search_btn w-100 main-btn-full">Add a Travel Companion</button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        {% else %}
+            <div class="hor_line"></div>
+            <div class="asset_box">
+                <div class="container">
+                    <div class="row justify-content-center" style="text-align:center">
+                        <div class="col-12 col-md-3 mt-4 m-md-0">
+                            <img class="img_asset" src="{% static "images/simple.png" %}" style="width:210px;">
+                        </div>
+                        <div class="d-block d-md-none divider-30"></div>
+                        <div class="col-12 col-md-3 mt-4 m-md-0">
+                            <img class="img_asset" src="{% static "images/forbes.png" %}">
+                        </div>
+                        <div class="d-block d-md-none divider-30"></div>
+                        <div class="col-12 col-md-3 mt-4 m-md-0">
+                            <img class="img_asset" src="{% static "images/smart.png" %}">
+                        </div>
+                        <div class="d-block d-md-none divider-30"></div>
+                        <div class="col-12 col-md-3 mt-4 m-md-0">
+                            <img class="img_asset" src="{% static "images/tech-crunch.png" %}">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
 
         <!-- Modal -->
         <div class="modal fade" id="placesModal" tabindex="-1" role="dialog" aria-labelledby="placesModalCenterTitle"
@@ -241,7 +268,7 @@
                             <div class="col-6" style="text-align:right">
                                 <!--  <p style="color:#8092a9; cursor: pointer;"  @click="clearList"><i
                                       class="fa fa-times" style="margin-left:5px"></i></p>--></div>
-                            </div>
+                        </div>
                         <div class="row pop2_second">
                             <div class="col-12">
                                 <div>
@@ -282,8 +309,6 @@
                 </div>
             </div>
         </div>
-
-
     </section>
 
     <section style="margin-bottom: 100px;">
@@ -375,7 +400,6 @@
                 var str = '';
                 str += start ? start.format('Do MMMM YYYY') + ' to ' : '';
                 str += end ? end.format('Do MMMM YYYY') : '...';
-                {#document.getElementById('result-3').innerHTML = str;#}
             }
         });
     </script>
