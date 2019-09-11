@@ -6,7 +6,7 @@
     margin: 0 auto;
     padding:20px;
     background: #FFFFFF;
-    box-shadow: 0px 2px 21px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 2px 21px rgba(0, 0, 0, 0.5);
     border-radius: 6px;
 }
 img.img_goggle {
@@ -15,11 +15,8 @@ img.img_goggle {
 
 .btn_popup {
     background: #FFFFFF;
-    border: 1px solid #FFFFFF;
     box-sizing: border-box;
-    /*box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);*/
-    border: 1px solid silver;
-    border-top: 0;
+    border: 1px solid #e5e5e5;
     border-radius: 8px;
     padding: 15px 0;
     color: #1d222e;
@@ -149,14 +146,11 @@ input.login_input{
 
 
 /* modal */
-
 .sign-in-modal .modal-dialog {
     margin: 80px auto;
 }
 .sign-in-modal .modal-dialog .nav-pills {
-    /*box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.25);*/
-    border: 1px solid silver;
-    border-top: 0;
+    border: 1px solid #e5e5e5;
     border-radius: 3px;
 }
 .sign-in-modal .modal-dialog .nav-pills .nav-item a {
@@ -168,13 +162,10 @@ input.login_input{
     color: white;
 }
 .auth-form .form-group input {
-    border: 0;
     font-size: 1.2em;
     text-align: center;
     padding: 25px 15px;
-    /*box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.25);*/
-    border: 1px solid silver;
-    border-top: 0;
+    border: 1px solid #e5e5e5;
     margin-top: 15px;
     color: #1d222e;
 }

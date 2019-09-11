@@ -5,6 +5,7 @@
 {% block csscontent %}
     <link rel="stylesheet" href="{% static "css/home.css" %}">
     <link rel="stylesheet" href="{% static "css/custom.css" %}">
+     <link rel="stylesheet" href="{% static "css/how-it-works.css" %}">
 {% endblock %}
 
 {% block content %}
@@ -46,7 +47,7 @@
             <div class="content_container how-it-works pt-5 pb-5">
                 <div class="col-12 text-center mt-md-5 pt-5 pb-5">
                     <h2>How The Subscriptons Work</h2>
-                    <h5 class="text-muted">Change up your travel plans and start saving on flights today!</h5>
+                    <h5 class="text-muted font-weight-normal">Change up your travel plans and start saving on flights today!</h5>
                 </div>
                 <div class="accordion subs-accordion mb-2" id="subsAccordion">
                      <div class="card border mb-4">
@@ -116,7 +117,7 @@
                  </div>
                 <div class="col-12 text-center mt-md-5 pt-5 pb-5">
                      <h2>Subscription Plans</h2>
-                     <h5 class="text-muted">
+                     <h5 class="text-muted font-weight-normal mx-auto" style="max-width: 650px;">
                          Choose between Lite and Pro. If your travel plans change throughout your subscription,
                          feel free to pause and reactivate your account!
                      </h5>
@@ -128,8 +129,9 @@
                             <h2 class="card-title">Wanderift Lite</h2>
                         </div>
                       <div class="card-body">
-                        <h1>$ 369</h1>
-                        <p class="card-text">Per Month / No long term commitment</p>
+                        <h1 class="d-inline mr-1">$ 369</h1> <p class="d-inline"> per month</p>
+                        <div class="divider-15"></div>
+                        <span class="card-text">No long term commitment</span>
                           <ul>
                               <li>3 Tokens (3 One-way flights)</li>
                               <li>1 unsued token rollover</li>
@@ -147,8 +149,9 @@
                             <h2 class="card-title">Wanderift Pro</h2>
                         </div>
                       <div class="card-body">
-                          <h1>$ 459</h1>
-                        <p class="card-text">Per Month / No long term commitment</p>
+                          <h1 class="d-inline mr-1">$ 459</h1> <p class="d-inline"> per month</p>
+                          <div class="divider-15"></div>
+                          <span class="card-text">No long term commitment</span>
                           <ul>
                               <li>4 Tokens (3 One-way flights)</li>
                               <li>2 unsued token rollover</li>
@@ -161,8 +164,8 @@
                   </div>
                 </div>
                 <div class="col-12 text-center mt-md-5 pt-5 pb-5">
-                     <h2>Frequently Asked Questions</h2>
-                     <h5 class="text-muted">Here are a few words about aireline travel as a subscription</h5>
+                     <h2 class="font-weight-normal">Frequently Asked Questions</h2>
+                     <h5 class="text-muted font-weight-normal">Here are a few words about aireline travel as a subscription</h5>
                  </div>
                 <div class="accordion faq-accordion mb-2" id="faqAccordion">
                      <div class="card border mb-4">
@@ -231,41 +234,40 @@
                     </div>
                 </div>
                 <div class="col-12 text-center mt-md-5 pt-5 pb-5">
-                     <h2>Subscriber Testemonials</h2>
-                     <h5 class="text-muted">Here are a few words about aireline travel as a subscription</h5>
+                     <h2 class="font-weight-normal">Subscriber Testemonials</h2>
+                     <h5 class="text-muted font-weight-normal">Here are a few words about aireline travel as a subscription</h5>
                 </div>
                 <div class="row">
-                    <div class="card testemonial col-4 p-3">
-                        <h5>Lorem
+                    <div class="col-12 col-md-4 p-2">
+                        <h5 class="card testemonial p-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit...</h5>
+                    </div>
+                    <div class="col-12 col-md-4 p-2">
+                        <h5 class="card testemonial p-3">Lorem
                             ipsum dolor sit amet, consectetur adipiscing elit...</h5>
                     </div>
-                    <div class="card testemonial col-4 p-3">
-                        <h5>Lorem
+                    <div class="col-12 col-md-4 p-2">
+                        <h5 class="card testemonial p-3">Lorem
                             ipsum dolor sit amet, consectetur adipiscing elit...</h5>
                     </div>
-                    <div class="card testemonial col-4 p-3">
-                        <h5>Lorem
+                    <div class="col-12 col-md-4 p-2">
+                        <h5 class="card testemonial p-3">Lorem
                             ipsum dolor sit amet, consectetur adipiscing elit...</h5>
                     </div>
-                    <div class="card testemonial col-4 p-3">
-                        <h5>Lorem
+                    <div class="col-12 col-md-4 p-2">
+                        <h5 class="card testemonial p-3">Lorem
                             ipsum dolor sit amet, consectetur adipiscing elit...</h5>
                     </div>
-                    <div class="card testemonial col-4 p-3">
-                        <h5>Lorem
-                            ipsum dolor sit amet, consectetur adipiscing elit...</h5>
-                    </div>
-                    <div class="card testemonial col-4 p-3">
-                        <h5>Lorem
+                    <div class="col-12 col-md-4 p-2">
+                        <h5 class="card testemonial p-3">Lorem
                             ipsum dolor sit amet, consectetur adipiscing elit...</h5>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="card text-center background-colored pt-5 pb-5 mt-5 shadow">
+        <div class="card text-center background-colored pt-5 pb-5 mt-5">
             <div class="card-body">
                 <h3 class="card-title">Ready to Get Started?</h3>
-                <h5 class="card-text text-muted">Time to start saving? Click below and start saving on Flights!</h5>
+                <h5 class="card-text mx-auto">Time to start saving? Click below and start saving on Flights!</h5>
                 <div class="divider-30"></div>
                 <a href="{% url "subscription" %}" class="btn primary-button">Get Started</a>
             </div>

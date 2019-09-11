@@ -1,5 +1,5 @@
 .background-colored {
-    background-color: #f8f9fa;
+    background-color: #F7F9FE;
 }
 
 .content-holder {
@@ -75,14 +75,19 @@
 .white-block {
     background-color: white;
 }
+.white-block h4 {
+    padding-top: 10px;
+    font-size: 1.2rem;
+}
 .simple-column {
-    padding: 30px 0;
+    padding: 60px 0 30px 0;
 }
 .simple-column h1 {
     padding: 30px 0;
 }
 .simple-column p {
     font-size: 1.2em;
+    line-height: 1.8;
 }
 .form.card {
     padding: 15px;
@@ -97,22 +102,40 @@
     z-index: 1;
 }
 
-.card.testemonial {
-    background-color: #F7f9ff;
-}
-
-
 .faq-accordion .card .card-header,
 .subs-accordion .card .card-header {
     background-color: #f7f9ff;
 }
 .faq-accordion .card .card-header button,
-.subs-accordion .card .card-header button{
+.subs-accordion .card .card-header button {
     color: black;
     font-weight: bold;
 }
 .faq-accordion .card .card-header button:hover,
 .subs-accordion .card .card-header button:hover {
+    text-decoration: none;
+}
+.faq-accordion .card .card-header button:focus,
+.subs-accordion .card .card-header button:focus {
+    text-decoration: none;
+}
+
+
+.non-subs-accordion .card .card-header,
+.pack-accordion .card .card-header {
+    background-color: white;
+}
+.non-subs-accordion .card .card-header button,
+.pack-accordion .card .card-header button {
+    color: black;
+    font-weight: 600;
+}
+.non-subs-accordion .card .card-header button:hover,
+.pack-accordion .card .card-header button:hover {
+    text-decoration: none;
+}
+.non-subs-accordion .card .card-header button:focus,
+.pack-accordion .card .card-header button:focus {
     text-decoration: none;
 }
 
@@ -122,18 +145,26 @@
     padding: 15px;
     height: 140px;
 }
+.subscription-card .card-header h2 {
+    font-size: 34px;
+}
 .subscription-card .card-body {
     font-weight: bold;
 }
 .subscription-card .card-body ul {
     list-style: none;
-    margin: 60px 0;
+    margin: 40px 0;
 }
 .subscription-card .card-body ul li {
     margin-bottom: 15px;
+    font-weight: 400;
 }
 .subscription-card .card-body .btn {
     margin: 30px 0;
+    height: 40px;
+}
+.subscription-card .card-body p {
+    font-size: 1.5rem;
 }
 
 .main-btn-outline {
