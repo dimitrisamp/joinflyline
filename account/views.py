@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -5,6 +7,7 @@ from django.shortcuts import render, redirect
 import stripe
 
 from account.models import Account
+from subscriptions.models import Subscriptions
 
 stripe.api_key = "sk_test_H2ypPKiLEc14JVbd6OpDIWQv00gPMSrkj1"
 
@@ -44,23 +47,68 @@ def update_profile(request):
         user.profile.market = request.POST["market"]
         user.save()
     messages.success(request, 'Details updated Successfully')
-    return redirect('accounts', user_id)
+    return redirect('accounts')
 
 
 def save_card(request):
     user_id = request.user.id
     if request.method == 'POST':
         user = User.objects.get(pk=user_id)
-        account = Account()
-        account.card_number = request.POST.get('card_number')
-        account.scv = request.POST.get('scv')
-        account.expiry = request.POST.get('expiry')
-        account.country = request.POST.get('country')
-        account.zip = request.POST.get('zip')
-        account.user = user
+
+        card_number = request.POST["card_number"]
+        expiry = request.POST["expiry"]
+        cvc = request.POST["cvc"]
+        country = request.POST["country"]
+        zip = request.POST["zip"]
+
+        card_info = card_token(card_number, expiry, cvc)
+        account = Account.objects.create(card_number=card_number,
+                                         expiry=expiry, cvc=cvc,
+                                         country=country, zip=zip,
+                                         brand=card_info.card.brand,
+                                         last4=card_info.card.last4,
+                                         stripe_id=card_info.card.id,
+                                         token=card_info.id,
+                                         user=user)
         account.save()
+        customer = stripe_customer(user)
+        user.profile.customer_id = customer.id
+        user.profile.save()
         messages.success(request, 'Card details updated Successfully')
-        return redirect('accounts', user_id)
+        return redirect('accounts')
     else:
         messages.error(request, 'Details update failed. Please try again')
-        return redirect('accounts', user_id)
+        return redirect('accounts')
+
+
+def stripe_customer(user):
+    return stripe.Customer.create(
+        email=user.email,
+        name="%s %s" % (user.first_name, user.last_name),
+        source=user.account_set.all()[0].token  # obtained with Stripe.js
+    )
+
+
+def card_token(card_number, expiry, cvc):
+    date_object = datetime.strptime(expiry, "%d/%m/%Y")
+    return stripe.Token.create(
+        card={
+            'number': card_number,
+            'exp_month': date_object.month,
+            'exp_year': date_object.year,
+            'cvc': cvc,
+        })
+
+
+def sub_user(request):
+    user = request.user
+    if request.method == 'POST':
+        if request.POST['subscription'] == 'pro':
+            subscription = Subscriptions.objects.create(plan="pro", tokens=4, price=459, user=user)
+            subscription.save()
+            messages.success(request, "You subscribed to pro plan successfully")
+        elif request.POST['subscription'] == 'lite':
+            subscription = Subscriptions.objects.create(plan="lite", tokens=3, price=369, user=user)
+            subscription.save()
+            messages.success(request, "You subscribed to lite plan successfully")
+    return redirect(account_view)
