@@ -25,7 +25,6 @@ const app = new Vue({
                 url: 'http://aviation-edge.com/v2/public/autocomplete?key=140940-4e6372&city=' + app.city,
                 success: function (data) {
                     if (data) {
-                        console.log(data);
                        data = JSON.parse(data).cities;
                         //data = JSON.parse(data).airportsByCities;
                         app.searchResultPlaces = data;
