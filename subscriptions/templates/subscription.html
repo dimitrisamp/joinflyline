@@ -7,30 +7,25 @@
 {% endblock %}
 
 {% block content %}
-    <section
-            style="padding-top: 15px; background-color: white; box-shadow: 0 2px 4px whitesmoke; border-bottom: 1px solid whitesmoke;">
+    <section class="navbar-section">
         {% include "_includes/navbar.html" %}
     </section>
     <section class="background-colored">
-        <div class="col-12 text-center mt-2 pt-5 pb-4">
+        <div class="col-12 text-center pt-5 pb-4">
             <h1>Subscribe to Wanderift</h1>
             <h4 class="text-muted">Start saving on your travel today</h4>
         </div>
 
-        {#        <div class="col-12 text-center mt-5 pt-5 pb-5">#}
-        {#            <h2>How The Subscriptons Work</h2>#}
-        {#            <h5 class="text-muted">Change up your travel plans and start saving on flights today!</h5>#}
-        {#        </div>#}
-
         <div class="container mt-5">
             <div class="row">
+
                 <!-- left side -->
                 <div class="col-12 col-md-6 mb-5">
-                    <div class="card shadow">
+                    <div class="card shadow p-3">
                         <!-- 1 -->
 
                         <div class="col-12 mx-auto mb-4">
-                            <h4 class="card-title pt-4 mb-4">1. Choose a Plan</h4>
+                            <h4 class="card-title pt-4 mb-5">1. Choose a Plan</h4>
                             <div class="row pl-3 pr-3">
                                 <div class="col-6 p-3 cursor-pointer card offer-card active" id="lite"
                                      onclick="$('#liteButton').trigger('click')">
@@ -55,9 +50,9 @@
                         <!-- 2 -->
                         <div class="col-12">
                             <h4 class="card-title pt-3 mb-1">2. Add Your Traveler Info</h4>
-                            <h5 class="mb-4">
-                                or <span class="text-lightblue cursor-pointer" data-toggle="modal"
-                                         data-target="#signInOptionsModal">sign in</span> to existing account
+                            <h5 class="mb-3">
+                                or <a href="#" class="text-primary cursor-pointer" data-toggle="modal"
+                                         data-target="#signInOptionsModal">sign in</a> to existing account
                             </h5>
                             {% if user.is_authenticated %}
                                 <div class="text-center mt-4 mb-4">
@@ -68,36 +63,36 @@
                                     {% csrf_token %}
                                     <div class="row">
                                         <div class="col-6 mb-2">
-                                            <h6>Title</h6>
-                                            <input type="text" name="title">
+                                            <label>Title</label>
+                                            <input class="form-control" type="text" name="title">
                                         </div>
                                         <div class="col-6 mb-2">
-                                            <h6>First Name</h6>
-                                            <input type="text" name="first_name">
+                                            <label>First Name</label>
+                                            <input class="form-control" type="text" name="first_name">
                                         </div>
                                         <div class="col-6 mb-2">
-                                            <h6>Last Name</h6>
-                                            <input type="text" name="last_name">
+                                            <label>Last Name</label>
+                                            <input class="form-control" type="text" name="last_name">
                                         </div>
                                         <div class="col-6 mb-2">
-                                            <h6>Gender</h6>
-                                            <input type="text" name="gender">
+                                            <label>Gender</label>
+                                            <input class="form-control" type="text" name="gender">
                                         </div>
                                         <div class="col-6 mb-2">
-                                            <h6>Date of Birth</h6>
-                                            <input type="text" name="dob" id="dob">
+                                            <label>Date of Birth</label>
+                                            <input class="form-control" type="text" name="dob" id="dob">
                                         </div>
                                         <div class="col-6 mb-2">
-                                            <h6>Phone Number</h6>
-                                            <input type="text" name="phone_number">
+                                            <label>Phone Number</label>
+                                            <input class="form-control" type="text" name="phone_number">
                                         </div>
                                         <div class="col-6 mb-2">
-                                            <h6>Email</h6>
-                                            <input type="email" name="email">
+                                            <label>Email</label>
+                                            <input class="form-control" type="email" name="email">
                                         </div>
                                         <div class="col-6 mb-2">
-                                            <h6>Password</h6>
-                                            <input type="password" name="password">
+                                            <label>Password</label>
+                                            <input class="form-control" type="password" name="password">
                                         </div>
                                     </div>
 
@@ -105,24 +100,24 @@
                                     <h4 class="card-title mt-5 mb-4">3. Enter Payment Details</h4>
                                     <div class="row">
                                         <div class="col-6 mb-2">
-                                            <h6>Credit Card Number</h6>
-                                            <input type="text" name="card_number" value="4242424242424242">
+                                            <label>Credit Card Number</label>
+                                            <input class="form-control" type="text" name="card_number" value="4242424242424242">
                                         </div>
                                         <div class="col-6 mb-2">
-                                            <h6>Security Code</h6>
-                                            <input type="number" name="cvc" value="123">
+                                            <label>Security Code</label>
+                                            <input class="form-control" type="number" name="cvc" value="123">
                                         </div>
                                         <div class="col-6 mb-2">
-                                            <h6>Expiration Date</h6>
-                                            <input type="text" name="expiry" id="expiry" value="1/12/2020">
+                                            <label>Expiration Date</label>
+                                            <input class="form-control" type="text" name="expiry" id="expiry" value="1/12/2020">
                                         </div>
                                         <div class="col-6 mb-2">
-                                            <h6>Country</h6>
-                                            <input type="text" name="country">
+                                            <label>Country</label>
+                                            <input class="form-control" type="text" name="country">
                                         </div>
                                         <div class="col-6 mb-2">
-                                            <h6>Billing Zip</h6>
-                                            <input type="text" name="zip">
+                                            <label>Billing Zip</label>
+                                            <input class="form-control" type="text" name="zip">
                                         </div>
                                     </div>
 
@@ -148,9 +143,9 @@
                         <!-- lite or pro -->
                         <div class="role col-12">
                             <h4 class="title mb-4">What is Wanderift Lite or Pro</h4>
-                            <p>Saving on flights through tokens</p>
-                            <p>Always pay the same price for your flights</p>
-                            <p>Share or send your tokens with anyone</p>
+                            <p class="pl-4">Saving on flights through tokens</p>
+                            <p class="pl-4">Always pay the same price for your flights</p>
+                            <p class="pl-4">Share or send your tokens with anyone</p>
                         </div>
 
                         <!-- summary -->
@@ -203,9 +198,9 @@
                         <!-- faq -->
                         <div class="card card-sm p-4 mb-4 shadow">
                             <h4 class="card-title">Still have some questions?</h4>
-                            <p>No worries! Send us an email at</p>
-                            <p>questions@wanderift.com, or click the</p>
-                            <p>button below to read our FAQ's</p>
+                            <p class="pl-4">No worries! Send us an email at</p>
+                            <p class="pl-4">questions@wanderift.com, or click the</p>
+                            <p class="pl-4">button below to read our FAQ's</p>
 
                             <div class="text-center mb-4 mt-4">
                                 <button class="search_btn">Frequently Asked Questions</button>
@@ -213,6 +208,7 @@
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
