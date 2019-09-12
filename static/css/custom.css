@@ -5,6 +5,9 @@
 .content-holder {
     padding: 30px 15px 50px 15px;
 }
+.content-holder.results-page-holder {
+    padding: 20px 15px;
+}
 
 .primary-button {
     background-color: #00B7FF;
@@ -15,6 +18,7 @@
     background-color: white;
     border: 1px solid rgba(0,0,0,0.1);
     border-radius: 4px;
+    margin-bottom: 30px;
 }
 .result-item .result-block {
     cursor: pointer;
@@ -23,8 +27,14 @@
     min-width: 110px;
 }
 
-.payment-flight-info {
-    background-color: white;
+button.search_btn {
+    background: #00B7FF;
+    border-radius: 4px;
+    font-weight: bold;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+    border: none;
+    color: #fff;
+    padding: 10px 40px;
 }
 
 .search_btn.book-btn {
@@ -37,10 +47,55 @@
 }
 
 
-/*HELPERS*/
-.no-bg-color {
-    background-color: transparent;
+/****************** Navigation ***********/
+nav {
+    position: relative;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    padding-right: 15px;
 }
+.navbar-brand {
+    position: absolute;
+    left: 15px;
+    margin-left: 10px !important;
+}
+.nav_btn_link {
+    position: absolute;
+    left: 30px;
+    top: 5px;
+    padding: 0;
+    display: none;
+    box-shadow: 0 2px 4px whitesmoke;
+}
+.nav_btn_link .nav-button-logout {
+    background-color: white;
+    border: 1px solid #2e6da4;
+    padding: 4px 30px;
+    border-radius: 3px;
+
+}
+.nav_btn_link.get_started_btn {
+    top: 0;
+}
+
+.navbar-light .navbar-nav a.nav-link {
+    color: #1d222e;
+}
+
+@media screen and (min-width: 992px) {
+  .navbar-brand {
+        left: 50%;
+        margin-left: -70px !important;
+    }
+    .nav_btn_link {
+        display: block;
+    }
+    .slider-holder {
+        display: inline-block;
+    }
+}
+
+
+/*HELPERS*/
 .divider-15,
 .divider-30 {
     height: 0;
@@ -82,72 +137,11 @@
     padding: 30px 0;
 }
 .simple-column p {
-    font-size: 1.2em;
+    font-size: 1.3em;
 }
 .form.card {
     padding: 15px;
 }
-.cursor-pointer {
-    cursor: pointer;
-}
-
-.offer-card.active {
-    border: 1px solid #00b7ff;
-    box-shadow: 0 2px 6px rgba(0, 183, 255, 0.4);
-    z-index: 1;
-}
-
-.card.testemonial {
-    background-color: #F7f9ff;
-}
-
-
-.faq-accordion .card .card-header,
-.subs-accordion .card .card-header {
-    background-color: #f7f9ff;
-}
-.faq-accordion .card .card-header button,
-.subs-accordion .card .card-header button{
-    color: black;
-    font-weight: bold;
-}
-.faq-accordion .card .card-header button:hover,
-.subs-accordion .card .card-header button:hover {
-    text-decoration: none;
-}
-
-.subscription-card .card-header {
-    background-color: #00b7ff;
-    color: white;
-    padding: 15px;
-    height: 140px;
-}
-.subscription-card .card-body {
-    font-weight: bold;
-}
-.subscription-card .card-body ul {
-    list-style: none;
-    margin: 60px 0;
-}
-.subscription-card .card-body ul li {
-    margin-bottom: 15px;
-}
-.subscription-card .card-body .btn {
-    margin: 30px 0;
-}
-
-.main-btn-outline {
-    background-color: white;
-    border: 1px solid #00b7ff;
-    color: #00b7ff;
-    font-weight: bold;
-}
-.main-btn-outline:hover {
-    background-color: #00b7ff;
-    border: 1px solid #00b7ff;
-}
-
-
 .team-grid-item {
     margin: 30px 0;
     text-align: center;
@@ -222,9 +216,6 @@
     font-size: 1.05rem;
     margin-left: 5px;
     margin-top: 14px;
-    font-family: karla;
-    font-weight:bold;
-    opacity: .5;
 }
 .flexed-search-bar .flexed-search-item img.icon_repeat {
     position: absolute;
@@ -238,10 +229,70 @@
     padding: 13px 30px;
 }
 
-.trip-item {
-    min-height: 160px;
-    font-size: 1.6em;
-    padding-top: 30px;
+/* Airline logo placement */
+.airline-logo-holder {
+    width: 50px;
+    min-width: 50px;
+    height: 50px;
+}
+
+.airline-logo-holder[data-stopnum="4"],
+.airline-logo-holder[data-stopnum="3"] {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+.airline-logo-holder[data-stopnum="4"] .img-airline,
+.airline-logo-holder[data-stopnum="3"] .img-airline  {
+    display: flex; 
+    flex-basis: calc(50%);  
+    justify-content: center;
+    flex-direction: column;
+    width: 48%;
+    height: 48%;
+    padding: 1%;
+}
+.airline-logo-holder[data-stopnum="4"] .img-airline .airline,
+.airline-logo-holder[data-stopnum="3"] .img-airline .airline {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    text-align: center;
+    width: 100%;
+}
+.airline-logo-holder[data-stopnum="4"] img,
+.airline-logo-holder[data-stopnum="3"] img  {
+    width: 100%;
+}
+
+.airline-logo-holder[data-stopnum="2"] {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+.airline-logo-holder[data-stopnum="2"] .img-airline {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 48%;
+}
+.airline-logo-holder[data-stopnum="2"] .img-airline .airline {
+    width: 100%;
+    text-align: right;
+}
+.airline-logo-holder[data-stopnum="2"] .img-airline:first-child  .airline {
+    text-align: left;
+}
+.airline-logo-holder[data-stopnum="2"] img  {
+    width: 48%;
+}
+
+.airline-logo-holder[data-stopnum="1"] .img-airline  {
+    align-self: center;
+    margin: 0 auto;
+}
+.airline-logo-holder[data-stopnum="1"] img  {
+    height: 40px;
 }
 
 /*SMALL DEVICES*/
@@ -290,9 +341,10 @@
         padding-top: 15px;
     }
     .search-column-dropdown {
-        /*margin-left: 5px;*/
-        /*margin-right: 5px;*/
         padding-left: 20px;
+    }
+    .search-column-dropdown input {
+        font-weight: 400;
     }
 
 }

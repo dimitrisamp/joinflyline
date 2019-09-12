@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 
 from account.models import Account
+from account.views import account_view
 from payments.views import sub_payment
 from subscriptions.models import Subscriptions
 import stripe
@@ -107,3 +108,17 @@ def card_token(card_number, expiry, cvc):
             'exp_year': date_object.year,
             'cvc': cvc,
         })
+
+
+def plan_subscription(request, plan):
+    user = request.user
+    if plan == 'pro':
+        subscription = Subscriptions.objects.update_or_create(plan="pro", tokens=4, price=459, user=user)
+        subscription.save()
+        messages.success(request, "You subscribed to pro plan successfully")
+    elif plan == 'lite':
+        subscription = Subscriptions.objects.update_or_create(plan="lite", tokens=3, price=369, user=user)
+        subscription.save()
+        messages.success(request, "You subscribed to lite plan successfully")
+
+    return redirect(account_view)

@@ -233,11 +233,13 @@
                                                         <h4 class="bold m-0">Wanderift Lite $369</h4>
                                                     </div>
                                                     <div class="col-sm-5">
-                                                        {% if user.subscriptions.name == 'lite' %}
+                                                        {% ifequal user.subscriptions.plan 'lite' %}
                                                             <button class="btn btn-1 bold">Current Plan</button>
                                                         {% else %}
-                                                            <button class="btn bg-lightblue bold">Subscribe</button>
-                                                        {% endif %}
+                                                            <a href="{% url "plan" 'lite' %}">
+                                                                <button class="btn bg-info bold">Subscribe</button>
+                                                            </a>
+                                                        {% endifequal %}
                                                     </div>
                                                 </div>
                                                 <div class="row mt-3">
@@ -252,12 +254,13 @@
                                                         <h4 class="bold m-0">Wanderift Pro $459</h4>
                                                     </div>
                                                     <div class="col-sm-5">
-                                                    {{ user.subscriptions }}
-                                                        {% if user.subscriptions.name == 'pro' %}
+                                                        {% ifequal user.subscriptions.plan 'pro' %}
                                                             <button class="btn btn-1 bold">Current Plan</button>
                                                         {% else %}
-                                                            <button class="btn bg-lightblue bold">Subscribe</button>
-                                                        {% endif %}
+                                                            <a href="{% url "plan" 'pro' %}">
+                                                                <button class="btn bg-info bold">Subscribe</button>
+                                                            </a>
+                                                        {% endifequal %}
                                                     </div>
                                                 </div>
                                                 <div class="row mt-3">
