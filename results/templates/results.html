@@ -279,7 +279,8 @@
                         {% for flight in data.data %}
                             <div class="result-item mb-2 shadow w-100">
                                 <div class="result-block w-100 d-flex justify-content-start pt-3 pb-3"
-                                     data-toggle="collapse" data-target="#result-item1">
+                                     data-toggle="collapse"
+                                     data-target="#result-item{{ flight.local_arrival | iso_date | date:"his" }}">
                                     <div class="price-block d-flex align-items-center pl-3 pr-3">
                                         <div>
                                             <h5>$ {{ flight.price }}</h5>
@@ -289,7 +290,7 @@
                                     <div class="flight-info-block d-flex flex-column w-100">
                                         <div class="departure-row d-flex justify-content-start">
                                             <div class="airline-logo-holder d-flex"
-                                                 data-stopnum="{{ flight.route|length }}">
+                                                 data-stopnum="{{ flight.id }}">
                                                 <div class="img-airline">
                                                     <div class="airline">
                                                         <img src="{% static "images/american_airlines_logo.png" %}"
@@ -344,13 +345,12 @@
                                             </div>
                                             <div class="d-flex justify-content-around w-100">
                                                 <div class="">
-                                                    {% with route_length=flight.route|length|add:"-1" %}
-                                                        {{ route_length }}
-                                                        <label class="mb-0"><strong>9:15 -
-                                                            {{ flight.route.route_length}}</strong></label>
-                                                        <br>
-                                                        <span class="small text-muted">
-                                                    {% endwith %}
+
+                                                    <label class="mb-0"><strong>{{ flight.utc_arrival | iso_date | date:"P" }}
+                                                        -
+                                                        {{ flight.utc_departure | iso_date | date:"P" }}</strong></label>
+                                                    <br>
+                                                    <span class="small text-muted">
                                                     {{ flight.cityTo }}
                                                     <i class="fa fa-long-arrow-right mr-1 ml-1"></i>
                                                     {{ flight.cityFrom }}
@@ -368,354 +368,131 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="result-details collapse" id="result-item1">
+
+                                <div class="result-details collapse"
+                                     id="result-item{{ flight.local_arrival | iso_date | date:"his" }}">
                                     <hr>
-                                    <div class="route-box">
-                                        <div class="d-flex justify-content-between p-0 pr-2 pl-2">
-                                            <h5>To Austin</h5>
-                                            <p class="mb-0"><strong class="text-muted">0h 55m</strong></p>
-                                        </div>
-                                        <div class="stop-box p-2">
-                                            <div class="card m-0" style="border: 0;">
-                                                <div class="card-header p-1" style="border: 1px solid silver;">
-                                                    <p class="mb-0 pl-1 small">
-                                                        <i class="fa fa-calendar mr-2 text-muted"></i>
-                                                        Thu 15 Aug
-                                                    </p>
-                                                </div>
-                                                <div class="card-body p-2">
-                                                    <div class="row">
-                                                        <div class="col-sm-6">
-                                                            <p class="mb-0">
-                                                                <strong class="text-muted">
-                                                                    <i class="fa fa-map-marker mr-2 text-muted text-primary"
-                                                                       style="margin-left: 2px;"></i>
-                                                                    Dallas Love Field
-                                                                </strong>
-                                                            </p>
-                                                        </div>
-                                                        <div class="col-sm-6 text-right">
-                                                            <p class="text-muted mb-0 tex">DAL</p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-sm-6">
-                                                            <p>
-                                                                <i class="fa fa-clock-o mr-2 text-muted text-primary"></i>
-                                                                18:36
-                                                            </p>
-                                                        </div>
-                                                        <div class="col-sm-6 text-right">
-                                                            <span class="text-muted">Departure</span>
-                                                        </div>
-                                                    </div>
-                                                    <!-- <div class="row">
-                                                        <div class="col-12">
-                                                            <p class="small text-muted ml-4">Stays 1 day in Austin</p>
-                                                        </div>
-                                                    </div> -->
-                                                    <div class="d-flex align-items-center">
-                                                        <i class="fa fa-plane mr-2 text-muted w-10 text-primary"></i>
-                                                        <div class="card w-100" data-toggle="collapse"
-                                                             data-target="#airplane3">
-                                                            <div class="card-body p-0">
-                                                                <div class="d-flex justify-content-between">
-                                                                    <div class="pt-2 pl-5">
-                                                                        <img src="{% static "images/american_airlines_logo.png" %}"
-                                                                             alt="airline" height="20px">
-                                                                    </div>
-                                                                    <div class="d-inline-flex justify-content-between">
-                                                                        <div class="airlines-labels">
-                                                                            <label class="mb-0">Airlines</label>
-                                                                            <br>
-                                                                            <label class="small text-grey">Airline</label>
-                                                                        </div>
-                                                                        <!-- <label class="text-grey pt-2">Thy 15 Aug</label> -->
-                                                                    </div>
-                                                                    <div class="col-1 text-right pt-2">
-                                                                        <img src="{% static "images/arrow.png" %}"
-                                                                             style="width: 10px; height: 5px;">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="card-footer collapse" id="airplane3">
-                                                                <h5 class="text-grey">Flight info</h5>
-                                                                <div class="d-inline-flex justify-content-between w-100 pl-2">
-                                                                    <label>Flight No.</label>
-                                                                    <label class="text-grey">143
-                                                                    </label>
-                                                                </div>
-                                                                <div class="d-inline-flex justify-content-between w-100 pl-2">
-                                                                    <label>Seats Remaining</label>
-                                                                    <label class="text-grey">12</label>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="row mt-3">
-                                                        <div class="col-sm-6">
-                                                            <p class="mb-0">
-                                                                <strong class="text-muted">
-                                                                    <i class="fa fa-map-marker mr-2 text-muted text-primary"
-                                                                       style="margin-left: 2px;"></i>
-                                                                    Some Airline Austin - Dallas
-                                                                </strong>
-                                                            </p>
-                                                        </div>
-                                                        <div class="col-sm-6 text-right">
-                                                            <p class="text-muted mb-0">AUS</p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-sm-6">
-                                                            <p>
-                                                                <i class="fa fa-clock-o mr-2 text-muted text-primary"></i>
-                                                                21:45
-                                                            </p>
-                                                        </div>
-                                                        <div class="col-sm-6 text-right">
-                                                            <span class="text-muted">Arrival</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-12">
-                                                            <p class="small text-muted ml-4">Stays 1 day in Dallas</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                    {% for route in flight.route %}
+                                        <div class="route-box">
+                                            <div class="d-flex justify-content-between p-0 pr-2 pl-2">
+                                                <h5>To {{ route.cityTo }}</h5>
+                                                <p class="mb-0"><strong class="text-muted">0h 55m</strong></p>
                                             </div>
-                                        </div> <!-- Stop box end-->
-                                    </div> <!-- Route box end-->
-
-                                    <div class="route-box">
-                                        <div class="d-flex justify-content-between p-0 pr-2 pl-2">
-                                            <h5>To Dallas</h5>
-                                            <p class="mb-0"><strong class="text-muted">0h 55m</strong></p>
-                                        </div>
-                                        <div class="stop-box p-2">
-                                            <div class="card m-0" style="border: 0;">
-                                                <div class="card-header p-1" style="border: 1px solid silver;">
-                                                    <p class="mb-0 pl-1 small">
-                                                        <i class="fa fa-calendar mr-2 text-muted "></i>
-                                                        Thu 15 Aug
-                                                    </p>
-                                                </div>
-                                                <div class="card-body p-2">
-                                                    <div class="row">
-                                                        <div class="col-sm-6">
-                                                            <p class="mb-0">
-                                                                <strong class="text-muted">
-                                                                    <i class="fa fa-map-marker mr-2 text-muted text-primary"
-                                                                       style="margin-left: 2px;"></i>
-                                                                    Dallas Love Field
-                                                                </strong>
-                                                            </p>
-                                                        </div>
-                                                        <div class="col-sm-6 text-right">
-                                                            <p class="text-muted mb-0 tex">DAL</p>
-                                                        </div>
+                                            <div class="stop-box p-2">
+                                                <div class="card m-0" style="border: 0;">
+                                                    <div class="card-header p-1" style="border: 1px solid silver;">
+                                                        <p class="mb-0 pl-1 small">
+                                                            <i class="fa fa-calendar mr-2 text-muted"></i>
+                                                            {{ flight.utc_departure | iso_date | date:"D j M" }}
+                                                        </p>
                                                     </div>
-                                                    <div class="row">
-                                                        <div class="col-sm-6">
-                                                            <p>
-                                                                <i class="fa fa-clock-o mr-2 text-muted text-primary"></i>
-                                                                18:36
-                                                            </p>
+                                                    <div class="card-body p-2">
+                                                        <div class="row">
+                                                            <div class="col-sm-6">
+                                                                <p class="mb-0">
+                                                                    <strong class="text-muted">
+                                                                        <i class="fa fa-map-marker mr-2 text-muted text-primary"
+                                                                           style="margin-left: 2px;"></i>
+                                                                        Dallas Love Field
+                                                                    </strong>
+                                                                </p>
+                                                            </div>
+                                                            <div class="col-sm-6 text-right">
+                                                                <p class="text-muted mb-0 tex">{{ route.flyFrom }}</p>
+                                                            </div>
                                                         </div>
-                                                        <div class="col-sm-6 text-right">
-                                                            <span class="text-muted">Departure</span>
+                                                        <div class="row">
+                                                            <div class="col-sm-6">
+                                                                <p>
+                                                                    <i class="fa fa-clock-o mr-2 text-muted text-primary"></i>
+                                                                    {{ flight.utc_departure | iso_date | date:"P" }}
+                                                                </p>
+                                                            </div>
+                                                            <div class="col-sm-6 text-right">
+                                                                <span class="text-muted">Departure</span>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <!-- <div class="row">
-                                                        <div class="col-12">
-                                                            <p class="small text-muted ml-4">Stays 1 day in Austin</p>
-                                                        </div>
-                                                    </div> -->
-                                                    <div class="d-flex align-items-center">
-                                                        <i class="fa fa-plane mr-2 text-muted w-10 text-primary"></i>
-                                                        <div class="card w-100" data-toggle="collapse"
-                                                             data-target="#airplane3">
-                                                            <div class="card-body p-0">
-                                                                <div class="d-flex justify-content-between">
-                                                                    <div class="pt-2 pl-5">
-                                                                        <img src="{% static "images/american_airlines_logo.png" %}"
-                                                                             alt="airline" height="20px">
-                                                                    </div>
-                                                                    <div class="d-inline-flex justify-content-between">
-                                                                        <div class="airlines-labels">
-                                                                            <label class="mb-0">Airlines</label>
-                                                                            <br>
-                                                                            <label class="small text-grey">Airline</label>
+                                                        <!-- <div class="row">
+                                                            <div class="col-12">
+                                                                <p class="small text-muted ml-4">Stays 1 day in Austin</p>
+                                                            </div>
+                                                        </div> -->
+                                                        <div class="d-flex align-items-center">
+                                                            <i class="fa fa-plane mr-2 text-muted w-10 text-primary"></i>
+                                                            <div class="card w-100" data-toggle="collapse"
+                                                                 data-target="#airplane3">
+                                                                <div class="card-body p-0">
+                                                                    <div class="d-flex justify-content-between">
+                                                                        <div class="pt-2 pl-5">
+                                                                            <img src="{% static "images/american_airlines_logo.png" %}"
+                                                                                 alt="airline" height="20px">
                                                                         </div>
-                                                                        <!-- <label class="text-grey pt-2">Thy 15 Aug</label> -->
-                                                                    </div>
-                                                                    <div class="col-1 text-right pt-2">
-                                                                        <img src="{% static "images/arrow.png" %}"
-                                                                             style="width: 10px; height: 5px;">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="card-footer collapse" id="airplane3">
-                                                                <h5 class="text-grey">Flight info</h5>
-                                                                <div class="d-inline-flex justify-content-between w-100 pl-2">
-                                                                    <label>Flight No.</label>
-                                                                    <label class="text-grey">143
-                                                                    </label>
-                                                                </div>
-                                                                <div class="d-inline-flex justify-content-between w-100 pl-2">
-                                                                    <label>Seats Remaining</label>
-                                                                    <label class="text-grey">12</label>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="row mt-3">
-                                                        <div class="col-sm-6">
-                                                            <p class="mb-0">
-                                                                <strong class="text-muted">
-                                                                    <i class="fa fa-map-marker mr-2 text-muted text-primary"
-                                                                       style="margin-left: 2px;"></i>
-                                                                    Some Airline Austin - Dallas
-                                                                </strong>
-                                                            </p>
-                                                        </div>
-                                                        <div class="col-sm-6 text-right">
-                                                            <p class="text-muted mb-0">AUS</p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-sm-6">
-                                                            <p>
-                                                                <i class="fa fa-clock-o mr-2 text-muted text-primary"></i>
-                                                                21:45
-                                                            </p>
-                                                        </div>
-                                                        <div class="col-sm-6 text-right">
-                                                            <span class="text-muted">Arrival</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-12">
-                                                            <p class="small text-muted ml-4">Stays 1 day in Dallas</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div> <!-- Stop box end-->
-                                        <div class="stop-box p-2">
-                                            <div class="card m-0" style="border: 0;">
-                                                <div class="card-header p-1" style="border: 1px solid silver;">
-                                                    <p class="mb-0 pl-1 small">
-                                                        <i class="fa fa-calendar mr-2 text-muted "></i>
-                                                        Thu 15 Aug
-                                                    </p>
-                                                </div>
-                                                <div class="card-body p-2">
-                                                    <div class="row">
-                                                        <div class="col-sm-6">
-                                                            <p class="mb-0">
-                                                                <strong class="text-muted">
-                                                                    <i class="fa fa-map-marker mr-2 text-muted text-primary"
-                                                                       style="margin-left: 2px;"></i>
-                                                                    Dallas Love Field
-                                                                </strong>
-                                                            </p>
-                                                        </div>
-                                                        <div class="col-sm-6 text-right">
-                                                            <p class="text-muted mb-0 tex">DAL</p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-sm-6">
-                                                            <p>
-                                                                <i class="fa fa-clock-o mr-2 text-muted text-primary"></i>
-                                                                18:36
-                                                            </p>
-                                                        </div>
-                                                        <div class="col-sm-6 text-right">
-                                                            <span class="text-muted">Departure</span>
-                                                        </div>
-                                                    </div>
-                                                    <!-- <div class="row">
-                                                        <div class="col-12">
-                                                            <p class="small text-muted ml-4">Stays 1 day in Austin</p>
-                                                        </div>
-                                                    </div> -->
-                                                    <div class="d-flex align-items-center">
-                                                        <i class="fa fa-plane mr-2 text-muted w-10 text-primary"></i>
-                                                        <div class="card w-100" data-toggle="collapse"
-                                                             data-target="#airplane3">
-                                                            <div class="card-body p-0">
-                                                                <div class="d-flex justify-content-between">
-                                                                    <div class="pt-2 pl-5">
-                                                                        <img src="{% static "images/american_airlines_logo.png" %}"
-                                                                             alt="airline" height="20px">
-                                                                    </div>
-                                                                    <div class="d-inline-flex justify-content-between">
-                                                                        <div class="airlines-labels">
-                                                                            <label class="mb-0">Airlines</label>
-                                                                            <br>
-                                                                            <label class="small text-grey">Airline</label>
+                                                                        <div class="d-inline-flex justify-content-between">
+                                                                            <div class="airlines-labels">
+                                                                                <label class="mb-0">Airlines</label>
+                                                                                <br>
+                                                                                <label class="small text-grey">Airline</label>
+                                                                            </div>
+                                                                            <!-- <label class="text-grey pt-2">Thy 15 Aug</label> -->
                                                                         </div>
-                                                                        <!-- <label class="text-grey pt-2">Thy 15 Aug</label> -->
-                                                                    </div>
-                                                                    <div class="col-1 text-right pt-2">
-                                                                        <img src="{% static "images/arrow.png" %}"
-                                                                             style="width: 10px; height: 5px;">
+                                                                        <div class="col-1 text-right pt-2">
+                                                                            <img src="{% static "images/arrow.png" %}"
+                                                                                 style="width: 10px; height: 5px;">
+                                                                        </div>
                                                                     </div>
                                                                 </div>
-                                                            </div>
-                                                            <div class="card-footer collapse" id="airplane3">
-                                                                <h5 class="text-grey">Flight info</h5>
-                                                                <div class="d-inline-flex justify-content-between w-100 pl-2">
-                                                                    <label>Flight No.</label>
-                                                                    <label class="text-grey">143
-                                                                    </label>
-                                                                </div>
-                                                                <div class="d-inline-flex justify-content-between w-100 pl-2">
-                                                                    <label>Seats Remaining</label>
-                                                                    <label class="text-grey">12</label>
+                                                                <div class="card-footer collapse" id="airplane3">
+                                                                    <h5 class="text-grey">Flight info</h5>
+                                                                    <div class="d-inline-flex justify-content-between w-100 pl-2">
+                                                                        <label>Flight No.</label>
+                                                                        <label class="text-grey">{{ route.flight_no }}
+                                                                        </label>
+                                                                    </div>
+                                                                    <div class="d-inline-flex justify-content-between w-100 pl-2">
+                                                                        <label>Seats Remaining</label>
+                                                                        <label class="text-grey">{{ flight.availability.seats }}</label>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>
 
-                                                    <div class="row mt-3">
-                                                        <div class="col-sm-6">
-                                                            <p class="mb-0">
-                                                                <strong class="text-muted">
-                                                                    <i class="fa fa-map-marker mr-2 text-muted text-primary"
-                                                                       style="margin-left: 2px;"></i>
-                                                                    Some Airline Austin - Dallas
-                                                                </strong>
-                                                            </p>
+                                                        <div class="row mt-3">
+                                                            <div class="col-sm-6">
+                                                                <p class="mb-0">
+                                                                    <strong class="text-muted">
+                                                                        <i class="fa fa-map-marker mr-2 text-muted text-primary"
+                                                                           style="margin-left: 2px;"></i>
+                                                                        {{ route.airline }} Airline {{ route.cityFrom }}
+                                                                        - {{ route.cityTo }}
+                                                                    </strong>
+                                                                </p>
+                                                            </div>
+                                                            <div class="col-sm-6 text-right">
+                                                                <p class="text-muted mb-0">{{ route.flyTo }}</p>
+                                                            </div>
                                                         </div>
-                                                        <div class="col-sm-6 text-right">
-                                                            <p class="text-muted mb-0">AUS</p>
+                                                        <div class="row">
+                                                            <div class="col-sm-6">
+                                                                <p>
+                                                                    <i class="fa fa-clock-o mr-2 text-muted text-primary"></i>
+                                                                    {{ flight.utc_arrival | iso_date | date:"P" }}
+                                                                </p>
+                                                            </div>
+                                                            <div class="col-sm-6 text-right">
+                                                                <span class="text-muted">Arrival</span>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-sm-6">
-                                                            <p>
-                                                                <i class="fa fa-clock-o mr-2 text-muted text-primary"></i>
-                                                                21:45
-                                                            </p>
-                                                        </div>
-                                                        <div class="col-sm-6 text-right">
-                                                            <span class="text-muted">Arrival</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-12">
-                                                            <p class="small text-muted ml-4">Stays 1 day in Dallas</p>
+                                                        <div class="row">
+                                                            <div class="col-12">
+                                                                {#                                                                <p class="small text-muted ml-4">Stays 1 day in#}
+                                                                {#                                                                    Dallas</p>#}
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </div> <!-- Stop box end-->
-                                    </div> <!-- Route box end-->
+                                            </div> <!-- Stop box end-->
+                                        </div> <!-- Route box end-->
+                                    {% endfor %}
                                     <div class="search-results-buttons text-right p-2">
                                         <button class="search_btn">Subscribe and save $43</button>
                                         <a href="{% url 'retail' flight.booking_token %}">
