@@ -38,7 +38,7 @@ def partners_view(request):
 
 def how_it_works_view(request):
     context = {
-        'title': 'Wanderift Partners'
+        'title': 'How it Works'
     }
     return render(request, 'how-it-works.html', context)
 
