@@ -216,7 +216,6 @@ img.img_content {
     height: 200px;
     background: #fff;
     margin-bottom: 20px;
-    box-shadow: 0px 2px 11px rgba(0, 0, 0, 0.5);
     border-radius: 4px;
 }
 .row.justify-content-start.sec_two_box {
