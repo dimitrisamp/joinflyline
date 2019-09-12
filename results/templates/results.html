@@ -494,9 +494,12 @@
                                         </div> <!-- Route box end-->
                                     {% endfor %}
                                     <div class="search-results-buttons text-right p-2">
-                                        <button class="search_btn">Subscribe and save $43</button>
+                                        <a href="{% url 'subscription' %}">
+                                            <button class="search_btn">Subscribe and save
+                                                ${{ flight.price |add:"-459" }}</button>
+                                        </a>
                                         <a href="{% url 'retail' flight.booking_token %}">
-                                            <button class="search_btn book-btn"> Book for $431</button>
+                                            <button class="search_btn book-btn"> Book for ${{ flight.price }}</button>
                                         </a>
                                     </div>
                                 </div>
