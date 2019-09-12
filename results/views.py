@@ -1,3 +1,6 @@
+import json
+from json import load
+
 import requests
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
@@ -27,11 +30,19 @@ def results_view(request, null=None):
         response = requests.get(url, params=search_query)
 
         data = response.json()
+        airlines = set()
+
+        for flights in json.loads(response.text)['data']:
+            for airline in flights['airlines']:
+                airlines.add(airline)
+
+        print(airlines)
     else:
         data = null
 
     context = {
         "title": "Search Results",
-        "data": data
+        "data": data,
+        "airlines": airlines
     }
     return render(request, "results.html", context)

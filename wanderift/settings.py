@@ -81,7 +81,11 @@ TEMPLATES = [
             ],
             'libraries': {
                 'templatetags':
-                    'results.templatetags.custom_date'
+                    'results.templatetags.custom_date',
+                'airlines':
+                    'results.templatetags.airlines',
+                'aircons':
+                    'results.templatetags.airline_icons'
             }
         },
     },
@@ -133,3 +137,6 @@ MESSAGE_TAGS = {
     messages.ERROR: '',
     40: 'danger',
 }
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
+MEDIA_URL = '/images/'

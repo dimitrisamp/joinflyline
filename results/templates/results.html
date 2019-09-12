@@ -2,6 +2,8 @@
 
 {% load static %}
 {% load custom_date %}
+{% load airlines %}
+{% load airline_icons %}
 
 {% block csscontent %}
     <link rel="stylesheet" href="{% static "css/lightpick.css" %}" xmlns:v-on="http://www.w3.org/1999/xhtml"
@@ -291,18 +293,14 @@
                                         <div class="departure-row d-flex justify-content-start">
                                             <div class="airline-logo-holder d-flex"
                                                  data-stopnum="{{ flight.id }}">
-                                                <div class="img-airline">
-                                                    <div class="airline">
-                                                        <img src="{% static "images/american_airlines_logo.png" %}"
-                                                             alt="AA">
+                                                {% for airline in flight.airlines %}
+                                                    <div class="img-airline">
+                                                        <div class="airline">
+                                                            <img src="/images/{{ airline |aircon }}.png"
+                                                                 alt="AA">
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="img-airline">
-                                                    <div class="airline">
-                                                        <img src="{% static "images/american_airlines_logo.png" %}"
-                                                             alt="AA">
-                                                    </div>
-                                                </div>
+                                                {% endfor %}
                                             </div>
                                             <div class="d-flex justify-content-around w-100">
                                                 <div class="">
@@ -317,7 +315,7 @@
                                                 </div>
                                                 <div class="">
                                                     <label class="mb-0">
-                                                        <strong>{{ flight.utc_departure | iso_date | date:"D js M" }}</strong>
+                                                        <strong>{{ flight.utc_departure | iso_date | date:"D j M" }}</strong>
                                                     </label>
                                                     <br>
                                                     <span class="small text-muted">0h 55m</span>
@@ -338,7 +336,7 @@
                                             <div class="airline-logo-holder" data-stopnum="1">
                                                 <div class="img-airline">
                                                     <div class="airline">
-                                                        <img src="{% static "images/american_airlines_logo.png" %}"
+                                                        <img src="/images/{{ flight.airlines|last |aircon }}.png"
                                                              alt="AA">
                                                     </div>
                                                 </div>
@@ -358,7 +356,7 @@
                                                 </div>
                                                 <div class="">
                                                     <label class="mb-0">
-                                                        <strong>{{ flight.utc_arrival | iso_date | date:"D js M" }}</strong>
+                                                        <strong>{{ flight.utc_arrival | iso_date | date:"D j M" }}</strong>
                                                     </label>
                                                     <br>
                                                     <span class="small text-muted">0h 55m</span>
@@ -424,12 +422,12 @@
                                                                 <div class="card-body p-0">
                                                                     <div class="d-flex justify-content-between">
                                                                         <div class="pt-2 pl-5">
-                                                                            <img src="{% static "images/american_airlines_logo.png" %}"
+                                                                            <img src="/images/{{ route.airline |aircon }}.png"
                                                                                  alt="airline" height="20px">
                                                                         </div>
                                                                         <div class="d-inline-flex justify-content-between">
                                                                             <div class="airlines-labels">
-                                                                                <label class="mb-0">Airlines</label>
+                                                                                <label class="mb-0">{{ route.airline |airlines }}</label>
                                                                                 <br>
                                                                                 <label class="small text-grey">Airline</label>
                                                                             </div>
@@ -462,7 +460,8 @@
                                                                     <strong class="text-muted">
                                                                         <i class="fa fa-map-marker mr-2 text-muted text-primary"
                                                                            style="margin-left: 2px;"></i>
-                                                                        {{ route.airline }} Airline {{ route.cityFrom }}
+                                                                        {{ route.airline | airlines }}
+                                                                        Airline {{ route.cityFrom }}
                                                                         - {{ route.cityTo }}
                                                                     </strong>
                                                                 </p>
@@ -514,102 +513,16 @@
                                 </div>
                                 <div class="card-body">
                                     <ul class="p-0">
+                                        {% for airline in airlines %}
                                         <li class="pb-3">
                                             <input id="airline1" type="checkbox" class="form-check-input mr-2">
                                             <label for="airline1">
-                                                <img class="mr-1" src="{% static "images/alaskaairlines.png" %}"
+                                                <img class="mr-1" src="/images/{{ airline |aircon }}.png"
                                                      style="width: 25px;"/>
-                                                Alaska Airlines
+                                                {{ airline | airlines}} Airlines
                                             </label>
                                         </li>
-                                        <li class="pb-3">
-                                            <input id="airline2" type="checkbox" class="form-check-input mr-2">
-                                            <label for="airline2">
-                                                <img class="mr-1" src="{% static "images/allegiant.png" %}"
-                                                     style="width: 25px;"/>
-                                                Allegiant
-                                            </label>
-                                        </li>
-                                        <li class="pb-3">
-                                            <input id="airline3" type="checkbox" class="form-check-input mr-2">
-                                            <label for="airline3">
-                                                <img class="mr-1" src="{% static "images/american_airlines_logo.png" %}"
-                                                     style="width: 25px;"/>
-                                                American Airlines
-                                            </label>
-                                        </li>
-                                        <li class="pb-3">
-                                            <input id="airline4" type="checkbox" class="form-check-input mr-2">
-                                            <label for="airline4">
-                                                <img class="mr-1" src="{% static "images/delta.png" %}"
-                                                     style="width: 25px;"/>
-                                                Delta Airlines
-                                            </label>
-                                        </li>
-                                        <li class="pb-3">
-                                            <input id="airline4" type="checkbox" class="form-check-input mr-2">
-                                            <label for="airline4">
-                                                <img class="mr-1" src="{% static "images/frontier.png" %}"
-                                                     style="width: 25px;"/>
-                                                Frontier
-                                            </label>
-                                        </li>
-                                        <li class="pb-3">
-                                            <input id="airline4" type="checkbox" class="form-check-input mr-2">
-                                            <label for="airline4">
-                                                <img class="mr-1" src="{% static "images/hawaiian.png" %}"
-                                                     style="width: 25px;"/>
-                                                Hawaiian Airlines
-                                            </label>
-                                        </li>
-                                        <li class="pb-3">
-                                            <input id="airline4" type="checkbox" class="form-check-input mr-2">
-                                            <label for="airline4">
-                                                <img class="mr-1" src="{% static "images/jetblue.png" %}"
-                                                     style="width: 25px;"/>
-                                                jetBlue
-                                            </label>
-                                        </li>
-                                        <li class="pb-3">
-                                            <input id="airline4" type="checkbox" class="form-check-input mr-2">
-                                            <label for="airline4">
-                                                <img class="mr-1" src="{% static "images/southwest.png" %}"
-                                                     style="width: 25px;"/>
-                                                Southwest
-                                            </label>
-                                        </li>
-                                        <li class="pb-3">
-                                            <input id="airline4" type="checkbox" class="form-check-input mr-2">
-                                            <label for="airline4">
-                                                <img class="mr-1" src="{% static "images/silver.png" %}"
-                                                     style="width: 25px;"/>
-                                                Silver Airways
-                                            </label>
-                                        </li>
-                                        <li class="pb-3">
-                                            <input id="airline4" type="checkbox" class="form-check-input mr-2">
-                                            <label for="airline4">
-                                                <img class="mr-1" src="{% static "images/spirit.png" %}"
-                                                     style="width: 25px;"/>
-                                                Spirit
-                                            </label>
-                                        </li>
-                                        <li class="pb-3">
-                                            <input id="airline4" type="checkbox" class="form-check-input mr-2">
-                                            <label for="airline4">
-                                                <img class="mr-1" src="{% static "images/suncountry.png" %}"
-                                                     style="width: 25px;"/>
-                                                Sun Country
-                                            </label>
-                                        </li>
-                                        <li class="pb-3">
-                                            <input id="airline4" type="checkbox" class="form-check-input mr-2">
-                                            <label for="airline4">
-                                                <img class="mr-1" src="{% static "images/united.png" %}"
-                                                     style="width: 25px;"/>
-                                                United Airlines
-                                            </label>
-                                        </li>
+                                        {% endfor %}
                                     </ul>
                                 </div>
                             </div>
