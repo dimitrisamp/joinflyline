@@ -18,8 +18,8 @@
         {% include "_includes/navbar.html" %}
     </section>
     <section>
-        <div class="container content-holder">
-            <div class="search_content_box">
+        <div class="container content-holder" style="padding-bottom: 20px;">
+            <div class="search_content_box" style="padding-top: 20px; padding-bottom: 20px;">
                 {% csrf_token %}
                 <div class="row">
                     <div class="container">
@@ -147,7 +147,7 @@
                             </label>
                         </div>
                         <div class="divider-30 d-block d-md-none"></div>
-                        <label class="mr-4"><strong>Stopover:</strong></label>
+                        <label class="mr-4"><strong>Layover:</strong></label>
                         <br class="d-block d-md-none">
                         <div class="divider-30 d-block d-md-none"></div>
                         <div class="slider-red slider-holder d-inline-block mr-4">
@@ -297,7 +297,7 @@
                                                     <div class="img-airline">
                                                         <div class="airline">
                                                             <img src="/images/{{ airline |aircon }}.png"
-                                                                 alt="AA">
+                                                                 alt="AA" style="width:25px; margin-right: 4px;">
                                                         </div>
                                                     </div>
                                                 {% endfor %}
@@ -337,7 +337,7 @@
                                                 <div class="img-airline">
                                                     <div class="airline">
                                                         <img src="/images/{{ flight.airlines|last |aircon }}.png"
-                                                             alt="AA">
+                                                             alt="AA" style="width: 25px;">
                                                     </div>
                                                 </div>
                                             </div>
@@ -373,7 +373,7 @@
                                     {% for route in flight.route %}
                                         <div class="route-box">
                                             <div class="d-flex justify-content-between p-0 pr-2 pl-2">
-                                                <h5>To {{ route.cityTo }}</h5>
+                                                <h5 style="font-weight:600;">To {{ route.cityTo }}</h5>
                                                 <p class="mb-0"><strong class="text-muted">0h 55m</strong></p>
                                             </div>
                                             <div class="stop-box p-2">

@@ -16,8 +16,10 @@ img.img_goggle {
 .btn_popup {
     background: #FFFFFF;
     box-sizing: border-box;
-    border: 1px solid #e5e5e5;
-    border-radius: 8px;
+    border: 2px solid #e5e5e5;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: 500;
     padding: 15px 0;
     color: #1d222e;
 }
@@ -150,8 +152,8 @@ input.login_input{
     margin: 80px auto;
 }
 .sign-in-modal .modal-dialog .nav-pills {
-    border: 1px solid #e5e5e5;
-    border-radius: 3px;
+    border: 2px solid #e5e5e5;
+    border-radius: 4px;
 }
 .sign-in-modal .modal-dialog .nav-pills .nav-item a {
     padding: 12px 0;
@@ -162,10 +164,12 @@ input.login_input{
     color: white;
 }
 .auth-form .form-group input {
-    font-size: 1.2em;
+    font-size: 1rem;
+    font-weight: 500;
     text-align: center;
     padding: 25px 15px;
-    border: 1px solid #e5e5e5;
+    border: 2px solid #e5e5e5;
+    border-radius: 4px;
     margin-top: 15px;
     color: #1d222e;
 }

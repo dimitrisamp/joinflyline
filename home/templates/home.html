@@ -12,7 +12,7 @@
     <div class="promo_banner">
         <p class="promo_banner_text mb-0">Looking to save thousands on flights? Subscribe to Wanderift Lite or Pro and
             Save
-            <button class="promo_btn mt-2">Learn More</button>
+            <button class="promo_btn mt-2" style="margin-left: 20px;">Learn More</button>
         </p>
     </div>
     <section class="navbar-section">
@@ -20,14 +20,14 @@
     </section>
 
     <section>
-        <div class="container content-holder">
+        <div class="container content-holder" style="padding-bottom: 30px;">
             <div class="search_content_box">
                 <div class="row">
                     <div class="container">
                         <div class="col-12 pr-0">
                             <div class="row">
                                 <div class="col-12 p-0">
-                                    <p class="home-slogan">
+                                    <p class="home-slogan" style="margin-bottom: 25px;">
                                         <span>Travel Made Simple . . .</span>
                                         <span class="text-primary">Search, Book, Save</span>
                                     </p>
@@ -36,8 +36,7 @@
 
                             <div class="row">
                                 <div class="col-12 mt-2 col-md-auto search-column-dropdown">
-                                    <img src="{% static "images/icons/arrows_rotating.png" %}"
-                                         style="">
+                                    <img src="{% static "images/icons/arrows_rotating.png" %}">
                                     <input type="text" class="drop_down_btn" readonly data-toggle="dropdown"
                                            aria-haspopup="true"
                                            aria-expanded="false" name="destinationType" id="destinationType"
@@ -83,8 +82,7 @@
                                 <div class="col-sm-12 flexed-search-bar pl-0">
                                     <div class="flexed-search-item">
                                         <label class="search_label" @click="openPlaceModal(1)">
-                                            <h6>Departure
-                                                City :
+                                            <h6>Departure City :
                                                 <input type="text" class="search_input" readonly name="placesFrom"
                                                        id="placesFrom"/>
                                             </h6>
@@ -103,8 +101,7 @@
                                     </div>
                                     <div class="flexed-search-item">
                                         <label class="search_label">
-                                            <h6>Departure
-                                                Date :
+                                            <h6>Departure Date :
                                                 <input type="text" name="dep_date" id="departure_date"
                                                        class="search_input">
                                             </h6>
@@ -384,11 +381,11 @@
         </div>
     </section>
 
-    <section class="mb-5">
+    <section class="mb-5" style="margin-top: 100px;">
         <div class="container conversion-box">
             <div class="row p-2 p-md-5 row-eq-height">
-                <div class="col-12 col-md-8">
-                    <h4 class="font-weight-normal" style="line-height: 1.5">
+                <div class="col-12 col-md-8" style="left: 40px;">
+                    <h4 class="font-weight-normal" style="line-height: 1.5; font-size: 1.3rem; font-weight: 600px;">
                         Looking to book flight on the go? Enter your phone <br>
                         number to get the Wanderift app texted to you
                     </h4>
@@ -403,7 +400,7 @@
                         </button>
                     </div>
                 </div>
-                <div class="col-12 col-md-4 d-flex flex-column justify-content-around">
+                <div class="col-12 col-md-4 d-flex flex-column justify-content-around" style="right: 60px;">
                     <input type="text" placeholder="Enter Your Number" class="form-control p-4 text-center">
                     <button class="search_btn w-100 mt-1">Send</button>
                 </div>
