@@ -137,13 +137,13 @@
                         <div class="divider-15 d-block d-md-none"></div>
                         <div class="form-check-inline">
                             <label class="form-check-label">
-                                <input type="radio" class="form-check-input mr-2" name="stop">Up to 1 stop
+                                <input type="radio" class="form-check-input mr-2" name="stop">1 Stop
                             </label>
                         </div>
                         <div class="divider-15 d-block d-md-none"></div>
                         <div class="form-check-inline">
                             <label class="form-check-label">
-                                <input type="radio" class="form-check-input mr-2" name="stop">Up to 2 stops
+                                <input type="radio" class="form-check-input mr-2" name="stop">2+ Stops
                             </label>
                         </div>
                         <div class="divider-30 d-block d-md-none"></div>
@@ -246,10 +246,10 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="card-title mb-4">
-                                    <h4 class="bold p-0 mt-0" style="font-size: 1.2rem; font-weight: bold;">Subscribe to
+                                    <h4 class="bold p-0 mt-0" style="font-size: 1.2rem; font-weight: 600;">Subscribe to
                                         Wanderift Lift or Pro and Save</h4>
                                 </div>
-                                <h5 class="bold m-0 mb-2" style="font-weight: bold; padding-bottom: 5px;">Wanderift
+                                <h5 class="bold m-0 mb-2" style="font-weight: 600; padding-bottom: 5px;">Wanderift
                                     Lite</h5>
                                 <h6 class="bold m-0 mb-2" style="padding-bottom: 10px;"><span class="text-primary"
                                                                                               style="color: #00B7FF;">3</span>
@@ -262,7 +262,7 @@
                                     </button>
                                 </a>
                                 <br><br>
-                                <h5 class="bold m-0 mb-2" style="font-weight: bold; padding-bottom: 5px;">Wanderift
+                                <h5 class="bold m-0 mb-2" style="font-weight: 600; padding-bottom: 5px;">Wanderift
                                     Pro</h5>
                                 <h6 class="bold m-0 mb-2" style="padding-bottom: 10px;"><span
                                         class="text-primary">4</span> Flights <span class="text-primary">$459</span>
@@ -277,9 +277,9 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6 search result mt-4">
+                    <div class="col-md-6 search result">
                         {% for flight in data.data %}
-                            <div class="result-item mb-2 shadow w-100">
+                            <div class="result-item mb-2 w-100">
                                 <div class="result-block w-100 d-flex justify-content-start pt-3 pb-3"
                                      data-toggle="collapse"
                                      data-target="#result-item{{ flight.local_arrival | iso_date | date:"his" }}">
@@ -509,7 +509,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="card-title mb-2">
-                                    <h5 class="bold p-0 mt-0" style="font-weight: bold;">Filter by Airline</h5>
+                                    <h5 class="bold p-0 mt-0" style="font-weight: 600;">Filter by Airline</h5>
                                 </div>
                                 <div class="card-body">
                                     <ul class="p-0">
@@ -530,7 +530,7 @@
                         <div class="card filter-by-time mt-3">
                             <div class="card-body">
                                 <div class="card-title mb-2">
-                                    <h5 class="bold p-0 mt-0" style="font-weight: bold;">Filter by Time</h5>
+                                    <h5 class="bold p-0 mt-0" style="font-weight: 600;">Filter by Time</h5>
                                 </div>
                                 <div class="card-body pr-2">
                                     <ul class="nav d-flex slider-nav">
