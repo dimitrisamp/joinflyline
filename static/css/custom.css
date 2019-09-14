@@ -1,5 +1,5 @@
 .background-colored {
-    background-color: #F7F9FE;
+    background-color: #;
 }
 
 .content-holder {
@@ -39,7 +39,7 @@
 
 /*HELPERS*/
 .no-bg-color {
-    background-color: transparent;
+
 }
 .divider-15,
 .divider-30 {
@@ -106,6 +106,7 @@
     min-width: 210px;
 }
 .appstore-btn span {
+    font-size: 16px;
     font-weight: 600;
     color: #151f3f;
 }
@@ -264,7 +265,7 @@
     height: 50px;
 }
 .flexed-search-bar .flexed-search-item label h6 {
-    font-size: 1.05rem;
+    font-size: 16px;
     margin-left: 5px;
     margin-top: 14px;
     font-family: karla;
