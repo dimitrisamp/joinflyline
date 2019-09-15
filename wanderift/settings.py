@@ -140,3 +140,6 @@ MESSAGE_TAGS = {
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
 MEDIA_URL = '/images/'
+
+LOGIN_REDIRECT_URL = 'accounts'
+LOGIN_URL = "home"
