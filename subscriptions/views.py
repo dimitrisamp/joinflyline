@@ -7,6 +7,7 @@ from django.shortcuts import render, redirect
 
 from account.models import Account
 from account.views import account_view
+from payments.models import Plans
 from payments.views import sub_payment
 from subscriptions.models import Subscriptions
 import stripe
@@ -111,14 +112,36 @@ def card_token(card_number, expiry, cvc):
 
 
 def plan_subscription(request, plan):
-    user = request.user
-    if plan == 'pro':
-        subscription = Subscriptions.objects.update_or_create(plan="pro", tokens=4, price=459, user=user)
-        subscription.save()
-        messages.success(request, "You subscribed to pro plan successfully")
-    elif plan == 'lite':
-        subscription = Subscriptions.objects.update_or_create(plan="lite", tokens=3, price=369, user=user)
-        subscription.save()
-        messages.success(request, "You subscribed to lite plan successfully")
+    if request.user.profile.customer_id:
+        user = request.user
+        if plan == 'pro':
+            plan = Plans.objects.filter(name=plan).get()
+            stripe.Subscription.create(
+                customer=request.user.profile.customer_id,
+                items=[
+                    {
+                        "plan": plan.plan_id
+                    },
+                ]
+            )
+            subscription = Subscriptions.objects.update_or_create(plan="pro", tokens=4, price=459,
+                                                                  defaults={'user': user})
+            messages.success(request, "You subscribed to pro plan successfully")
+        elif plan == 'lite':
+            plan = Plans.objects.filter(name=plan).get()
+            stripe.Subscription.create(
+                customer=request.user.profile.customer_id,
+                items=[
+                    {
+                        "plan": plan.plan_id,
+                    },
+                ]
+            )
+            subscription = Subscriptions.objects.get_or_create(plan="lite", tokens=3, price=369,
+                                                               defaults={'user': user})
+            messages.success(request, "You subscribed to lite plan successfully")
 
-    return redirect(account_view)
+        return redirect(account_view)
+    else:
+        messages.error(request, "Please update your profile and card details")
+        return redirect(account_view)

@@ -12,6 +12,7 @@ from subscriptions.models import Subscriptions
 stripe.api_key = "sk_test_H2ypPKiLEc14JVbd6OpDIWQv00gPMSrkj1"
 
 
+@login_required
 def account_view(request):
     user_id = request.user.id
     user = User.objects.get(pk=user_id)
@@ -35,6 +36,7 @@ def account_view(request):
         return render(request, "accounts.html", context)
 
 
+@login_required()
 def update_profile(request):
     user_id = request.user.id
     if request.method == 'POST':
@@ -50,6 +52,7 @@ def update_profile(request):
     return redirect('accounts')
 
 
+@login_required()
 def save_card(request):
     user_id = request.user.id
     if request.method == 'POST':
