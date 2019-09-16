@@ -2,6 +2,7 @@ import json
 from json import load
 
 import requests
+from django.contrib import messages
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 
@@ -27,16 +28,19 @@ def results_view(request, null=None):
         request.session["search_query"] = search_query
         # search_query = urllib.parse.urlencode(search_query)
         url = "https://kiwicom-prod.apigee.net/v2/search"
-        response = requests.get(url, params=search_query)
+        try:
+            response = requests.get(url, params=search_query)
 
-        data = response.json()
-        airlines = set()
+            data = response.json()
+            airlines = set()
 
-        for flights in json.loads(response.text)['data']:
-            for airline in flights['airlines']:
-                airlines.add(airline)
-
-        print(airlines)
+            print(json.loads(response.text))
+            if json.loads(response.text)['data']:
+                for flights in json.loads(response.text)['data']:
+                    for airline in flights['airlines']:
+                        airlines.add(airline)
+        except Exception as e:
+            messages.error(request, "Cities not found " + str(e))
     else:
         data = null
 
