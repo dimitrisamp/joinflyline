@@ -164,8 +164,8 @@
     border-width: 2px;
 }
 
-.sticky-sidebar {
-    z-index: 999;
+.container.wide-container {
+    max-width: 1400px;
 }
 
 .subscription-card .card-header {

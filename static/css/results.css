@@ -22,18 +22,24 @@
     background-color: white;
     padding: 0 10px;
 }
+@media screen and (min-width: 992px) {
+    .s-sidebar {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
 
-.s-sidebar {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
+    .sticky-item {
+        position: -webkit-sticky;
+        position: sticky;
+        top: 275px;
+        padding: 0 15px;
+    }
 }
 
-.sticky-item {
-    position: -webkit-sticky;
-    position: sticky;
-	top: 275px;
-    padding: 0 15px;
+@media only screen and (max-width: 760px) {
+  #mobileIndicator { display: none; }
 }
+
