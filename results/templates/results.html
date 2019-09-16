@@ -18,11 +18,12 @@
     <section class="navbar-section">
         {% include "_includes/navbar.html" %}
     </section>
-    <section>
+    <section class="search-bar-section sticky-top bg-white border-bottom">
+        <div class="sidebar__inner">
         <div class="container content-holder" style="padding-bottom: 20px;">
             <div class="search_content_box" style="padding-top: 20px; padding-bottom: 20px;">
                 {% csrf_token %}
-                <div class="row">
+                <div class="row sidebar__inner">
                     <div class="container">
                         <div class="col-12 pr-0">
                             <div class="row">
@@ -237,44 +238,49 @@
                 </div>
             </div>
         </div>
+        </div>
     </section>
 
     <section style="padding-bottom: 50px; background-color: #F7F9FF; padding-top: 30px; ">
         <div class="results-page">
-            <div class="container results-container">
+            <div class="container results-container" id="resultsContainer">
                 <div class="row">
                     <div class="col-xl-3">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="card-title mb-4">
-                                    <h4 class="bold p-0 mt-0" style="font-size: 1.2rem; font-weight: 600;">Subscribe to
-                                        Wanderift Lift or Pro and Save</h4>
+                        <div class="s-sidebar">
+                            <div class="sticky-item">
+                                <div class="card bg-white">
+                                <div class="card-body">
+                                    <div class="card-title mb-4">
+                                        <h4 class="bold p-0 mt-0" style="font-size: 1.2rem; font-weight: 600;">Subscribe to
+                                            Wanderift Lift or Pro and Save</h4>
+                                    </div>
+                                    <h5 class="bold m-0 mb-2" style="font-weight: 600; padding-bottom: 5px;">Wanderift
+                                        Lite</h5>
+                                    <h6 class="bold m-0 mb-2" style="padding-bottom: 10px;"><span class="text-primary"
+                                                                                                  style="color: #00B7FF;">3</span>
+                                        Flights <span class="text-primary">$369</span></h6>
+                                    <p class="" style="font-size: 14px;">- 3 Tokens (3 one-way flights)</p>
+                                    <p class="" style="font-size: 14px;">- 1 Unused Token Rolls over</p>
+                                    <p class="" style="font-size: 14px;">- No Long Term Commitment</p>
+                                    <a href="{% url "how-it-works" %}">
+                                        <button class="search_btn btn-block m-0" style="font-weight: bold;">Learn More
+                                        </button>
+                                    </a>
+                                    <br><br>
+                                    <h5 class="bold m-0 mb-2" style="font-weight: 600; padding-bottom: 5px;">Wanderift
+                                        Pro</h5>
+                                    <h6 class="bold m-0 mb-2" style="padding-bottom: 10px;"><span
+                                            class="text-primary">4</span> Flights <span class="text-primary">$459</span>
+                                    </h6>
+                                    <p class="" style="font-size: 14px;">- 4 Tokens (4 one-way flights)</p>
+                                    <p class="" style="font-size: 14px;">- 2 Unused Token Rolls over</p>
+                                    <p class="" style="font-size: 14px;">- No Long Term Commitment</p>
+                                    <a href="{% url "how-it-works" %}">
+                                        <button class="search_btn btn-block m-0" style="font-weight: bold;">Learn More
+                                        </button>
+                                    </a>
                                 </div>
-                                <h5 class="bold m-0 mb-2" style="font-weight: 600; padding-bottom: 5px;">Wanderift
-                                    Lite</h5>
-                                <h6 class="bold m-0 mb-2" style="padding-bottom: 10px;"><span class="text-primary"
-                                                                                              style="color: #00B7FF;">3</span>
-                                    Flights <span class="text-primary">$369</span></h6>
-                                <p class="" style="font-size: 14px;">- 3 Tokens (3 one-way flights)</p>
-                                <p class="" style="font-size: 14px;">- 1 Unused Token Rolls over</p>
-                                <p class="" style="font-size: 14px;">- No Long Term Commitment</p>
-                                <a href="{% url "how-it-works" %}">
-                                    <button class="search_btn btn-block m-0" style="font-weight: bold;">Learn More
-                                    </button>
-                                </a>
-                                <br><br>
-                                <h5 class="bold m-0 mb-2" style="font-weight: 600; padding-bottom: 5px;">Wanderift
-                                    Pro</h5>
-                                <h6 class="bold m-0 mb-2" style="padding-bottom: 10px;"><span
-                                        class="text-primary">4</span> Flights <span class="text-primary">$459</span>
-                                </h6>
-                                <p class="" style="font-size: 14px;">- 4 Tokens (4 one-way flights)</p>
-                                <p class="" style="font-size: 14px;">- 2 Unused Token Rolls over</p>
-                                <p class="" style="font-size: 14px;">- No Long Term Commitment</p>
-                                <a href="{% url "how-it-works" %}">
-                                    <button class="search_btn btn-block m-0" style="font-weight: bold;">Learn More
-                                    </button>
-                                </a>
+                            </div>
                             </div>
                         </div>
                     </div>
@@ -309,10 +315,10 @@
                                                         {{ flight.utc_departure | iso_date | date:"P" }} -
                                                         {{ flight.utc_arrival | iso_date | date:"P" }}</strong></label><br>
                                                     <span class="small text-muted">
-                                            {{ flight.cityFrom }}
-                                            <i class="fa fa-long-arrow-right mr-1 ml-1"></i>
-                                            {{ flight.cityTo }}
-                                        </span>
+                                                        {{ flight.cityFrom }}
+                                                        <i class="fa fa-long-arrow-right mr-1 ml-1"></i>
+                                                        {{ flight.cityTo }}
+                                                    </span>
                                                 </div>
                                                 <div class="">
                                                     <label class="mb-0">
@@ -615,65 +621,106 @@
                         {% endfor %}
                     </div>
                     <div class="col-xl-3">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="card-title mb-2">
-                                    <h5 class="bold p-0 mt-0" style="font-weight: 600;">Filter by Airline</h5>
+                        <div class="s-sidebar">
+                            <div class="sticky-item">
+                                <div class="card">
+                                    <div class="card-header bg-white cursor-pointer" data-toggle="collapse" data-target="#airlineFilter">
+                                        <div class="card-title mb-0">
+                                            <h5 class="mb-0 p-2">Airline</h5>
+                                        </div>
+                                    </div>
+                                        <div class="card-body collapse show pl-5" id="airlineFilter">
+                                            <ul class="p-0">
+                                                {% for airline in airlines %}
+                                                <li class="pb-3">
+                                                    <input id="airline1" type="checkbox" class="form-check-input mr-2">
+                                                    <label for="airline1">
+                                                        <img class="mr-1" src="/images/{{ airline |aircon }}.png"
+                                                             style="width: 25px;"/>
+                                                        {{ airline | airlines}} Airlines
+                                                    </label>
+                                                </li>
+                                                {% endfor %}
+                                            </ul>
+                                        </div>
+                                    </div>
+                                <div class="card mt-3">
+                                    <div class="card-header bg-white cursor-pointer" data-toggle="collapse" data-target="#priceFilter">
+                                        <div class="card-title mb-0">
+                                            <h5 class="mb-0 p-2">Price</h5>
+                                        </div>
+                                    </div>
+                                    <div class="card-body collapse show" id="priceFilter">
+                                        <div class="mt-3 pl-3">Price Range Filter</div>
+                                        <div id="filter_price_ammount" class="small mb-4 pl-3">$0 - $3000</div>
+                                        <div class="slider-red slider-holder pl-3">
+                                            <input id="filter_price_range" type="text" value="" class="form-control">
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="card-body">
-                                    <ul class="p-0">
-                                        {% for airline in airlines %}
-                                        <li class="pb-3">
-                                            <input id="airline1" type="checkbox" class="form-check-input mr-2">
-                                            <label for="airline1">
-                                                <img class="mr-1" src="/images/{{ airline |aircon }}.png"
-                                                     style="width: 25px;"/>
-                                                {{ airline | airlines}} Airlines
-                                            </label>
-                                        </li>
-                                        {% endfor %}
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card filter-by-time mt-3">
-                            <div class="card-body">
-                                <div class="card-title mb-2">
-                                    <h5 class="bold p-0 mt-0" style="font-weight: 600;">Filter by Time</h5>
-                                </div>
-                                <div class="card-body pr-2">
-                                    <ul class="nav d-flex slider-nav">
-                                        <li class="nav-item">
-                                            <a class="nav-link active" href="#takeoff" data-toggle="tab">Take-off</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="#landing" data-toggle="tab">Landing</a>
-                                        </li>
-                                    </ul>
-                                    <div class="tab-content">
-                                        <div class="tab-pane active show" id="takeoff">
-                                            <div class="mt-3">Departure City Take-off</div>
-                                            <div id="de_city_take_off_time" class="small mb-4">0:00AM - 11:59PM</div>
-                                            <div class="slider-red slider-holder">
-                                                <input id="de_city_take_off" type="text" value="" class="form-control">
-                                            </div>
-                                            <div class="mt-3">Arrival City Take-off</div>
-                                            <div id="arr_city_take_off_time" class="small mb-4">0:00AM - 11:59PM</div>
-                                            <div class="slider-red slider-holder">
-                                                <input id="arr_city_take_off" type="text" value="" class="form-control">
+                                <div class="card filter-by-time mt-3">
+                                    <div class="card-header bg-white cursor-pointer" data-toggle="collapse" data-target="#timeFilter">
+                                        <div class="card-title mb-0">
+                                            <h5 class="bold mb-0 p-2" style="font-weight: 600;">Time</h5>
+                                        </div>
+                                    </div>
+                                    <div class="card-body collapse" id="timeFilter">
+                                        <div class="card-body pr-2">
+                                            <ul class="nav d-flex slider-nav">
+                                                <li class="nav-item">
+                                                    <a class="nav-link active" href="#takeoff" data-toggle="tab">Take-off</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" href="#landing" data-toggle="tab">Landing</a>
+                                                </li>
+                                            </ul>
+                                            <div class="tab-content">
+                                                <div class="tab-pane active show" id="takeoff">
+                                                    <div class="mt-3">Departure City Take-off</div>
+                                                    <div id="de_city_take_off_time" class="small mb-4">0:00AM - 11:59PM</div>
+                                                    <div class="slider-red slider-holder">
+                                                        <input id="de_city_take_off" type="text" value="" class="form-control">
+                                                    </div>
+                                                    <div class="mt-3">Arrival City Take-off</div>
+                                                    <div id="arr_city_take_off_time" class="small mb-4">0:00AM - 11:59PM</div>
+                                                    <div class="slider-red slider-holder">
+                                                        <input id="arr_city_take_off" type="text" value="" class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="tab-pane" id="landing">
+                                                    <div class="mt-3">Departure City Landing</div>
+                                                    <div id="de_city_landing_time" class="small mb-4">0:00AM - 11:59PM</div>
+                                                    <div class="slider-red slider-holder">
+                                                        <input id="de_city_landing" type="text" value="" class="form-control">
+                                                    </div>
+                                                    <div class="mt-3">Arrival City Landing</div>
+                                                    <div id="arr_city_landing_time" class="small mb-4">0:00AM - 11:59PM</div>
+                                                    <div class="slider-red slider-holder">
+                                                        <input id="arr_city_landing" type="text" value="" class="form-control">
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="tab-pane" id="landing">
-                                            <div class="mt-3">Departure City Landing</div>
-                                            <div id="de_city_landing_time" class="small mb-4">0:00AM - 11:59PM</div>
-                                            <div class="slider-red slider-holder">
-                                                <input id="de_city_landing" type="text" value="" class="form-control">
-                                            </div>
-                                            <div class="mt-3">Arrival City Landing</div>
-                                            <div id="arr_city_landing_time" class="small mb-4">0:00AM - 11:59PM</div>
-                                            <div class="slider-red slider-holder">
-                                                <input id="arr_city_landing" type="text" value="" class="form-control">
-                                            </div>
+                                    </div>
+                                </div>
+                                <div class="card mt-3">
+                                    <div class="card-header bg-white cursor-pointer" data-toggle="collapse" data-target="#stopsFilter">
+                                        <div class="card-title mb-0">
+                                            <h5 class="mb-0 p-2">Stops</h5>
+                                        </div>
+                                    </div>
+                                    <div class="card-body collapse" id="stopsFilter">
+                                        <div class="custom-control custom-radio mt-2">
+                                            <input type="radio" id="filterNoStop" name="customRadio" class="custom-control-input">
+                                            <label class="custom-control-label" for="filterNoStop">No stops (direct flight)</label>
+                                        </div>
+                                        <div class="custom-control custom-radio mt-2">
+                                            <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input">
+                                            <label class="custom-control-label" for="customRadio1">Up to 1 stop</label>
+                                        </div>
+                                        <div class="custom-control custom-radio mt-2">
+                                            <input type="radio" id="filterStop2" name="customRadio" class="custom-control-input">
+                                            <label class="custom-control-label" for="filterStop2">Up to 2 stops</label>
                                         </div>
                                     </div>
                                 </div>
@@ -746,6 +793,7 @@
     <script src="{% static "js/home.js" %}"></script>
     <script src="{% static "js/lightpick.js" %}"></script>
     <script src="{% static "js/bootstrap-slider.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/sticky-sidebar.js" %}"></script>
 
     <script>
         $(document).ready(function () {
@@ -844,7 +892,23 @@
             }).on('slide', function () {
                 $("#arr_city_landing_time").text(timeFormatter(ArrCityLanding.getValue()));
             });
+            var filterPriceRange = new Slider("input#filter_price_range", {
+                min: 0,
+                max: 3000,
+                step: 15,
+                value: [0, 3000],
+                tooltip: "hide"
+            });
+            filterPriceRange.on('slide', function () {
+                $("#filter_price_ammount").text(getPriceRange(filterPriceRange.getValue()));
+            });
         });
+
+        function getPriceRange(rangeVal) {
+            var rangeMin = rangeVal[0];
+            var rangeMax = rangeVal[1];
+            return "$" + rangeMin + " - $" + rangeMax;
+        }
 
         function getTime(val) {
             if (Array.isArray(val)) {

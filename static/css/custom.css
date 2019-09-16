@@ -11,6 +11,12 @@
     color: white;
 }
 
+.header-image-holder img {
+    margin-top: 40px;
+    width: 45%;
+    margin-right: 100px;
+}
+
 .result-item {
     background-color: white;
     border: 1px solid rgba(0,0,0,0.1);
@@ -152,6 +158,14 @@
 .non-subs-accordion .card .card-header button:focus,
 .pack-accordion .card .card-header button:focus {
     text-decoration: none;
+}
+
+.subscription-card {
+    border-width: 2px;
+}
+
+.sticky-sidebar {
+    z-index: 999;
 }
 
 .subscription-card .card-header {
