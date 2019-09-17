@@ -10,4 +10,4 @@ class Subscriptions(models.Model):
     price = models.BigIntegerField(null=False, default=0)
 
     def __str__(self):
-        return self.plan
+        return str(self.tokens)
