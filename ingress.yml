@@ -3,9 +3,10 @@ kind: Ingress
 metadata:
   name: wanderift-ingress
   annotations:
-    kubernetes.io/ingress.class: "django"
-    kubernetes.io/ingress.allow-http: "false"
+    kubernetes.io/ingress.class: django
+    kubernetes.io/ingress.allow-http: false
     networking.gke.io/managed-certificates: wanderift-certificate
+    certmanager.k8s.io/cluster-issuer: letsencrypt-staging
 spec:
   tls:
     - hosts:
