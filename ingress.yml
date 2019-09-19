@@ -4,13 +4,13 @@ metadata:
   name: wanderift-ingress
   annotations:
     kubernetes.io/ingress.class: "django"
-    kubernetes.io/ingress.allow-http: "true"
+    kubernetes.io/ingress.allow-http: "false"
 spec:
   rules:
     - host: wanderift.com
       http:
         paths:
-          - path: /
+          - path: /*
             backend:
               serviceName: wanderift-service
               servicePort: 80
