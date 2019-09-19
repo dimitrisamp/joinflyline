@@ -7,6 +7,10 @@ metadata:
     kubernetes.io/ingress.allow-http: "false"
     networking.gke.io/managed-certificates: wanderift-certificate
 spec:
+  tls:
+    - hosts:
+        - wanderift.com
+      secretName: wanderift-crt-secret
   rules:
     - host: wanderift.com
       http:
