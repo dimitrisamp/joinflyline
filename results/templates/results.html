@@ -298,7 +298,7 @@
                         {% for flight in data.data %}
                             {% if flight.availability.seats > 0 %}
                                 <div class="result-item mb-2 w-100">
-                                    <div class="result-block w-100 d-flex justify-content-start pt-3 pb-3"
+                                    <div class="result-block result-toggler w-100 d-flex justify-content-start pt-3 pb-3"
                                          data-toggle="collapse"
                                          data-target="#result-item{{ flight.duration.total }}">
                                         <div class="price-block d-flex align-items-center pl-3 pr-3">
@@ -383,8 +383,9 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="arror-indicator p-2 pr-5 d-flex align-items-center">
-                                            <img src="{% static "images/arrow.png" %}" alt="Pull down">
+                                        <div class="arrow-indicator p-2 pr-5 d-flex align-items-center">
+                                            <img src="{% static "images/icons/down-arrow.png" %}" alt="Pull down" height="15" class="">
+                                            <img src="{% static "images/icons/up-arrow.png" %}" alt="Pull up" height="15" class="d-none">
                                         </div>
                                     </div>
 
@@ -591,8 +592,8 @@
                                          data-target="#airlineFilter">
                                         <div class="card-title mb-0 d-flex align-items-center justify-content-between">
                                             <h5 class="mb-0 p-2">Airline</h5>
-                                            <img src="{% static "images/arrow_right.svg" %}" alt="Pull Up" class="d-none">
-                                            <img src="{% static "images/arrow_left.svg" %}" alt="Pull down" class="">
+                                            <img src="{% static "images/icons/up-arrow.png" %}" alt="Pull Up" class="" height="10">
+                                            <img src="{% static "images/icons/down-arrow.png" %}" alt="Pull down" class="d-none" height="10">
                                         </div>
                                     </div>
                                     <div class="card-body collapse show pl-5" id="airlineFilter">
@@ -613,10 +614,10 @@
                                 <div class="card mt-3">
                                     <div class="card-header bg-white cursor-pointer card-toggler" data-toggle="collapse"
                                          data-target="#priceFilter">
-                                        <div class="card-title mb-0 d-flex justify-content-between">
+                                        <div class="card-title mb-0 d-flex align-items-center justify-content-between">
                                             <h5 class="mb-0 p-2">Price</h5>
-                                            <img src="{% static "images/arrow_right.svg" %}" alt="Pull Up" class="d-none">
-                                            <img src="{% static "images/arrow_left.svg" %}" alt="Pull down" class="">
+                                            <img src="{% static "images/icons/up-arrow.png" %}" alt="Pull Up" class="" height="10">
+                                            <img src="{% static "images/icons/down-arrow.png" %}" alt="Pull down" class="d-none" height="10">
                                         </div>
                                     </div>
                                     <div class="card-body collapse show" id="priceFilter">
@@ -630,10 +631,10 @@
                                 <div class="card filter-by-time mt-3">
                                     <div class="card-header bg-white cursor-pointer card-toggler" data-toggle="collapse"
                                          data-target="#timeFilter">
-                                        <div class="card-title mb-0 d-flex justify-content-between">
+                                        <div class="card-title mb-0 d-flex justify-content-between align-items-center">
                                             <h5 class="bold mb-0 p-2" style="font-weight: 600;">Time</h5>
-                                            <img src="{% static "images/arrow_right.svg" %}" alt="Pull Up" class="">
-                                            <img src="{% static "images/arrow_left.svg" %}" alt="Pull down" class="d-none">
+                                            <img src="{% static "images/icons/up-arrow.png" %}" alt="Pull Down" class="d-none" height="10">
+                                            <img src="{% static "images/icons/down-arrow.png" %}" alt="Pull Up" class="" height="10">
                                         </div>
                                     </div>
                                     <div class="card-body collapse" id="timeFilter">
@@ -689,10 +690,10 @@
                                 <div class="card mt-3">
                                     <div class="card-header bg-white cursor-pointer card-toggler" data-toggle="collapse"
                                          data-target="#stopsFilter">
-                                        <div class="card-title mb-0 d-flex justify-content-between">
+                                        <div class="card-title mb-0 d-flex align-items-center justify-content-between">
                                             <h5 class="mb-0 p-2">Stops</h5>
-                                            <img src="{% static "images/arrow_right.svg" %}" alt="Pull Up" class="">
-                                            <img src="{% static "images/arrow_left.svg" %}" alt="Pull down" class="d-none">
+                                            <img src="{% static "images/icons/up-arrow.png" %}" alt="Pull Down" class="d-none" height="10">
+                                            <img src="{% static "images/icons/down-arrow.png" %}" alt="Pull Up" class="" height="10">
                                         </div>
                                     </div>
                                     <div class="card-body collapse" id="stopsFilter">
@@ -1019,6 +1020,9 @@
             }
             $('.card-toggler').on('click', function() {
                 $(this).find('.card-title').find('img').toggleClass('d-none');
+            })
+             $('.result-toggler').on('click', function() {
+                $(this).find('.arrow-indicator').find('img').toggleClass('d-none');
             })
         });
     </script>
