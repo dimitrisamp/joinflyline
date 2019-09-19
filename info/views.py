@@ -43,6 +43,13 @@ def how_it_works_view(request):
     return render(request, 'how-it-works.html', context)
 
 
+def corporate_how_it_works_view(request):
+    context = {
+        'title': 'Corporate How it Works'
+    }
+    return render(request, 'corporate-how-it-works.html', context)
+
+
 def faq_view(request):
     context = {
         "title": "Wanderift faq"
