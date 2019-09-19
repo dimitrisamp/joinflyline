@@ -39,6 +39,14 @@
     }
 }
 
+.load-more-button {
+    width: 100%;
+    background-color: white;
+    border: 1px solid silver;
+    padding: 10px 0;
+    font-weight: bold;
+}
+
 @media only screen and (max-width: 760px) {
   #mobileIndicator { display: none; }
 }
