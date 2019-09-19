@@ -7,6 +7,7 @@ from django.shortcuts import render, redirect
 import stripe
 
 from account.models import Account
+from payments.models import Plans
 from subscriptions.models import Subscriptions
 
 stripe.api_key = "sk_test_H2ypPKiLEc14JVbd6OpDIWQv00gPMSrkj1"
@@ -107,10 +108,30 @@ def sub_user(request):
     user = request.user
     if request.method == 'POST':
         if request.POST['subscription'] == 'pro':
+            user = request.user
+            plan = Plans.objects.filter(name="pro").get()
+            stripe.Subscription.create(
+                customer=request.user.profile.customer_id,
+                items=[
+                    {
+                        "plan": plan.plan_id
+                    },
+                ]
+            )
             subscription = Subscriptions.objects.create(plan="pro", tokens=4, price=459, user=user)
             subscription.save()
             messages.success(request, "You subscribed to pro plan successfully")
         elif request.POST['subscription'] == 'lite':
+            user = request.user
+            plan = Plans.objects.filter(name="lite").get()
+            stripe.Subscription.create(
+                customer=request.user.profile.customer_id,
+                items=[
+                    {
+                        "plan": plan.plan_id
+                    },
+                ]
+            )
             subscription = Subscriptions.objects.create(plan="lite", tokens=3, price=369, user=user)
             subscription.save()
             messages.success(request, "You subscribed to lite plan successfully")

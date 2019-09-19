@@ -9,12 +9,16 @@
 {% endblock %}
 
 {% block content %}
-    <div class="promo_banner">
-        <p class="promo_banner_text mb-0">Looking to save thousands on flights? Subscribe to Wanderift Lite or Pro and
-            Save
-            <button class="promo_btn mt-2" style="margin-left: 20px;">Learn More</button>
-        </p>
-    </div>
+    {% if user.is_authenticated %}
+    {% else %}
+        <div class="promo_banner">
+            <p class="promo_banner_text mb-0">Looking to save thousands on flights? Subscribe to Wanderift Lite or Pro
+                and
+                Save
+                <button class="promo_btn mt-2" style="margin-left: 20px;">Learn More</button>
+            </p>
+        </div>
+    {% endif %}
     <section class="navbar-section">
         {% include "_includes/navbar.html" %}
     </section>
@@ -215,15 +219,23 @@
                 <div class="container">
                     <div class="row justify-content-center">
                         <div class="col-12 col-md-4 mt-4 m-md-0">
-                            <button class="search_btn  w-100 main-btn-full">{{ user.subscription.tokens }} Tokens Available</button>
+                            <a href="{% url "accounts" %}">
+                                <button class="search_btn  w-100 main-btn-full">{{ user.subscriptions }} Tokens
+                                    Available
+                                </button>
+                            </a>
                         </div>
                         <div class="d-block d-md-none divider-30"></div>
                         <div class="col-12 col-md-4 mt-4 m-md-0">
-                            <button class="search_btn w-100 main-btn-full">Add More Tokens</button>
+                            <a href="{% url "accounts" %}">
+                                <button class="search_btn w-100 main-btn-full">Add More Tokens</button>
+                            </a>
                         </div>
                         <div class="d-block d-md-none divider-30"></div>
                         <div class="col-12 col-md-4 mt-4 m-md-0">
-                            <button class="search_btn w-100 main-btn-full">Add a Travel Companion</button>
+                            <a href="{% url "accounts" %}">
+                                <button class="search_btn w-100 main-btn-full">Add a Travel Companion</button>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -279,7 +291,8 @@
                                         </div>
 
                                         <div class="pop2_hor_line" style="margin:10px 0px"></div>
-                                        <input class="pop2_input" autofocus type="text" v-model="city" v-on:keyup="cityHandler"
+                                        <input class="pop2_input" autofocus type="text" v-model="city"
+                                               v-on:keyup="cityHandler"
                                                onfocus="this.value=''" placeholder="Add new location..."/>
                                     </div>
 
@@ -300,7 +313,7 @@
                     </div>
 
                     <div class="modal-footer">
-{#                        <button class="pop2_footer_left" data-dismiss="modal">Cancel</button>#}
+                        {#                        <button class="pop2_footer_left" data-dismiss="modal">Cancel</button>#}
                         <button class="pop2_footer_right" @click="choosePlaces">Close</button>
                     </div>
                 </div>
@@ -440,11 +453,13 @@
                     </h4>
                     <div class="appstore-buttons d-block d-md-flex justify-content-start mt-4 mb-2">
                         <button class="btn btn-lg btn-default border appstore-btn mr-4 mb-2 text-left">
-                            <img src="{% static "images/icons/app-store-icon.jpg" %}" alt="App Store" height="30" class="mr-4">
+                            <img src="{% static "images/icons/app-store-icon.jpg" %}" alt="App Store" height="30"
+                                 class="mr-4">
                             <span>App Store</span>
                         </button>
                         <button class="btn btn-lg btn-default border appstore-btn mr-4 mb-2 text-left">
-                            <img src="{% static "images/icons/play-store-icon.png" %}" alt="Play Store" height="30" class="mr-4">
+                            <img src="{% static "images/icons/play-store-icon.png" %}" alt="Play Store" height="30"
+                                 class="mr-4">
                             <span>Play Store</span>
                         </button>
                     </div>

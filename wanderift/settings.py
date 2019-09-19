@@ -85,7 +85,8 @@ TEMPLATES = [
                 'airlines':
                     'results.templatetags.airlines',
                 'aircons':
-                    'results.templatetags.airline_icons'
+                    'results.templatetags.airline_icons',
+                'comparison': 'results.templatetags.comparison'
             }
         },
     },

@@ -1,5 +1,8 @@
+$(document).ready(function () {
+    let searchQuery = JSON.parse(sessionStorage.getItem("searchQuery"));
+    app.searchQuery = searchQuery;
+});
 const app = new Vue({
-
     el: '#app',
     delimiters: ['{(', ')}'],
     data: {
@@ -9,6 +12,7 @@ const app = new Vue({
         city: '',
         valPassengers: 1,
         searchParameter: '',
+        searchQuery: {},
         form: {
             destinationType: "Return",
             noOfPassengers: "Passengers",
@@ -25,7 +29,7 @@ const app = new Vue({
                 url: 'http://aviation-edge.com/v2/public/autocomplete?key=140940-4e6372&city=' + app.city,
                 success: function (data) {
                     if (data) {
-                       data = JSON.parse(data).cities;
+                        data = JSON.parse(data).cities;
                         //data = JSON.parse(data).airportsByCities;
                         app.searchResultPlaces = data;
 
@@ -60,7 +64,7 @@ const app = new Vue({
                 object[key] = value;
             });
             let json = object;
-            console.log(json);
+            sessionStorage.setItem("searchQuery", JSON.stringify(app.form));
 
             // The rest of this code assumes you are not using a library.
             // It can be made less wordy if you use one.

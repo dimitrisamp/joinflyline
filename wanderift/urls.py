@@ -29,10 +29,10 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     # site under construction
-    path('', under_construction, name="construction"),
+    # path('', under_construction, name="construction"),
 
     # Home page links
-    path('home', home_view, name="home"),
+    path('', home_view, name="home"),
 
     # Results page urls
     path('results', results_view, name="results"),

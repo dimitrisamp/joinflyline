@@ -31,6 +31,10 @@
             <div class="navbar-collapse collapse p-2" id="navb">
                 <ul class="navbar-nav ml-auto">
                     {% if user.is_authenticated %}
+                        <li class="ml-md-4">
+                            <p>Welcome back
+                                {% if user.first_name %}{{ user.first_name }}{% else %}{{ user.email }}{% endif %}</p>
+                        </li>
                         <li class="nav-item ml-md-4">
                             <a class="custom_nav_link" href="{% url "corporate" %}">Manage Trips </a>
                         </li>
@@ -41,7 +45,8 @@
                             <a class="custom_nav_link" href="{% url "faq" %}">Help</a>
                         </li>
                         <li class="nav-item ml-md-4">
-                            <a class="custom_nav_link" href="{% url "accounts" %}" style="padding-left:40px;">Account</a>
+                            <a class="custom_nav_link" href="{% url "accounts" %}"
+                               style="padding-left:40px;">Account</a>
                         </li>
                     {% else %}
                         <li class="nav-item ml-md-4">
@@ -68,7 +73,8 @@
             <div class="row justify-content-center">
                 <a class="popup_btn_link w-100 p-3" href="#">
                     <div class="w-100 btn_popup text-center">
-                        <img class="img_goggle" style="margin-right: 10px;" src="{% static "images/google.png" %}" alt="logo"/>
+                        <img class="img_goggle" style="margin-right: 10px;" src="{% static "images/google.png" %}"
+                             alt="logo"/>
                         Sign in with Google
                     </div>
                 </a>

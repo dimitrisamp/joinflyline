@@ -1,6 +1,4 @@
 from django import template
-from django.template.defaultfilters import register
-from django.utils import dateparse
 
 register = template.Library()
 

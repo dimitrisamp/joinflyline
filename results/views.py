@@ -34,7 +34,6 @@ def results_view(request, null=None):
             data = response.json()
             airlines = set()
 
-            print(json.loads(response.text))
             if json.loads(response.text)['data']:
                 for flights in json.loads(response.text)['data']:
                     for airline in flights['airlines']:
