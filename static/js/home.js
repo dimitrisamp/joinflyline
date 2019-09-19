@@ -32,10 +32,10 @@ const app = new Vue({
                        data = JSON.parse(data).cities;
                         //data = JSON.parse(data).airportsByCities;
 
-                        let cities = [];
-                        cities.push(JSON.parse(data).cities);
-                        let airports = [];
-                        airports.push(JSON.parse(data).airportsByCities);
+                        // let cities = [];
+                        // cities.push(JSON.parse(data).cities);
+                        // let airports = [];
+                        // airports.push(JSON.parse(data).airportsByCities);
 
                         //let values = airports.concat(cities);
 
