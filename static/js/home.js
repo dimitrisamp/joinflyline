@@ -14,7 +14,7 @@ const app = new Vue({
         searchParameter: '',
         searchQuery: {},
         form: {
-            destinationType: "Return",
+            destinationType: "Roundtrip",
             noOfPassengers: "Passengers",
             destinationTypeId: 'round',
             seatType: 'Economy',
@@ -114,7 +114,7 @@ const app = new Vue({
             switch (type) {
                 case 1:
                     app.form.destinationTypeId = 'round';
-                    app.form.destinationType = 'Return';
+                    app.form.destinationType = 'Roundtrip';
                     return;
                 case 2:
                     app.form.destinationTypeId = 'oneway';
@@ -272,7 +272,7 @@ const app = new Vue({
 
             switch (app.selectionOption) {
                 case 1:
-                    document.getElementById('placesModalTitle').innerText = "From";
+                    document.getElementById('placesModalTitle').innerText = "Search and Select Departure City";
                     if (placeFrom == null || placeFrom == '') {
                         document.getElementById('mySelectedPlace').style.display = 'none';
                     } else {
@@ -283,7 +283,7 @@ const app = new Vue({
                     $('#placesModal').modal('show');
                     return;
                 case 2:
-                    document.getElementById('placesModalTitle').innerText = "To";
+                    document.getElementById('placesModalTitle').innerText = "Search and Select Arrival City";
                     if (placeTo == null || placeTo == '') {
                         document.getElementById('mySelectedPlace').style.display = 'none';
                     } else {

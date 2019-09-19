@@ -37,7 +37,7 @@
 
                                         <div class="dropdown-menu">
                                             <a class="dropdown-item drop_down_btn_item" @click="selectDestType(1)">
-                                                Return
+                                                Roundtrip
                                             </a>
                                             <div class="dropdown-divider"></div>
                                             <a class="dropdown-item drop_down_btn_item" @click="selectDestType(2)">One
@@ -122,7 +122,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="container wide-container">
+                <div class="container wide-container d-none">
                     <div class="row">
                         <div class="col-md-12 mb-3">
                             <label class="mr-3"> <strong>Stops: </strong></label>
@@ -383,6 +383,9 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="arror-indicator p-2 pr-5 d-flex align-items-center">
+                                            <img src="{% static "images/arrow.png" %}" alt="Pull down">
+                                        </div>
                                     </div>
 
                                     <div class="result-details collapse container-fluid"
@@ -583,10 +586,12 @@
                         <div class="s-sidebar">
                             <div class="sticky-item">
                                 <div class="card">
-                                    <div class="card-header bg-white cursor-pointer" data-toggle="collapse"
+                                    <div class="card-header bg-white cursor-pointer card-toggler" data-toggle="collapse"
                                          data-target="#airlineFilter">
-                                        <div class="card-title mb-0">
+                                        <div class="card-title mb-0 d-flex align-items-center justify-content-between">
                                             <h5 class="mb-0 p-2">Airline</h5>
+                                            <img src="{% static "images/arrow_right.svg" %}" alt="Pull Up" class="d-none">
+                                            <img src="{% static "images/arrow_left.svg" %}" alt="Pull down" class="">
                                         </div>
                                     </div>
                                     <div class="card-body collapse show pl-5" id="airlineFilter">
@@ -605,10 +610,12 @@
                                     </div>
                                 </div>
                                 <div class="card mt-3">
-                                    <div class="card-header bg-white cursor-pointer" data-toggle="collapse"
+                                    <div class="card-header bg-white cursor-pointer card-toggler" data-toggle="collapse"
                                          data-target="#priceFilter">
-                                        <div class="card-title mb-0">
+                                        <div class="card-title mb-0 d-flex justify-content-between">
                                             <h5 class="mb-0 p-2">Price</h5>
+                                            <img src="{% static "images/arrow_right.svg" %}" alt="Pull Up" class="d-none">
+                                            <img src="{% static "images/arrow_left.svg" %}" alt="Pull down" class="">
                                         </div>
                                     </div>
                                     <div class="card-body collapse show" id="priceFilter">
@@ -620,10 +627,12 @@
                                     </div>
                                 </div>
                                 <div class="card filter-by-time mt-3">
-                                    <div class="card-header bg-white cursor-pointer" data-toggle="collapse"
+                                    <div class="card-header bg-white cursor-pointer card-toggler" data-toggle="collapse"
                                          data-target="#timeFilter">
-                                        <div class="card-title mb-0">
+                                        <div class="card-title mb-0 d-flex justify-content-between">
                                             <h5 class="bold mb-0 p-2" style="font-weight: 600;">Time</h5>
+                                            <img src="{% static "images/arrow_right.svg" %}" alt="Pull Up" class="">
+                                            <img src="{% static "images/arrow_left.svg" %}" alt="Pull down" class="d-none">
                                         </div>
                                     </div>
                                     <div class="card-body collapse" id="timeFilter">
@@ -677,10 +686,12 @@
                                     </div>
                                 </div>
                                 <div class="card mt-3">
-                                    <div class="card-header bg-white cursor-pointer" data-toggle="collapse"
+                                    <div class="card-header bg-white cursor-pointer card-toggler" data-toggle="collapse"
                                          data-target="#stopsFilter">
-                                        <div class="card-title mb-0">
+                                        <div class="card-title mb-0 d-flex justify-content-between">
                                             <h5 class="mb-0 p-2">Stops</h5>
+                                            <img src="{% static "images/arrow_right.svg" %}" alt="Pull Up" class="">
+                                            <img src="{% static "images/arrow_left.svg" %}" alt="Pull down" class="d-none">
                                         </div>
                                     </div>
                                     <div class="card-body collapse" id="stopsFilter">
@@ -714,7 +725,7 @@
                             <div class="modal-content" style="top: 160px;">
                                 <div class="modal-body">
                                     <div class="row pop2_first">
-                                        <div class="col-6" style="text-align:left; margin-bottom: 2%"><p
+                                        <div class="col-12" style="text-align:left; margin-bottom: 2%"><p
                                                 id="placesModalTitle"></p>
                                         </div>
                                         <div class="col-6" style="text-align:right">
@@ -999,13 +1010,15 @@
             if ($('#mobileIndicator').css('display') == 'none') {
                 is_mobile = true;
             }
-            // now i can use is_mobile to run javascript conditionally
             if (is_mobile == true) {
                 alert("mobile!");
                 $('.search-bar-section').removeClass('sticky-top');
             } else {
                 $('.search-bar-section').addClass('sticky-top')
             }
+            $('.card-toggler').on('click', function() {
+                $(this).find('.card-title').find('img').toggleClass('d-none');
+            })
         });
     </script>
 {% endblock %}
