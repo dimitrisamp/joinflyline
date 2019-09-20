@@ -6,6 +6,8 @@ from django.contrib import messages
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 
+from results.models import SearchDetails
+
 
 @csrf_exempt
 def results_view(request, null=None):
@@ -22,11 +24,25 @@ def results_view(request, null=None):
             "flight_type": request.POST['type'],
             "adults": request.POST['adults'],
             "children": request.POST['children'],
-            "infants": request.POST['infants']
+            "infants": request.POST['infants'],
+            "max_stopovers": int(request.POST['max_stopovers']),
+            "stopover_from": request.POST['stopover_from'],
+            "stopover_to": request.POST['stopover_to'],
         }
 
+        search_item = SearchDetails(user_id=request.user.id, fly_from=search_query.get("fly_from"),
+                                    fly_to=search_query.get("fly_to"),
+                                    date_from=search_query.get("date_from"), date_to=search_query.get("date_to"),
+                                    return_from=search_query.get("return_from"),
+                                    return_to=search_query.get("return_to"),
+                                    flight_type=search_query.get("flight_type"), adults=search_query.get("adults"),
+                                    children=search_query.get("children"), infants=search_query.get("infants"),
+                                    max_stopovers=search_query.get("max_stopovers"),
+                                    stopover_from=search_query.get("stopover_from"),
+                                    stopover_to=search_query.get("stopover_to"))
+
+        search_item.save()
         request.session["search_query"] = search_query
-        # search_query = urllib.parse.urlencode(search_query)
         url = "https://kiwicom-prod.apigee.net/v2/search"
         try:
             response = requests.get(url, params=search_query)
