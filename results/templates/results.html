@@ -398,7 +398,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="result-details colgit lapse container-fluid"
+                                    <div class="result-details collapse container-fluid"
                                          id="result-item{{ flight.duration.total }}">
                                         <hr class="m-0">
                                         {% with flight.route|first as route_one %}
@@ -598,9 +598,9 @@
                         <div class="s-sidebar">
                             <div class="sticky-item">
                                 <div class="card">
-                                    <div class="card-header bg-white cursor-pointer" data-toggle="collapse"
+                                    <div class="card-header card-toggler bg-white cursor-pointer" data-toggle="collapse"
                                          data-target="#airlineFilter">
-                                        <div class="card-title mb-0">
+                                        <div class="card-title mb-0 d-flex align-items-center justify-content-between">
                                             <h5 class="mb-0 p-2">Airline</h5>
                                             <img src="{% static "images/icons/up-arrow.png" %}" alt="Pull Up" class=""
                                                  height="10">
@@ -624,7 +624,7 @@
                                     </div>
                                 </div>
                                 <div class="card mt-3">
-                                    <div class="card-header bg-white cursor-pointer" data-toggle="collapse"
+                                    <div class="card-header card-toggler bg-white cursor-pointer" data-toggle="collapse"
                                          data-target="#priceFilter">
                                         <div class="card-title mb-0 d-flex align-items-center justify-content-between">
                                             <h5 class="mb-0 p-2">Price</h5>
@@ -644,7 +644,7 @@
                                     </div>
                                 </div>
                                 <div class="card filter-by-time mt-3">
-                                    <div class="card-header bg-white cursor-pointer" data-toggle="collapse"
+                                    <div class="card-header card-toggler bg-white cursor-pointer" data-toggle="collapse"
                                          data-target="#timeFilter">
                                         <div class="card-title mb-0 d-flex justify-content-between align-items-center">
                                             <h5 class="bold mb-0 p-2" style="font-weight: 600;">Time</h5>
@@ -707,7 +707,7 @@
                                     </div>
                                 </div>
                                 <div class="card mt-3">
-                                    <div class="card-header bg-white cursor-pointer" data-toggle="collapse"
+                                    <div class="card-header card-toggler bg-white cursor-pointer" data-toggle="collapse"
                                          data-target="#stopsFilter">
                                         <div class="card-title mb-0 d-flex align-items-center justify-content-between">
                                             <h5 class="mb-0 p-2">Stops</h5>
@@ -750,10 +750,10 @@
                             <div class="modal-content" style="top: 160px;">
                                 <div class="modal-body">
                                     <div class="row pop2_first">
-                                        <div class="col-6" style="text-align:left; margin-bottom: 2%"><p
+                                        <div class="col-12" style="text-align:left; margin-bottom: 2%"><p
                                                 id="placesModalTitle"></p>
                                         </div>
-                                        <div class="col-6" style="text-align:right">
+                                        <div class="col-12" style="text-align:right">
                                             <!--  <p style="color:#8092a9; cursor: pointer;"  @click="clearList"><i
                                                   class="fa fa-times" style="margin-left:5px"></i></p>--></div>
                                     </div>
