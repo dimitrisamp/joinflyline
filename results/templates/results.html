@@ -5,6 +5,7 @@
 {% load airlines %}
 {% load airline_icons %}
 {% load comparison %}
+{% load time_duration %}
 
 {% block csscontent %}
     <link rel="stylesheet" href="{% static "css/lightpick.css" %}" xmlns:v-on="http://www.w3.org/1999/xhtml"
@@ -37,7 +38,7 @@
 
                                         <div class="dropdown-menu">
                                             <a class="dropdown-item drop_down_btn_item" @click="selectDestType(1)">
-                                                Roundtrip
+                                                Return
                                             </a>
                                             <div class="dropdown-divider"></div>
                                             <a class="dropdown-item drop_down_btn_item" @click="selectDestType(2)">One
@@ -122,33 +123,34 @@
                         </div>
                     </div>
                 </div>
-                <div class="container wide-container d-none">
+                <div class="container wide-container">
                     <div class="row">
                         <div class="col-md-12 mb-3">
                             <label class="mr-3"> <strong>Stops: </strong></label>
                             <div class="divider-30 d-block d-md-none"></div>
                             <div class="form-check-inline">
                                 <label class="form-check-label">
-                                    <input type="radio" class="form-check-input mr-2" name="stop">Any
+                                    <input type="radio" class="form-check-input mr-2" name="stop" value="">Any
                                 </label>
                             </div>
                             <div class="divider-15 d-block d-md-none"></div>
                             <div class="form-check-inline">
                                 <label class="form-check-label">
-                                    <input type="radio" class="form-check-input mr-2" name="stop">Nonestop (Direct
+                                    <input type="radio" class="form-check-input mr-2" name="stop" value="0" checked>Nonestop
+                                    (Direct
                                     Flights)
                                 </label>
                             </div>
                             <div class="divider-15 d-block d-md-none"></div>
                             <div class="form-check-inline">
                                 <label class="form-check-label">
-                                    <input type="radio" class="form-check-input mr-2" name="stop">1 Stop
+                                    <input type="radio" class="form-check-input mr-2" name="stop" value="1">1 Stop
                                 </label>
                             </div>
                             <div class="divider-15 d-block d-md-none"></div>
                             <div class="form-check-inline">
                                 <label class="form-check-label">
-                                    <input type="radio" class="form-check-input mr-2" name="stop">2+ Stops
+                                    <input type="radio" class="form-check-input mr-2" name="stop" value="2">2+ Stops
                                 </label>
                             </div>
                             <div class="divider-30 d-block d-md-none"></div>
@@ -336,7 +338,7 @@
                                                             <strong>{{ flight.local_departure | iso_date | date:"D j M" }}</strong>
                                                         </label>
                                                         <br>
-                                                        <span class="small text-muted">{{ flight.local_departure | iso_date | date:"h:i A" }}</span>
+                                                        <span class="small text-muted">{{ flight | time_interval }}</span>
                                                     </div>
                                                     <div></div>
                                                 </div>
@@ -360,32 +362,39 @@
                                                     </div>
                                                 </div>
                                                 <div class="d-flex justify-content-around w-100">
-                                                    <div class="">
+                                                    {% with flight.route|last as route_last %}
+                                                        {% if route_last %}
+                                                            <div class="">
 
-                                                        <label class="mb-0"><strong>{{ flight.local_arrival | iso_date | date:"h:i A" }}
-                                                            -
-                                                            {{ flight.local_departure | iso_date | date:"h:i A" }}</strong></label>
-                                                        <br>
-                                                        <span class="small text-muted">
+                                                                <label class="mb-0"><strong>{{ route_last.local_arrival | iso_date | date:"h:i A" }}
+                                                                    -
+                                                                    {{ route_last.local_departure | iso_date | date:"h:i A" }}</strong></label>
+                                                                <br>
+                                                                <span class="small text-muted">
                                                     {{ flight.cityTo }}
                                                     <i class="fa fa-long-arrow-right mr-1 ml-1"></i>
                                                     {{ flight.cityFrom }}
                                                     </span>
-                                                    </div>
-                                                    <div class="">
-                                                        <label class="mb-0">
-                                                            <strong>{{ flight.local_arrival | iso_date | date:"D j M" }}</strong>
-                                                        </label>
-                                                        <br>
-                                                        <span class="small text-muted">{{ flight.local_arrival | iso_date | date:"h:i A" }}</span>
-                                                    </div>
+                                                            </div>
+                                                            <div class="">
+                                                                <label class="mb-0">
+                                                                    <strong>{{ route_last.local_arrival | iso_date | date:"D j M" }}</strong>
+                                                                </label>
+                                                                <br>
+                                                                <span class="small text-muted">{{ route_last | time_interval }}</span>
+                                                            </div>
+                                                        {% endif %}
+                                                    {% endwith %}
                                                     <div></div>
                                                 </div>
                                             </div>
                                         </div>
+
                                         <div class="arrow-indicator p-2 pr-5 d-flex align-items-center">
-                                            <img src="{% static "images/icons/down-arrow.png" %}" alt="Pull down" height="15" class="">
-                                            <img src="{% static "images/icons/up-arrow.png" %}" alt="Pull up" height="15" class="d-none">
+                                            <img src="{% static "images/icons/down-arrow.png" %}" alt="Pull down"
+                                                 height="15" class="">
+                                            <img src="{% static "images/icons/up-arrow.png" %}" alt="Pull up"
+                                                 height="15" class="d-none">
                                         </div>
                                     </div>
 
@@ -457,12 +466,13 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                <span class="position-absolute duration-indicator small text-muted">1h 14m</span>
+                                                                <span class="position-absolute duration-indicator small text-muted">{{ route | time_interval }}</span>
                                                             </div>
 
                                                             <div class="d-flex pt-3 pl-4 pb-3">
                                                                 <i class="fa fa-clock-o mr-2"></i>
-                                                                <p class="small text-muted mb-0">1h 26m layover</p>
+                                                                <p class="small text-muted mb-0">{{ route | time_interval }}
+                                                                    layover</p>
                                                             </div>
                                                         {% endif %}
                                                     {% endfor %}
@@ -509,7 +519,7 @@
                                                                                     </label>
                                                                                     <br>
                                                                                     <label class="mb-0">
-                                                                                        <span class="dark-text">{{ route.local_departure | iso_date | date:"h:i A" }}</span>
+                                                                                        <span class="dark-text">{{ route.local_arrival | iso_date | date:"h:i A" }}</span>
                                                                                         <span class="text-muted">{{ route.cityTo }} {{ route.flyTo }}</span>
                                                                                     </label>
                                                                                 </div>
@@ -541,11 +551,12 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                <span class="position-absolute duration-indicator small text-muted">1h 14m</span>
+                                                                <span class="position-absolute duration-indicator small text-muted">{{ route | time_interval }}</span>
                                                             </div>
                                                             <div class="d-flex pt-3 pl-4 pb-3">
                                                                 <i class="fa fa-clock-o mr-2"></i>
-                                                                <p class="small text-muted mb-0">1h 26m layover</p>
+                                                                <p class="small text-muted mb-0"> {{ route | time_interval }}
+                                                                    layover</p>
                                                             </div>
                                                         {% endif %}
                                                     {% endfor %}
@@ -582,18 +593,19 @@
                                 </div>
                             {% endif %}
                         {% endfor %}
-                        <button class="load-more-button">Load More Search Results</button>
                     </div>
                     <div class="col-xl-3">
                         <div class="s-sidebar">
                             <div class="sticky-item">
                                 <div class="card">
-                                    <div class="card-header bg-white cursor-pointer card-toggler" data-toggle="collapse"
+                                    <div class="card-header bg-white cursor-pointer" data-toggle="collapse"
                                          data-target="#airlineFilter">
-                                        <div class="card-title mb-0 d-flex align-items-center justify-content-between">
+                                        <div class="card-title mb-0">
                                             <h5 class="mb-0 p-2">Airline</h5>
-                                            <img src="{% static "images/icons/up-arrow.png" %}" alt="Pull Up" class="" height="10">
-                                            <img src="{% static "images/icons/down-arrow.png" %}" alt="Pull down" class="d-none" height="10">
+                                            <img src="{% static "images/icons/up-arrow.png" %}" alt="Pull Up" class=""
+                                                 height="10">
+                                            <img src="{% static "images/icons/down-arrow.png" %}" alt="Pull down"
+                                                 class="d-none" height="10">
                                         </div>
                                     </div>
                                     <div class="card-body collapse show pl-5" id="airlineFilter">
@@ -612,29 +624,34 @@
                                     </div>
                                 </div>
                                 <div class="card mt-3">
-                                    <div class="card-header bg-white cursor-pointer card-toggler" data-toggle="collapse"
+                                    <div class="card-header bg-white cursor-pointer" data-toggle="collapse"
                                          data-target="#priceFilter">
                                         <div class="card-title mb-0 d-flex align-items-center justify-content-between">
                                             <h5 class="mb-0 p-2">Price</h5>
-                                            <img src="{% static "images/icons/up-arrow.png" %}" alt="Pull Up" class="" height="10">
-                                            <img src="{% static "images/icons/down-arrow.png" %}" alt="Pull down" class="d-none" height="10">
+                                            <img src="{% static "images/icons/up-arrow.png" %}" alt="Pull Up"
+                                                 class="" height="10">
+                                            <img src="{% static "images/icons/down-arrow.png" %}" alt="Pull down"
+                                                 class="d-none" height="10">
                                         </div>
                                     </div>
                                     <div class="card-body collapse show" id="priceFilter">
                                         <div class="mt-3 pl-3">Price Range Filter</div>
                                         <div id="filter_price_ammount" class="small mb-4 pl-3">$0 - $3000</div>
                                         <div class="slider-red slider-holder pl-3">
-                                            <input id="filter_price_range" type="text" value="" class="form-control">
+                                            <input id="filter_price_range" type="text" value=""
+                                                   class="form-control">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="card filter-by-time mt-3">
-                                    <div class="card-header bg-white cursor-pointer card-toggler" data-toggle="collapse"
+                                    <div class="card-header bg-white cursor-pointer" data-toggle="collapse"
                                          data-target="#timeFilter">
                                         <div class="card-title mb-0 d-flex justify-content-between align-items-center">
                                             <h5 class="bold mb-0 p-2" style="font-weight: 600;">Time</h5>
-                                            <img src="{% static "images/icons/up-arrow.png" %}" alt="Pull Down" class="d-none" height="10">
-                                            <img src="{% static "images/icons/down-arrow.png" %}" alt="Pull Up" class="" height="10">
+                                            <img src="{% static "images/icons/up-arrow.png" %}" alt="Pull Down"
+                                                 class="d-none" height="10">
+                                            <img src="{% static "images/icons/down-arrow.png" %}" alt="Pull Up"
+                                                 class="" height="10">
                                         </div>
                                     </div>
                                     <div class="card-body collapse" id="timeFilter">
@@ -644,7 +661,8 @@
                                                     <a class="nav-link active" href="#takeoff" data-toggle="tab">Take-off</a>
                                                 </li>
                                                 <li class="nav-item">
-                                                    <a class="nav-link" href="#landing" data-toggle="tab">Landing</a>
+                                                    <a class="nav-link" href="#landing"
+                                                       data-toggle="tab">Landing</a>
                                                 </li>
                                             </ul>
                                             <div class="tab-content">
@@ -668,7 +686,8 @@
                                                 </div>
                                                 <div class="tab-pane" id="landing">
                                                     <div class="mt-3">Departure City Landing</div>
-                                                    <div id="de_city_landing_time" class="small mb-4">0:00AM - 11:59PM
+                                                    <div id="de_city_landing_time" class="small mb-4">0:00AM -
+                                                        11:59PM
                                                     </div>
                                                     <div class="slider-red slider-holder">
                                                         <input id="de_city_landing" type="text" value=""
@@ -688,12 +707,14 @@
                                     </div>
                                 </div>
                                 <div class="card mt-3">
-                                    <div class="card-header bg-white cursor-pointer card-toggler" data-toggle="collapse"
+                                    <div class="card-header bg-white cursor-pointer" data-toggle="collapse"
                                          data-target="#stopsFilter">
                                         <div class="card-title mb-0 d-flex align-items-center justify-content-between">
                                             <h5 class="mb-0 p-2">Stops</h5>
-                                            <img src="{% static "images/icons/up-arrow.png" %}" alt="Pull Down" class="d-none" height="10">
-                                            <img src="{% static "images/icons/down-arrow.png" %}" alt="Pull Up" class="" height="10">
+                                            <img src="{% static "images/icons/up-arrow.png" %}" alt="Pull Down"
+                                                 class="d-none" height="10">
+                                            <img src="{% static "images/icons/down-arrow.png" %}" alt="Pull Up"
+                                                 class="" height="10">
                                         </div>
                                     </div>
                                     <div class="card-body collapse" id="stopsFilter">
@@ -706,12 +727,14 @@
                                         <div class="custom-control custom-radio mt-2">
                                             <input type="radio" id="customRadio1" name="customRadio"
                                                    class="custom-control-input">
-                                            <label class="custom-control-label" for="customRadio1">Up to 1 stop</label>
+                                            <label class="custom-control-label" for="customRadio1">Up to 1
+                                                stop</label>
                                         </div>
                                         <div class="custom-control custom-radio mt-2">
                                             <input type="radio" id="filterStop2" name="customRadio"
                                                    class="custom-control-input">
-                                            <label class="custom-control-label" for="filterStop2">Up to 2 stops</label>
+                                            <label class="custom-control-label" for="filterStop2">Up to 2
+                                                stops</label>
                                         </div>
                                     </div>
                                 </div>
@@ -727,7 +750,7 @@
                             <div class="modal-content" style="top: 160px;">
                                 <div class="modal-body">
                                     <div class="row pop2_first">
-                                        <div class="col-12" style="text-align:left; margin-bottom: 2%"><p
+                                        <div class="col-6" style="text-align:left; margin-bottom: 2%"><p
                                                 id="placesModalTitle"></p>
                                         </div>
                                         <div class="col-6" style="text-align:right">
@@ -750,7 +773,8 @@
                                                     <div class="pop2_hor_line" style="margin:10px 0px"></div>
                                                     <input class="pop2_input" type="text" v-model="city"
                                                            v-on:keyup="cityHandler"
-                                                           onfocus="this.value=''" placeholder="Add new location..."/>
+                                                           onfocus="this.value=''"
+                                                           placeholder="Add new location..."/>
                                                 </div>
 
                                                 <ol class="search_result_list">
@@ -1012,16 +1036,17 @@
             if ($('#mobileIndicator').css('display') == 'none') {
                 is_mobile = true;
             }
+            // now i can use is_mobile to run javascript conditionally
             if (is_mobile == true) {
                 alert("mobile!");
                 $('.search-bar-section').removeClass('sticky-top');
             } else {
                 $('.search-bar-section').addClass('sticky-top')
             }
-            $('.card-toggler').on('click', function() {
+            $('.card-toggler').on('click', function () {
                 $(this).find('.card-title').find('img').toggleClass('d-none');
             })
-             $('.result-toggler').on('click', function() {
+            $('.result-toggler').on('click', function () {
                 $(this).find('.arrow-indicator').find('img').toggleClass('d-none');
             })
         });
