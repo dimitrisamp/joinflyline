@@ -626,186 +626,181 @@
                                 <div class="card mt-3">
                                     <div class="card-header bg-white cursor-pointer" data-toggle="collapse"
                                          data-target="#priceFilter">
-                                        <<<<<<< HEAD
-                                        <div class="card-title mb-0">
+                                        <div class="card-title mb-0 d-flex align-items-center justify-content-between">
                                             <h5 class="mb-0 p-2">Price</h5>
-                                            =======
-                                            <div class="card-title mb-0 d-flex align-items-center justify-content-between">
-                                                <h5 class="mb-0 p-2">Price</h5>
-                                                <img src="{% static "images/icons/up-arrow.png" %}" alt="Pull Up"
-                                                     class="" height="10">
-                                                <img src="{% static "images/icons/down-arrow.png" %}" alt="Pull down"
-                                                     class="d-none" height="10">
-                                                >>>>>>> d1e91b39b9486c787c7e2fd99a33becd0709924b
-                                            </div>
-                                        </div>
-                                        <div class="card-body collapse show" id="priceFilter">
-                                            <div class="mt-3 pl-3">Price Range Filter</div>
-                                            <div id="filter_price_ammount" class="small mb-4 pl-3">$0 - $3000</div>
-                                            <div class="slider-red slider-holder pl-3">
-                                                <input id="filter_price_range" type="text" value=""
-                                                       class="form-control">
-                                            </div>
+                                            <img src="{% static "images/icons/up-arrow.png" %}" alt="Pull Up"
+                                                 class="" height="10">
+                                            <img src="{% static "images/icons/down-arrow.png" %}" alt="Pull down"
+                                                 class="d-none" height="10">
                                         </div>
                                     </div>
-                                    <div class="card filter-by-time mt-3">
-                                        <div class="card-header bg-white cursor-pointer" data-toggle="collapse"
-                                             data-target="#timeFilter">
-                                            <div class="card-title mb-0 d-flex justify-content-between align-items-center">
-                                                <h5 class="bold mb-0 p-2" style="font-weight: 600;">Time</h5>
-                                                <img src="{% static "images/icons/up-arrow.png" %}" alt="Pull Down"
-                                                     class="d-none" height="10">
-                                                <img src="{% static "images/icons/down-arrow.png" %}" alt="Pull Up"
-                                                     class="" height="10">
-                                            </div>
+                                    <div class="card-body collapse show" id="priceFilter">
+                                        <div class="mt-3 pl-3">Price Range Filter</div>
+                                        <div id="filter_price_ammount" class="small mb-4 pl-3">$0 - $3000</div>
+                                        <div class="slider-red slider-holder pl-3">
+                                            <input id="filter_price_range" type="text" value=""
+                                                   class="form-control">
                                         </div>
-                                        <div class="card-body collapse" id="timeFilter">
-                                            <div class="card-body pr-2">
-                                                <ul class="nav d-flex slider-nav">
-                                                    <li class="nav-item">
-                                                        <a class="nav-link active" href="#takeoff" data-toggle="tab">Take-off</a>
-                                                    </li>
-                                                    <li class="nav-item">
-                                                        <a class="nav-link" href="#landing"
-                                                           data-toggle="tab">Landing</a>
-                                                    </li>
-                                                </ul>
-                                                <div class="tab-content">
-                                                    <div class="tab-pane active show" id="takeoff">
-                                                        <div class="mt-3">Departure City Take-off</div>
-                                                        <div id="de_city_take_off_time" class="small mb-4">0:00AM -
-                                                            11:59PM
-                                                        </div>
-                                                        <div class="slider-red slider-holder">
-                                                            <input id="de_city_take_off" type="text" value=""
-                                                                   class="form-control">
-                                                        </div>
-                                                        <div class="mt-3">Arrival City Take-off</div>
-                                                        <div id="arr_city_take_off_time" class="small mb-4">0:00AM -
-                                                            11:59PM
-                                                        </div>
-                                                        <div class="slider-red slider-holder">
-                                                            <input id="arr_city_take_off" type="text" value=""
-                                                                   class="form-control">
-                                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card filter-by-time mt-3">
+                                    <div class="card-header bg-white cursor-pointer" data-toggle="collapse"
+                                         data-target="#timeFilter">
+                                        <div class="card-title mb-0 d-flex justify-content-between align-items-center">
+                                            <h5 class="bold mb-0 p-2" style="font-weight: 600;">Time</h5>
+                                            <img src="{% static "images/icons/up-arrow.png" %}" alt="Pull Down"
+                                                 class="d-none" height="10">
+                                            <img src="{% static "images/icons/down-arrow.png" %}" alt="Pull Up"
+                                                 class="" height="10">
+                                        </div>
+                                    </div>
+                                    <div class="card-body collapse" id="timeFilter">
+                                        <div class="card-body pr-2">
+                                            <ul class="nav d-flex slider-nav">
+                                                <li class="nav-item">
+                                                    <a class="nav-link active" href="#takeoff" data-toggle="tab">Take-off</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" href="#landing"
+                                                       data-toggle="tab">Landing</a>
+                                                </li>
+                                            </ul>
+                                            <div class="tab-content">
+                                                <div class="tab-pane active show" id="takeoff">
+                                                    <div class="mt-3">Departure City Take-off</div>
+                                                    <div id="de_city_take_off_time" class="small mb-4">0:00AM -
+                                                        11:59PM
                                                     </div>
-                                                    <div class="tab-pane" id="landing">
-                                                        <div class="mt-3">Departure City Landing</div>
-                                                        <div id="de_city_landing_time" class="small mb-4">0:00AM -
-                                                            11:59PM
-                                                        </div>
-                                                        <div class="slider-red slider-holder">
-                                                            <input id="de_city_landing" type="text" value=""
-                                                                   class="form-control">
-                                                        </div>
-                                                        <div class="mt-3">Arrival City Landing</div>
-                                                        <div id="arr_city_landing_time" class="small mb-4">0:00AM -
-                                                            11:59PM
-                                                        </div>
-                                                        <div class="slider-red slider-holder">
-                                                            <input id="arr_city_landing" type="text" value=""
-                                                                   class="form-control">
-                                                        </div>
+                                                    <div class="slider-red slider-holder">
+                                                        <input id="de_city_take_off" type="text" value=""
+                                                               class="form-control">
+                                                    </div>
+                                                    <div class="mt-3">Arrival City Take-off</div>
+                                                    <div id="arr_city_take_off_time" class="small mb-4">0:00AM -
+                                                        11:59PM
+                                                    </div>
+                                                    <div class="slider-red slider-holder">
+                                                        <input id="arr_city_take_off" type="text" value=""
+                                                               class="form-control">
+                                                    </div>
+                                                </div>
+                                                <div class="tab-pane" id="landing">
+                                                    <div class="mt-3">Departure City Landing</div>
+                                                    <div id="de_city_landing_time" class="small mb-4">0:00AM -
+                                                        11:59PM
+                                                    </div>
+                                                    <div class="slider-red slider-holder">
+                                                        <input id="de_city_landing" type="text" value=""
+                                                               class="form-control">
+                                                    </div>
+                                                    <div class="mt-3">Arrival City Landing</div>
+                                                    <div id="arr_city_landing_time" class="small mb-4">0:00AM -
+                                                        11:59PM
+                                                    </div>
+                                                    <div class="slider-red slider-holder">
+                                                        <input id="arr_city_landing" type="text" value=""
+                                                               class="form-control">
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="card mt-3">
-                                        <div class="card-header bg-white cursor-pointer" data-toggle="collapse"
-                                             data-target="#stopsFilter">
-                                            <div class="card-title mb-0 d-flex align-items-center justify-content-between">
-                                                <h5 class="mb-0 p-2">Stops</h5>
-                                                <img src="{% static "images/icons/up-arrow.png" %}" alt="Pull Down"
-                                                     class="d-none" height="10">
-                                                <img src="{% static "images/icons/down-arrow.png" %}" alt="Pull Up"
-                                                     class="" height="10">
-                                            </div>
+                                </div>
+                                <div class="card mt-3">
+                                    <div class="card-header bg-white cursor-pointer" data-toggle="collapse"
+                                         data-target="#stopsFilter">
+                                        <div class="card-title mb-0 d-flex align-items-center justify-content-between">
+                                            <h5 class="mb-0 p-2">Stops</h5>
+                                            <img src="{% static "images/icons/up-arrow.png" %}" alt="Pull Down"
+                                                 class="d-none" height="10">
+                                            <img src="{% static "images/icons/down-arrow.png" %}" alt="Pull Up"
+                                                 class="" height="10">
                                         </div>
-                                        <div class="card-body collapse" id="stopsFilter">
-                                            <div class="custom-control custom-radio mt-2">
-                                                <input type="radio" id="filterNoStop" name="customRadio"
-                                                       class="custom-control-input">
-                                                <label class="custom-control-label" for="filterNoStop">No stops (direct
-                                                    flight)</label>
-                                            </div>
-                                            <div class="custom-control custom-radio mt-2">
-                                                <input type="radio" id="customRadio1" name="customRadio"
-                                                       class="custom-control-input">
-                                                <label class="custom-control-label" for="customRadio1">Up to 1
-                                                    stop</label>
-                                            </div>
-                                            <div class="custom-control custom-radio mt-2">
-                                                <input type="radio" id="filterStop2" name="customRadio"
-                                                       class="custom-control-input">
-                                                <label class="custom-control-label" for="filterStop2">Up to 2
-                                                    stops</label>
-                                            </div>
+                                    </div>
+                                    <div class="card-body collapse" id="stopsFilter">
+                                        <div class="custom-control custom-radio mt-2">
+                                            <input type="radio" id="filterNoStop" name="customRadio"
+                                                   class="custom-control-input">
+                                            <label class="custom-control-label" for="filterNoStop">No stops (direct
+                                                flight)</label>
+                                        </div>
+                                        <div class="custom-control custom-radio mt-2">
+                                            <input type="radio" id="customRadio1" name="customRadio"
+                                                   class="custom-control-input">
+                                            <label class="custom-control-label" for="customRadio1">Up to 1
+                                                stop</label>
+                                        </div>
+                                        <div class="custom-control custom-radio mt-2">
+                                            <input type="radio" id="filterStop2" name="customRadio"
+                                                   class="custom-control-input">
+                                            <label class="custom-control-label" for="filterStop2">Up to 2
+                                                stops</label>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
 
-                        <!-- Modal -->
-                        <div class="modal fade" id="placesModal" tabindex="-1" role="dialog"
-                             aria-labelledby="placesModalCenterTitle"
-                             aria-hidden="true">
-                            <div class="modal-dialog " role="document">
-                                <div class="modal-content" style="top: 160px;">
-                                    <div class="modal-body">
-                                        <div class="row pop2_first">
-                                            <div class="col-6" style="text-align:left; margin-bottom: 2%"><p
-                                                    id="placesModalTitle"></p>
-                                            </div>
-                                            <div class="col-6" style="text-align:right">
-                                                <!--  <p style="color:#8092a9; cursor: pointer;"  @click="clearList"><i
-                                                      class="fa fa-times" style="margin-left:5px"></i></p>--></div>
+                    <!-- Modal -->
+                    <div class="modal fade" id="placesModal" tabindex="-1" role="dialog"
+                         aria-labelledby="placesModalCenterTitle"
+                         aria-hidden="true">
+                        <div class="modal-dialog " role="document">
+                            <div class="modal-content" style="top: 160px;">
+                                <div class="modal-body">
+                                    <div class="row pop2_first">
+                                        <div class="col-6" style="text-align:left; margin-bottom: 2%"><p
+                                                id="placesModalTitle"></p>
                                         </div>
-                                        <div class="row pop2_second">
-                                            <div class="col-12">
-                                                <div>
-                                                    <div style="border: 1px solid #00B7FF; border-radius: 5px; padding: 2%">
-                                                        <div class="search_selected_values">
-                                                            <button class="sel_place_btn" style="margin: 2%"
-                                                                    id="mySelectedPlace">
-                                                                <i class="fa fa-times-circle" style="margin-right:5px"
-                                                                   @click="clearPlaceItem(index)"></i>
+                                        <div class="col-6" style="text-align:right">
+                                            <!--  <p style="color:#8092a9; cursor: pointer;"  @click="clearList"><i
+                                                  class="fa fa-times" style="margin-left:5px"></i></p>--></div>
+                                    </div>
+                                    <div class="row pop2_second">
+                                        <div class="col-12">
+                                            <div>
+                                                <div style="border: 1px solid #00B7FF; border-radius: 5px; padding: 2%">
+                                                    <div class="search_selected_values">
+                                                        <button class="sel_place_btn" style="margin: 2%"
+                                                                id="mySelectedPlace">
+                                                            <i class="fa fa-times-circle" style="margin-right:5px"
+                                                               @click="clearPlaceItem(index)"></i>
 
-                                                            </button>
-                                                        </div>
-
-                                                        <div class="pop2_hor_line" style="margin:10px 0px"></div>
-                                                        <input class="pop2_input" type="text" v-model="city"
-                                                               v-on:keyup="cityHandler"
-                                                               onfocus="this.value=''"
-                                                               placeholder="Add new location..."/>
+                                                        </button>
                                                     </div>
 
-                                                    <ol class="search_result_list">
-                                                        <li v-for="(place, index) of searchResultPlaces">
-                                                            <button class="btn search_result_list_item"
-                                                                    @click="setPlace(place.nameCity,place.codeIataCity,index)">
-                                                                <i class="fa fa-building" style="padding-right: 2%"></i>
-                                                                <i class="fa fa-plane" style="padding-right: 2%"
-                                                                   :hidden="true"></i>
-                                                                {( place.nameCity )}
-                                                            </button>
-                                                        </li>
-                                                    </ol>
-
+                                                    <div class="pop2_hor_line" style="margin:10px 0px"></div>
+                                                    <input class="pop2_input" type="text" v-model="city"
+                                                           v-on:keyup="cityHandler"
+                                                           onfocus="this.value=''"
+                                                           placeholder="Add new location..."/>
                                                 </div>
+
+                                                <ol class="search_result_list">
+                                                    <li v-for="(place, index) of searchResultPlaces">
+                                                        <button class="btn search_result_list_item"
+                                                                @click="setPlace(place.nameCity,place.codeIataCity,index)">
+                                                            <i class="fa fa-building" style="padding-right: 2%"></i>
+                                                            <i class="fa fa-plane" style="padding-right: 2%"
+                                                               :hidden="true"></i>
+                                                            {( place.nameCity )}
+                                                        </button>
+                                                    </li>
+                                                </ol>
+
                                             </div>
                                         </div>
                                     </div>
+                                </div>
 
-                                    <div class="modal-footer">
-                                        <button class="pop2_footer_left" data-dismiss="modal">Cancel</button>
-                                        <button class="pop2_footer_right" @click="choosePlaces">Choose</button>
-                                    </div>
+                                <div class="modal-footer">
+                                    <button class="pop2_footer_left" data-dismiss="modal">Cancel</button>
+                                    <button class="pop2_footer_right" @click="choosePlaces">Choose</button>
                                 </div>
                             </div>
                         </div>
+                    </div>
     </section>
     <div id="mobileIndicator"></div>
     {% include "_includes/footer.html" %}

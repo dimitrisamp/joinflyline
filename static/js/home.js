@@ -29,28 +29,14 @@ const app = new Vue({
                 url: 'http://aviation-edge.com/v2/public/autocomplete?key=140940-4e6372&city=' + app.city,
                 success: function (data) {
                     if (data) {
-                        data = JSON.parse(data).cities;
-                        //data = JSON.parse(data).airportsByCities;
+                        let allData = data;
+                        let cityData = JSON.parse(data).cities;
+                        let airportData = JSON.parse(data).airportsByCities;
 
-                        // let cities = [];
-                        // cities.push(JSON.parse(data).cities);
-                        // let airports = [];
-                        // airports.push(JSON.parse(data).airportsByCities);
-
-                        //let values = airports.concat(cities);
-
-
-                        /* console.log(values)
- */
-                        /* for(let i = 0; i <=  values[0].length; i++ ){
-                             filteredData.push(values[i]);
-                                if(values[1].length-1 !== i) {
-                                    filteredData.push(values[1]);
-                                }
-                             console.log(filteredData);
-                            }
-                            data = JSON.parse(data).cities;*/
-                        app.searchResultPlaces = data;
+                        cityData.forEach(city =>{
+                            city.airport = airportData.pop()
+                        });
+                        app.searchResultPlaces = cityData;
 
                     }
                 }
