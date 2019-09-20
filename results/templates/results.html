@@ -79,7 +79,7 @@
                                                 <h6>Departure
                                                     City :
                                                     <input type="text" class="search_input" readonly name="placesFrom"
-                                                           id="placesFrom" :value="searchQuery.city_from"/>
+                                                           id="placesFrom" value="{{request.session.search_query.fly_from}}"/>
                                                 </h6>
                                             </label>
                                             <img class="icon_repeat" src="{% static "images/repeat.svg" %}"
@@ -90,7 +90,7 @@
                                                 <h6>
                                                     Arrival City :
                                                     <input type="text" class="search_input" readonly name="placesTo"
-                                                           id="placesTo" :value="searchQuery.city_to"/>
+                                                           id="placesTo" value="{{request.session.search_query.fly_to}}"/>
                                                 </h6>
                                             </label>
                                         </div>
@@ -99,7 +99,7 @@
                                                 <h6>Departure
                                                     Date :
                                                     <input type="text" name="dep_date" id="departure_date"
-                                                           class="search_input" :value="searchQuery.dep_date">
+                                                           class="search_input" value="{{request.session.search_query.date_from}}">
                                                 </h6>
                                             </label>
                                         </div>
@@ -108,7 +108,7 @@
                                                 <h6 style="font-family: karla; font-weight:bold; opacity: .5;">Return
                                                     Date :
                                                     <input type="text" name="ret_date" id="return_date"
-                                                           class="search_input" :value="searchQuery.ret_date">
+                                                           class="search_input" value="{{request.session.search_query.return_from}}">
                                                 </h6>
                                             </label>
                                         </div>
@@ -785,6 +785,11 @@
                                                             <i class="fa fa-plane" style="padding-right: 2%"
                                                                :hidden="true"></i>
                                                             {( place.nameCity )}
+                                                        </button>
+                                                        <button class="btn search_result_list_item"
+                                                                @click="setPlace(place.nameCity,place.codeIataCity,index)">
+                                                            <i class="fa fa-plane" style="padding-right: 2%"></i>
+                                                            {( place.airport.nameAirport )}
                                                         </button>
                                                     </li>
                                                 </ol>
