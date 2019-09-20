@@ -296,14 +296,14 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6 search result p-0">
+                    <div class="col-md-6 search result p-3 p-md-0">
                         {% for flight in data.data %}
                             {% if flight.availability.seats > 0 %}
                                 <div class="result-item mb-2 w-100">
-                                    <div class="result-block result-toggler w-100 d-flex justify-content-start pt-3 pb-3"
+                                    <div class="result-block result-toggler w-100 d-block d-md-flex justify-content-start p-2 pt-3 pb-3"
                                          data-toggle="collapse"
                                          data-target="#result-item{{ flight.duration.total }}">
-                                        <div class="price-block d-flex align-items-center pl-3 pr-3">
+                                        <div class="price-block d-flex align-items-center justify-content-center pl-3 pr-3">
                                             <div>
                                                 <h5>$ {{ flight.price }}</h5>
                                                 <p class="small text-muted">1 Adult</p>
@@ -390,7 +390,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="arrow-indicator p-2 pr-5 d-flex align-items-center">
+                                        <div class="arrow-indicator p-2 pt-3 pr-md-5 d-flex align-items-center justify-content-center">
                                             <img src="{% static "images/icons/down-arrow.png" %}" alt="Pull down"
                                                  height="15" class="">
                                             <img src="{% static "images/icons/up-arrow.png" %}" alt="Pull up"
@@ -570,21 +570,21 @@
                                         {% endwith %}
                                         <!-------------End Return flights------------------->
                                         </div>
-                                        <div class="search-results-buttons text-right p-2">
+                                        <div class="search-results-buttons text-right p-2 pt-3">
                                             {% if flight.routes|length > 1 and flight.price > 369 %}
                                                 <a href="{% url 'subscription' %}">
-                                                    <button class="search_btn">Subscribe and save
+                                                    <button class="search_btn mb-1">Subscribe and save
                                                         ${{ flight | comparison }}</button>
                                                 </a>
                                             {% endif %}
                                             {% if flight.routes|length == 1 and flight.price > 185 %}
                                                 <a href="{% url 'subscription' %}">
-                                                    <button class="search_btn">Subscribe and save
+                                                    <button class="search_btn mb-1">Subscribe and save
                                                         ${{ flight | comparison }}</button>
                                                 </a>
                                             {% endif %}
                                             <a href="{% url 'retail' flight.booking_token %}">
-                                                <button class="search_btn book-btn"> Book for
+                                                <button class="search_btn book-btn mt-1"> Book for
                                                     ${{ flight.price }}</button>
                                             </a>
                                         </div>
@@ -1047,6 +1047,17 @@
             $('.result-toggler').on('click', function () {
                 $(this).find('.arrow-indicator').find('img').toggleClass('d-none');
             })
+        });
+        $(window).on('resize', function(){
+            var is_mobile = false;
+            if ($('#mobileIndicator').css('display') == 'none') {
+                is_mobile = true;
+            }
+            if (is_mobile == true) {
+                $('.search-bar-section').removeClass('sticky-top');
+            } else {
+                $('.search-bar-section').addClass('sticky-top')
+            }
         });
     </script>
 {% endblock %}

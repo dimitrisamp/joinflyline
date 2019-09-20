@@ -48,7 +48,14 @@
     border-radius: 4px;
 }
 
-@media only screen and (max-width: 760px) {
+@media only screen and (max-width: 992px) {
   #mobileIndicator { display: none; }
+    .search-results-buttons {
+        font-size: 0.9em;
+        width: auto;
+    }
+    .search-results-buttons .search_btn {
+        padding: 7px 5px;
+    }
 }
 

@@ -4,6 +4,7 @@
 .popup_container {
     max-width: 420px;
     margin: 0 auto;
+    top: 100px;
     padding:20px;
     background: #FFFFFF;
     box-shadow: 0 2px 21px rgba(0, 0, 0, 0.5);
@@ -146,10 +147,9 @@ input.login_input{
     font-family: Karla;
 }
 
-
 /* modal */
 .sign-in-modal .modal-dialog {
-    margin: 80px auto;
+    margin: 50px auto;
 }
 .sign-in-modal .modal-dialog .nav-pills {
     border: 2px solid #e5e5e5;
@@ -172,4 +172,13 @@ input.login_input{
     border-radius: 4px;
     margin-top: 15px;
     color: #1d222e;
+}
+
+@media screen and (max-width: 992px) {
+    .sign-in-modal .modal-dialog {
+        margin: 0 auto;
+    }
+    .popup_container {
+         top: 30px;
+    }
 }
