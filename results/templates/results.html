@@ -123,7 +123,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="container wide-container">
+                <div class="container wide-container d-none">
                     <div class="row">
                         <div class="col-md-12 mb-3">
                             <label class="mr-3"> <strong>Stops: </strong></label>
@@ -1036,9 +1036,7 @@
             if ($('#mobileIndicator').css('display') == 'none') {
                 is_mobile = true;
             }
-            // now i can use is_mobile to run javascript conditionally
             if (is_mobile == true) {
-                alert("mobile!");
                 $('.search-bar-section').removeClass('sticky-top');
             } else {
                 $('.search-bar-section').addClass('sticky-top')
