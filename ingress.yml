@@ -10,10 +10,10 @@ metadata:
 spec:
   tls:
     - hosts:
-        - wanderift.com
+        - www.wanderift.com
       secretName: wanderift-crt-secret
   rules:
-    - host: wanderift.com
+    - host: www.wanderift.com
       http:
         paths:
           - path: /
