@@ -14,9 +14,9 @@ class SearchDetails(models.Model):
     adults = models.CharField(max_length=20)
     children = models.CharField(max_length=20)
     infants = models.CharField(max_length=20)
-    max_stopovers = models.IntegerField()
-    stopover_from = models.CharField(max_length=20)
-    stopover_to = models.CharField(max_length=20)
+    max_stopovers = models.IntegerField(null=True, blank=True)
+    stopover_from = models.CharField(max_length=20, null=True, blank=True)
+    stopover_to = models.CharField(max_length=20, null=True, blank=True)
 
     def __str__(self):
         return SearchDetails.fly_from

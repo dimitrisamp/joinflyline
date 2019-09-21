@@ -79,7 +79,8 @@
                                                 <h6>Departure
                                                     City :
                                                     <input type="text" class="search_input" readonly name="placesFrom"
-                                                           id="placesFrom" value="{{request.session.search_query.fly_from}}"/>
+                                                           id="placesFrom"
+                                                           value="{{ request.session.search_query.fly_from }}"/>
                                                 </h6>
                                             </label>
                                             <img class="icon_repeat" src="{% static "images/repeat.svg" %}"
@@ -90,7 +91,8 @@
                                                 <h6>
                                                     Arrival City :
                                                     <input type="text" class="search_input" readonly name="placesTo"
-                                                           id="placesTo" value="{{request.session.search_query.fly_to}}"/>
+                                                           id="placesTo"
+                                                           value="{{ request.session.search_query.fly_to }}"/>
                                                 </h6>
                                             </label>
                                         </div>
@@ -99,7 +101,8 @@
                                                 <h6>Departure
                                                     Date :
                                                     <input type="text" name="dep_date" id="departure_date"
-                                                           class="search_input" value="{{request.session.search_query.date_from}}">
+                                                           class="search_input"
+                                                           value="{{ request.session.search_query.date_from }}">
                                                 </h6>
                                             </label>
                                         </div>
@@ -108,7 +111,8 @@
                                                 <h6 style="font-family: karla; font-weight:bold; opacity: .5;">Return
                                                     Date :
                                                     <input type="text" name="ret_date" id="return_date"
-                                                           class="search_input" value="{{request.session.search_query.return_from}}">
+                                                           class="search_input"
+                                                           value="{{ request.session.search_query.return_from }}">
                                                 </h6>
                                             </label>
                                         </div>
@@ -299,300 +303,559 @@
                     <div class="col-md-6 search result p-3 p-md-0">
                         {% for flight in data.data %}
                             {% if flight.availability.seats > 0 %}
-                                <div class="result-item mb-2 w-100">
-                                    <div class="result-block result-toggler w-100 d-block d-md-flex justify-content-start p-2 pt-3 pb-3"
-                                         data-toggle="collapse"
-                                         data-target="#result-item{{ flight.duration.total }}">
-                                        <div class="price-block d-flex align-items-center justify-content-center pl-3 pr-3">
-                                            <div>
-                                                <h5>$ {{ flight.price }}</h5>
-                                                <p class="small text-muted">1 Adult</p>
-                                            </div>
-                                        </div>
-                                        <div class="flight-info-block d-flex flex-column w-100">
-                                            <div class="departure-row d-flex justify-content-start">
-                                                <div class="airline-logo-holder d-flex"
-                                                     data-stopnum="{{ flight.duration.total }}">
-                                                    {% for airline in flight.airlines %}
-                                                        <div class="img-airline">
-                                                            <div class="airline">
-                                                                <img src="/images/{{ airline |aircon }}.png"
-                                                                     alt="AA" style="width:25px; margin-right: 4px;">
-                                                            </div>
-                                                        </div>
-                                                    {% endfor %}
+                                {% if flight.route.length > 1 %}
+                                    <div class="result-item mb-2 w-100">
+                                        <div class="result-block result-toggler w-100 d-block d-md-flex justify-content-start p-2 pt-3 pb-3"
+                                             data-toggle="collapse"
+                                             data-target="#result-item{{ flight.duration.total }}">
+                                            <div class="price-block d-flex align-items-center justify-content-center pl-3 pr-3">
+                                                <div>
+                                                    <h5>$ {{ flight.price }}</h5>
+                                                    <p class="small text-muted">1 Adult</p>
                                                 </div>
-                                                <div class="d-flex justify-content-around w-100">
-                                                    <div class="">
-                                                        <label class="mb-0"><strong>
-                                                            {{ flight.local_departure | iso_date | date:"h:i A" }} -
-                                                            {{ flight.local_arrival | iso_date | date:"h:i A" }}</strong></label><br>
-                                                        <span class="small text-muted">
+                                            </div>
+                                            <div class="flight-info-block d-flex flex-column w-100">
+                                                <div class="departure-row d-flex justify-content-start">
+                                                    <div class="airline-logo-holder d-flex"
+                                                         data-stopnum="{{ flight.duration.total }}">
+                                                        {% for airline in flight.airlines %}
+                                                            <div class="img-airline">
+                                                                <div class="airline">
+                                                                    <img src="/images/{{ airline |aircon }}.png"
+                                                                         alt="AA"
+                                                                         style="width:25px; margin-right: 4px;">
+                                                                </div>
+                                                            </div>
+                                                        {% endfor %}
+                                                    </div>
+                                                    <div class="d-flex justify-content-around w-100">
+                                                        <div class="">
+                                                            <label class="mb-0"><strong>
+                                                                {{ flight.local_departure | iso_date | date:"h:i A" }} -
+                                                                {{ flight.local_arrival | iso_date | date:"h:i A" }}</strong></label><br>
+                                                            <span class="small text-muted">
                                             {{ flight.cityFrom }}
                                             <i class="fa fa-long-arrow-right mr-1 ml-1"></i>
                                             {{ flight.cityTo }}
                                         </span>
+                                                        </div>
+                                                        <div class="">
+                                                            <label class="mb-0">
+                                                                <strong>{{ flight.local_departure | iso_date | date:"D j M" }}</strong>
+                                                            </label>
+                                                            <br>
+                                                            <span class="small text-muted">{{ flight | time_interval }}</span>
+                                                        </div>
+                                                        <div></div>
                                                     </div>
-                                                    <div class="">
-                                                        <label class="mb-0">
-                                                            <strong>{{ flight.local_departure | iso_date | date:"D j M" }}</strong>
-                                                        </label>
-                                                        <br>
-                                                        <span class="small text-muted">{{ flight | time_interval }}</span>
-                                                    </div>
-                                                    <div></div>
+
+                                                </div>
+                                                <div class="flight-divider d-flex justify-content-start text-left mt-2 mb-2">
+                                                    <span style="width: 50px; border-bottom: 1px solid silver; height: 12px;"></span>
+                                                    <p class="small text-muted mb-0 ml-3">
+                                                        Stays about {{ flight.nightsInDest }} days
+                                                        in {{ flight.cityTo }}
+                                                    </p>
                                                 </div>
 
-                                            </div>
-                                            <div class="flight-divider d-flex justify-content-start text-left mt-2 mb-2">
-                                                <span style="width: 50px; border-bottom: 1px solid silver; height: 12px;"></span>
-                                                <p class="small text-muted mb-0 ml-3">
-                                                    Stays about {{ flight.nightsInDest }} days in {{ flight.cityTo }}
-                                                </p>
-                                            </div>
 
-
-                                            <div class="arrival-row d-flex justify-content-start">
-                                                <div class="airline-logo-holder" data-stopnum="1">
-                                                    <div class="img-airline">
-                                                        <div class="airline">
-                                                            <img src="/images/{{ flight.airlines|last |aircon }}.png"
-                                                                 alt="AA" style="width: 25px;">
+                                                <div class="arrival-row d-flex justify-content-start">
+                                                    <div class="airline-logo-holder" data-stopnum="1">
+                                                        <div class="img-airline">
+                                                            <div class="airline">
+                                                                <img src="/images/{{ flight.airlines|last |aircon }}.png"
+                                                                     alt="AA" style="width: 25px;">
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="d-flex justify-content-around w-100">
-                                                    {% with flight.route|last as route_last %}
-                                                        {% if route_last %}
-                                                            <div class="">
+                                                    <div class="d-flex justify-content-around w-100">
+                                                        {% with flight.route|last as route_last %}
+                                                            {% if route_last %}
+                                                                <div class="">
 
-                                                                <label class="mb-0"><strong>{{ route_last.local_arrival | iso_date | date:"h:i A" }}
-                                                                    -
-                                                                    {{ route_last.local_departure | iso_date | date:"h:i A" }}</strong></label>
-                                                                <br>
-                                                                <span class="small text-muted">
+                                                                    <label class="mb-0"><strong>{{ route_last.local_arrival | iso_date | date:"h:i A" }}
+                                                                        -
+                                                                        {{ route_last.local_departure | iso_date | date:"h:i A" }}</strong></label>
+                                                                    <br>
+                                                                    <span class="small text-muted">
                                                     {{ flight.cityTo }}
                                                     <i class="fa fa-long-arrow-right mr-1 ml-1"></i>
                                                     {{ flight.cityFrom }}
                                                     </span>
-                                                            </div>
-                                                            <div class="">
-                                                                <label class="mb-0">
-                                                                    <strong>{{ route_last.local_arrival | iso_date | date:"D j M" }}</strong>
-                                                                </label>
-                                                                <br>
-                                                                <span class="small text-muted">{{ route_last | time_interval }}</span>
-                                                            </div>
-                                                        {% endif %}
-                                                    {% endwith %}
-                                                    <div></div>
+                                                                </div>
+                                                                <div class="">
+                                                                    <label class="mb-0">
+                                                                        <strong>{{ route_last.local_arrival | iso_date | date:"D j M" }}</strong>
+                                                                    </label>
+                                                                    <br>
+                                                                    <span class="small text-muted">{{ route_last | time_interval }}</span>
+                                                                </div>
+                                                            {% endif %}
+                                                        {% endwith %}
+                                                        <div></div>
+                                                    </div>
                                                 </div>
+                                            </div>
+
+                                            <div class="arrow-indicator p-2 pt-3 pr-md-5 d-flex align-items-center justify-content-center">
+                                                <img src="{% static "images/icons/down-arrow.png" %}" alt="Pull down"
+                                                     height="15" class="">
+                                                <img src="{% static "images/icons/up-arrow.png" %}" alt="Pull up"
+                                                     height="15" class="d-none">
                                             </div>
                                         </div>
 
-                                        <div class="arrow-indicator p-2 pt-3 pr-md-5 d-flex align-items-center justify-content-center">
-                                            <img src="{% static "images/icons/down-arrow.png" %}" alt="Pull down"
-                                                 height="15" class="">
-                                            <img src="{% static "images/icons/up-arrow.png" %}" alt="Pull up"
-                                                 height="15" class="d-none">
-                                        </div>
-                                    </div>
+                                        <div class="result-details collapse container-fluid"
+                                             id="result-item{{ flight.duration.total }}">
+                                            <hr class="m-0">
+                                            {% with flight.route|first as route_one %}
+                                                {% if route_one %}
+                                                    <div class="route-box row">
+                                                    <div class="col-12 col-md-6 departure-block border-right pt-4 pb-4">
+                                                        <h6 class="text-muted mb-3">
+                                                            DEPARTURE
+                                                            <span class="small ml-2">Duration:</span>
+                                                            <span class="small">5h 28m</span>
+                                                        </h6>
+                                                        <p class="mb-2 dark-text">
+                                                            <strong class="">
+                                                                <i class="fa fa-calendar mr-2"></i>
+                                                                {{ route_one.local_departure | iso_date | date:"D j M" }}
+                                                            </strong>
+                                                        </p>
+                                                        {% for route in flight.route %}
+                                                            {% if route.return == 0 %}
 
-                                    <div class="result-details collapse container-fluid"
-                                         id="result-item{{ flight.duration.total }}">
-                                        <hr class="m-0">
-                                        {% with flight.route|first as route_one %}
-                                            {% if route_one %}
-                                                <div class="route-box row">
-                                                <div class="col-12 col-md-6 departure-block border-right pt-4 pb-4">
-                                                    <h6 class="text-muted mb-3">
-                                                        DEPARTURE
-                                                        <span class="small ml-2">Duration:</span>
-                                                        <span class="small">5h 28m</span>
-                                                    </h6>
-                                                    <p class="mb-2 dark-text">
-                                                        <strong class="">
-                                                            <i class="fa fa-calendar mr-2"></i>
-                                                            {{ route_one.local_departure | iso_date | date:"D j M" }}
-                                                        </strong>
-                                                    </p>
-                                                    {% for route in flight.route %}
-                                                        {% if route.return == 0 %}
-
-                                                            <div class="d-flex align-items-center position-relative">
-                                                                <i class="fa fa-plane mr-2 w-10 text-muted rotated-plane-icon"></i>
-                                                                <div class="card w-100 cursor-pointer"
-                                                                     data-toggle="collapse"
-                                                                     data-target="#airplane1">
-                                                                    <div class="card-body p-0">
-                                                                        <div class="d-flex justify-content-between pl-2">
-                                                                            <div class="mr-auto">
-                                                                                <div class="airlines-labels">
-                                                                                    <label class="mb-0">
-                                                                                        <span class="dark-text">{{ route.local_departure | iso_date | date:"h:i A" }}</span>
-                                                                                        <span class="text-muted">{{ route.cityFrom }} {{ route.flyFrom }}</span>
-                                                                                    </label>
-                                                                                    <br>
-                                                                                    <label class="mb-0">
-                                                                                        <span class="dark-text">{{ route.local_arrival | iso_date | date:"h:i A" }}</span>
-                                                                                        <span class="text-muted">{{ route.cityTo }} {{ route.flyTo }}</span>
-                                                                                    </label>
+                                                                <div class="d-flex align-items-center position-relative">
+                                                                    <i class="fa fa-plane mr-2 w-10 text-muted rotated-plane-icon"></i>
+                                                                    <div class="card w-100 cursor-pointer"
+                                                                         data-toggle="collapse"
+                                                                         data-target="#airplane1">
+                                                                        <div class="card-body p-0">
+                                                                            <div class="d-flex justify-content-between pl-2">
+                                                                                <div class="mr-auto">
+                                                                                    <div class="airlines-labels">
+                                                                                        <label class="mb-0">
+                                                                                            <span class="dark-text">{{ route.local_departure | iso_date | date:"h:i A" }}</span>
+                                                                                            <span class="text-muted">{{ route.cityFrom }} {{ route.flyFrom }}</span>
+                                                                                        </label>
+                                                                                        <br>
+                                                                                        <label class="mb-0">
+                                                                                            <span class="dark-text">{{ route.local_arrival | iso_date | date:"h:i A" }}</span>
+                                                                                            <span class="text-muted">{{ route.cityTo }} {{ route.flyTo }}</span>
+                                                                                        </label>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="d-flex">
+                                                                                    <img src="/images/{{ route.airline |aircon }}.png"
+                                                                                         alt="Airline"
+                                                                                         class="align-self-center"
+                                                                                         height="32px">
+                                                                                </div>
+                                                                                <div class="col-1 text-right d-flex">
+                                                                                    <img src="{% static "images/arrow.png" %}"
+                                                                                         style="width: 10px; height: 5px;"
+                                                                                         class="align-self-center">
                                                                                 </div>
                                                                             </div>
-                                                                            <div class="d-flex">
-                                                                                <img src="/images/{{ route.airline |aircon }}.png"
-                                                                                     alt="Airline"
-                                                                                     class="align-self-center"
-                                                                                     height="32px">
+                                                                        </div>
+                                                                        <div class="card-footer collapse"
+                                                                             id="airplane1">
+                                                                            <span class="text-muted small mb-4">FLIGHT INFO</span>
+                                                                            <div class="d-inline-flex justify-content-between w-100">
+                                                                                <label>Flight No.</label>
+                                                                                <label class="text-grey">{{ route.flight_no }}
+                                                                                </label>
                                                                             </div>
-                                                                            <div class="col-1 text-right d-flex">
-                                                                                <img src="{% static "images/arrow.png" %}"
-                                                                                     style="width: 10px; height: 5px;"
-                                                                                     class="align-self-center">
+                                                                            <div class="d-inline-flex justify-content-between w-100">
+                                                                                <label>Seats Remaining</label>
+                                                                                <label class="text-grey">{{ flight.availability.seats }}
+                                                                                </label>
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                    <div class="card-footer collapse" id="airplane1">
-                                                                        <span class="text-muted small mb-4">FLIGHT INFO</span>
-                                                                        <div class="d-inline-flex justify-content-between w-100">
-                                                                            <label>Flight No.</label>
-                                                                            <label class="text-grey">{{ route.flight_no }}
-                                                                            </label>
-                                                                        </div>
-                                                                        <div class="d-inline-flex justify-content-between w-100">
-                                                                            <label>Seats Remaining</label>
-                                                                            <label class="text-grey">{{ flight.availability.seats }}
-                                                                            </label>
-                                                                        </div>
-                                                                    </div>
+                                                                    <span class="position-absolute duration-indicator small text-muted">{{ route | time_interval }}</span>
                                                                 </div>
-                                                                <span class="position-absolute duration-indicator small text-muted">{{ route | time_interval }}</span>
-                                                            </div>
 
-                                                            <div class="d-flex pt-3 pl-4 pb-3">
-                                                                <i class="fa fa-clock-o mr-2"></i>
-                                                                <p class="small text-muted mb-0">{{ route | time_interval }}
-                                                                    layover</p>
-                                                            </div>
-                                                        {% endif %}
-                                                    {% endfor %}
+                                                                <div class="d-flex pt-3 pl-4 pb-3">
+                                                                    <i class="fa fa-clock-o mr-2"></i>
+                                                                    <p class="small text-muted mb-0">{{ route | time_interval }}
+                                                                        layover</p>
+                                                                </div>
+                                                            {% endif %}
+                                                        {% endfor %}
 
-                                                    <div class="d-flex pt-3 pl-4 pb-3">
-                                                        <i class="fa fa-bed mr-2"></i>
-                                                        <p class="small text-muted mb-0">{{ flight.nightsInDest }}
-                                                            nights in {{ flight.cityTo }}</p>
+                                                        <div class="d-flex pt-3 pl-4 pb-3">
+                                                            <i class="fa fa-bed mr-2"></i>
+                                                            <p class="small text-muted mb-0">{{ flight.nightsInDest }}
+                                                                nights in {{ flight.cityTo }}</p>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            {% endif %}
-                                        {% endwith %}
+                                                {% endif %}
+                                            {% endwith %}
 
-                                        <!-----------Return Flights ------------------------>
-                                        {% with flight.route|last as route_one %}
-                                            {% if route_one %}
-                                                <div class="col-12 col-md-6 return-block pt-4">
-                                                    <h6 class="text-muted mb-3">
-                                                        RETURN
-                                                        <span class="small ml-2">Duration:</span>
-                                                        <span class="small">5h 28m</span>
-                                                    </h6>
-                                                    <p class="mb-2 dark-text">
-                                                        <strong class="">
-                                                            <i class="fa fa-calendar mr-2"></i>
-                                                            {{ route_one.local_departure | iso_date | date:"D j M" }}
-                                                        </strong>
-                                                    </p>
+                                            <!-----------Return Flights ------------------------>
+                                            {% with flight.route|last as route_one %}
+                                                {% if route_one %}
+                                                    <div class="col-12 col-md-6 return-block pt-4">
+                                                        <h6 class="text-muted mb-3">
+                                                            RETURN
+                                                            <span class="small ml-2">Duration:</span>
+                                                            <span class="small">5h 28m</span>
+                                                        </h6>
+                                                        <p class="mb-2 dark-text">
+                                                            <strong class="">
+                                                                <i class="fa fa-calendar mr-2"></i>
+                                                                {{ route_one.local_departure | iso_date | date:"D j M" }}
+                                                            </strong>
+                                                        </p>
 
-                                                    {% for route in flight.route %}
-                                                        {% if route.return == 1 %}
-                                                            <div class="d-flex align-items-center position-relative">
-                                                                <i class="fa fa-plane mr-2 w-10 text-muted rotated-plane-icon"></i>
-                                                                <div class="card w-100 cursor-pointer"
-                                                                     data-toggle="collapse"
-                                                                     data-target="#airplane3">
-                                                                    <div class="card-body p-0">
-                                                                        <div class="d-flex justify-content-between pl-2">
-                                                                            <div class="mr-auto">
-                                                                                <div class="airlines-labels">
-                                                                                    <label class="mb-0">
-                                                                                        <span class="dark-text">{{ route.local_departure | iso_date | date:"h:i A" }}</span>
-                                                                                        <span class="text-muted">{{ route.cityFrom }} {{ route.flyFrom }}</span>
-                                                                                    </label>
-                                                                                    <br>
-                                                                                    <label class="mb-0">
-                                                                                        <span class="dark-text">{{ route.local_arrival | iso_date | date:"h:i A" }}</span>
-                                                                                        <span class="text-muted">{{ route.cityTo }} {{ route.flyTo }}</span>
-                                                                                    </label>
+                                                        {% for route in flight.route %}
+                                                            {% if route.return == 1 %}
+                                                                <div class="d-flex align-items-center position-relative">
+                                                                    <i class="fa fa-plane mr-2 w-10 text-muted rotated-plane-icon"></i>
+                                                                    <div class="card w-100 cursor-pointer"
+                                                                         data-toggle="collapse"
+                                                                         data-target="#airplane3">
+                                                                        <div class="card-body p-0">
+                                                                            <div class="d-flex justify-content-between pl-2">
+                                                                                <div class="mr-auto">
+                                                                                    <div class="airlines-labels">
+                                                                                        <label class="mb-0">
+                                                                                            <span class="dark-text">{{ route.local_departure | iso_date | date:"h:i A" }}</span>
+                                                                                            <span class="text-muted">{{ route.cityFrom }} {{ route.flyFrom }}</span>
+                                                                                        </label>
+                                                                                        <br>
+                                                                                        <label class="mb-0">
+                                                                                            <span class="dark-text">{{ route.local_arrival | iso_date | date:"h:i A" }}</span>
+                                                                                            <span class="text-muted">{{ route.cityTo }} {{ route.flyTo }}</span>
+                                                                                        </label>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="d-flex">
+                                                                                    <img src="/images/{{ route.airline |aircon }}.png"
+                                                                                         alt="Airline"
+                                                                                         class="align-self-center"
+                                                                                         height="32px">
+                                                                                </div>
+                                                                                <div class="col-1 text-right d-flex">
+                                                                                    <img src="{% static "images/arrow.png" %}"
+                                                                                         style="width: 10px; height: 5px;"
+                                                                                         class="align-self-center">
                                                                                 </div>
                                                                             </div>
-                                                                            <div class="d-flex">
-                                                                                <img src="/images/{{ route.airline |aircon }}.png"
-                                                                                     alt="Airline"
-                                                                                     class="align-self-center"
-                                                                                     height="32px">
+                                                                        </div>
+                                                                        <div class="card-footer collapse"
+                                                                             id="airplane3">
+                                                                            <span class="text-muted small mb-4">FLIGHT INFO</span>
+                                                                            <div class="d-inline-flex justify-content-between w-100">
+                                                                                <label>Flight No.</label>
+                                                                                <label class="text-grey">{{ route.flight_no }}
+                                                                                </label>
                                                                             </div>
-                                                                            <div class="col-1 text-right d-flex">
-                                                                                <img src="{% static "images/arrow.png" %}"
-                                                                                     style="width: 10px; height: 5px;"
-                                                                                     class="align-self-center">
+                                                                            <div class="d-inline-flex justify-content-between w-100">
+                                                                                <label>Seats Remaining</label>
+                                                                                <label class="text-grey">{{ flight.availability.seats }}
+                                                                                </label>
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                    <div class="card-footer collapse" id="airplane3">
-                                                                        <span class="text-muted small mb-4">FLIGHT INFO</span>
-                                                                        <div class="d-inline-flex justify-content-between w-100">
-                                                                            <label>Flight No.</label>
-                                                                            <label class="text-grey">{{ route.flight_no }}
-                                                                            </label>
-                                                                        </div>
-                                                                        <div class="d-inline-flex justify-content-between w-100">
-                                                                            <label>Seats Remaining</label>
-                                                                            <label class="text-grey">{{ flight.availability.seats }}
-                                                                            </label>
-                                                                        </div>
-                                                                    </div>
+                                                                    <span class="position-absolute duration-indicator small text-muted">{{ route | time_interval }}</span>
                                                                 </div>
-                                                                <span class="position-absolute duration-indicator small text-muted">{{ route | time_interval }}</span>
-                                                            </div>
-                                                            <div class="d-flex pt-3 pl-4 pb-3">
-                                                                <i class="fa fa-clock-o mr-2"></i>
-                                                                <p class="small text-muted mb-0"> {{ route | time_interval }}
-                                                                    layover</p>
-                                                            </div>
-                                                        {% endif %}
-                                                    {% endfor %}
-                                                    <div class="d-flex pt-3 pl-4 pb-3">
-                                                        <i class="fa fa-bed mr-2"></i>
-                                                        <p class="small text-muted mb-0">{{ flight.nightsInDest }}
-                                                            nights in {{ flight.cityTo }}</p>
+                                                                <div class="d-flex pt-3 pl-4 pb-3">
+                                                                    <i class="fa fa-clock-o mr-2"></i>
+                                                                    <p class="small text-muted mb-0"> {{ route | time_interval }}
+                                                                        layover</p>
+                                                                </div>
+                                                            {% endif %}
+                                                        {% endfor %}
+                                                        <div class="d-flex pt-3 pl-4 pb-3">
+                                                            <i class="fa fa-bed mr-2"></i>
+                                                            <p class="small text-muted mb-0">{{ flight.nightsInDest }}
+                                                                nights in {{ flight.cityTo }}</p>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            {% endif %}
-                                        {% endwith %}
-                                        <!-------------End Return flights------------------->
-                                        </div>
-                                        <div class="search-results-buttons text-right p-2 pt-3">
-                                            {% if flight.routes|length > 1 and flight.price > 369 %}
-                                                <a href="{% url 'subscription' %}">
-                                                    <button class="search_btn mb-1">Subscribe and save
-                                                        ${{ flight | comparison }}</button>
+                                                {% endif %}
+                                            {% endwith %}
+                                            <!-------------End Return flights------------------->
+                                            </div>
+                                            <div class="search-results-buttons text-right p-2 pt-3">
+                                                {% if flight.routes|length > 1 and flight.price > 369 %}
+                                                    <a href="{% url 'subscription' %}">
+                                                        <button class="search_btn mb-1">Subscribe and save
+                                                            ${{ flight | comparison }}</button>
+                                                    </a>
+                                                {% endif %}
+                                                {% if flight.routes|length == 1 and flight.price > 185 %}
+                                                    <a href="{% url 'subscription' %}">
+                                                        <button class="search_btn mb-1">Subscribe and save
+                                                            ${{ flight | comparison }}</button>
+                                                    </a>
+                                                {% endif %}
+                                                <a href="{% url 'retail' flight.booking_token %}">
+                                                    <button class="search_btn book-btn mt-1"> Book for
+                                                        ${{ flight.price }}</button>
                                                 </a>
-                                            {% endif %}
-                                            {% if flight.routes|length == 1 and flight.price > 185 %}
-                                                <a href="{% url 'subscription' %}">
-                                                    <button class="search_btn mb-1">Subscribe and save
-                                                        ${{ flight | comparison }}</button>
-                                                </a>
-                                            {% endif %}
-                                            <a href="{% url 'retail' flight.booking_token %}">
-                                                <button class="search_btn book-btn mt-1"> Book for
-                                                    ${{ flight.price }}</button>
-                                            </a>
+                                            </div>
                                         </div>
-                                    </div>
 
-                                </div>
+                                    </div>
+                                {% else %}
+                                    <div class="result-item mb-2 w-100">
+                                        <div class="result-block result-toggler w-100 d-block d-md-flex justify-content-start p-2 pt-3 pb-3"
+                                             data-toggle="collapse"
+                                             data-target="#result-item{{ flight.duration.total }}">
+                                            <div class="price-block d-flex align-items-center justify-content-center pl-3 pr-3">
+                                                <div>
+                                                    <h5>$ {{ flight.price }}</h5>
+                                                    <p class="small text-muted">1 Adult</p>
+                                                </div>
+                                            </div>
+                                            <div class="flight-info-block d-flex flex-column w-100">
+                                                <div class="departure-row d-flex justify-content-start">
+                                                    <div class="airline-logo-holder d-flex"
+                                                         data-stopnum="{{ flight.duration.total }}">
+                                                        {% for airline in flight.airlines %}
+                                                            <div class="img-airline">
+                                                                <div class="airline">
+                                                                    <img src="/images/{{ airline |aircon }}.png"
+                                                                         alt="AA"
+                                                                         style="width:25px; margin-right: 4px;">
+                                                                </div>
+                                                            </div>
+                                                        {% endfor %}
+                                                    </div>
+                                                    <div class="d-flex justify-content-around w-100">
+                                                        <div class="">
+                                                            <label class="mb-0"><strong>
+                                                                {{ flight.local_departure | iso_date | date:"h:i A" }} -
+                                                                {{ flight.local_arrival | iso_date | date:"h:i A" }}</strong></label><br>
+                                                            <span class="small text-muted">
+                                            {{ flight.cityFrom }}
+                                            <i class="fa fa-long-arrow-right mr-1 ml-1"></i>
+                                            {{ flight.cityTo }}
+                                        </span>
+                                                        </div>
+                                                        <div class="">
+                                                            <label class="mb-0">
+                                                                <strong>{{ flight.local_departure | iso_date | date:"D j M" }}</strong>
+                                                            </label>
+                                                            <br>
+                                                            <span class="small text-muted">{{ flight | time_interval }}</span>
+                                                        </div>
+                                                        <div></div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+                                            <div class="arrow-indicator p-2 pt-3 pr-md-5 d-flex align-items-center justify-content-center">
+                                                <img src="{% static "images/icons/down-arrow.png" %}" alt="Pull down"
+                                                     height="15" class="">
+                                                <img src="{% static "images/icons/up-arrow.png" %}" alt="Pull up"
+                                                     height="15" class="d-none">
+                                            </div>
+                                        </div>
+
+                                        <div class="result-details collapse container-fluid"
+                                             id="result-item{{ flight.duration.total }}">
+                                            <hr class="m-0">
+                                            {% with flight.route|first as route_one %}
+                                                {% if route_one %}
+                                                    <div class="route-box row">
+                                                    <div class="col-12 col-md-6 departure-block border-right pt-4 pb-4">
+                                                        <h6 class="text-muted mb-3">
+                                                            DEPARTURE
+                                                            <span class="small ml-2">Duration:</span>
+                                                            <span class="small">5h 28m</span>
+                                                        </h6>
+                                                        <p class="mb-2 dark-text">
+                                                            <strong class="">
+                                                                <i class="fa fa-calendar mr-2"></i>
+                                                                {{ route_one.local_departure | iso_date | date:"D j M" }}
+                                                            </strong>
+                                                        </p>
+                                                        {% for route in flight.route %}
+                                                            {% if route.return == 0 %}
+
+                                                                <div class="d-flex align-items-center position-relative">
+                                                                    <i class="fa fa-plane mr-2 w-10 text-muted rotated-plane-icon"></i>
+                                                                    <div class="card w-100 cursor-pointer"
+                                                                         data-toggle="collapse"
+                                                                         data-target="#airplane1">
+                                                                        <div class="card-body p-0">
+                                                                            <div class="d-flex justify-content-between pl-2">
+                                                                                <div class="mr-auto">
+                                                                                    <div class="airlines-labels">
+                                                                                        <label class="mb-0">
+                                                                                            <span class="dark-text">{{ route.local_departure | iso_date | date:"h:i A" }}</span>
+                                                                                            <span class="text-muted">{{ route.cityFrom }} {{ route.flyFrom }}</span>
+                                                                                        </label>
+                                                                                        <br>
+                                                                                        <label class="mb-0">
+                                                                                            <span class="dark-text">{{ route.local_arrival | iso_date | date:"h:i A" }}</span>
+                                                                                            <span class="text-muted">{{ route.cityTo }} {{ route.flyTo }}</span>
+                                                                                        </label>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="d-flex">
+                                                                                    <img src="/images/{{ route.airline |aircon }}.png"
+                                                                                         alt="Airline"
+                                                                                         class="align-self-center"
+                                                                                         height="32px">
+                                                                                </div>
+                                                                                <div class="col-1 text-right d-flex">
+                                                                                    <img src="{% static "images/arrow.png" %}"
+                                                                                         style="width: 10px; height: 5px;"
+                                                                                         class="align-self-center">
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="card-footer collapse"
+                                                                             id="airplane1">
+                                                                            <span class="text-muted small mb-4">FLIGHT INFO</span>
+                                                                            <div class="d-inline-flex justify-content-between w-100">
+                                                                                <label>Flight No.</label>
+                                                                                <label class="text-grey">{{ route.flight_no }}
+                                                                                </label>
+                                                                            </div>
+                                                                            <div class="d-inline-flex justify-content-between w-100">
+                                                                                <label>Seats Remaining</label>
+                                                                                <label class="text-grey">{{ flight.availability.seats }}
+                                                                                </label>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <span class="position-absolute duration-indicator small text-muted">{{ route | time_interval }}</span>
+                                                                </div>
+
+                                                                <div class="d-flex pt-3 pl-4 pb-3">
+                                                                    <i class="fa fa-clock-o mr-2"></i>
+                                                                    <p class="small text-muted mb-0">{{ route | time_interval }}
+                                                                        layover</p>
+                                                                </div>
+                                                            {% endif %}
+                                                        {% endfor %}
+
+                                                        <div class="d-flex pt-3 pl-4 pb-3">
+                                                            <i class="fa fa-bed mr-2"></i>
+                                                            <p class="small text-muted mb-0">{{ flight.nightsInDest }}
+                                                                nights in {{ flight.cityTo }}</p>
+                                                        </div>
+                                                    </div>
+                                                {% endif %}
+                                            {% endwith %}
+
+                                            <!-----------Return Flights ------------------------>
+                                            {% with flight.route|last as route_one %}
+                                                {% if route_one %}
+                                                    <div class="col-12 col-md-6 return-block pt-4">
+                                                        <h6 class="text-muted mb-3">
+                                                            RETURN
+                                                            <span class="small ml-2">Duration:</span>
+                                                            <span class="small">5h 28m</span>
+                                                        </h6>
+                                                        <p class="mb-2 dark-text">
+                                                            <strong class="">
+                                                                <i class="fa fa-calendar mr-2"></i>
+                                                                {{ route_one.local_departure | iso_date | date:"D j M" }}
+                                                            </strong>
+                                                        </p>
+
+                                                        {% for route in flight.route %}
+                                                            {% if route.return == 1 %}
+                                                                <div class="d-flex align-items-center position-relative">
+                                                                    <i class="fa fa-plane mr-2 w-10 text-muted rotated-plane-icon"></i>
+                                                                    <div class="card w-100 cursor-pointer"
+                                                                         data-toggle="collapse"
+                                                                         data-target="#airplane3">
+                                                                        <div class="card-body p-0">
+                                                                            <div class="d-flex justify-content-between pl-2">
+                                                                                <div class="mr-auto">
+                                                                                    <div class="airlines-labels">
+                                                                                        <label class="mb-0">
+                                                                                            <span class="dark-text">{{ route.local_departure | iso_date | date:"h:i A" }}</span>
+                                                                                            <span class="text-muted">{{ route.cityFrom }} {{ route.flyFrom }}</span>
+                                                                                        </label>
+                                                                                        <br>
+                                                                                        <label class="mb-0">
+                                                                                            <span class="dark-text">{{ route.local_arrival | iso_date | date:"h:i A" }}</span>
+                                                                                            <span class="text-muted">{{ route.cityTo }} {{ route.flyTo }}</span>
+                                                                                        </label>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="d-flex">
+                                                                                    <img src="/images/{{ route.airline |aircon }}.png"
+                                                                                         alt="Airline"
+                                                                                         class="align-self-center"
+                                                                                         height="32px">
+                                                                                </div>
+                                                                                <div class="col-1 text-right d-flex">
+                                                                                    <img src="{% static "images/arrow.png" %}"
+                                                                                         style="width: 10px; height: 5px;"
+                                                                                         class="align-self-center">
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="card-footer collapse"
+                                                                             id="airplane3">
+                                                                            <span class="text-muted small mb-4">FLIGHT INFO</span>
+                                                                            <div class="d-inline-flex justify-content-between w-100">
+                                                                                <label>Flight No.</label>
+                                                                                <label class="text-grey">{{ route.flight_no }}
+                                                                                </label>
+                                                                            </div>
+                                                                            <div class="d-inline-flex justify-content-between w-100">
+                                                                                <label>Seats Remaining</label>
+                                                                                <label class="text-grey">{{ flight.availability.seats }}
+                                                                                </label>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <span class="position-absolute duration-indicator small text-muted">{{ route | time_interval }}</span>
+                                                                </div>
+                                                                <div class="d-flex pt-3 pl-4 pb-3">
+                                                                    <i class="fa fa-clock-o mr-2"></i>
+                                                                    <p class="small text-muted mb-0"> {{ route | time_interval }}
+                                                                        layover</p>
+                                                                </div>
+                                                            {% endif %}
+                                                        {% endfor %}
+                                                        <div class="d-flex pt-3 pl-4 pb-3">
+                                                            <i class="fa fa-bed mr-2"></i>
+                                                            <p class="small text-muted mb-0">{{ flight.nightsInDest }}
+                                                                nights in {{ flight.cityTo }}</p>
+                                                        </div>
+                                                    </div>
+                                                {% endif %}
+                                            {% endwith %}
+                                            <!-------------End Return flights------------------->
+                                            </div>
+                                            <div class="search-results-buttons text-right p-2 pt-3">
+                                                {% if flight.routes|length > 1 and flight.price > 369 %}
+                                                    <a href="{% url 'subscription' %}">
+                                                        <button class="search_btn mb-1">Subscribe and save
+                                                            ${{ flight | comparison }}</button>
+                                                    </a>
+                                                {% endif %}
+                                                {% if flight.routes|length == 1 and flight.price > 185 %}
+                                                    <a href="{% url 'subscription' %}">
+                                                        <button class="search_btn mb-1">Subscribe and save
+                                                            ${{ flight | comparison }}</button>
+                                                    </a>
+                                                {% endif %}
+                                                <a href="{% url 'retail' flight.booking_token %}">
+                                                    <button class="search_btn book-btn mt-1"> Book for
+                                                        ${{ flight.price }}</button>
+                                                </a>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                {% endif %}
                             {% endif %}
                         {% endfor %}
+                        <button class="btn bg-lightblue">Load More</button>
                     </div>
                     <div class="col-xl-3">
                         <div class="s-sidebar">
@@ -1053,7 +1316,7 @@
                 $(this).find('.arrow-indicator').find('img').toggleClass('d-none');
             })
         });
-        $(window).on('resize', function(){
+        $(window).on('resize', function () {
             var is_mobile = false;
             if ($('#mobileIndicator').css('display') == 'none') {
                 is_mobile = true;
