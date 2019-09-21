@@ -19,9 +19,15 @@
         <div class="clearfix"></div>
         <div>
             {% if user.is_authenticated %}
-                <a class="nav_btn_link" href="{% url "logout" %}">
-                    <button class="nav-button-logout">Log out</button>
-                </a>
+                {% if user.subscriptions.plan %}
+                    <a class="nav_btn_link" href="{% url "accounts" %}">
+                        <button class="nav-button-logout">{{ user.subscriptions.tokens }} tokens available</button>
+                    </a>
+                {% else %}
+                    <a class="nav_btn_link" href="{% url "accounts" %}">
+                        <button class="nav-button-logout">Subscribe to Wanderift</button>
+                    </a>
+                {% endif %}
             {% else %}
                 <a class="nav_btn_link" href="{% url "subscription" %}">
                     <button class="custom_btn">Get Started</button>
@@ -50,7 +56,7 @@
                         </li>
                     {% else %}
                         <li class="nav-item ml-md-4">
-                            <a class="custom_nav_link" href="{% url "corporate" %}">Corporate Plans</a>
+                            <a class="custom_nav_link" href="{% url "corp-how-it-works" %}">Corporate Plans</a>
                         </li>
                         <li class="nav-item ml-md-4">
                             <a class="custom_nav_link" href="{% url "how-it-works" %}">How It Works</a>

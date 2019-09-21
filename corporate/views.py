@@ -20,3 +20,11 @@ def manage_trips_view(request, *args, **kwargs):
         "title": "Manage Corporates Trips"
     }
     return render(request, "manage-trips.html", context)
+
+
+def how_it_works(request):
+    context = {
+        "title": "How it works"
+    }
+
+    return render(request, "how-it-works.html", context)
