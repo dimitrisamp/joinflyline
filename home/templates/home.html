@@ -215,31 +215,60 @@
 
     <section>
         {% if user.is_authenticated %}
-            <div class="asset_box">
-                <div class="container">
-                    <div class="row justify-content-center">
-                        <div class="col-12 col-md-4 mt-4 m-md-0">
-                            <a href="{% url "accounts" %}">
-                                <button class="search_btn  w-100 main-btn-full">{{ user.subscriptions }} Tokens
-                                    Available
-                                </button>
-                            </a>
-                        </div>
-                        <div class="d-block d-md-none divider-30"></div>
-                        <div class="col-12 col-md-4 mt-4 m-md-0">
-                            <a href="{% url "accounts" %}">
-                                <button class="search_btn w-100 main-btn-full">Add More Tokens</button>
-                            </a>
-                        </div>
-                        <div class="d-block d-md-none divider-30"></div>
-                        <div class="col-12 col-md-4 mt-4 m-md-0">
-                            <a href="{% url "accounts" %}">
-                                <button class="search_btn w-100 main-btn-full">Add a Travel Companion</button>
-                            </a>
+            {% if user.subscriptions.plan %}
+                <div class="asset_box">
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-12 col-md-4 mt-4 m-md-0">
+                                <a href="{% url "accounts" %}">
+                                    <button class="search_btn  w-100 main-btn-full">{{ user.subscriptions }} Tokens
+                                        Available
+                                    </button>
+                                </a>
+                            </div>
+                            <div class="d-block d-md-none divider-30"></div>
+                            <div class="col-12 col-md-4 mt-4 m-md-0">
+                                <a href="{% url "accounts" %}">
+                                    <button class="search_btn w-100 main-btn-full">Add More Tokens</button>
+                                </a>
+                            </div>
+                            <div class="d-block d-md-none divider-30"></div>
+                            <div class="col-12 col-md-4 mt-4 m-md-0">
+                                <a href="{% url "accounts" %}">
+                                    <button class="search_btn w-100 main-btn-full">Add a Travel Companion</button>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+
+            {% else %}
+                <div class="asset_box">
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-12 col-md-4 mt-4 m-md-0">
+                                <a href="{% url "accounts" %}">
+                                    <button class="search_btn  w-100 main-btn-full">Add Traveller information
+                                    </button>
+                                </a>
+                            </div>
+                            <div class="d-block d-md-none divider-30"></div>
+                            <div class="col-12 col-md-4 mt-4 m-md-0">
+                                <a href="{% url "accounts" %}">
+                                    <button class="search_btn w-100 main-btn-full">Subscribe to Wanderift lite or pro
+                                    </button>
+                                </a>
+                            </div>
+                            <div class="d-block d-md-none divider-30"></div>
+                            <div class="col-12 col-md-4 mt-4 m-md-0">
+                                <a href="{% url "how-it-works" %}">
+                                    <button class="search_btn w-100 main-btn-full">Travel Tips</button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
         {% else %}
             <div class="asset_box">
                 <div class="container">
@@ -306,7 +335,7 @@
                                             </button>
                                             <button class="btn search_result_list_item"
                                                     @click="setPlace(place.nameCity,place.codeIataCity,index)">
-                                                <i class="fa fa-plane" style="padding-right: 2%" ></i>
+                                                <i class="fa fa-plane" style="padding-right: 2%"></i>
                                                 {( place.airport.nameAirport )}
                                             </button>
                                         </li>
@@ -326,7 +355,7 @@
         </div>
     </section>
 
-    <section class="recent-searches mt-5 pt-5">
+    <section class="recent-searches mt-5 pt-5" style="display: none">
         <div class="container">
             <div class="content_container">
                 <p class="sec_one_head" style="font-size: 35px;">Recent Flight Searches</p>
