@@ -9,4 +9,5 @@ spec:
       name: http
   selector:
     app: wanderift
-  type: NodePort
+  type: LoadBalancer
+  loadBalancerIP: 34.83.151.227
