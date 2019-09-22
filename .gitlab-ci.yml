@@ -32,7 +32,6 @@ k8s-deploy:
   - kubectl apply -f deployment.yml -n wanderift-django-13935299-dev
   - kubectl apply -f ingress.yml -n wanderift-django-13935299-dev
   - kubectl apply -f service.yml -n wanderift-django-13935299-dev
-  - kubectl create secret tls wanderift-crt-secret --cert=ca.crt --key=ca.key -n wanderift-django-13935299-dev
   - kubectl apply -f certificate.yml -n wanderift-django-13935299-dev
   environment:
     name: dev
