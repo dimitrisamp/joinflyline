@@ -3,13 +3,13 @@ kind: Ingress
 metadata:
   name: wanderift-ingress
   annotations:
-    kubernetes.io/ingress.class: django
+    kubernetes.io/ingress.class: nginx
     kubernetes.io/ingress.allow-http: false
   rules:
     - host: www.wanderift.com
       http:
         paths:
-          - path: /
+          - path: /*
             backend:
               serviceName: wanderift-service
               servicePort: 80
