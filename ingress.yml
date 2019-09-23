@@ -6,7 +6,6 @@ metadata:
     kubernetes.io/ingress.class: ""
     kubernetes.io/ingress.allow-http: true
 spec:
-  type: NodePort
   rules:
     - host: www.wanderift.com
       http:
