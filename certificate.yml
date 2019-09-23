@@ -4,7 +4,6 @@ metadata:
   name: wanderift-crt
 spec:
   secretName: wanderift-cert-secret
-  commonName: www.wanderift.com
   dnsNames:
   - wanderift.com
   acme:
