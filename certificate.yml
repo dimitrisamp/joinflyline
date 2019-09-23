@@ -6,14 +6,16 @@ spec:
   secretName: wanderift-crt-secret
   dnsNames:
   - wanderift.com
+  - www.wanderift.com
   acme:
     config:
     - http01:
-        ingressClass: django
+        ingressClass: nginx
       domains:
       - wanderift.com
+      - www.wanderift.com
   issuerRef:
-    name: letsencrypt-staging
+    name: letsencrypt-prod
     # We can reference ClusterIssuers by changing the kind here.
     # The default value is Issuer (i.e. a locally namespaced Issuer)
-    kind: Issuer
+    kind: ClusterIssuer

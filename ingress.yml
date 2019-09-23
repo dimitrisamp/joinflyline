@@ -5,6 +5,11 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: "nginx"
 spec:
+  tls:
+    - hosts:
+        - wanderift.com
+        - www.wanderift.com
+      secretName: wanderift-crt-secret
   rules:
     - host: wanderift.com
       http:
