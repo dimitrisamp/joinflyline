@@ -8,8 +8,7 @@ spec:
   tls:
     - hosts:
         - wanderift.com
-        - www.wanderift.com
-      secretName: wanderift-crt-secret
+      secretName: wanderift-cert-secret
   rules:
     - host: wanderift.com
       http:
