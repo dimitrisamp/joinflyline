@@ -6,6 +6,9 @@ metadata:
     kubernetes.io/ingress.class: nginx
     kubernetes.io/ingress.allow-http: true
 spec:
+  type: NodePort
+    externalIPs:
+      - 34.83.151.227:80
   rules:
     - host: www.wanderift.com
       http:
