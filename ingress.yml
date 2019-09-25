@@ -3,15 +3,14 @@ kind: Ingress
 metadata:
   name: wanderift-ingress
   annotations:
-    kubernetes.io/ingress.class: django
-    kubernetes.io/ingress.allow-http: false
-    networking.gke.io/managed-certificates: wanderift-certificate
-    certmanager.k8s.io/cluster-issuer: letsencrypt-staging
+    kubernetes.io/ingress.class: "nginx"
+    certmanager.k8s.io/cluster-issuer: 'letsencrypt-prod'
+    certmanager.k8s.io/acme-challenge-type: http01
 spec:
   tls:
     - hosts:
         - wanderift.com
-      secretName: wanderift-crt-secret
+      secretName: wanderift-secret
   rules:
     - host: wanderift.com
       http:
