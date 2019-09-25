@@ -26,7 +26,7 @@ const app = new Vue({
     methods: {
         cityHandler: function () {
             $.ajax({
-                url: 'http://aviation-edge.com/v2/public/autocomplete?key=140940-4e6372&city=' + app.city,
+                url: 'https://aviation-edge.com/v2/public/autocomplete?key=140940-4e6372&city=' + app.city,
                 success: function (data) {
                     if (data) {
                         let allData = data;
