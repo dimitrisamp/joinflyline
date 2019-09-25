@@ -5,6 +5,6 @@ from django.shortcuts import render
 def home_view(request):
     print(request.user)
     context = {
-        "title": "Wanderift Home",
+        "title": "Wanderift | Search, Book, Save",
     }
     return render(request, "home.html", context)
