@@ -66,3 +66,30 @@ def results_view(request, null=None):
         "airlines": airlines
     }
     return render(request, "results.html", context)
+
+
+def load_more(request, limit):
+    search_query = request.session.get("search_query")
+    print(search_query['limit'])
+    search_query["limit"] = int(search_query["limit"]) + limit
+
+    url = "https://kiwicom-prod.apigee.net/v2/search"
+    try:
+        response = requests.get(url, params=search_query)
+
+        data = response.json()
+        airlines = set()
+
+        if json.loads(response.text)['data']:
+            for flights in json.loads(response.text)['data']:
+                for airline in flights['airlines']:
+                    airlines.add(airline)
+    except Exception as e:
+        messages.error(request, "Cities not found ")
+
+    context = {
+        "title": "Search Results",
+        "data": data,
+        "airlines": airlines
+    }
+    return render(request, "results.html", context)

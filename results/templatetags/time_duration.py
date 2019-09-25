@@ -8,4 +8,7 @@ register = template.Library()
 def time_interval(value):
     x = dateparse.parse_datetime(value['local_departure'])
     y = dateparse.parse_datetime(value['local_arrival'])
-    return y-x
+    z = y-x
+    hours = int(z.seconds/3600)
+    minutes = int(z.seconds/60 - (hours*60))
+    return str(hours)+"h "+str(minutes)+"m "

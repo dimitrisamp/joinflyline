@@ -87,7 +87,8 @@ TEMPLATES = [
                 'aircons':
                     'results.templatetags.airline_icons',
                 'comparison': 'results.templatetags.comparison',
-                'return_flight': 'results.templatetags.return_flight'
+                'return_flight': 'results.templatetags.return_flight',
+                'departure_flight': 'results.templatetags.departure_flight'
             }
         },
     },
