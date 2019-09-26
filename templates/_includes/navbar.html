@@ -21,11 +21,11 @@
             {% if user.is_authenticated %}
                 {% if user.subscriptions.plan %}
                     <a class="nav_btn_link" href="{% url "accounts" %}">
-                        <button class="nav-button-logout">{{ user.subscriptions.tokens }} tokens available</button>
+                        <button class="custom_btn">{{ user.subscriptions.tokens }} tokens available</button>
                     </a>
                 {% else %}
                     <a class="nav_btn_link" href="{% url "accounts" %}">
-                        <button class="nav-button-logout">Subscribe to Wanderift</button>
+                        <button class="custom_btn">Subscribe to Wanderift</button>
                     </a>
                 {% endif %}
             {% else %}
@@ -38,10 +38,7 @@
                 <ul class="navbar-nav ml-auto">
                     {% if user.is_authenticated %}
                         <li class="nav-item ml-md-4">
-                            <a class="custom_nav_link" href="{% url "corporate" %}">Manage Trips </a>
-                        </li>
-                        <li class="nav-item ml-md-4">
-                            <a class="custom_nav_link" href="{% url "corporate" %}">Trips </a>
+                            <a class="custom_nav_link" href="{% url "trips" %}">Trips </a>
                         </li>
                         <li class="nav-item ml-md-4">
                             <a class="custom_nav_link" href="{% url "faq" %}">Help</a>
