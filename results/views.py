@@ -24,8 +24,6 @@ FILTER_KEYS = (
     "ret_atime_from",
     "ret_atime_to",
     "max_stopovers",
-    "stopover_from",
-    "stopover_to",
 )
 
 LIMIT_INCREMENT = 10

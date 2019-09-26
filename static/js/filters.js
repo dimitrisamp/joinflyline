@@ -13,12 +13,134 @@ $(document).ready(function () {
     });
 });
 
-function getFilterAirlineSelections() {
-    $("")
+function getUrlParams() {
+    const u = new URL(window.location);
+    let results = Object.fromEntries(u.searchParams.entries());
+    if (results.hasOwnProperty('airlines')) {
+        results.airlines = results.airlines.split(',');
+    }
+    return results;
 }
 
-function getFilterFormData() {
-    
+const TIME_INTERVAL_PARAMS = {
+    '#de_city_take_off': [timeFormatter24h, timeUnFormatter24h, [0, 1440], "dtime_from", "dtime_to"],
+    "#de_city_landing": [timeFormatter24h, timeUnFormatter24h, [0, 1440], "ret_atime_from", "ret_atime_to"],
+    "#arr_city_take_off": [timeFormatter24h, timeUnFormatter24h, [0, 1440], "ret_dtime_from", "ret_dtime_to"],
+    "#arr_city_landing": [timeFormatter24h, timeUnFormatter24h, [0, 1440], "atime_from", "atime_to"],
+    "#filter_price_range": [(v)=>v, (v)=>v, [0, 3000], "price_from", "price_to"],
+};
+
+
+function setIntervalParams(params) {
+    for (const selector in TIME_INTERVAL_PARAMS) {
+        let [formatter, unformatter, [default_start, default_end], start_key, end_key] = TIME_INTERVAL_PARAMS[selector];
+        if (params.hasOwnProperty(start_key) && params.hasOwnProperty(end_key)) {
+            let start = unformatter(params[start_key]);
+            let end = unformatter(params[end_key]);
+            document.querySelector(selector).value = [start.toString(), end.toString()].join(',');
+        }
+    }
+}
+
+
+function getIntervalParams() {
+    let result = {};
+    for (const selector in TIME_INTERVAL_PARAMS) {
+        let values = document.querySelector(selector).value.split(',');
+        if (values.length === 2) {
+            let [formatter, unformatter, [default_start, default_end], start_key, end_key] = TIME_INTERVAL_PARAMS[selector];
+            let [start, end] = values.map((v)=>parseInt(v));
+            if (!(start === default_start && end === default_end)) {
+                let start_str = formatter(start);
+                let end_str = formatter(end);
+                result[start_key] = start_str;
+                result[end_key] = end_str;
+            }
+        }
+    }
+    return result;
+}
+
+const STOPOVER_SELECTORS = {"#filterNoStop": 0, "#filterStop1": 1, "#filterStop2": 2};
+
+const ALL_FILTER_FORM_PARAMS = [
+    "select_airlines",
+    "price_from",
+    "price_to",
+    "dtime_from",
+    "dtime_to",
+    "atime_from",
+    "atime_to",
+    "ret_dtime_from",
+    "ret_dtime_to",
+    "ret_atime_from",
+    "ret_atime_to",
+    "max_stopovers",
+];
+
+function getFilterFormData()
+{
+    let airlines = {select_airlines: []};
+    $("input.js-filter-airline").each((i, item) => {
+        let $item = $(item);
+        if (item.checked) {
+            airlines.select_airlines.push($item.data('code'))
+        }
+    });
+    let stopovers = {};
+    for (const selector in STOPOVER_SELECTORS) {
+        if (document.querySelector (selector).checked) {
+            stopovers.max_stop_overs = STOPOVER_SELECTORS[selector];
+        }
+    }
+
+    return {
+        ...airlines,
+        ...getIntervalParams(),
+        ...stopovers
+    }
+}
+
+function applyFilter() {
+    const filterFormParams = getFilterFormData();
+    const urlParams = new URLSearchParams(window.location.search);
+    for (const paramName of ALL_FILTER_FORM_PARAMS) {
+        if (filterFormParams.hasOwnProperty(paramName)) {
+            urlParams.set(paramName, filterFormParams[paramName]);
+        } else {
+            urlParams.delete(paramName)
+        }
+    }
+    window.location.search = urlParams;
+}
+
+
+function resetFilter() {
+    const urlParams = new URLSearchParams(window.location.search);
+    for (const paramName of ALL_FILTER_FORM_PARAMS) {
+        urlParams.delete(paramName);
+    }
+    window.location.search = urlParams;
+}
+
+function setFilterFormData(data)
+{
+    if (data.select_airlines) {
+        $("input.js-filter-airline").each((i, item) => {
+            let $item = $(item);
+            item.checked = data.select_airlines.includes($item.data('code'));
+        });
+    }
+    setIntervalParams(data);
+    if (data.hasOwnProperty('max_stopovers')) {
+        const max_stopovers = parseInt(data.max_stopovers);
+        for (const selector in STOPOVER_SELECTORS) {
+            if (STOPOVER_SELECTORS[selector] === max_stopovers) {
+                document.querySelector(selector).checked = true;
+            }
+        }
+    }
+
 }
 
 function stopover(val) {
@@ -29,9 +151,6 @@ function stopover(val) {
     }
 }
 
-function getFilterFormData() {
-
-}
 
 $(document).ready(function () {
     var DeCityTakeOff = new Slider("input#de_city_take_off", {
@@ -116,6 +235,9 @@ $(document).ready(function () {
     filterPriceRange.on('slide', function () {
         $("#filter_price_ammount").text(getPriceRange(filterPriceRange.getValue()));
     });
+    $("#apply-filter").on("click", applyFilter);
+    $("#reset-filter").on("click", resetFilter);
+    setFilterFormData(getUrlParams());
 });
 
 function getPriceRange(rangeVal) {
@@ -136,6 +258,18 @@ function getTime(val) {
         return time;
     }
     return null;
+}
+
+function timeFormatter24h(val) {
+    let hours = Math.floor(val / 60);
+    let minutes = val % 60;
+    return hours.toString().padStart(2, '0') + ':' + minutes.toString().padStart(2, '0');
+}
+
+function timeUnFormatter24h(val) {
+    const hours = parseInt(val.substr(0, 2).trimStart('0'));
+    const minutes = parseInt(val.substr(2, 2).trimStart('0'));
+    return hours * 60 + minutes;
 }
 
 function timeFormatter(val) {
