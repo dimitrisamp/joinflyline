@@ -42,6 +42,18 @@
     margin: 0;
 }
 
+.thin-blue-btn {
+    color: white;
+    background-color: #00b7ff;
+    border: 1px solid #00b7ff;
+    border-radius: 4px;
+    padding: 3px 15px;
+    font-weight: normal;
+    margin: 0;
+    text-align: center;
+    min-width: 120px;
+}
+
 
 /*HELPERS*/
 .no-bg-color {
@@ -121,6 +133,10 @@
     border: 1px solid #00b7ff;
     box-shadow: 0 2px 6px rgba(0, 183, 255, 0.4);
     z-index: 1;
+}
+
+.nav-tabs li a.active {
+    color: #00B7FF;
 }
 
 .faq-accordion .card .card-header,
