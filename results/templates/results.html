@@ -256,6 +256,7 @@
         <div class="results-page">
             <div class="container results-container" id="resultsContainer">
                 <div class="row">
+
                     <div class="col-xl-3">
                         <div class="s-sidebar">
                             <div class="sticky-item">
@@ -303,7 +304,8 @@
                         </div>
                     </div>
                     <div class="col-md-6 search result p-3 p-md-0">
-                        {% for flight in data.data %}
+                    {% if data.data %}
+                         {% for flight in data.data %}
                             {% if flight.availability.seats > 0 %}
                                 {% if flight.routes|length > 1 %}
                                     <div class="result-item mb-2 w-100">
@@ -876,6 +878,18 @@
                             {% endif %}
                         {% endfor %}
                         <a href="{% url "more" 10 %}"><button class="load-more-button">Load More</button></a>
+                    {% else %}
+                        <div class="card no-flight-results">
+                            <h4>Oops there's no available flights...</h4>
+                            <p>
+                                Sorry we don't have any flights that fit your search criteria,
+                                no worries try searching for alternate dates or cities, take a look below at some
+                                alternate city suggestions
+                            </p>
+                        </div>
+                    {% endif %}
+
+
                     </div>
                     <div class="col-xl-3">
                         <div class="s-sidebar">
@@ -1089,6 +1103,8 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
     </section>
     <div id="mobileIndicator"></div>
     {% include "_includes/footer.html" %}
