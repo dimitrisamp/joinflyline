@@ -103,9 +103,9 @@ const app = new Vue({
             formData.append("adults", app.form.valAdults);
             formData.append("infants", app.form.valInfants);
             formData.append("children", app.form.valChildren);
-            formData.append("max_stopovers", app.form.stop);
-            formData.append("stopover_from", app.form.stopOverFrom);
-            formData.append("stopover_to", app.form.stopOverTo);
+            if (app.form.stop) formData.append("max_stopovers", app.form.stop);
+            if (app.form.stopOverFrom) formData.append("stopover_from", app.form.stopOverFrom);
+            if (app.form.stopOverTo) formData.append("stopover_to", app.form.stopOverTo);
 
             let object = {};
             formData.forEach(function (value, key) {
@@ -117,7 +117,7 @@ const app = new Vue({
             // The rest of this code assumes you are not using a library.
             // It can be made less wordy if you use one.
             const form = document.createElement('form');
-            form.method = "post";
+            form.method = "get";
             form.action = "/results";
 
             for (const key in json) {

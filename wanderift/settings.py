@@ -41,6 +41,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    # 3rd party libs
+    'spurl',
+
     # My apps
     'construction',
     'subscriptions',
