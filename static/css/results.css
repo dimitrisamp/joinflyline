@@ -48,6 +48,23 @@
     border-radius: 4px;
 }
 
+.search.result {
+    min-height: 400px;
+}
+
+.no-flight-results {
+    text-align: center;
+    padding: 30px;
+    margin-bottom: 30px;
+}
+.no-flight-results h4 {
+    margin-bottom: 30px;
+}
+.no-flight-results p {
+    font-weight: 400;
+    font-size: 1.3rem;
+}
+
 @media only screen and (max-width: 992px) {
   #mobileIndicator { display: none; }
     .search-results-buttons {
