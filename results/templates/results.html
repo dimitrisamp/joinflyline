@@ -879,7 +879,6 @@
                             {% endif %}
                         {% endfor %}
                         <a href="{% spurl base="{{ request.get_full_path }}" set_query="limit={{ next_limit }}" %}"><button class="load-more-button">Load More</button></a>
-                        <a href="{% url "more" 10 %}"><button class="load-more-button">Load More</button></a>
                     {% else %}
                         <div class="card no-flight-results">
                             <h4>Oops there's no available flights...</h4>
