@@ -3,93 +3,78 @@ from json import load
 
 import requests
 from django.contrib import messages
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_exempt
 
 from results.models import SearchDetails
 
 
-@csrf_exempt
-def results_view(request, null=None):
-    if request.POST:
-        search_query = {
-            "limit": "10",
-            "apikey": "xklKtpJ5fxZnk4rsDepqOzLUaYYAO9dI",
-            "fly_from": request.POST['city_from'],
-            "fly_to": request.POST['city_to'],
-            "date_from": request.POST['dep_date'],
-            "date_to": request.POST['dep_date'],
-            "return_from": request.POST['ret_date'],
-            "return_to": request.POST['ret_date'],
-            "flight_type": request.POST['type'],
-            "adults": request.POST['adults'],
-            "children": request.POST['children'],
-            "infants": request.POST['infants']
-            # "max_stopovers": request.POST['max_stopovers'],
-            # "stopover_from": request.POST['stopover_from'],
-            # "stopover_to": request.POST['stopover_to'],
-        }
+API_URL = "https://kiwicom-prod.apigee.net/v2/search"
 
-        search_item = SearchDetails(user_id=request.user.id, fly_from=search_query.get("fly_from"),
-                                    fly_to=search_query.get("fly_to"),
-                                    date_from=search_query.get("date_from"), date_to=search_query.get("date_to"),
-                                    return_from=search_query.get("return_from"),
-                                    return_to=search_query.get("return_to"),
-                                    flight_type=search_query.get("flight_type"), adults=search_query.get("adults"),
-                                    children=search_query.get("children"), infants=search_query.get("infants"))
+FILTER_KEYS = (
+    "select_airlines",
+    "price_from",
+    "price_to",
+    "dtime_from",
+    "dtime_to",
+    "atime_from",
+    "atime_to",
+    "ret_dtime_from",
+    "ret_dtime_to",
+    "ret_atime_from",
+    "ret_atime_to",
+    "max_stopovers",
+    "stopover_from",
+    "stopover_to",
+)
 
-        # max_stopovers = search_query.get("max_stopovers"),
-        # stopover_from = search_query.get("stopover_from"),
-        # stopover_to = search_query.get("stopover_to")
+LIMIT_INCREMENT = 10
 
-        search_item.save()
-        request.session["search_query"] = search_query
-        url = "https://kiwicom-prod.apigee.net/v2/search"
-        try:
-            response = requests.get(url, params=search_query)
 
-            data = response.json()
-            airlines = set()
-
-            if json.loads(response.text)['data']:
-                for flights in json.loads(response.text)['data']:
-                    for airline in flights['airlines']:
-                        airlines.add(airline)
-        except Exception as e:
-            messages.error(request, "Cities not found " + str(e))
-    else:
-        data = null
-
-    context = {
-        "title": "Search Results",
-        "data": data,
-        "airlines": airlines
+def results_view(request):
+    search_params = {
+        "fly_from": request.GET["city_from"],
+        "fly_to": request.GET["city_to"],
+        "date_from": request.GET["dep_date"],
+        "date_to": request.GET["dep_date"],
+        "return_from": request.GET["ret_date"],
+        "return_to": request.GET["ret_date"],
+        "flight_type": request.GET["type"],
+        "adults": request.GET["adults"],
+        "children": request.GET["children"],
+        "infants": request.GET["infants"],
     }
-    return render(request, "results.html", context)
+    limit = int(request.GET.get("limit", 10))
+    search_query = {
+        "limit": limit,
+        "apikey": "xklKtpJ5fxZnk4rsDepqOzLUaYYAO9dI",
+    }
 
+    filter_params = {k: request.GET.get(k) for k in FILTER_KEYS if k in request.GET}
+    search_item = SearchDetails(user_id=request.user.id, **search_params)
 
-def load_more(request, limit):
-    search_query = request.session.get("search_query")
-    print(search_query['limit'])
-    search_query["limit"] = int(search_query["limit"]) + limit
-
-    url = "https://kiwicom-prod.apigee.net/v2/search"
+    search_item.save()
+    data = {}
+    airlines = set()
     try:
-        response = requests.get(url, params=search_query)
-
-        data = response.json()
-        airlines = set()
-
-        if json.loads(response.text)['data']:
-            for flights in json.loads(response.text)['data']:
-                for airline in flights['airlines']:
-                    airlines.add(airline)
-    except Exception as e:
-        messages.error(request, "Cities not found ")
-
+        response = requests.get(
+            API_URL, params={**search_query, **search_params, **filter_params}
+        )
+    except requests.RequestException as e:
+        messages.error(request, "Error getting flights: {}".format(e))
+    else:
+        if response.status_code == 200:
+            data = response.json()
+            if data:
+                for flights in data["data"]:
+                    for airline in flights["airlines"]:
+                        airlines.add(airline)
     context = {
         "title": "Search Results",
         "data": data,
-        "airlines": airlines
+        "airlines": airlines,
+        "next_limit": limit + LIMIT_INCREMENT,
+        "filter_params": filter_params,
+        "search_params": search_params,
     }
     return render(request, "results.html", context)

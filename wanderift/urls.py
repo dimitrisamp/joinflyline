@@ -21,7 +21,7 @@ from django.urls import path, include
 import info
 from booking.views import retail_booking_view, traveller_booking_view
 from construction.views import under_construction
-from results.views import results_view, load_more
+from results.views import results_view
 from home.views import home_view
 from wanderift import settings
 
@@ -36,7 +36,6 @@ urlpatterns = [
 
     # Results page urls
     path('results', results_view, name="results"),
-    path("more/<int:limit>", load_more, name="more"),
 
     # Accounts page urls
     path('account/', include("account.urls")),
