@@ -302,7 +302,7 @@
 
         <!-- Modal -->
         <div class="modal fade" id="placesModal" tabindex="-1" role="dialog" aria-labelledby="placesModalCenterTitle"
-             aria-hidden="true">
+             aria-hidden="true" onblur="choosePlaces()">
             <div class="modal-dialog " role="document">
                 <div class="modal-content" style="top: 160px;">
                     <div class="modal-body">
@@ -326,9 +326,14 @@
                                         </div>
 
                                         <div class="pop2_hor_line" style="margin:10px 0px"></div>
-                                        <input class="pop2_input" autofocus type="text" v-model="city"
-                                               v-on:keyup="cityHandler"
-                                               onfocus="this.value=''" placeholder="Add new location..."/>
+                                        <input 
+                                                class="pop2_input"
+                                                autofocus
+                                                type="text"
+                                                v-model="city"
+                                                v-on:keyup="cityHandler"
+                                                id="addLocation"
+                                                placeholder="Add new location..."/>
                                     </div>
 
                                     <ol class="search_result_list">

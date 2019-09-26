@@ -23,7 +23,7 @@
             firstDay: 1,
             parentEl: 'body',
             lang: 'auto',
-            format: 'DD/MM/YYYY',
+            format: 'MM/DD/YYYY',
             separator: ' - ',
             numberOfMonths: 1,
             numberOfColumns: 2,
@@ -932,6 +932,7 @@
                 if (dates.length === 2) {
                     if (moment(dates[0], this._opts.format).isValid()) {
                         this._opts.startDate = moment(dates[0], this._opts.format);
+                        // console.log(935, this._opts.startDate)
                     }
 
                     if (moment(dates[1], this._opts.format).isValid()) {

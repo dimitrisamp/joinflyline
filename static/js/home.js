@@ -2,11 +2,15 @@ $(document).ready(function () {
     let searchQuery = JSON.parse(sessionStorage.getItem("searchQuery"));
     app.searchQuery = searchQuery;
 });
+
+window.locVal = "";
+
 const app = new Vue({
     el: '#app',
     delimiters: ['{(', ')}'],
     data: {
         searchResultPlaces: [],
+        searchLocation: '',
         seatType: 'Economy',
         noOfPassengers: 'Passengers',
         city: '',
@@ -36,7 +40,8 @@ const app = new Vue({
                         cityData.forEach(city =>{
                             city.airport = airportData.pop()
                         });
-                        app.searchResultPlaces = cityData;
+                        app.searchResultPlaces = cityData;   
+                        // app.searchLocation = document.getElementById("addLocation").value                  
 
                     }
                 }
@@ -156,6 +161,18 @@ const app = new Vue({
             document.getElementById('mySelectedPlace').innerText = placeName;
             document.getElementById('mySelectedPlace').placeholder = codeIataCity;
             document.getElementById('mySelectedPlace').style.display = 'block';
+            
+            console.log("Test")
+            console.log(165, app.selectionOption)
+            switch (app.selectionOption) {
+                case 1:
+                    document.getElementById('placesFrom').value = placeName;
+                    app.form.placeFrom = document.getElementById('mySelectedPlace').placeholder;
+                    break;
+                case 2:
+                    document.getElementById('placesTo').value = placeName;
+                    app.form.placeTo = document.getElementById('mySelectedPlace').placeholder;
+            }
         },
 
         selectDestType: (type) => {
@@ -196,9 +213,9 @@ const app = new Vue({
             }
         },
         choosePlaces: function () {
-
             let place = document.getElementById('mySelectedPlace').innerText;
             let placeId = document.getElementById('mySelectedPlace').placeholder;
+            // window.locVal = document.getElementById('addLocation').value;
 
             switch (app.selectionOption) {
                 case 1:
@@ -312,11 +329,13 @@ const app = new Vue({
 
             app.selectionOption = option;
 
-            app.city = '';
+            // app.city = app.searchLocation;
 
             let placeFrom = document.getElementById('placesFrom').value;
 
             let placeTo = document.getElementById('placesTo').value;
+
+            app.city = placeFrom;
 
             switch (app.selectionOption) {
                 case 1:
@@ -328,7 +347,10 @@ const app = new Vue({
                         document.getElementById('mySelectedPlace').innerText = placeFrom;
                     }
 
-                    $('#placesModal').modal('show');
+                    // document.getElementById('addLocation').innerText = app.searchLocation;
+                    // document.getElementById('addLocation').value = app.searchLocation;
+
+                    $('#placesModal').modal('show');                    
                     return;
                 case 2:
                     document.getElementById('placesModalTitle').innerText = "Search and Select Arrival City";
