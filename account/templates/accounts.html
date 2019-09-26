@@ -3,36 +3,43 @@
 {% load static %}
 
 {% block csscontent %}
+    <link rel="stylesheet" href="{% static "css/lightpick.css" %}" xmlns:v-on="http://www.w3.org/1999/xhtml"
+          xmlns:v-on="http://www.w3.org/1999/xhtml">
     <link rel="stylesheet" href="{% static "css/custom.css" %}">
 {% endblock %}
 
 {% block content %}
-    <section>
+    <section class="navbar-section">
         {% include "_includes/navbar.html" %}
     </section>
     <section>
         <div class="container section-1">
             <div class="row">
-                <div class="col-sm-12">
-                    <h2 class="page-title">Account</h2>
-                </div>
+
             </div>
         </div>
     </section>
-    <section>
-        <div class="container mb100">
+    <section class="background-colored pt-4 pb-5">
+        <div class="container">
             <div class="row">
+                <div class="col-sm-12 mt-5 mb-4">
+                    <h2 class="page-title">Account</h2>
+                </div>
                 <div class="col-sm-12">
-                    <ul class="nav nav-tabs mt30 pb-1">
-                        <li><a data-toggle="tab" href="#overview" class="active">Overview</a></li>
-                        <li><a data-toggle="tab" href="#billing">Billing</a></li>
+                    <ul class="nav nav-tabs pb-1 mb-3 border-0">
+                        <li class="mr-3">
+                            <a data-toggle="tab" href="#overview" class="active">Overview</a>
+                        </li>
+                        <li>
+                            <a data-toggle="tab" href="#billing">Billing</a>
+                        </li>
                     </ul>
-                    <div class="tab-content mt30">
+                    <div class="tab-content">
                         <div id="overview" class="tab-pane fade in active show">
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-6 mb-4">
                                     <div class="card">
-                                        <div class="card-body shadow">
+                                        <div class="card-body">
                                             <div class="card-title">
                                                 <h3 class="bold p-0">Traveler Information</h3>
                                             </div>
@@ -77,7 +84,7 @@
                                                                    placeholder="Market">
                                                         </div>
                                                         <div class="form-group col-sm-12 pt-1">
-                                                            <button class="btn btn-1 bold btn-width">Save</button>
+                                                            <button class="search_btn">Save</button>
                                                         </div>
                                                     </form>
                                                 </div>
@@ -87,18 +94,18 @@
                                             </div>
                                             <div class="card-body">
                                                 <div class="row">
-                                                    <div class="form-group col-sm-6">
+                                                    <div class="form-group col-sm-6 p-0">
                                                         <label class="pb-2">Current Password</label>
                                                         <input class="form-control" type="text"
                                                                placeholder="Current password">
                                                     </div>
-                                                    <div class="form-group col-sm-6">
+                                                    <div class="form-group col-sm-6 p-0 pl-sm-2">
                                                         <label class="pb-2">New Password</label>
                                                         <input class="form-control" type="text"
                                                                placeholder="New Password">
                                                     </div>
                                                     <div class="form-group pt-1">
-                                                        <button class="btn btn-1 bold btn-width">Update</button>
+                                                        <button class="search_btn">Update</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -107,39 +114,37 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="card">
-                                        <div class="card-body shadow">
+                                        <div class="card-body">
                                             <div class="card-title">
                                                 <h3 class="bold p-0">Frequent Flyer Numbers</h3>
                                             </div>
-                                            <div class="card-body">
-                                                <div class="row">
-                                                    <div class="form-group col-sm-6">
-                                                        <label class="pb-2">American Airlines</label>
-                                                        <input class="form-control" type="text" placeholder="Airelines">
-                                                    </div>
-                                                    <div class="form-group col-sm-6">
-                                                        <label class="pb-2">American Airlines</label>
-                                                        <input class="form-control" type="text" placeholder="Airelines">
-                                                    </div>
-                                                    <div class="form-group col-sm-6">
-                                                        <label class="pb-2">American Airlines</label>
-                                                        <input class="form-control" type="text" placeholder="Airelines">
-                                                    </div>
-                                                    <div class="form-group col-sm-6">
-                                                        <label class="pb-2">American Airlines</label>
-                                                        <input class="form-control" type="text" placeholder="Airelines">
-                                                    </div>
-                                                    <div class="form-group col-sm-6">
-                                                        <label class="pb-2">American Airlines</label>
-                                                        <input class="form-control" type="text" placeholder="Airelines">
-                                                    </div>
-                                                    <div class="form-group col-sm-6">
-                                                        <label class="pb-2">American Airlines</label>
-                                                        <input class="form-control" type="text" placeholder="Airelines">
-                                                    </div>
-                                                    <div class="form-group col-sm-12 pt-1">
-                                                        <button class="btn btn-1 bold btn-width">Save</button>
-                                                    </div>
+                                            <div class="row">
+                                                <div class="form-group col-sm-6">
+                                                    <label class="pb-2">American Airlines</label>
+                                                    <input class="form-control" type="text" placeholder="Airlines">
+                                                </div>
+                                                <div class="form-group col-sm-6">
+                                                    <label class="pb-2">American Airlines</label>
+                                                    <input class="form-control" type="text" placeholder="Airlines">
+                                                </div>
+                                                <div class="form-group col-sm-6">
+                                                    <label class="pb-2">American Airlines</label>
+                                                    <input class="form-control" type="text" placeholder="Airlines">
+                                                </div>
+                                                <div class="form-group col-sm-6">
+                                                    <label class="pb-2">American Airlines</label>
+                                                    <input class="form-control" type="text" placeholder="Airlines">
+                                                </div>
+                                                <div class="form-group col-sm-6">
+                                                    <label class="pb-2">American Airlines</label>
+                                                    <input class="form-control" type="text" placeholder="Airlines">
+                                                </div>
+                                                <div class="form-group col-sm-6">
+                                                    <label class="pb-2">American Airlines</label>
+                                                    <input class="form-control" type="text" placeholder="Airlines">
+                                                </div>
+                                                <div class="form-group col-sm-12 pt-1">
+                                                    <button class="search_btn">Save</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -150,8 +155,8 @@
                         <div id="billing" class="tab-pane fade in">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <div class="card">
-                                        <div class="card-body shadow">
+                                    <div class="card  mb-3">
+                                        <div class="card-body">
                                             <div class="card-title">
                                                 <h3 class="bold p-0">Billing</h3>
                                             </div>
@@ -159,34 +164,34 @@
                                                 <form method="post" action="{% url "save-card" %}">
                                                     {% csrf_token %}
                                                     <div class="row">
-                                                        <div class="form-group col-12">
+                                                        <div class="form-group col-12 p-0">
                                                             <label class="pb-2">Credit Card Number</label>
                                                             <input class="form-control" type="text" name="card_number"
                                                                    placeholder="Card Number">
                                                         </div>
-                                                        <div class="form-group col-sm-7">
+                                                        <div class="form-group col-sm-7 p-0">
                                                             <label class="pb-2">Security Code</label>
                                                             <input class="form-control" type="text" name="cvc"
                                                                    placeholder="Security Code">
                                                         </div>
-                                                        <div class="form-group col-sm-5">
+                                                        <div class="form-group col-sm-5 p-0">
                                                             <label class="pb-2">Exp Date</label>
                                                             <input class="form-control" type="text" name="expiry"
                                                                    placeholder="Exp Date" id="expiry">
                                                         </div>
-                                                        <div class="form-group col-sm-8">
+                                                        <div class="form-group col-sm-8 p-0">
                                                             <label class="pb-2">Country</label>
                                                             <input class="form-control" type="text" name="country"
                                                                    placeholder="Country">
                                                         </div>
-                                                        <div class="form-group col-sm-4">
+                                                        <div class="form-group col-sm-4 p-0">
                                                             <label class="pb-2">Billing Zip</label>
                                                             <input class="form-control" type="text" name="zip"
                                                                    placeholder="Billing Zip">
                                                         </div>
-                                                        <div class="form-group col-12 pt-1">
+                                                        <div class="form-group col-12 p-0 pt-1">
                                                             <button type="submit"
-                                                                    class="btn btn-1 bold bg-primary">
+                                                                    class="search_btn">
                                                                 Add
                                                             </button>
                                                         </div>
@@ -198,7 +203,7 @@
                                             </div>
                                             <div class="">
                                                 {% for account in user.account_set.all %}
-                                                    <div class="card" style="margin-bottom: 10px">
+                                                    <div class="card mb-3" style="margin-bottom: 10px">
                                                         <div class="card-title">
                                                             {{ user.first_name }} {{ user.last_name }}
                                                         </div>
@@ -223,7 +228,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="card">
-                                        <div class="card-body shadow">
+                                        <div class="card-body">
                                             <div class="card-title">
                                                 <h3 class="bold p-0">Subscriptions</h3>
                                             </div>
@@ -232,12 +237,12 @@
                                                     <div class="col-sm-7">
                                                         <h4 class="bold m-0">Wanderift Lite $369</h4>
                                                     </div>
-                                                    <div class="col-sm-5">
+                                                    <div class="col-sm-5 mt-2 mt-md-0">
                                                         {% ifequal user.subscriptions.plan 'lite' %}
-                                                            <button class="btn btn-1 bold">Current Plan</button>
+                                                            <button class="thin-blue-btn">Current Plan</button>
                                                         {% else %}
                                                             <a href="{% url "plan" 'lite' %}">
-                                                                <button class="btn bg-info bold">Subscribe</button>
+                                                                <button class="thin-blue-btn">Subscribe</button>
                                                             </a>
                                                         {% endifequal %}
                                                     </div>
@@ -253,12 +258,12 @@
                                                     <div class="col-sm-7">
                                                         <h4 class="bold m-0">Wanderift Pro $459</h4>
                                                     </div>
-                                                    <div class="col-sm-5">
+                                                    <div class="col-sm-5  mt-2 mt-md-0">
                                                         {% ifequal user.subscriptions.plan 'pro' %}
-                                                            <button class="btn btn-1 bold">Current Plan</button>
+                                                            <button class="search_btn pb-1 pt-1">Current Plan</button>
                                                         {% else %}
                                                             <a href="{% url "plan" 'pro' %}">
-                                                                <button class="btn bg-info bold">Subscribe</button>
+                                                                <button class="thin-blue-btn">Subscribe</button>
                                                             </a>
                                                         {% endifequal %}
                                                     </div>
@@ -269,40 +274,40 @@
                                                         <p class="pl-2 pr-2">- 2 Unused Token Rolls over</p>
                                                         <p class="pl-2 pr-2">- No Long Term Commitment</p>
                                                     </div>
-                                                    <div class="col-sm-5">
+                                                    <div class="col-sm-5  mt-2 mt-md-0">
                                                         <a href="{% url "how-it-works" %}">
-                                                            <button class="btn btn-1 bold">Learn More</button>
+                                                            <button class="thin-blue-btn">Learn More</button>
                                                         </a>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="card">
-                                        <div class="card-body shadow">
+                                    <div class="card mt-3">
+                                        <div class="card-body">
                                             <div class="card-title">
                                                 <h3 class="bold p-0">Companion</h3>
                                             </div>
                                             <div class="card-body">
                                                 <div class="row">
-                                                    <div class="col-12">
+                                                    <div class="col-12 p-0">
                                                         <p>Sharing is caring. add your traveler companions below</p>
                                                     </div>
-                                                    <div class="form-group col-12">
+                                                    <div class="form-group col-12 p-0">
                                                         <label class="pb-2">Companion One</label>
                                                         <input class="form-control" type="text"
                                                                placeholder="companion@gmail.com">
                                                     </div>
-                                                    <div class="form-group col-12">
+                                                    <div class="form-group col-12 p-0">
                                                         <label class="pb-2">Companion One</label>
                                                         <input class="form-control" type="text"
                                                                placeholder="companion@gmail.com">
                                                     </div>
-                                                    <div class="col-12 text-right">
+                                                    <div class="col-12 text-right p-0 mb-3">
                                                         <a href="#">Add More Companions</a>
                                                     </div>
                                                     <div class="form-group col-12 pt-1">
-                                                        <button class="btn btn-1 bold">Send Invite</button>
+                                                        <button class="search_btn">Send Invite</button>
                                                     </div>
                                                 </div>
                                             </div>
