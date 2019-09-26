@@ -47,6 +47,7 @@ def results_view(request):
         "limit": limit,
         "apikey": "xklKtpJ5fxZnk4rsDepqOzLUaYYAO9dI",
     }
+    request.session['search_query'] = search_params
 
     filter_params = {k: request.GET.get(k) for k in FILTER_KEYS if k in request.GET}
     search_item = SearchDetails(user_id=request.user.id, **search_params)
