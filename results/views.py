@@ -34,7 +34,7 @@ DATE_FIELDS = ("return_from", "return_to", "date_from", "date_to")
 
 def md2dm(s):
     try:
-        return datetime.datetime.strptime("%m/%d/%Y", s).strftime("%d/%m/%Y")
+        return datetime.datetime.strptime(s, "%m/%d/%Y").strftime("%d/%m/%Y")
     except ValueError:
         return s
 
