@@ -27,7 +27,7 @@ const TIME_INTERVAL_PARAMS = {
     "#de_city_landing": [timeFormatter24h, timeUnFormatter24h, [0, 1440], "ret_atime_from", "ret_atime_to"],
     "#arr_city_take_off": [timeFormatter24h, timeUnFormatter24h, [0, 1440], "ret_dtime_from", "ret_dtime_to"],
     "#arr_city_landing": [timeFormatter24h, timeUnFormatter24h, [0, 1440], "atime_from", "atime_to"],
-    "#filter_price_range": [(v)=>v, (v)=>v, [0, 3000], "price_from", "price_to"],
+    "#filter_price_range": [(v) => v, (v) => v, [0, 3000], "price_from", "price_to"],
 };
 
 
@@ -49,7 +49,7 @@ function getIntervalParams() {
         let values = document.querySelector(selector).value.split(',');
         if (values.length === 2) {
             let [formatter, unformatter, [default_start, default_end], start_key, end_key] = TIME_INTERVAL_PARAMS[selector];
-            let [start, end] = values.map((v)=>parseInt(v));
+            let [start, end] = values.map((v) => parseInt(v));
             if (!(start === default_start && end === default_end)) {
                 let start_str = formatter(start);
                 let end_str = formatter(end);
@@ -78,8 +78,7 @@ const ALL_FILTER_FORM_PARAMS = [
     "max_stopovers",
 ];
 
-function getFilterFormData()
-{
+function getFilterFormData() {
     let airlines = {select_airlines: []};
     $("input.js-filter-airline").each((i, item) => {
         let $item = $(item);
@@ -89,7 +88,7 @@ function getFilterFormData()
     });
     let stopovers = {};
     for (const selector in STOPOVER_SELECTORS) {
-        if (document.querySelector (selector).checked) {
+        if (document.querySelector(selector).checked) {
             stopovers.max_stop_overs = STOPOVER_SELECTORS[selector];
         }
     }
@@ -101,17 +100,32 @@ function getFilterFormData()
     }
 }
 
+let applyFilterTimer = null;
+
 function applyFilter() {
-    const filterFormParams = getFilterFormData();
-    const urlParams = new URLSearchParams(window.location.search);
-    for (const paramName of ALL_FILTER_FORM_PARAMS) {
-        if (filterFormParams.hasOwnProperty(paramName)) {
-            urlParams.set(paramName, filterFormParams[paramName]);
-        } else {
-            urlParams.delete(paramName)
-        }
-    }
-    window.location.search = urlParams;
+    clearTimeout(applyFilterTimer);
+    applyFilterTimer = setTimeout(
+        function () {
+            const filterFormParams = getFilterFormData();
+            const urlParams = new URLSearchParams(window.location.search);
+            for (const paramName of ALL_FILTER_FORM_PARAMS) {
+                if (filterFormParams.hasOwnProperty(paramName)) {
+                    urlParams.set(paramName, filterFormParams[paramName]);
+                } else {
+                    urlParams.delete(paramName)
+                }
+            }
+            let url = new URL(window.location);
+            url.search = urlParams;
+            fetch(url, {'headers': {'X-Requested-With': 'XMLHttpRequest'}}).then(
+                response => response.text()
+            ).then(
+                text => {
+                    window.document.getElementById('result-list').innerHTML = text;
+                }
+            );
+        }, 1000
+    );
 }
 
 
@@ -123,8 +137,7 @@ function resetFilter() {
     window.location.search = urlParams;
 }
 
-function setFilterFormData(data)
-{
+function setFilterFormData(data) {
     if (data.select_airlines) {
         $("input.js-filter-airline").each((i, item) => {
             let $item = $(item);
@@ -162,12 +175,12 @@ $(document).ready(function () {
         formatter: timeFormatter
     });
     DeCityTakeOff.on('slideStop', function () {
-        var range = getTime(DeCityTakeOff.getValue());
-        if (Array.isArray(range)) {
-            app.timeFilterParams.depTake.min = range[0];
-            app.timeFilterParams.depTake.max = range[1];
-        }
-        app.filterByTimes();
+        // var range = getTime(DeCityTakeOff.getValue());
+        // if (Array.isArray(range)) {
+        //     app.timeFilterParams.depTake.min = range[0];
+        //     app.timeFilterParams.depTake.max = range[1];
+        // }
+        applyFilter();
     }).on('slide', function () {
         $("#de_city_take_off_time").text(timeFormatter(DeCityTakeOff.getValue()));
     });
@@ -180,12 +193,12 @@ $(document).ready(function () {
         formatter: timeFormatter
     });
     ArrCityTakeOff.on('slideStop', function () {
-        var range = getTime(ArrCityTakeOff.getValue());
-        if (Array.isArray(range)) {
-            app.timeFilterParams.arrTake.min = range[0];
-            app.timeFilterParams.arrTake.max = range[1];
-        }
-        app.filterByTimes();
+        // var range = getTime(ArrCityTakeOff.getValue());
+        // if (Array.isArray(range)) {
+        //     app.timeFilterParams.arrTake.min = range[0];
+        //     app.timeFilterParams.arrTake.max = range[1];
+        // }
+        applyFilter();
     }).on('slide', function () {
         $("#arr_city_take_off_time").text(timeFormatter(ArrCityTakeOff.getValue()));
     });
@@ -198,12 +211,12 @@ $(document).ready(function () {
         formatter: timeFormatter
     });
     DeCityLanding.on('slideStop', function () {
-        var range = getTime(DeCityLanding.getValue());
-        if (Array.isArray(range)) {
-            app.timeFilterParams.depLand.min = range[0];
-            app.timeFilterParams.depLand.max = range[1];
-        }
-        app.filterByTimes();
+        // var range = getTime(DeCityLanding.getValue());
+        // if (Array.isArray(range)) {
+        //     app.timeFilterParams.depLand.min = range[0];
+        //     app.timeFilterParams.depLand.max = range[1];
+        // }
+        applyFilter();
     }).on('slide', function () {
         $("#de_city_landing_time").text(timeFormatter(DeCityLanding.getValue()));
     });
@@ -216,12 +229,12 @@ $(document).ready(function () {
         formatter: timeFormatter
     });
     ArrCityLanding.on('slideStop', function () {
-        var range = getTime(ArrCityLanding.getValue());
-        if (Array.isArray(range)) {
-            app.timeFilterParams.arrLand.min = range[0];
-            app.timeFilterParams.arrLand.max = range[1];
-        }
-        app.filterByTimes();
+        // var range = getTime(ArrCityLanding.getValue());
+        // if (Array.isArray(range)) {
+        //     app.timeFilterParams.arrLand.min = range[0];
+        //     app.timeFilterParams.arrLand.max = range[1];
+        // }
+        applyFilter();
     }).on('slide', function () {
         $("#arr_city_landing_time").text(timeFormatter(ArrCityLanding.getValue()));
     });
@@ -234,9 +247,11 @@ $(document).ready(function () {
     });
     filterPriceRange.on('slide', function () {
         $("#filter_price_ammount").text(getPriceRange(filterPriceRange.getValue()));
-    });
-    $("#apply-filter").on("click", applyFilter);
-    $("#reset-filter").on("click", resetFilter);
+    }).on('slideStop', applyFilter);
+    $("input.js-filter-airline").on("change", applyFilter);
+    $("#filterNoStop").on("change", applyFilter);
+    $("#filterStop1").on("change", applyFilter);
+    $("#filterStop2").on("change", applyFilter);
     setFilterFormData(getUrlParams());
 });
 

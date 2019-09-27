@@ -1,3 +1,4 @@
+import datetime
 import json
 from json import load
 
@@ -28,6 +29,15 @@ FILTER_KEYS = (
 
 LIMIT_INCREMENT = 10
 
+DATE_FIELDS = ("return_from", "return_to", "date_from", "date_to")
+
+
+def md2dm(s):
+    try:
+        return datetime.datetime.strptime("%m/%d/%Y", s).strftime("%d/%m/%Y")
+    except ValueError:
+        return s
+
 
 def results_view(request):
     search_params = {
@@ -42,6 +52,9 @@ def results_view(request):
         "children": request.GET["children"],
         "infants": request.GET["infants"],
     }
+    for k in DATE_FIELDS:
+        search_params[k] = md2dm(search_params[k])
+
     limit = int(request.GET.get("limit", 10))
     search_query = {
         "limit": limit,
@@ -76,4 +89,7 @@ def results_view(request):
         "filter_params": filter_params,
         "search_params": search_params,
     }
-    return render(request, "results.html", context)
+    if request.is_ajax():
+        return render(request, "results_center.html", context)
+    else:
+        return render(request, "results.html", context)
