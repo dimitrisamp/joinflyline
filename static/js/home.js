@@ -162,8 +162,6 @@ const app = new Vue({
             document.getElementById('mySelectedPlace').placeholder = codeIataCity;
             document.getElementById('mySelectedPlace').style.display = 'block';
             
-            console.log("Test")
-            console.log(165, app.selectionOption)
             switch (app.selectionOption) {
                 case 1:
                     document.getElementById('placesFrom').value = placeName;
