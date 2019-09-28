@@ -15,12 +15,9 @@ def create_user(request):
 
     user = User.objects.create_user(username, email, password)
     user.save()
-
-    context = {
-        "msg": "passed"
-    }
-    messages.success(request, 'Registration Successful')
-    return render(request, "home.html", context)
+    user = authenticate(request, username=username, password=password)
+    auth.login(request, user)
+    return redirect(account_view)
 
 
 def login_user(request):
@@ -29,8 +26,7 @@ def login_user(request):
     user = authenticate(request, username=username, password=password)
     if user is not None:
         auth.login(request, user)
-        messages.success(request, 'Login Successful')
-        return redirect(account_view)
+        return redirect(home_view)
     else:
         messages.error(request, 'Failed: Your credentials were incorrect')
         return redirect(home_view)
