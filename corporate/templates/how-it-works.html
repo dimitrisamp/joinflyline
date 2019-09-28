@@ -13,6 +13,16 @@
         <strong>We're sorry but wanderift doesn't work properly without JavaScript enabled. Please enable it to
             continue.</strong>
     </noscript>
+    {% if user.is_authenticated %}
+    {% else %}
+        <div class="promo_banner">
+            <p class="promo_banner_text mb-0">Looking to save thousands on flights? Subscribe to Wanderift Lite or Pro
+                and
+                Save
+                <button class="promo_btn mt-2" style="margin-left: 20px;">Learn More</button>
+            </p>
+        </div>
+    {% endif %}
     <section class="navbar-section">
         {% include "_includes/navbar.html" %}
     </section>
