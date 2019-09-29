@@ -40,7 +40,7 @@ def how_it_works_view(request):
     context = {
         'title': 'How it Works'
     }
-    return render(request, 'how-it-works.html', context)
+    return render(request, 'personal-how-it-works.html', context)
 
 
 def corporate_how_it_works_view(request):
