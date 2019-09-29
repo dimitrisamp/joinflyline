@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="{% static "css/home.css" %}">
     <link rel="stylesheet" href="{% static "css/custom.css" %}">
      <link rel="stylesheet" href="{% static "css/how-it-works.css" %}">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.0/css/ion.rangeSlider.min.css"/>
 {% endblock %}
 
 {% block content %}
@@ -146,46 +147,38 @@
                          Our subscription model makes flights to your next meeting, work event, or anywhere else your business has to go much cheaper than anywhere else.
                      </h5>
                  </div>
-                <div class="row">
-                  <div class="col-sm-6">
-                    <div class="card subscription-card mb-3">
-                        <div class="card-header d-flex flex-column justify-content-end">
-                            <h2 class="card-title" style="margin-bottom: 0px;">Wanderift Lite</h2>
+                 <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card mb-3">
+                            <h5 class="ont-weight-normal mx-auto" 
+                            style="max-width: 650px; line-height: 1.4; margin-top: 30px">
+                                Use the slider to estimate the cost of your plan. 
+                                The more tokens you buy, the cheaper cost per token.
+                            </h5>
+                            <!-- <div class="card-header d-flex flex-column justify-content-center" style="text-align: center">
+                                <h5 class="text-muted font-weight-normal mx-auto" style="max-width: 650px; line-height: 1.4">
+                                    Use the slider to estimate the cost of your plan. 
+                                    The more tokens you buy, the cheaper cost per token.
+                                </h5>
+                            </div> -->
+                            <div class="slidecontainer">
+                                <input
+                                    id="myRange"
+                                    type="text"
+                                    value="50"                                    
+                                >
+                            </div>
+                            <div class="card-body" style="text-align: center">
+                                <div style="margin: 25px 5px 25px 5px">
+                                    <p class="d-inline" id="token"></p>
+                                    <!-- <p class="d-inline" id="totalPrice"></p>
+                                    <p class="d-inline" id="eachPrice"></p> -->
+                                </div>                               
+                                
+                                <a href="#" class="btn primary-button w-100">Get Started with Wanderift Corporate</a>
+                            </div>
                         </div>
-                      <div class="card-body">
-                        <h1 class="d-inline mr-1">$ 369</h1> <p class="d-inline" style="font-weight: 500; font-size: 16px;"> per month</p>
-                        <div class="divider-15"></div>
-                        <span class="card-text">No long term commitment</span>
-                          <ul style="padding-left: 10px; margin-top:30px; margin-bottom:20px;">
-                              <li>3 Tokens (3 One-way flights)</li>
-                              <li>1 unsued token rollover</li>
-                              <li>Fly All Major Airlines</li>
-                              <li>Exclusive Hotel Deals</li>
-                          </ul>
-                        <a href="#" class="btn btn-primary main-btn-outline w-100">Get Started</a>
-                      </div>
                     </div>
-                  </div>
-                  <div class="col-sm-6">
-                    <div class="card subscription-card mb-3">
-                        <div class="card-header d-flex flex-column justify-content-between">
-                            <p class="subscription-offer-notice w-100 text-center" style="font-weight: 600;">Best Value Per Token</p>
-                            <h2 class="card-title" style="margin-bottom: 0px;">Wanderift Pro</h2>
-                        </div>
-                      <div class="card-body">
-                          <h1 class="d-inline mr-1">$ 459</h1> <p class="d-inline" style="font-weight: 500; font-size: 16px;"> per month</p>
-                          <div class="divider-15"></div>
-                          <span class="card-text">No long term commitment</span>
-                          <ul style="padding-left: 10px; margin-top:30px; margin-bottom:20px;">
-                              <li>4 Tokens (3 One-way flights)</li>
-                              <li>2 unsued token rollover</li>
-                              <li>Fly All Major Airlines</li>
-                              <li>Exclusive Hotel Deals</li>
-                          </ul>
-                        <a href="#" class="btn btn-primary main-btn-outline w-100">Get Started</a>
-                      </div>
-                    </div>
-                  </div>
                 </div>
                 <div class="col-12 text-center mt-md-5 pt-5 pb-5">
                      <h2 class="font-weight-normal" style="font-size: 2.3rem; padding-bottom: 10px;">Frequently Asked Questions</h2>
@@ -316,4 +309,34 @@
 {% endblock %}
 
 {% block jscontent %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.0/js/ion.rangeSlider.min.js"></script>
+    <script>
+        var tokenVal = 50;
+        var totalPrice;
+        var eachPrice;
+        if (tokenVal < 26) {
+            eachPrice = 123;
+        } else if (tokenVal < 51) {
+            eachPrice = 121
+        } else {
+            eachPrice = 117
+        }
+        totalPrice = tokenVal * eachPrice
+        document.getElementById("token").innerHTML = tokenVal + " Tokens - $ " + totalPrice + "(" + eachPrice + " per token)" 
+        $("#myRange").ionRangeSlider({
+            onChange: function (data) {
+                tokenVal = data.from;
+                if (tokenVal < 26) {
+                    eachPrice = 123;
+                } else if (tokenVal < 51) {
+                    eachPrice = 121
+                } else {
+                    eachPrice = 117
+                }
+                totalPrice = tokenVal * eachPrice
+                console.log(tokenVal)
+                document.getElementById("token").innerHTML = tokenVal + " Tokens - $ " + totalPrice + "(" + eachPrice + " per token)"
+            }
+        });
+    </script>
 {% endblock %}
