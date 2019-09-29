@@ -7,16 +7,9 @@
 {% endblock %}
 
 {% block content %}
-    {% if user.is_authenticated %}
-    {% else %}
-        <div class="promo_banner">
-            <p class="promo_banner_text mb-0">Looking to save thousands on flights? Subscribe to Wanderift Lite or Pro
-                and
-                Save
-                <button class="promo_btn mt-2" style="margin-left: 20px;">Learn More</button>
-            </p>
-        </div>
-    {% endif %}
+    <section class="navbar-section">
+        {% include "_includes/promo.html" %}
+    </section>
 
     <section class="navbar-section">
         {% include "_includes/corporate_nav.html" %}
