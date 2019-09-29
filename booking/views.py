@@ -1,33 +1,66 @@
+from _decimal import Decimal
+from datetime import datetime, timezone, timedelta
+
 import requests
 from django.contrib.auth.models import User
 from django.shortcuts import render
 
 from account.models import Account
 
+CHECK_FLIGHTS_API_URL = "https://kiwicom-prod.apigee.net/v2/booking/check_flights"
+
 apiKey = "xklKtpJ5fxZnk4rsDepqOzLUaYYAO9dI"
 
 
+def parse_isodatetime(dt):
+    return datetime.strptime(dt, "%Y-%m-%dT%H:%M:%S.%fZ")
+
+
 def retail_booking_view(request, booking_token):
+    search_query = request.session.get("search_query")
+    adults = int(search_query["adults"])
+    children = int(search_query["children"])
+    infants = int(search_query["infants"])
     check_flights_dto = {
         "booking_token": booking_token,
         "apikey": apiKey,
-        "pnum": int(request.session.get('search_query')['adults']),
-        "bnum": 0
+        "pnum": adults + children + infants,
+        "adults": adults,
+        "children": children,
+        "infants": infants,
+        "currency": "USD",
+        "bnum": 0,
     }
 
     request.session["booking_token"] = booking_token
-    url = "https://kiwicom-prod.apigee.net/v2/booking/check_flights"
-    response = requests.get(url, params=check_flights_dto)
-    flight = response.json()
-    context = {
-        "title": "Retail Booking",
-        "flight": flight
-    }
-    return render(request, "retail.html", context)
+    response = requests.get(CHECK_FLIGHTS_API_URL, params=check_flights_dto)
+    retail_info = response.json()
+    total_usd = Decimal(retail_info["conversion"]["amount"])
+    total_eur = Decimal(retail_info["total"])
+    eur2usd = total_usd / total_eur
+    for flight in retail_info["flights"]:
+        flight["price"] = Decimal(flight["price"]) * eur2usd
+        dep_time = parse_isodatetime(flight["local_departure"])
+        arr_time = parse_isodatetime(flight["local_arrival"])
+        flight["date"] = dep_time.strftime("%a %b %d")
+        flight["arr_time"] = arr_time.strftime("%H:%M")
+        flight["dep_time"] = dep_time.strftime("%H:%M")
+        duration = int(
+            (
+                parse_isodatetime(flight["utc_arrival"])
+                - parse_isodatetime(flight["utc_departure"])
+            ).total_seconds()
+        )
+        hours = duration // 3600
+        minutes = (duration // 60) % 60
+        flight["duration"] = f"{hours}h {minutes:02d}m"
+
+    context = {"retail_info": retail_info}
+    return render(request, "booking/retail.html", context)
 
 
 def traveller_booking_view(request):
-    if request.method == 'POST':
+    if request.method == "POST":
         username = request.POST["email"]
         email = username
         password = ""
@@ -42,34 +75,37 @@ def traveller_booking_view(request):
         country = request.POST["country"]
         zip = request.POST["zip"]
 
-        user = User.objects.create_user(username, email, password, first_name=first_name, last_name=last_name)
+        user = User.objects.create_user(
+            username, email, password, first_name=first_name, last_name=last_name
+        )
         user.save()
         user = User.objects.get(pk=user.id)
         user.profile.dob = dob
         user.profile.gender = gender
         user.profile.phone_number = phone_number
         user.profile.save()
-        account = Account.objects.create(card_number=card_number, expiry=expiry, cvc=cvc, country=country, zip=zip,
-                                         user=user)
+        account = Account.objects.create(
+            card_number=card_number,
+            expiry=expiry,
+            cvc=cvc,
+            country=country,
+            zip=zip,
+            user=user,
+        )
         account.save()
 
         save_booking(request, user)
-        context = {
-            "users": user
-        }
-        return render(request, "retail.html", context)
+        context = {"users": user}
+        return render(request, "booking/retail.html", context)
     else:
         context = {}
-        return render(request, "retail.html", context)
+        return render(request, "booking/retail.html", context)
 
 
 def save_booking(request, user):
     print(user)
     account = user.account_set.all()
-    params = {
-        "apikey": apiKey,
-        "visitor_uniqid": user.id
-    }
+    params = {"apikey": apiKey, "visitor_uniqid": user.id}
     booking = {
         "bags": 0,
         "booking_token": request.session.get("booking_token"),
@@ -87,12 +123,12 @@ def save_booking(request, user):
                 "nationality": "SE",
                 "phone": user.profile.phone_number,
                 "surname": user.last_name,
-                "title": "ms"
+                "title": "ms",
             }
-        ]
+        ],
     }
 
-    headers = {'content-type': 'application/json'}
+    headers = {"content-type": "application/json"}
     url = "https://kiwicom-prod.apigee.net/v2/booking/save_booking"
     response = requests.post(url, params=params, json=booking, headers=headers)
     return response.json()
