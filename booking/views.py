@@ -1,11 +1,15 @@
+import json
 from _decimal import Decimal
 from datetime import datetime, timezone, timedelta
+from itertools import takewhile
 
 import requests
 from django.contrib.auth.models import User
 from django.shortcuts import render
 
 from account.models import Account
+from results.models import BookingCache
+from results.templatetags.comparison import comparison
 
 CHECK_FLIGHTS_API_URL = "https://kiwicom-prod.apigee.net/v2/booking/check_flights"
 
@@ -17,29 +21,13 @@ def parse_isodatetime(dt):
 
 
 def retail_booking_view(request, booking_token):
-    search_query = request.session.get("search_query")
-    adults = int(search_query["adults"])
-    children = int(search_query["children"])
-    infants = int(search_query["infants"])
-    check_flights_dto = {
-        "booking_token": booking_token,
-        "apikey": apiKey,
-        "pnum": adults + children + infants,
-        "adults": adults,
-        "children": children,
-        "infants": infants,
-        "currency": "USD",
-        "bnum": 0,
-    }
-
-    request.session["booking_token"] = booking_token
-    response = requests.get(CHECK_FLIGHTS_API_URL, params=check_flights_dto)
-    retail_info = response.json()
-    total_usd = Decimal(retail_info["conversion"]["amount"])
-    total_eur = Decimal(retail_info["total"])
-    eur2usd = total_usd / total_eur
-    for flight in retail_info["flights"]:
-        flight["price"] = Decimal(flight["price"]) * eur2usd
+    retail_info = json.loads(BookingCache.objects.get(booking_token=booking_token).data)
+    # total_usd = Decimal(retail_info["conversion"]["amount"])
+    # total_eur = Decimal(retail_info["total"])
+    # eur2usd = total_usd / total_eur
+    one_way = not bool(o for o in retail_info["route"] if o["return"] == 1)
+    for flight in retail_info["route"]:
+        flight["price"] = 400  # Decimal(flight["price"]) * eur2usd
         dep_time = parse_isodatetime(flight["local_departure"])
         arr_time = parse_isodatetime(flight["local_arrival"])
         flight["date"] = dep_time.strftime("%a %b %d")
@@ -54,8 +42,17 @@ def retail_booking_view(request, booking_token):
         hours = duration // 3600
         minutes = (duration // 60) % 60
         flight["duration"] = f"{hours}h {minutes:02d}m"
+    if not one_way:
+        flight = list(takewhile(lambda o: o["return"] == 0, retail_info["route"]))[-1]
+        flight["nightsInDest"] = retail_info["nightsInDest"]
 
-    context = {"retail_info": retail_info}
+    context = {
+        "retail_info": retail_info,
+        "one_way": one_way,
+        "subscription_benefits": comparison(retail_info),
+        "passenger_count": retail_info['parent']['search_params']['seats']['passengers'],
+        "total_price": retail_info['conversion']['USD']
+    }
     return render(request, "booking/retail.html", context)
 
 

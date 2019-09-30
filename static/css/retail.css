@@ -96,6 +96,7 @@ body{
     position: absolute;
     right: 7px;
     top: 7px;
+    width: 32px;
 }
 .whiteBg{
 	padding: 12px 15px;

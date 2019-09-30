@@ -13,71 +13,29 @@
                 <div class="col-md-8">
 
                     <div class="main-heading">
-                        <h3>{{ city_from }}<span class="fa fa-long-arrow-right"></span>{{ city_to }}
+                        <h3>{{ retail_info.cityFrom }} <span class="fa fa-long-arrow-right"></span> {{ retail_info.cityTo }}
                                 {% if not one_way %}and back{% endif %}</h3>
                     </div>
 
-                    <div class="summary-section">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <h3 class="trip-summary"><span
-                                        class="fa fa-globe"></span> Trip summary</h3>
-                            </div>
-                            <div class="col-md-6">
-                                <ul class="icon-list">
-                                    <li><span class="fa fa-star-o"></span></li>
-                                    <li><span class="fa fa-share"></span></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="row manage-row">
-                            {% for flight in retail_info.flights %}
-                                {% include "booking/includes/flight.html" with flight=flight %}
-                            {% endfor %}
-                        </div>
-                        <div class="more-info">
-                            <h3><span class="fa fa-mobile"></span> Automatic flight
-                                check-in <span class="fa fa-money">Free</span></h3>
-                            <p>Most airlines charge a large fee if you forget to check
-                                in online. If you provide us with your passport/ID
-                                details, we'll check you in online and send your
-                                boarding passes to you for free. <a href="">More
-                                    info</a></p>
-                        </div>
-                    </div>
+                    {% include "booking/includes/summary.html" %}
+                    <div id="passengers">
                     {% include "booking/includes/passenger.html" %}
+                    </div>
                     <div class="text-center">
-                        <button type="submit" class="btn btn-default add-btn"><span
+                        <button type="submit" class="btn btn-default add-btn" id="js-add-passenger"><span
                                 class="fa fa-user-plus"></span> Add another passenger
                         </button>
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="price_detail">
-                        <ul class="list-price-detail">
-                            <li> {{ passenger_count }}x Passenger{{ passenger_count|pluralize }} <span class="pull-right"> {{ flight_price }} </span>
-                            </li>
-                            <li> Baggage <span class="pull-right">{{ baggage_price }}</span></li>
-                            <li> Automatic flight check-in <span class="pull-right"> Free </span>
-                            </li>
-                            <li><span class="totalusd">Total(USD)</span> <span
-                                    class="pull-right"> <b>{{ total_price }}</b> </span></li>
-                        </ul>
-                    </div>
-                    <div class="subcribe-section">
-                        <div class="row">
-                            <div class="col-md-8 subscribe_detail">
-                                <p>Subcribe to Wanderift Lite or Pro and Save $22 on
-                                    this flight</p>
-                            </div>
-                            <div class="col-md-4 subcribe-btn">
-                                <button class="btn btn-default"> Learn More</button>
-                            </div>
-                        </div>
-                    </div>
+                    {% include "booking/includes/totals.html" %}
+                    {% if subscription_benefits %}{% include "booking/includes/benefits.html" %}{% endif %}
                     {% include "booking/includes/checkout.html" %}
                 </div>
             </div><!-- row -->
         </div>
     </section>
+{% endblock %}
+{% block jscontent %}
+    <script src="{% static "js/passenger.js" %}"></script>
 {% endblock %}

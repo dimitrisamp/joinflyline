@@ -7,7 +7,7 @@ from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_exempt
 
-from results.models import SearchDetails
+from results.models import SearchDetails, BookingCache
 
 
 API_URL = "https://kiwicom-prod.apigee.net/v2/search"
@@ -39,6 +39,13 @@ def md2dm(s):
         return s
 
 
+def save_flight_data(flight):
+    booking_token = flight["booking_token"]
+    BookingCache.objects.update_or_create(
+        booking_token=booking_token, defaults={"data": json.dumps(flight)}
+    )
+
+
 def results_view(request):
     search_params = {
         "fly_from": request.GET["city_from"],
@@ -56,11 +63,8 @@ def results_view(request):
         search_params[k] = md2dm(search_params[k])
 
     limit = int(request.GET.get("limit", 10))
-    search_query = {
-        "limit": limit,
-        "apikey": "xklKtpJ5fxZnk4rsDepqOzLUaYYAO9dI",
-    }
-    request.session['search_query'] = search_params
+    search_query = {"limit": limit, "apikey": "xklKtpJ5fxZnk4rsDepqOzLUaYYAO9dI", "curr": "USD"}
+    request.session["search_query"] = search_params
 
     filter_params = {k: request.GET.get(k) for k in FILTER_KEYS if k in request.GET}
     search_item = SearchDetails(user_id=request.user.id, **search_params)
@@ -78,7 +82,11 @@ def results_view(request):
         if response.status_code == 200:
             data = response.json()
             if data:
-                for flights in data["data"]:
+               search_part = data.copy()
+               search_part.pop('data')
+               for flights in data["data"]:
+                    flights['parent'] = search_part
+                    save_flight_data(flights)
                     for airline in flights["airlines"]:
                         airlines.add(airline)
     context = {

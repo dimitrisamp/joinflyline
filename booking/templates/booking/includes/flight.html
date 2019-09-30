@@ -1,7 +1,7 @@
 {% load airline_icons %}
 <div class="col-md-6">
 
-    <h3 class="box-title">Departure <span>Duration: {{ flight.duration }}</span></h3>
+    <h3 class="box-title">{% if not flight.return %}Departure{% else %}Return{% endif %} <span>Duration: {{ flight.duration }}</span></h3>
 
     <ul class="clander-list">
         <li>
@@ -12,13 +12,15 @@
     </ul>
 
     <div class="detail-box">
-        <p>{{ flight.dep_time }} <span>{{ flight.src_name }} {{ flight.src }}</span></p>
-        <p>{{ flight.arr_time }} <span>{{ flight.dst_name }} {{ flight.dst }}</span></p>
-        <img src="/images/{{ flight.airline.code | aircon }}.png" alt="{{ flight.airline.code }}">
+        <p>{{ flight.dep_time }} <span>{{ flight.cityFrom }} {{ flight.flyFrom }}</span></p>
+        <p>{{ flight.arr_time }} <span>{{ flight.cityTo }} {{ flight.flyTo }}</span></p>
+        <img src="/images/{{ flight.airline | aircon }}.png" alt="{{ flight.airline }}">
         <sub class="col-sub">{{ flight.duration }}{# 3h 33m #}</sub>
     </div>
 
+    {% if flight.nightsInDest %}
     <div class="descrption-txt">
-        <p>55 nights in New York</p>
+        <p>{{ flight.nightsInDest }} night{{ flight.nightsInDest | pluralize }} in {{ flight.cityTo }}</p>
     </div>
+    {% endif %}
 </div>

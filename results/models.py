@@ -20,3 +20,11 @@ class SearchDetails(models.Model):
 
     def __str__(self):
         return SearchDetails.fly_from
+
+
+class BookingCache(models.Model):
+    booking_token = models.TextField(db_index=True)
+    data = models.TextField()
+
+    def __str__(self):
+        return self.booking_token
