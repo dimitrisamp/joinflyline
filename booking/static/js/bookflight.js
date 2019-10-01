@@ -46,7 +46,12 @@ $(function() {
         }
 
         console.log(data);
-        $.post( "/booking_flight", data );
+        $.ajax({
+            type: 'POST',
+            url: '/booking_flight',
+            data: JSON.stringify(data),
+            dataType: 'json'
+        });
     });
 });
 
