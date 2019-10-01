@@ -1,11 +1,12 @@
 import json
-from _decimal import Decimal
-from datetime import datetime, timezone, timedelta
+from datetime import datetime
 from itertools import takewhile
 
 import requests
 from django.contrib.auth.models import User
+from django.http import JsonResponse
 from django.shortcuts import render
+from django.views import View
 
 from account.models import Account
 from results.models import BookingCache
@@ -13,21 +14,76 @@ from results.templatetags.comparison import comparison
 
 CHECK_FLIGHTS_API_URL = "https://kiwicom-prod.apigee.net/v2/booking/check_flights"
 
-apiKey = "xklKtpJ5fxZnk4rsDepqOzLUaYYAO9dI"
+API_KEY = "xklKtpJ5fxZnk4rsDepqOzLUaYYAO9dI"
 
 
 def parse_isodatetime(dt):
     return datetime.strptime(dt, "%Y-%m-%dT%H:%M:%S.%fZ")
 
 
+class ClientException(Exception):
+    pass
+
+
+class FlightsInvalidException(ClientException):
+    pass
+
+
+class FlightsNotCheckedYetException(ClientException):
+    pass
+
+
+def check_flights(booking_token, bnum, adults, children, infants):
+    query = {
+        "booking_token": booking_token,
+        "v": 2,
+        "apikey": API_KEY,
+        "bnum": bnum,
+        "adults": adults,
+        "children": children,
+        "infants": infants,
+        "pnum": adults + children + infants,
+        "currency": "USD",
+    }
+    try:
+        response = requests.get(CHECK_FLIGHTS_API_URL, query)
+    except requests.RequestException as e:
+        raise ClientException() from e
+    if response.status_code != 200:
+        raise ClientException()
+    data = response.json()
+    if data["flights_invalid"]:
+        raise FlightsInvalidException()
+    if not data["flights_checked"]:
+        raise FlightsNotCheckedYetException()
+    prices = data["conversion"]
+    passenger_price = (
+        prices["adults_price"] + prices["children_price"] + prices["infants_price"]
+    )
+    bags_fee = prices["amount"] - passenger_price
+    return {"passengers": passenger_price, "bags": bags_fee, "total": prices["amount"]}
+
+
+class CheckFlightsView(View):
+    def get(self, request):
+        keys = ("booking_token", "bnum", "adults", "children", "infants")
+        try:
+            kwargs = {k: request.GET[k] for k in keys}
+        except KeyError:
+            return JsonResponse({"code": "missing-arguments"})
+        try:
+            result = check_flights(**kwargs)
+        except FlightsInvalidException:
+            return JsonResponse({"code": "flights-invalid"}, status_code=404)
+        except FlightsNotCheckedYetException:
+            return JsonResponse({"code": "not-checked-yet"}, status_code=404)
+        return JsonResponse(result)
+
+
 def retail_booking_view(request, booking_token):
     retail_info = json.loads(BookingCache.objects.get(booking_token=booking_token).data)
-    # total_usd = Decimal(retail_info["conversion"]["amount"])
-    # total_eur = Decimal(retail_info["total"])
-    # eur2usd = total_usd / total_eur
     one_way = not bool(o for o in retail_info["route"] if o["return"] == 1)
     for flight in retail_info["route"]:
-        flight["price"] = 400  # Decimal(flight["price"]) * eur2usd
         dep_time = parse_isodatetime(flight["local_departure"])
         arr_time = parse_isodatetime(flight["local_arrival"])
         flight["date"] = dep_time.strftime("%a %b %d")
@@ -50,8 +106,10 @@ def retail_booking_view(request, booking_token):
         "retail_info": retail_info,
         "one_way": one_way,
         "subscription_benefits": comparison(retail_info),
-        "passenger_count": retail_info['parent']['search_params']['seats']['passengers'],
-        "total_price": retail_info['conversion']['USD']
+        "passenger_count": retail_info["parent"]["search_params"]["seats"][
+            "passengers"
+        ],
+        "total_price": retail_info["conversion"]["USD"],
     }
     return render(request, "booking/retail.html", context)
 
@@ -102,7 +160,7 @@ def traveller_booking_view(request):
 def save_booking(request, user):
     print(user)
     account = user.account_set.all()
-    params = {"apikey": apiKey, "visitor_uniqid": user.id}
+    params = {"apikey": API_KEY, "visitor_uniqid": user.id}
     booking = {
         "bags": 0,
         "booking_token": request.session.get("booking_token"),

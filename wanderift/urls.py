@@ -19,7 +19,7 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.urls import path, include
 
 import info
-from booking.views import retail_booking_view, traveller_booking_view
+from booking.views import retail_booking_view, traveller_booking_view, CheckFlightsView
 from construction.views import under_construction
 from results.views import results_view
 from home.views import home_view
@@ -52,6 +52,7 @@ urlpatterns = [
     # booking
     path('retail/<str:booking_token>', retail_booking_view, name="retail"),
     path('book', traveller_booking_view, name="book"),
+    path('check_flights', CheckFlightsView.as_view(), name="check-flights"),
 
     # subscriptions
     path("subscriptions/", include('subscriptions.urls')),
