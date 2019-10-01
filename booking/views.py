@@ -1,5 +1,6 @@
 import json
-from datetime import datetime
+import uuid
+from datetime import datetime, date
 from itertools import takewhile
 
 import requests
@@ -13,6 +14,11 @@ from results.models import BookingCache
 from results.templatetags.comparison import comparison
 
 CHECK_FLIGHTS_API_URL = "https://kiwicom-prod.apigee.net/v2/booking/check_flights"
+SAVE_BOOKING_API_URL = "https://kiwicom-prod.apigee.net/v2/booking/save_booking"
+CONFIRM_PAYMENT_API_URL = "https://kiwicom-prod.apigee.net/v2/booking/confirm_payment"
+CONFIRM_PAYMENT_ZOOZ_API_URL = (
+    "https://kiwicom-prod.apigee.net/v2/booking/confirm_payment_zooz"
+)
 
 API_KEY = "xklKtpJ5fxZnk4rsDepqOzLUaYYAO9dI"
 
@@ -80,8 +86,114 @@ class CheckFlightsView(View):
         return JsonResponse(result)
 
 
+def get_category(passenger):
+    born = datetime.strptime(passenger["birthdate"], "%Y-%m-%d")
+    today = date.today()
+    age = today.year - born.year - ((today.month, today.day) < (born.month, born.day))
+    if age < 3:
+        return "infants"
+    elif age < 13:
+        return "children"
+    else:
+        return "adults"
+
+
+def make_hold_bags(flight_ids, bags):
+    result = {}
+    for flight_id in flight_ids:
+        flight_bags = {}
+        for i in range(1, 4):
+            flight_bags[str(i)] = 0 if bags < i else 1
+        result[flight_id] = flight_bags
+    return result
+
+
+def save_booking(booking_token, passengers, zooz=True):
+    retail_info = get_retail_info(booking_token)
+    flight_ids = [o["id"] for o in retail_info["route"]]
+    for p in passengers:
+        p["category"] = get_category(p)
+        bags = p.pop("bags")
+        p["hold_bags"] = make_hold_bags(flight_ids, bags)
+    body = {
+        "booking_token": booking_token,
+        "currency": "USD",
+        "lang": "en",
+        "locale": "en",
+        "passengers": passengers,
+    }
+    if zooz:
+        body["payment_gateway"] = "payu"
+    params = {"apikey": API_KEY}
+    try:
+        response = requests.post(
+            SAVE_BOOKING_API_URL,
+            params=params,
+            json=body,
+            headers={"content-type": "application/json"},
+        )
+    except requests.RequestException as e:
+        raise ClientException() from e
+    if response.status_code != 200:
+        raise ClientException(response.json())
+    return response.json()
+
+
+def confirm_payment(booking):
+    body = {
+        "booking_id": booking["booking_id"],
+        "transaction_id": booking["transaction_id"],
+    }
+    params = {"apikey": API_KEY}
+    try:
+        response = requests.post(
+            CONFIRM_PAYMENT_API_URL,
+            params=params,
+            json=body,
+            headers={"content-type": "application/json"},
+        )
+    except requests.RequestException as e:
+        raise ClientException() from e
+    data = response.json()
+    if response.status_code != 200:
+        raise ClientException(data)
+    if data["status"] != 0:
+        raise ClientException(data)
+
+
+def zooz_tokenize(public_key, card_data, test=True):
+    body = {
+        "token_type": "credit_card",
+        "holder_name": card_data["holder_name"],
+        "expiration_date": card_data["expiration_date"],
+        "card_number": card_data["card_number"],
+        "credit_card_cvv": card_data["credit_card_cvv"],
+    }
+    headers = {
+        "x-payments-os-env": "test" if test else "live",
+        "public-key": public_key,
+        "idempotency-key": str(uuid.uuid4()),
+    }
+    response = requests.post(
+        "https://api.paymentsos.com/tokens", headers=headers, json=body
+    )
+    if response.status_code == 201:
+        data = response.json()
+        return data['token']
+
+
+def confirm_payment_zooz(booking):
+    public_key = booking['payu_public_key']
+    token = zooz_tokenize(public_key, booking['data'])
+    # TODO: finish it
+
+
+def get_retail_info(booking_token):
+    return json.loads(BookingCache.objects.get(booking_token=booking_token).data)
+
+
 def retail_booking_view(request, booking_token):
-    retail_info = json.loads(BookingCache.objects.get(booking_token=booking_token).data)
+    retail_info = get_retail_info(booking_token)
     one_way = not bool(o for o in retail_info["route"] if o["return"] == 1)
     for flight in retail_info["route"]:
         dep_time = parse_isodatetime(flight["local_departure"])

@@ -52,7 +52,7 @@ urlpatterns = [
     # booking
     path('retail/<str:booking_token>', retail_booking_view, name="retail"),
     path('book', traveller_booking_view, name="book"),
-    path('check_flights', CheckFlightsView.as_view(), name="check-flights"),
+    path('check-flights', CheckFlightsView.as_view(), name="check-flights"),
 
     # subscriptions
     path("subscriptions/", include('subscriptions.urls')),
