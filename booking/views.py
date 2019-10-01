@@ -7,6 +7,8 @@ from django.contrib.auth.models import User
 from django.http import JsonResponse
 from django.shortcuts import render
 from django.views import View
+from django.views.decorators.csrf import csrf_exempt
+from django.http import HttpResponse
 
 from account.models import Account
 from results.models import BookingCache
@@ -189,7 +191,8 @@ def save_booking(request, user):
     response = requests.post(url, params=params, json=booking, headers=headers)
     return response.json()
 
+@csrf_exempt
 def booking_flight(request):
     if request.method == 'POST':
-        print('booking_flight')
-        pass
+        print('data:{}'.format(request.POST))
+        return HttpResponse(status=200)

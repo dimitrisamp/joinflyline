@@ -1,8 +1,8 @@
 <div class="checkout-section">
     <h3>Check out</h3>
 
-    <form id="booking_flight">
-
+    <form id="booking_flight" method="POST">
+    {% csrf_token %}
         <div class="form-group">
             <label for="nameoncard" class="control-label">Name on
                 card</label>

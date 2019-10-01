@@ -18,6 +18,8 @@ $(function() {
         event.preventDefault();
 
         let passengers = [];
+        let checkout = [];
+
         if($('#booking_flight').valid() && $('#passengerForm').valid()) {
             $('#passengers').children('div.whiteBg').each(function() {
                 passengers.push({
@@ -26,11 +28,25 @@ $(function() {
                     'nationality': $($(this).find('select#nationality')[0]).val(),
                     'birthday': $($(this).find('select#monthofbirth')[0]).val()
                                     + '/' + $($(this).find('select#dayofbirth')[0]).val()
-                                    + '/' + $($(this).find('input#yearofbirth')[0]).val(),
+                                    + '/' + $($(this).find('select#yearofbirth')[0]).val(),
                 });
             });
-            console.log(passengers);
         }
+
+        checkout.push({
+            "cardname": $($(this).find('input#nameoncard')[0]).val(),
+            "cardnum": $($(this).find('input#creditcardno')[0]).val(),
+            "expdate": $($(this).find('input#expdate')[0]).val(),
+            "ccv": $($(this).find('input#ccv')[0]).val(),
+        });
+
+        const data = {
+            "passengers": passengers,
+            "checkout": checkout
+        }
+
+        console.log(data);
+        $.post( "/booking_flight", data );
     });
 });
 
