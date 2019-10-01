@@ -12,33 +12,37 @@ $(function() {
         yearSelect.appendChild(option);
     }
     
-    $('#booking_flight').submit(function(event) {
+    $('.booking_flight').submit(function(event) {
 
         /* stop form from submitting normally */
         event.preventDefault();
 
         let passengers = [];
-        let checkout = [];
+        let checkout = {};
 
-        if($('#booking_flight').valid() && $('#passengerForm').valid()) {
-            $('#passengers').children('div.whiteBg').each(function() {
-                passengers.push({
-                    'givennames': $($(this).find('input#givennames')[0]).val(),
-                    'surenames': $($(this).find('input#surenames')[0]).val(),
-                    'nationality': $($(this).find('select#nationality')[0]).val(),
-                    'birthday': $($(this).find('select#monthofbirth')[0]).val()
-                                    + '/' + $($(this).find('select#dayofbirth')[0]).val()
-                                    + '/' + $($(this).find('select#yearofbirth')[0]).val(),
-                });
-            });
-        }
-
-        checkout.push({
-            "cardname": $($(this).find('input#nameoncard')[0]).val(),
-            "cardnum": $($(this).find('input#creditcardno')[0]).val(),
-            "expdate": $($(this).find('input#expdate')[0]).val(),
-            "ccv": $($(this).find('input#ccv')[0]).val(),
+        
+        $(".passengerForm").each(function(i, form) {
+            let data = Object.fromEntries(new FormData(form));
+            passengers.push({
+                name: data.givennames,
+                surname: data.surenames,
+                nationality: data.nationality,
+                birthday: data.yearofbirth.toString() + '-' + data.monthofbirth.toString() + '-' + data.dayofbirth.toString(),
+                gender: data.gender,
+                bags:0,
+                sendBags: parseInt(data.cabin_bags) + parseInt(data.checked_bags),
+            }); 
         });
+
+        $(".booking_flight").each(function(i, form) {
+            let data = Object.fromEntries(new FormData(form));
+            checkout = {
+                holder_name: data.holder_name,
+                expiration_date: data.expdate,
+                card_number: data.creditcardno,
+                credit_card_cvv: data.ccv
+            };             
+        })
 
         const data = {
             "passengers": passengers,

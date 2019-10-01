@@ -12,8 +12,7 @@
     </div>
 
     <div class="userForm">
-        <form id="passengerForm">
-        {% csrf_token %}
+        <form class="passengerForm">
             <div class="row">
                 <div class="col-md-12 given_surmane">
                     <div class="form-group form-group-sm">
@@ -21,14 +20,14 @@
                                class="control-label">Given
                             names</label>
                         <input type="text" class="form-control"
-                               id="givennames"
+                               name="givennames"
                                placeholder="e.g Oliver james" required>
                     </div>
                     <div class="form-group form-group-sm">
                         <label for="surenames"
                                class="control-label">Surname(s)</label>
                         <input type="text" class="form-control"
-                               id="surenames"
+                               name="surenames"
                                placeholder="e.g. Brown" required>
                     </div>
                 </div>
@@ -38,7 +37,7 @@
                             <label for="nationality"
                                    class="control-label">Nationality</label>
                             <select class="form-control"
-                                    id="nationality">
+                                    name="nationality">
                                 <option value="AF">Afghanistan</option>
                                 <option value="AX">Åland Islands</option>
                                 <option value="AL">Albania</option>
@@ -294,9 +293,9 @@
                             <label for="gender"
                                    class="control-label">Gender</label>
                             <select class="form-control"
-                                    id="gender">
-                                <option value="male" selected>male</option>
-                                <option value="female">female</option>
+                                    name="gender">
+                                <option value="mr" selected>male</option>
+                                <option value="ms">female</option>
                             </select>
                         </div>
                     </div>
@@ -307,7 +306,7 @@
                                    class="control-label">Date of
                                 birth</label>
                             <select class="form-control"
-                                    id="monthofbirth">
+                                    name="monthofbirth">
                                 <option value="January">January</option>
                                 <option value="Febuary">Febuary</option>
                                 <option value="March">March</option>
@@ -324,7 +323,7 @@
                             </div>
                             <div class="form-group">
                                 <select class="form-control"
-                                        id="dayofbirth">
+                                        name="dayofbirth">
                                     <option value="1">1</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
@@ -360,7 +359,7 @@
                             </div>
                             <div class="form-group">
                                 <select type="text" class="form-control"
-                                       id="yearofbirth" placeholder="YYYY">
+                                       id="yearofbirth" name="yearofbirth" placeholder="YYYY">
                                 </select>
                             </div>
                         </div>
@@ -369,12 +368,16 @@
                 </div>
 
             </div>
-            {% comment %}
             <div class="optional_section">
                 <h3 class="heading"> Carbin Baggage <span
                         class="glyphicon glyphicon-exclamation-sign"></span>
                 </h3>
                 <p>Select one option</p>
+                <select class="form-control"
+                    name="cabin_bags">
+                    <option value=0>no bags</option>
+                    <option value=1>1 bag</option>
+                </select>
             </div>
 
             <div class="order-list">
@@ -405,6 +408,12 @@
                         class="glyphicon glyphicon-exclamation-sign"></span>
                 </h3>
                 <p>Select one option</p>
+                <select class="form-control"
+                    name="checked_bags">
+                    <option value=0>no bags</option>
+                    <option value=1>1 bag</option>
+                    <option value=2>2 bags</option>
+                </select>
             </div>
 
             <div class="order-list">
@@ -444,7 +453,6 @@
                     </div>
                 </div>
             </div>
-            {% endcomment %}
         </form>
     </div>
 

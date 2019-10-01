@@ -115,6 +115,9 @@ def retail_booking_view(request, booking_token):
             "total_price": retail_info["conversion"]["USD"],
         }
         return render(request, "booking/retail.html", context)
+    if request.method == 'POST':
+        print('data:{}'.format(request.POST))
+        return HttpResponse(status=200)
         
 
 def traveller_booking_view(request):
