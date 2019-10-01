@@ -108,7 +108,7 @@ def make_hold_bags(flight_ids, bags):
     return result
 
 
-def save_booking(booking_token, passengers, zooz=True):
+def save_booking(booking_token, passengers, payment, zooz=True, test=False):
     retail_info = get_retail_info(booking_token)
     flight_ids = [o["id"] for o in retail_info["route"]]
     for p in passengers:
@@ -136,7 +136,11 @@ def save_booking(booking_token, passengers, zooz=True):
         raise ClientException() from e
     if response.status_code != 200:
         raise ClientException(response.json())
-    return response.json()
+    booking = response.json()
+    if zooz:
+        confirm_payment_zooz(booking, payment, test=test)
+    else:
+        confirm_payment(booking, test=test)
 
 
 def confirm_payment(booking):
@@ -198,14 +202,26 @@ def zooz_tokenize(public_key, card_data, test=True):
     return payment_method_token, payment_cvv
 
 
-
-def confirm_payment_zooz(booking):
+def confirm_payment_zooz(booking, payment, test=True):
     public_key = booking['payu_public_key']
-    payment_method_token, payment_cvv = zooz_tokenize(public_key, booking['data'])
+    payu_token = booking['payu_token']
+    payment_method_token, payment_cvv = zooz_tokenize(public_key, payment)
     params = {"apikey": API_KEY}
+    body = {
+        "paymentMethodToken": payment_method_token,
+        "paymentToken": payu_token,
+        "paymentCvv": payment['credit_card_cvv'],
+        "bookingId": payment['booking_id'],
+        "sandbox": not test,
+    }
     response = requests.post(
-        CONFIRM_PAYMENT_ZOOZ_API_URL, params=params
+        CONFIRM_PAYMENT_ZOOZ_API_URL, params=params, json=body
     )
+    if response.status_code != 200:
+        raise ClientException(response.json())
+    data = response.json()
+    if data['status'] != 0:
+        raise ClientException(data)
 
 
 def get_retail_info(booking_token):
