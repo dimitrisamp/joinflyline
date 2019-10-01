@@ -167,7 +167,6 @@ def zooz_tokenize(public_key, card_data, test=True):
         "holder_name": card_data["holder_name"],
         "expiration_date": card_data["expiration_date"],
         "card_number": card_data["card_number"],
-        "credit_card_cvv": card_data["credit_card_cvv"],
     }
     headers = {
         "x-payments-os-env": "test" if test else "live",
@@ -177,15 +176,36 @@ def zooz_tokenize(public_key, card_data, test=True):
     response = requests.post(
         "https://api.paymentsos.com/tokens", headers=headers, json=body
     )
-    if response.status_code == 201:
-        data = response.json()
-        return data['token']
+    if response.status_code != 201:
+        raise ClientException()
+    payment_method_token = response.json()['token']
+    body = {
+        "token_type": "credit_card_cvv",
+        "credit_card_cvv": card_data["credit_card_cvv"],
+        "payment_method_token": payment_method_token
+    }
+    headers = {
+        "x-payments-os-env": "test" if test else "live",
+        "public-key": public_key,
+        "idempotency-key": str(uuid.uuid4()),
+    }
+    response = requests.post(
+        "https://api.paymentsos.com/tokens", headers=headers, json=body
+    )
+    if response.status_code != 201:
+        raise ClientException()
+    payment_cvv = response.json()['token']
+    return payment_method_token, payment_cvv
+
 
 
 def confirm_payment_zooz(booking):
     public_key = booking['payu_public_key']
-    token = zooz_tokenize(public_key, booking['data'])
-    # TODO: finish it
+    payment_method_token, payment_cvv = zooz_tokenize(public_key, booking['data'])
+    params = {"apikey": API_KEY}
+    response = requests.post(
+        CONFIRM_PAYMENT_ZOOZ_API_URL, params=params
+    )
 
 
 def get_retail_info(booking_token):
