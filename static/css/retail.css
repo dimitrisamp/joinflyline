@@ -246,16 +246,13 @@ body{
 	float: left;
 }
 .userForm input[type="text"] {
-    padding: 19px 14px;
     border-color: #c7d1dd;
 }
 .userForm input[type="text"]::placeholder{
   color: #c7d1dd;
 }
 .userForm select {
-    padding: 19px 14px;
     border-color: #c7d1dd;
-    color: #c7d1dd;
     height: 39px !important;
 }
 .form-group-sm label {
