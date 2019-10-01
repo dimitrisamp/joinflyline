@@ -81,38 +81,39 @@ class CheckFlightsView(View):
 
 
 def retail_booking_view(request, booking_token):
-    retail_info = json.loads(BookingCache.objects.get(booking_token=booking_token).data)
-    one_way = not bool(o for o in retail_info["route"] if o["return"] == 1)
-    for flight in retail_info["route"]:
-        dep_time = parse_isodatetime(flight["local_departure"])
-        arr_time = parse_isodatetime(flight["local_arrival"])
-        flight["date"] = dep_time.strftime("%a %b %d")
-        flight["arr_time"] = arr_time.strftime("%H:%M")
-        flight["dep_time"] = dep_time.strftime("%H:%M")
-        duration = int(
-            (
-                parse_isodatetime(flight["utc_arrival"])
-                - parse_isodatetime(flight["utc_departure"])
-            ).total_seconds()
-        )
-        hours = duration // 3600
-        minutes = (duration // 60) % 60
-        flight["duration"] = f"{hours}h {minutes:02d}m"
-    if not one_way:
-        flight = list(takewhile(lambda o: o["return"] == 0, retail_info["route"]))[-1]
-        flight["nightsInDest"] = retail_info["nightsInDest"]
+    if request.method == 'GET':
+        retail_info = json.loads(BookingCache.objects.get(booking_token=booking_token).data)
+        one_way = not bool(o for o in retail_info["route"] if o["return"] == 1)
+        for flight in retail_info["route"]:
+            dep_time = parse_isodatetime(flight["local_departure"])
+            arr_time = parse_isodatetime(flight["local_arrival"])
+            flight["date"] = dep_time.strftime("%a %b %d")
+            flight["arr_time"] = arr_time.strftime("%H:%M")
+            flight["dep_time"] = dep_time.strftime("%H:%M")
+            duration = int(
+                (
+                    parse_isodatetime(flight["utc_arrival"])
+                    - parse_isodatetime(flight["utc_departure"])
+                ).total_seconds()
+            )
+            hours = duration // 3600
+            minutes = (duration // 60) % 60
+            flight["duration"] = f"{hours}h {minutes:02d}m"
+        if not one_way:
+            flight = list(takewhile(lambda o: o["return"] == 0, retail_info["route"]))[-1]
+            flight["nightsInDest"] = retail_info["nightsInDest"]
 
-    context = {
-        "retail_info": retail_info,
-        "one_way": one_way,
-        "subscription_benefits": comparison(retail_info),
-        "passenger_count": retail_info["parent"]["search_params"]["seats"][
-            "passengers"
-        ],
-        "total_price": retail_info["conversion"]["USD"],
-    }
-    return render(request, "booking/retail.html", context)
-
+        context = {
+            "retail_info": retail_info,
+            "one_way": one_way,
+            "subscription_benefits": comparison(retail_info),
+            "passenger_count": retail_info["parent"]["search_params"]["seats"][
+                "passengers"
+            ],
+            "total_price": retail_info["conversion"]["USD"],
+        }
+        return render(request, "booking/retail.html", context)
+        
 
 def traveller_booking_view(request):
     if request.method == "POST":
@@ -187,3 +188,8 @@ def save_booking(request, user):
     url = "https://kiwicom-prod.apigee.net/v2/booking/save_booking"
     response = requests.post(url, params=params, json=booking, headers=headers)
     return response.json()
+
+def booking_flight(request):
+    if request.method == 'POST':
+        print('booking_flight')
+        pass
