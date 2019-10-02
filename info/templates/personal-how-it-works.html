@@ -29,7 +29,7 @@
                                 <h1 class="card-title hiw-page-block">Start Saving Thousands on Flights</h1>
                                 <div class="divider-15"></div>
                                 <h4 class="card-text">
-                                    Subscribe to either Wanderift Lite or Wanderift Pro and
+                                    Subscribe to either Wanderift Lite or Wanderift Pro to
                                     get unmatched savings on flights
                                 </h4>
                                 <div class="divider-30"></div>
@@ -67,7 +67,7 @@
                               <div class="card-body border">
                                 We were started on our popular airline subscription plans, which many people take
                                 advantage of with the immense savings. Our airline subscriptions plans are simple…
-                                pay either $369 per month for Wanderift Lite, and get 3 one-way flights to any of over
+                                pay either $369 for Wanderift Lite, and get 3 one-way flights to be used in a 6 month period, to any of our
                                 24 destinations in the United States OR choose our Wanderift Pro plan and get 4 oneway
                                 flights for only $459 per month.
                               </div>
@@ -104,7 +104,7 @@
                           <div id="collapse-3" class="collapse" aria-labelledby="headingOne" data-parent="#subsAccordion">
                               <div class="card-body border">
                                     We use the most popular airlines on the market. You can choose from American
-                                    Airlines, Delta Airlines, Southwest Airlines, as well as United Airlines. We also offer
+                                    Airlines, Delta, Southwest, as well as United Airlines. We also offer
                                     flights from Spirit, Frontier, and other airlines if you choose to do so.
                               </div>
                           </div>
@@ -143,16 +143,15 @@
                             <h2 class="card-title" style="margin-bottom: 0px;">Wanderift Lite</h2>
                         </div>
                       <div class="card-body">
-                        <h1 class="d-inline mr-1">$ 369</h1> <p class="d-inline" style="font-weight: 500; font-size: 16px;"> per month</p>
+                        <h1 class="d-inline mr-1">$ 369</h1> <p class="d-inline" style="font-weight: 500; font-size: 16px;">One Time Payment</p>
                         <div class="divider-15"></div>
-                        <span class="card-text">No long term commitment</span>
+                        <span class="card-text">Credits Expire in 6 Months</span>
                           <ul style="padding-left: 10px; margin-top:30px; margin-bottom:20px;">
                               <li>3 Credits (3 One-way flights)</li>
-                              <li>1 unsued credit rollover</li>
                               <li>Fly All Major Airlines</li>
-                              <li>Exclusive Hotel Deals</li>
+                              <li style="margin-bottom: 60px;">Exclusive Hotel Deals</li>
                           </ul>
-                        <a href="#" class="btn btn-primary main-btn-outline w-100">Get Started</a>
+                        <a href="{% url "subscription" %}" class="btn btn-primary main-btn-outline w-100">Get Started</a>
                       </div>
                     </div>
                   </div>
@@ -172,7 +171,7 @@
                               <li>Fly All Major Airlines</li>
                               <li>Exclusive Hotel Deals</li>
                           </ul>
-                        <a href="#" class="btn btn-primary main-btn-outline w-100">Get Started</a>
+                        <a href="{% url "subscription" %}" class="btn btn-primary main-btn-outline w-100">Get Started</a>
                       </div>
                     </div>
                   </div>
@@ -194,7 +193,7 @@
                           </div>
                           <div id="faq-collapse-1" class="collapse" aria-labelledby="headingOne" data-parent="#faqAccordion">
                               <div class="card-body border">
-                                  Yes you can, it just depends on which plan.  Wanderift LITE allows up to ONE credit to rollover while Wanderift PRO allows up to TWO credits to roll over each month.
+                                  Yes you can, it just depends on which plan. Wanderift PRO allows up to TWO credits to roll over each month.
                               </div>
                           </div>
                      </div>
@@ -210,7 +209,7 @@
                           </div>
                           <div id="faq-collapse-2" class="collapse" aria-labelledby="headingOne" data-parent="#faqAccordion">
                               <div class="card-body border">
-                                  No we do not include baggage fees with your booking(s), as this is an additional cost dictated by each airline company.
+                                  No we do not include baggage fees with your subscription booking(s), as this is an additional cost dictated by each airline company.
                               </div>
                           </div>
                     </div>
@@ -255,37 +254,37 @@
                     <div class="col-12 col-md-4 p-2">
                         <h5 class="card testemonial p-3" style="font-size: 16px; font-weight: 500; line-height: 20.0px;">
                             With Wanderift I always pay the same price for my flight
-                            <span class="name-line border-top pt-2 mt-4 text-right">Johnatan Doe</span>
+                            <span class="name-line border-top pt-2 mt-4 text-right" style="font-size: 14px;font-weight: 400;">Michael J. Dallas TX</span>
                         </h5>
                     </div>
                     <div class="col-12 col-md-4 p-2">
                         <h5 class="card testemonial p-3" style="font-size: 16px; font-weight: 500; line-height: 20.0px;">
                             Booking has never been eaiser
-                            <span class="name-line border-top pt-2 mt-4 text-right">Johnatan Doe</span>
+                            <span class="name-line border-top pt-2 mt-4 text-right" style="font-size: 14px;font-weight: 400;">Austin C. San Francisco CA</span>
                         </h5>
                     </div>
                     <div class="col-12 col-md-4 p-2">
                         <h5 class="card testemonial p-3" style="font-size: 16px; font-weight: 500; line-height: 20.0px;">
                             Thanks to Wanderift I'm a weekend worrier
-                            <span class="name-line border-top pt-2 mt-4 text-right">Johnatan Doe</span>
+                            <span class="name-line border-top pt-2 mt-4 text-right" style="font-size: 14px;font-weight: 400;">Luke M. Seattle WA</span>
                         </h5>
                     </div>
                     <div class="col-12 col-md-4 p-2">
                         <h5 class="card testemonial p-3" style="font-size: 16px; font-weight: 500; line-height: 20.0px;">
                             Finally a travel service with good customer service!
-                            <span class="name-line border-top pt-2 mt-4 text-right">Johnatan Doe</span>
+                            <span class="name-line border-top pt-2 mt-4 text-right" style="font-size: 14px;font-weight: 400;">Franklin B. Detroit</span>
                         </h5>
                     </div>
                     <div class="col-12 col-md-4 p-2">
                         <h5 class="card testemonial p-3" style="font-size: 16px; font-weight: 500; line-height: 20.0px;">
                             No more wierd annoying airline pricing
-                            <span class="name-line border-top pt-2 mt-4 text-right">Johnatan Doe</span>
+                            <span class="name-line border-top pt-2 mt-4 text-right" style="font-size: 14px;font-weight: 400;">Dan M. New York NY</span>
                         </h5>
                     </div>
                     <div class="col-12 col-md-4 p-2">
                         <h5 class="card testemonial p-3" style="font-size: 16px; font-weight: 500; line-height: 20.0px;">
                             A great solution to frequent travel
-                            <span class="name-line border-top pt-2 mt-4 text-right">Johnatan Doe</span>
+                            <span class="name-line border-top pt-2 mt-4 text-right" style="font-size: 14px;font-weight: 400;">Cary C. Miami FL</span>
                         </h5>
                     </div>
                 </div>

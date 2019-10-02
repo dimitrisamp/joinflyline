@@ -28,8 +28,8 @@
     </section>
     <section class="search-bar-section bg-white border-bottom">
         <div class="sidebar__inner">
-            <div class="container content-holder wide-container" style="padding-bottom: 20px;">
-                <div class="search_content_box" style="padding-top: 20px; padding-bottom: 20px;">
+            <div class="container content-holder wide-container" style="padding-bottom: 10px;padding-top: 5px;">
+                <div class="search_content_box" style="padding-top: 10px;padding-bottom: 10px;">
                     {% csrf_token %}
                     <div class="row sidebar__inner">
                         <div class="container wide-container">
@@ -269,7 +269,7 @@
                                         <div class="card-title mb-4">
                                             <h4 class="bold p-0 mt-0" style="font-size: 1.2rem; font-weight: 600;">
                                                 Subscribe to
-                                                Wanderift Lift or Pro and Save</h4>
+                                                Wanderift Lite or Pro and Save</h4>
                                         </div>
                                         <h5 class="bold m-0 mb-2" style="font-weight: 600; padding-bottom: 5px;">
                                             Wanderift
@@ -279,8 +279,7 @@
                                                 style="color: #00B7FF;">3</span>
                                             Flights <span class="text-primary">$369</span></h6>
                                         <p class="" style="font-size: 14px;">- 3 Credits (3 one-way flights)</p>
-                                        <p class="" style="font-size: 14px;">- 1 Unused Credit Rolls over</p>
-                                        <p class="" style="font-size: 14px;">- No Long Term Commitment</p>
+                                        <p class="" style="font-size: 14px;">- Credits Expire in 6 Months</p>
                                         <a href="{% url "how-it-works" %}">
                                             <button class="search_btn btn-block m-0" style="font-weight: bold;">Learn
                                                 More
@@ -289,10 +288,10 @@
                                         <br><br>
                                         <h5 class="bold m-0 mb-2" style="font-weight: 600; padding-bottom: 5px;">
                                             Wanderift
-                                            Pro</h5>
+                                            Pro (Monthly Plan)</h5>
                                         <h6 class="bold m-0 mb-2" style="padding-bottom: 10px;"><span
                                                 class="text-primary">4</span> Flights <span
-                                                class="text-primary">$459</span>
+                                                class="text-primary">$459/mo</span>
                                         </h6>
                                         <p class="" style="font-size: 14px;">- 4 Credits (4 one-way flights)</p>
                                         <p class="" style="font-size: 14px;">- 2 Unused Credit Rolls over</p>
@@ -491,7 +490,7 @@
                                                     <div class="pop2_hor_line" style="margin:10px 0px"></div>
                                                     <input class="pop2_input" type="text" v-model="city"
                                                            v-on:keyup="cityHandler"
-                                                           
+
                                                            placeholder="Add new locations..."/>
                                                 </div>
 

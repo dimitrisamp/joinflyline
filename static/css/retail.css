@@ -149,7 +149,7 @@ body{
     line-height: 22px;
 }
 .more-info p a{
-    color: #009b88;
+    color: #00B7FF;
     font-weight: bold;
     text-decoration: none;
 }
@@ -274,7 +274,7 @@ body{
     top: 2px;
 }
 .order-list{
-    border:2px solid #1BB29C;
+    border:2px solid #00B7FF;
     padding: 2px 15px;
     border-radius: 4px;
     margin-bottom: 20px;
@@ -321,26 +321,26 @@ input[type="radio"] {
     width: 9px;
     height: 9px;
     border-radius: 50%;
-    background: #1BB29C;
+    background: #00B7FF;
 }
 .font-light{
 	font-weight: 100;
     color: #878787;
 }
 .add-btn {
-    background: #00a991;
+    background: #00B7FF;
     border-radius: 2px;
     padding: 10px 17px;
     color: #fff;
     font-weight: 600;
     font-size: 13px;
     margin-top: 15px;
-    border-color: #00a991;
+    border-color: #00B7FF;
     margin-bottom: 30px;
 }
 .add-btn:hover{
-    background: #00a991;
-    border-color: #00a991;
+    background: #00B7FF;
+    border-color: #00B7FF;
     color: #fff;
 }
 .add-btn span{
@@ -395,9 +395,9 @@ input[type="radio"] {
     padding: 17px 10px;
 }
 .checkout-section .btn{
-    background: #00a991;
+    background: #00B7FF;
     width: 100%;
-    border-color: #00a991;
+    border-color: #00B7FF;
     color: #fff;
     font-size: 15px;
     border-radius: 3px;

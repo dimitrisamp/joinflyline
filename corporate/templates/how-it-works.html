@@ -143,24 +143,24 @@
                  <div class="row">
                     <div class="col-sm-12">
                         <div class="card mb-3">
-                            <h5 class="ont-weight-normal mx-auto" 
-                            style="max-width: 650px; line-height: 1.4; margin-top: 30px">
-                                Use the slider to estimate the cost of your plan. 
+                            <h5 class="ont-weight-normal mx-auto"
+                            style="font-weight: 500;max-width: 650px;line-height: 1.4;margin-top: 40px;text-align: center;font-size: 18px;width: 550px;margin-bottom: 30px;">
+                                Use the slider to estimate the cost of your plan.
                                 The more credits you buy, the cheaper cost per credit.
                             </h5>
                             <div class="slidecontainer">
                                 <input
                                     id="myRange"
                                     type="text"
-                                    value="50"                                    
+                                    value="50"
                                 >
                             </div>
                             <div class="card-body" style="text-align: center">
                                 <div style="margin: 25px 5px 25px 5px">
-                                    <p class="d-inline" id="token"></p>
-                                </div>                               
-                                
-                                <a href="#" class="btn primary-button w-100">Get Started with Wanderift Corporate</a>
+                                    <p class="d-inline" style="font-weight: 600;font-size: 20px;" id="token"></p>
+                                </div>
+
+                                <a href="#" class="btn primary-button w-100" style="font-weight: 600; margin-bottom: 20px;margin-top: 10px;">Get Started with Wanderift Corporate</a>
                             </div>
                         </div>
                     </div>
@@ -242,38 +242,20 @@
                 <div class="row">
                     <div class="col-12 col-md-4 p-2">
                         <h5 class="card testemonial p-3" style="font-size: 16px; font-weight: 500; line-height: 20.0px;">
-                            With Wanderift I always pay the same price for my flight
-                            <span class="name-line border-top pt-2 mt-4 text-right">Johnatan Doe</span>
+                            Wanderift saved us thousands in travel!
+                            <span class="name-line border-top pt-2 mt-4 text-right">Tom O, Good Success</span>
                         </h5>
                     </div>
                     <div class="col-12 col-md-4 p-2">
                         <h5 class="card testemonial p-3" style="font-size: 16px; font-weight: 500; line-height: 20.0px;">
-                            Booking has never been eaiser
-                            <span class="name-line border-top pt-2 mt-4 text-right">Johnatan Doe</span>
+                            Unmatched corporate customer service.
+                            <span class="name-line border-top pt-2 mt-4 text-right">Austin J, Hour Glass Social</span>
                         </h5>
                     </div>
                     <div class="col-12 col-md-4 p-2">
                         <h5 class="card testemonial p-3" style="font-size: 16px; font-weight: 500; line-height: 20.0px;">
-                            Thanks to Wanderift I'm a weekend worrier
-                            <span class="name-line border-top pt-2 mt-4 text-right">Johnatan Doe</span>
-                        </h5>
-                    </div>
-                    <div class="col-12 col-md-4 p-2">
-                        <h5 class="card testemonial p-3" style="font-size: 16px; font-weight: 500; line-height: 20.0px;">
-                            Finally a travel service with good customer service!
-                            <span class="name-line border-top pt-2 mt-4 text-right">Johnatan Doe</span>
-                        </h5>
-                    </div>
-                    <div class="col-12 col-md-4 p-2">
-                        <h5 class="card testemonial p-3" style="font-size: 16px; font-weight: 500; line-height: 20.0px;">
-                            No more wierd annoying airline pricing
-                            <span class="name-line border-top pt-2 mt-4 text-right">Johnatan Doe</span>
-                        </h5>
-                    </div>
-                    <div class="col-12 col-md-4 p-2">
-                        <h5 class="card testemonial p-3" style="font-size: 16px; font-weight: 500; line-height: 20.0px;">
-                            A great solution to frequent travel
-                            <span class="name-line border-top pt-2 mt-4 text-right">Johnatan Doe</span>
+                            Now my team gets where they need for a fair price.
+                            <span class="name-line border-top pt-2 mt-4 text-right">Sasha B, Peak Dental</span>
                         </h5>
                     </div>
                 </div>
@@ -295,7 +277,7 @@
 
 {% block jscontent %}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.0/js/ion.rangeSlider.min.js"></script>
-    <script>  
+    <script>
 
         function setToken(tokenVal) {
             var totalPrice;
@@ -312,7 +294,7 @@
         }
 
         setToken(50)
-         
+
         $("#myRange").ionRangeSlider({
             onChange: function (data) {
                 setToken(data.from)
