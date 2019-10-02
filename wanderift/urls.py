@@ -20,7 +20,7 @@ from django.urls import path, include
 
 import info
 from booking.views import retail_booking_view, traveller_booking_view, CheckFlightsView, \
-    SaveBookingView
+    SaveBookingView, CheckPromoView
 from construction.views import under_construction
 from results.views import results_view
 from home.views import home_view
@@ -53,7 +53,8 @@ urlpatterns = [
     # booking
     path('retail/<str:booking_token>', retail_booking_view, name="retail"),
     path('booking_flight/', SaveBookingView.as_view(), name="book"),
-    path('check-flights', CheckFlightsView.as_view(), name="check-flights"),
+    path('check-flights/', CheckFlightsView.as_view(), name="check-flights"),
+    path('check-promo/', CheckPromoView.as_view(), name="check-promo"),
 
     # subscriptions
     path("subscriptions/", include('subscriptions.urls')),

@@ -3,6 +3,12 @@
 
     <form id="checkout" action="/booking_flight" method="POST">
         <div class="form-group">
+            <label for="phone" class="control-label">Promocode</label>
+            <input type="text" class="form-control" id="promocode"
+                   name="promocode">
+        </div>
+
+        <div class="form-group">
             <label for="nameoncard" class="control-label">Name on
                 card</label>
             <input type="text" class="form-control" name="holder_name" required>
@@ -42,7 +48,7 @@
 
         <div class="form-group">
             <button type="submit" class="btn btn-default">Book Flight
-                For <b> {{ total_price }} </b></button>
+                For <b id="button-purchase-price">{{ total_price }}</b></button>
         </div>
 
     </form>

@@ -63,7 +63,54 @@ $(function() {
             beforeSend: function(xhr) {
                 xhr.setRequestHeader('X-CSRFToken', getCookie('csrftoken'));
             },
+            success: function() {
+                $("#booking-success-modal").modal('show');
+            },
+            error: function() {
+                $("#booking-failure-modal").modal('show');
+            }
         });
     });
+
+    function checkPromo() {
+        $.ajax({
+            type: "GET",
+            url: '/check-promo/',
+            data: {
+                "promocode": getCheckoutFormData().promocode
+            },
+            dataType: 'json',
+            success: function (data) {
+                const newPrice = parseInt(document.getElementById("totals-total-price").innerText) - data.discount;
+                document.getElementById('button-purchase-price').innerText = newPrice.toFixed(2);
+            }
+        })
+    }
+
+    $("#promocode").change(checkPromo);
+
+    function checkFlight() {
+        $.ajax({
+            type: "GET",
+            url: "/check-flights/",
+            data: {
+                "booking_token": getBookingToken(),
+                "bnum": 0,
+                "adults": 1,
+                "infants": 0,
+                "children": 0,
+            },
+            dataType: 'json',
+            error: function(jqxhr) {
+                if (jqxhr.status === 404) {
+                    let data = JSON.parse(jqxhr.responseText);
+                    if (data.code === 'not-checked-yet') {
+                        setTimeout(checkFlight, 2000)
+                    }
+                }
+            }
+        });
+    }
+    checkFlight();
 });
 

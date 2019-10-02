@@ -76,17 +76,23 @@ def check_flights(booking_token, bnum, adults, children, infants):
 
 class CheckFlightsView(View):
     def get(self, request):
-        keys = ("booking_token", "bnum", "adults", "children", "infants")
+        keys = (
+            ("booking_token", lambda x: x),
+            ("bnum", int),
+            ("adults", int),
+            ("children", int),
+            ("infants", int),
+        )
         try:
-            kwargs = {k: request.GET[k] for k in keys}
+            kwargs = {k: f(request.GET[k]) for k, f in keys}
         except KeyError:
             return JsonResponse({"code": "missing-arguments"})
         try:
             result = check_flights(**kwargs)
         except FlightsInvalidException:
-            return JsonResponse({"code": "flights-invalid"}, status_code=404)
+            return JsonResponse({"code": "flights-invalid"}, status=404)
         except FlightsNotCheckedYetException:
-            return JsonResponse({"code": "not-checked-yet"}, status_code=404)
+            return JsonResponse({"code": "not-checked-yet"}, status=404)
         return JsonResponse(result)
 
 
@@ -143,7 +149,7 @@ def save_booking(booking_token, passengers, payment, zooz=True, test=False):
             headers={"content-type": "application/json", **headers},
         )
     except requests.RequestException as e:
-        raise ClientException() from e
+        raise ClientException({"code": "requests-exception"}) from e
     if response.status_code != 200:
         raise ClientException(response.json())
     booking = response.json()
@@ -151,6 +157,15 @@ def save_booking(booking_token, passengers, payment, zooz=True, test=False):
         confirm_payment_zooz(booking, payment, test=test)
     else:
         confirm_payment(booking)
+
+
+class CheckPromoView(View):
+    def get(self, request):
+        promocode = request.GET.get('promocode')
+        if promocode.lower() == 'abcdef':
+            return JsonResponse({'discount': 10})
+        else:
+            return JsonResponse({'discount': 0})
 
 
 class SaveBookingView(View):
@@ -168,8 +183,8 @@ class SaveBookingView(View):
                 zooz=True,
                 test=self.is_test_request(data),
             )
-        except ClientException:
-            return JsonResponse({}, status=400)
+        except ClientException as e:
+            return JsonResponse(e.args, status=400)
         else:
             return JsonResponse({})
 
@@ -213,7 +228,7 @@ def zooz_tokenize(public_key, card_data, test=True):
         "https://api.paymentsos.com/tokens", headers=headers, json=body
     )
     if response.status_code != 201:
-        raise ClientException()
+        raise ClientException(response.json())
     data = response.json()
     return data["token"], data["encrypted_cvv"]
 
