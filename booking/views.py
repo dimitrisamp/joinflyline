@@ -8,6 +8,7 @@ from django.contrib.auth.models import User
 from django.http import JsonResponse
 from django.shortcuts import render
 from django.views import View
+from django.views.decorators.csrf import csrf_exempt
 
 from account.models import Account
 from results.models import BookingCache
@@ -87,7 +88,7 @@ class CheckFlightsView(View):
 
 
 def get_category(passenger):
-    born = datetime.strptime(passenger["birthdate"], "%Y-%m-%d")
+    born = datetime.strptime(passenger["birthday"], "%Y-%m-%d")
     today = date.today()
     age = today.year - born.year - ((today.month, today.day) < (born.month, born.day))
     if age < 3:
@@ -111,15 +112,22 @@ def make_hold_bags(flight_ids, bags):
 def save_booking(booking_token, passengers, payment, zooz=True, test=False):
     retail_info = get_retail_info(booking_token)
     flight_ids = [o["id"] for o in retail_info["route"]]
+    total_bags = 0
     for p in passengers:
         p["category"] = get_category(p)
         bags = p.pop("bags")
+        total_bags += bags
         p["hold_bags"] = make_hold_bags(flight_ids, bags)
+        p["cardno"] = '00000000'
+        p["expiration"] = '2025-01-01'
+        p["email"] = "leotrubach@gmail.com"
+        p["phone"] = "+77774483022"
     body = {
         "booking_token": booking_token,
         "currency": "USD",
         "lang": "en",
         "locale": "en",
+        "bags": total_bags,
         "passengers": passengers,
     }
     if zooz:
@@ -141,6 +149,18 @@ def save_booking(booking_token, passengers, payment, zooz=True, test=False):
         confirm_payment_zooz(booking, payment, test=test)
     else:
         confirm_payment(booking, test=test)
+
+
+class SaveBookingView(View):
+    def post(self, request):
+        data = json.loads(request.body)
+        save_booking(
+            data["booking_token"],
+            data["passengers"],
+            data["payment"],
+            zooz=True,
+            test=True,
+        )
 
 
 def confirm_payment(booking):
@@ -182,11 +202,11 @@ def zooz_tokenize(public_key, card_data, test=True):
     )
     if response.status_code != 201:
         raise ClientException()
-    payment_method_token = response.json()['token']
+    payment_method_token = response.json()["token"]
     body = {
         "token_type": "credit_card_cvv",
         "credit_card_cvv": card_data["credit_card_cvv"],
-        "payment_method_token": payment_method_token
+        "payment_method_token": payment_method_token,
     }
     headers = {
         "x-payments-os-env": "test" if test else "live",
@@ -198,29 +218,27 @@ def zooz_tokenize(public_key, card_data, test=True):
     )
     if response.status_code != 201:
         raise ClientException()
-    payment_cvv = response.json()['token']
+    payment_cvv = response.json()["token"]
     return payment_method_token, payment_cvv
 
 
 def confirm_payment_zooz(booking, payment, test=True):
-    public_key = booking['payu_public_key']
-    payu_token = booking['payu_token']
+    public_key = booking["payu_public_key"]
+    payu_token = booking["payu_token"]
     payment_method_token, payment_cvv = zooz_tokenize(public_key, payment)
     params = {"apikey": API_KEY}
     body = {
         "paymentMethodToken": payment_method_token,
         "paymentToken": payu_token,
-        "paymentCvv": payment['credit_card_cvv'],
-        "bookingId": payment['booking_id'],
+        "paymentCvv": payment["credit_card_cvv"],
+        "bookingId": payment["booking_id"],
         "sandbox": not test,
     }
-    response = requests.post(
-        CONFIRM_PAYMENT_ZOOZ_API_URL, params=params, json=body
-    )
+    response = requests.post(CONFIRM_PAYMENT_ZOOZ_API_URL, params=params, json=body)
     if response.status_code != 200:
         raise ClientException(response.json())
     data = response.json()
-    if data['status'] != 0:
+    if data["status"] != 0:
         raise ClientException(data)
 
 
@@ -305,33 +323,3 @@ def traveller_booking_view(request):
         return render(request, "booking/retail.html", context)
 
 
-def save_booking(request, user):
-    print(user)
-    account = user.account_set.all()
-    params = {"apikey": API_KEY, "visitor_uniqid": user.id}
-    booking = {
-        "bags": 0,
-        "booking_token": request.session.get("booking_token"),
-        "currency": "usd",
-        "lang": "en",
-        "locale": "en",
-        "passengers": [
-            {
-                "birthday": user.profile.dob,
-                "cardno": account[0].card_number,
-                "category": "adults",
-                "email": user.email,
-                "expiration": account[0].cvc,
-                "name": user.first_name,
-                "nationality": "SE",
-                "phone": user.profile.phone_number,
-                "surname": user.last_name,
-                "title": "ms",
-            }
-        ],
-    }
-
-    headers = {"content-type": "application/json"}
-    url = "https://kiwicom-prod.apigee.net/v2/booking/save_booking"
-    response = requests.post(url, params=params, json=booking, headers=headers)
-    return response.json()
