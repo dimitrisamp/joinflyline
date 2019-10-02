@@ -19,5 +19,5 @@ class Plans(models.Model):
     active = models.BooleanField(blank=True)
     amount = models.BigIntegerField(blank=True)
     currency = models.CharField(max_length=10, blank=True)
-    name = models.CharField(max_length=20, blank=True, unique=True)
+    name = models.CharField(max_length=20, blank=True)
     product = models.CharField(max_length=70, blank=True)
