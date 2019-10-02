@@ -5,6 +5,7 @@ from itertools import takewhile
 
 import requests
 from django.contrib.auth.models import User
+from django.http import JsonResponse
 from django.shortcuts import render
 from django.views import View
 
