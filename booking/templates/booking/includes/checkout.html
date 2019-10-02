@@ -1,0 +1,36 @@
+<div class="checkout-section">
+    <h3>Check out</h3>
+
+    <form id="checkout" action="/booking_flight" method="POST">
+        <div class="form-group">
+            <label for="nameoncard" class="control-label">Name on
+                card</label>
+            <input type="text" class="form-control" name="holder_name" required>
+        </div>
+        <div class="form-group">
+            <label for="creditcardno" class="control-label">Credit
+                Card Number</label>
+            <input type="text" class="form-control"
+                   name="card_number">
+        </div>
+
+        <div class="colum-02">
+            <div class="form-group col6">
+                <label for="expdate" class="control-label">Exp
+                    Date</label>
+                <input type="text" class="form-control"
+                       name="expiration_date" required>
+            </div>
+
+            <div class="form-group col6">
+                <label for="ccv" class="control-label">CCV</label>
+                <input type="text" class="form-control" name="credit_card_cvv" required>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-default">Book Flight
+            For <b> {{ total_price }} </b></button>
+
+    </form>
+
+</div>
