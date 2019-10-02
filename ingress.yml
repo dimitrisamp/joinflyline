@@ -10,7 +10,6 @@ spec:
   tls:
     - hosts:
         - wanderift.com
-        - www.wanderift.com
     - secretName: wanderift-secret
   rules:
     - host: wanderift.com
