@@ -267,6 +267,7 @@ def retail_booking_view(request, booking_token):
     context = {
         "retail_info": retail_info,
         "one_way": one_way,
+        "total_credits": 1 if one_way else 2,
         "subscription_benefits": comparison(retail_info),
         "passenger_count": retail_info["parent"]["search_params"]["seats"][
             "passengers"
