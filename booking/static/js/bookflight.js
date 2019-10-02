@@ -10,6 +10,11 @@ $(function() {
       if (match) return match[2];
     };
 
+    function getCheckoutFormData() {
+        const form = document.getElementById('checkout');
+        return Object.fromEntries(new FormData(form));
+    }
+
     var yearSelect = document.querySelector('#yearofbirth');
 
     var date = new Date();
@@ -22,13 +27,12 @@ $(function() {
         yearSelect.appendChild(option);
     }
     
-    $('.booking_flight').submit(function(event) {
+    $('#checkout').submit(function(event) {
 
         /* stop form from submitting normally */
         event.preventDefault();
 
         let passengers = [];
-        let payment = {};
 
         
         $(".passengerForm").each(function(i, form) {
@@ -43,23 +47,12 @@ $(function() {
             }); 
         });
 
-        $(".booking_flight").each(function(i, form) {
-            let data = Object.fromEntries(new FormData(form));
-            payment = {
-                holder_name: data.holder_name,
-                expiration_date: data.expdate,
-                card_number: data.creditcardno,
-                credit_card_cvv: data.ccv
-            };             
-        });
-
         const data = {
             "booking_token": getBookingToken(),
             "passengers": passengers,
-            "payment": payment
+            "payment": getCheckoutFormData(),
         };
 
-        console.log(data);
         $.ajax({
             type: 'POST',
             url: '/booking_flight/',

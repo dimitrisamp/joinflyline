@@ -118,8 +118,8 @@ def save_booking(booking_token, passengers, payment, zooz=True, test=False):
         bags = p.pop("bags")
         total_bags += bags
         p["hold_bags"] = make_hold_bags(flight_ids, bags)
-        p["cardno"] = '00000000'
-        p["expiration"] = '2025-01-01'
+        p["cardno"] = "00000000"
+        p["expiration"] = "2025-01-01"
         p["email"] = "leotrubach@gmail.com"
         p["phone"] = "+77774483022"
     body = {
@@ -185,7 +185,7 @@ def confirm_payment(booking):
         raise ClientException(data)
 
 
-def zooz_tokenize(public_key, card_data, test=True):
+def zooz_tokenize(public_key, card_data, test=False):
     body = {
         "token_type": "credit_card",
         "holder_name": card_data["holder_name"],
@@ -195,6 +195,7 @@ def zooz_tokenize(public_key, card_data, test=True):
     headers = {
         "x-payments-os-env": "test" if test else "live",
         "public-key": public_key,
+        "api-version": "1.3.0",
         "idempotency-key": str(uuid.uuid4()),
     }
     response = requests.post(
@@ -204,13 +205,14 @@ def zooz_tokenize(public_key, card_data, test=True):
         raise ClientException()
     payment_method_token = response.json()["token"]
     body = {
-        "token_type": "credit_card_cvv",
+        "token_type": "card_cvv_code",
         "credit_card_cvv": card_data["credit_card_cvv"],
         "payment_method_token": payment_method_token,
     }
     headers = {
         "x-payments-os-env": "test" if test else "live",
         "public-key": public_key,
+        "api-version": "1.3.0",
         "idempotency-key": str(uuid.uuid4()),
     }
     response = requests.post(
@@ -231,10 +233,15 @@ def confirm_payment_zooz(booking, payment, test=True):
         "paymentMethodToken": payment_method_token,
         "paymentToken": payu_token,
         "paymentCvv": payment["credit_card_cvv"],
-        "bookingId": payment["booking_id"],
+        "bookingId": booking["booking_id"],
         "sandbox": not test,
     }
-    response = requests.post(CONFIRM_PAYMENT_ZOOZ_API_URL, params=params, json=body)
+    response = requests.post(
+        CONFIRM_PAYMENT_ZOOZ_API_URL,
+        params=params,
+        json=body,
+        headers={"content-type": "application/json"},
+    )
     if response.status_code != 200:
         raise ClientException(response.json())
     data = response.json()
@@ -321,5 +328,3 @@ def traveller_booking_view(request):
     else:
         context = {}
         return render(request, "booking/retail.html", context)
-
-
