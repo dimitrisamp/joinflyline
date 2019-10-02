@@ -21,7 +21,7 @@
             {% if user.is_authenticated %}
                 {% if user.subscriptions.plan %}
                     <a class="nav_btn_link" href="{% url "accounts" %}">
-                        <button class="custom_btn">{{ user.subscriptions.tokens }} tokens available</button>
+                        <button class="custom_btn">{{ user.subscriptions.tokens }} credits available</button>
                     </a>
                 {% else %}
                     <a class="nav_btn_link" href="{% url "accounts" %}">
