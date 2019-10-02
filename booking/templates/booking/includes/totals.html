@@ -1,13 +1,24 @@
 <div class="price_detail">
     <ul class="list-price-detail">
-        <li> {{ passenger_count }}x Passenger{{ passenger_count|pluralize }} <span
-                class="pull-right"> ${{ retail_info.conversion.USD }} </span>
+        <li> {{ passenger_count }}x Passenger{{ passenger_count|pluralize }}
+            <span class="pull-right">
+                {% if user.subscriptions %}
+                    {{ total_credits }} Credits
+                {% else %}
+                    ${{ retail_info.conversion.USD }}
+                {% endif %}
+            </span>
         </li>
         <li> Baggage <span class="pull-right"
                            id="totals-baggage-price">{{ baggage_price }}</span></li>
         <li> Automatic flight check-in <span class="pull-right"> Free </span>
         </li>
-        <li><span class="totalusd">Total(USD)</span> <span
-                class="pull-right"> <b>${{ total_price }}</b> </span></li>
+        <li><span class="totalusd">Total</span> <span
+                class="pull-right"> <b>
+            {% if user.subscriptions %}
+                {{ total_credits }}
+            {% else %}
+                ${{ total_price }}
+            {% endif %}</b> </span></li>
     </ul>
 </div>
