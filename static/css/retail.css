@@ -241,8 +241,7 @@ body{
 	float: left;
     margin-top: 24px;
 }
-.tow_section .national_gender{
-	width: 49.5%;
+.tow_section .form-group-sm {
 	float: left;
 }
 .userForm input[type="text"] {
@@ -396,9 +395,9 @@ input[type="radio"] {
     padding: 17px 10px;
 }
 .checkout-section .btn{
-    background: #00b9ff;
+    background: #00a991;
     width: 100%;
-    border-color: #00b9ff;
+    border-color: #00a991;
     color: #fff;
     font-size: 15px;
     border-radius: 3px;
@@ -449,9 +448,6 @@ input[type="radio"] {
 .date_of_birth .form-group-sm:nth-child(1){
 	margin-right: 0px;
     margin-left: 0px;
-}
-.tow_section .national_gender{
-	width: 100%;
 }
 .order-list p {
     padding-top: 10px;

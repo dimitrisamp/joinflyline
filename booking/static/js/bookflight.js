@@ -28,7 +28,7 @@ $(function() {
                 surname: data.surenames,
                 nationality: data.nationality,
                 birthday: data.yearofbirth.toString() + '-' + data.monthofbirth.toString() + '-' + data.dayofbirth.toString(),
-                gender: data.gender,
+                title: data.gender,
                 bags:0,
                 sendBags: parseInt(data.cabin_bags) + parseInt(data.checked_bags),
             }); 
