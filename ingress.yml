@@ -4,18 +4,11 @@ metadata:
   name: wanderift-ingress
   annotations:
     kubernetes.io/ingress.class: "nginx"
+    certmanager.k8s.io/cluster-issuer: 'letsencrypt-prod'
+    certmanager.k8s.io/acme-challenge-type: http01
 spec:
-  tls:
-    - secretName: wanderift-secret
   rules:
     - host: wanderift.com
-      http:
-        paths:
-          - path: /*
-            backend:
-              serviceName: wanderift-service
-              servicePort: 80
-    - host: www.wanderift.com
       http:
         paths:
           - path: /*
