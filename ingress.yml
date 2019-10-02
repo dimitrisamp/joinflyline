@@ -11,7 +11,7 @@ spec:
     - hosts:
         - wanderift.com
         - www.wanderift.com
-        secretName: wanderift-secret
+    - secretName: wanderift-secret
   rules:
     - host: wanderift.com
       http:
