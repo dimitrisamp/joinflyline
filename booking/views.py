@@ -5,10 +5,8 @@ from itertools import takewhile
 
 import requests
 from django.contrib.auth.models import User
-from django.http import JsonResponse
 from django.shortcuts import render
 from django.views import View
-from django.views.decorators.csrf import csrf_exempt
 
 from account.models import Account
 from results.models import BookingCache
@@ -148,19 +146,24 @@ def save_booking(booking_token, passengers, payment, zooz=True, test=False):
     if zooz:
         confirm_payment_zooz(booking, payment, test=test)
     else:
-        confirm_payment(booking, test=test)
+        confirm_payment(booking)
 
 
 class SaveBookingView(View):
     def post(self, request):
         data = json.loads(request.body)
-        save_booking(
-            data["booking_token"],
-            data["passengers"],
-            data["payment"],
-            zooz=True,
-            test=True,
-        )
+        try:
+            save_booking(
+                data["booking_token"],
+                data["passengers"],
+                data["payment"],
+                zooz=True,
+                test=True,
+            )
+        except ClientException():
+            return JsonResponse(status=400)
+        else:
+            return JsonResponse({"success": True})
 
 
 def confirm_payment(booking):
