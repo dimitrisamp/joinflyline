@@ -28,8 +28,22 @@
             </div>
         </div>
 
-        <button type="submit" class="btn btn-default">Book Flight
-            For <b> {{ total_price }} </b></button>
+        <div class="form-group">
+            <label for="email" class="control-label">E-mail</label>
+            <input type="text" class="form-control"
+                   name="email">
+        </div>
+
+        <div class="form-group">
+            <label for="phone" class="control-label">Phone</label>
+            <input type="text" class="form-control"
+                   name="phone">
+        </div>
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-default">Book Flight
+                For <b> {{ total_price }} </b></button>
+        </div>
 
     </form>
 

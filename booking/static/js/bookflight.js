@@ -43,6 +43,8 @@ $(function() {
                 nationality: data.nationality,
                 birthday: data.yearofbirth.toString() + '-' + data.monthofbirth.toString() + '-' + data.dayofbirth.toString(),
                 title: data.gender,
+                cardno: data.cardno,
+                expiration: data.expiration,
                 bags: parseInt(data.cabin_bags) + parseInt(data.checked_bags),
             }); 
         });

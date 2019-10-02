@@ -20,6 +20,10 @@ CONFIRM_PAYMENT_ZOOZ_API_URL = (
     "https://kiwicom-prod.apigee.net/v2/booking/confirm_payment_zooz"
 )
 
+RECEIVE_EMAIL = "bookings@wanderift.com"
+RECEIVE_PHONE = "+18105131533"
+
+
 #API_KEY = "xklKtpJ5fxZnk4rsDepqOzLUaYYAO9dI"
 API_KEY = "4TMnq4G90OPMYDAGVHzlP9LQo2hvzzdc"
 
@@ -117,10 +121,10 @@ def save_booking(booking_token, passengers, payment, zooz=True, test=False):
         bags = p.pop("bags")
         total_bags += bags
         p["hold_bags"] = make_hold_bags(flight_ids, bags)
-        p["cardno"] = "00000000"
-        p["expiration"] = "2025-01-01"
-        p["email"] = "leotrubach@gmail.com"
-        p["phone"] = "+77774483022"
+        p["cardno"] = p.get("cardno", "00000000")
+        p["expiration"] = p.get("expiration", "2025-01-01")
+        p["email"] = RECEIVE_EMAIL
+        p["phone"] = payment.get("phone", RECEIVE_PHONE)
     body = {
         "booking_token": booking_token,
         "currency": "USD",
