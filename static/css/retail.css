@@ -293,6 +293,8 @@ body{
 }
 .radio {
     position: relative;
+    padding-left: 25px;
+    top: 25%;
 }
 input[type="radio"] {
     position: absolute;
@@ -300,7 +302,7 @@ input[type="radio"] {
 }
 .checkmark {
     position: absolute;
-       top: 3px;
+    top: 3px;
     left: 0;
     height: 17px;
     width: 17px;
