@@ -15,7 +15,7 @@ cache:
 docker-build:
   stage: package
   only:
-    - /^rc-.*$/
+    - /^rc-/
     changes:
       - Dockerfile
   script:
@@ -27,7 +27,7 @@ k8s-deploy:
   image: google/cloud-sdk
   stage: deploy
   only:
-    - /^rc-.*$/
+    - /^rc-/
     changes:
       - Dockerfile
   script:
