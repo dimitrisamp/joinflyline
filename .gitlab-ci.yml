@@ -15,9 +15,7 @@ cache:
 docker-build:
   stage: package
   only:
-    - /^rc-/
-    changes:
-      - Dockerfile
+    - /^rc-.*$/
   script:
     - docker build -t registry.gitlab.com/zburau/wanderift-django .
     - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
@@ -27,9 +25,7 @@ k8s-deploy:
   image: google/cloud-sdk
   stage: deploy
   only:
-    - /^rc-/
-    changes:
-      - Dockerfile
+    - /^rc-.*$/
   script:
   - kubectl config set-cluster wanderift-app --server=$KUBE_URL --insecure-skip-tls-verify=true
   - kubectl config set-credentials admin --token=$KUBE_TOKEN
