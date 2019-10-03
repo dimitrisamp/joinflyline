@@ -236,7 +236,7 @@ def zooz_tokenize(public_key, card_data, test=True):
 def confirm_payment_zooz(booking, payment, test=True):
     public_key = booking["payu_public_key"]
     payu_token = booking["payu_token"]
-    payment_method_token, payment_cvv = zooz_tokenize(public_key, payment)
+    payment_method_token, payment_cvv = zooz_tokenize(public_key, payment, test=test)
     headers = {"apikey": API_KEY}
     body = {
         "paymentMethodToken": payment_method_token,
