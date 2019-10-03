@@ -268,8 +268,8 @@ def retail_booking_view(request, booking_token):
         dep_time = parse_isodatetime(flight["local_departure"])
         arr_time = parse_isodatetime(flight["local_arrival"])
         flight["date"] = dep_time.strftime("%a %b %d")
-        flight["arr_time"] = arr_time.strftime("%H:%M")
-        flight["dep_time"] = dep_time.strftime("%H:%M")
+        flight["arr_time"] = arr_time.strftime("%I:%M %p")
+        flight["dep_time"] = dep_time.strftime("%I:%M %p")
         duration = int(
             (
                 parse_isodatetime(flight["utc_arrival"])
