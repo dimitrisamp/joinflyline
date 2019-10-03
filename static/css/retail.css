@@ -363,7 +363,7 @@ input[type="radio"] {
     color: #6c6c6c;
 }
 .totalusd {
-    font-size: 12px;
+    font-size: 16px;
     border-bottom: 1px dotted;
 }
 .list-price-detail li b{
@@ -380,7 +380,7 @@ input[type="radio"] {
     background: #fff;
     padding: 14px 36px;
     margin-top: 40px;
-    border: 1px solid #ccc;
+    border: 1px solid #cccccc57;
 }
 .checkout-section h3 {
     margin-top: 22px;
@@ -401,6 +401,7 @@ input[type="radio"] {
     width: 100%;
     border-color: #00B7FF;
     color: #fff;
+		font-weight: bold;
     font-size: 15px;
     border-radius: 3px;
     padding: 7px 0;
@@ -419,7 +420,7 @@ input[type="radio"] {
 
 .subcribe-section{
     background: #fff;
-    border: 1px solid #ccc;
+    border: 1px solid #cccccc57;
     padding: 10px 10px;
     margin-top: 60px;
     margin-bottom: 20px;
@@ -437,7 +438,7 @@ input[type="radio"] {
 }
 .subscribe_detail p{
     font-size: 14px;
-    font-weight: 600;
+    font-weight: 400;
     position: relative;
     top: 5px;
 }
