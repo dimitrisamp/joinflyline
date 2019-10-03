@@ -11,6 +11,7 @@ from django.views import View
 
 from account.models import Account
 from booking.models import BookingContact
+from emails.views import booking_success
 from results.models import BookingCache
 from results.templatetags.comparison import comparison
 
@@ -23,7 +24,6 @@ CONFIRM_PAYMENT_ZOOZ_API_URL = (
 
 RECEIVE_EMAIL = "bookings@wanderift.com"
 RECEIVE_PHONE = "+18105131533"
-
 
 # API_KEY = "xklKtpJ5fxZnk4rsDepqOzLUaYYAO9dI"
 API_KEY = "4TMnq4G90OPMYDAGVHzlP9LQo2hvzzdc"
@@ -71,7 +71,7 @@ def check_flights(booking_token, bnum, adults, children, infants):
         raise FlightsNotCheckedYetException()
     prices = data["conversion"]
     passenger_price = (
-        prices["adults_price"] + prices["children_price"] + prices["infants_price"]
+            prices["adults_price"] + prices["children_price"] + prices["infants_price"]
     )
     bags_fee = prices["amount"] - passenger_price
     return {"passengers": passenger_price, "bags": bags_fee, "total": prices["amount"]}
@@ -162,7 +162,7 @@ def save_booking(booking_token, passengers, payment, zooz=True, test=False):
     if zooz:
         confirm_payment_zooz(booking, payment, test=test)
     else:
-        confirm_payment(booking)
+        confirm_payment(booking, booking)
 
 
 class CheckPromoView(View):
@@ -195,7 +195,7 @@ class SaveBookingView(View):
             return JsonResponse({})
 
 
-def confirm_payment(booking):
+def confirm_payment(booking, booking_response):
     body = {
         "booking_id": booking["booking_id"],
         "transaction_id": booking["transaction_id"],
@@ -210,6 +210,7 @@ def confirm_payment(booking):
     except requests.RequestException as e:
         raise ClientException() from e
     data = response.json()
+    booking_success(requests, booking_response)
     if response.status_code != 200:
         raise ClientException(data)
     if data["status"] != 0:
@@ -278,8 +279,8 @@ def retail_booking_view(request, booking_token):
         flight["dep_time"] = dep_time.strftime("%I:%M %p")
         duration = int(
             (
-                parse_isodatetime(flight["utc_arrival"])
-                - parse_isodatetime(flight["utc_departure"])
+                    parse_isodatetime(flight["utc_arrival"])
+                    - parse_isodatetime(flight["utc_departure"])
             ).total_seconds()
         )
         hours = duration // 3600

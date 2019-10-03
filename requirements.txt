@@ -1,3 +1,5 @@
+beautifulsoup4
+django-sendgrid-webhook
 stripe
 django
 requests

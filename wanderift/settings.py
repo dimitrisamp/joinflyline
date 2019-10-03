@@ -54,7 +54,8 @@ INSTALLED_APPS = [
     'account',
     'booking',
     'oauth',
-    'info'
+    'info',
+    'emails'
 ]
 
 MIDDLEWARE = [
