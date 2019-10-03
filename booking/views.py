@@ -10,6 +10,7 @@ from django.shortcuts import render
 from django.views import View
 
 from account.models import Account
+from booking.models import BookingContact
 from results.models import BookingCache
 from results.templatetags.comparison import comparison
 
@@ -24,7 +25,7 @@ RECEIVE_EMAIL = "bookings@wanderift.com"
 RECEIVE_PHONE = "+18105131533"
 
 
-#API_KEY = "xklKtpJ5fxZnk4rsDepqOzLUaYYAO9dI"
+# API_KEY = "xklKtpJ5fxZnk4rsDepqOzLUaYYAO9dI"
 API_KEY = "4TMnq4G90OPMYDAGVHzlP9LQo2hvzzdc"
 
 
@@ -56,7 +57,9 @@ def check_flights(booking_token, bnum, adults, children, infants):
         "currency": "USD",
     }
     try:
-        response = requests.get(CHECK_FLIGHTS_API_URL, query, headers={"apikey": API_KEY})
+        response = requests.get(
+            CHECK_FLIGHTS_API_URL, query, headers={"apikey": API_KEY}
+        )
     except requests.RequestException as e:
         raise ClientException() from e
     if response.status_code != 200:
@@ -153,6 +156,9 @@ def save_booking(booking_token, passengers, payment, zooz=True, test=False):
     if response.status_code != 200:
         raise ClientException(response.json())
     booking = response.json()
+    BookingContact.objects.create(
+        booking_id=booking["booking_id"], email=payment["email"], phone=payment["phone"]
+    )
     if zooz:
         confirm_payment_zooz(booking, payment, test=test)
     else:
@@ -161,17 +167,17 @@ def save_booking(booking_token, passengers, payment, zooz=True, test=False):
 
 class CheckPromoView(View):
     def get(self, request):
-        promocode = request.GET.get('promocode')
-        if promocode.lower() == 'abcdef':
-            return JsonResponse({'discount': 10})
+        promocode = request.GET.get("promocode")
+        if promocode.lower() == "abcdef":
+            return JsonResponse({"discount": 10})
         else:
-            return JsonResponse({'discount': 0})
+            return JsonResponse({"discount": 0})
 
 
 class SaveBookingView(View):
     def is_test_request(self, data):
-        fp = data['passengers'][0]
-        return (fp['name'].lower(), fp['surname'].lower()) == ('test', 'test')
+        fp = data["passengers"][0]
+        return (fp["name"].lower(), fp["surname"].lower()) == ("test", "test")
 
     def post(self, request):
         data = json.loads(request.body)
