@@ -17,9 +17,9 @@ docker-build:
   only:
     - /^rc-.*$/
   script:
-    - docker build -t registry.gitlab.com/zburau/wanderift-django .
+    - docker build -t registry.gitlab.com/zburau/wanderift-django:latest .
     - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
-    - docker push registry.gitlab.com/zburau/wanderift-django
+    - docker push registry.gitlab.com/zburau/wanderift-django:latest
 
 k8s-deploy:
   image: google/cloud-sdk
