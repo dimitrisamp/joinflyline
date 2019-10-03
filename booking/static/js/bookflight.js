@@ -186,11 +186,13 @@ $(function () {
                     if (data.code === 'not-checked-yet') {
                         setTimeout(checkFlight, 2000)
                     }
+                    $('#checkout-submit-button').attr("disabled", true);
                 }
             },
             success: function (data) {
                 fillTotals(data);
                 updatePromo();
+                $('#checkout-submit-button').attr("disabled", false);
             }
         });
     }
