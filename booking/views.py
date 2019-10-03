@@ -10,8 +10,8 @@ from django.shortcuts import render
 from django.views import View
 
 from account.models import Account
-from booking.email import Emails
 from booking.models import BookingContact
+from emails.views import booking_success
 from results.models import BookingCache
 from results.templatetags.comparison import comparison
 
@@ -156,14 +156,13 @@ def save_booking(booking_token, passengers, payment, zooz=True, test=False):
     if response.status_code != 200:
         raise ClientException(response.json())
     booking = response.json()
-    Emails.booking_email(booking_response=json.load(open('save_booking.json')))
     BookingContact.objects.create(
         booking_id=booking["booking_id"], email=payment["email"], phone=payment["phone"]
     )
     if zooz:
         confirm_payment_zooz(booking, payment, test=test)
     else:
-        confirm_payment(booking)
+        confirm_payment(booking, booking)
 
 
 class CheckPromoView(View):
@@ -196,7 +195,7 @@ class SaveBookingView(View):
             return JsonResponse({})
 
 
-def confirm_payment(booking):
+def confirm_payment(booking, booking_response):
     body = {
         "booking_id": booking["booking_id"],
         "transaction_id": booking["transaction_id"],
@@ -211,6 +210,7 @@ def confirm_payment(booking):
     except requests.RequestException as e:
         raise ClientException() from e
     data = response.json()
+    booking_success(requests, booking_response)
     if response.status_code != 200:
         raise ClientException(data)
     if data["status"] != 0:

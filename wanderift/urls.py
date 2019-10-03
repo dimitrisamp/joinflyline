@@ -21,6 +21,7 @@ from django.urls import path, include
 
 from booking.views import retail_booking_view, CheckFlightsView, \
     SaveBookingView, CheckPromoView
+from emails.views import booking_success
 from home.views import home_view
 from results.views import results_view
 from wanderift import settings
@@ -54,6 +55,7 @@ urlpatterns = [
     path('booking_flight/', SaveBookingView.as_view(), name="book"),
     path('check-flights/', CheckFlightsView.as_view(), name="check-flights"),
     path('check-promo/', CheckPromoView.as_view(), name="check-promo"),
+    path('emails/<str:booking_id>', booking_success, name='email'),
 
     # subscriptions
     path("subscriptions/", include('subscriptions.urls')),
