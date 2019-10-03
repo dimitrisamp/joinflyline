@@ -141,7 +141,7 @@
                                     <h6 class="text-muted mb-3">
                                         DEPARTURE
                                         <span class="small ml-2">Duration:</span>
-                                        <span class="small">5h 28m</span>
+                                        <span class="small">{{ flight.duration.departure | secs2hm }}</span>
                                     </h6>
                                     <p class="mb-2 dark-text">
                                         <strong class="">
@@ -227,7 +227,7 @@
                                     <h6 class="text-muted mb-3">
                                         RETURN
                                         <span class="small ml-2">Duration:</span>
-                                        <span class="small">5h 28m</span>
+                                        <span class="small">{{ flight.duration.return | secs2hm }}</span>
                                     </h6>
                                     <p class="mb-2 dark-text">
                                         <strong class="">
@@ -393,7 +393,7 @@
                                     <h6 class="text-muted mb-3">
                                         DEPARTURE
                                         <span class="small ml-2">Duration:</span>
-                                        <span class="small">5h 28m</span>
+                                        <span class="small">{{ flight.duration.departure | secs2hm }}</span>
                                     </h6>
                                     <p class="mb-2 dark-text">
                                         <strong class="">
@@ -479,7 +479,7 @@
                                     <h6 class="text-muted mb-3">
                                         RETURN
                                         <span class="small ml-2">Duration:</span>
-                                        <span class="small">5h 28m</span>
+                                        <span class="small">{{ flight.duration.return | secs2hm }}</span>
                                     </h6>
                                     <p class="mb-2 dark-text">
                                         <strong class="">
