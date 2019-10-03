@@ -10,6 +10,7 @@ from django.shortcuts import render
 from django.views import View
 
 from account.models import Account
+from booking.email import Emails
 from booking.models import BookingContact
 from results.models import BookingCache
 from results.templatetags.comparison import comparison
@@ -23,7 +24,6 @@ CONFIRM_PAYMENT_ZOOZ_API_URL = (
 
 RECEIVE_EMAIL = "bookings@wanderift.com"
 RECEIVE_PHONE = "+18105131533"
-
 
 # API_KEY = "xklKtpJ5fxZnk4rsDepqOzLUaYYAO9dI"
 API_KEY = "4TMnq4G90OPMYDAGVHzlP9LQo2hvzzdc"
@@ -71,7 +71,7 @@ def check_flights(booking_token, bnum, adults, children, infants):
         raise FlightsNotCheckedYetException()
     prices = data["conversion"]
     passenger_price = (
-        prices["adults_price"] + prices["children_price"] + prices["infants_price"]
+            prices["adults_price"] + prices["children_price"] + prices["infants_price"]
     )
     bags_fee = prices["amount"] - passenger_price
     return {"passengers": passenger_price, "bags": bags_fee, "total": prices["amount"]}
@@ -156,6 +156,7 @@ def save_booking(booking_token, passengers, payment, zooz=True, test=False):
     if response.status_code != 200:
         raise ClientException(response.json())
     booking = response.json()
+    Emails.booking_email(booking_response=json.load(open('save_booking.json')))
     BookingContact.objects.create(
         booking_id=booking["booking_id"], email=payment["email"], phone=payment["phone"]
     )
@@ -278,8 +279,8 @@ def retail_booking_view(request, booking_token):
         flight["dep_time"] = dep_time.strftime("%I:%M %p")
         duration = int(
             (
-                parse_isodatetime(flight["utc_arrival"])
-                - parse_isodatetime(flight["utc_departure"])
+                    parse_isodatetime(flight["utc_arrival"])
+                    - parse_isodatetime(flight["utc_departure"])
             ).total_seconds()
         )
         hours = duration // 3600

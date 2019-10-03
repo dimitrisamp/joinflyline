@@ -13,17 +13,16 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+
 from django.contrib import admin
 from django.contrib.staticfiles.urls import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.urls import path, include
 
-import info
-from booking.views import retail_booking_view, traveller_booking_view, CheckFlightsView, \
+from booking.views import retail_booking_view, CheckFlightsView, \
     SaveBookingView, CheckPromoView
-from construction.views import under_construction
-from results.views import results_view
 from home.views import home_view
+from results.views import results_view
 from wanderift import settings
 
 urlpatterns = [
@@ -64,4 +63,3 @@ urlpatterns = [
 ]
 urlpatterns += staticfiles_urlpatterns()
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
