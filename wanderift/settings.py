@@ -150,3 +150,6 @@ MEDIA_URL = '/images/'
 
 LOGIN_REDIRECT_URL = 'accounts'
 LOGIN_URL = "home"
+RECEIVE_EMAIL = "bookings@wanderift.com"
+RECEIVE_PHONE = "+18105131533"
+KIWI_API_KEY = "4TMnq4G90OPMYDAGVHzlP9LQo2hvzzdc"

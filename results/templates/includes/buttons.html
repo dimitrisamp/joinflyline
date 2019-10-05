@@ -1,0 +1,19 @@
+{% load comparison %}
+<div class="search-results-buttons text-right p-2 pt-3">
+    {% if flight.routes|length > 1 and flight.price > 369 %}
+        <a href="{% url 'subscription' %}">
+            <button class="search_btn mb-1">Subscribe and save
+                ${{ flight | comparison }}</button>
+        </a>
+    {% endif %}
+    {% if flight.routes|length == 1 and flight.price > 185 %}
+        <a href="{% url 'subscription' %}">
+            <button class="search_btn mb-1">Subscribe and save
+                ${{ flight | comparison }}</button>
+        </a>
+    {% endif %}
+    <a href="{% url 'retail' flight.booking_token %}">
+        <button class="search_btn book-btn mt-1"> Book for
+            ${{ flight.price }}</button>
+    </a>
+</div>

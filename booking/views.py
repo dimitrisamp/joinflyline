@@ -8,6 +8,7 @@ from django.contrib.auth.models import User
 from django.http import JsonResponse
 from django.shortcuts import render
 from django.views import View
+from django.conf import settings as S
 
 from account.models import Account
 from booking.models import BookingContact
@@ -15,22 +16,14 @@ from emails.views import booking_success
 from results.models import BookingCache
 from results.templatetags.comparison import comparison
 
+from wanderift.utils import parse_isodatetime
+
 CHECK_FLIGHTS_API_URL = "https://kiwicom-prod.apigee.net/v2/booking/check_flights"
 SAVE_BOOKING_API_URL = "https://kiwicom-prod.apigee.net/v2/booking/save_booking"
 CONFIRM_PAYMENT_API_URL = "https://kiwicom-prod.apigee.net/v2/booking/confirm_payment"
 CONFIRM_PAYMENT_ZOOZ_API_URL = (
     "https://kiwicom-prod.apigee.net/v2/booking/confirm_payment_zooz"
 )
-
-RECEIVE_EMAIL = "bookings@wanderift.com"
-RECEIVE_PHONE = "+18105131533"
-
-# API_KEY = "xklKtpJ5fxZnk4rsDepqOzLUaYYAO9dI"
-API_KEY = "4TMnq4G90OPMYDAGVHzlP9LQo2hvzzdc"
-
-
-def parse_isodatetime(dt):
-    return datetime.strptime(dt, "%Y-%m-%dT%H:%M:%S.%fZ")
 
 
 class ClientException(Exception):
@@ -58,7 +51,7 @@ def check_flights(booking_token, bnum, adults, children, infants):
     }
     try:
         response = requests.get(
-            CHECK_FLIGHTS_API_URL, query, headers={"apikey": API_KEY}
+            CHECK_FLIGHTS_API_URL, query, headers={"apikey": S.KIWI_API_KEY}
         )
     except requests.RequestException as e:
         raise ClientException() from e
@@ -71,7 +64,7 @@ def check_flights(booking_token, bnum, adults, children, infants):
         raise FlightsNotCheckedYetException()
     prices = data["conversion"]
     passenger_price = (
-            prices["adults_price"] + prices["children_price"] + prices["infants_price"]
+        prices["adults_price"] + prices["children_price"] + prices["infants_price"]
     )
     bags_fee = prices["amount"] - passenger_price
     return {"passengers": passenger_price, "bags": bags_fee, "total": prices["amount"]}
@@ -121,7 +114,7 @@ def make_hold_bags(flight_ids, bags):
     return result
 
 
-def save_booking(booking_token, passengers, payment, zooz=True, test=False):
+def save_booking(request, booking_token, passengers, payment, zooz=True, test=False):
     retail_info = get_retail_info(booking_token)
     flight_ids = [o["id"] for o in retail_info["route"]]
     total_bags = 0
@@ -132,8 +125,8 @@ def save_booking(booking_token, passengers, payment, zooz=True, test=False):
         p["hold_bags"] = make_hold_bags(flight_ids, bags)
         p["cardno"] = p.get("cardno", "00000000")
         p["expiration"] = p.get("expiration", "2025-01-01")
-        p["email"] = RECEIVE_EMAIL
-        p["phone"] = payment.get("phone", RECEIVE_PHONE)
+        p["email"] = S.RECEIVE_EMAIL
+        p["phone"] = payment.get("phone", S.RECEIVE_PHONE)
     body = {
         "booking_token": booking_token,
         "currency": "USD",
@@ -144,7 +137,7 @@ def save_booking(booking_token, passengers, payment, zooz=True, test=False):
     }
     if zooz:
         body["payment_gateway"] = "payu"
-    headers = {"apikey": API_KEY}
+    headers = {"apikey": S.KIWI_API_KEY}
     try:
         response = requests.post(
             SAVE_BOOKING_API_URL,
@@ -156,19 +149,27 @@ def save_booking(booking_token, passengers, payment, zooz=True, test=False):
     if response.status_code != 200:
         raise ClientException(response.json())
     booking = response.json()
-    BookingContact.objects.create(
-        booking_id=booking["booking_id"], email=payment["email"], phone=payment["phone"]
-    )
     if zooz:
         confirm_payment_zooz(booking, payment, test=test)
     else:
-        confirm_payment(booking, booking)
+        confirm_payment(booking)
+    if request.user.is_authenticated:
+        user = request.user
+    else:
+        try:
+            user = User.objects.get(username=payment["email"])
+        except User.DoesNotExist:
+            user = User.objects.create(username=payment["email"], email=payment["email"])
+            # TODO: send activation link to email implement in `oauth` module
+    BookingContact.from_data(
+        booking_data=booking, email=payment["email"], phone=payment["phone"], user=user
+    )
 
 
 class CheckPromoView(View):
     def get(self, request):
         promocode = request.GET.get("promocode")
-        if promocode.lower() == "abcdef":
+        if promocode.lower() == "abcdef":  # TODO: make promocode available in database
             return JsonResponse({"discount": 10})
         else:
             return JsonResponse({"discount": 0})
@@ -183,6 +184,7 @@ class SaveBookingView(View):
         data = json.loads(request.body)
         try:
             save_booking(
+                request,
                 data["booking_token"],
                 data["passengers"],
                 data["payment"],
@@ -195,12 +197,12 @@ class SaveBookingView(View):
             return JsonResponse({})
 
 
-def confirm_payment(booking, booking_response):
+def confirm_payment(booking):
     body = {
         "booking_id": booking["booking_id"],
         "transaction_id": booking["transaction_id"],
     }
-    headers = {"apikey": API_KEY}
+    headers = {"apikey": S.KIWI_API_KEY}
     try:
         response = requests.post(
             CONFIRM_PAYMENT_API_URL,
@@ -210,7 +212,7 @@ def confirm_payment(booking, booking_response):
     except requests.RequestException as e:
         raise ClientException() from e
     data = response.json()
-    booking_success(requests, booking_response)
+    booking_success(requests, booking)
     if response.status_code != 200:
         raise ClientException(data)
     if data["status"] != 0:
@@ -244,7 +246,7 @@ def confirm_payment_zooz(booking, payment, test=True):
     public_key = booking["payu_public_key"]
     payu_token = booking["payu_token"]
     payment_method_token, payment_cvv = zooz_tokenize(public_key, payment, test=test)
-    headers = {"apikey": API_KEY}
+    headers = {"apikey": S.KIWI_API_KEY}
     body = {
         "paymentMethodToken": payment_method_token,
         "paymentToken": payu_token,
@@ -279,16 +281,18 @@ def retail_booking_view(request, booking_token):
         flight["dep_time"] = dep_time.strftime("%I:%M %p")
         duration = int(
             (
-                    parse_isodatetime(flight["utc_arrival"])
-                    - parse_isodatetime(flight["utc_departure"])
+                parse_isodatetime(flight["utc_arrival"])
+                - parse_isodatetime(flight["utc_departure"])
             ).total_seconds()
         )
         hours = duration // 3600
         minutes = (duration // 60) % 60
         flight["duration"] = f"{hours}h {minutes:02d}m"
     if not one_way:
-        flight = list(takewhile(lambda o: o["return"] == 0, retail_info["route"]))[-1]
-        flight["nightsInDest"] = retail_info["nightsInDest"]
+        last_flight_to_destination = list(
+            takewhile(lambda o: o["return"] == 0, retail_info["route"])
+        )[-1]
+        last_flight_to_destination["nightsInDest"] = retail_info["nightsInDest"]
 
     context = {
         "retail_info": retail_info,
@@ -301,46 +305,3 @@ def retail_booking_view(request, booking_token):
         "total_price": retail_info["conversion"]["USD"],
     }
     return render(request, "booking/retail.html", context)
-
-
-def traveller_booking_view(request):
-    if request.method == "POST":
-        username = request.POST["email"]
-        email = username
-        password = ""
-        first_name = request.POST["first_name"]
-        last_name = request.POST["last_name"]
-        gender = request.POST["gender"]
-        dob = request.POST["dob"]
-        phone_number = request.POST["phone_number"]
-        card_number = request.POST["card_number"]
-        expiry = request.POST["expiry"]
-        cvc = request.POST["cvc"]
-        country = request.POST["country"]
-        zip = request.POST["zip"]
-
-        user = User.objects.create_user(
-            username, email, password, first_name=first_name, last_name=last_name
-        )
-        user.save()
-        user = User.objects.get(pk=user.id)
-        user.profile.dob = dob
-        user.profile.gender = gender
-        user.profile.phone_number = phone_number
-        user.profile.save()
-        account = Account.objects.create(
-            card_number=card_number,
-            expiry=expiry,
-            cvc=cvc,
-            country=country,
-            zip=zip,
-            user=user,
-        )
-        account.save()
-
-        save_booking(request, user)
-        context = {"users": user}
-        return render(request, "booking/retail.html", context)
-    else:
-        context = {}
-        return render(request, "booking/retail.html", context)

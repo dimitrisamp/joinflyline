@@ -1,14 +1,12 @@
 import datetime
 import json
-from json import load
 
 import requests
 from django.contrib import messages
-from django.shortcuts import render, redirect
-from django.views.decorators.csrf import csrf_exempt
+from django.shortcuts import render
+from django.conf import settings as S
 
 from results.models import SearchDetails, BookingCache
-
 
 API_URL = "https://kiwicom-prod.apigee.net/v2/search"
 
@@ -39,11 +37,13 @@ def md2dm(s):
         return s
 
 
-def save_flight_data(flight):
+def save_flight_data(request, flight, search_result):
     booking_token = flight["booking_token"]
-    BookingCache.objects.update_or_create(
-        booking_token=booking_token, defaults={"data": json.dumps(flight)}
-    )
+    defaults = {"data": json.dumps(flight), "search_result": search_result}
+    search = {"booking_token": booking_token}
+    if request.user.is_authenticated:
+        search["user"] = request.user
+    BookingCache.objects.update_or_create(**search, defaults=defaults)
 
 
 def results_view(request):
@@ -63,13 +63,11 @@ def results_view(request):
         search_params[k] = md2dm(search_params[k])
 
     limit = int(request.GET.get("limit", 10))
-    search_query = {"limit": limit, "apikey": "xklKtpJ5fxZnk4rsDepqOzLUaYYAO9dI", "curr": "USD"}
+    search_query = {"limit": limit, "apikey": S.KIWI_API_KEY, "curr": "USD"}
     request.session["search_query"] = search_params
 
     filter_params = {k: request.GET.get(k) for k in FILTER_KEYS if k in request.GET}
-    search_item = SearchDetails(user_id=request.user.id, **search_params)
-
-    search_item.save()
+    search_item = SearchDetails.objects.create(user_id=request.user.id, **search_params)
     data = {}
     airlines = set()
     try:
@@ -82,11 +80,11 @@ def results_view(request):
         if response.status_code == 200:
             data = response.json()
             if data:
-               search_part = data.copy()
-               search_part.pop('data')
-               for flights in data["data"]:
-                    flights['parent'] = search_part
-                    save_flight_data(flights)
+                search_part = data.copy()
+                search_part.pop("data")
+                for flights in data["data"]:
+                    flights["parent"] = search_part
+                    save_flight_data(request, flights, search_result=search_item)
                     for airline in flights["airlines"]:
                         airlines.add(airline)
     context = {

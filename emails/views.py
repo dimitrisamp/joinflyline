@@ -6,18 +6,19 @@ from sendgrid.helpers.mail import Mail
 
 from booking.models import BookingContact
 
-SEND_GRID_API_KEY = "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"
+SEND_GRID_API_KEY = (
+    "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"
+)
 
 
-def booking_success(request, booking_id, booking_response):
-    booking_contact = BookingContact.objects.filter(booking_id=booking_id)
+def booking_success(request, booking):
+    booking_contact = BookingContact.objects.filter(booking_id=booking["booking_id"])
 
     if booking_contact:
-
-        htm_content = render_to_string('booking_success.html',
-                                                      {'data': booking_response, "i": 0,
-                                                       "booking_contact": booking_contact})
-
+        htm_content = render_to_string(
+            "booking_success.html",
+            {"data": booking, "i": 0, "booking_contact": booking_contact},
+        )
         sg = sendgrid.SendGridAPIClient(SEND_GRID_API_KEY)
         from_email = "booking@wanderift.com"
         to_email = booking_contact["email"]
@@ -29,7 +30,10 @@ def booking_success(request, booking_id, booking_response):
             sg.send(mail)
         except Exception as e:
             print(e)
-        return render(request, "booking_success.html",
-                      context={'data': booking_response, "i": 0, "booking_contact": booking_contact})
+        return render(
+            request,
+            "booking_success.html",
+            context={"data": booking, "i": 0, "booking_contact": booking_contact},
+        )
     else:
         return HttpResponse(status=500)

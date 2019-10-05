@@ -9,7 +9,7 @@ from home.views import home_view
 
 
 def create_user(request):
-    username = request.POST.get("email", "admin@gmail.com")
+    username = request.POST.get("email", "admin@gmail.com")  # TODO: who should we use that default email?
     email = username
     password = request.POST["password"]
 
@@ -32,6 +32,7 @@ def login_user(request):
         return redirect(home_view)
 
 
+# TODO: ???? This allows anyone to easily change anybody's password
 def forgot_password(request):
     user = User.objects.get(username=request.POST["email"])
 
