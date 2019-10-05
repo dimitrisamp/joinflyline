@@ -2,6 +2,12 @@
 {% load airline_icons %}
 {% load time_duration %}
 {% load static %}
+<p class="mb-2 dark-text">
+    <strong class="">
+        <i class="fa fa-calendar mr-2"></i>
+        {{ route.local_departure | iso_date | date:"D j M" }}
+    </strong>
+</p>
 <div class="d-flex align-items-center position-relative">
     <i class="fa fa-plane mr-2 w-10 text-muted rotated-plane-icon"></i>
     <div class="card w-100 cursor-pointer"
