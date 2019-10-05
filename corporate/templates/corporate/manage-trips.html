@@ -4,6 +4,7 @@
 {% block csscontent %}
     <link rel="stylesheet" href="{% static "css/home.css" %}">
     <link rel="stylesheet" href="{% static "css/custom.css" %}">
+    <link rel="stylesheet" href="{% static "css/results.css" %}">
 {% endblock %}
 
 {% block content %}
@@ -36,11 +37,11 @@
                         </div>
                     </div>
                     <div class="divider-15"></div>
-                    <div class="trip-item text-center card">
+                    <div class="trip-item">
                         <div class="item-content w-100">
                             {% if upcoming_flights %}
                                 {% for route in upcoming_flights %}
-                                    {% include "includes/route.html" with route=route %}
+                                    {% include "corporate/route.html" with route=route %}
                                 {% endfor %}
                             {% else %}
                             <label class="w-100">No upcoming trips... start
@@ -56,12 +57,18 @@
                         </div>
                     </div>
                     <div class="divider-15"></div>
-                    <div class="trip-item text-center card">
+                    <div class="trip-item">
+                        {% if upcoming_flights %}
+                            {% for flight in watched_flights %}
+                                {% include "includes/flight.html" with flight=flight %}
+                            {% endfor %}
+                        {% else %}
                         <div class="item-content w-100">
                             <label class="w-100">No upcoming trips... start
                                 booking</label>
                             <label class="w-100">Today and save</label>
                         </div>
+                        {% endif %}
                     </div>
                 </div>
 
@@ -72,12 +79,17 @@
                         </div>
                     </div>
                     <div class="divider-15"></div>
-                    <div class="trip-item text-center card">
+                    <div class="trip-item">
+                        {% if past_flights %}
+                            {% for route in past_flights %}
+                                {% include "includes/route.html" with route=route %}
+                            {% endfor %}
+                        {% else %}
                         <div class="item-content">
-                            <label class="w-100">No upcoming trips... start
-                                booking</label>
+                            <label class="w-100">No previous trips</label>
                             <label class="w-100">Today and save</label>
                         </div>
+                        {% endif %}
                     </div>
                 </div>
             </div>
