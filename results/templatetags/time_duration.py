@@ -10,9 +10,14 @@ def time_interval(value):
 
 
 def secs2hm(value):
-    hours = int(value / 3600)
-    minutes = int(value / 60 - (hours * 60))
-    return str(hours) + "h " + str(minutes) + "m"
+    total_minutes = int(value / 60)
+    minutes = total_minutes % 60
+    total_hours = int(total_minutes / 60)
+    hours = total_hours % 24
+    days = int(total_hours / 24)
+    days_part = f'{days}d ' if days else ''
+    hours_part = f'{hours}h ' if hours else ''
+    return f'{days_part}{hours_part}{minutes}m'
 
 
 register = template.Library()
