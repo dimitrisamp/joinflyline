@@ -2,7 +2,7 @@ from django import template
 
 register = template.Library()
 
-
+# TODO: do we need it?
 @register.filter(name='departure_date')
 def departure_date(value):
     departure_data = []
