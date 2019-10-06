@@ -1,12 +1,13 @@
 from django.contrib import messages
 from django.shortcuts import render, redirect
+from django.conf import settings
 import stripe
 
 from home.views import home_view
 from payments.models import Plans
 from subscriptions.models import Subscriptions
 
-stripe.api_key = "sk_test_H2ypPKiLEc14JVbd6OpDIWQv00gPMSrkj1"
+stripe.api_key = settings.STRIPE_API_KEY
 
 
 def sub_payment(request, plan):
