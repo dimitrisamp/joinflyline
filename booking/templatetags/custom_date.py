@@ -6,5 +6,4 @@ register = template.Library()
 
 @register.filter(name='iso_date')
 def iso_date(value):
-    y = dateparse.parse_datetime(value)
-    return y
+    return dateparse.parse_datetime(value)
