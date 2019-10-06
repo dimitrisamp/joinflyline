@@ -85,8 +85,6 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
             ],
             'libraries': {
-                'templatetags':
-                    'results.templatetags.custom_date',
                 'airlines':
                     'results.templatetags.airlines',
                 'aircons':
