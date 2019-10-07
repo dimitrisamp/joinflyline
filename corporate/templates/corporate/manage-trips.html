@@ -39,9 +39,9 @@
                     <div class="divider-15"></div>
                     <div class="trip-item">
                         <div class="item-content w-100">
-                            {% if upcoming_flights %}
-                                {% for route in upcoming_flights %}
-                                    {% include "corporate/route.html" with route=route %}
+                            {% if upcoming_trips %}
+                                {% for flight in upcoming_trips %}
+                                    {% include "corporate/flight.html" with flight=flight %}
                                 {% endfor %}
                             {% else %}
                             <label class="w-100">No upcoming trips... start
@@ -58,15 +58,14 @@
                     </div>
                     <div class="divider-15"></div>
                     <div class="trip-item">
-                        {% if upcoming_flights %}
+                        {% if watched_flights %}
                             {% for flight in watched_flights %}
                                 {% include "includes/flight.html" with flight=flight %}
                             {% endfor %}
                         {% else %}
                         <div class="item-content w-100">
-                            <label class="w-100">No upcoming trips... start
-                                booking</label>
-                            <label class="w-100">Today and save</label>
+                            <label class="w-100">No searches yet...</label>
+                            <label class="w-100">Start booking today and save</label>
                         </div>
                         {% endif %}
                     </div>
@@ -80,9 +79,9 @@
                     </div>
                     <div class="divider-15"></div>
                     <div class="trip-item">
-                        {% if past_flights %}
-                            {% for route in past_flights %}
-                                {% include "includes/route.html" with route=route %}
+                        {% if past_trips %}
+                            {% for flight in past_trips %}
+                                {% include "corporate/flight.html" with flight=flight %}
                             {% endfor %}
                         {% else %}
                         <div class="item-content">

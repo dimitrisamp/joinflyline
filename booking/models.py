@@ -1,4 +1,5 @@
 import json
+from collections import Counter
 
 from django.contrib.auth.models import User
 from django.db import models
@@ -19,26 +20,36 @@ class BookingContact(models.Model):
 
     def to_data(self):
         obj = json.loads(self.data)
-        obj["flights"] = [
+        obj["route"] = [
             flight.to_data() for flight in self.flights.order_by("departure_time")
         ]
         obj["booking_id"] = self.booking_id
+        obj["price"] = obj["payment_info"][obj["payment_gateway"]]["amount"]
+        obj["passenger_summary"] = dict(
+            Counter([o["category"] for o in obj["passengers"]]).items()
+        )
+
         return obj
 
     @classmethod
-    def from_data(cls, booking_data, user, email, phone):
+    def from_data(cls, booking_data, user, email, phone, retail_info):
+        retail_info = retail_info.copy()
+        route_information = retail_info.pop("route")
+        retail_info.pop("parent")
+        retail_flights = {o["id"]: o for o in route_information}
+        bd = booking_data.copy()
+        flights = bd.pop("flights")
+        booking_id = bd.pop("booking_id")
         with atomic():
-            bd = booking_data.copy()
-            flights = bd.pop("flights")
-            booking_id = bd.pop("booking_id")
             booking = BookingContact.objects.create(
-                data=json.dumps(bd),
+                data=json.dumps({**retail_info, **bd}),
                 email=email,
                 phone=phone,
                 user=user,
                 booking_id=booking_id,
             )
             for fd in flights:
+                flight_id = fd.pop("id")
                 data = {
                     "booking": booking,
                     "departure_time": parse_isodatetime(fd.pop("utc_departure")),
@@ -49,7 +60,7 @@ class BookingContact(models.Model):
                     "airport_to": fd.pop("dst"),
                     "is_return": bool(fd.pop("return")),
                 }
-                data["data"] = json.dumps(fd)
+                data["data"] = json.dumps({**retail_flights[flight_id], **fd})
                 Flight.objects.create(**data)
             return booking
 

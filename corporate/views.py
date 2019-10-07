@@ -4,7 +4,7 @@ from django.db.models.functions import Now
 from django.shortcuts import render
 from django.views.generic import TemplateView
 
-from booking.models import Flight
+from booking.models import Flight, BookingContact
 from results.models import BookingCache
 
 
@@ -22,17 +22,13 @@ class ManageTripsView(TemplateView):
     template_name = "corporate/manage-trips.html"
 
     def get_context_data(self, **kwargs):
-        my_flights = Flight.objects.filter(booking__user=self.request.user)
-        upcoming_flights = my_flights.filter(departure_time__gt=Now()).order_by(
-            "departure_time"
-        )
-        past_flights = my_flights.filter(departure_time__lte=Now()).order_by(
-            "departure_time"
-        )
+        user_bookings = BookingContact.objects.filter(user=self.request.user)
+        upcoming_trips = user_bookings.filter(flights__departure_time__gt=Now()).distinct()
+        past_trips = user_bookings.exclude(flights__departure_time__gt=Now()).distinct()
         context = {
             "title": "Manage Corporates Trips",
-            "upcoming_flights": [o.to_data() for o in upcoming_flights],
-            "past_flights": [o.to_data() for o in past_flights],
+            "upcoming_trips": [o.to_data() for o in upcoming_trips],
+            "past_trips": [o.to_data() for o in past_trips],
             "watched_flights": [
                 json.loads(o.data)
                 for o in BookingCache.objects.filter(user=self.request.user).order_by(

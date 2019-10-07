@@ -159,10 +159,16 @@ def save_booking(request, booking_token, passengers, payment, zooz=True, test=Fa
         try:
             user = User.objects.get(username=payment["email"])
         except User.DoesNotExist:
-            user = User.objects.create(username=payment["email"], email=payment["email"])
+            user = User.objects.create(
+                username=payment["email"], email=payment["email"]
+            )
             # TODO: send activation link to email implement in `oauth` module
     BookingContact.from_data(
-        booking_data=booking, email=payment["email"], phone=payment["phone"], user=user
+        booking_data=booking,
+        email=payment["email"],
+        phone=payment["phone"],
+        user=user,
+        retail_info=retail_info,
     )
 
 

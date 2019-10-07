@@ -19,4 +19,6 @@ AIRLINE_ICONS = {
 
 @register.filter(name="aircon")
 def aircon(value):
+    if isinstance(value, dict):
+        value = value['code']
     return AIRLINE_ICONS.get(value)
