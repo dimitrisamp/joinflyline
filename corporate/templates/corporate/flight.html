@@ -8,6 +8,9 @@
 {% load departure_flight %}
 {% load spurl %}
 
+{% if flight.in_progress %}
+<div class="in-progress-badge">Current trip</div>
+{% endif %}
 {% if flight.routes|length > 1 %}
     <div class="result-item mb-2 w-100">
         <div class="result-block result-toggler w-100 d-block d-md-flex justify-content-start p-2 pt-3 pb-3"

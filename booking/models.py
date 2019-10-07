@@ -1,9 +1,11 @@
 import json
 from collections import Counter
+from datetime import timedelta
 
 from django.contrib.auth.models import User
 from django.db import models
 from django.db.transaction import atomic
+from django.utils.timezone import now
 
 from wanderift.utils import parse_isodatetime
 
@@ -28,6 +30,12 @@ class BookingContact(models.Model):
         obj["passenger_summary"] = dict(
             Counter([o["category"] for o in obj["passengers"]]).items()
         )
+        current_time = now() + timedelta(days=2)
+        has_past_routes = any(r["utc_departure"] <= current_time for r in obj["route"])
+        has_future_routes = any(
+            r["utc_departure"] > current_time for r in obj["route"]
+        )
+        obj["in_progress"] = has_past_routes and has_future_routes
 
         return obj
 
@@ -83,8 +91,8 @@ class Flight(models.Model):
 
     def to_data(self):
         data = json.loads(self.data)
-        data["utc_departure"] = self.departure_time.isoformat()
-        data["utc_arrival"] = self.arrival_time.isoformat()
+        data["utc_departure"] = self.departure_time
+        data["utc_arrival"] = self.arrival_time
         data["src_name"] = self.city_from
         data["dst_name"] = self.city_to
         data["src"] = self.airport_from
