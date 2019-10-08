@@ -11,3 +11,13 @@ class Subscriptions(models.Model):
 
     def __str__(self):
         return str(self.tokens)
+
+    class Meta:
+        verbose_name_plural = 'Subscriptions'
+
+
+class SubscriptionsSummary(Subscriptions):
+    class Meta:
+        proxy = True
+        verbose_name = 'Subscription Summary'
+        verbose_name_plural = 'Subscriptions Summary'
