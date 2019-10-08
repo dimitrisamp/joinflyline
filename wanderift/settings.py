@@ -15,6 +15,8 @@ import os
 from django.contrib.messages import constants as messages
 
 from .envconf.prod import *
+import sentry_sdk
+from sentry_sdk.integrations.django import DjangoIntegration
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -153,3 +155,8 @@ RECEIVE_EMAIL = "bookings@wanderift.com"
 RECEIVE_PHONE = "+18105131533"
 KIWI_API_KEY = "4TMnq4G90OPMYDAGVHzlP9LQo2hvzzdc"
 STRIPE_API_KEY = "sk_test_H2ypPKiLEc14JVbd6OpDIWQv00gPMSrkj1"
+
+sentry_sdk.init(
+    dsn="https://a875b98b313142d8afd40797b84f235e@sentry.io/1773547",
+    integrations=[DjangoIntegration()]
+)

@@ -19,49 +19,44 @@ from django.contrib.staticfiles.urls import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.urls import path, include
 
-from booking.views import retail_booking_view, CheckFlightsView, \
-    SaveBookingView, CheckPromoView
+from booking.views import (
+    retail_booking_view,
+    CheckFlightsView,
+    SaveBookingView,
+    CheckPromoView,
+)
 from emails.views import booking_success
 from home.views import home_view
 from results.views import results_view
 from wanderift import settings
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-
+    path("admin/", admin.site.urls),
     # site under construction
     # path('', under_construction, name="construction"),
-
     # Home page links
-    path('', home_view, name="home"),
-
+    path("", home_view, name="home"),
     # Results page urls
-    path('results', results_view, name="results"),
-
+    path("results", results_view, name="results"),
     # Accounts page urls
-    path('account/', include("account.urls")),
-
+    path("account/", include("account.urls")),
     # Corporate urls
-    path('corporates/', include("corporate.urls")),
-
+    path("corporates/", include("corporate.urls")),
     # Auth urls
-    path('auth/', include("oauth.urls")),
-
+    path("auth/", include("oauth.urls")),
     # Information about Wanderift
-    path('info/', include('info.urls')),
-
+    path("info/", include("info.urls")),
     # booking
-    path('retail/<str:booking_token>', retail_booking_view, name="retail"),
-    path('booking_flight/', SaveBookingView.as_view(), name="book"),
-    path('check-flights/', CheckFlightsView.as_view(), name="check-flights"),
-    path('check-promo/', CheckPromoView.as_view(), name="check-promo"),
-    path('emails/<str:booking_id>', booking_success, name='email'),
-
+    path("retail/<str:booking_token>", retail_booking_view, name="retail"),
+    path("booking_flight/", SaveBookingView.as_view(), name="book"),
+    path("check-flights/", CheckFlightsView.as_view(), name="check-flights"),
+    path("check-promo/", CheckPromoView.as_view(), name="check-promo"),
+    path("emails/<str:booking_id>", booking_success, name="email"),
     # subscriptions
-    path("subscriptions/", include('subscriptions.urls')),
-
+    path("subscriptions/", include("subscriptions.urls")),
     # payments
-    path('pay/', include('payments.urls'))
+    path("pay/", include("payments.urls")),
 ]
+
 urlpatterns += staticfiles_urlpatterns()
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
