@@ -62,7 +62,7 @@ def results_view(request):
     for k in DATE_FIELDS:
         search_params[k] = md2dm(search_params[k])
 
-    limit = int(request.GET.get("limit", 10))
+    limit = int(request.GET.get("limit", 20))
     search_query = {"limit": limit, "apikey": S.KIWI_API_KEY, "curr": "USD"}
     request.session["search_query"] = search_params
 
