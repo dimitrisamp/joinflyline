@@ -5,6 +5,7 @@ from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from django.conf import settings
+from django.utils.timezone import now
 
 from account.models import Account
 from account.views import account_view
@@ -110,13 +111,21 @@ def stripe_customer(user):
     )
 
 
+def parse_expiry(v):
+    century = now().year // 100
+    sm, sy = map(int, v.split('/'))
+    if 0 <= sy <= 99:
+        sy += century
+    return sm, sy
+
+
 def card_token(card_number, expiry, cvc):
-    date_object = datetime.strptime(expiry, "%d/%m/%Y")
+    month, year = parse_expiry(expiry)
     return stripe.Token.create(
         card={
             "number": card_number,
-            "exp_month": date_object.month,
-            "exp_year": date_object.year,
+            "exp_month": month,
+            "exp_year": year,
             "cvc": cvc,
         }
     )
