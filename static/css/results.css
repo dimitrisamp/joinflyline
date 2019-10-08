@@ -76,3 +76,22 @@
     }
 }
 
+.search-quick-filter {
+    background: white;
+    padding: 0.5em;
+    border-right: 1px solid rgba(0,0,0,0.1);
+}
+
+.search-quick-filter.applied {
+    border-bottom: 3px solid #00B7FF;
+}
+
+
+.search-quick-filter:last-child {
+    border-right: none;
+}
+
+.search-quick-filter-filter-name {
+    margin-left: auto;
+    margin-right: auto;
+}

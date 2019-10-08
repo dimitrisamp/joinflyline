@@ -5,6 +5,7 @@ import requests
 from django.contrib import messages
 from django.shortcuts import render
 from django.conf import settings as S
+from django.utils.dateparse import parse_datetime
 
 from results.models import SearchDetails, BookingCache
 
@@ -46,6 +47,24 @@ def save_flight_data(request, flight, search_result):
     BookingCache.objects.update_or_create(**search, defaults=defaults)
 
 
+def get_quick_filters_data(flights):
+    data = [
+        {
+            "price": f["conversion"]["USD"],
+            "duration": f["duration"]["total"],
+            "quality": f["quality"],
+            "date": parse_datetime(f["local_departure"]),
+        }
+        for f in flights
+    ]
+    return {
+        "price": min(data, key=lambda x: x["price"]),
+        "duration": min(data, key=lambda x: x["duration"]),
+        "quality": min(data, key=lambda x: x["quality"]),
+        "date": min(data, key=lambda x: x["date"]),
+    }
+
+
 def results_view(request):
     search_params = {
         "fly_from": request.GET["city_from"],
@@ -59,6 +78,11 @@ def results_view(request):
         "children": request.GET["children"],
         "infants": request.GET["infants"],
     }
+    sort = request.GET.get("sort")
+    if sort:
+        sort_params = {"sort": sort}
+    else:
+        sort_params = {}
     for k in DATE_FIELDS:
         search_params[k] = md2dm(search_params[k])
 
@@ -70,9 +94,11 @@ def results_view(request):
     search_item = SearchDetails.objects.create(user_id=request.user.id, **search_params)
     data = {}
     airlines = set()
+    quick_filters_data = {}
     try:
         response = requests.get(
-            API_URL, params={**search_query, **search_params, **filter_params}
+            API_URL,
+            params={**search_query, **search_params, **filter_params, **sort_params},
         )
     except requests.RequestException as e:
         messages.error(request, "Error getting flights: {}".format(e))
@@ -87,6 +113,7 @@ def results_view(request):
                     save_flight_data(request, flights, search_result=search_item)
                     for airline in flights["airlines"]:
                         airlines.add(airline)
+                quick_filters_data = get_quick_filters_data(data["data"])
     context = {
         "title": "Search Results",
         "data": data,
@@ -94,6 +121,8 @@ def results_view(request):
         "next_limit": limit + LIMIT_INCREMENT,
         "filter_params": filter_params,
         "search_params": search_params,
+        "sort": sort,
+        "quick_filters_data": quick_filters_data,
     }
     if request.is_ajax():
         return render(request, "results_center.html", context)
