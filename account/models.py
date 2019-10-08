@@ -17,7 +17,7 @@ class Account(models.Model):
     token = models.CharField(max_length=100, blank=True)
 
     def __str__(self):
-        return self.card_number, self.cvc, self.expiry, self.country, self.zip
+        return self.card_number + self.cvc + self.expiry + self.country + self.zip
 
 
 class Profile(models.Model):
