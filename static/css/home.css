@@ -472,6 +472,13 @@ button.pop2_footer_right {
     top: 50px;
 }
 
+.dropdown-wrapper-from-error, .dropdown-wrapper-to-error {
+    padding: 15px;
+    border-radius: 14px;
+    margin: 0;
+}
+
+[v-cloak] { display:none; }
 
 @media screen and (max-width: 992px) {
     .dropdown-wrapper-to {
