@@ -445,3 +445,24 @@ button.pop2_footer_right {
     background-color: #00B7FF;
     color: white;
 }
+
+
+.dropdown-wrapper-from {
+    position: absolute;
+    border: solid 1px #ccc;
+    border-radius: 14px;
+    background-color: #fff;
+    z-index: 1000;
+    min-width: 120px;
+    top: 50px;
+}
+
+.dropdown-wrapper-to {
+    position: absolute;
+    border: solid 1px #ccc;
+    border-radius: 14px;
+    background-color: #fff;
+    z-index: 1000;
+    min-width: 120px;
+    top: 50px;
+}

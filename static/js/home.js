@@ -5,6 +5,13 @@ $(document).ready(function () {
 
 window.locVal = "";
 
+// $('#addLocationFrom').on("blur", function(){
+//     console.log("blur");
+//                         $('#placesFrom').show();
+//                         $('#addLocationFrom').hide();
+//                         $('.from-dropdown-wrapper').hide();
+//                     });
+
 const app = new Vue({
     el: '#app',
     delimiters: ['{(', ')}'],
@@ -28,7 +35,10 @@ const app = new Vue({
         }
     },
     methods: {
-        cityHandler: function () {
+        cityHandler: function (option) {
+
+            app.selectionOption = option;
+
             $.ajax({
                 url: 'https://aviation-edge.com/v2/public/autocomplete?key=140940-4e6372&city=' + app.city,
                 success: function (data) {
@@ -41,7 +51,17 @@ const app = new Vue({
                             city.airport = airportData.pop()
                         });
                         app.searchResultPlaces = cityData;   
-                        // app.searchLocation = document.getElementById("addLocation").value                  
+                        // app.searchLocation = document.getElementById("addLocation").value
+                        switch (app.selectionOption) {
+                            case 1:
+                                $('.dropdown-wrapper-from').show();
+                                break;
+                        case 2:
+                                $('.dropdown-wrapper-to').show();
+                                $('.dropdown-wrapper-to').css("left", $($('.flexed-search-item')[1]).position().left);
+
+                                break;
+                        }
 
                     }
                 }
@@ -164,10 +184,12 @@ const app = new Vue({
             
             switch (app.selectionOption) {
                 case 1:
+                    $('.dropdown-wrapper-from').hide();
                     document.getElementById('placesFrom').value = placeName;
                     app.form.placeFrom = document.getElementById('mySelectedPlace').placeholder;
                     break;
                 case 2:
+                    $('.dropdown-wrapper-to').hide();
                     document.getElementById('placesTo').value = placeName;
                     app.form.placeTo = document.getElementById('mySelectedPlace').placeholder;
             }
@@ -220,11 +242,13 @@ const app = new Vue({
                     document.getElementById('placesFrom').value = place;
                     app.form.placeFrom = placeId;
                     $('#placesModal').modal('hide');
+                    $('.dropdown-wrapper-from').hide();
                     return;
                 case 2:
                     document.getElementById('placesTo').value = place;
                     app.form.placesTo = placeId;
                     $('#placesModal').modal('hide');
+                    $('.dropdown-wrapper-to').hide();
                     return;
             }
 
@@ -322,7 +346,6 @@ const app = new Vue({
                 app.form.noOfPassengers = app.valPassengers + ' Passengers'
             }
         },
-
         openPlaceModal: function (option) {
 
             app.selectionOption = option;

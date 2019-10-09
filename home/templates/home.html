@@ -87,23 +87,74 @@
                             <div class="row mt-4">
                                 <div class="col-sm-12 flexed-search-bar pl-0">
                                     <div class="flexed-search-item">
-                                        <label class="search_label" @click="openPlaceModal(1)">
+                                        <label class="search_label"
+                                               >
                                             <h6>Departure City :
-                                                <input type="text" class="search_input" readonly name="placesFrom"
+                                                <input type="text"
+                                                       class="search_input"
+                                                       v-model="city"
+                                                       v-on:keyup="cityHandler(1)"
+                                                       name="placesFrom"
+                                                       @blur="choosePlaces"
                                                        id="placesFrom"/>
                                             </h6>
                                         </label>
+
+
                                         <img class="icon_repeat" src="{% static "images/repeat.svg" %}"
                                              @click="swapPlaces">
                                     </div>
+                                    <div class="dropdown-wrapper-from" style="display: none">
+                                        <ol class="search_result_list">
+                                            <li v-for="(place, index) of searchResultPlaces">
+                                                <button class="btn search_result_list_item"
+                                                        @click="setPlace(place.nameCity,place.codeIataCity,index)">
+                                                    <i class="fa fa-building" style="padding-right: 2%"></i>
+                                                    <i class="fa fa-plane" style="padding-right: 2%"
+                                                       :hidden="true"></i>
+                                                    {( place.nameCity )}
+                                                </button>
+                                                <button class="btn search_result_list_item"
+                                                        @click="setPlace(place.nameCity,place.codeIataCity,index)">
+                                                    <i class="fa fa-plane" style="padding-right: 2%"></i>
+                                                    {( place.airport.nameAirport )}
+                                                </button>
+                                            </li>
+                                        </ol>
+                                    </div>
                                     <div class="flexed-search-item">
-                                        <label class="search_label" @click="openPlaceModal(2)">
+                                        <label class="search_label">
                                             <h6>
                                                 Arrival City :
-                                                <input type="text" class="search_input" readonly name="placesTo"
+                                                <input type="text"
+                                                       class="search_input"
+                                                       v-model="city"
+                                                       v-on:keyup="cityHandler(2)"
+                                                       name="placesTo"
+                                                       @blur="choosePlaces"
                                                        id="placesTo"/>
                                             </h6>
                                         </label>
+                                    </div>
+                                    <div class="dropdown-wrapper-to"
+                                         style="display: none"
+                                    >
+                                        <ol class="search_result_list">
+                                            <li v-for="(place, index) of searchResultPlaces">
+                                                <button class="btn search_result_list_item"
+                                                        @click="setPlace(place.nameCity,place.codeIataCity,index)">
+                                                    <i class="fa fa-building" style="padding-right: 2%"></i>
+                                                    <i class="fa fa-plane" style="padding-right: 2%"
+                                                       :hidden="true"></i>
+                                                    {( place.nameCity )}
+                                                </button>
+                                                <button class="btn search_result_list_item"
+                                                        @click="setPlace(place.nameCity,place.codeIataCity,index)">
+                                                    <i class="fa fa-plane" style="padding-right: 2%"></i>
+                                                    {( place.airport.nameAirport )}
+                                                </button>
+                                            </li>
+                                        </ol>
                                     </div>
                                     <div class="flexed-search-item">
                                         <label class="search_label">
