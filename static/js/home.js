@@ -37,7 +37,7 @@ const app = new Vue({
     },
     methods: {
         fromCityHandler: function () {
-            if(app.cityFrom === null || app.cityFrom === ""){
+            if(app.cityFrom === null || app.cityFrom === "" || app.cityFrom.length < 3){
                 app.cityFromProgress = false;
                 return;
             }
@@ -70,11 +70,11 @@ const app = new Vue({
             });
         },
         toCityHandler: function () {
-            if(app.cityTo === null || app.cityTo === ""){
+            if(app.cityTo === null || app.cityTo === "" || app.cityTo.length < 3){
                 app.cityToProgress = false;
                 return;
             }
-            $('.dropdown-wrapper-to').css("left", $($('.flexed-search-item')[1]).position().left);
+            $('#dropdown-wrapper-to').css("left", $($('.flexed-search-item')[1]).position().left);
             app.cityToProgress = true;
             app.cityFromProgress = false;
             app.selectionOption = 2;
