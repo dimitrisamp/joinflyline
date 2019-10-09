@@ -112,33 +112,9 @@ const app = new Vue({
             if (app.form.stopOverFrom) formData.append("stopover_from", app.form.stopOverFrom);
             if (app.form.stopOverTo) formData.append("stopover_to", app.form.stopOverTo);
 
-            let object = {};
-            formData.forEach(function (value, key) {
-                object[key] = value;
-            });
-            let json = object;
-            sessionStorage.setItem("searchQuery", JSON.stringify(app.form));
-
-            // The rest of this code assumes you are not using a library.
-            // It can be made less wordy if you use one.
-            const form = document.createElement('form');
-            form.method = "get";
-            form.action = "/results";
-
-            for (const key in json) {
-                if (json.hasOwnProperty(key)) {
-                    const hiddenField = document.createElement('input');
-                    hiddenField.type = 'hidden';
-                    hiddenField.name = key;
-                    hiddenField.value = json[key];
-
-                    form.appendChild(hiddenField);
-                }
-            }
-
-            document.body.appendChild(form);
-            form.submit();
-
+            let url = new URL('/results', window.location);
+            url.search = new URLSearchParams(formData);
+            window.location = url;
         },
 
         swapPlaces: () => {
