@@ -91,6 +91,7 @@
                                                >
                                             <h6>Departure City :
                                                 <input type="text"
+                                                       autocomplete="off"
                                                        class="search_input"
                                                        v-model="cityFrom"
                                                        v-on:keyup="fromCityHandler"
@@ -122,7 +123,7 @@
                                                 <button class="btn search_result_list_item"
                                                         @click="chooseFromPlace(place.nameCity,place.codeIataCity,index)">
                                                     <i class="fa fa-plane" style="padding-right: 2%"></i>
-                                                    {( place.airport.nameAirport )}
+{#                                                    {( place.airport.nameAirport )}#}
                                                 </button>
                                             </li>
                                         </ol>
@@ -132,6 +133,7 @@
                                             <h6>
                                                 Arrival City :
                                                 <input type="text"
+                                                       autocomplete="off"
                                                        class="search_input"
                                                        v-model="cityTo"
                                                        v-on:keyup="toCityHandler"
@@ -159,7 +161,7 @@
                                                 <button class="btn search_result_list_item"
                                                         @click="chooseToPlace(place.nameCity,place.codeIataCity,index)">
                                                     <i class="fa fa-plane" style="padding-right: 2%"></i>
-                                                    {( place.airport.nameAirport )}
+{#                                                    {( place.airport.nameAirport )}#}
                                                 </button>
                                             </li>
                                         </ol>
@@ -167,7 +169,10 @@
                                     <div class="flexed-search-item">
                                         <label class="search_label">
                                             <h6>Departure Date :
-                                                <input type="text" name="dep_date" id="departure_date"
+                                                <input type="text"
+                                                       name="dep_date"
+                                                       id="departure_date"
+                                                       autocomplete="off"
                                                        class="search_input">
                                             </h6>
                                         </label>
@@ -175,7 +180,10 @@
                                     <div class="flexed-search-item">
                                         <label class="search_label">
                                             <h6>Return Date :
-                                                <input type="text" name="ret_date" id="return_date"
+                                                <input type="text"
+                                                       name="ret_date"
+                                                       id="return_date"
+                                                       autocomplete="off"
                                                        class="search_input">
                                             </h6>
                                         </label>

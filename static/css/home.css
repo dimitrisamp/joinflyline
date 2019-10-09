@@ -474,6 +474,7 @@ button.pop2_footer_right {
     margin: 0;
 }
 
+[v-cloak] { display:none; }
 
 @media screen and (max-width: 992px) {
     .dropdown-wrapper-to {
