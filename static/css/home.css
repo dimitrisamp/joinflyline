@@ -246,6 +246,7 @@ img.img_content {
     .flexed-search-item .search_btn {
         width: 100%;
     }
+
 }
 p.sec_two_subhead {
     font-family: Karla;
@@ -465,4 +466,15 @@ button.pop2_footer_right {
     z-index: 1000;
     min-width: 120px;
     top: 50px;
+}
+
+
+@media screen and (max-width: 992px) {
+    .dropdown-wrapper-to {
+        min-width: 100%;
+    }
+
+    .dropdown-wrapper-from {
+        min-width: 100%;
+    }
 }

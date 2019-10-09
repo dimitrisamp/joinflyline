@@ -59,10 +59,18 @@ const app = new Vue({
                         case 2:
                                 $('.dropdown-wrapper-to').show();
                                 $('.dropdown-wrapper-to').css("left", $($('.flexed-search-item')[1]).position().left);
-
                                 break;
                         }
 
+                    } else {
+                        switch (app.selectionOption) {
+                            case 1:
+                                $('.dropdown-wrapper-from').hide();
+                                break;
+                        case 2:
+                                $('.dropdown-wrapper-to').hide();
+                                break;
+                        }
                     }
                 }
             });
@@ -184,14 +192,15 @@ const app = new Vue({
             
             switch (app.selectionOption) {
                 case 1:
-                    $('.dropdown-wrapper-from').hide();
                     document.getElementById('placesFrom').value = placeName;
                     app.form.placeFrom = document.getElementById('mySelectedPlace').placeholder;
+                    $('.dropdown-wrapper-from').hide();
                     break;
                 case 2:
-                    $('.dropdown-wrapper-to').hide();
                     document.getElementById('placesTo').value = placeName;
                     app.form.placeTo = document.getElementById('mySelectedPlace').placeholder;
+                    $('.dropdown-wrapper-to').hide();
+                    break;
             }
         },
 
