@@ -92,8 +92,8 @@
                                             <h6>Departure City :
                                                 <input type="text"
                                                        class="search_input"
-                                                       v-model="city"
-                                                       v-on:keyup="cityHandler(1)"
+                                                       v-model="cityFrom"
+                                                       v-on:keyup="fromCityHandler"
                                                        name="placesFrom"
                                                        @blur="choosePlaces"
                                                        id="placesFrom"/>
@@ -128,8 +128,8 @@
                                                 Arrival City :
                                                 <input type="text"
                                                        class="search_input"
-                                                       v-model="city"
-                                                       v-on:keyup="cityHandler(2)"
+                                                       v-model="cityTo"
+                                                       v-on:keyup="toCityHandler"
                                                        name="placesTo"
                                                        @blur="choosePlaces"
                                                        id="placesTo"/>

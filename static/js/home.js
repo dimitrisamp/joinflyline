@@ -20,6 +20,8 @@ const app = new Vue({
         searchLocation: '',
         seatType: 'Economy',
         noOfPassengers: 'Passengers',
+        cityFrom: '',
+        cityTo: '',
         city: '',
         valPassengers: 1,
         searchParameter: '',
@@ -35,10 +37,58 @@ const app = new Vue({
         }
     },
     methods: {
-        cityHandler: function (option) {
+        fromCityHandler: function () {
+            app.selectionOption = 1;
 
-            app.selectionOption = option;
+            $.ajax({url: 'https://aviation-edge.com/v2/public/autocomplete?key=140940-4e6372&city=' + app.cityFrom,
+                success: function (data) {
+                    if (data) {
+                        let allData = data;
+                        let cityData = JSON.parse(data).cities;
+                        let airportData = JSON.parse(data).airportsByCities;
 
+                        cityData.forEach(city =>{
+                            city.airport = airportData.pop()
+                        });
+                        app.searchResultPlaces = cityData;
+                        // app.searchLocation = document.getElementById("addLocation").value
+                        $('.dropdown-wrapper-from').show();
+                        return;
+                    }
+                    $('.dropdown-wrapper-from').hide();
+
+                }
+            });
+        },
+        toCityHandler: function () {
+
+            app.selectionOption = 2;
+
+            $.ajax({
+                url: 'https://aviation-edge.com/v2/public/autocomplete?key=140940-4e6372&city=' + app.cityTo,
+                success: function (data) {
+                    if (data) {
+                        let allData = data;
+                        let cityData = JSON.parse(data).cities;
+                        let airportData = JSON.parse(data).airportsByCities;
+
+                        cityData.forEach(city =>{
+                            city.airport = airportData.pop()
+                        });
+                        app.searchResultPlaces = cityData;
+                        // app.searchLocation = document.getElementById("addLocation").value
+
+                        $('.dropdown-wrapper-to').show();
+                        $('.dropdown-wrapper-to').css("left", $($('.flexed-search-item')[1]).position().left);
+
+                        return;
+                    }
+                    $('.dropdown-wrapper-to').hide();
+
+                }
+            });
+        },
+        cityHandler: function () {
             $.ajax({
                 url: 'https://aviation-edge.com/v2/public/autocomplete?key=140940-4e6372&city=' + app.city,
                 success: function (data) {
@@ -52,25 +102,6 @@ const app = new Vue({
                         });
                         app.searchResultPlaces = cityData;   
                         // app.searchLocation = document.getElementById("addLocation").value
-                        switch (app.selectionOption) {
-                            case 1:
-                                $('.dropdown-wrapper-from').show();
-                                break;
-                        case 2:
-                                $('.dropdown-wrapper-to').show();
-                                $('.dropdown-wrapper-to').css("left", $($('.flexed-search-item')[1]).position().left);
-                                break;
-                        }
-
-                    } else {
-                        switch (app.selectionOption) {
-                            case 1:
-                                $('.dropdown-wrapper-from').hide();
-                                break;
-                        case 2:
-                                $('.dropdown-wrapper-to').hide();
-                                break;
-                        }
                     }
                 }
             });
