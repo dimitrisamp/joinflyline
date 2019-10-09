@@ -1,11 +1,13 @@
+import os
+
 DEBUG = True
 DATABASES = {
-   'default': {
-      'ENGINE': 'django.db.backends.postgresql_psycopg2',
-       'NAME': 'wanderift',
-       'USER': 'wanderift',
-       'PASSWORD': 'Mgoblue16!',
-       'HOST': 'localhost',
-      'PORT': '',
-   }
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'wanderift_db',
+        'USER': os.getenv('POSTGRES_USER'),
+        'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
+        'HOST': os.getenv('POSTGRES_HOST'),
+        'PORT': os.getenv('POSTGRES_PORT', 5432)
+    }
 }
