@@ -36,8 +36,8 @@ k8s-deploy:
     - kubectl apply -f deployment.yml -n wanderift-django-13935299-dev
     - kubectl apply -f ingress.yml -n wanderift-django-13935299-dev
     - kubectl apply -f service.yml -n wanderift-django-13935299-dev
-    - kubectl apply -f volume.yml
-    - kubectl apply -f volume-claim.yml
+    - kubectl apply -f volume.yml -n default
+    - kubectl apply -f volume-claim.yml -n default
     - kubectl apply -f postgres-secret.yml -n wanderift-django-13935299-dev
     - kubectl apply -f postgres-deployment.yml -n wanderift-django-13935299-dev
     - kubectl apply -f postgres-service.yml -n wanderift-django-13935299-dev

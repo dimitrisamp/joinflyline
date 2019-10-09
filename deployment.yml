@@ -18,5 +18,29 @@ spec:
           imagePullPolicy: Always
           ports:
             - containerPort: 8000
+          env:
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-credentials
+                  key: user
+
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-credentials
+                  key: password
+
+            - name: POSTGRES_HOST
+              value: postgres-service
+
+            volumeMounts:
+              - name: postgres-volume-mount
+                mountPath: /var/lib/busybox
+
+            volumes:
+              - name: postgres-volume-mount
+                persistentVolumeClaim:
+                  claimName: postgres-pvc
       imagePullSecrets:
         - name: gitlab-registry
