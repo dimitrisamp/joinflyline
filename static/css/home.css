@@ -86,6 +86,10 @@ label.search_label {
     text-overflow: ellipsis;
     white-space: nowrap;
 }
+label.search_label.disabled {
+    background-color: rgb(235, 235, 228);
+}
+
 input.search_input {
     border: none;
     outline: none;

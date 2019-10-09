@@ -11,8 +11,9 @@
 {% load spurl %}
 
 {% block csscontent %}
-    <link rel="stylesheet" href="{% static "css/lightpick.css" %}" xmlns:v-on="http://www.w3.org/1999/xhtml"
-          xmlns:v-on="http://www.w3.org/1999/xhtml">
+    <link rel="stylesheet" href="{% static "css/lightpick.css" %}"
+          xmlns:v-on="http://www.w3.org/1999/xhtml"
+          xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/html">
     <link rel="stylesheet" href="{% static "css/bootstrap-slider.min.css" %}">
     <link rel="stylesheet" href="{% static "css/custom.css" %}">
     <link rel="stylesheet" href="{% static "css/results.css" %}">
@@ -28,8 +29,10 @@
     </section>
     <section class="search-bar-section bg-white border-bottom">
         <div class="sidebar__inner">
-            <div class="container content-holder wide-container" style="padding-bottom: 10px;padding-top: 5px;">
-                <div class="search_content_box" style="padding-top: 10px;padding-bottom: 10px;">
+            <div class="container content-holder wide-container"
+                 style="padding-bottom: 10px;padding-top: 5px;">
+                <div class="search_content_box"
+                     style="padding-top: 10px;padding-bottom: 10px;">
                     {% csrf_token %}
                     <div class="row sidebar__inner">
                         <div class="container wide-container">
@@ -37,43 +40,55 @@
                                 <div class="row">
                                     <div class="col-12 mt-2 col-md-auto search-column-dropdown">
                                         <img src="{% static "images/icons/arrows_rotating.png" %}">
-                                        <input type="text" class="drop_down_btn" readonly data-toggle="dropdown"
+                                        <input type="text" class="drop_down_btn"
+                                               readonly data-toggle="dropdown"
                                                aria-haspopup="true"
-                                               aria-expanded="false" name="destinationType" id="destinationType"
+                                               aria-expanded="false"
+                                               name="destinationType"
+                                               id="destinationType"
                                                v-model="form.destinationType"/>
 
                                         <div class="dropdown-menu">
-                                            <a class="dropdown-item drop_down_btn_item" @click="selectDestType(1)">
+                                            <a class="dropdown-item drop_down_btn_item"
+                                               @click="selectDestType(1)">
                                                 Return
                                             </a>
                                             <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item drop_down_btn_item" @click="selectDestType(2)">One
+                                            <a class="dropdown-item drop_down_btn_item"
+                                               @click="selectDestType(2)">One
                                                 way</a>
                                         </div>
                                     </div>
                                     <div class="col-12 mt-2 col-md-auto search-column-dropdown">
                                         <img src="{% static "images/icons/man_user.png" %}">
-                                        <input type="text" class="drop_down_btn" readonly data-toggle="modal"
+                                        <input type="text" class="drop_down_btn"
+                                               readonly data-toggle="modal"
                                                data-target="#passengersModal"
-                                               value="Passengers" name="noOfPassengers" id="noOfPassengers"
+                                               value="Passengers" name="noOfPassengers"
+                                               id="noOfPassengers"
                                                v-model="form.noOfPassengers"/>
                                     </div>
                                     <div class="col-12 mt-2 col-md-auto search-column-dropdown">
                                         <img src="{% static "images/icons/dollar.png" %}">
-                                        <input type="text" class="drop_down_btn" readonly data-toggle="dropdown"
-                                               aria-haspopup="true" aria-expanded="false" name="seatType" id="seatType"
+                                        <input type="text" class="drop_down_btn"
+                                               readonly data-toggle="dropdown"
+                                               aria-haspopup="true"
+                                               aria-expanded="false" name="seatType"
+                                               id="seatType"
                                                v-model="form.seatType"/>
                                         <div class="dropdown-menu">
                                             <a class="dropdown-item drop_down_btn_item"
                                                @click="selectSeatType(1)">Economy</a>
                                             <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item drop_down_btn_item" @click="selectSeatType(2)">Premium
+                                            <a class="dropdown-item drop_down_btn_item"
+                                               @click="selectSeatType(2)">Premium
                                                 Economy</a>
                                             <div class="dropdown-divider"></div>
                                             <a class="dropdown-item drop_down_btn_item"
                                                @click="selectSeatType(3)">Business</a>
                                             <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item drop_down_btn_item" @click="selectSeatType(4)">First
+                                            <a class="dropdown-item drop_down_btn_item"
+                                               @click="selectSeatType(4)">First
                                                 Class</a>
                                         </div>
                                     </div>
@@ -81,22 +96,29 @@
                                 <div class="row mt-4">
                                     <div class="col-sm-12 flexed-search-bar pl-0">
                                         <div class="flexed-search-item">
-                                            <label class="search_label" @click="openPlaceModal(1)">
+                                            <label class="search_label"
+                                                   @click="openPlaceModal(1)">
                                                 <h6>Departure
                                                     City :
-                                                    <input type="text" class="search_input" readonly name="placesFrom"
+                                                    <input type="text"
+                                                           class="search_input" readonly
+                                                           name="placesFrom"
                                                            id="placesFrom"
                                                            value="{{ request.session.search_query.fly_from }}"/>
                                                 </h6>
                                             </label>
-                                            <img class="icon_repeat" src="{% static "images/repeat.svg" %}"
+                                            <img class="icon_repeat"
+                                                 src="{% static "images/repeat.svg" %}"
                                                  @click="swapPlaces">
                                         </div>
                                         <div class="flexed-search-item">
-                                            <label class="search_label" @click="openPlaceModal(2)">
+                                            <label class="search_label"
+                                                   @click="openPlaceModal(2)">
                                                 <h6>
                                                     Arrival City :
-                                                    <input type="text" class="search_input" readonly name="placesTo"
+                                                    <input type="text"
+                                                           class="search_input" readonly
+                                                           name="placesTo"
                                                            id="placesTo"
                                                            value="{{ request.session.search_query.fly_to }}"/>
                                                 </h6>
@@ -106,7 +128,8 @@
                                             <label class="search_label">
                                                 <h6>Departure
                                                     Date :
-                                                    <input type="text" name="dep_date" id="departure_date"
+                                                    <input type="text" name="dep_date"
+                                                           id="departure_date"
                                                            class="search_input"
                                                            value="{{ request.session.search_query.date_from }}">
                                                 </h6>
@@ -114,9 +137,11 @@
                                         </div>
                                         <div class="flexed-search-item">
                                             <label class="search_label">
-                                                <h6 style="font-family: karla; font-weight:bold; opacity: .5;">Return
+                                                <h6 style="font-family: karla; font-weight:bold; opacity: .5;">
+                                                    Return
                                                     Date :
-                                                    <input type="text" name="ret_date" id="return_date"
+                                                    <input type="text" name="ret_date"
+                                                           id="return_date"
                                                            class="search_input"
                                                            value="{{ request.session.search_query.return_from }}">
                                                 </h6>
@@ -140,13 +165,15 @@
                             <div class="divider-30 d-block d-md-none"></div>
                             <div class="form-check-inline">
                                 <label class="form-check-label">
-                                    <input type="radio" class="form-check-input mr-2" name="stop" value="">Any
+                                    <input type="radio" class="form-check-input mr-2"
+                                           name="stop" value="">Any
                                 </label>
                             </div>
                             <div class="divider-15 d-block d-md-none"></div>
                             <div class="form-check-inline">
                                 <label class="form-check-label">
-                                    <input type="radio" class="form-check-input mr-2" name="stop" value="0" checked>Nonestop
+                                    <input type="radio" class="form-check-input mr-2"
+                                           name="stop" value="0" checked>Nonestop
                                     (Direct
                                     Flights)
                                 </label>
@@ -154,13 +181,15 @@
                             <div class="divider-15 d-block d-md-none"></div>
                             <div class="form-check-inline">
                                 <label class="form-check-label">
-                                    <input type="radio" class="form-check-input mr-2" name="stop" value="1">1 Stop
+                                    <input type="radio" class="form-check-input mr-2"
+                                           name="stop" value="1">1 Stop
                                 </label>
                             </div>
                             <div class="divider-15 d-block d-md-none"></div>
                             <div class="form-check-inline">
                                 <label class="form-check-label">
-                                    <input type="radio" class="form-check-input mr-2" name="stop" value="2">2+ Stops
+                                    <input type="radio" class="form-check-input mr-2"
+                                           name="stop" value="2">2+ Stops
                                 </label>
                             </div>
                             <div class="divider-30 d-block d-md-none"></div>
@@ -168,7 +197,8 @@
                             <br class="d-block d-md-none">
                             <div class="divider-30 d-block d-md-none"></div>
                             <div class="slider-red slider-holder d-inline-block mr-4">
-                                <input id="stopover" type="text" value="" class="form-control">
+                                <input id="stopover" type="text" value=""
+                                       class="form-control">
                             </div>
                             <label class="stopover mr-2">2 - 24 hours</label>
 
@@ -180,7 +210,8 @@
                     <div class="modal-dialog" role="document">
                         <div class="modal-content" style="top: 5%;">
                             <div class="modal-header">
-                                <h6 class="modal-title" id="passengersModalLabel">Passengers</h6>
+                                <h6 class="modal-title" id="passengersModalLabel">
+                                    Passengers</h6>
                             </div>
                             <div class="modal-body">
                 <span style="padding: 0 2%">
@@ -191,13 +222,15 @@
                           Adults
                         </div>
                         <div class="col-sm">
-                          <input type="button" class="increment" value="-" @click="decrement(1)"
+                          <input type="button" class="increment" value="-"
+                                 @click="decrement(1)"
                                  id="valAdultsDecrement"/>
 
                               <input type="text" readonly
                                      style="padding: 1% 2%; width: 15%; border: none; text-align: center"
                                      v-model="form.valAdults" id="valAdults"/>
-                           <input type="button" class="increment" id="valAdultsIncrement" value="+"
+                           <input type="button" class="increment"
+                                  id="valAdultsIncrement" value="+"
                                   @click="increment(1)"/>
                         </div>
                       </div>
@@ -210,13 +243,15 @@
                           Children
                         </div>
                         <div class="col-sm">
-                          <input type="button" class="increment" value="-" @click="decrement(2)"
+                          <input type="button" class="increment" value="-"
+                                 @click="decrement(2)"
                                  id="valChildrenDecrement"/>
 
                               <input type="text" readonly
                                      style="padding: 1% 2%; width: 15%; border: none; text-align: center"
                                      v-model="form.valChildren" id="valChildren"/>
-                           <input type="button" class="increment" value="+" @click="increment(2)"
+                           <input type="button" class="increment" value="+"
+                                  @click="increment(2)"
                                   id="valChildrenIncrement"/>
                         </div>
                       </div>
@@ -228,24 +263,28 @@
                           Infants
                         </div>
                         <div class="col-sm">
-                          <input type="button" class="increment" value="-" @click="decrement(3)"
+                          <input type="button" class="increment" value="-"
+                                 @click="decrement(3)"
                                  id="valInfantsDecrement"/>
 
                               <input type="text" readonly
                                      style="padding: 1% 2%; width: 15%; border: none; text-align: center"
                                      v-model="form.valInfants" id="valInfants"/>
-                          <input type="button" class="increment" value="+" @click="increment(3)"
+                          <input type="button" class="increment" value="+"
+                                 @click="increment(3)"
                                  id="valInfantsIncrement"/>
                         </div>
                       </div>
                     </div>
                 </span>
-            </div>
+                            </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn" style="width: 50%; background: aliceblue;"
+                                <button type="button" class="btn"
+                                        style="width: 50%; background: aliceblue;"
                                         data-dismiss="modal">Close
                                 </button>
-                                <button type="button" class="btn" style="width: 50%; background: #00B7FF;color: #fff"
+                                <button type="button" class="btn"
+                                        style="width: 50%; background: #00B7FF;color: #fff"
                                         data-dismiss="modal">Save changes
                                 </button>
                             </div>
@@ -256,7 +295,8 @@
         </div>
     </section>
 
-    <section style="padding-bottom: 50px; background-color: #F7F9FF; padding-top: 30px; ">
+    <section
+            style="padding-bottom: 50px; background-color: #F7F9FF; padding-top: 30px; ">
         <div class="results-page">
             <div class="container results-container" id="resultsContainer">
                 <div class="row">
@@ -267,37 +307,52 @@
                                 <div class="card bg-white">
                                     <div class="card-body">
                                         <div class="card-title mb-4">
-                                            <h4 class="bold p-0 mt-0" style="font-size: 1.2rem; font-weight: 600;">
+                                            <h4 class="bold p-0 mt-0"
+                                                style="font-size: 1.2rem; font-weight: 600;">
                                                 Subscribe to
                                                 Wanderift Lite or Pro and Save</h4>
                                         </div>
-                                        <h5 class="bold m-0 mb-2" style="font-weight: 600; padding-bottom: 5px;">
+                                        <h5 class="bold m-0 mb-2"
+                                            style="font-weight: 600; padding-bottom: 5px;">
                                             Wanderift
                                             Lite</h5>
-                                        <h6 class="bold m-0 mb-2" style="padding-bottom: 10px;"><span
+                                        <h6 class="bold m-0 mb-2"
+                                            style="padding-bottom: 10px;"><span
                                                 class="text-primary"
                                                 style="color: #00B7FF;">3</span>
-                                            Flights <span class="text-primary">$369</span></h6>
-                                        <p class="" style="font-size: 14px;">- 3 Credits (3 one-way flights)</p>
-                                        <p class="" style="font-size: 14px;">- Credits Expire in 6 Months</p>
+                                            Flights <span
+                                                    class="text-primary">$369</span>
+                                        </h6>
+                                        <p class="" style="font-size: 14px;">- 3 Credits
+                                            (3 one-way flights)</p>
+                                        <p class="" style="font-size: 14px;">- Credits
+                                            Expire in 6 Months</p>
                                         <a href="{% url "how-it-works" %}">
-                                            <button class="search_btn btn-block m-0" style="font-weight: bold;">Learn
+                                            <button class="search_btn btn-block m-0"
+                                                    style="font-weight: bold;">Learn
                                                 More
                                             </button>
                                         </a>
                                         <br><br>
-                                        <h5 class="bold m-0 mb-2" style="font-weight: 600; padding-bottom: 5px;">
+                                        <h5 class="bold m-0 mb-2"
+                                            style="font-weight: 600; padding-bottom: 5px;">
                                             Wanderift
                                             Pro (Monthly Plan)</h5>
-                                        <h6 class="bold m-0 mb-2" style="padding-bottom: 10px;"><span
-                                                class="text-primary">4</span> Flights <span
-                                                class="text-primary">$459/mo</span>
+                                        <h6 class="bold m-0 mb-2"
+                                            style="padding-bottom: 10px;"><span
+                                                class="text-primary">4</span> Flights
+                                            <span
+                                                    class="text-primary">$459/mo</span>
                                         </h6>
-                                        <p class="" style="font-size: 14px;">- 4 Credits (4 one-way flights)</p>
-                                        <p class="" style="font-size: 14px;">- 2 Unused Credit Rolls over</p>
-                                        <p class="" style="font-size: 14px;">- No Long Term Commitment</p>
+                                        <p class="" style="font-size: 14px;">- 4 Credits
+                                            (4 one-way flights)</p>
+                                        <p class="" style="font-size: 14px;">- 2 Unused
+                                            Credit Rolls over</p>
+                                        <p class="" style="font-size: 14px;">- No Long
+                                            Term Commitment</p>
                                         <a href="{% url "how-it-works" %}">
-                                            <button class="search_btn btn-block m-0" style="font-weight: bold;">Learn
+                                            <button class="search_btn btn-block m-0"
+                                                    style="font-weight: bold;">Learn
                                                 More
                                             </button>
                                         </a>
@@ -307,33 +362,89 @@
                         </div>
                     </div>
                     <div class="col-md-6 search result p-3 p-md-0" id="result-list">
-                    {% include "results_center.html" %}
+                        <div class="row">
+
+                            <div class="col-md-3 search-quick-filter{% if sort == "price" %} applied{% endif %}">
+                                <a href="{% spurl base="{{ request.get_full_path }}" set_query="sort=price" %}">
+                                    <div class="search-quick-filter-filter-name">
+                                        <strong>Cheapest</strong>
+                                    </div>
+                                    <div class="search-quick-filter-filter-price-duration">
+                                        <span>${{ quick_filters_data.price.price }} - {{ quick_filters_data.price.duration | secs2hm }}</span>
+                                    </div>
+
+                                </a>
+                            </div>
+                            <div class="col-md-3 search-quick-filter{% if sort == "quality" %} applied{% endif %}">
+                                <a href="{% spurl base="{{ request.get_full_path }}" set_query="sort=quality" %}">
+                                    <div class="search-quick-filter-filter-name">
+                                        <strong>Best</strong>
+                                    </div>
+                                    <div class="search-quick-filter-filter-price-duration">
+                                        <span>${{ quick_filters_data.quality.price }} - {{ quick_filters_data.quality.duration | secs2hm }}</span>
+                                    </div>
+
+                                </a>
+                            </div>
+                            <div class="col-md-3 search-quick-filter{% if sort == "duration" %} applied{% endif %}">
+                                <a href="{% spurl base="{{ request.get_full_path }}" set_query="sort=duration" %}">
+                                    <div class="search-quick-filter-filter-name">
+                                        <strong>Quickest</strong>
+                                    </div>
+                                    <div class="search-quick-filter-filter-price-duration">
+                                        <span>${{ quick_filters_data.duration.price }} - {{ quick_filters_data.duration.duration | secs2hm }}</span>
+                                    </div>
+
+                                </a>
+                            </div>
+                            <div class="col-md-3 search-quick-filter{% if sort == "date" %} applied{% endif %}">
+                                <a href="{% spurl base="{{ request.get_full_path }}" set_query="sort=date" %}">
+                                    <div class="search-quick-filter-filter-name">
+                                        <strong>Other</strong>
+                                    </div>
+                                    <div class="search-quick-filter-filter-price-duration">
+                                        <span>${{ quick_filters_data.date.price }} - {{ quick_filters_data.date.duration | secs2hm }}</span>
+                                    </div>
+
+                                </a>
+                            </div>
+                        </div>
+                        {% include "results_center.html" %}
                     </div>
                     <!-- Filters -->
                     <div class="col-xl-3">
                         <div class="s-sidebar">
                             <div class="sticky-item">
                                 <div class="card">
-                                    <div class="card-header card-toggler bg-white cursor-pointer" data-toggle="collapse"
+                                    <div class="card-header card-toggler bg-white cursor-pointer"
+                                         data-toggle="collapse"
                                          data-target="#airlineFilter">
                                         <div class="card-title mb-0 d-flex align-items-center justify-content-between">
                                             <h5 class="mb-0 p-2">Airline</h5>
-                                            <img src="{% static "images/icons/up-arrow.png" %}" alt="Pull Up" class=""
+                                            <img src="{% static "images/icons/up-arrow.png" %}"
+                                                 alt="Pull Up" class=""
                                                  height="10">
-                                            <img src="{% static "images/icons/down-arrow.png" %}" alt="Pull down"
+                                            <img src="{% static "images/icons/down-arrow.png" %}"
+                                                 alt="Pull down"
                                                  class="d-none" height="10">
                                         </div>
                                     </div>
-                                    <div class="card-body collapse show pl-5" id="airlineFilter">
+                                    <div class="card-body collapse show pl-5"
+                                         id="airlineFilter">
                                         <ul class="p-0">
                                             {% for airline in airlines %}
                                                 <li class="pb-3">
-                                                    <input id="airline-{{ airline }}" data-code="{{ airline }}" type="checkbox"
-                                                           class="form-check-input mr-2 js-filter-airline" {% if airline in filter_params.select_airlines %}checked{% endif %}>
+                                                    <input id="airline-{{ airline }}"
+                                                           data-code="{{ airline }}"
+                                                           type="checkbox"
+                                                           class="form-check-input mr-2 js-filter-airline"
+                                                           {% if airline in filter_params.select_airlines %}checked{% endif %}>
                                                     <label for="airline-{{ airline }}">
-                                                        <img class="mr-1" src="/images/{{ airline |aircon }}.png"
+                                                        <img class="mr-1"
+                                                             src="/images/{{ airline |aircon }}.png"
                                                              style="width: 25px;"/>
-                                                        {{ airline | airlines }} Airlines
+                                                        {{ airline | airlines }}
+                                                        Airlines
                                                     </label>
                                                 </li>
                                             {% endfor %}
@@ -341,33 +452,44 @@
                                     </div>
                                 </div>
                                 <div class="card mt-3">
-                                    <div class="card-header card-toggler bg-white cursor-pointer" data-toggle="collapse"
+                                    <div class="card-header card-toggler bg-white cursor-pointer"
+                                         data-toggle="collapse"
                                          data-target="#priceFilter">
                                         <div class="card-title mb-0 d-flex align-items-center justify-content-between">
                                             <h5 class="mb-0 p-2">Price</h5>
-                                            <img src="{% static "images/icons/up-arrow.png" %}" alt="Pull Up"
+                                            <img src="{% static "images/icons/up-arrow.png" %}"
+                                                 alt="Pull Up"
                                                  class="" height="10">
-                                            <img src="{% static "images/icons/down-arrow.png" %}" alt="Pull down"
+                                            <img src="{% static "images/icons/down-arrow.png" %}"
+                                                 alt="Pull down"
                                                  class="d-none" height="10">
                                         </div>
                                     </div>
-                                    <div class="card-body collapse show" id="priceFilter">
+                                    <div class="card-body collapse show"
+                                         id="priceFilter">
                                         <div class="mt-3 pl-3">Price Range Filter</div>
-                                        <div id="filter_price_ammount" class="small mb-4 pl-3">$0 - $3000</div>
+                                        <div id="filter_price_ammount"
+                                             class="small mb-4 pl-3">$0 - $3000
+                                        </div>
                                         <div class="slider-red slider-holder pl-3">
-                                            <input id="filter_price_range" type="text" value=""
+                                            <input id="filter_price_range" type="text"
+                                                   value=""
                                                    class="form-control">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="card filter-by-time mt-3">
-                                    <div class="card-header card-toggler bg-white cursor-pointer" data-toggle="collapse"
+                                    <div class="card-header card-toggler bg-white cursor-pointer"
+                                         data-toggle="collapse"
                                          data-target="#timeFilter">
                                         <div class="card-title mb-0 d-flex justify-content-between align-items-center">
-                                            <h5 class="bold mb-0 p-2" style="font-weight: 600;">Time</h5>
-                                            <img src="{% static "images/icons/up-arrow.png" %}" alt="Pull Down"
+                                            <h5 class="bold mb-0 p-2"
+                                                style="font-weight: 600;">Time</h5>
+                                            <img src="{% static "images/icons/up-arrow.png" %}"
+                                                 alt="Pull Down"
                                                  class="d-none" height="10">
-                                            <img src="{% static "images/icons/down-arrow.png" %}" alt="Pull Up"
+                                            <img src="{% static "images/icons/down-arrow.png" %}"
+                                                 alt="Pull Up"
                                                  class="" height="10">
                                         </div>
                                     </div>
@@ -375,7 +497,9 @@
                                         <div class="card-body pr-2">
                                             <ul class="nav d-flex slider-nav">
                                                 <li class="nav-item">
-                                                    <a class="nav-link active" href="#takeoff" data-toggle="tab">Take-off</a>
+                                                    <a class="nav-link active"
+                                                       href="#takeoff"
+                                                       data-toggle="tab">Take-off</a>
                                                 </li>
                                                 <li class="nav-item">
                                                     <a class="nav-link" href="#landing"
@@ -383,39 +507,56 @@
                                                 </li>
                                             </ul>
                                             <div class="tab-content">
-                                                <div class="tab-pane active show" id="takeoff">
-                                                    <div class="mt-3">Departure City Take-off</div>
-                                                    <div id="de_city_take_off_time" class="small mb-4">0:00AM -
+                                                <div class="tab-pane active show"
+                                                     id="takeoff">
+                                                    <div class="mt-3">Departure City
+                                                        Take-off
+                                                    </div>
+                                                    <div id="de_city_take_off_time"
+                                                         class="small mb-4">0:00AM -
                                                         11:59PM
                                                     </div>
                                                     <div class="slider-red slider-holder">
-                                                        <input id="de_city_take_off" type="text" value=""
+                                                        <input id="de_city_take_off"
+                                                               type="text" value=""
                                                                class="form-control">
                                                     </div>
-                                                    <div class="mt-3">Arrival City Take-off</div>
-                                                    <div id="arr_city_take_off_time" class="small mb-4">0:00AM -
+                                                    <div class="mt-3">Arrival City
+                                                        Take-off
+                                                    </div>
+                                                    <div id="arr_city_take_off_time"
+                                                         class="small mb-4">0:00AM -
                                                         11:59PM
                                                     </div>
                                                     <div class="slider-red slider-holder">
-                                                        <input id="arr_city_take_off" type="text" value=""
+                                                        <input id="arr_city_take_off"
+                                                               type="text" value=""
                                                                class="form-control">
                                                     </div>
                                                 </div>
                                                 <div class="tab-pane" id="landing">
-                                                    <div class="mt-3">Departure City Landing</div>
-                                                    <div id="de_city_landing_time" class="small mb-4">0:00AM -
+                                                    <div class="mt-3">Departure City
+                                                        Landing
+                                                    </div>
+                                                    <div id="de_city_landing_time"
+                                                         class="small mb-4">0:00AM -
                                                         11:59PM
                                                     </div>
                                                     <div class="slider-red slider-holder">
-                                                        <input id="de_city_landing" type="text" value=""
+                                                        <input id="de_city_landing"
+                                                               type="text" value=""
                                                                class="form-control">
                                                     </div>
-                                                    <div class="mt-3">Arrival City Landing</div>
-                                                    <div id="arr_city_landing_time" class="small mb-4">0:00AM -
+                                                    <div class="mt-3">Arrival City
+                                                        Landing
+                                                    </div>
+                                                    <div id="arr_city_landing_time"
+                                                         class="small mb-4">0:00AM -
                                                         11:59PM
                                                     </div>
                                                     <div class="slider-red slider-holder">
-                                                        <input id="arr_city_landing" type="text" value=""
+                                                        <input id="arr_city_landing"
+                                                               type="text" value=""
                                                                class="form-control">
                                                     </div>
                                                 </div>
@@ -424,33 +565,42 @@
                                     </div>
                                 </div>
                                 <div class="card mt-3">
-                                    <div class="card-header card-toggler bg-white cursor-pointer" data-toggle="collapse"
+                                    <div class="card-header card-toggler bg-white cursor-pointer"
+                                         data-toggle="collapse"
                                          data-target="#stopsFilter">
                                         <div class="card-title mb-0 d-flex align-items-center justify-content-between">
                                             <h5 class="mb-0 p-2">Stops</h5>
-                                            <img src="{% static "images/icons/up-arrow.png" %}" alt="Pull Down"
+                                            <img src="{% static "images/icons/up-arrow.png" %}"
+                                                 alt="Pull Down"
                                                  class="d-none" height="10">
-                                            <img src="{% static "images/icons/down-arrow.png" %}" alt="Pull Up"
+                                            <img src="{% static "images/icons/down-arrow.png" %}"
+                                                 alt="Pull Up"
                                                  class="" height="10">
                                         </div>
                                     </div>
                                     <div class="card-body collapse" id="stopsFilter">
                                         <div class="custom-control custom-radio mt-2">
-                                            <input type="radio" id="filterNoStop" name="customRadio"
+                                            <input type="radio" id="filterNoStop"
+                                                   name="customRadio"
                                                    class="custom-control-input">
-                                            <label class="custom-control-label" for="filterNoStop">No stops (direct
+                                            <label class="custom-control-label"
+                                                   for="filterNoStop">No stops (direct
                                                 flight)</label>
                                         </div>
                                         <div class="custom-control custom-radio mt-2">
-                                            <input type="radio" id="filterStop1" name="customRadio"
+                                            <input type="radio" id="filterStop1"
+                                                   name="customRadio"
                                                    class="custom-control-input">
-                                            <label class="custom-control-label" for="filterStop1">Up to 1
+                                            <label class="custom-control-label"
+                                                   for="filterStop1">Up to 1
                                                 stop</label>
                                         </div>
                                         <div class="custom-control custom-radio mt-2">
-                                            <input type="radio" id="filterStop2" name="customRadio"
+                                            <input type="radio" id="filterStop2"
+                                                   name="customRadio"
                                                    class="custom-control-input">
-                                            <label class="custom-control-label" for="filterStop2">Up to 2
+                                            <label class="custom-control-label"
+                                                   for="filterStop2">Up to 2
                                                 stops</label>
                                         </div>
                                     </div>
@@ -467,8 +617,10 @@
                             <div class="modal-content" style="top: 160px;">
                                 <div class="modal-body">
                                     <div class="row pop2_first">
-                                        <div class="col-12" style="text-align:left; margin-bottom: 2%"><p
-                                                id="placesModalTitle"></p>
+                                        <div class="col-12"
+                                             style="text-align:left; margin-bottom: 2%">
+                                            <p
+                                                    id="placesModalTitle"></p>
                                         </div>
                                         <div class="col-12" style="text-align:right">
                                             <!--  <p style="color:#8092a9; cursor: pointer;"  @click="clearList"><i
@@ -479,16 +631,20 @@
                                             <div>
                                                 <div style="border: 1px solid #00B7FF; border-radius: 5px; padding: 2%">
                                                     <div class="search_selected_values">
-                                                        <button class="sel_place_btn" style="margin: 2%"
+                                                        <button class="sel_place_btn"
+                                                                style="margin: 2%"
                                                                 id="mySelectedPlace">
-                                                            <i class="fa fa-times-circle" style="margin-right:5px"
+                                                            <i class="fa fa-times-circle"
+                                                               style="margin-right:5px"
                                                                @click="clearPlaceItem(index)"></i>
 
                                                         </button>
                                                     </div>
 
-                                                    <div class="pop2_hor_line" style="margin:10px 0px"></div>
-                                                    <input class="pop2_input" type="text" v-model="city"
+                                                    <div class="pop2_hor_line"
+                                                         style="margin:10px 0px"></div>
+                                                    <input class="pop2_input"
+                                                           type="text" v-model="city"
                                                            v-on:keyup="cityHandler"
 
                                                            placeholder="Add new locations..."/>
@@ -498,15 +654,19 @@
                                                     <li v-for="(place, index) of searchResultPlaces">
                                                         <button class="btn search_result_list_item"
                                                                 @click="setPlace(place.nameCity,place.codeIataCity,index)">
-                                                            <i class="fa fa-building" style="padding-right: 2%"></i>
-                                                            <i class="fa fa-plane" style="padding-right: 2%"
+                                                            <i class="fa fa-building"
+                                                               style="padding-right: 2%"></i>
+                                                            <i class="fa fa-plane"
+                                                               style="padding-right: 2%"
                                                                :hidden="true"></i>
                                                             {( place.nameCity )}
                                                         </button>
                                                         <button class="btn search_result_list_item"
                                                                 @click="setPlace(place.nameCity,place.codeIataCity,index)">
-                                                            <i class="fa fa-plane" style="padding-right: 2%"></i>
-                                                            {( place.airport.nameAirport )}
+                                                            <i class="fa fa-plane"
+                                                               style="padding-right: 2%"></i>
+                                                            {( place.airport.nameAirport
+                                                            )}
                                                         </button>
                                                     </li>
                                                 </ol>
@@ -517,8 +677,12 @@
                                 </div>
 
                                 <div class="modal-footer">
-                                    <button class="pop2_footer_left" data-dismiss="modal">Cancel</button>
-                                    <button class="pop2_footer_right" @click="choosePlaces">Choose</button>
+                                    <button class="pop2_footer_left"
+                                            data-dismiss="modal">Cancel
+                                    </button>
+                                    <button class="pop2_footer_right"
+                                            @click="choosePlaces">Choose
+                                    </button>
                                 </div>
                             </div>
                         </div>

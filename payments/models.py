@@ -13,6 +13,9 @@ class Payments(models.Model):
     status = models.CharField(max_length=10, blank=True)
     plan_id = models.CharField(max_length=70, blank=True)
 
+    class Meta:
+        verbose_name_plural = 'Payments'
+
 
 class Plans(models.Model):
     plan_id = models.CharField(max_length=70, blank=True, unique=True)
@@ -21,3 +24,9 @@ class Plans(models.Model):
     currency = models.CharField(max_length=10, blank=True)
     name = models.CharField(max_length=20, blank=True)
     product = models.CharField(max_length=70, blank=True)
+
+    class Meta:
+        verbose_name_plural = 'Plans'
+
+    def __str__(self):
+        return self.name

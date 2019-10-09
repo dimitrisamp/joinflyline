@@ -131,8 +131,8 @@ const app = new Vue({
             formData.append("city_from", app.form.placeFrom);
             formData.append("city_to", app.form.placesTo);
             formData.append("dep_date", app.form.departure_date);
-            formData.append("ret_date", app.form.return_date);
             formData.append("type", app.form.destinationTypeId);
+            formData.append("ret_date", app.form.return_date);
             formData.append("adults", app.form.valAdults);
             formData.append("infants", app.form.valInfants);
             formData.append("children", app.form.valChildren);
@@ -205,18 +205,25 @@ const app = new Vue({
         },
 
         selectDestType: (type) => {
+            let returnDateInput = document.getElementById('return_date');
             switch (type) {
                 case 1:
                     app.form.destinationTypeId = 'round';
                     app.form.destinationType = 'Return';
+                    returnDateInput.removeAttribute("disabled");
+                    returnDateInput.closest('label.search_label').classList.remove("disabled");
                     return;
                 case 2:
                     app.form.destinationTypeId = 'oneway';
                     app.form.destinationType = 'One way';
+                    document.getElementById('return_date').setAttribute("disabled", "disabled");
+                    returnDateInput.closest('label.search_label').classList.add("disabled");
                     return;
                 default:
                     app.form.destinationTypeId = 'round';
                     app.form.destinationType = 'round';
+                    document.getElementById('return_date').removeAttribute("disabled");
+                    returnDateInput.closest('label.search_label').classList.remove("disabled");
                     return;
             }
         },
