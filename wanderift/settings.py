@@ -10,6 +10,9 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 #
+import dotenv
+dotenv.load_dotenv()
+
 import os
 
 from django.contrib.messages import constants as messages
@@ -17,6 +20,8 @@ from django.contrib.messages import constants as messages
 from .envconf.dev import *
 import sentry_sdk
 from sentry_sdk.integrations.django import DjangoIntegration
+
+STAGE = os.getenv("STAGE", "production")
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -195,7 +200,8 @@ RECEIVE_PHONE = "+18105131533"
 KIWI_API_KEY = "4TMnq4G90OPMYDAGVHzlP9LQo2hvzzdc"
 STRIPE_API_KEY = "sk_test_H2ypPKiLEc14JVbd6OpDIWQv00gPMSrkj1"
 
-sentry_sdk.init(
-    dsn="https://a875b98b313142d8afd40797b84f235e@sentry.io/1773547",
-    integrations=[DjangoIntegration()]
-)
+if STAGE == "production":
+    sentry_sdk.init(
+        dsn="https://a875b98b313142d8afd40797b84f235e@sentry.io/1773547",
+        integrations=[DjangoIntegration()]
+    )

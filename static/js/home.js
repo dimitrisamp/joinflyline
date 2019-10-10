@@ -175,6 +175,7 @@ const app = new Vue({
             app.form.stopOverFrom = stopOverFrom + ":" + "00";
             app.form.stopOverTo = stopOverTo + ":" + "00";
         },
+
         search: () => {
             let formData = new FormData;
             app.form.departure_date = document.getElementById('departure_date').value;
@@ -278,6 +279,7 @@ const app = new Vue({
                     return;
             }
         },
+
         selectSeatType: (type) => {
             if (seatTypes.hasOwnProperty(type)) {
                 app.form.seatType = type;
@@ -428,7 +430,6 @@ const app = new Vue({
                 app.form.noOfPassengers = app.valPassengers + ' Passengers'
             }
         },
-
         openPlaceModal: function (option) {
 
             app.selectionOption = option;
