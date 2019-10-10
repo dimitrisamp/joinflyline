@@ -69,11 +69,13 @@
         <div class="dropdown-wrapper"
              id="dropdown-wrapper-from"
              v-cloak
-             v-show="form.city_from && cityFromSearchProgress">
+             v-show="cityFromSearchProgress">
             <h4 class="dropdown-wrapper-error badge badge-warning"
-                v-if="searchResultPlacesFrom.length === 0 && !cityFromRequestProgress"
-            >"We couldn't find a location that matched
-                your input. Why not try again ?"</h4>
+                v-if="searchResultPlacesFrom.length === 0 && !cityFromRequestProgress">
+                We couldn't find a location that matched your input.</h4>
+            <h4 class="dropdown-wrapper-loading badge"
+                v-if="searchResultPlacesFrom.length === 0 && cityFromRequestProgress">
+                Loading...</h4>
             <ol v-if="searchResultPlacesFrom.length > 0" class="search_result_list">
                 <li v-for="(place, index) of searchResultPlacesFrom">
                     <button class="btn search_result_list_item"
@@ -113,6 +115,9 @@
             <p v-if="searchResultPlacesTo.length === 0 && !cityToRequestProgress"
                class="dropdown-wrapper-error badge badge-warning">"We couldn't find a
                 location that matched your input. Why not try again ?"</p>
+            <h4 class="dropdown-wrapper-loading badge"
+                v-if="searchResultPlacesFrom.length === 0 && cityToRequestProgress">
+                Loading...</h4>
             <ol v-if="searchResultPlacesTo.length > 0"
                 class="search_result_list">
                 <li v-for="(place, index) of searchResultPlacesTo">

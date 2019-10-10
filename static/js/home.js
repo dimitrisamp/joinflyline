@@ -7,15 +7,15 @@ const seatTypes = {
 
 $('.dropdown-wrapper-to').css("left", $($('.flexed-search-item')[1]).position().left);
 
-function debounce (fn, delay, ...rest) {
-  let timeoutID = null;
-  return function () {
-    clearTimeout(timeoutID);
-    let that = this;
-    timeoutID = setTimeout(function () {
-      fn.apply(that, rest)
-    }, delay)
-  }
+function debounce(fn, delay, ...rest) {
+    let timeoutID = null;
+    return function () {
+        clearTimeout(timeoutID);
+        let that = this;
+        timeoutID = setTimeout(function () {
+            fn.apply(that, rest)
+        }, delay)
+    }
 }
 
 const app = new Vue({
@@ -50,15 +50,51 @@ const app = new Vue({
         }
     },
     methods: {
+        locationSearch: (term) => {
+            return new Promise((resolve) => {
+                let url = new URL('https://kiwicom-prod.apigee.net/locations/query');
+                url.search = new URLSearchParams({
+                    term,
+                    locale: 'en-US',
+                    location_types: 'city',
+                });
+                fetch(url, {
+                    method: 'GET',
+                    headers: {
+                        apikey: 'xklKtpJ5fxZnk4rsDepqOzLUaYYAO9dI'
+                    },
+                    credentials: 'same-origin'
+                }).then(
+                    response => response.json()
+                ).then(
+                    data => resolve(data)
+                );
+            });
+        },
         fromCityHandler: debounce(function () {
-            if(app.form.city_from === null || app.form.city_from === "" || app.form.city_from.length < 3){
+            if (app.form.city_from === null || app.form.city_from === "" || app.form.city_from.length < 3) {
                 app.cityFromSearchProgress = false;
                 return;
             }
             app.selectionOption = 1;
             app.cityFromSearchProgress = true;
+            app.cityFromRequestProgress = true;
+            app.locationSearch(app.form.city_from
+            ).then(
+                (data) => {
 
-            $.ajax({url: 'https://aviation-edge.com/v2/public/autocomplete?key=140940-4e6372&city=' + app.form.city_from,
+                }
+            ).catch(
+                () => {
+                    console.log('Error')
+                }
+            ).finally(
+                () => {
+                    app.cityFromRequestProgress = false;
+                }
+            );
+            $.ajax({
+                url: 'https://aviation-edge.com/v2/public/autocomplete?key=140940-4e6372&city=' + app.form.city_from,
                 beforeSend: () => {
                     app.cityFromRequestProgress = true;
                 },
@@ -82,14 +118,14 @@ const app = new Vue({
                 complete: () => {
                     app.cityFromRequestProgress = false;
                 },
-                error: function (e){
+                error: function (e) {
                     console.error(e.message);
                 }
 
             });
         }, 500),
         toCityHandler: debounce(function () {
-            if(app.form.city_to === null || app.form.city_to === "" || app.form.city_to.length < 3){
+            if (app.form.city_to === null || app.form.city_to === "" || app.form.city_to.length < 3) {
                 app.cityToSearchProgress = false;
                 return;
             }
@@ -186,7 +222,9 @@ const app = new Vue({
             formData.append("city_to", app.form.city_to);
             formData.append("dep_date", app.form.departure_date);
             formData.append("type", app.form.destinationTypeId);
-            formData.append("ret_date", app.form.return_date);
+            if (app.form.destinationTypeId === "round") {
+                formData.append("ret_date", app.form.return_date);
+            }
             formData.append("adults", app.form.valAdults);
             formData.append("infants", app.form.valInfants);
             formData.append("children", app.form.valChildren);
