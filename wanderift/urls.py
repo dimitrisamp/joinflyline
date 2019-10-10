@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.contrib.staticfiles.urls import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.urls import path, include
+from django.views.generic import TemplateView
 
 from booking.views import (
     retail_booking_view,
@@ -28,7 +29,7 @@ from booking.views import (
 from emails.views import booking_success
 from home.views import index_view, home_view, SignInView, SignUpView
 from results.views import results_view
-from wanderift import settings
+from django.conf import settings
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -63,3 +64,6 @@ urlpatterns = [
 
 urlpatterns += staticfiles_urlpatterns()
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+
+from wanderift.errors import handler500

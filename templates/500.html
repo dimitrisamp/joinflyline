@@ -1,0 +1,23 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Error Page</title>
+	<link rel="stylesheet" type="text/css" href="{% static "css/error_page.css" %}">
+    <link href="http://fonts.googleapis.com/css?family=Karla:400,700,400italic,700italic" rel="stylesheet">
+</head>
+<body>
+	<div class="error_content">
+		<div class="error_logo">
+			<img src="{% static "images/error_logo.png" %}">
+		</div>
+		<div>
+			<p style="margin-bottom: 20px;" class="error_txt">Oops. There seems to be an issue. Our team is currently working to fix this. Check back in a bit, and it should all set!</p>
+		</div>
+		<div>
+			<button class="btn" style="margin-top: 40px;">Back</button>
+		</div>
+	</div>
+
+</body>
+</html>

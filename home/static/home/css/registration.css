@@ -1,0 +1,87 @@
+body{
+	background: #f7f9ff;
+	font-family: 'Karla', sans-serif;
+}
+.navbar-navigation{
+	border: none;
+	background: transparent;
+	padding-top: 10px;
+}
+.navbar-links li a{
+	color: #19191a !important;
+    font-size: 15px;
+    font-weight: bold;
+}
+.navbar-links li{
+	margin-right: 20px;
+}
+.nav-btn .btn{
+	background: #00b7ff;
+    border-color: #00b7ff;
+    color: #fff !important;
+    padding: 5px 34px;
+    border-radius: 3px;
+    position: relative;
+    top: 11px;
+}
+.formBg{
+	background: #fff;
+	padding: 10px 50px;
+	border: 1px solid #ccc;
+    padding-bottom: 40px;
+    margin-top: 100px;
+}
+.formBg h3{
+	text-align: center;
+	font-weight: 600;
+}
+.formBg p{
+    text-align: center;
+    margin: 17px 0;
+    font-weight: bolder;
+    font-size: 12px;
+    color: #333333c4;
+}
+.formBg .form-group label{
+	font-size: 11px;
+}
+.formBg .form-group input{
+	padding: 19px 0;
+    border-color: #ccc;
+    border-radius: 3px;
+}
+.formBg .submit-btn{
+	background: #00b7ff;
+    width: 100%;
+    color: #eaeaea;
+    padding: 10px 0;
+    border-color: #00b7ff;
+    border-radius: 0px;
+    font-weight: bold;
+    font-size: 15px;
+    letter-spacing: 1px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.already-txt{
+	text-align: center;
+	margin-top: 0 !important;
+	font-size: 9px !important;
+}
+.already-txt a{
+	color: #333;
+}
+.forgot-link{
+    font-size: 11px;
+    color: #3333339e;
+    font-weight: bold;
+}
+
+@media(min-width: 320px) and (max-width: 480px){
+.formBg{
+    margin-top:10px;
+    margin-bottom: 20px;
+}
+
+
+}
