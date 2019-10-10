@@ -31,18 +31,10 @@ const app = new Vue({
         cityFromSearchProgress: false,
         cityToRequestProgress: false,
         cityToSearchProgress: false,
-        cityFrom: '',
-        cityTo: '',
-        city: '',
         valPassengers: 1,
         searchParameter: '',
         searchQuery: {},
         seatTypeName: "Economy",
-        place: {
-            airport: {
-                nameAirport: ""
-            }
-        },
         form: {
             destinationType: "Return",
             noOfPassengers: "Passengers",
@@ -59,23 +51,23 @@ const app = new Vue({
     },
     methods: {
         fromCityHandler: debounce(function () {
-            if(app.cityFrom === null || app.cityFrom === "" || app.cityFrom.length < 3){
+            if(app.form.city_from === null || app.form.city_from === "" || app.form.city_from.length < 3){
                 app.cityFromSearchProgress = false;
                 return;
             }
             app.selectionOption = 1;
             app.cityFromSearchProgress = true;
 
-            $.ajax({url: 'https://aviation-edge.com/v2/public/autocomplete?key=140940-4e6372&city=' + app.cityFrom,
+            $.ajax({url: 'https://aviation-edge.com/v2/public/autocomplete?key=140940-4e6372&city=' + app.form.city_from,
                 beforeSend: () => {
                     app.cityFromRequestProgress = true;
                 },
                 success: function (data) {
                     try {
                         if (data) {
-                            let allData = data;
-                            let cityData = JSON.parse(data).cities;
-                            let airportData = JSON.parse(data).airportsByCities;
+                            let allData = JSON.parse(data);
+                            let cityData = allData.cities;
+                            let airportData = allData.airportsByCities;
 
                             cityData.forEach(city => {
                                 city.airport = airportData.pop()
@@ -97,7 +89,7 @@ const app = new Vue({
             });
         }, 500),
         toCityHandler: debounce(function () {
-            if(app.cityTo === null || app.cityTo === "" || app.cityTo.length < 3){
+            if(app.form.city_to === null || app.form.city_to === "" || app.form.city_to.length < 3){
                 app.cityToSearchProgress = false;
                 return;
             }
@@ -106,16 +98,16 @@ const app = new Vue({
             app.selectionOption = 2;
 
             $.ajax({
-                url: 'https://aviation-edge.com/v2/public/autocomplete?key=140940-4e6372&city=' + app.cityTo,
+                url: 'https://aviation-edge.com/v2/public/autocomplete?key=140940-4e6372&city=' + app.form.city_to,
                 beforeSend: () => {
                     app.cityToRequestProgress = true;
                 },
                 success: function (data) {
                     try {
                         if (data) {
-                            let allData = data;
-                            let cityData = JSON.parse(data).cities;
-                            let airportData = JSON.parse(data).airportsByCities;
+                            let allData = JSON.parse(data);
+                            let cityData = allData.cities;
+                            let airportData = allData.airportsByCities;
 
                             cityData.forEach(city => {
                                 city.airport = airportData.pop()
@@ -137,24 +129,6 @@ const app = new Vue({
                 }
             });
         }, 500),
-        cityHandler: function () {
-            $.ajax({
-                url: 'https://aviation-edge.com/v2/public/autocomplete?key=140940-4e6372&city=' + app.cityFrom,
-                success: function (data) {
-                    if (data) {
-                        let allData = data;
-                        let cityData = JSON.parse(data).cities;
-                        let airportData = JSON.parse(data).airportsByCities;
-
-                        cityData.forEach(city => {
-                            city.airport = airportData.pop()
-                        });
-                        app.searchResultPlaces = cityData;   
-                        // app.searchLocation = document.getElementById("addLocation").value
-                    }
-                }
-            });
-        },
         clearList: function () {
             document.getElementById('mySelectedPlace').style.display = 'block';
         },
@@ -227,17 +201,9 @@ const app = new Vue({
         },
 
         swapPlaces: () => {
-
-            let placeFrom = document.getElementById('placesFrom').value;
-            let placeTo = document.getElementById('placesTo').value;
-
-            let placeFromId = document.getElementById('placesFrom').placeholder;
-            let placeToId = document.getElementById('placesTo').placeholder;
-
-            document.getElementById('placesTo').value = placeFrom;
-            document.getElementById('placesFrom').value = placeTo;
-            document.getElementById('placesTo').placeholder = placeFromId;
-            document.getElementById('placesFrom').placeholder = placeToId;
+            let city_from = app.form.city_from;
+            app.form.city_from = app.form.city_to;
+            app.form.city_to = city_from;
         },
 
         setPlace: function (placeName, codeIataCity, index) {
@@ -327,13 +293,13 @@ const app = new Vue({
         },
 
         chooseFromPlace: function (placeName, codeIataCity, index) {
-            app.cityFrom = placeName;
-            app.form.placeFrom = codeIataCity;
+            app.form.city_from = placeName;
+            //app.form.placeFrom = codeIataCity;
             app.cityFromSearchProgress = false;
         },
         chooseToPlace: function (placeName, codeIataCity, index) {
-            app.cityTo = placeName;
-            app.form.placeTo = codeIataCity;
+            app.form.city_to = placeName;
+            //app.form.placeTo = codeIataCity;
             app.cityToSearchProgress = false;
         },
 
@@ -430,45 +396,5 @@ const app = new Vue({
                 app.form.noOfPassengers = app.valPassengers + ' Passengers'
             }
         },
-        openPlaceModal: function (option) {
-
-            app.selectionOption = option;
-
-            // app.city = app.searchLocation;
-
-            let placeFrom = document.getElementById('placesFrom').value;
-
-            let placeTo = document.getElementById('placesTo').value;
-
-            app.city = placeFrom;
-
-            switch (app.selectionOption) {
-                case 1:
-                    document.getElementById('placesModalTitle').innerText = "Search and Select Departure City";
-                    if (placeFrom == null || placeFrom === '') {
-                        document.getElementById('mySelectedPlace').style.display = 'none';
-                    } else {
-                        document.getElementById('mySelectedPlace').style.display = 'block'
-                        document.getElementById('mySelectedPlace').innerText = placeFrom;
-                    }
-
-                    // document.getElementById('addLocation').innerText = app.searchLocation;
-                    // document.getElementById('addLocation').value = app.searchLocation;
-
-                    $('#placesModal').modal('show');                    
-                    return;
-                case 2:
-                    document.getElementById('placesModalTitle').innerText = "Search and Select Arrival City";
-                    if (placeTo == null || placeTo === '') {
-                        document.getElementById('mySelectedPlace').style.display = 'none';
-                    } else {
-                        document.getElementById('mySelectedPlace').style.display = 'block';
-                        document.getElementById('mySelectedPlace').innerText = placeTo;
-                    }
-                    $('#placesModal').modal('show');
-                    return;
-            }
-
-        }
     }
 });

@@ -492,87 +492,9 @@
                             </div>
                         </div>
                     </div>
-
-                    <!-- Modal -->
-                    <div class="modal fade" id="placesModal" tabindex="-1" role="dialog"
-                         aria-labelledby="placesModalCenterTitle"
-                         aria-hidden="true">
-                        <div class="modal-dialog " role="document">
-                            <div class="modal-content" style="top: 160px;">
-                                <div class="modal-body">
-                                    <div class="row pop2_first">
-                                        <div class="col-12"
-                                             style="text-align:left; margin-bottom: 2%">
-                                            <p
-                                                    id="placesModalTitle"></p>
-                                        </div>
-                                        <div class="col-12" style="text-align:right">
-                                            <!--  <p style="color:#8092a9; cursor: pointer;"  @click="clearList"><i
-                                                  class="fa fa-times" style="margin-left:5px"></i></p>--></div>
-                                    </div>
-                                    <div class="row pop2_second">
-                                        <div class="col-12">
-                                            <div>
-                                                <div style="border: 1px solid #00B7FF; border-radius: 5px; padding: 2%">
-                                                    <div class="search_selected_values">
-                                                        <button class="sel_place_btn"
-                                                                style="margin: 2%"
-                                                                id="mySelectedPlace">
-                                                            <i class="fa fa-times-circle"
-                                                               style="margin-right:5px"
-                                                               @click="clearPlaceItem(index)"></i>
-
-                                                        </button>
-                                                    </div>
-
-                                                    <div class="pop2_hor_line"
-                                                         style="margin:10px 0px"></div>
-                                                    <input class="pop2_input"
-                                                           type="text" v-model="city"
-                                                           v-on:keyup="cityHandler"
-
-                                                           placeholder="Add new locations..."/>
-                                                </div>
-
-                                                <ol class="search_result_list">
-                                                    <li v-for="(place, index) of searchResultPlaces">
-                                                        <button class="btn search_result_list_item"
-                                                                @click="setPlace(place.nameCity,place.codeIataCity,index)">
-                                                            <i class="fa fa-building"
-                                                               style="padding-right: 2%"></i>
-                                                            <i class="fa fa-plane"
-                                                               style="padding-right: 2%"
-                                                               :hidden="true"></i>
-                                                            {( place.nameCity )}
-                                                        </button>
-                                                        <button class="btn search_result_list_item"
-                                                                @click="setPlace(place.nameCity,place.codeIataCity,index)">
-                                                            <i class="fa fa-plane"
-                                                               style="padding-right: 2%"></i>
-                                                            {( place.airport.nameAirport
-                                                            )}
-                                                        </button>
-                                                    </li>
-                                                </ol>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="modal-footer">
-                                    <button class="pop2_footer_left"
-                                            data-dismiss="modal">Cancel
-                                    </button>
-                                    <button class="pop2_footer_right"
-                                            @click="choosePlaces">Choose
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
+        </div>
     </section>
     <div id="mobileIndicator" style="padding-bottom: 100px;"></div>
     <section>
