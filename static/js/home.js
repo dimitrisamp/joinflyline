@@ -7,14 +7,13 @@ window.locVal = "";
 
 $('.dropdown-wrapper-to').css("left", $($('.flexed-search-item')[1]).position().left);
 
-function debounce (fn, delay) {
+function debounce (fn, delay, ...rest) {
   let timeoutID = null;
   return function () {
     clearTimeout(timeoutID);
-    let args = arguments;
     let that = this;
     timeoutID = setTimeout(function () {
-      fn.apply(that, args)
+      fn.apply(that, rest)
     }, delay)
   }
 }
