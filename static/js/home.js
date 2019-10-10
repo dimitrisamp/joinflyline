@@ -29,8 +29,10 @@ const app = new Vue({
         searchLocation: '',
         seatType: 'Economy',
         noOfPassengers: 'Passengers',
-        cityFromProgress: false,
-        cityToProgress: false,
+        cityFromRequestProgress: false,
+        cityFromSearchProgress: false,
+        cityToRequestProgress: false,
+        cityToSearchProgress: false,
         cityFrom: '',
         cityTo: '',
         city: '',
@@ -50,14 +52,16 @@ const app = new Vue({
     methods: {
         fromCityHandler: debounce(function () {
             if(app.cityFrom === null || app.cityFrom === "" || app.cityFrom.length < 3){
-                app.cityFromProgress = false;
+                app.cityFromSearchProgress = false;
                 return;
             }
-            app.cityFromProgress = true;
-            app.cityToProgress = false;
             app.selectionOption = 1;
+            app.cityFromSearchProgress = true;
 
             $.ajax({url: 'https://aviation-edge.com/v2/public/autocomplete?key=140940-4e6372&city=' + app.cityFrom,
+                beforeSend: () => {
+                    app.cityFromRequestProgress = true;
+                },
                 success: function (data) {
                     try {
                         if (data) {
@@ -75,6 +79,9 @@ const app = new Vue({
                         console.error(e.message);
                     }
                 },
+                complete: () => {
+                    app.cityFromRequestProgress = false;
+                },
                 error: function (e){
                     console.error(e.message);
                 }
@@ -83,16 +90,18 @@ const app = new Vue({
         }, 500),
         toCityHandler: debounce(function () {
             if(app.cityTo === null || app.cityTo === "" || app.cityTo.length < 3){
-                app.cityToProgress = false;
+                app.cityToSearchProgress = false;
                 return;
             }
             $('#dropdown-wrapper-to').css("left", $($('.flexed-search-item')[1]).position().left);
-            app.cityToProgress = true;
-            app.cityFromProgress = false;
+            app.cityToSearchProgress = true;
             app.selectionOption = 2;
 
             $.ajax({
                 url: 'https://aviation-edge.com/v2/public/autocomplete?key=140940-4e6372&city=' + app.cityTo,
+                beforeSend: () => {
+                    app.cityToRequestProgress = true;
+                },
                 success: function (data) {
                     try {
                         if (data) {
@@ -111,6 +120,9 @@ const app = new Vue({
                         console.error(e.message);
                     }
 
+                },
+                complete: () => {
+                    app.cityToRequestProgress = false;
                 },
                 error: function (e) {
                     console.error(e.message);
@@ -327,12 +339,12 @@ const app = new Vue({
         chooseFromPlace: function (placeName, codeIataCity, index) {
             app.cityFrom = placeName;
             app.form.placeFrom = codeIataCity;
-            app.cityFromProgress = false;
+            app.cityFromSearchProgress = false;
         },
         chooseToPlace: function (placeName, codeIataCity, index) {
             app.cityTo = placeName;
             app.form.placeTo = codeIataCity;
-            app.cityToProgress = false;
+            app.cityToSearchProgress = false;
         },
 
         increment: function (index) {

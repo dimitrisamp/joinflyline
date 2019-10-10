@@ -107,9 +107,9 @@
                                     <div class="dropdown-wrapper"
                                          id="dropdown-wrapper-from"
                                          v-cloak
-                                         v-show="cityFrom && cityFromProgress">
+                                         v-show="cityFrom && cityFromSearchProgress">
                                         <h4 class="dropdown-wrapper-error badge badge-warning"
-                                            v-if="searchResultPlacesFrom.length == 0"
+                                            v-if="searchResultPlacesFrom.length === 0 && !cityFromRequestProgress"
                                         >"We couldn't find a location that matched
                                             your input. Why not try again ?"</h4>
                                         <ol v-if="searchResultPlacesFrom.length > 0" class="search_result_list">
@@ -146,9 +146,9 @@
                                     <div class="dropdown-wrapper"
                                          id="dropdown-wrapper-to"
                                          v-cloak
-                                         v-show="cityTo && cityToProgress"
+                                         v-show="cityTo && cityToSearchProgress"
                                     >
-                                        <p v-if="searchResultPlacesTo.length == 0"
+                                        <p v-if="searchResultPlacesTo.length === 0 && !cityToRequestProgress"
                                            class="dropdown-wrapper-error badge badge-warning">"We couldn't find a location that matched your input. Why not try again ?"</p>
                                         <ol v-if="searchResultPlacesTo.length > 0"
                                             class="search_result_list">
