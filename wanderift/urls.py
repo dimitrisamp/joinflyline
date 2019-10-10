@@ -26,7 +26,7 @@ from booking.views import (
     CheckPromoView,
 )
 from emails.views import booking_success
-from home.views import index_view, home_view
+from home.views import index_view, home_view, SignInView, SignUpView
 from results.views import results_view
 from wanderift import settings
 
@@ -57,6 +57,8 @@ urlpatterns = [
     path("subscriptions/", include("subscriptions.urls")),
     # payments
     path("pay/", include("payments.urls")),
+    path("sign-in/", SignInView.as_view(), name="sign-in"),
+    path("sign-up/", SignUpView.as_view(), name="sign-up"),
 ]
 
 urlpatterns += staticfiles_urlpatterns()

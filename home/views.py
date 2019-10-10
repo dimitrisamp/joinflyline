@@ -1,5 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
+from django.views.generic import TemplateView
 
 
 def index_view(request):
@@ -17,3 +18,11 @@ def home_view(request):
         "title": "Wanderift | Search, Book, Save with Wanderift",
     }
     return render(request, "home/home.html", context)
+
+
+class SignInView(TemplateView):
+    template_name = "home/sign-in.html"
+
+
+class SignUpView(TemplateView):
+    template_name = "home/sign-up.html"
