@@ -1,4 +1,21 @@
 $(document).ready(function () {
+    let searchQuery = Object.fromEntries(new URLSearchParams(window.location.search));
+    app.selectSeatType(searchQuery.selected_cabins);
+    app.selectDestType(searchQuery.type);
+    const adults = parseInt(searchQuery.adults) | 1;
+    const children = parseInt(searchQuery.children) | 0;
+    const infants = parseInt(searchQuery.infants) | 0;
+    app.valPassengers = adults + children + infants;
+    app.form.valAdults = adults;
+    app.form.valChildren = children;
+    app.form.valInfants = infants;
+    app.form.departure_date = searchQuery.dep_date;
+    app.form.arrival_date = searchQuery.ret_date;
+    app.form.city_from = searchQuery.city_from;
+    app.form.city_to = searchQuery.city_to;
+});
+
+$(document).ready(function () {
     var Stopover = new Slider("input#stopover", {
         min: 2,
         max: 24,

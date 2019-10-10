@@ -1,9 +1,9 @@
-$(document).ready(function () {
-    let searchQuery = JSON.parse(sessionStorage.getItem("searchQuery"));
-    app.searchQuery = searchQuery;
-});
-
-window.locVal = "";
+const seatTypes = {
+    'M': 'Economy',
+    'W': 'Premium Economy',
+    'C': 'Business',
+    'F': 'First Class'
+};
 
 const app = new Vue({
     el: '#app',
@@ -11,20 +11,29 @@ const app = new Vue({
     data: {
         searchResultPlaces: [],
         searchLocation: '',
-        seatType: 'Economy',
         noOfPassengers: 'Passengers',
         city: '',
         valPassengers: 1,
         searchParameter: '',
         searchQuery: {},
+        seatTypeName: "Economy",
+        place: {
+            airport: {
+                nameAirport: ""
+            }
+        },
         form: {
             destinationType: "Return",
             noOfPassengers: "Passengers",
             destinationTypeId: 'round',
-            seatType: 'Economy',
+            seatType: 'M',
             valAdults: 1,
             valChildren: 0,
-            valInfants: 0
+            valInfants: 0,
+            departure_date: "",
+            arrival_date: "",
+            city_from: "",
+            city_to: ""
         }
     },
     methods: {
@@ -37,10 +46,10 @@ const app = new Vue({
                         let cityData = JSON.parse(data).cities;
                         let airportData = JSON.parse(data).airportsByCities;
 
-                        cityData.forEach(city =>{
+                        cityData.forEach(city => {
                             city.airport = airportData.pop()
                         });
-                        app.searchResultPlaces = cityData;   
+                        app.searchResultPlaces = cityData;
                         // app.searchLocation = document.getElementById("addLocation").value                  
 
                     }
@@ -67,7 +76,6 @@ const app = new Vue({
             app.form.stopOverFrom = stopOverFrom + ":" + "00";
             app.form.stopOverTo = stopOverTo + ":" + "00";
         },
-
         search: () => {
             let formData = new FormData;
             app.form.departure_date = document.getElementById('departure_date').value;
@@ -100,14 +108,15 @@ const app = new Vue({
             }
 
 
-            formData.append("city_from", app.form.placeFrom);
-            formData.append("city_to", app.form.placesTo);
+            formData.append("city_from", app.form.city_from);
+            formData.append("city_to", app.form.city_to);
             formData.append("dep_date", app.form.departure_date);
             formData.append("type", app.form.destinationTypeId);
             formData.append("ret_date", app.form.return_date);
             formData.append("adults", app.form.valAdults);
             formData.append("infants", app.form.valInfants);
             formData.append("children", app.form.valChildren);
+            formData.append("selected_cabins", app.form.seatType);
             if (app.form.stop) formData.append("max_stopovers", app.form.stop);
             if (app.form.stopOverFrom) formData.append("stopover_from", app.form.stopOverFrom);
             if (app.form.stopOverTo) formData.append("stopover_to", app.form.stopOverTo);
@@ -137,28 +146,26 @@ const app = new Vue({
             document.getElementById('mySelectedPlace').innerText = placeName;
             document.getElementById('mySelectedPlace').placeholder = codeIataCity;
             document.getElementById('mySelectedPlace').style.display = 'block';
-            
+
             switch (app.selectionOption) {
                 case 1:
-                    document.getElementById('placesFrom').value = placeName;
-                    app.form.placeFrom = document.getElementById('mySelectedPlace').placeholder;
+                    app.form.city_from = document.getElementById('mySelectedPlace').placeholder;
                     break;
                 case 2:
-                    document.getElementById('placesTo').value = placeName;
-                    app.form.placeTo = document.getElementById('mySelectedPlace').placeholder;
+                    app.form.city_to = document.getElementById('mySelectedPlace').placeholder;
             }
         },
 
         selectDestType: (type) => {
             let returnDateInput = document.getElementById('return_date');
             switch (type) {
-                case 1:
+                case "round":
                     app.form.destinationTypeId = 'round';
                     app.form.destinationType = 'Return';
                     returnDateInput.removeAttribute("disabled");
                     returnDateInput.closest('label.search_label').classList.remove("disabled");
                     return;
-                case 2:
+                case "oneway":
                     app.form.destinationTypeId = 'oneway';
                     app.form.destinationType = 'One way';
                     document.getElementById('return_date').setAttribute("disabled", "disabled");
@@ -166,32 +173,20 @@ const app = new Vue({
                     return;
                 default:
                     app.form.destinationTypeId = 'round';
-                    app.form.destinationType = 'round';
+                    app.form.destinationType = 'Return';
                     document.getElementById('return_date').removeAttribute("disabled");
                     returnDateInput.closest('label.search_label').classList.remove("disabled");
                     return;
             }
         },
-
         selectSeatType: (type) => {
+            if (seatTypes.hasOwnProperty(type)) {
+                app.form.seatType = type;
 
-            switch (type) {
-                case 1:
-                    document.getElementById('seatType').value = 'Economy';
-                    return;
-                case 2:
-                    document.getElementById('seatType').value = 'Premium Economy';
-                    return;
-                case 3:
-                    document.getElementById('seatType').value = 'Business';
-                    return;
-                case 4:
-                    document.getElementById('seatType').value = 'First Class';
-                    return;
-                default:
-                    document.getElementById('seatType').value = 'Economy';
-                    return;
+            } else {
+                app.form.seatType = 'M';
             }
+            app.seatTypeName = seatTypes[type];
         },
         choosePlaces: function () {
             let place = document.getElementById('mySelectedPlace').innerText;
@@ -201,12 +196,12 @@ const app = new Vue({
             switch (app.selectionOption) {
                 case 1:
                     document.getElementById('placesFrom').value = place;
-                    app.form.placeFrom = placeId;
+                    app.form.city_from = placeId;
                     $('#placesModal').modal('hide');
                     return;
                 case 2:
                     document.getElementById('placesTo').value = place;
-                    app.form.placesTo = placeId;
+                    app.form.city_to = placeId;
                     $('#placesModal').modal('hide');
                     return;
             }
@@ -331,7 +326,7 @@ const app = new Vue({
                     // document.getElementById('addLocation').innerText = app.searchLocation;
                     // document.getElementById('addLocation').value = app.searchLocation;
 
-                    $('#placesModal').modal('show');                    
+                    $('#placesModal').modal('show');
                     return;
                 case 2:
                     document.getElementById('placesModalTitle').innerText = "Search and Select Arrival City";

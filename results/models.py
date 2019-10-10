@@ -19,6 +19,7 @@ class SearchDetails(models.Model):
     max_stopovers = models.IntegerField(null=True, blank=True)
     stopover_from = models.CharField(max_length=20, null=True, blank=True)
     stopover_to = models.CharField(max_length=20, null=True, blank=True)
+    selected_cabins = models.CharField(max_length=20, default='M')
 
     def __str__(self):
         return SearchDetails.fly_from
