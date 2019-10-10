@@ -1,0 +1,16 @@
+version: "3"
+volumes:
+  local_postgres_data: {}
+
+services:
+  postgres:
+    container_name: wanderift_postgres
+    build:
+      context: .
+      dockerfile: ./compose/postgres/Dockerfile
+    image: wanderift_postgres
+    ports:
+      - ${POSTGRES_PORT}:5432
+    env_file: .env
+    volumes:
+      - local_postgres_data:/var/lib/postgresql/data

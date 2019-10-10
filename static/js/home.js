@@ -200,7 +200,7 @@ const app = new Vue({
 
 
             formData.append("city_from", app.form.placeFrom);
-            formData.append("city_to", app.form.placesTo);
+            formData.append("city_to", app.form.placeTo);
             formData.append("dep_date", app.form.departure_date);
             formData.append("type", app.form.destinationTypeId);
             formData.append("ret_date", app.form.return_date);

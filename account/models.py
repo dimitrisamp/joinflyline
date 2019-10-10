@@ -26,7 +26,7 @@ class Profile(models.Model):
     market = models.CharField(max_length=30, blank=True)
     gender = models.CharField(max_length=10, blank=True)
     phone_number = models.CharField(max_length=20, blank=True)
-    dob = models.CharField(max_length=10, blank=True)
+    dob = models.DateField(blank=True, null=True)
     customer_id = models.CharField(max_length=70, blank=True)
 
 
