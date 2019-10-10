@@ -13,6 +13,8 @@ $(document).ready(function () {
     app.form.arrival_date = searchQuery.ret_date;
     app.form.city_from = searchQuery.city_from;
     app.form.city_to = searchQuery.city_to;
+    app.form.placeFrom = searchQuery.placeFrom;
+    app.form.placeTo = searchQuery.placeTo;
 });
 
 $(document).ready(function () {

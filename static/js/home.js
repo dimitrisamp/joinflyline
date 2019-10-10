@@ -46,7 +46,9 @@ const app = new Vue({
             departure_date: "",
             arrival_date: "",
             city_from: "",
-            city_to: ""
+            city_to: "",
+            placeFrom: "",
+            placeTo: "",
         }
     },
     methods: {
@@ -82,7 +84,7 @@ const app = new Vue({
             app.locationSearch(app.form.city_from
             ).then(
                 (data) => {
-
+                    app.searchResultPlacesFrom = data.locations;
                 }
             ).catch(
                 () => {
@@ -93,36 +95,6 @@ const app = new Vue({
                     app.cityFromRequestProgress = false;
                 }
             );
-            $.ajax({
-                url: 'https://aviation-edge.com/v2/public/autocomplete?key=140940-4e6372&city=' + app.form.city_from,
-                beforeSend: () => {
-                    app.cityFromRequestProgress = true;
-                },
-                success: function (data) {
-                    try {
-                        if (data) {
-                            let allData = JSON.parse(data);
-                            let cityData = allData.cities;
-                            let airportData = allData.airportsByCities;
-
-                            cityData.forEach(city => {
-                                city.airport = airportData.pop()
-                            });
-                            app.searchResultPlacesFrom = cityData;
-                            // app.searchLocation = document.getElementById("addLocation").value
-                        }
-                    } catch (e) {
-                        console.error(e.message);
-                    }
-                },
-                complete: () => {
-                    app.cityFromRequestProgress = false;
-                },
-                error: function (e) {
-                    console.error(e.message);
-                }
-
-            });
         }, 500),
         toCityHandler: debounce(function () {
             if (app.form.city_to === null || app.form.city_to === "" || app.form.city_to.length < 3) {
@@ -132,38 +104,21 @@ const app = new Vue({
             $('#dropdown-wrapper-to').css("left", $($('.flexed-search-item')[1]).position().left);
             app.cityToSearchProgress = true;
             app.selectionOption = 2;
-
-            $.ajax({
-                url: 'https://aviation-edge.com/v2/public/autocomplete?key=140940-4e6372&city=' + app.form.city_to,
-                beforeSend: () => {
-                    app.cityToRequestProgress = true;
-                },
-                success: function (data) {
-                    try {
-                        if (data) {
-                            let allData = JSON.parse(data);
-                            let cityData = allData.cities;
-                            let airportData = allData.airportsByCities;
-
-                            cityData.forEach(city => {
-                                city.airport = airportData.pop()
-                            });
-                            app.searchResultPlacesTo = cityData;
-                            // app.searchLocation = document.getElementById("addLocation").value
-
-                        }
-                    } catch (e) {
-                        console.error(e.message);
-                    }
-
-                },
-                complete: () => {
-                    app.cityToRequestProgress = false;
-                },
-                error: function (e) {
-                    console.error(e.message);
+            app.cityToRequestProgress = true;
+            app.locationSearch(app.form.city_to
+            ).then(
+                (data) => {
+                    app.searchResultPlacesTo = data.locations;
                 }
-            });
+            ).catch(
+                () => {
+                    console.log('Error')
+                }
+            ).finally(
+                () => {
+                    app.cityToRequestProgress = false;
+                }
+            );
         }, 500),
         clearList: function () {
             document.getElementById('mySelectedPlace').style.display = 'block';
@@ -220,6 +175,8 @@ const app = new Vue({
 
             formData.append("city_from", app.form.city_from);
             formData.append("city_to", app.form.city_to);
+            formData.append("placeFrom", app.form.placeFrom);
+            formData.append("placeTo", app.form.placeTo);
             formData.append("dep_date", app.form.departure_date);
             formData.append("type", app.form.destinationTypeId);
             if (app.form.destinationTypeId === "round") {
@@ -332,12 +289,12 @@ const app = new Vue({
 
         chooseFromPlace: function (placeName, codeIataCity, index) {
             app.form.city_from = placeName;
-            //app.form.placeFrom = codeIataCity;
+            app.form.placeFrom = codeIataCity;
             app.cityFromSearchProgress = false;
         },
         chooseToPlace: function (placeName, codeIataCity, index) {
             app.form.city_to = placeName;
-            //app.form.placeTo = codeIataCity;
+            app.form.placeTo = codeIataCity;
             app.cityToSearchProgress = false;
         },
 

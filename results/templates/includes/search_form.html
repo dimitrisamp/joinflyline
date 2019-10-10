@@ -79,16 +79,14 @@
             <ol v-if="searchResultPlacesFrom.length > 0" class="search_result_list">
                 <li v-for="(place, index) of searchResultPlacesFrom">
                     <button class="btn search_result_list_item"
-                            @click="chooseFromPlace(place.nameCity,place.codeIataCity,index)">
+                            @click="chooseFromPlace(place.name,place.code,index)">
                         <i class="fa fa-building" style="padding-right: 2%"></i>
-                        <i class="fa fa-plane" style="padding-right: 2%"
-                           :hidden="true"></i>
-                        {( place.nameCity )}
+                        {( place.name )} {( place.subdivision?place.subdivision.name:"" )} {( place.country.code )}
                     </button>
                     <button class="btn search_result_list_item"
-                            @click="chooseFromPlace(place.nameCity,place.codeIataCity,index)">
+                            @click="chooseFromPlace(place.name,place.code,index)">
                         <i class="fa fa-plane" style="padding-right: 2%"></i>
-                        {#                                                    {( place.airport.nameAirport )}#}
+                        {( place.code)}
                     </button>
                 </li>
             </ol>
@@ -122,16 +120,14 @@
                 class="search_result_list">
                 <li v-for="(place, index) of searchResultPlacesTo">
                     <button class="btn search_result_list_item"
-                            @click="chooseToPlace(place.nameCity,place.codeIataCity,index)">
+                            @click="chooseToPlace(place.name,place.code,index)">
                         <i class="fa fa-building" style="padding-right: 2%"></i>
-                        <i class="fa fa-plane" style="padding-right: 2%"
-                           :hidden="true"></i>
-                        {( place.nameCity )}
+                       {( place.name )} {( place.subdivision?place.subdivision.name:"" )} {( place.country.code )}
                     </button>
                     <button class="btn search_result_list_item"
-                            @click="chooseToPlace(place.nameCity,place.codeIataCity,index)">
+                            @click="chooseToPlace(place.name,place.code,index)">
                         <i class="fa fa-plane" style="padding-right: 2%"></i>
-                        {#                                                    {( place.airport.nameAirport )}#}
+                        {( place.code )}
                     </button>
                 </li>
             </ol>

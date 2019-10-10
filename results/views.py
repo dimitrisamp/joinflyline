@@ -68,8 +68,8 @@ def get_quick_filters_data(flights):
 
 def results_view(request):
     search_params = {
-        "fly_from": request.GET["city_from"],
-        "fly_to": request.GET["city_to"],
+        "fly_from": request.GET["placeFrom"],
+        "fly_to": request.GET["placeTo"],
         "date_from": request.GET["dep_date"],
         "date_to": request.GET["dep_date"],
         "return_from": request.GET["ret_date"],
