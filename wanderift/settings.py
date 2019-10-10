@@ -14,7 +14,7 @@ import os
 
 from django.contrib.messages import constants as messages
 
-from .envconf.prod import *
+from .envconf.dev import *
 import sentry_sdk
 from sentry_sdk.integrations.django import DjangoIntegration
 
