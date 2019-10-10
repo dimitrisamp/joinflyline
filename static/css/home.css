@@ -250,6 +250,7 @@ img.img_content {
     .flexed-search-item .search_btn {
         width: 100%;
     }
+
 }
 p.sec_two_subhead {
     font-family: Karla;
@@ -448,4 +449,29 @@ button.pop2_footer_right {
 .slider-nav li a.active {
     background-color: #00B7FF;
     color: white;
+}
+
+
+.dropdown-wrapper {
+    position: absolute;
+    border: solid 1px #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    z-index: 1000;
+    min-width: 120px;
+    top: 50px;
+}
+
+.dropdown-wrapper-error {
+    padding: 15px;
+    border-radius: 5px;
+    margin: 0;
+}
+
+[v-cloak] { display:none; }
+
+@media screen and (max-width: 992px) {
+    .dropdown-wrapper {
+        min-width: 100%;
+    }
 }
