@@ -57,18 +57,19 @@ def get_quick_filters_data(flights):
         }
         for f in flights
     ]
-    return {
-        "price": min(data, key=lambda x: x["price"]),
-        "duration": min(data, key=lambda x: x["duration"]),
-        "quality": min(data, key=lambda x: x["quality"]),
-        "date": min(data, key=lambda x: x["date"]),
-    }
+    if data:
+        return {
+            "price": min(data, key=lambda x: x["price"]),
+            "duration": min(data, key=lambda x: x["duration"]),
+            "quality": min(data, key=lambda x: x["quality"]),
+            "date": min(data, key=lambda x: x["date"]),
+        }
 
 
 def results_view(request):
     search_params = {
-        "fly_from": request.GET["city_from"],
-        "fly_to": request.GET["city_to"],
+        "fly_from": request.GET["placeFrom"],
+        "fly_to": request.GET["placeTo"],
         "date_from": request.GET["dep_date"],
         "date_to": request.GET["dep_date"],
         "return_from": request.GET["ret_date"],
@@ -77,6 +78,7 @@ def results_view(request):
         "adults": request.GET["adults"],
         "children": request.GET["children"],
         "infants": request.GET["infants"],
+        "selected_cabins": request.GET["selected_cabins"],
     }
     sort = request.GET.get("sort")
     if sort:
@@ -88,8 +90,6 @@ def results_view(request):
 
     limit = int(request.GET.get("limit", 20))
     search_query = {"limit": limit, "apikey": S.KIWI_API_KEY, "curr": "USD"}
-    request.session["search_query"] = search_params
-
     filter_params = {k: request.GET.get(k) for k in FILTER_KEYS if k in request.GET}
     search_item = SearchDetails.objects.create(user_id=request.user.id, **search_params)
     data = {}

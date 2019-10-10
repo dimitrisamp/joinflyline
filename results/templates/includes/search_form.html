@@ -1,0 +1,165 @@
+{% load static %}
+<div class="row">
+    <div class="col-12 mt-2 col-md-auto search-column-dropdown">
+        <img src="{% static "images/icons/arrows_rotating.png" %}">
+        <input type="text" class="drop_down_btn" readonly data-toggle="dropdown"
+               aria-haspopup="true"
+               aria-expanded="false" name="destinationType" id="destinationType"
+               v-model="form.destinationType"/>
+
+        <div class="dropdown-menu">
+            <a class="dropdown-item drop_down_btn_item"
+               @click="selectDestType('round')">
+                Return
+            </a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item drop_down_btn_item"
+               @click="selectDestType('oneway')">One
+                way</a>
+        </div>
+    </div>
+    <div class="col-12 mt-2 col-md-auto search-column-dropdown">
+        <img src="{% static "images/icons/man_user.png" %}">
+        <input type="text" class="drop_down_btn" readonly data-toggle="modal"
+               data-target="#passengersModal"
+               value="Passengers" name="noOfPassengers" id="noOfPassengers"
+               v-model="form.noOfPassengers"/>
+    </div>
+    <div class="col-12 mt-2 col-md-auto search-column-dropdown">
+        <img src="{% static "images/icons/dollar.png" %}">
+        <input type="text" class="drop_down_btn" readonly data-toggle="dropdown"
+               aria-haspopup="true" aria-expanded="false" name="seatTypeName"
+               id="seatTypeName"
+               v-model="seatTypeName"/>
+        <div class="dropdown-menu">
+            <a class="dropdown-item drop_down_btn_item"
+               @click="selectSeatType('M')">Economy</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item drop_down_btn_item" @click="selectSeatType('W')">Premium
+                Economy</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item drop_down_btn_item"
+               @click="selectSeatType('C')">Business</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item drop_down_btn_item" @click="selectSeatType('F')">First
+                Class</a>
+        </div>
+    </div>
+</div>
+<div class="row mt-4">
+    <div class="col-sm-12 flexed-search-bar pl-0">
+        <div class="flexed-search-item">
+            <label class="search_label"
+            >
+                <h6>Departure City :
+                    <input type="text"
+                           autocomplete="off"
+                           class="search_input"
+                           v-model="form.city_from"
+                           v-on:input="fromCityHandler"
+                           name="placesFrom"
+                           id="placesFrom"/>
+                </h6>
+            </label>
+
+
+            <img class="icon_repeat" src="{% static "images/repeat.svg" %}"
+                 @click="swapPlaces">
+        </div>
+        <div class="dropdown-wrapper"
+             id="dropdown-wrapper-from"
+             v-cloak
+             v-show="cityFromSearchProgress">
+            <h4 class="dropdown-wrapper-error badge badge-warning"
+                v-if="searchResultPlacesFrom.length === 0 && !cityFromRequestProgress">
+                We couldn't find a location that matched your input.</h4>
+            <h4 class="dropdown-wrapper-loading badge"
+                v-if="searchResultPlacesFrom.length === 0 && cityFromRequestProgress">
+                Loading...</h4>
+            <ol v-if="searchResultPlacesFrom.length > 0" class="search_result_list">
+                <li v-for="(place, index) of searchResultPlacesFrom">
+                    <button class="btn search_result_list_item"
+                            @click="chooseFromPlace(place.name,place.code,index)">
+                        <i class="fa fa-building" style="padding-right: 2%"></i>
+                        {( place.name )} {( place.subdivision?place.subdivision.name:"" )} {( place.country.code )}
+                    </button>
+                    <button class="btn search_result_list_item"
+                            @click="chooseFromPlace(place.name,place.code,index)">
+                        <i class="fa fa-plane" style="padding-right: 2%"></i>
+                        {( place.code)}
+                    </button>
+                </li>
+            </ol>
+        </div>
+        <div class="flexed-search-item">
+            <label class="search_label">
+                <h6>
+                    Arrival City :
+                    <input type="text"
+                           autocomplete="off"
+                           class="search_input"
+                           v-model="form.city_to"
+                           v-on:input="toCityHandler"
+                           name="placesTo"
+                           id="placesTo"/>
+                </h6>
+            </label>
+        </div>
+        <div class="dropdown-wrapper"
+             id="dropdown-wrapper-to"
+             v-cloak
+             v-show="form.city_to && cityToSearchProgress"
+        >
+            <p v-if="searchResultPlacesTo.length === 0 && !cityToRequestProgress"
+               class="dropdown-wrapper-error badge badge-warning">"We couldn't find a
+                location that matched your input. Why not try again ?"</p>
+            <h4 class="dropdown-wrapper-loading badge"
+                v-if="searchResultPlacesFrom.length === 0 && cityToRequestProgress">
+                Loading...</h4>
+            <ol v-if="searchResultPlacesTo.length > 0"
+                class="search_result_list">
+                <li v-for="(place, index) of searchResultPlacesTo">
+                    <button class="btn search_result_list_item"
+                            @click="chooseToPlace(place.name,place.code,index)">
+                        <i class="fa fa-building" style="padding-right: 2%"></i>
+                       {( place.name )} {( place.subdivision?place.subdivision.name:"" )} {( place.country.code )}
+                    </button>
+                    <button class="btn search_result_list_item"
+                            @click="chooseToPlace(place.name,place.code,index)">
+                        <i class="fa fa-plane" style="padding-right: 2%"></i>
+                        {( place.code )}
+                    </button>
+                </li>
+            </ol>
+        </div>
+        <div class="flexed-search-item">
+            <label class="search_label">
+                <h6>Departure Date :
+                    <input type="text"
+                           name="dep_date"
+                           id="departure_date"
+                           autocomplete="off"
+                           v-model="form.departure_date"
+                           class="search_input">
+                </h6>
+            </label>
+        </div>
+        <div class="flexed-search-item">
+            <label class="search_label">
+                <h6>Return Date :
+                    <input type="text"
+                           name="ret_date"
+                           id="return_date"
+                           autocomplete="off"
+                           v-model="form.arrival_date"
+                           class="search_input">
+                </h6>
+            </label>
+        </div>
+        <div class="flexed-search-item">
+            <button class="search_btn"
+                    @click="search">SEARCH
+            </button>
+        </div>
+    </div>
+</div>

@@ -41,163 +41,7 @@
                                     </div>
                                 </div>
                             {% endif %}
-                            <div class="row">
-                                <div class="col-12 mt-2 col-md-auto search-column-dropdown">
-                                    <img src="{% static "images/icons/arrows_rotating.png" %}">
-                                    <input type="text" class="drop_down_btn" readonly data-toggle="dropdown"
-                                           aria-haspopup="true"
-                                           aria-expanded="false" name="destinationType" id="destinationType"
-                                           v-model="form.destinationType"/>
-
-                                    <div class="dropdown-menu">
-                                        <a class="dropdown-item drop_down_btn_item" @click="selectDestType(1)">
-                                            Return
-                                        </a>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item drop_down_btn_item" @click="selectDestType(2)">One
-                                            way</a>
-                                    </div>
-                                </div>
-                                <div class="col-12 mt-2 col-md-auto search-column-dropdown">
-                                    <img src="{% static "images/icons/man_user.png" %}">
-                                    <input type="text" class="drop_down_btn" readonly data-toggle="modal"
-                                           data-target="#passengersModal"
-                                           value="Passengers" name="noOfPassengers" id="noOfPassengers"
-                                           v-model="form.noOfPassengers"/>
-                                </div>
-                                <div class="col-12 mt-2 col-md-auto search-column-dropdown">
-                                    <img src="{% static "images/icons/dollar.png" %}">
-                                    <input type="text" class="drop_down_btn" readonly data-toggle="dropdown"
-                                           aria-haspopup="true" aria-expanded="false" name="seatType" id="seatType"
-                                           v-model="form.seatType"/>
-                                    <div class="dropdown-menu">
-                                        <a class="dropdown-item drop_down_btn_item"
-                                           @click="selectSeatType(1)">Economy</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item drop_down_btn_item" @click="selectSeatType(2)">Premium
-                                            Economy</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item drop_down_btn_item"
-                                           @click="selectSeatType(3)">Business</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item drop_down_btn_item" @click="selectSeatType(4)">First
-                                            Class</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row mt-4">
-                                <div class="col-sm-12 flexed-search-bar pl-0">
-                                    <div class="flexed-search-item">
-                                        <label class="search_label"
-                                               >
-                                            <h6>Departure City :
-                                                <input type="text"
-                                                       autocomplete="off"
-                                                       class="search_input"
-                                                       v-model="cityFrom"
-                                                       v-on:input="fromCityHandler"
-                                                       name="placesFrom"
-                                                       id="placesFrom"/>
-                                            </h6>
-                                        </label>
-
-
-                                        <img class="icon_repeat" src="{% static "images/repeat.svg" %}"
-                                             @click="swapPlaces">
-                                    </div>
-                                    <div class="dropdown-wrapper"
-                                         id="dropdown-wrapper-from"
-                                         v-cloak
-                                         v-show="cityFrom && cityFromSearchProgress">
-                                        <h4 class="dropdown-wrapper-error badge badge-warning"
-                                            v-if="searchResultPlacesFrom.length === 0 && !cityFromRequestProgress"
-                                        >"We couldn't find a location that matched
-                                            your input. Why not try again ?"</h4>
-                                        <ol v-if="searchResultPlacesFrom.length > 0" class="search_result_list">
-                                            <li v-for="(place, index) of searchResultPlacesFrom">
-                                                <button class="btn search_result_list_item"
-                                                        @click="chooseFromPlace(place.nameCity,place.codeIataCity,index)">
-                                                    <i class="fa fa-building" style="padding-right: 2%"></i>
-                                                    <i class="fa fa-plane" style="padding-right: 2%"
-                                                       :hidden="true"></i>
-                                                    {( place.nameCity )}
-                                                </button>
-                                                <button class="btn search_result_list_item"
-                                                        @click="chooseFromPlace(place.nameCity,place.codeIataCity,index)">
-                                                    <i class="fa fa-plane" style="padding-right: 2%"></i>
-{#                                                    {( place.airport.nameAirport )}#}
-                                                </button>
-                                            </li>
-                                        </ol>
-                                    </div>
-                                    <div class="flexed-search-item">
-                                        <label class="search_label">
-                                            <h6>
-                                                Arrival City :
-                                                <input type="text"
-                                                       autocomplete="off"
-                                                       class="search_input"
-                                                       v-model="cityTo"
-                                                       v-on:input="toCityHandler"
-                                                       name="placesTo"
-                                                       id="placesTo"/>
-                                            </h6>
-                                        </label>
-                                    </div>
-                                    <div class="dropdown-wrapper"
-                                         id="dropdown-wrapper-to"
-                                         v-cloak
-                                         v-show="cityTo && cityToSearchProgress"
-                                    >
-                                        <p v-if="searchResultPlacesTo.length === 0 && !cityToRequestProgress"
-                                           class="dropdown-wrapper-error badge badge-warning">"We couldn't find a location that matched your input. Why not try again ?"</p>
-                                        <ol v-if="searchResultPlacesTo.length > 0"
-                                            class="search_result_list">
-                                            <li v-for="(place, index) of searchResultPlacesTo">
-                                                <button class="btn search_result_list_item"
-                                                        @click="chooseToPlace(place.nameCity,place.codeIataCity,index)">
-                                                    <i class="fa fa-building" style="padding-right: 2%"></i>
-                                                    <i class="fa fa-plane" style="padding-right: 2%"
-                                                       :hidden="true"></i>
-                                                    {( place.nameCity )}
-                                                </button>
-                                                <button class="btn search_result_list_item"
-                                                        @click="chooseToPlace(place.nameCity,place.codeIataCity,index)">
-                                                    <i class="fa fa-plane" style="padding-right: 2%"></i>
-{#                                                    {( place.airport.nameAirport )}#}
-                                                </button>
-                                            </li>
-                                        </ol>
-                                    </div>
-                                    <div class="flexed-search-item">
-                                        <label class="search_label">
-                                            <h6>Departure Date :
-                                                <input type="text"
-                                                       name="dep_date"
-                                                       id="departure_date"
-                                                       autocomplete="off"
-                                                       class="search_input">
-                                            </h6>
-                                        </label>
-                                    </div>
-                                    <div class="flexed-search-item">
-                                        <label class="search_label">
-                                            <h6>Return Date :
-                                                <input type="text"
-                                                       name="ret_date"
-                                                       id="return_date"
-                                                       autocomplete="off"
-                                                       class="search_input">
-                                            </h6>
-                                        </label>
-                                    </div>
-                                    <div class="flexed-search-item">
-                                        <button class="search_btn"
-                                                @click="search">SEARCH
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
+                            {% include "includes/search_form.html" %}
                         </div>
 
                     </div>
@@ -246,7 +90,7 @@
                                              style="padding: 1% 2%; width: 15%; border: none; text-align: center"
                                              v-model="form.valChildren" id="valChildren"/>
                                    <input type="button" class="increment" value="+" @click="increment(2)"
-                                          id="valChildrenIncrement"/>
+                                          id="valChildrenIncrement"/>`
                                 </div>
                               </div>
                             </div>
@@ -387,17 +231,6 @@
 
                                             </button>
                                         </div>
-
-                                        <div class="pop2_hor_line" style="margin:10px 0px"></div>
-                                        <input
-                                                class="pop2_input"
-                                                autofocus
-                                                type="text"
-                                                v-model="city"
-                                                v-on:keyup="cityHandler"
-                                                id="addLocation"
-                                                placeholder="Add new location..."/>
-                                    </div>
 
                                     <ol class="search_result_list">
                                         <li v-for="(place, index) of searchResultPlaces">

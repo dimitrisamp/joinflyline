@@ -1,21 +1,21 @@
-$(document).ready(function () {
-    let searchQuery = JSON.parse(sessionStorage.getItem("searchQuery"));
-    app.searchQuery = searchQuery;
-});
-
-window.locVal = "";
+const seatTypes = {
+    'M': 'Economy',
+    'W': 'Premium Economy',
+    'C': 'Business',
+    'F': 'First Class'
+};
 
 $('.dropdown-wrapper-to').css("left", $($('.flexed-search-item')[1]).position().left);
 
-function debounce (fn, delay, ...rest) {
-  let timeoutID = null;
-  return function () {
-    clearTimeout(timeoutID);
-    let that = this;
-    timeoutID = setTimeout(function () {
-      fn.apply(that, rest)
-    }, delay)
-  }
+function debounce(fn, delay, ...rest) {
+    let timeoutID = null;
+    return function () {
+        clearTimeout(timeoutID);
+        let that = this;
+        timeoutID = setTimeout(function () {
+            fn.apply(that, rest)
+        }, delay)
+    }
 }
 
 const app = new Vue({
@@ -26,126 +26,100 @@ const app = new Vue({
         searchResultPlacesFrom: [],
         searchResultPlacesTo: [],
         searchLocation: '',
-        seatType: 'Economy',
         noOfPassengers: 'Passengers',
         cityFromRequestProgress: false,
         cityFromSearchProgress: false,
         cityToRequestProgress: false,
         cityToSearchProgress: false,
-        cityFrom: '',
-        cityTo: '',
-        city: '',
         valPassengers: 1,
         searchParameter: '',
         searchQuery: {},
+        seatTypeName: "Economy",
         form: {
             destinationType: "Return",
             noOfPassengers: "Passengers",
             destinationTypeId: 'round',
-            seatType: 'Economy',
+            seatType: 'M',
             valAdults: 1,
             valChildren: 0,
-            valInfants: 0
+            valInfants: 0,
+            departure_date: "",
+            arrival_date: "",
+            city_from: "",
+            city_to: "",
+            placeFrom: "",
+            placeTo: "",
         }
     },
     methods: {
+        locationSearch: (term) => {
+            return new Promise((resolve) => {
+                let url = new URL('https://kiwicom-prod.apigee.net/locations/query');
+                url.search = new URLSearchParams({
+                    term,
+                    locale: 'en-US',
+                    location_types: 'city',
+                });
+                fetch(url, {
+                    method: 'GET',
+                    headers: {
+                        apikey: 'xklKtpJ5fxZnk4rsDepqOzLUaYYAO9dI'
+                    },
+                    credentials: 'same-origin'
+                }).then(
+                    response => response.json()
+                ).then(
+                    data => resolve(data)
+                );
+            });
+        },
         fromCityHandler: debounce(function () {
-            if(app.cityFrom === null || app.cityFrom === "" || app.cityFrom.length < 3){
+            if (app.form.city_from === null || app.form.city_from === "" || app.form.city_from.length < 3) {
                 app.cityFromSearchProgress = false;
                 return;
             }
             app.selectionOption = 1;
             app.cityFromSearchProgress = true;
-
-            $.ajax({url: 'https://aviation-edge.com/v2/public/autocomplete?key=140940-4e6372&city=' + app.cityFrom,
-                beforeSend: () => {
-                    app.cityFromRequestProgress = true;
-                },
-                success: function (data) {
-                    try {
-                        if (data) {
-                            let allData = data;
-                            let cityData = JSON.parse(data).cities;
-                            let airportData = JSON.parse(data).airportsByCities;
-
-                            cityData.forEach(city => {
-                                city.airport = airportData.pop()
-                            });
-                            app.searchResultPlacesFrom = cityData;
-                            // app.searchLocation = document.getElementById("addLocation").value
-                        }
-                    } catch (e) {
-                        console.error(e.message);
-                    }
-                },
-                complete: () => {
-                    app.cityFromRequestProgress = false;
-                },
-                error: function (e){
-                    console.error(e.message);
+            app.cityFromRequestProgress = true;
+            app.locationSearch(app.form.city_from
+            ).then(
+                (data) => {
+                    app.searchResultPlacesFrom = data.locations;
                 }
-
-            });
+            ).catch(
+                () => {
+                    console.log('Error')
+                }
+            ).finally(
+                () => {
+                    app.cityFromRequestProgress = false;
+                }
+            );
         }, 500),
         toCityHandler: debounce(function () {
-            if(app.cityTo === null || app.cityTo === "" || app.cityTo.length < 3){
+            if (app.form.city_to === null || app.form.city_to === "" || app.form.city_to.length < 3) {
                 app.cityToSearchProgress = false;
                 return;
             }
             $('#dropdown-wrapper-to').css("left", $($('.flexed-search-item')[1]).position().left);
             app.cityToSearchProgress = true;
             app.selectionOption = 2;
-
-            $.ajax({
-                url: 'https://aviation-edge.com/v2/public/autocomplete?key=140940-4e6372&city=' + app.cityTo,
-                beforeSend: () => {
-                    app.cityToRequestProgress = true;
-                },
-                success: function (data) {
-                    try {
-                        if (data) {
-                            let allData = data;
-                            let cityData = JSON.parse(data).cities;
-                            let airportData = JSON.parse(data).airportsByCities;
-
-                            cityData.forEach(city => {
-                                city.airport = airportData.pop()
-                            });
-                            app.searchResultPlacesTo = cityData;
-                            // app.searchLocation = document.getElementById("addLocation").value
-
-                        }
-                    } catch (e) {
-                        console.error(e.message);
-                    }
-
-                },
-                complete: () => {
+            app.cityToRequestProgress = true;
+            app.locationSearch(app.form.city_to
+            ).then(
+                (data) => {
+                    app.searchResultPlacesTo = data.locations;
+                }
+            ).catch(
+                () => {
+                    console.log('Error')
+                }
+            ).finally(
+                () => {
                     app.cityToRequestProgress = false;
-                },
-                error: function (e) {
-                    console.error(e.message);
                 }
-            });
+            );
         }, 500),
-        cityHandler: function () {
-            $.ajax({
-                url: 'https://aviation-edge.com/v2/public/autocomplete?key=140940-4e6372&city=' + app.cityFrom,
-                success: function (data) {
-                    if (data) {
-                        let allData = data;
-                        let cityData = JSON.parse(data).cities;
-                        let airportData = JSON.parse(data).airportsByCities;
-
-                        cityData.forEach(city =>{
-                            city.airport = airportData.pop()
-                        });
-                        app.searchResultPlaces = cityData;   
-                        // app.searchLocation = document.getElementById("addLocation").value
-                    }
-                }
-            });
-        },
         clearList: function () {
             document.getElementById('mySelectedPlace').style.display = 'block';
         },
@@ -199,71 +173,60 @@ const app = new Vue({
             }
 
 
-            formData.append("city_from", app.form.placeFrom);
-            formData.append("city_to", app.form.placeTo);
+            formData.append("city_from", app.form.city_from);
+            formData.append("city_to", app.form.city_to);
+            formData.append("placeFrom", app.form.placeFrom);
+            formData.append("placeTo", app.form.placeTo);
             formData.append("dep_date", app.form.departure_date);
             formData.append("type", app.form.destinationTypeId);
-            formData.append("ret_date", app.form.return_date);
+            if (app.form.destinationTypeId === "round") {
+                formData.append("ret_date", app.form.return_date);
+            }
             formData.append("adults", app.form.valAdults);
             formData.append("infants", app.form.valInfants);
             formData.append("children", app.form.valChildren);
+            formData.append("selected_cabins", app.form.seatType);
             if (app.form.stop) formData.append("max_stopovers", app.form.stop);
             if (app.form.stopOverFrom) formData.append("stopover_from", app.form.stopOverFrom);
             if (app.form.stopOverTo) formData.append("stopover_to", app.form.stopOverTo);
 
-            let object = {};
-            formData.forEach(function (value, key) {
-                object[key] = value;
-            });
-            let json = object;
-            sessionStorage.setItem("searchQuery", JSON.stringify(app.form));
-
-            // The rest of this code assumes you are not using a library.
-            // It can be made less wordy if you use one.
-            const form = document.createElement('form');
-            form.method = "get";
-            form.action = "/results";
-
-            for (const key in json) {
-                if (json.hasOwnProperty(key)) {
-                    const hiddenField = document.createElement('input');
-                    hiddenField.type = 'hidden';
-                    hiddenField.name = key;
-                    hiddenField.value = json[key];
-
-                    form.appendChild(hiddenField);
-                }
-            }
-
-            document.body.appendChild(form);
-            form.submit();
-
+            let url = new URL('/results', window.location);
+            url.search = new URLSearchParams(formData);
+            window.location = url;
         },
 
         swapPlaces: () => {
+            let city_from = app.form.city_from;
+            app.form.city_from = app.form.city_to;
+            app.form.city_to = city_from;
+        },
 
-            let placeFrom = document.getElementById('placesFrom').value;
-            let placeTo = document.getElementById('placesTo').value;
+        setPlace: function (placeName, codeIataCity, index) {
+            this.searchResultPlaces.splice(index, 1);
+            this.searchResultPlaces = [];
+            document.getElementById('mySelectedPlace').innerText = placeName;
+            document.getElementById('mySelectedPlace').placeholder = codeIataCity;
+            document.getElementById('mySelectedPlace').style.display = 'block';
 
-            let placeFromId = document.getElementById('placesFrom').placeholder;
-            let placeToId = document.getElementById('placesTo').placeholder;
-
-            document.getElementById('placesTo').value = placeFrom;
-            document.getElementById('placesFrom').value = placeTo;
-            document.getElementById('placesTo').placeholder = placeFromId;
-            document.getElementById('placesFrom').placeholder = placeToId;
+            switch (app.selectionOption) {
+                case 1:
+                    app.form.city_from = document.getElementById('mySelectedPlace').placeholder;
+                    break;
+                case 2:
+                    app.form.city_to = document.getElementById('mySelectedPlace').placeholder;
+            }
         },
 
         selectDestType: (type) => {
             let returnDateInput = document.getElementById('return_date');
             switch (type) {
-                case 1:
+                case "round":
                     app.form.destinationTypeId = 'round';
                     app.form.destinationType = 'Return';
                     returnDateInput.removeAttribute("disabled");
                     returnDateInput.closest('label.search_label').classList.remove("disabled");
                     return;
-                case 2:
+                case "oneway":
                     app.form.destinationTypeId = 'oneway';
                     app.form.destinationType = 'One way';
                     document.getElementById('return_date').setAttribute("disabled", "disabled");
@@ -271,7 +234,7 @@ const app = new Vue({
                     return;
                 default:
                     app.form.destinationTypeId = 'round';
-                    app.form.destinationType = 'round';
+                    app.form.destinationType = 'Return';
                     document.getElementById('return_date').removeAttribute("disabled");
                     returnDateInput.closest('label.search_label').classList.remove("disabled");
                     return;
@@ -279,24 +242,13 @@ const app = new Vue({
         },
 
         selectSeatType: (type) => {
+            if (seatTypes.hasOwnProperty(type)) {
+                app.form.seatType = type;
 
-            switch (type) {
-                case 1:
-                    document.getElementById('seatType').value = 'Economy';
-                    return;
-                case 2:
-                    document.getElementById('seatType').value = 'Premium Economy';
-                    return;
-                case 3:
-                    document.getElementById('seatType').value = 'Business';
-                    return;
-                case 4:
-                    document.getElementById('seatType').value = 'First Class';
-                    return;
-                default:
-                    document.getElementById('seatType').value = 'Economy';
-                    return;
+            } else {
+                app.form.seatType = 'M';
             }
+            app.seatTypeName = seatTypes[type];
         },
         choosePlaces: function () {
             let place = document.getElementById('mySelectedPlace').innerText;
@@ -306,12 +258,12 @@ const app = new Vue({
             switch (app.selectionOption) {
                 case 1:
                     document.getElementById('placesFrom').value = place;
-                    app.form.placeFrom = placeId;
+                    app.form.city_from = placeId;
                     $('#placesModal').modal('hide');
                     return;
                 case 2:
                     document.getElementById('placesTo').value = place;
-                    app.form.placesTo = placeId;
+                    app.form.city_to = placeId;
                     $('#placesModal').modal('hide');
                     return;
             }
@@ -336,12 +288,12 @@ const app = new Vue({
         },
 
         chooseFromPlace: function (placeName, codeIataCity, index) {
-            app.cityFrom = placeName;
+            app.form.city_from = placeName;
             app.form.placeFrom = codeIataCity;
             app.cityFromSearchProgress = false;
         },
         chooseToPlace: function (placeName, codeIataCity, index) {
-            app.cityTo = placeName;
+            app.form.city_to = placeName;
             app.form.placeTo = codeIataCity;
             app.cityToSearchProgress = false;
         },
@@ -439,45 +391,5 @@ const app = new Vue({
                 app.form.noOfPassengers = app.valPassengers + ' Passengers'
             }
         },
-        openPlaceModal: function (option) {
-
-            app.selectionOption = option;
-
-            // app.city = app.searchLocation;
-
-            let placeFrom = document.getElementById('placesFrom').value;
-
-            let placeTo = document.getElementById('placesTo').value;
-
-            app.city = placeFrom;
-
-            switch (app.selectionOption) {
-                case 1:
-                    document.getElementById('placesModalTitle').innerText = "Search and Select Departure City";
-                    if (placeFrom == null || placeFrom === '') {
-                        document.getElementById('mySelectedPlace').style.display = 'none';
-                    } else {
-                        document.getElementById('mySelectedPlace').style.display = 'block'
-                        document.getElementById('mySelectedPlace').innerText = placeFrom;
-                    }
-
-                    // document.getElementById('addLocation').innerText = app.searchLocation;
-                    // document.getElementById('addLocation').value = app.searchLocation;
-
-                    $('#placesModal').modal('show');                    
-                    return;
-                case 2:
-                    document.getElementById('placesModalTitle').innerText = "Search and Select Arrival City";
-                    if (placeTo == null || placeTo === '') {
-                        document.getElementById('mySelectedPlace').style.display = 'none';
-                    } else {
-                        document.getElementById('mySelectedPlace').style.display = 'block';
-                        document.getElementById('mySelectedPlace').innerText = placeTo;
-                    }
-                    $('#placesModal').modal('show');
-                    return;
-            }
-
-        }
     }
 });
