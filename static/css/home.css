@@ -452,40 +452,26 @@ button.pop2_footer_right {
 }
 
 
-.dropdown-wrapper-from {
+.dropdown-wrapper {
     position: absolute;
     border: solid 1px #ccc;
-    border-radius: 14px;
+    border-radius: 5px;
     background-color: #fff;
     z-index: 1000;
     min-width: 120px;
     top: 50px;
 }
 
-.dropdown-wrapper-to {
-    position: absolute;
-    border: solid 1px #ccc;
-    border-radius: 14px;
-    background-color: #fff;
-    z-index: 1000;
-    min-width: 120px;
-    top: 50px;
-}
-
-.dropdown-wrapper-from-error, .dropdown-wrapper-to-error {
+.dropdown-wrapper-error {
     padding: 15px;
-    border-radius: 14px;
+    border-radius: 5px;
     margin: 0;
 }
 
 [v-cloak] { display:none; }
 
 @media screen and (max-width: 992px) {
-    .dropdown-wrapper-to {
-        min-width: 100%;
-    }
-
-    .dropdown-wrapper-from {
+    .dropdown-wrapper {
         min-width: 100%;
     }
 }
