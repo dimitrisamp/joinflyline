@@ -5,7 +5,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 
 from account.views import account_view
-from home.views import home_view
+from home.views import index_view
 
 
 def create_user(request):
@@ -26,10 +26,10 @@ def login_user(request):
     user = authenticate(request, username=username, password=password)
     if user is not None:
         auth.login(request, user)
-        return redirect(home_view)
+        return redirect(index_view)
     else:
         messages.error(request, 'Failed: Your credentials were incorrect')
-        return redirect(home_view)
+        return redirect(index_view)
 
 
 # TODO: ???? This allows anyone to easily change anybody's password
@@ -47,4 +47,4 @@ def forgot_password(request):
 def logout_view(request):
     logout(request)
     messages.success(request, 'Successfully logged out')
-    return redirect(home_view)
+    return redirect(index_view)

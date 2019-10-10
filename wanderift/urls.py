@@ -26,7 +26,7 @@ from booking.views import (
     CheckPromoView,
 )
 from emails.views import booking_success
-from home.views import home_view
+from home.views import index_view, home_view
 from results.views import results_view
 from wanderift import settings
 
@@ -35,7 +35,8 @@ urlpatterns = [
     # site under construction
     # path('', under_construction, name="construction"),
     # Home page links
-    path("", home_view, name="home"),
+    path("", index_view, name="index"),
+    path("home/", home_view, name="home"),
     # Results page urls
     path("results", results_view, name="results"),
     # Accounts page urls

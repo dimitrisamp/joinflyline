@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from django.conf import settings
 import stripe
 
-from home.views import home_view
+from home.views import index_view
 from payments.models import Plans
 from subscriptions.models import Subscriptions
 
@@ -40,4 +40,4 @@ def sub_payment(request, plan):
         messages.success(request, "You subscribed to lite plan successfully")
 
     messages.success(request, "Payment successful")
-    return redirect(home_view)
+    return redirect(index_view)
