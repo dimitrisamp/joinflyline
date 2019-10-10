@@ -93,9 +93,8 @@
                                                 <input type="text"
                                                        autocomplete="off"
                                                        class="search_input"
-{#                                                       v-debounce="200"#}
                                                        v-model="cityFrom"
-                                                       v-on:keyup="fromCityHandler"
+                                                       v-on:input="fromCityHandler"
                                                        name="placesFrom"
                                                        id="placesFrom"/>
                                             </h6>
@@ -137,9 +136,8 @@
                                                 <input type="text"
                                                        autocomplete="off"
                                                        class="search_input"
-{#                                                       v-debounce="200"#}
                                                        v-model="cityTo"
-                                                       v-on:keyup="toCityHandler"
+                                                       v-on:input="toCityHandler"
                                                        name="placesTo"
                                                        id="placesTo"/>
                                             </h6>

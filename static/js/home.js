@@ -7,6 +7,18 @@ window.locVal = "";
 
 $('.dropdown-wrapper-to').css("left", $($('.flexed-search-item')[1]).position().left);
 
+function debounce (fn, delay) {
+  let timeoutID = null;
+  return function () {
+    clearTimeout(timeoutID);
+    let args = arguments;
+    let that = this;
+    timeoutID = setTimeout(function () {
+      fn.apply(that, args)
+    }, delay)
+  }
+}
+
 const app = new Vue({
     el: '#app',
     delimiters: ['{(', ')}'],
@@ -36,7 +48,7 @@ const app = new Vue({
         }
     },
     methods: {
-        fromCityHandler: function () {
+        fromCityHandler: debounce(function () {
             if(app.cityFrom === null || app.cityFrom === "" || app.cityFrom.length < 3){
                 app.cityFromProgress = false;
                 return;
@@ -68,8 +80,8 @@ const app = new Vue({
                 }
 
             });
-        },
-        toCityHandler: function () {
+        }, 500),
+        toCityHandler: debounce(function () {
             if(app.cityTo === null || app.cityTo === "" || app.cityTo.length < 3){
                 app.cityToProgress = false;
                 return;
@@ -104,7 +116,7 @@ const app = new Vue({
                     console.error(e.message);
                 }
             });
-        },
+        }, 500),
         cityHandler: function () {
             $.ajax({
                 url: 'https://aviation-edge.com/v2/public/autocomplete?key=140940-4e6372&city=' + app.cityFrom,
