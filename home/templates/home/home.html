@@ -2,7 +2,8 @@
 
 {% load static %}
 {% block csscontent %}
-    <link rel="stylesheet" href="{% static "css/lightpick.css" %}" xmlns:v-on="http://www.w3.org/1999/xhtml"
+    <link rel="stylesheet" href="{% static "css/lightpick.css" %}"
+          xmlns:v-on="http://www.w3.org/1999/xhtml"
           xmlns:v-on="http://www.w3.org/1999/xhtml">
     <link rel="stylesheet" href="{% static "css/home.css" %}">
     <link rel="stylesheet" href="{% static "css/custom.css" %}">
@@ -26,15 +27,19 @@
                             {% if user.is_authenticated %}
                                 <div class="row">
                                     <div class="col-12 p-0">
-                                        <p class="home-slogan" style="margin-bottom: 25px;">
-                                            <span>Welcome {% if user.first_name %}back {{ user.first_name }}!{% else %}to Wanderift!{% endif %}</span>
+                                        <p class="home-slogan"
+                                           style="margin-bottom: 25px;">
+                                            <span>Welcome {% if user.first_name %}back
+                                                {{ user.first_name }}!{% else %}to
+                                                Wanderift!{% endif %}</span>
                                         </p>
                                     </div>
                                 </div>
                             {% else %}
                                 <div class="row">
                                     <div class="col-12 p-0">
-                                        <p class="home-slogan" style="margin-bottom: 25px;">
+                                        <p class="home-slogan"
+                                           style="margin-bottom: 25px;">
                                             <span>Travel Made Simple . . .</span>
                                             <span class="text-primary">Search, Book, Save</span>
                                         </p>
@@ -49,12 +54,14 @@
             </div>
         </div>
 
-        <div class="modal fade" id="passengersModal" tabindex="-1" role="dialog" aria-labelledby="passengersModalLabel"
+        <div class="modal fade" id="passengersModal" tabindex="-1" role="dialog"
+             aria-labelledby="passengersModalLabel"
              aria-hidden="true">
             <div class="modal-dialog mt-5 pt-1" role="document">
                 <div class="modal-content mt-5">
                     <div class="modal-header">
-                        <h6 class="modal-title" id="passengersModalLabel">Passengers</h6>
+                        <h6 class="modal-title" id="passengersModalLabel">
+                            Passengers</h6>
                     </div>
                     <div class="modal-body">
                         <span>
@@ -64,13 +71,15 @@
                                   Adults
                                 </div>
                                 <div class="col-sm">
-                                  <input type="button" class="increment" value="-" @click="decrement(1)"
+                                  <input type="button" class="increment" value="-"
+                                         @click="decrement(1)"
                                          id="valAdultsDecrement"/>
 
                                       <input type="text" readonly
                                              style="padding: 1% 2%; width: 15%; border: none; text-align: center"
                                              v-model="form.valAdults" id="valAdults"/>
-                                   <input type="button" class="increment" id="valAdultsIncrement" value="+"
+                                   <input type="button" class="increment"
+                                          id="valAdultsIncrement" value="+"
                                           @click="increment(1)"/>
                                 </div>
                               </div>
@@ -83,13 +92,16 @@
                                   Children
                                 </div>
                                 <div class="col-sm">
-                                  <input type="button" class="increment" value="-" @click="decrement(2)"
+                                  <input type="button" class="increment" value="-"
+                                         @click="decrement(2)"
                                          id="valChildrenDecrement"/>
 
                                       <input type="text" readonly
                                              style="padding: 1% 2%; width: 15%; border: none; text-align: center"
-                                             v-model="form.valChildren" id="valChildren"/>
-                                   <input type="button" class="increment" value="+" @click="increment(2)"
+                                             v-model="form.valChildren"
+                                             id="valChildren"/>
+                                   <input type="button" class="increment" value="+"
+                                          @click="increment(2)"
                                           id="valChildrenIncrement"/>`
                                 </div>
                               </div>
@@ -101,13 +113,15 @@
                                   Infants
                                 </div>
                                 <div class="col-sm">
-                                  <input type="button" class="increment" value="-" @click="decrement(3)"
+                                  <input type="button" class="increment" value="-"
+                                         @click="decrement(3)"
                                          id="valInfantsDecrement"/>
 
                                       <input type="text" readonly
                                              style="padding: 1% 2%; width: 15%; border: none; text-align: center"
                                              v-model="form.valInfants" id="valInfants"/>
-                                  <input type="button" class="increment" value="+" @click="increment(3)"
+                                  <input type="button" class="increment" value="+"
+                                         @click="increment(3)"
                                          id="valInfantsIncrement"/>
                                 </div>
                               </div>
@@ -115,10 +129,12 @@
                         </span>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn" style="width: 50%; background: aliceblue;"
+                        <button type="button" class="btn"
+                                style="width: 50%; background: aliceblue;"
                                 data-dismiss="modal">Close
                         </button>
-                        <button type="button" class="btn" style="width: 50%; background: #00B7FF;color: #fff"
+                        <button type="button" class="btn"
+                                style="width: 50%; background: #00B7FF;color: #fff"
                                 data-dismiss="modal">Save changes
                         </button>
                     </div>
@@ -135,7 +151,8 @@
                         <div class="row justify-content-center">
                             <div class="col-12 col-md-4 mt-4 m-md-0">
                                 <a href="{% url "accounts" %}">
-                                    <button class="search_btn  w-100 main-btn-full">{{ user.subscriptions }} Credits
+                                    <button class="search_btn  w-100 main-btn-full">{{ user.subscriptions }}
+                                        Credits
                                         Available
                                     </button>
                                 </a>
@@ -143,13 +160,17 @@
                             <div class="d-block d-md-none divider-30"></div>
                             <div class="col-12 col-md-4 mt-4 m-md-0">
                                 <a href="{% url "accounts" %}">
-                                    <button class="search_btn w-100 main-btn-full">Add More Credits</button>
+                                    <button class="search_btn w-100 main-btn-full">Add
+                                        More Credits
+                                    </button>
                                 </a>
                             </div>
                             <div class="d-block d-md-none divider-30"></div>
                             <div class="col-12 col-md-4 mt-4 m-md-0">
                                 <a href="{% url "accounts" %}">
-                                    <button class="search_btn w-100 main-btn-full">Add a Travel Companion</button>
+                                    <button class="search_btn w-100 main-btn-full">Add a
+                                        Travel Companion
+                                    </button>
                                 </a>
                             </div>
                         </div>
@@ -162,21 +183,25 @@
                         <div class="row justify-content-center">
                             <div class="col-12 col-md-4 mt-4 m-md-0">
                                 <a href="{% url "accounts" %}">
-                                    <button class="search_btn  w-100 main-btn-full">Add Traveler Information
+                                    <button class="search_btn  w-100 main-btn-full">Add
+                                        Traveler Information
                                     </button>
                                 </a>
                             </div>
                             <div class="d-block d-md-none divider-30"></div>
                             <div class="col-12 col-md-4 mt-4 m-md-0">
                                 <a href="{% url "accounts" %}">
-                                    <button class="search_btn w-100 main-btn-full">Subscribe to Wanderift Lite or Pro
+                                    <button class="search_btn w-100 main-btn-full">
+                                        Subscribe to Wanderift Lite or Pro
                                     </button>
                                 </a>
                             </div>
                             <div class="d-block d-md-none divider-30"></div>
                             <div class="col-12 col-md-4 mt-4 m-md-0">
                                 <a href="{% url "how-it-works" %}">
-                                    <button class="search_btn w-100 main-btn-full">Travel Tips</button>
+                                    <button class="search_btn w-100 main-btn-full">
+                                        Travel Tips
+                                    </button>
                                 </a>
                             </div>
                         </div>
@@ -188,19 +213,24 @@
                 <div class="container">
                     <div class="row justify-content-center" style="text-align:center">
                         <div class="col-12 col-md-3 mt-4 m-md-0">
-                            <img class="img_asset" src="{% static "images/simple.png" %}" style="width:210px;">
+                            <img class="img_asset"
+                                 src="{% static "images/simple.png" %}"
+                                 style="width:210px;">
                         </div>
                         <div class="d-block d-md-none divider-30"></div>
                         <div class="col-12 col-md-3 mt-4 m-md-0">
-                            <img class="img_asset" src="{% static "images/forbes.png" %}">
+                            <img class="img_asset"
+                                 src="{% static "images/forbes.png" %}">
                         </div>
                         <div class="d-block d-md-none divider-30"></div>
                         <div class="col-12 col-md-3 mt-4 m-md-0">
-                            <img class="img_asset" src="{% static "images/smart.png" %}">
+                            <img class="img_asset"
+                                 src="{% static "images/smart.png" %}">
                         </div>
                         <div class="d-block d-md-none divider-30"></div>
                         <div class="col-12 col-md-3 mt-4 m-md-0">
-                            <img class="img_asset" src="{% static "images/tech-crunch.png" %}">
+                            <img class="img_asset"
+                                 src="{% static "images/tech-crunch.png" %}">
                         </div>
                     </div>
                 </div>
@@ -208,13 +238,16 @@
         {% endif %}
 
         <!-- Modal -->
-        <div class="modal fade" id="placesModal" tabindex="-1" role="dialog" aria-labelledby="placesModalCenterTitle"
+        <div class="modal fade" id="placesModal" tabindex="-1" role="dialog"
+             aria-labelledby="placesModalCenterTitle"
              aria-hidden="true" onblur="choosePlaces()">
             <div class="modal-dialog " role="document">
                 <div class="modal-content" style="top: 160px;">
                     <div class="modal-body">
                         <div class="row pop2_first">
-                            <div class="col-12" style="text-align:left; margin-bottom: 2%"><p id="placesModalTitle"></p>
+                            <div class="col-12"
+                                 style="text-align:left; margin-bottom: 2%"><p
+                                    id="placesModalTitle"></p>
                             </div>
                             <div class="col-12" style="text-align:right">
                                 <!--  <p style="color:#8092a9; cursor: pointer;"  @click="clearList"><i
@@ -225,50 +258,61 @@
                                 <div>
                                     <div style="border: 1px solid #00B7FF; border-radius: 5px; padding: 2%">
                                         <div class="search_selected_values">
-                                            <button class="sel_place_btn" style="margin: 2%" id="mySelectedPlace">
-                                                <i class="fa fa-times-circle" style="margin-right:5px"
+                                            <button class="sel_place_btn"
+                                                    style="margin: 2%"
+                                                    id="mySelectedPlace">
+                                                <i class="fa fa-times-circle"
+                                                   style="margin-right:5px"
                                                    @click="clearPlaceItem(index)"></i>
 
                                             </button>
                                         </div>
 
-                                    <ol class="search_result_list">
-                                        <li v-for="(place, index) of searchResultPlaces">
-                                            <button class="btn search_result_list_item"
-                                                    @click="setPlace(place.nameCity,place.codeIataCity,index)">
-                                                <i class="fa fa-building" style="padding-right: 2%"></i>
-                                                <i class="fa fa-plane" style="padding-right: 2%"
-                                                   :hidden="true"></i>
-                                                {( place.nameCity )}
-                                            </button>
-                                            <button class="btn search_result_list_item"
-                                                    @click="setPlace(place.nameCity,place.codeIataCity,index)">
-                                                <i class="fa fa-plane" style="padding-right: 2%"></i>
-                                                {( place.airport.nameAirport )}
-                                            </button>
-                                        </li>
-                                    </ol>
+                                        <ol class="search_result_list">
+                                            <li v-for="(place, index) of searchResultPlaces">
+                                                <button class="btn search_result_list_item"
+                                                        @click="setPlace(place.nameCity,place.codeIataCity,index)">
+                                                    <i class="fa fa-building"
+                                                       style="padding-right: 2%"></i>
+                                                    <i class="fa fa-plane"
+                                                       style="padding-right: 2%"
+                                                       :hidden="true"></i>
+                                                    {( place.nameCity )}
+                                                </button>
+                                                <button class="btn search_result_list_item"
+                                                        @click="setPlace(place.nameCity,place.codeIataCity,index)">
+                                                    <i class="fa fa-plane"
+                                                       style="padding-right: 2%"></i>
+                                                    {( place.airport.nameAirport )}
+                                                </button>
+                                            </li>
+                                        </ol>
 
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="modal-footer">
-                        {#                        <button class="pop2_footer_left" data-dismiss="modal">Cancel</button>#}
-                        <button class="pop2_footer_right" @click="choosePlaces">Close</button>
+                        <div class="modal-footer">
+                            {#                        <button class="pop2_footer_left" data-dismiss="modal">Cancel</button>#}
+                            <button class="pop2_footer_right" @click="choosePlaces">
+                                Close
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
     </section>
 
     <section class="recent-searches mt-5 pt-5" style="display: none">
         <div class="container">
             <div class="content_container">
-                <p class="sec_one_head" style="font-size: 35px;">Recent Flight Searches</p>
-                <p class="sec_one_subhead" style="font-size: 18px; font-weight:400; margin-bottom: 30px;">
-                    Take a look at all your recent searches, if you want to view the results again
+                <p class="sec_one_head" style="font-size: 35px;">Recent Flight
+                    Searches</p>
+                <p class="sec_one_subhead"
+                   style="font-size: 18px; font-weight:400; margin-bottom: 30px;">
+                    Take a look at all your recent searches, if you want to view the
+                    results again
                     just click on one of the boxes.
                 </p>
                 <div class="card-group">
@@ -279,8 +323,10 @@
                             <p class="card-text">Average Price - $124</p>
                             <p class="card-text">
                                 Typical Carriers -
-                                <img src="{% static "images/jetblue.png" %}" alt="Airline" height="25">
-                                <img src="{% static "images/spirit.png" %}" alt="Airline" height="25">
+                                <img src="{% static "images/jetblue.png" %}"
+                                     alt="Airline" height="25">
+                                <img src="{% static "images/spirit.png" %}"
+                                     alt="Airline" height="25">
                             </p>
                         </div>
                     </div>
@@ -291,8 +337,10 @@
                             <p class="card-text">Average Price - $124</p>
                             <p class="card-text">
                                 Typical Carriers -
-                                <img src="{% static "images/jetblue.png" %}" alt="Airline" height="25">
-                                <img src="{% static "images/spirit.png" %}" alt="Airline" height="25">
+                                <img src="{% static "images/jetblue.png" %}"
+                                     alt="Airline" height="25">
+                                <img src="{% static "images/spirit.png" %}"
+                                     alt="Airline" height="25">
                             </p>
                         </div>
                     </div>
@@ -303,8 +351,10 @@
                             <p class="card-text">Average Price - $124</p>
                             <p class="card-text">
                                 Typical Carriers -
-                                <img src="{% static "images/jetblue.png" %}" alt="Airline" height="25">
-                                <img src="{% static "images/spirit.png" %}" alt="Airline" height="25">
+                                <img src="{% static "images/jetblue.png" %}"
+                                     alt="Airline" height="25">
+                                <img src="{% static "images/spirit.png" %}"
+                                     alt="Airline" height="25">
                             </p>
                         </div>
                     </div>
@@ -318,47 +368,68 @@
             <div class="content_container">
                 <p class="sec_one_head" style="font-size: 35px;">Trending Flights
                 </p>
-                <p class="sec_one_subhead" style="font-size: 18px; font-weight:400; margin-bottom: 30px;">Take a look at
+                <p class="sec_one_subhead"
+                   style="font-size: 18px; font-weight:400; margin-bottom: 30px;">Take a
+                    look at
                     the current flights
                     Wanderift travelers are searching and booking
                 </p>
                 <div class="row justify-content-start">
                     <div class="col-lg-4">
-                        <img class="img_content" src="{% static "images/lasvegas.jpg" %}">
+                        <img class="img_content"
+                             src="{% static "images/lasvegas.jpg" %}">
                         <p class="sec_one_subhead">Dallas (DAL) - Las Vegas (LAS)</p>
-                        <p class="sec_one_subhead" style="font-size:15px; margin-bottom: 8px; font-weight: 400;">$275 -
+                        <p class="sec_one_subhead"
+                           style="font-size:15px; margin-bottom: 8px; font-weight: 400;">
+                            $275 -
                             Round
                             Trip Retail Price</p>
-                        <p class="sec_one_subhead" style="font-size:15px; font-weight: 400;">2 Credits, or $238 - Round
+                        <p class="sec_one_subhead"
+                           style="font-size:15px; font-weight: 400;">2 Credits, or $238
+                            - Round
                             Trip
                             Wanderift</p>
                     </div>
                     <div class="col-lg-4">
-                        <img class="img_content" src="{% static "images/newyork.jpg" %}">
-                        <p class="sec_one_subhead">San Francisco (SFO) - New York (LGA)</p>
-                        <p class="sec_one_subhead" style="font-size:15px; margin-bottom: 8px; font-weight: 400;">$334 -
+                        <img class="img_content"
+                             src="{% static "images/newyork.jpg" %}">
+                        <p class="sec_one_subhead">San Francisco (SFO) - New York
+                            (LGA)</p>
+                        <p class="sec_one_subhead"
+                           style="font-size:15px; margin-bottom: 8px; font-weight: 400;">
+                            $334 -
                             Round
                             Trip Retail Price</p>
-                        <p class="sec_one_subhead" style="font-size:15px; font-weight: 400;">2 Credits, or $238 - Round
+                        <p class="sec_one_subhead"
+                           style="font-size:15px; font-weight: 400;">2 Credits, or $238
+                            - Round
                             Trip
                             Wanderift</p>
                     </div>
                     <div class="col-lg-4">
-                        <img class="img_content" src="{% static "images/seattle.jpg" %}">
+                        <img class="img_content"
+                             src="{% static "images/seattle.jpg" %}">
                         <p class="sec_one_subhead">Los Angeles (LAX) - Seattle (SEA)</p>
-                        <p class="sec_one_subhead" style="font-size:15px; margin-bottom: 8px; font-weight: 400;">$264 -
+                        <p class="sec_one_subhead"
+                           style="font-size:15px; margin-bottom: 8px; font-weight: 400;">
+                            $264 -
                             Round
                             Trip Retail Price</p>
-                        <p class="sec_one_subhead" style="font-size:15px; font-weight: 400;">2 Credits, or $238 - Round
+                        <p class="sec_one_subhead"
+                           style="font-size:15px; font-weight: 400;">2 Credits, or $238
+                            - Round
                             Trip
                             Wanderift</p>
                     </div>
                 </div>
             </div>
             <div class="content_container divider" style="margin-top: 80px;">
-                <p class="sec_one_head" style="font-size: 35px;">Top Destinations of October
+                <p class="sec_one_head" style="font-size: 35px;">Top Destinations of
+                    October
                 <p>
-                <p class="sec_one_subhead" style="font-size: 18px; font-weight:400;  margin-bottom: 30px;">We’ve taken
+                <p class="sec_one_subhead"
+                   style="font-size: 18px; font-weight:400;  margin-bottom: 30px;">We’ve
+                    taken
                     all
                     the flight bookings and
                     listed out the top places our travelers are booking
@@ -366,25 +437,38 @@
                 <p>
                     <div class="row justify-content-start">
                         <div class="col-lg-4">
-                            <img class="img_content" src="{% static "images/chicago.jpg" %}">
-                <p class="sec_one_subhead" style="margin-bottom:10px;">Chicago, IL (ORD)</p>
-                <p class="sec_one_subhead" style="font-size:15px; margin-bottom: 8px; font-weight: 400;">Average flight
+                            <img class="img_content"
+                                 src="{% static "images/chicago.jpg" %}">
+                <p class="sec_one_subhead" style="margin-bottom:10px;">Chicago, IL
+                    (ORD)</p>
+                <p class="sec_one_subhead"
+                   style="font-size:15px; margin-bottom: 8px; font-weight: 400;">Average
+                    flight
                     price $233</p>
-                <p class="sec_one_subhead" style="font-size:15px; font-weight: 400;">Most Frequent Carrier, United</p>
+                <p class="sec_one_subhead" style="font-size:15px; font-weight: 400;">
+                    Most Frequent Carrier, United</p>
             </div>
             <div class="col-lg-4">
                 <img class="img_content" src="{% static "images/miami.jpg" %}">
-                <p class="sec_one_subhead" style="margin-bottom:10px;">Miami, FL (MIA)</p>
-                <p class="sec_one_subhead" style="font-size:15px; margin-bottom: 8px; font-weight: 400;">Average flight
+                <p class="sec_one_subhead" style="margin-bottom:10px;">Miami, FL
+                    (MIA)</p>
+                <p class="sec_one_subhead"
+                   style="font-size:15px; margin-bottom: 8px; font-weight: 400;">Average
+                    flight
                     price $168</p>
-                <p class="sec_one_subhead" style="font-size:15px; font-weight: 400;">Most Frequent Carrier, American</p>
+                <p class="sec_one_subhead" style="font-size:15px; font-weight: 400;">
+                    Most Frequent Carrier, American</p>
             </div>
             <div class="col-lg-4">
                 <img class="img_content" src="{% static "images/sanfrancisco.jpg" %}">
-                <p class="sec_one_subhead" style="margin-bottom:10px;">San Francisco, CA (SFO)</p>
-                <p class="sec_one_subhead" style="font-size:15px; margin-bottom: 8px; font-weight: 400;">Average flight
+                <p class="sec_one_subhead" style="margin-bottom:10px;">San Francisco, CA
+                    (SFO)</p>
+                <p class="sec_one_subhead"
+                   style="font-size:15px; margin-bottom: 8px; font-weight: 400;">Average
+                    flight
                     price $183</p>
-                <p class="sec_one_subhead" style="font-size:15px; font-weight: 400;">Most Frequent Carrier, American</p>
+                <p class="sec_one_subhead" style="font-size:15px; font-weight: 400;">
+                    Most Frequent Carrier, American</p>
             </div>
         </div>
 
@@ -406,9 +490,8 @@
             secondField: document.getElementById('return_date'),
             singleDate: false,
             onSelect: function (start, end) {
-                var str = '';
-                str += start ? start.format('Do MMMM YYYY') + ' to ' : '';
-                str += end ? end.format('Do MMMM YYYY') : '...';
+                app.form.departure_date = start;
+                app.form.arrival_date = end;
             }
         });
     </script>

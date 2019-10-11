@@ -205,3 +205,4 @@ if STAGE == "production":
         dsn="https://a875b98b313142d8afd40797b84f235e@sentry.io/1773547",
         integrations=[DjangoIntegration()]
     )
+SITE_TITLE = "Wanderift | Airline Travel Subscription | Save on Retail Flights"
