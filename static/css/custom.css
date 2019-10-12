@@ -217,15 +217,27 @@
     font-size: 1.5rem;
 }
 
-.main-btn-outline {
+.subscription-card-light {
+    height: 100%;
+}
+
+.banner-sticky {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 999;
+}
+.btn.main-btn-outline {
     background-color: white;
     border: 1px solid #00b7ff;
     color: #00b7ff;
     font-weight: bold;
 }
-.main-btn-outline:hover {
+.btn.main-btn-outline:hover {
     background-color: #00b7ff;
     border: 1px solid #00b7ff;
+    color: white;
 }
 
 
@@ -342,6 +354,46 @@
 
 .page-sub-text {
     font-size: 1.2em;
+}
+
+.blue-landing-block {
+    background-color: #131f3f;
+}
+.blue-landing-block .container {
+    padding: 6% 15px;
+}
+.landing-block-title {
+    line-height: 1.3em;
+    font-size: 3em;
+}
+.landing-block-text {
+    line-height: 1.6em;
+    font-size: 1.2em;
+}
+.landing-block-images {
+    align-items: flex-end;
+}
+.landing-block-images img {
+    width: 80%;
+}
+.landing-block-images img:nth-child(2) {
+    align-self: flex-start;
+}
+
+.subscription-tab-menu .nav-item {
+    width: 25%;
+    text-align: center;
+}
+.subscription-tab-menu .nav-item a {
+    padding: 15px 0;
+    border-radius: 0;
+    border-right: 1px solid silver;
+}
+.subscription-tab-menu .nav-item:last-child a {
+    border-right: 0;
+}
+.subscription-tab-menu .nav-item a.active {
+    background-color: #00b7ff;
 }
 
 /*SMALL DEVICES*/
