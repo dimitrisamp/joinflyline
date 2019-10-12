@@ -34,7 +34,7 @@
                     <strong>{{ flight.local_departure | iso_date | date:"D j M" }}</strong>
                 </label>
                 <br>
-                <span class="small text-muted">{{ flight | time_interval }}</span>
+                <span class="small text-muted">{{ flight.duration.departure | secs2hm }}</span>
             </div>
             <div></div>
         </div>
@@ -94,7 +94,7 @@
                             <strong>{{ route_last.local_arrival | iso_date | date:"D j M" }}</strong>
                         </label>
                         <br>
-                        <span class="small text-muted">{{ route_last | time_interval }}</span>
+                        <span class="small text-muted">{{ flight.duration.return | secs2hm }}</span>
                     </div>
                 {% endif %}
             {% endwith %}

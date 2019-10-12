@@ -61,7 +61,7 @@ def get_quick_filters_data(flights):
         return {
             "price": min(data, key=lambda x: x["price"]),
             "duration": min(data, key=lambda x: x["duration"]),
-            "quality": max(data, key=lambda x: x["quality"]),
+            "quality": min(data, key=lambda x: x["quality"]),
             "date": min(data, key=lambda x: x["date"]),
         }
 
@@ -113,7 +113,9 @@ def results_view(request):
                     save_flight_data(request, flights, search_result=search_item)
                     for airline in flights["airlines"]:
                         airlines.add(airline)
-                    flights['roundtrip'] = any(route['return'] == 1 for route in flights['route'])
+                    flights["roundtrip"] = any(
+                        route["return"] == 1 for route in flights["route"]
+                    )
                 quick_filters_data = get_quick_filters_data(data["data"])
     context = {
         "title": "Search Results",

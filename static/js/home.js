@@ -199,6 +199,9 @@ const app = new Vue({
             let city_from = app.form.city_from;
             app.form.city_from = app.form.city_to;
             app.form.city_to = city_from;
+            let placeTo = app.form.placeTo;
+            app.form.placeTo = app.form.placeFrom;
+            app.form.placeFrom = placeTo;
         },
 
         setPlace: function (placeName, codeIataCity, index) {
