@@ -7,6 +7,7 @@ const seatTypes = {
 
 $('.dropdown-wrapper-to').css("left", $($('.flexed-search-item')[1]).position().left);
 
+
 function debounce(fn, delay, ...rest) {
     let timeoutID = null;
     return function () {

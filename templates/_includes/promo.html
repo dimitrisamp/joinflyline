@@ -1,7 +1,7 @@
 {% load static %}
 {% if user.is_authenticated %}
 {% else %}
-    <div class="promo_banner">
+    <div class="promo_banner banner-sticky">
         <p class="promo_banner_text mb-0">Looking to save thousands on flights? Subscribe to Wanderift Lite or Pro
             and
             Save
@@ -13,3 +13,14 @@
         </p>
     </div>
 {% endif %}
+
+{% block jscontent %}
+    <script src="/static/js/jquery.min.js"></script>
+    <script>
+    if ($('.promo_banner').hasClass('banner-sticky')) {
+        $('body').css('paddingTop', '67px');
+    } else {
+        $('body').css('paddingTop', '0');
+    }
+    </script>
+{% endblock %}
