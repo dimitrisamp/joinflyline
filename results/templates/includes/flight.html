@@ -151,6 +151,16 @@
             {% endwith %}
             <!-------------End Return flights------------------->
             </div>
+            {% if user.subscriptions.tokens %}
+            <div class="search-results-buttons text-right p-2 pt-3">
+                    <a href="{% url 'subscription' %}">
+                        <button class="search_btn mb-1">Non subscribers pay {{ flight.price }}</button>
+                    </a>
+            </div>
+            <a href="{% url 'retail' flight.booking_token %}">
+                <button class="search_btn book-btn mt-1"> Book for {% if flight.roundtrip %}2 credits{% else %}1 credit{% endif %}</button>
+            </a>
+            {% else %}
             <div class="search-results-buttons text-right p-2 pt-3">
                 {% if flight.routes|length > 1 and flight.price > 237 %}
                     <a href="{% url 'subscription' %}">
@@ -169,6 +179,7 @@
                         ${{ flight.price }}</button>
                 </a>
             </div>
+            {% endif %}
         </div>
 
     </div>
