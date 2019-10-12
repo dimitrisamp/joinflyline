@@ -79,11 +79,15 @@
 .search-quick-filter {
     background: white;
     padding: 0.5em;
-    border-right: 1px solid rgba(0,0,0,0.1);
+    /*border-right: 1px solid rgba(0,0,0,0.1);*/
+    position: relative;
 }
 
-.search-quick-filter.applied {
-    border-bottom: 3px solid #00B7FF;
+.search-quick-filter.applied .border-line {
+    border-bottom: 2px solid #00B7FF;
+    position: absolute;
+    bottom: 0;
+    left: 12%;
 }
 
 

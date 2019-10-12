@@ -10,6 +10,11 @@
     background-color: #00B7FF;
     color: white;
 }
+.primary-button:hover {
+    background-color: white;
+    color: #00B7FF;
+    border: 1px solid #00B7FF;
+}
 
 .header-image-holder img {
     margin-top: 40px;
@@ -314,10 +319,29 @@
     padding: 13px 30px;
 }
 
-.trip-item {
+.manage-trip-item {
     min-height: 160px;
-    /*font-size: 1.6em;*/
     padding-top: 30px;
+}
+.manage-trip-item .card {
+    border-width: 2px;
+}
+
+.empty-card {
+    min-height: 160px;
+}
+.empty-card {
+    font-size: 1.1em;
+}
+
+.btn.small-btn {
+    font-size: 14px;
+    padding: 2px 15px;
+    line-height: 25px;
+}
+
+.page-sub-text {
+    font-size: 1.2em;
 }
 
 /*SMALL DEVICES*/

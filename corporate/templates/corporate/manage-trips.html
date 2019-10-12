@@ -19,81 +19,96 @@
 
     <section class="background-colored">
 
-        <div class="container content-holder pt-5">
+        <div class="container">
             <div class="row">
-
-                <div class="col-12">
-                    <h2 class="page-title">Manage Trips</h2>
+                <div class="col-12 mt-5 mb-5">
+                    <h1 class="page-title">Manage Trips</h1>
+                    <p class="page-sub-title">Get your flight information, see the flights you've been watching and much more</p>
                 </div>
+            </div>
 
-                <div class="divider-30"></div>
-
-                <div class="col-md-6 mt-3">
-                    <div class="row">
-                        <div class="col">
-                            <h4 class="page-sub-title">Upcoming Trips</h4>
+        </div>
+        <div class="white-block">
+            <div class="container content-holder pt-5">
+                    <div class="divider-30"></div>
+                     <div class="row">
+                        <div class="col-md-6 mt-3">
+                            <div class="row">
+                                <div class="col">
+                                    <h3>Upcoming Trips</h3>
+                                </div>
+                                <div class="col-auto">
+                                    <button class="btn btn-sm primary-button small-btn mt-1">Book a Flight</button>
+                                </div>
+                            </div>
+                            <div class="manage-trip-item">
+                                <div class="trip-item-content w-100 flight-container">
+                                    {% if upcoming_trips %}
+                                        {% for flight in upcoming_trips %}
+                                            {% include "corporate/flight.html" with flight=flight %}
+                                        {% endfor %}
+                                    {% else %}
+                                        <div class="card empty-card p-3 d-flex justify-content-center text-center">
+                                            <label class="w-100">
+                                                No upcoming trips...
+                                                <br>
+                                                Start booking today and save
+                                            </label>
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="divider-30"></div>
+                            <br>
+                            <div class="divider-15"></div>
+                            <div class="row">
+                                <div class="col">
+                                    <h3>Flights you've been watching</h3>
+                                </div>
+                            </div>
+        {#                    <div class="divider-15"></div>#}
+                            <div class="manage-trip-item">
+                                {% if watched_flights %}
+                                    {% for flight in watched_flights %}
+                                        {% include "includes/flight.html" with flight=flight %}
+                                    {% endfor %}
+                                {% else %}
+                                    <div class="card empty-card p-3 d-flex justify-content-center text-center">
+                                        <label class="w-100">
+                                            No searches yet...
+                                            <br>
+                                            Start booking today and save
+                                        </label>
+                                    </div>
+                                {% endif %}
+                            </div>
                         </div>
-                        <div class="col-auto">
-                            <button class="btn primary-button">Book a Flight</button>
+                        <div class="col-md-6 mt-3">
+                        <div class="row">
+                            <div class="col">
+                                <h3>Previous Trips</h3>
+                            </div>
                         </div>
-                    </div>
-                    <div class="divider-15"></div>
-                    <div class="trip-item">
-                        <div class="item-content w-100 flight-container">
-                            {% if upcoming_trips %}
-                                {% for flight in upcoming_trips %}
+    {#                    <div class="divider-30"></div>#}
+                        <div class="manage-trip-item">
+                            {% if past_trips %}
+                                {% for flight in past_trips %}
                                     {% include "corporate/flight.html" with flight=flight %}
                                 {% endfor %}
                             {% else %}
-                            <label class="w-100">No upcoming trips... start
-                                booking</label>
-                            <label class="w-100">Today and save</label>
+                                <div class="card empty-card p-3 d-flex justify-content-center text-center">
+                                    <label class="w-100">
+                                        No previous trips...
+                                        <br>
+                                        Start booking today and save
+                                    </label>
+                                </div>
                             {% endif %}
                         </div>
                     </div>
-                    <div class="divider-30"></div>
-                    <div class="row">
-                        <div class="col">
-                            <h4 class="page-sub-title">Flights you've been watching</h4>
-                        </div>
-                    </div>
-                    <div class="divider-15"></div>
-                    <div class="trip-item">
-                        {% if watched_flights %}
-                            {% for flight in watched_flights %}
-                                {% include "includes/flight.html" with flight=flight %}
-                            {% endfor %}
-                        {% else %}
-                        <div class="item-content w-100">
-                            <label class="w-100">No searches yet...</label>
-                            <label class="w-100">Start booking today and save</label>
-                        </div>
-                        {% endif %}
-                    </div>
-                </div>
-
-                <div class="col-md-6 mt-3">
-                    <div class="row">
-                        <div class="col">
-                            <h4 class="page-sub-title">Previous Trips</h4>
-                        </div>
-                    </div>
-                    <div class="divider-15"></div>
-                    <div class="trip-item">
-                        {% if past_trips %}
-                            {% for flight in past_trips %}
-                                {% include "corporate/flight.html" with flight=flight %}
-                            {% endfor %}
-                        {% else %}
-                        <div class="item-content">
-                            <label class="w-100">No previous trips</label>
-                            <label class="w-100">Today and save</label>
-                        </div>
-                        {% endif %}
                     </div>
                 </div>
             </div>
-        </div>
     </section>
 
     {% include "_includes/footer.html" %}

@@ -61,7 +61,7 @@ def get_quick_filters_data(flights):
         return {
             "price": min(data, key=lambda x: x["price"]),
             "duration": min(data, key=lambda x: x["duration"]),
-            "quality": min(data, key=lambda x: x["quality"]),
+            "quality": max(data, key=lambda x: x["quality"]),
             "date": min(data, key=lambda x: x["date"]),
         }
 

@@ -247,52 +247,53 @@
                         </div>
                     </div>
                     <div class="col-md-6 search result p-3 p-md-0" id="result-list">
-                        <div class="row">
+                        <div class="d-flex border mb-3 white-block">
 
-                            <div class="col-md-3 search-quick-filter{% if sort == "price" %} applied{% endif %}">
+                            <div class="col-md-3 mt-2 mb-0 pb-2 text-center search-quick-filter{% if sort == "price" %} applied{% endif %}">
                                 <a href="{% spurl base="{{ request.get_full_path }}" set_query="sort=price" %}">
-                                    <div class="search-quick-filter-filter-name">
+                                    <div class="search-quick-filter-filter-name border-right">
                                         <strong>Best Value</strong>
                                     </div>
-                                    <div class="search-quick-filter-filter-price-duration">
-                                        <span>${{ quick_filters_data.price.price }} - {{ quick_filters_data.price.duration | secs2hm }}</span>
+                                    <div class="search-quick-filter-filter-price-duration border-right">
+                                        <span class="small">${{ quick_filters_data.price.price }} - {{ quick_filters_data.price.duration | secs2hm }}</span>
                                     </div>
-
                                 </a>
+                                <div class="border-line w-75 mx-auto"></div>
                             </div>
-                            <div class="col-md-3 search-quick-filter{% if sort == "quality" %} applied{% endif %}">
+                            <div class="col-md-3  mt-2 mb-0 pb-2 text-center search-quick-filter{% if sort == "quality" %} applied{% endif %}">
                                 <a href="{% spurl base="{{ request.get_full_path }}" set_query="sort=quality" %}">
-                                    <div class="search-quick-filter-filter-name">
+                                    <div class="search-quick-filter-filter-name border-right">
                                         <strong>Best</strong>
                                     </div>
-                                    <div class="search-quick-filter-filter-price-duration">
-                                        <span>${{ quick_filters_data.quality.price }} - {{ quick_filters_data.quality.duration | secs2hm }}</span>
+                                    <div class="search-quick-filter-filter-price-duration border-right">
+                                        <span class="small">${{ quick_filters_data.quality.price }} - {{ quick_filters_data.quality.duration | secs2hm }}</span>
                                     </div>
-
                                 </a>
+                                <div class="border-line w-75 mx-auto"></div>
                             </div>
-                            <div class="col-md-3 search-quick-filter{% if sort == "duration" %} applied{% endif %}">
+                            <div class="col-md-3  mt-2 mb-0 pb-2 text-center search-quick-filter{% if sort == "duration" %} applied{% endif %}">
                                 <a href="{% spurl base="{{ request.get_full_path }}" set_query="sort=duration" %}">
-                                    <div class="search-quick-filter-filter-name">
+                                    <div class="search-quick-filter-filter-name border-right">
                                         <strong>Quickest</strong>
                                     </div>
-                                    <div class="search-quick-filter-filter-price-duration">
-                                        <span>${{ quick_filters_data.duration.price }} - {{ quick_filters_data.duration.duration | secs2hm }}</span>
+                                    <div class="search-quick-filter-filter-price-duration border-right">
+                                        <span class="small">${{ quick_filters_data.duration.price }} - {{ quick_filters_data.duration.duration | secs2hm }}</span>
                                     </div>
-
                                 </a>
+                                <div class="border-line w-75 mx-auto"></div>
                             </div>
-                            <div class="col-md-3 search-quick-filter{% if sort == "date" %} applied{% endif %}">
+                            <div class="col-md-3 mt-2 mb-0 pb-2 text-center search-quick-filter{% if sort == "date" %} applied{% endif %}">
                                 <a href="{% spurl base="{{ request.get_full_path }}" set_query="sort=date" %}">
                                     <div class="search-quick-filter-filter-name">
                                         <strong>Other</strong>
                                     </div>
                                     <div class="search-quick-filter-filter-price-duration">
-                                        <span>${{ quick_filters_data.date.price }} - {{ quick_filters_data.date.duration | secs2hm }}</span>
+                                        <span class="small">${{ quick_filters_data.date.price }} - {{ quick_filters_data.date.duration | secs2hm }}</span>
                                     </div>
-
                                 </a>
+                                <div class="border-line w-75 mx-auto"></div>
                             </div>
+
                         </div>
                         {% include "results_center.html" %}
                     </div>
