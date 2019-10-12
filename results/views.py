@@ -113,6 +113,7 @@ def results_view(request):
                     save_flight_data(request, flights, search_result=search_item)
                     for airline in flights["airlines"]:
                         airlines.add(airline)
+                    flights['roundtrip'] = any(route['return'] == 1 for route in flights['route'])
                 quick_filters_data = get_quick_filters_data(data["data"])
     context = {
         "title": "Search Results",
