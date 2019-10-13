@@ -38,11 +38,19 @@
                             {% else %}
                                 <div class="row">
                                     <div class="col-12 p-0">
-                                        <p class="home-slogan"
+                                        {% if user.subscriptions %}
+                                            <p class="home-slogan"
                                            style="margin-bottom: 25px;">
-                                            <span>Travel Made Simple . . .</span>
-                                            <span class="text-primary">Search, Book, Save</span>
-                                        </p>
+                                                <span>Subscribe to fly . . .</span>
+                                                <span class="text-primary">With Wanderift</span>
+                                            </p>
+                                        {% else %}
+                                            <p class="home-slogan"
+                                           style="margin-bottom: 25px;">
+                                                <span>Travel Made Simple . . .</span>
+                                                <span class="text-primary">Search, Book, Save</span>
+                                            </p>
+                                        {% endif %}
                                     </div>
                                 </div>
                             {% endif %}
