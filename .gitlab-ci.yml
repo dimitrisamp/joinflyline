@@ -17,7 +17,7 @@ docker-build:
   only:
     - /^rc-.*$/
   script:
-    - docker build -t registry.gitlab.com/zburau/wanderift-django:latest .
+    - docker build -t registry.gitlab.com/zburau/wanderift-django:latest -f devops/docker/django .
     - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
     - docker push registry.gitlab.com/zburau/wanderift-django:latest
 
@@ -33,10 +33,10 @@ k8s-deploy:
   - kubectl config use-context wanderift-django-13935299-dev
   - kubectl delete secret gitlab-registry --ignore-not-found -n wanderift-django-13935299-dev
   - kubectl create secret docker-registry gitlab-registry --docker-server=${CI_REGISTRY} --docker-username=${CI_REGISTRY_USER} --docker-password=${CI_REGISTRY_PASSWORD} --docker-email=${CI_REGISTRY_EMAIL} -n wanderift-django-13935299-dev
-  - kubectl apply -f postgres-secret.yml -n wanderift-django-13935299-dev
-  - kubectl apply -f deployment.yml -n wanderift-django-13935299-dev
-  - kubectl apply -f ingress.yml -n wanderift-django-13935299-dev
-  - kubectl apply -f service.yml -n wanderift-django-13935299-dev
+  - kubectl apply -f devops/k8s/postgres-secret.yml -n wanderift-django-13935299-dev
+  - kubectl apply -f devops/k8s/deployment.yml -n wanderift-django-13935299-dev
+  - kubectl apply -f devops/k8s/ingress.yml -n wanderift-django-13935299-dev
+  - kubectl apply -f devops/k8s/service.yml -n wanderift-django-13935299-dev
 
   environment:
     name: dev
