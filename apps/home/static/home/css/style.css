@@ -23,7 +23,7 @@ header {
     flex-wrap: wrap;
     align-items: center;
     z-index: 9;
-    transition: 0.3s all;
+    /*transition: 0.3s all;*/ /* TODO: remove JS animation */
 }
 
 header.sticky {
