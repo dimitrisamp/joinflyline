@@ -33,6 +33,8 @@ spec:
 
             - name: POSTGRES_HOST
               value: 10.51.112.4
+            - name: FOR_GODS_SAKE_PLEASE_REDEPLOY
+              value: 'THIS_STRING_IS_REPLACED_DURING_BUILD'
 
       imagePullSecrets:
         - name: gitlab-registry
