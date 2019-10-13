@@ -91,6 +91,13 @@ def results_view(request):
     limit = int(request.GET.get("limit", 20))
     search_query = {"limit": limit, "apikey": S.KIWI_API_KEY, "curr": "USD"}
     filter_params = {k: request.GET.get(k) for k in FILTER_KEYS if k in request.GET}
+    if request.user.subscriptions:
+        selected_airlines = request.GET.get('select_airlines')
+        if not selected_airlines:
+            airlines = S.SUBSCRIBER_AIRLINES
+        else:
+            airlines = set(selected_airlines.upper().split(',')) & S.SUBSCRIBER_AIRLINES
+        filter_params['select_airlines'] = ','.join(airlines)
     search_item = SearchDetails.objects.create(user_id=request.user.id, **search_params)
     data = {}
     airlines = set()

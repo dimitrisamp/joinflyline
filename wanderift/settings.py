@@ -206,3 +206,11 @@ if STAGE == "production":
         integrations=[DjangoIntegration()]
     )
 SITE_TITLE = "Wanderift | Airline Travel Subscription | Save on Retail Flights"
+SUBSCRIBER_AIRLINES = {
+    'AA',  # American
+    'DL',  # Delta
+    'UA',  # United
+    'WN',  # Southwest
+    'B6',  # jetBlue
+    'SY',  # Sun Country
+}
