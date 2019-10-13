@@ -29,5 +29,5 @@ def reset(c):
 
 @task
 def production_migrate_and_run(c):
-    c.run("python manage.py migrate")
-    c.run("python manage.py runserver")
+    c.run("python manage.py migrate", pty=True)
+    c.run("python manage.py runserver", pty=True)
