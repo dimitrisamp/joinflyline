@@ -14,3 +14,12 @@ services:
     env_file: .env
     volumes:
       - local_postgres_data:/var/lib/postgresql/data
+  django:
+    container_name: wanderift_django
+    build:
+      context: .
+      dockerfile: devops/docker/django/Dockerfile
+    image: wanderift_django
+    ports:
+      - 8000:8000
+    env_file: .env.production
