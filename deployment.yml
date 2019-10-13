@@ -32,15 +32,7 @@ spec:
                   key: password
 
             - name: POSTGRES_HOST
-              value: postgres-service
+              value: 10.51.112.4
 
-            volumeMounts:
-              - name: postgres-volume-mount
-                mountPath: /var/lib/busybox
-
-            volumes:
-              - name: postgres-volume-mount
-                persistentVolumeClaim:
-                  claimName: postgres-pvc
       imagePullSecrets:
         - name: gitlab-registry
