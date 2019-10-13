@@ -26,10 +26,11 @@ body{
 }
 .formBg{
 	background: #fff;
-	padding: 10px 50px;
+	padding: 10px 15px;
 	border: 1px solid #ccc;
     padding-bottom: 40px;
-    margin-top: 100px;
+    margin: 150px auto;
+    max-width: 420px;
 }
 .formBg h3{
 	text-align: center;
@@ -77,10 +78,13 @@ body{
     font-weight: bold;
 }
 
+.white-block {
+    background-color: white;
+}
+
 @media(min-width: 320px) and (max-width: 480px){
 .formBg{
-    margin-top:10px;
-    margin-bottom: 20px;
+    margin: 30px auto;
 }
 
 
