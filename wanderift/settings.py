@@ -55,17 +55,17 @@ INSTALLED_APPS = [
     'spurl',
 
     # My apps
-    'construction',
-    'subscriptions',
-    'payments',
-    'home',
-    'results',
-    'corporate',
-    'account',
-    'booking',
-    'oauth',
-    'info',
-    'emails'
+    'apps.construction',
+    'apps.subscriptions',
+    'apps.payments',
+    'apps.home',
+    'apps.results',
+    'apps.corporate',
+    'apps.account',
+    'apps.booking',
+    'apps.oauth',
+    'apps.info',
+    'apps.emails'
 ]
 
 MIDDLEWARE = [
@@ -96,12 +96,12 @@ TEMPLATES = [
             ],
             'libraries': {
                 'airlines':
-                    'results.templatetags.airlines',
+                    'apps.results.templatetags.airlines',
                 'aircons':
-                    'results.templatetags.airline_icons',
-                'comparison': 'results.templatetags.comparison',
-                'return_flight': 'results.templatetags.return_flight',
-                'departure_flight': 'results.templatetags.departure_flight'
+                    'apps.results.templatetags.airline_icons',
+                'comparison': 'apps.results.templatetags.comparison',
+                'return_flight': 'apps.results.templatetags.return_flight',
+                'departure_flight': 'apps.results.templatetags.departure_flight'
             }
         },
     },
@@ -214,3 +214,6 @@ SUBSCRIBER_AIRLINES = {
     'B6',  # jetBlue
     'SY',  # Sun Country
 }
+SEND_GRID_API_KEY = (
+    "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"
+)

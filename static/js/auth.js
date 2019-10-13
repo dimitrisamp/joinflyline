@@ -24,7 +24,7 @@ $(document).ready(function () {
                 }
             },
             success: function (data) {
-                window.location = "/account/accounts"
+                window.location = "../../apps/account/accounts"
             }
         });
     }

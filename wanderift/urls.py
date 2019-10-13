@@ -18,17 +18,16 @@ from django.contrib import admin
 from django.contrib.staticfiles.urls import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.urls import path, include
-from django.views.generic import TemplateView
 
-from booking.views import (
+from apps.booking.views import (
     retail_booking_view,
     CheckFlightsView,
     SaveBookingView,
     CheckPromoView,
 )
-from emails.views import booking_success
-from home.views import index_view, home_view, SignInView, SignUpView
-from results.views import results_view
+from apps.emails.views import booking_success
+from apps.home.views import index_view, home_view, SignInView, SignUpView
+from apps.results.views import results_view
 from django.conf import settings
 
 urlpatterns = [
@@ -41,13 +40,13 @@ urlpatterns = [
     # Results page urls
     path("results", results_view, name="results"),
     # Accounts page urls
-    path("account/", include("account.urls")),
+    path("account/", include("apps.account.urls")),
     # Corporate urls
-    path("corporates/", include("corporate.urls")),
+    path("corporates/", include("apps.corporate.urls")),
     # Auth urls
-    path("auth/", include("oauth.urls")),
+    path("auth/", include("apps.oauth.urls")),
     # Information about Wanderift
-    path("info/", include("info.urls")),
+    path("info/", include("apps.info.urls")),
     # booking
     path("retail/<str:booking_token>", retail_booking_view, name="retail"),
     path("booking_flight/", SaveBookingView.as_view(), name="book"),
@@ -55,9 +54,9 @@ urlpatterns = [
     path("check-promo/", CheckPromoView.as_view(), name="check-promo"),
     path("emails/<str:booking_id>", booking_success, name="email"),
     # subscriptions
-    path("subscriptions/", include("subscriptions.urls")),
+    path("subscriptions/", include("apps.subscriptions.urls")),
     # payments
-    path("pay/", include("payments.urls")),
+    path("pay/", include("apps.payments.urls")),
     path("sign-in/", SignInView.as_view(), name="sign-in"),
     path("sign-up/", SignUpView.as_view(), name="sign-up"),
 ]
@@ -66,4 +65,3 @@ urlpatterns += staticfiles_urlpatterns()
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
-from wanderift.errors import handler500

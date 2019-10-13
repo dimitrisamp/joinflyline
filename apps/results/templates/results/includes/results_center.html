@@ -1,0 +1,30 @@
+{% load static %}
+{% load custom_date %}
+{% load airlines %}
+{% load airline_icons %}
+{% load comparison %}
+{% load time_duration %}
+{% load return_flight %}
+{% load departure_flight %}
+{% load spurl %}
+
+{% if data.data %}
+    {% for flight in data.data %}
+        {% if flight.availability.seats > 0 %}
+            {% include "results/includes/flight.html" with flight=flight %}
+        {% endif %}
+    {% endfor %}
+    <a href="{% spurl base="{{ request.get_full_path }}" set_query="limit={{ next_limit }}" %}">
+        <button class="load-more-button">Load More</button>
+    </a>
+{% else %}
+    <div class="card no-flight-results">
+        <h4>Oops there's no available flights...</h4>
+        <p>
+            Sorry we don't have any flights that fit your search criteria,
+            no worries try searching for alternate dates or cities, take a look below at
+            some
+            alternate city suggestions
+        </p>
+    </div>
+{% endif %}
