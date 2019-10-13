@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     "django.contrib.humanize",
     # 3rd party libs
     "spurl",
+    "django_extensions",
     # My apps
     "apps.construction",
     "apps.subscriptions",

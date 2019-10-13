@@ -11,3 +11,5 @@ django-suit
 python-dotenv
 psycopg2
 invoke
+
+django-extensions
