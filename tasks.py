@@ -25,3 +25,9 @@ def reset(c):
     c.run("docker-compose up -d")
     wait_for_pg()
     c.run("python manage.py migrate")
+
+
+@task
+def production_migrate_and_run(c):
+    c.run("python manage.py migrate")
+    c.run("python manage.py runserver")
