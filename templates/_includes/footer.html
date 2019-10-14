@@ -4,14 +4,14 @@
         <div class="col2">
             <h3>Contact</h3>
             <ul class="content">
-                <li><a href="#">About</a></li>
+                <li><a href="{% url "about" %}">About</a></li>
                 <li><a href="#">Press</a></li>
-                <li><a href="#">Partners</a></li>
+                <li><a href="{% url "partners" %}">Partners</a></li>
             </ul>
 
             <h3>Company</h3>
             <ul class="content">
-                <li><a href="#">Help - FAQ</a></li>
+                <li><a href="{% url "faq" %}">Help - FAQ</a></li>
                 <li><a href="#">Mobile Booking</a></li>
                 <li><a href="#">Subscriptions</a></li>
             </ul>
@@ -20,11 +20,11 @@
         <div class="col2">
             <h3>Shortcuts</h3>
             <ul class="content">
-                <li><a href="#">Personal Subscriptions</a></li>
-                <li><a href="#">Corporate Subscriptions</a></li>
-                <li><a href="#">Retail Bookings</a></li>
+                <li><a href="{% url "how-it-works" %}">Personal Subscriptions</a></li>
+                <li><a href="{% url "corp-how-it-works" %}">Corporate Subscriptions</a></li>
+                <li><a href="{% url "home" %}">Retail Bookings</a></li>
                 <li><a href="#">Travel News</a></li>
-                <li><a href="#">Sign In-Sign Up</a></li>
+                <li><a href="{% url "sign-in" %}">Sign In</a>-<a href="{% url "sign-up" %}">Sign Up</a></li>
             </ul>
         </div>
 
