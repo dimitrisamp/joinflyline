@@ -368,7 +368,7 @@ footer .bottom-footer ul li:first-child:before {
 }
 
 
-@media (max-width: 1440px) {
+@media (max-width: 990px) {
     .main .col {
         flex: 0 1 100%;
         min-width: 100%;
@@ -387,7 +387,7 @@ footer .bottom-footer ul li:first-child:before {
     }
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 990px) {
     .index-header ul li a {
         padding:  0 15px;
     }
