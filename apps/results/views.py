@@ -92,7 +92,7 @@ def results_view(request):
     limit = int(request.GET.get("limit", 20))
     search_query = {"limit": limit, "apikey": S.KIWI_API_KEY, "curr": "USD"}
     filter_params = {k: request.GET.get(k) for k in FILTER_KEYS if k in request.GET}
-    if request.user.is_authenticated and hasattr(request.user, "subscriptions"):
+    if request.user.is_authenticated:
         selected_airlines = request.GET.get("select_airlines")
         if not selected_airlines:
             airlines = S.SUBSCRIBER_AIRLINES
