@@ -55,8 +55,6 @@ body {
 }
 
 .index-header ul li a {
-    padding: 0 30px;
-    line-height: 24px;
     color: #000;
     font-size: 16px;
     display: inline-block;
