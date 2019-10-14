@@ -3,7 +3,7 @@ from datetime import timedelta
 from django.core.management import BaseCommand
 from django.utils.timezone import now
 
-from apps.results import BookingCache
+from apps.results.models import BookingCache
 
 
 class Command(BaseCommand):

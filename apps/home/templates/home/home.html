@@ -27,17 +27,6 @@
                             {% if user.is_authenticated %}
                                 <div class="row">
                                     <div class="col-12 p-0">
-                                        <p class="home-slogan"
-                                           style="margin-bottom: 25px;">
-                                            <span>Welcome {% if user.first_name %}back
-                                                {{ user.first_name }}!{% else %}to
-                                                Wanderift!{% endif %}</span>
-                                        </p>
-                                    </div>
-                                </div>
-                            {% else %}
-                                <div class="row">
-                                    <div class="col-12 p-0">
                                         {% if user.subscriptions %}
                                             <p class="home-slogan"
                                            style="margin-bottom: 25px;">
@@ -46,11 +35,22 @@
                                             </p>
                                         {% else %}
                                             <p class="home-slogan"
-                                           style="margin-bottom: 25px;">
-                                                <span>Travel Made Simple . . .</span>
-                                                <span class="text-primary">Search, Book, Save</span>
+                                               style="margin-bottom: 25px;">
+                                                <span>Welcome {% if user.first_name %}back
+                                                    {{ user.first_name }}!{% else %}to
+                                                    Wanderift!{% endif %}</span>
                                             </p>
                                         {% endif %}
+                                    </div>
+                                </div>
+                            {% else %}
+                                <div class="row">
+                                    <div class="col-12 p-0">
+                                        <p class="home-slogan"
+                                       style="margin-bottom: 25px;">
+                                            <span>Travel Made Simple . . .</span>
+                                            <span class="text-primary">Search, Book, Save</span>
+                                        </p>
                                     </div>
                                 </div>
                             {% endif %}
@@ -373,64 +373,7 @@
 
     <section class="mb-5 pt-4">
         <div class="container pt-5">
-            <div class="content_container">
-                <p class="sec_one_head" style="font-size: 35px;">Trending Flights
-                </p>
-                <p class="sec_one_subhead"
-                   style="font-size: 18px; font-weight:400; margin-bottom: 30px;">Take a
-                    look at
-                    the current flights
-                    Wanderift travelers are searching and booking
-                </p>
-                <div class="row justify-content-start">
-                    <div class="col-lg-4">
-                        <img class="img_content"
-                             src="{% static "images/lasvegas.jpg" %}">
-                        <p class="sec_one_subhead">Dallas (DAL) - Las Vegas (LAS)</p>
-                        <p class="sec_one_subhead"
-                           style="font-size:15px; margin-bottom: 8px; font-weight: 400;">
-                            $275 -
-                            Round
-                            Trip Retail Price</p>
-                        <p class="sec_one_subhead"
-                           style="font-size:15px; font-weight: 400;">2 Credits, or $238
-                            - Round
-                            Trip
-                            Wanderift</p>
-                    </div>
-                    <div class="col-lg-4">
-                        <img class="img_content"
-                             src="{% static "images/newyork.jpg" %}">
-                        <p class="sec_one_subhead">San Francisco (SFO) - New York
-                            (LGA)</p>
-                        <p class="sec_one_subhead"
-                           style="font-size:15px; margin-bottom: 8px; font-weight: 400;">
-                            $334 -
-                            Round
-                            Trip Retail Price</p>
-                        <p class="sec_one_subhead"
-                           style="font-size:15px; font-weight: 400;">2 Credits, or $238
-                            - Round
-                            Trip
-                            Wanderift</p>
-                    </div>
-                    <div class="col-lg-4">
-                        <img class="img_content"
-                             src="{% static "images/seattle.jpg" %}">
-                        <p class="sec_one_subhead">Los Angeles (LAX) - Seattle (SEA)</p>
-                        <p class="sec_one_subhead"
-                           style="font-size:15px; margin-bottom: 8px; font-weight: 400;">
-                            $264 -
-                            Round
-                            Trip Retail Price</p>
-                        <p class="sec_one_subhead"
-                           style="font-size:15px; font-weight: 400;">2 Credits, or $238
-                            - Round
-                            Trip
-                            Wanderift</p>
-                    </div>
-                </div>
-            </div>
+            {% include "includes/home/trending_flights.html" %}
             <div class="content_container divider" style="margin-top: 80px;">
                 <p class="sec_one_head" style="font-size: 35px;">Top Destinations of
                     October
