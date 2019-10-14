@@ -25,6 +25,7 @@ def reset(c):
     c.run("docker-compose up -d postgres")
     wait_for_pg()
     c.run("python manage.py migrate")
+    c.run("python manage.py create_example_data")
 
 
 @task

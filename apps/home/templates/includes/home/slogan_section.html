@@ -1,0 +1,9 @@
+{% if user.is_authenticated %}
+    {% if user.subscriptions %}
+        {% include "includes/home/subscriber/slogan.html" %}
+    {% else %}
+        {% include "includes/home/non-subscriber/slogan.html" %}
+    {% endif %}
+{% else %}
+    {% include "includes/home/anonymous/slogan.html" %}
+{% endif %}

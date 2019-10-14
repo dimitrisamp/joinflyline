@@ -63,6 +63,7 @@ INSTALLED_APPS = [
     "apps.oauth",
     "apps.info",
     "apps.emails",
+    "apps.common",
 ]
 
 MIDDLEWARE = [

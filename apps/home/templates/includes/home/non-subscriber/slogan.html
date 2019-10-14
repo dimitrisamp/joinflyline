@@ -1,0 +1,14 @@
+<div class="row">
+    <div class="col-12 p-0">
+        <p class="home-slogan"
+           style="margin-bottom: 25px;">
+                <span>Welcome
+                    {% if user.first_name %}
+                        back {{ user.first_name }}!
+                    {% else %}
+                        to Wanderift!
+                    {% endif %}
+                </span>
+        </p>
+    </div>
+</div>
