@@ -50,15 +50,4 @@
 {% endblock %}
 {% block jscontent %}
     <script src="{% static "js/home.js" %}"></script>
-    <script>
-        let tripButton = document.querySelector(".btn-group");
-        let picker = new Lightpick({
-            field: document.getElementById('departure_date'),
-            secondField: document.getElementById('return_date'),
-            singleDate: false,
-            onSelect: function (start, end) {
-
-            }
-        });
-    </script>
 {% endblock %}

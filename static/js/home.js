@@ -397,3 +397,12 @@ const app = new Vue({
         },
     }
 });
+
+$(function(){
+    document.querySelector(".btn-group");
+    new Lightpick({
+        field: document.getElementById('departure_date'),
+        secondField: document.getElementById('return_date'),
+        singleDate: false,
+    });
+});
