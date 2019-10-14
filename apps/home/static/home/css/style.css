@@ -54,7 +54,10 @@ body {
     padding: 0;
 }
 
-.index-header ul li a {
+.index-header ul li a.nav-link {
+    padding: 0 30px;
+    line-height: 24px;
+    color: #000;
     font-size: 16px;
     display: inline-block;
     text-align: center;
@@ -385,7 +388,7 @@ footer .bottom-footer ul li:first-child:before {
 }
 
 @media (max-width: 990px) {
-    .index-header ul li a {
+    .index-header ul li a.nav-link {
         padding:  0 15px;
     }
 
