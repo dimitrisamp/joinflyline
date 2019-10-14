@@ -15,7 +15,13 @@
              data-target="#result-item{{ flight.duration.total }}">
             <div class="price-block d-flex align-items-center justify-content-center pl-3 pr-3">
                 <div>
-                    <h5>$ {{ flight.price }}</h5>
+                    <h5>
+                        {% if user.subscriptions.tokens %}
+                            {% if flight.roundtrip %}2 credits{% else %}1 credit{% endif %}
+                        {% else %}
+                        $ {{ flight.price }}
+                        {% endif %}
+                    </h5>
                     <p class="small text-muted">1 Adult</p>
                     {# TODO: display proper number of passengers #}
                 </div>
