@@ -1,0 +1,11 @@
+<section>
+    {% if user.is_authenticated %}
+        {% if user.subscriptions.plan %}
+            {% include "includes/home/subscriber/buttons.html" %}
+        {% else %}
+            {% include "includes/home/non-subscriber/buttons.html" %}
+        {% endif %}
+    {% else %}
+        {% include "includes/home/anonymous/buttons.html" %}
+    {% endif %}
+</section>
