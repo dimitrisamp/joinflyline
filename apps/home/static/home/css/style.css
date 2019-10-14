@@ -14,7 +14,7 @@ body {
     font-family: "Karla", sans-serif;
 }
 
-header {
+.index-header {
     position: fixed;
     top: 30px;
     width: 100%;
@@ -26,7 +26,7 @@ header {
     /*transition: 0.3s all;*/ /* TODO: remove JS animation */
 }
 
-header.sticky {
+.index-header.sticky {
     top: 0;
     height: 70px;
     z-index: 99;
@@ -35,12 +35,12 @@ header.sticky {
     background-color: #fff;
 }
 
-header .logo img {
+.index-header .logo img {
     height: 40px;
     width: auto;
 }
 
-header ul {
+.index-header ul {
     list-style: none;
     display: block;
     margin: 0;
@@ -49,12 +49,12 @@ header ul {
     flex-wrap: wrap;
 }
 
-header ul li {
+.index-header ul li {
     margin: 0;
     padding: 0;
 }
 
-header ul li a {
+.index-header ul li a {
     padding: 0 30px;
     line-height: 24px;
     color: #000;
@@ -73,20 +73,20 @@ a:hover {
     color: #00B7FF;
 }
 
-header .right-menu {
+.index-header .right-menu {
     margin-left: 50px;    
 }
 
-header .left-menu {
+.index-header .left-menu {
     margin-left: auto;
     margin-right: 0;
 }
 
-header .left-menu ul li {
+.index-header .left-menu ul li {
     margin: 0 15px;
 }
 
-header .left-menu ul li:last-child {
+.index-header .left-menu ul li:last-child {
     margin-right: 0;
 }
 
@@ -119,7 +119,7 @@ header .left-menu ul li:last-child {
     color: #fff;
 }
 
-header.sticky .btn-blue.active {
+.index-header.sticky .btn-blue.active {
     color: #00B7FF;
 }
 
@@ -220,7 +220,7 @@ header.sticky .btn-blue.active {
     z-index: -1;
 }
 
-header .mobile-menu {
+.index-header .mobile-menu {
     height: 50px;
     position: absolute;
     right: 0;
@@ -239,22 +239,22 @@ header .mobile-menu {
 }
 */
 
-header .mobile-menu ul {
+.index-header .mobile-menu ul {
     display: block;
     text-align: center;
 }
 
-header .mobile-menu ul li a {
+.index-header .mobile-menu ul li a {
     font-size: 16px;
     line-height: 24px;    
 }
 
-header .mobile-menu ul li {
+.index-header .mobile-menu ul li {
     margin-top: 10px;
     
 }
 
-header .mobile-menu #links {
+.index-header .mobile-menu #links {
     background:#fff;
     -webkit-box-shadow: 0 4px 12px 0 rgba(38,39,39,0.08);
     box-shadow: 0 4px 12px 0 rgba(38,39,39,0.08);
@@ -262,7 +262,7 @@ header .mobile-menu #links {
     padding-bottom: 15px;
 }
 
-header .mobile-menu .mobile-icon {
+.index-header .mobile-menu .mobile-icon {
     display: inline-block;
     width: 50px;
     height: 50px;
@@ -378,7 +378,7 @@ footer .bottom-footer ul li:first-child:before {
         padding: 70px 0;
     }
 
-    header .btn-blue.active {
+    .index-header .btn-blue.active {
         color: #00B7FF;
     }
 
@@ -388,27 +388,27 @@ footer .bottom-footer ul li:first-child:before {
 }
 
 @media (max-width: 1200px) {
-    header ul li a {
+    .index-header ul li a {
         padding:  0 15px;
     }
 
-    header {
+    .index-header {
         padding: 0 15px;
     }
 
-    header.sticky {
+    .index-header.sticky {
         padding: 0 10px;
         height: 80px;    
     }
 
-    header .right-menu {
+    .index-header .right-menu {
         margin-left: 30px;
     }
 }
 
 @media (max-width: 990px) {
-    header .left-menu,
-    header .right-menu {
+    .index-header .left-menu,
+    .index-header .right-menu {
         display: none;
     }
 
@@ -418,12 +418,12 @@ footer .bottom-footer ul li:first-child:before {
         margin: 0 10%;
     }
 
-    header .mobile-menu #links {
+    .index-header .mobile-menu #links {
         display: none;
         overflow: hidden;
     }
 
-    header .mobile-menu {
+    .index-header .mobile-menu {
         display: block;
     }
 
