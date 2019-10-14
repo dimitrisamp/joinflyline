@@ -143,10 +143,93 @@ ADJACENCY = {
     ),
 }
 
+LOWER_KEYS = {k.lower(): k for k in ADJACENCY.keys()}
 
-def get_from(term):
-    return [w for w in ADJACENCY.keys() if term.lower() in w.lower()]
+IATA_CODES = {
+    "Las Vegas",
+    "Orlando",
+    "Miami",
+    "Baltimore",
+    "Salt Lake City",
+    "Charlotte",
+    "Philadelphia",
+    "Seattle",
+    "Boston",
+    "Denver",
+    "San Francisco",
+    "Dallas",
+    "Los Angeles",
+    "Austin",
+    "Detroit",
+    "Chicago",
+    "New York",
+    "Atlanta",
+}
+
+CITY_STATE_COUNTRY_AIRPORT = [
+    ["Atlanta", "Georgia", "US", "ATL"],
+    ["Atlanta", "Georgia", "US", "PDK"],
+    ["Austin", "Texas", "US", "AUS"],
+    ["Baltimore", "Maryland", "US", "BWI"],
+    ["Boston", "Massachusetts", "US", "BOS"],
+    ["Charlotte", "North-Carolina", "US", "CLT"],
+    ["Chicago", "Illinois", "US", "MDW"],
+    ["Chicago", "Illinois", "US", "ORD"],
+    ["Dallas", "Texas", "US", "ADS"],
+    ["Dallas", "Texas", "US", "DAL"],
+    ["Denver", "Colorado", "US", "APA"],
+    ["Denver", "Colorado", "US", "BJC"],
+    ["Denver", "Colorado", "US", "DEN"],
+    ["Detroit", "Michigan", "US", "DET"],
+    ["Detroit", "Michigan", "US", "DTW"],
+    ["Detroit", "Michigan", "US", "YIP"],
+    ["Las Vegas", "Nevada", "US", "LAS"],
+    ["Los Angeles", "California", "US", "LAX"],
+    ["Miami", "Florida", "US", "MIA"],
+    ["New York", "New-York", "US", "JFK"],
+    ["New York", "New-York", "US", "LGA"],
+    ["Orlando", "Florida", "US", "MCO"],
+    ["Orlando", "Florida", "US", "SFB"],
+    ["Philadelphia", "Florida", "US", "BBX"],
+    ["Philadelphia", "Pennsylvania", "US", "PHL"],
+    ["Salt Lake City", "Utah", "US", "SLC"],
+    ["San Francisco", "California", "US", "SFO"],
+    ["Seattle", "Washington", "US", "BFI"],
+    ["Seattle", "Washington", "US", "SEA"],
+]
+
+CITY_DATA = {}
+for city, state, country, code in CITY_STATE_COUNTRY_AIRPORT:
+    CITY_DATA.setdefault(city, []).append([state, country, code])
+
+AIRPORT_TO_CITY = {
+    code: city for city, _, _, code in CITY_STATE_COUNTRY_AIRPORT
+}
+
+def wrap_city_data(cities):
+    result = []
+    for city in cities:
+        data = CITY_DATA[city]
+        for state, country, code in data:
+            result.append(
+                {
+                    "name": city,
+                    "subdivision": {"name": state},
+                    "country": {"code": country},
+                    "code": code,
+                }
+            )
+    return result
 
 
-def get_to(term, city_from):
-    pass
+def get_city_from(term):
+    return list(sorted(v for k, v in LOWER_KEYS.items() if term.lower() in k))
+
+
+def get_city_to(city_from, term):
+    try:
+        cities = ADJACENCY[LOWER_KEYS[city_from.lower()]]
+    except KeyError:
+        return []
+    lower_cities = {c.lower(): c for c in cities}
+    return list(sorted(v for k, v in lower_cities.items() if term.lower() in k))

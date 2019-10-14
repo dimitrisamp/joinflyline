@@ -101,7 +101,7 @@
                            v-model="form.city_to"
                            v-on:input="toCityHandler"
                            name="placesTo"
-                           id="placesTo"/>
+                           id="placesTo" :disabled="DjangoUser.subscriber && !form.placeFrom"/>
                 </h6>
             </label>
         </div>
