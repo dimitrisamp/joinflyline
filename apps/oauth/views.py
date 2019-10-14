@@ -28,7 +28,6 @@ def login_user(request):
         auth.login(request, user)
         return redirect(index_view)
     else:
-        messages.error(request, 'Failed: Your credentials were incorrect')
         return redirect(index_view)
 
 
@@ -46,5 +45,4 @@ def forgot_password(request):
 
 def logout_view(request):
     logout(request)
-    messages.success(request, 'Successfully logged out')
     return redirect(index_view)
