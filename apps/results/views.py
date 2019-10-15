@@ -1,5 +1,7 @@
 import datetime
 import json
+import math
+from itertools import groupby
 
 import requests
 from django.contrib import messages
@@ -10,10 +12,15 @@ from django.urls import reverse
 from django.utils.dateparse import parse_datetime
 from django.views import View
 
-from apps.results.adjacency import get_city_from, get_city_to, wrap_city_data, \
-    AIRPORT_TO_CITY, ADJACENCY
+from apps.results.adjacency import (
+    get_city_from,
+    get_city_to,
+    wrap_city_data,
+    AIRPORT_TO_CITY,
+    ADJACENCY,
+)
 from apps.results.models import SearchDetails, BookingCache
-
+from wanderift.utils import pairwise
 
 API_URL = "https://kiwicom-prod.apigee.net/v2/search"
 
@@ -100,14 +107,14 @@ def results_view(request):
         "infants": request.GET["infants"],
         "selected_cabins": request.GET["selected_cabins"],
     }
-    if search_params['flight_type'] == 'return':
+    if search_params["flight_type"] == "round":
         search_params["return_from"] = request.GET["ret_date"]
         search_params["return_to"] = request.GET["ret_date"]
     if hasattr(request.user, "subscriptions"):
-        cityFrom = AIRPORT_TO_CITY.get(search_params['fly_from'])
-        cityTo = AIRPORT_TO_CITY.get(search_params['fly_to'])
+        cityFrom = AIRPORT_TO_CITY.get(search_params["fly_from"])
+        cityTo = AIRPORT_TO_CITY.get(search_params["fly_to"])
         if cityTo not in ADJACENCY.get(cityFrom, set()):
-            return HttpResponseRedirect(reverse('home'))
+            return HttpResponseRedirect(reverse("home"))
 
     sort = request.GET.get("sort")
     if sort:
@@ -158,6 +165,18 @@ def results_view(request):
                     flights["roundtrip"] = any(
                         route["return"] == 1 for route in flights["route"]
                     )
+                    for key, routes in groupby(flights["route"], lambda r: r["return"]):
+                        routes = list(routes)
+                        if key == 1:
+                            flights['return_departure'] = routes[0]["local_departure"]
+                        for pr, nr in pairwise(routes):
+                            pr["layover"] = math.floor(
+                                (
+                                    parse_datetime(nr["utc_departure"])
+                                    - parse_datetime(pr["utc_arrival"])
+                                ).total_seconds()
+                            )
+
                 quick_filters_data = get_quick_filters_data(data["data"])
     context = {
         "title": "Search Results",

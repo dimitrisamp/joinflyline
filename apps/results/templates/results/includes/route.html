@@ -53,8 +53,10 @@
     </div>
     <span class="position-absolute duration-indicator small text-muted">{{ route | time_interval }}</span>
 </div>
+{% if route.layover %}
 <div class="d-flex pt-3 pl-4 pb-3">
     <i class="fa fa-clock-o mr-2"></i>
-    <p class="small text-muted mb-0">{{ route |time_interval }}
+    <p class="small text-muted mb-0">{{ route.layover | secs2hm }}
         layover</p>
 </div>
+{% endif %}
