@@ -54,8 +54,7 @@
                         <div class="col-12">
                             <h4 class="card-title pt-3 mb-1">2. Add Your Traveler Info</h4>
                             <h5 class="mb-3" style="padding-top: 5px;font-size: .9rem; font-weight: 600;">
-                                or <a href="#" class="text-primary cursor-pointer" data-toggle="modal"
-                                         data-target="#signInOptionsModal">sign in</a> to existing account
+                                or <a href="{% url "sign-in" %}" class="text-primary cursor-pointer">sign in</a> to existing account
                             </h5>
                             {% if user.is_authenticated %}
                                 <div class="text-center mt-4 mb-4">

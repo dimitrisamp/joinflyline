@@ -5,7 +5,7 @@
             <h3>Contact</h3>
             <ul class="content">
                 <li><a href="{% url "about" %}">About</a></li>
-                <li><a href="#">Press</a></li>
+                <li><a href="{% url "news" %}">Press</a></li>
                 <li><a href="{% url "partners" %}">Partners</a></li>
             </ul>
 
@@ -13,7 +13,7 @@
             <ul class="content">
                 <li><a href="{% url "faq" %}">Help - FAQ</a></li>
                 <li><a href="#">Mobile Booking</a></li>
-                <li><a href="#">Subscriptions</a></li>
+                <li><a href="{% url "plans" %}">Subscriptions</a></li>
             </ul>
         </div>
 
@@ -21,7 +21,7 @@
             <h3>Shortcuts</h3>
             <ul class="content">
                 <li><a href="{% url "how-it-works" %}">Personal Subscriptions</a></li>
-                <li><a href="{% url "corp-how-it-works" %}">Corporate Subscriptions</a></li>
+                <li><a href="{% url "corporate-how-it-works" %}">Corporate Subscriptions</a></li>
                 <li><a href="{% url "home" %}">Retail Bookings</a></li>
                 <li><a href="#">Travel News</a></li>
                 <li><a href="{% url "sign-in" %}">Sign In</a>-<a href="{% url "sign-up" %}">Sign Up</a></li>
