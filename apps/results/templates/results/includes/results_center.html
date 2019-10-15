@@ -9,6 +9,7 @@
 {% load spurl %}
 
 {% if data.data %}
+    {% include "results/includes/quick_filters.html" %}
     {% for flight in data.data %}
         {% if flight.availability.seats > 0 %}
             {% include "results/includes/flight.html" with flight=flight %}
