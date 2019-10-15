@@ -94,14 +94,15 @@ def results_view(request):
         "fly_to": request.GET["placeTo"],
         "date_from": request.GET["dep_date"],
         "date_to": request.GET["dep_date"],
-        "return_from": request.GET["ret_date"],
-        "return_to": request.GET["ret_date"],
         "flight_type": request.GET["type"],
         "adults": request.GET["adults"],
         "children": request.GET["children"],
         "infants": request.GET["infants"],
         "selected_cabins": request.GET["selected_cabins"],
     }
+    if search_params['flight_type'] == 'return':
+        search_params["return_from"] = request.GET["ret_date"]
+        search_params["return_to"] = request.GET["ret_date"]
     if hasattr(request.user, "subscriptions"):
         cityFrom = AIRPORT_TO_CITY.get(search_params['fly_from'])
         cityTo = AIRPORT_TO_CITY.get(search_params['fly_to'])
