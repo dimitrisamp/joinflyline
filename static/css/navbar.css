@@ -9,6 +9,13 @@
     border-bottom: 1px solid whitesmoke;
 }
 
+.navbar-section.pre-dark nav {
+    padding-top: 15px;
+    background-color: white;
+    box-shadow: none;
+    border-bottom: none;
+}
+
 .navbar-section nav .nav_btn_link {
     padding-top: 10px;
 }
@@ -16,7 +23,6 @@
 /****************** Navigation ***********/
 nav {
     position: relative;
-    border-bottom: 1px solid rgba(0,0,0,0.1);
 }
 .navbar-brand {
     position: absolute;

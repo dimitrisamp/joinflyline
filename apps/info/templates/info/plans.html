@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+{% load static %}
+{% block csscontent %}
+    <link rel="stylesheet" type="text/css" href="{% static "css/info/style.css" %}">
+    <link rel="stylesheet" href="{% static "home/css/style.css" %}">
+    <link rel="stylesheet" href="{% static "css/navbar.css" %}">
+{% endblock %}
+{% block content %}
+    <section class="navbar-section pre-dark">
+        {% include "_includes/navbar.html" with page="destinations" %}
+    </section>
+
+    <section class="topbox">
+        <div class="container">
+            <div class="text-center topboxFont">
+                <h3>Pick the plan based on your travel needs</h3>
+                <p>Browse the plans we offer and see which one <br/>
+                    fits your travel needs</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 02 -->
+
+    <section class="how-it-work">
+        <div class="container">
+
+            <div class="text-center howitFont">
+                <h3>How you'll Wander away</h3>
+                <p>Here's how it all works</p>
+            </div>
+
+            <div class="row topspace">
+                <div class="col-md-4 col-sm-4">
+                    <div class="text-center box-04">
+                        <span class="fa fa-building"></span>
+                        <h3>Pick a Plan</h3>
+                        <p>Choose between either the 3(3 round trip flights) or 6 pack
+                            (6 round trip flights</p>
+                    </div>
+                </div><!-- col/4 -->
+                <div class="col-md-4 col-sm-4">
+                    <div class="text-center box-04">
+                        <span class="fa fa-plane"></span>
+                        <h3>Book a Flight</h3>
+                        <p>Choose between either the 3(3 round trip flights) or 6 pack
+                            (6 round trip flights</p>
+                    </div>
+                </div><!-- col/4 -->
+                <div class="col-md-4 col-sm-4">
+                    <div class="text-center box-04">
+                        <span class="fa fa-refresh"></span>
+                        <h3>Upgrade or Rollover</h3>
+                        <p>Choose between either the 3(3 round trip flights) or 6 pack
+                            (6 round trip flights</p>
+                    </div>
+                </div><!-- col/4 -->
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Section 03 -->
+    <section class="available-plan">
+        <div class="container">
+            <div class="text-center howitFont">
+                <h3>Available Plans on Wanderift</h3>
+                <p>Pick a plan, upgrade, downgrade, cancel at anytime</p>
+            </div>
+
+            <div class="row topspace">
+                <div class="col-md-3 col-sm-3">
+                    <div class="text-center box-03">
+                        <h3>Credits Pack</h3>
+                        <p>Choose between either the 3(3 round trip flights) or 6 pack
+                            (6 round trip flights</p>
+                    </div>
+                </div><!-- col/3 -->
+                <div class="col-md-3 col-sm-3">
+                    <div class="text-center box-03">
+                        <h3>2 Credits / mo</h3>
+                        <p>Wanderift Lite starts at $269/mo. you get 2 credits(1 round
+                            trip) per month</p>
+                    </div>
+                </div><!-- col/3 -->
+                <div class="col-md-3 col-sm-3">
+                    <div class="text-center box-03">
+                        <h3>3 Credits / mo</h3>
+                        <p>Wanderift Lite starts at $269/mo. you get 2 credits(1 round
+                            trip) per month</p>
+                    </div>
+                </div><!-- col/3 -->
+                <div class="col-md-3 col-sm-3">
+                    <div class="text-center box-03">
+                        <h3>4 Credits / mo</h3>
+                        <p>Wanderift Lite starts at $269/mo. you get 2 credits(1 round
+                            trip) per month</p>
+                    </div>
+                </div><!-- col/3 -->
+            </div>
+
+            <div class="text-center btn-get">
+                <a href="#" class="btn btn-default">Get Started</a>
+            </div>
+
+
+        </div>
+    </section>
+    {% include "_includes/footer.html" %}
+{% endblock %}
