@@ -43,10 +43,10 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-links">
-                    <li><a href="#">How it Works</a></li>
-                    <li><a href="#">Pricing</a></li>
+                    <li><a href="{% url "how-it-works" %}">How it Works</a></li>
+                    <li><a href="{% url "plans" %}">Pricing</a></li>
                     <li><a href="{% url "destinations" %}">Destinations</a></li>
-                    <li><a href="#">Retail Bookings</a></li>
+                    <li><a href="{% url "home" %}">Retail Bookings</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right nav-btn">
                     <li><a href="{% url "sign-in" %}" class="btn btn-default">Sign
