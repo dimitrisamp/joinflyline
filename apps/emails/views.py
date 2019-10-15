@@ -16,7 +16,7 @@ def booking_success(request, booking):
             "emails/booking_success.html",
             {"data": booking, "i": 0, "booking_contact": booking_contact},
         )
-        sg = sendgrid.SendGridAPIClient(S.SEND_GRID_API_KEY)
+        sg = sendgrid.SendGridAPIClient(S.SENDGRID_API_KEY)
         from_email = "booking@wanderift.com"
         to_email = booking_contact["email"]
         text_content = Content("text/html", htm_content)

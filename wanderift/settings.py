@@ -189,10 +189,11 @@ RECEIVE_EMAIL = "bookings@wanderift.com"
 RECEIVE_PHONE = "+18105131533"
 KIWI_API_KEY = "4TMnq4G90OPMYDAGVHzlP9LQo2hvzzdc"
 STRIPE_API_KEY = "sk_test_H2ypPKiLEc14JVbd6OpDIWQv00gPMSrkj1"
+SENTRY_DSN = 'https://a875b98b313142d8afd40797b84f235e@sentry.io/1773547'
 
 if STAGE == "production":
     sentry_sdk.init(
-        dsn="https://a875b98b313142d8afd40797b84f235e@sentry.io/1773547",
+        dsn=SENTRY_DSN,
         integrations=[DjangoIntegration()],
     )
 SITE_TITLE = "Wanderift | Airline Travel Subscription | Save on Retail Flights"
@@ -204,7 +205,7 @@ SUBSCRIBER_AIRLINES = {
     "B6",  # jetBlue
     "SY",  # Sun Country
 }
-SEND_GRID_API_KEY = (
+SENDGRID_API_KEY = (
     "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"
 )
 PRICE_LIMIT_SUBSCRIBER = 350
