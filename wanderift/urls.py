@@ -27,7 +27,7 @@ from apps.booking.views import (
 )
 from apps.emails.views import booking_success
 from apps.home.views import index_view, home_view, SignInView, SignUpView
-from apps.results.views import results_view
+from apps.results.views import results_view, CityAutocomplete
 from django.conf import settings
 
 urlpatterns = [
@@ -59,6 +59,7 @@ urlpatterns = [
     path("pay/", include("apps.payments.urls")),
     path("sign-in/", SignInView.as_view(), name="sign-in"),
     path("sign-up/", SignUpView.as_view(), name="sign-up"),
+    path("city/query", CityAutocomplete.as_view(), name="city-query"),
 ]
 
 urlpatterns += staticfiles_urlpatterns()

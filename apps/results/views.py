@@ -3,14 +3,21 @@ import json
 
 import requests
 from django.contrib import messages
+from django.http import JsonResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.conf import settings as S
+from django.urls import reverse
 from django.utils.dateparse import parse_datetime
+from django.views import View
 
+from apps.results.adjacency import get_city_from, get_city_to, wrap_city_data, \
+    AIRPORT_TO_CITY, ADJACENCY
 from apps.results.models import SearchDetails, BookingCache
 
 
 API_URL = "https://kiwicom-prod.apigee.net/v2/search"
+
+LOCATION_API_URL = "https://kiwicom-prod.apigee.net/locations/query"
 
 FILTER_KEYS = (
     "select_airlines",
@@ -67,6 +74,20 @@ def get_quick_filters_data(flights):
         }
 
 
+class CityAutocomplete(View):
+    def get(self, request):
+        term = request.GET.get("term")
+        if term is None:
+            return JsonResponse({"message": "`term` is not specified"}, status=400)
+        city_from = request.GET.get("city_from")
+        if city_from is None:
+            return JsonResponse({"locations": wrap_city_data(get_city_from(term))})
+        else:
+            return JsonResponse(
+                {"locations": wrap_city_data(get_city_to(city_from, term))}
+            )
+
+
 def results_view(request):
     search_params = {
         "fly_from": request.GET["placeFrom"],
@@ -81,6 +102,12 @@ def results_view(request):
         "infants": request.GET["infants"],
         "selected_cabins": request.GET["selected_cabins"],
     }
+    if hasattr(request.user, "subscriptions"):
+        cityFrom = AIRPORT_TO_CITY.get(search_params['fly_from'])
+        cityTo = AIRPORT_TO_CITY.get(search_params['fly_to'])
+        if cityTo not in ADJACENCY.get(cityFrom, set()):
+            return HttpResponseRedirect(reverse('home'))
+
     sort = request.GET.get("sort")
     if sort:
         sort_params = {"sort": sort}

@@ -53,14 +53,23 @@ const app = new Vue({
         }
     },
     methods: {
-        locationSearch: (term) => {
+        locationSearch: (term, cityFrom) => {
             return new Promise((resolve) => {
-                let url = new URL('https://kiwicom-prod.apigee.net/locations/query');
-                url.search = new URLSearchParams({
+                let url;
+                if (DjangoUser.subscriber) {
+                    url = new URL('/city/query', window.location);
+                } else {
+                    url = new URL('https://kiwicom-prod.apigee.net/locations/query');
+                }
+                let searchParams = {
                     term,
                     locale: 'en-US',
                     location_types: 'city',
-                });
+                };
+                if (DjangoUser.subscriber && cityFrom) {
+                    searchParams.city_from = cityFrom;
+                }
+                url.search = new URLSearchParams(searchParams);
                 fetch(url, {
                     method: 'GET',
                     headers: {
@@ -106,7 +115,7 @@ const app = new Vue({
             app.cityToSearchProgress = true;
             app.selectionOption = 2;
             app.cityToRequestProgress = true;
-            app.locationSearch(app.form.city_to
+            app.locationSearch(app.form.city_to, app.form.city_from
             ).then(
                 (data) => {
                     app.searchResultPlacesTo = data.locations;
