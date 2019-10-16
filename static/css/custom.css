@@ -412,25 +412,6 @@
         top: 38px;
     }
 
-    .navbar-collapse {
-        padding: 15px 0;
-    }
-    .navbar-collapse .navbar-nav li {
-        padding: 10px 0;
-    }
-
-    .navbar-light {
-        padding-right: 15px;
-    }
-
-    .navbar-brand {
-        position: relative;
-        float: left;
-    }
-    .navbar-toggler {
-        float: right;
-    }
-
     .slider-holder {
         display: block!important;
     }
