@@ -1,6 +1,6 @@
 <script>
 {% if user.is_authenticated %}
-    {% if user.subscriptions.tokens %}
+    {% if user.is_subscriber %}
         const DjangoUser = {
             authenticated: true,
             subscriber: true
