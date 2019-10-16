@@ -15,7 +15,12 @@
   /* Opera */
   -o-transform: rotate(135deg);
 }
-
+.sticky-searchbar {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 59px;
+    z-index: 1020;
+}
 .search-results-section {
     padding-bottom: 50px;
     background-color: #F7F9FF;
