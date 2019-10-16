@@ -38,7 +38,8 @@ def partners_view(request):
 
 def how_it_works_view(request):
     context = {
-        'title': 'How it Works'
+        'title': 'How it Works',
+        'promo_button_text': "Start Saving"
     }
     return render(request, 'info/personal-how-it-works.html', context)
 
