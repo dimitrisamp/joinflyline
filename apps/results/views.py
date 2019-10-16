@@ -138,7 +138,7 @@ def results_view(request):
         filter_params["price_to"] = (
             S.PRICE_LIMIT_SUBSCRIBER
             if search_params["flight_type"] == "oneway"
-            else S.PRICE_LIMIT_SUBSCRIBER * 2
+            else S.PRICE_LIMIT_SUBSCRIBER * 2 + 150
         )
     search_item = SearchDetails.objects.create(user_id=request.user.id, **search_params)
     data = {}
