@@ -7,10 +7,12 @@
 {% endblock %}
 
 <nav class="pr-md-3">
-    <div class="navbar-expand-lg navbar-light text-center pb-3">
-        <a class="navbar-brand mx-auto" href="{% url "index" %}">
-            <img src="{% static "images/Wanderift-Logo.png" %}" alt="" width="140">
-        </a>
+    <div class="navbar-expand-lg navbar-light text-center">
+        <div class="container">
+            <a class="navbar-brand mx-auto" href="{% url "index" %}">
+                <img src="{% static "images/Wanderift-Logo.png" %}" alt="" width="140">
+            </a>
+        </div>
         <button class="navbar-toggler ml-auto collapsed" type="button" data-toggle="collapse" data-target="#navb"
                 aria-expanded="false">
             <span class="navbar-toggler-icon"></span>
@@ -18,39 +20,63 @@
 
         <div class="clearfix"></div>
         <div>
-            {% if user.is_authenticated %}
-                {% if user.subscriptions.plan %}
-                    <a class="nav_btn_link" href="{% url "accounts" %}">
-                        <button class="custom_btn">{{ user.subscriptions.tokens }} credits available</button>
-                    </a>
-                {% else %}
-                    <a class="nav_btn_link" href="{% url "accounts" %}">
-                        <button class="custom_btn">Subscribe to Wanderift</button>
-                    </a>
-                {% endif %}
-            {% else %}
-                <a class="nav_btn_link" href="{% url "sign-up" %}"><button class="custom_btn">Get Started</button></a>
-            {% endif %}
-
             <div class="navbar-collapse collapse p-2" id="navb">
                 <ul class="navbar-nav ml-auto">
                     {% if user.is_authenticated %}
-                        <li class="nav-item ml-md-4">
-                            <a class="custom_nav_link" href="{% url "trips" %}">Trips </a>
-                        </li>
-                        <li class="nav-item ml-md-4">
-                            <a class="custom_nav_link" href="{% url "faq" %}">Help</a>
-                        </li>
-                        <li class="nav-item ml-md-4">
-                            <a class="custom_nav_link" href="{% url "accounts" %}">Account</a>
-                        </li>
+                        {% if user.is_subscriber %}
+                            <li class="nav-item ml-md-4">
+                                <a class="custom_nav_link" href="{% url "trips" %}">Trips </a>
+                            </li>
+                            <li class="nav-item ml-md-4">
+                                <a class="custom_nav_link" href="{% url "accounts" %}">Account</a>
+                            </li>
+                            <li class="nav-item ml-md-4">
+                                <a class="custom_nav_link" href="{% url "accounts" %}">
+                                    <button class="custom_btn_white">{{ user.subscriptions.tokens }} credits</button>
+                                </a>
+                            </li>
+                            <li class="nav-item ml-md-4">
+                                <a class="custom_nav_link" href="{% url "logout" %}?next={% url "index" %}">
+                                    <button class="custom_btn">Logout</button>
+                                </a>
+                            </li>
+                        {% else %}
+                            <li class="nav-item ml-md-4">
+                                <a class="custom_nav_link" href="{% url "trips" %}">Trips </a>
+                            </li>
+                            <li class="nav-item ml-md-4">
+                                <a class="custom_nav_link" href="{% url "accounts" %}">Account</a>
+                            </li>
+                            <li class="nav-item ml-md-4">
+                                <a class="custom_nav_link" href="{% url "accounts" %}">
+                                    <button class="custom_btn_white">Subscribe</button>
+                                </a>
+                            </li>
+                            <li class="nav-item ml-md-4">
+                                <a class="custom_nav_link" href="{% url "logout" %}?next={% url "index" %}">
+                                    <button class="custom_btn">Logout</button>
+                                </a>
+                            </li>
+                        {% endif %}
                     {% else %}
                         <li class="nav-item ml-md-4">
                             <a class="custom_nav_link" href="{% url "how-it-works" %}">How It Works</a>
                         </li>
                         <li class="nav-item ml-md-4">
-                            <a class="custom_nav_link" data-toggle="modal"
-                               href="{% url "sign-in" %}">Sign In</a>
+                            <a class="custom_nav_link" href="{% url "plans" %}">Pricing</a>
+                        </li>
+                        <li class="nav-item ml-md-4">
+                            <a class="custom_nav_link" href="{% url "destinations" %}">Destinations</a>
+                        </li>
+                        <li class="nav-item ml-md-4">
+                            <a class="custom_nav_link" href="{% url "sign-up" %}">
+                                <button class="custom_btn_white">Sign Up</button>
+                            </a>
+                        </li>
+                        <li class="nav-item ml-md-4">
+                            <a class="custom_nav_link" href="{% url "sign-in" %}">
+                                <button class="custom_btn">Sign In</button>
+                            </a>
                         </li>
                     {% endif %}
                 </ul>
