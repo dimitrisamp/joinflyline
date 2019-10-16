@@ -16,6 +16,12 @@
   -o-transform: rotate(135deg);
 }
 
+.search-results-section {
+    padding-bottom: 50px;
+    background-color: #F7F9FF;
+    padding-top: 30px;
+    min-height: 666px;
+}
 .duration-indicator {
     right: 20px;
     bottom: -10px;
