@@ -64,6 +64,17 @@ a.custom_nav_link {
 
     display: block;
 }
+a.header_nav_link {
+    color: #00B7FF;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+    font-weight: 600;
+    background: #ffffff;
+    box-sizing: border-box;
+    border-radius: 4px;
+    cursor: pointer;
+    padding: 5px 20px;
+}
+
 .hor_line {
     border: 1px solid #f2f2f2;
     box-sizing: border-box;
