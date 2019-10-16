@@ -53,7 +53,7 @@ INSTALLED_APPS = [
     "django_extensions",
     # My apps
     "apps.construction",
-    "apps.subscriptions",
+    "apps.subscriptions.apps.SubscriptionsConfig",
     "apps.payments",
     "apps.home",
     "apps.results",

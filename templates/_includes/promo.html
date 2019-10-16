@@ -1,5 +1,5 @@
 {% load static %}
-{% if user.is_authenticated %}
+{% if user.is_subscriber %}
 {% else %}
     <div class="promo_banner banner-sticky">
         <p class="promo_banner_text mb-0">{% if promo_text %}{{ promo_text }}{% else %}Looking to save thousands on flights? Subscribe to Wanderift Lite or Pro
