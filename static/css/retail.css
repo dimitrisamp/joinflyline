@@ -435,6 +435,7 @@ input[type="radio"] {
     position: relative;
     right: 13px;
     top: 10px;
+    line-height: 20px;
 }
 .subscribe_detail p{
     font-size: 14px;
