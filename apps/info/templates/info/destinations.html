@@ -4,8 +4,12 @@
     <link rel="stylesheet" type="text/css" href="{% static "css/info/style.css" %}">
     <link rel="stylesheet" href="{% static "home/css/style.css" %}">
     <link rel="stylesheet" href="{% static "css/navbar.css" %}">
+    <link rel="stylesheet" href="{% static "css/custom.css" %}">
 {% endblock %}
 {% block content %}
+    <section class="navbar-section pre-dark">
+        {% include "_includes/promo.html" %}
+    </section>
     <section class="navbar-section pre-dark">
         {% include "_includes/navbar.html" with page="destinations" %}
     </section>
