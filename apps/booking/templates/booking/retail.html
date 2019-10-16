@@ -1,9 +1,16 @@
 {% extends "base.html" %}
 {% load static %}
 {% block csscontent %}
+    <link rel="stylesheet" href="{% static "css/custom.css" %}">
     <link rel="stylesheet" type="text/css" href="{% static "css/retail.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "css/home.css" %}">
+    <link rel="stylesheet" href="{% static "home/css/style.css" %}">
+
 {% endblock %}
 {% block content %}
+    <section class="navbar-section">
+        {% include "_includes/promo.html" %}
+    </section>
     <section class="navbar-section">
         {% include "_includes/navbar.html" with page="retail" %}
     </section>
@@ -39,6 +46,7 @@
         </div>
     </section>
     {% include "booking/includes/modal.html" %}
+    {% include "_includes/footer.html" %}
 {% endblock %}
 {% block jscontent %}
     <script src="{% static "js/passenger.js" %}"></script>
