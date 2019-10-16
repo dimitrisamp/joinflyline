@@ -153,8 +153,6 @@ const app = new Vue({
 
         search: () => {
             let formData = new FormData;
-            app.form.departure_date = document.getElementById('departure_date').value;
-            app.form.return_date = document.getElementById('return_date').value;
 
             if (document.getElementById('stopover') != null) {
                 let stopSelected = document.getElementById('stopover').value;
@@ -187,10 +185,10 @@ const app = new Vue({
             formData.append("city_to", app.form.city_to);
             formData.append("placeFrom", app.form.placeFrom);
             formData.append("placeTo", app.form.placeTo);
-            formData.append("dep_date", app.form.departure_date);
+            formData.append("dep_date", document.getElementById('departure_date').value);
             formData.append("type", app.form.destinationTypeId);
             if (app.form.destinationTypeId === "round") {
-                formData.append("ret_date", app.form.return_date);
+                formData.append("ret_date", document.getElementById('return_date').value);
             }
             formData.append("adults", app.form.valAdults);
             formData.append("infants", app.form.valInfants);
