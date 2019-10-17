@@ -8,35 +8,24 @@
 </div>
 <ul class="nav nav-pills border d-flex mb-5 subscription-tab-menu" id="myTab"
     role="tablist">
-    <li class="nav-item">
-        <a class="nav-link active" id="first-offer-tab" data-toggle="tab"
-           href="#firstOffer" role="tab" aria-controls="firstOffer"
-           aria-selected="true">
-            <strong>3-6 Round Trips</strong>
-        </a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" id="second-offer-tab" data-toggle="tab" href="#secondOffer"
-           role="tab" aria-controls="secondOffer" aria-selected="false">
-            <strong>12 Round Trips</strong>
-        </a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" id="third-offer-tab" data-toggle="tab" href="#thirdOffer"
-           role="tab" aria-controls="thirdOffer" aria-selected="false">
-            <strong>18 Round Trips</strong>
-        </a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" id="fourth-offer-tab" data-toggle="tab" href="#fourthOffer"
-           role="tab" aria-controls="contact" aria-selected="false">
-            <strong>24 Round Trips</strong>
-        </a>
-    </li>
+    {% for groupname, group_id, is_annual, p in plans %}
+        <li class="nav-item">
+            <a class="nav-link{% if forloop.first %} active{% endif %}" id="{{ group_id }}-tab" data-toggle="tab"
+               href="#{{ group_id }}" role="tab" aria-controls="{{ group_id }}"
+               {% if forloop.first %}aria-selected="true"{% endif %}>
+                <strong>{{ groupname }}</strong>
+            </a>
+        </li>
+    {% endfor %}
 </ul>
 <div class="tab-content" id="myTabContent">
-    {% include "info/personal-how-it-works/subscription-plans/offer-first.html" with offer_id="firstOffer" %}
-    {% include "info/personal-how-it-works/subscription-plans/offer-plan.html" with offer_id="secondOffer" flight_num=12 price_mo=279 price_mo_annual=269 price_annual=3228 savings=120 plan_name="Wanderift Lite"%}
-    {% include "info/personal-how-it-works/subscription-plans/offer-plan.html" with offer_id="thirdOffer" flight_num=18 price_mo=389 price_mo_annual=359 price_annual=4308 savings=360 plan_name="Wanderift Pro"%}
-    {% include "info/personal-how-it-works/subscription-plans/offer-plan.html" with offer_id="secondOffer" flight_num=24 price_mo=479 price_mo_annual=449 price_annual=5388 savings=360 plan_name="Wanderift Biz"%}
+    {% for groupname, group_id, is_annual, p in plans %}
+        {% with forloop.first as show %}
+            {% if is_annual %}
+                {% include "info/personal-how-it-works/subscription-plans/offer-plan.html" with offer_id=group_id flight_num=p.flight_num price_mo=p.price_mo price_mo_annual=p.price_mo_annual price_annual=p.price_annual savings=p.savings plan_name=p.name %}
+            {% else %}
+                {% include "info/personal-how-it-works/subscription-plans/offer-first.html" with offer_id=group_id plans=p %}
+            {% endif %}
+        {% endwith %}
+    {% endfor %}
 </div>
