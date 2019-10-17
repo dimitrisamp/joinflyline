@@ -24,7 +24,7 @@
                     {% if user.is_authenticated %}
                         {% if user.is_subscriber %}
                             <li class="nav-item ml-md-4">
-                                <a class="custom_nav_link" href="{% url "trips" %}">Trips </a>
+                                <a class="custom_nav_link" href="{% url "manage-trips" %}">Trips </a>
                             </li>
                             <li class="nav-item ml-md-4">
                                 <a class="custom_nav_link" href="{% url "accounts" %}">Account</a>
@@ -41,7 +41,7 @@
                             </li>
                         {% else %}
                             <li class="nav-item ml-md-4">
-                                <a class="custom_nav_link" href="{% url "trips" %}">Trips </a>
+                                <a class="custom_nav_link" href="{% url "manage-trips" %}">Trips </a>
                             </li>
                             <li class="nav-item ml-md-4">
                                 <a class="custom_nav_link" href="{% url "accounts" %}">Account</a>
