@@ -15,9 +15,7 @@
             {% include "results/includes/flight.html" with flight=flight %}
         {% endif %}
     {% endfor %}
-    <a href="{% spurl base="{{ request.get_full_path }}" set_query="limit={{ next_limit }}" %}">
-        <button class="load-more-button">Load More</button>
-    </a>
+    <button id="load-more-button" class="load-more-button">Load More</button>
 {% else %}
     <div class="card no-flight-results">
         <h4>Oops there's no available flights...</h4>

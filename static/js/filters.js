@@ -108,7 +108,7 @@ function getFilterFormData() {
     let stopovers = {};
     for (const selector in STOPOVER_SELECTORS) {
         if (document.querySelector(selector).checked) {
-            stopovers.max_stop_overs = STOPOVER_SELECTORS[selector];
+            stopovers.max_stopovers = STOPOVER_SELECTORS[selector];
         }
     }
 
@@ -138,6 +138,8 @@ function applyFilterNow() {
     ).then(
         text => {
             window.document.getElementById('result-list').innerHTML = text;
+            window.history.pushState({}, "", url);
+            $('#load-more-button').on('click', loadMore)
         }
     );
 }
@@ -382,6 +384,25 @@ function timeFormatter(val) {
         }
         return hour + ':' + minute;
     }
+}
+
+function loadMore() {
+    window.document.getElementById('load-more-button').setAttribute('disabled', 'disabled');
+    let searchQuery = Object.fromEntries(new URLSearchParams(window.location.search));
+    searchQuery.limit = parseInt(searchQuery.limit) + 10;
+    let url = new URL(window.location);
+    url.search = new URLSearchParams(searchQuery);
+    fetch(url, {'headers': {'X-Requested-With': 'XMLHttpRequest'}}).then(
+        response => response.text()
+    ).then(
+        text => {
+            window.document.getElementById('result-list').innerHTML = text;
+        }
+    ).finally(
+        () => {
+            window.document.getElementById('load-more-button').removeAttribute('disabled');
+        }
+    );
 }
 
 let tripButton = document.querySelector(".btn-group");
