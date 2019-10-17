@@ -151,6 +151,7 @@ function applyFilterNow() {
             $('#load-more-button').on('click', loadMore)
             window.document.getElementById('filters-sidebar').innerHTML = window.document.getElementById('filters-sidebar-hidden').innerHTML;
             window.document.getElementById('filters-sidebar-hidden').remove();
+            bindFiltersEvents();
         }
     ).finally(
         () => {
@@ -201,8 +202,7 @@ function stopover(val) {
     }
 }
 
-
-$(document).ready(function () {
+function bindFiltersEvents() {
     var DeCityTakeOff = new Slider("input#de_city_take_off", {
         min: 0,
         max: 1440,
@@ -290,7 +290,9 @@ $(document).ready(function () {
     $("#filterStop1").on("change", applyFilter);
     $("#filterStop2").on("change", applyFilter);
     setFilterFormData(getUrlParams());
-});
+}
+
+$(document).ready(bindFiltersEvents);
 
 function getPriceRange(rangeVal) {
     var rangeMin = rangeVal[0];
@@ -420,6 +422,7 @@ function loadMore() {
             window.document.getElementById('filters-sidebar').innerHTML = window.document.getElementById('filters-sidebar-hidden').innerHTML;
             window.document.getElementById('filters-sidebar-hidden').remove();
             setBusyState(false);
+            bindFiltersEvents();
         }
     );
 }
