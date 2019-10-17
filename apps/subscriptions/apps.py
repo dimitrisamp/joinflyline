@@ -12,5 +12,7 @@ class SubscriptionsConfig(AppConfig):
     name = 'apps.subscriptions'
 
     def ready(self):
+        from django.contrib.auth.models import AnonymousUser
         User = get_user_model()
         User.add_to_class('is_subscriber', is_subscriber)
+        setattr(AnonymousUser, 'is_subscriber', lambda self: False)

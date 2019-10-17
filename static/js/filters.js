@@ -121,30 +121,31 @@ function getFilterFormData() {
 
 let applyFilterTimer = null;
 
+function applyFilterNow() {
+    const filterFormParams = getFilterFormData();
+    const urlParams = new URLSearchParams(window.location.search);
+    for (const paramName of ALL_FILTER_FORM_PARAMS) {
+        if (filterFormParams.hasOwnProperty(paramName)) {
+            urlParams.set(paramName, filterFormParams[paramName]);
+        } else {
+            urlParams.delete(paramName)
+        }
+    }
+    let url = new URL(window.location);
+    url.search = urlParams;
+    fetch(url, {'headers': {'X-Requested-With': 'XMLHttpRequest'}}).then(
+        response => response.text()
+    ).then(
+        text => {
+            window.document.getElementById('result-list').innerHTML = text;
+        }
+    );
+}
+
+
 function applyFilter() {
     clearTimeout(applyFilterTimer);
-    applyFilterTimer = setTimeout(
-        function () {
-            const filterFormParams = getFilterFormData();
-            const urlParams = new URLSearchParams(window.location.search);
-            for (const paramName of ALL_FILTER_FORM_PARAMS) {
-                if (filterFormParams.hasOwnProperty(paramName)) {
-                    urlParams.set(paramName, filterFormParams[paramName]);
-                } else {
-                    urlParams.delete(paramName)
-                }
-            }
-            let url = new URL(window.location);
-            url.search = urlParams;
-            fetch(url, {'headers': {'X-Requested-With': 'XMLHttpRequest'}}).then(
-                response => response.text()
-            ).then(
-                text => {
-                    window.document.getElementById('result-list').innerHTML = text;
-                }
-            );
-        }, 1000
-    );
+    applyFilterTimer = setTimeout(applyFilterNow, 1000);
 }
 
 
@@ -414,7 +415,8 @@ $(document).ready(function () {
     });
     $('.result-toggler').on('click', function () {
         $(this).find('.arrow-indicator').find('img').toggleClass('d-none');
-    })
+    });
+    applyFilterNow();
 });
 $(window).on('resize', function () {
     let is_mobile = false;

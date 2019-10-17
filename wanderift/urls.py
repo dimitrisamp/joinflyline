@@ -27,7 +27,7 @@ from apps.booking.views import (
 )
 from apps.emails.views import booking_success
 from apps.home.views import index_view, home_view, SignInView, SignUpView
-from apps.results.views import results_view, CityAutocomplete
+from apps.results.views import CityAutocomplete, ResultsView
 from django.conf import settings
 
 urlpatterns = [
@@ -38,7 +38,7 @@ urlpatterns = [
     path("", index_view, name="index"),
     path("home/", home_view, name="home"),
     # Results page urls
-    path("results", results_view, name="results"),
+    path("results", ResultsView.as_view(), name="results"),
     # Accounts page urls
     path("account/", include("apps.account.urls")),
     # Corporate urls
