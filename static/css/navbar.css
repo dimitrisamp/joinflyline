@@ -24,11 +24,13 @@
 nav {
     position: relative;
 }
+
 .navbar-brand {
     display: block;
     position: absolute;
     padding-top: 8px;
 }
+
 .nav_btn_link {
     position: absolute;
     left: 30px;
@@ -37,6 +39,7 @@ nav {
     display: none;
     box-shadow: 0 2px 4px whitesmoke;
 }
+
 .nav_btn_link .nav-button-logout {
     background-color: white;
     border: 1px solid #2e6da4;
@@ -44,6 +47,7 @@ nav {
     border-radius: 3px;
 
 }
+
 .nav_btn_link.get_started_btn {
     top: 0;
 }
@@ -54,88 +58,95 @@ nav {
 
 /****************** Animate Border ***********/
 
-.loadingLine{
-    position:absolute;
-    top:5.6%;
-    left:0;
-    width:100%;
-    z-index:9;
-    overflow:hidden;
-    height:3px;
-}
-.Loading{
-    
-    height:2px;
-    background:#00B7FF;
-    opacity:0.7;
-    -webkit-animation:LoadingLine 1500ms cubic-bezier(0.65,0.05,0.36,1) infinite;
-    animation:LoadingLine 1500ms cubic-bezier(0.65,0.05,0.36,1) infinite;
+#navbar-progress {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    z-index: 9;
+    overflow: hidden;
+    height: 3px;
 }
 
- @-webkit-keyframes LoadingLine{
-        0%{
-          -webkit-transform:translate3d(-100%,0,0);
-          -ms-transform:translate3d(-100%,0,0);
-          transform:translate3d(-100%,0,0);
-        }
-        100%{-webkit-transform:translate3d(100%,0,0);
-           -ms-transform:translate3d(100%,0,0);
-           transform:translate3d(100%,0,0);
-        }
- }
 
+#navbar-progress-indicator {
+    display: none;
+}
 
+#navbar-progress-indicator.busy {
+    display: block;
+    height: 2px;
+    background: #00B7FF;
+    opacity: 0.7;
+    animation: LoadingLine 1500ms cubic-bezier(0.65, 0.05, 0.36, 1) infinite;
+}
+
+@keyframes LoadingLine {
+    0% {
+        transform: translate3d(-100%, 0, 0);
+    }
+    100% {
+        transform: translate3d(100%, 0, 0);
+    }
+}
 
 
 @media screen and (min-width: 992px) {
     .nav_btn_link {
         display: block;
     }
+
     .slider-holder {
         display: inline-block;
     }
 }
 
 
-@media(min-width: 320px) and (max-width: 480px){
-.navbar-toggler{
-    float: right;
-}    
-.navbar-nav {
-    text-align: left;
-    align-items: end;
-    margin-top: 10px;
-}
-.navbar-nav .nav-item {
-    margin-bottom: 13px;
-    margin-left: 0px !important;
-}
+@media (min-width: 320px) and (max-width: 480px) {
+    .navbar-toggler {
+        float: right;
+    }
+
+    .navbar-nav {
+        text-align: left;
+        align-items: end;
+        margin-top: 10px;
+    }
+
+    .navbar-nav .nav-item {
+        margin-bottom: 13px;
+        margin-left: 0px !important;
+    }
 
 
 }
-@media(max-width: 768px){
 
-.navbar-nav .nav-item {
-    margin-bottom: 13px;
-    margin-left: 0px !important;
-}
+@media (max-width: 768px) {
+
+    .navbar-nav .nav-item {
+        margin-bottom: 13px;
+        margin-left: 0px !important;
+    }
 
 }
 
-@media(min-width: 768px) and (max-width: 1024px){
-.navbar-toggler{
-    float: right;
-}    
-.navbar-nav {
-    text-align: left;
-    align-items: end;
-}
-.navbar-nav .nav-item {
-    margin-top: 10px;   
-}
-.navbar-nav .nav-item a button{
-    margin-top: -6px;
-}
+@media (min-width: 768px) and (max-width: 1024px) {
+    .navbar-toggler {
+        float: right;
+    }
+
+    .navbar-nav {
+        text-align: left;
+        align-items: end;
+    }
+
+    .navbar-nav .nav-item {
+        margin-top: 10px;
+    }
+
+    .navbar-nav .nav-item a button {
+        margin-top: -6px;
+    }
 
 
 }

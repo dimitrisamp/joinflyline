@@ -41,6 +41,14 @@ function getUrlParams() {
     return results;
 }
 
+function setBusyState(state) {
+    if (state) {
+        window.document.getElementById('navbar-progress-indicator').classList.add('busy');
+    } else {
+        window.document.getElementById('navbar-progress-indicator').classList.remove('busy');
+    }
+}
+
 const TIME_INTERVAL_PARAMS = {
     '#de_city_take_off': [timeFormatter24h, timeUnFormatter24h, [0, 1440], "dtime_from", "dtime_to"],
     "#de_city_landing": [timeFormatter24h, timeUnFormatter24h, [0, 1440], "ret_atime_from", "ret_atime_to"],
@@ -133,6 +141,7 @@ function applyFilterNow() {
     }
     let url = new URL(window.location);
     url.search = urlParams;
+    setBusyState(true);
     fetch(url, {'headers': {'X-Requested-With': 'XMLHttpRequest'}}).then(
         response => response.text()
     ).then(
@@ -140,6 +149,10 @@ function applyFilterNow() {
             window.document.getElementById('result-list').innerHTML = text;
             window.history.pushState({}, "", url);
             $('#load-more-button').on('click', loadMore)
+        }
+    ).finally(
+        () => {
+            setBusyState(false);
         }
     );
 }
@@ -392,6 +405,7 @@ function loadMore() {
     searchQuery.limit = parseInt(searchQuery.limit) + 10;
     let url = new URL(window.location);
     url.search = new URLSearchParams(searchQuery);
+    setBusyState(true);
     fetch(url, {'headers': {'X-Requested-With': 'XMLHttpRequest'}}).then(
         response => response.text()
     ).then(
@@ -401,6 +415,7 @@ function loadMore() {
     ).finally(
         () => {
             window.document.getElementById('load-more-button').removeAttribute('disabled');
+            setBusyState(false);
         }
     );
 }
