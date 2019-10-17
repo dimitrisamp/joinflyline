@@ -1,6 +1,6 @@
 <div class="tab-pane fade{% if show %} show active{% endif %}" id="{{ offer_id }}" role="tabpanel" aria-labelledby="{{ offer_id }}-tab">
     <div class="row equal">
-        {% include "info/personal-how-it-works/subscription-plans/offer/card-plan.html" with plan_name=plan_name flight_num=flight_num price_mo=price_mo %}
-        {% include "info/personal-how-it-works/subscription-plans/offer/card-plan-annual.html" with plan_name=plan_name flight_num=flight_num price_annual=price_annual savings=savings price_mo_annual=price_mo_annual %}
+        {% include "info/personal-how-it-works/subscription-plans/offer/card-plan.html" with plan_name=plan_name flight_num=flight_num price_mo=price_mo code=code %}
+        {% include "info/personal-how-it-works/subscription-plans/offer/card-plan-annual.html" with plan_name=plan_name flight_num=flight_num price_annual=price_annual savings=savings price_mo_annual=price_mo_annual code=code %}
     </div>
 </div>
