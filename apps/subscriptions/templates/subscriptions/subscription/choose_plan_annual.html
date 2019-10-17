@@ -4,7 +4,7 @@
         {% for p in group_plans %}
         <div class="col-6 p-3 cursor-pointer card offer-card{% if forloop.counter0 == checked_index %} active{% endif %}" id="{{ p.code }}{% if forloop.last %}-annual{% endif %}"
              onclick="$('#{{ p.code }}{% if forloop.last %}-annual{% endif %}-button').trigger('click')">
-            <h5 class="card-title">{{ p.name }}{% if p.annual %} (Billed Annually){% endif %} | ${% if forloop.last %}{{ p.price_mo }}{% else %}{{ p.price_mo_annual }}{% endif %}/mo</h5>
+            <h5 class="card-title">{{ p.name }}{% if forloop.last %} (Billed Annually){% endif %} | ${% if forloop.first %}{{ p.price_mo }}{% else %}{{ p.price_mo_annual }}{% endif %}/mo</h5>
             <p style="font-size: .85rem;">{{ p.credits }} Credits ({{ p.flight_num }} round-trip flights)</p>
             <p style="font-size: .85rem;">Credits Expire in 1 Year</p>
         </div>
