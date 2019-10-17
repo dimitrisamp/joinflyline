@@ -404,7 +404,7 @@ function timeFormatter(val) {
 function loadMore() {
     window.document.getElementById('load-more-button').setAttribute('disabled', 'disabled');
     let searchQuery = Object.fromEntries(new URLSearchParams(window.location.search));
-    searchQuery.limit = parseInt(searchQuery.limit) + 10;
+    searchQuery.limit = parseInt(searchQuery.limit || 20) + 10;
     let url = new URL(window.location);
     url.search = new URLSearchParams(searchQuery);
     setBusyState(true);
