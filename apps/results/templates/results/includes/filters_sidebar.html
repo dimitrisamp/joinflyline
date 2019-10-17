@@ -1,7 +1,7 @@
 {% load static %}
 {% load airline_icons %}
 {% load airlines %}
-<div class="col-xl-3">
+<div id="filters-sidebar{% if not visible %}-hidden{% endif %}" class="col-xl-3{% if not visible %}hidden{% endif %}">
     <div class="s-sidebar">
         <div class="sticky-item">
             <div class="card">

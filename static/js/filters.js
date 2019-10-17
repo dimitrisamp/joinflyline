@@ -149,6 +149,8 @@ function applyFilterNow() {
             window.document.getElementById('result-list').innerHTML = text;
             window.history.pushState({}, "", url);
             $('#load-more-button').on('click', loadMore)
+            window.document.getElementById('filters-sidebar').innerHTML = window.document.getElementById('filters-sidebar-hidden').innerHTML;
+            window.document.getElementById('filters-sidebar-hidden').remove();
         }
     ).finally(
         () => {
@@ -415,6 +417,8 @@ function loadMore() {
     ).finally(
         () => {
             window.document.getElementById('load-more-button').removeAttribute('disabled');
+            window.document.getElementById('filters-sidebar').innerHTML = window.document.getElementById('filters-sidebar-hidden').innerHTML;
+            window.document.getElementById('filters-sidebar-hidden').remove();
             setBusyState(false);
         }
     );
