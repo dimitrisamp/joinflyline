@@ -35,6 +35,31 @@ PLANS = {
 }
 
 
+plan_groups = (
+    ("3-6 Round Trips", False, ("three-pack", "six-pack")),
+    ("12 Round Trips", True, "lite"),
+    ("18 Round Trips", True, "pro"),
+    ("24 Round Trips", True, "biz"),
+)
+
+GROUP_TO_PLAN = {
+    k: v for k, *v in plan_groups
+}
+
+def _plan2group():
+    result = {}
+    for group_name, annual, p in plan_groups:
+        if annual:
+            result[p] = group_name
+        else:
+            for plan_code in p:
+                result[plan_code] = group_name
+    return result
+
+
+plan2group = _plan2group()
+
+
 def plan_calc(plan):
     result = plan.copy()
     if plan['annual']:
@@ -51,3 +76,5 @@ def get_available_plans():
         r['code'] = k
         result[k] = r
     return result
+
+

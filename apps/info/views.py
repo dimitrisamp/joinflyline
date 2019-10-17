@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-from apps.payments.plans import get_available_plans
+from apps.payments.plans import get_available_plans, plan_groups
 
 
 def news_view(request):
@@ -26,14 +26,6 @@ def team_view(request):
 def partners_view(request):
     context = {"title": "Wanderift Partners"}
     return render(request, "info/partners.html", context)
-
-
-plan_groups = (
-    ("3-6 Round Trips", False, ("three-pack", "six-pack")),
-    ("12 Round Trips", True, "lite"),
-    ("18 Round Trips", True, "pro"),
-    ("24 Round Trips", True, "biz"),
-)
 
 
 def how_it_works_view(request):
