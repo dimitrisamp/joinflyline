@@ -110,6 +110,10 @@ nav {
     margin-bottom: 13px;
     margin-left: 0px !important;
 }
+.loadingLine{
+    display: none;
+}
+
 
 
 }
@@ -119,6 +123,10 @@ nav {
     margin-bottom: 13px;
     margin-left: 0px !important;
 }
+.loadingLine{
+    display: none;
+}
+
 
 }
 
