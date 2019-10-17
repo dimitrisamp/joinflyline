@@ -70,7 +70,8 @@ def retail_sub_view(request):
             'code': code,
             'checked_index': checked_index,
             'annual_group': annual,
-            'group_plans': group_plans
+            'group_plans': group_plans,
+            'selected_plan': group_plans[checked_index]
         }
         return render(request, "subscriptions/subscription.html", context)
 

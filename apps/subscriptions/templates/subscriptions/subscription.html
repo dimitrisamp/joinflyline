@@ -72,45 +72,5 @@
 {% endblock %}
 
 {% block jscontent %}
-    <script>
-        {% if user.is_authenticated %}
-
-        {% else %}
-            new Lightpick({
-                field: document.getElementById('dob'),
-            });
-
-            new Lightpick({
-                field: document.getElementById('expiry')
-            });
-        {% endif %}
-
-
-        document.getElementById("lite").addEventListener("click", makeActive);
-        document.getElementById("pro").addEventListener("click", makeActive);
-
-        function makeActive($event) {
-            console.log($event.target.id)
-            switch ($event.target.id) {
-                case 'lite':
-                    document.getElementById('liteSummary').style.display = "block";
-                    document.getElementById('proSummary').style.display = "none";
-                    document.getElementById('pro').classList.remove('active');
-                    document.getElementById('lite').className += " active";
-                    break;
-                case 'pro':
-                    document.getElementById('liteSummary').style.display = "none";
-                    document.getElementById('proSummary').style.display = "block";
-                    document.getElementById('lite').classList.remove('active');
-                    document.getElementById('pro').className += " active";
-                    break;
-                default:
-                    document.getElementById('liteSummary').style.display = "block";
-                    document.getElementById('proSummary').style.display = "none";
-                    document.getElementById('pro').classList.remove('active');
-                    document.getElementById('lite').className += " active";
-                    break;
-            }
-        }
-    </script>
+    <script src="{% static "subscriptions/js/subscription.js" %}"></script>
 {% endblock %}
