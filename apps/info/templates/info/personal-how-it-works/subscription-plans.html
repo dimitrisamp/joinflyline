@@ -1,0 +1,42 @@
+<div class="col-12 text-center mt-md-5 pt-5 pb-5">
+    <h2 style="font-size: 2.4rem; padding-bottom: 10px; font-weight: bold; padding-top: 40px;">
+        Subscription Plans</h2>
+    <h4 class="font-weight-normal mx-auto"
+        style="max-width: 650px; line-height: 1.4; font-size: 1.25rem; color: #6c757d;">
+        Select how many flights you take a year and we'll find the plan for you
+    </h4>
+</div>
+<ul class="nav nav-pills border d-flex mb-5 subscription-tab-menu" id="myTab"
+    role="tablist">
+    <li class="nav-item">
+        <a class="nav-link active" id="first-offer-tab" data-toggle="tab"
+           href="#firstOffer" role="tab" aria-controls="firstOffer"
+           aria-selected="true">
+            <strong>3-6 Round Trips</strong>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="second-offer-tab" data-toggle="tab" href="#secondOffer"
+           role="tab" aria-controls="secondOffer" aria-selected="false">
+            <strong>12 Round Trips</strong>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="third-offer-tab" data-toggle="tab" href="#thirdOffer"
+           role="tab" aria-controls="thirdOffer" aria-selected="false">
+            <strong>18 Round Trips</strong>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="fourth-offer-tab" data-toggle="tab" href="#fourthOffer"
+           role="tab" aria-controls="contact" aria-selected="false">
+            <strong>24 Round Trips</strong>
+        </a>
+    </li>
+</ul>
+<div class="tab-content" id="myTabContent">
+    {% include "info/personal-how-it-works/subscription-plans/offer-first.html" with offer_id="firstOffer" %}
+    {% include "info/personal-how-it-works/subscription-plans/offer-plan.html" with offer_id="secondOffer" flight_num=12 price_mo=279 price_mo_annual=269 price_annual=3228 savings=120 plan_name="Wanderift Lite"%}
+    {% include "info/personal-how-it-works/subscription-plans/offer-plan.html" with offer_id="thirdOffer" flight_num=18 price_mo=389 price_mo_annual=359 price_annual=4308 savings=360 plan_name="Wanderift Pro"%}
+    {% include "info/personal-how-it-works/subscription-plans/offer-plan.html" with offer_id="secondOffer" flight_num=24 price_mo=479 price_mo_annual=449 price_annual=5388 savings=360 plan_name="Wanderift Biz"%}
+</div>
