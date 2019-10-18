@@ -13,7 +13,17 @@
 
 .card.testemonial {
     background-color: #F7f9ff;
+    max-height: 130px;
+    height: 130px;
+    box-shadow: 1px 1px 9px #8a8a8a26;
+    border-radius: 0px;  
 }
+.card.testemonial.p-3 p {
+    margin-bottom: 0;
+    max-height: 50px;
+    height: 50px;
+}
+
 
 .slidecontainer {
     width: 90%;
