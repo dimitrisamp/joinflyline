@@ -197,7 +197,7 @@ const app = new Vue({
             if (app.form.stop) formData.append("max_stopovers", app.form.stop);
             if (app.form.stopOverFrom) formData.append("stopover_from", app.form.stopOverFrom);
             if (app.form.stopOverTo) formData.append("stopover_to", app.form.stopOverTo);
-
+            if (DjangoUser.demo) formData.append('demo', true);
             let url = new URL('/results', window.location);
             url.search = new URLSearchParams(formData);
             window.location = url;

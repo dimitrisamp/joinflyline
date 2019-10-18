@@ -15,8 +15,11 @@ def index_view(request):
 
 
 def home_view(request):
+    demo = request.GET.get("demo")
+    demo = bool(demo) and demo.lower() in ('true', '1')
     context = {
-        "title": S.SITE_TITLE
+        "title": S.SITE_TITLE,
+        "demo": demo
     }
     return render(request, "home/home.html", context)
 

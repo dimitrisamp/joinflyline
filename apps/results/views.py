@@ -83,6 +83,11 @@ class ResultsView(TemplateView):
         "selected_cabins": "selected_cabins",
     }
 
+    def get(self, request, *args, **kwargs):
+        demo = request.GET.get('demo')
+        self.demo = bool(demo) and demo.lower() in ('true', 1)
+        return super().get(request, *args, **kwargs)
+
     def save_flight_data(self, flight, search_result):
         booking_token = flight["booking_token"]
         defaults = {"data": json.dumps(flight), "search_result": search_result}
@@ -116,7 +121,7 @@ class ResultsView(TemplateView):
             return ["results/results.html"]
 
     def validate(self, search_params):
-        if self.request.user.is_subscriber():
+        if self.request.user.is_subscriber() or self.demo:
             city_from = AIRPORT_TO_CITY.get(search_params["fly_from"])
             city_to = AIRPORT_TO_CITY.get(search_params["fly_to"])
             if city_to not in ADJACENCY.get(city_from, set()):
@@ -145,7 +150,7 @@ class ResultsView(TemplateView):
         request = self.request
         filter_params = {k: GET.get(k) for k in FILTER_KEYS if k in GET}
 
-        if request.user.is_authenticated:
+        if request.user.is_subscriber or self.demo:
             selected_airlines = request.GET.get("select_airlines")
             if not selected_airlines:
                 airlines = S.SUBSCRIBER_AIRLINES
@@ -231,6 +236,7 @@ class ResultsView(TemplateView):
             "filter_params": filter_params,
             "search_params": search_params,
             "sort": sort_params,
+            "demo": self.demo
         }
         if self.request.is_ajax():
             data = self.query_endpoint(search_params, filter_params, sort_params, limit)

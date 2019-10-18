@@ -16,7 +16,7 @@
             <div class="price-block d-flex align-items-center justify-content-center pl-3 pr-3">
                 <div>
                     <h5>
-                        {% if user.is_subscriber %}
+                        {% if user.is_subscriber or demo %}
                             {% if flight.roundtrip %}2 credits{% else %}1 credit
                             {% endif %}
                         {% else %}
@@ -149,7 +149,7 @@
                 {% endif %}
                 <!-------------End Return flights------------------->
             </div>
-            {% if user.is_subscriber %}
+            {% if user.is_subscriber or demo %}
                 <div class="search-results-buttons text-right p-2 pt-3">
                     <a href="{% url 'subscription' %}">
                         <button class="search_btn mb-1">Non subscribers
