@@ -1,0 +1,22 @@
+<div class="card card-sm p-4 mb-4" id="liteSummary">
+    <h4 class="card-title">Order Summary</h4>
+    <div class="row">
+        <div class="col-6">
+            <h5 class="font-weight-bold mb-16">Item</h5>
+            <p class="mb-2"><span id="summary-plan-name">{{ selected_plan.name }}</span> (<span id="summary-plan-credits">{{ selected_plan.credits }}</span> Credits)</p>
+        </div>
+        <div class="col-6">
+            <h5 class="font-weight-bold mb-16">Price</h5>
+            <p class="mb-2"><span id="summary-billing-price">${% if selected_plan.annual %}{% if select_annual %}{{ selected_plan.price_annual }}{% else %}{{ selected_plan.price_mo }}/mo{% endif %}{% else %}{{ selected_plan.price }}{% endif %}</span> (Credits expire in 1 year)</p>
+        </div>
+    </div>
+    <hr/>
+    <div class="row">
+        <div class="col-6">
+            <h5 class="font-weight-bold">Total</h5>
+        </div>
+        <div class="col-6">
+            <h6><span id="summary-total-billing-price">${% if selected_plan.annual %}{% if select_annual %}{{ selected_plan.price_annual }}{% else %}{{ selected_plan.price_mo }}/mo{% endif %}{% else %}{{ selected_plan.price }}{% endif %}</span> (Credits expire in 1 year)</h6>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,8 @@
+<div class="tab-pane fade{% if show %} show active{% endif %}" id="{{ offer_id }}" role="tabpanel"
+     aria-labelledby="{{ offer_id }}-tab">
+    <div class="row equal">
+        {% for p in plans %}
+            {% include "info/personal-how-it-works/subscription-plans/offer/card.html" with flight_num=p.flight_num price=p.price credit_num=p.credits code=p.code %}
+        {% endfor %}
+    </div>
+</div>

@@ -1,6 +1,7 @@
 from django.contrib import auth, messages
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
+from django.http import Http404
 from django.shortcuts import render, redirect
 from django.conf import settings
 from django.utils.timezone import now
@@ -8,6 +9,7 @@ from django.utils.timezone import now
 from apps.account.models import Account
 from apps.account.views import account_view
 from apps.payments.models import Plans
+from apps.payments.plans import plan2group, GROUP_TO_PLAN, get_available_plans
 from apps.payments.views import sub_payment
 from apps.subscriptions.models import Subscriptions
 import stripe
@@ -48,7 +50,29 @@ def retail_sub_view(request):
             context = {"users": user}
             return render(request, "subscriptions/subscription.html", context)
     else:
-        context = {}
+        available_plans = get_available_plans()
+        code = request.GET.get('code')
+        select_annual = request.GET.get('annual')
+        if select_annual:
+            select_annual = select_annual.lower() in ['true', '1']
+        if not code:
+            raise Http404('`code` is required')
+        group_name = plan2group[code]
+        annual, group_codes = GROUP_TO_PLAN[group_name]
+        if annual:
+            group_plans = [available_plans[group_codes]] * 2
+            checked_index = 1 if select_annual else 0
+        else:
+            group_plans = [available_plans[group_code] for group_code in group_codes]
+            checked_index = 0 if group_codes[0] == code else 1
+        context = {
+            'select_annual': select_annual,
+            'code': code,
+            'checked_index': checked_index,
+            'annual_group': annual,
+            'group_plans': group_plans,
+            'selected_plan': group_plans[checked_index]
+        }
         return render(request, "subscriptions/subscription.html", context)
 
 

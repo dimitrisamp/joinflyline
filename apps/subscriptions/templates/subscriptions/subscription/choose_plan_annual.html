@@ -1,0 +1,15 @@
+<div class="col-12 mx-auto mb-4">
+    <h4 class="card-title pt-4 mb-4">1. Choose a Plan</h4>
+    <div class="row pl-3 pr-3">
+        {% for p in group_plans %}
+        <div class="col-6 p-3 cursor-pointer card offer-card{% if forloop.counter0 == checked_index %} active{% endif %}" id="{{ p.code }}{% if forloop.last %}-annual{% endif %}" data-price="{% if forloop.first %}{{ p.price_mo }}/mo{% else %}{{ p.price_annual }}{% endif %}" data-name="{{ p.name }}" data-credits="{{ p.credits }}">
+            <h5 class="card-title">{{ p.name }}{% if forloop.last %} (Billed Annually){% endif %} | ${% if forloop.first %}{{ p.price_mo }}/mo{% else %}{{ p.price_annual }}{% endif %}</h5>
+            <p style="font-size: .85rem;">{{ p.credits }} Credits ({{ p.flight_num }} round-trip flights)</p>
+            <p style="font-size: .85rem;">Credits Expire in 1 Year</p>
+            <input type="radio" name="subscription" value="{{ p.code }}{% if forloop.last %}-annual{% endif %}" id="{{ p.code }}{% if forloop.last %}-annual{% endif %}-button" hidden
+               {% if forloop.counter0 == checked_index %}checked{% endif %}
+               form="subscriptionForm" data-bprice="${% if forloop.first %}{{ p.price_mo }}/mo{% else %}{{ p.price_annual }}{% endif %}">
+        </div>
+        {% endfor %}
+    </div>
+</div>
