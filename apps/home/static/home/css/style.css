@@ -477,3 +477,20 @@ footer .bottom-footer ul li:first-child:before {
     }
 
 }
+
+
+@media(min-width: 320px) and (max-width: 480px){
+
+footer {
+    background: #F7F9FF;
+    padding: 3px 32px;
+}
+footer .bottom-footer {
+    border-top: 3px solid #F1F1F1;
+    padding-top: 0;
+    padding-bottom: 20px;
+}
+
+
+
+}
