@@ -57,15 +57,18 @@ def md2dm(s):
 class CityAutocomplete(View):
     def get(self, request):
         term = request.GET.get("term")
-        if term is None:
-            return JsonResponse({"message": "`term` is not specified"}, status=400)
         city_from = request.GET.get("city_from")
         if city_from is None:
             return JsonResponse({"locations": wrap_city_data(get_city_from(term))})
         else:
-            return JsonResponse(
-                {"locations": wrap_city_data(get_city_to(city_from, term))}
-            )
+            if term == '__all__':
+                return JsonResponse(
+                    {"locations": wrap_city_data(get_city_to(city_from))}
+                )
+            else:
+                return JsonResponse(
+                    {"locations": wrap_city_data(get_city_to(city_from, term))}
+                )
 
 
 class ResultsView(TemplateView):

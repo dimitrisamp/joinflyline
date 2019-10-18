@@ -83,6 +83,33 @@ const app = new Vue({
                 );
             });
         },
+        fromCityChange: () => {
+            const selectbox = window.document.getElementById('placesFrom');
+            const placesTo = window.document.getElementById('placesTo');
+            if (selectbox.value === "") {
+                placesTo.setAttribute('disabled', 'disabled');
+                return;
+            }
+            app.form.placeFrom = selectbox.value;
+            app.form.city_from = selectbox.options[selectbox.selectedIndex].getAttribute('data-city');
+            app.locationSearch('__all__', app.form.city_from).then((data) => {
+
+                while (placesTo.firstChild) placesTo.firstChild.remove();
+                for (let location of data.locations) {
+                    let option = window.document.createElement('option');
+                    option.text = `${location.name}, ${location.subdivision?location.subdivision.name:""}, ${location.country.code} (${location.code})`;
+                    option.value = location.code;
+                    option.setAttribute('data-city', location.name);
+                    placesTo.appendChild(option);
+                }
+                placesTo.removeAttribute('disabled');
+            });
+        },
+        toCityChange: () => {
+            const selectbox = window.document.getElementById('placesTo');
+            app.form.placeTo = selectbox.value;
+            app.form.city_to = selectbox.options[selectbox.selectedIndex].getAttribute('data-city');
+        },
         fromCityHandler: debounce(function () {
             if (app.form.city_from === null || app.form.city_from === "" || app.form.city_from.length < 3) {
                 app.cityFromSearchProgress = false;

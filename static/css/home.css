@@ -1,6 +1,12 @@
 a{
 text-decoration:none !important;
 }
+select.city-selector {
+    width: 20px;
+}
+.city-select-container {
+    padding-right: 10px;
+}
 .promo_banner{
     background: #00B7FF;
     text-align:center;

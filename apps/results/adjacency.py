@@ -226,10 +226,13 @@ def get_city_from(term):
     return list(sorted(v for k, v in LOWER_KEYS.items() if term.lower() in k))
 
 
-def get_city_to(city_from, term):
+def get_city_to(city_from, term=None):
     try:
         cities = ADJACENCY[LOWER_KEYS[city_from.lower()]]
     except KeyError:
         return []
     lower_cities = {c.lower(): c for c in cities}
-    return list(sorted(v for k, v in lower_cities.items() if term.lower() in k))
+    if term:
+        return list(sorted(v for k, v in lower_cities.items() if term.lower() in k))
+    else:
+        return list(sorted(v for k, v in lower_cities.items()))
