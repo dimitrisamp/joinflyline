@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+ENV_DIR=./venv/
+
+if [ -d ${ENV_DIR} ]
+then
+  . ${ENV_DIR}bin/activate
+  inv reset
+  python manage.py runserver
+fi
