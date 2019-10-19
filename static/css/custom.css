@@ -449,3 +449,19 @@ a {
 .flight-container {
     position: relative;
 }
+
+@media(min-width: 320px) and (max-width: 480px){
+
+.landing-block-images img{
+    width: 100%;
+    margin-bottom: 10px;
+}
+.banner-sticky{
+    bottom: 0;
+    top: inherit;
+}
+body {
+    padding-top: 0 !important;
+}
+
+}

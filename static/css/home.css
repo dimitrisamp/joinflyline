@@ -514,3 +514,15 @@ button.pop2_footer_right {
         min-width: 100%;
     }
 }
+
+
+@media (max-width: 768px) { 
+
+
+img.img_asset {
+    max-height: 33px;
+    max-width: 100% !important;
+}
+
+
+}

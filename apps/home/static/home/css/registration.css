@@ -29,8 +29,11 @@ body{
 	padding: 10px 15px;
 	border: 1px solid #ccc;
     padding-bottom: 40px;
-    margin: 150px auto;
+    margin: 73px auto;
     max-width: 420px;
+}
+.center-logo{
+    padding-top: 70px;
 }
 .formBg h3{
 	text-align: center;
@@ -47,7 +50,7 @@ body{
 	font-size: 11px;
 }
 .formBg .form-group input{
-	padding: 19px 0;
+	padding: 19px 10px;
     border-color: #ccc;
     border-radius: 3px;
 }
@@ -55,9 +58,9 @@ body{
 	background: #00b7ff;
     width: 100%;
     color: #eaeaea;
-    padding: 10px 0;
+    padding: 5px 0;
     border-color: #00b7ff;
-    border-radius: 0px;
+    border-radius: 4px;
     font-weight: bold;
     font-size: 15px;
     letter-spacing: 1px;
@@ -77,15 +80,54 @@ body{
     color: #3333339e;
     font-weight: bold;
 }
-
 .white-block {
     background-color: white;
 }
+.bottom-footer .sub-menus{
+    text-align: center;
+    padding-bottom: 30px;
+}
+.bottom-footer ul {
+    list-style: none;
+    margin: 0 auto;
+    padding: 0;
+    display: inline-block;
+}
+.bottom-footer ul li {
+    display: inline-block;
+}
+.bottom-footer a {
+    color: #000;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: bolder;
+}
+.bottom-footer ul li:before {
+    content: "|";
+    font-size: 16px;
+    font-weight: 400;
+    display: inline-block;
+    margin: 0 15px;
+}
+.bottom-footer ul li:first-child:before {
+    display: none;
+}
+
+
 
 @media(min-width: 320px) and (max-width: 480px){
 .formBg{
     margin: 30px auto;
 }
-
+.bottom-footer a{
+    font-size: 10px;
+}
+.bottom-footer ul li:before {
+    display: inline-block;
+    margin: 0 5px;
+}
+.center-logo{
+    padding-top: 30px;
+}
 
 }

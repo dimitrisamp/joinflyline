@@ -67,12 +67,9 @@ nav {
     overflow: hidden;
     height: 3px;
 }
-
-
 #navbar-progress-indicator {
     display: none;
 }
-
 #navbar-progress-indicator.busy {
     display: block;
     height: 2px;
@@ -101,23 +98,35 @@ nav {
     }
 }
 
+@media(min-width: 320px) and (max-width: 480px){
+.navbar-toggler{
+    float: right;
+}    
+.navbar-nav {
+    text-align: left;
+    align-items: end;
+    margin-top: 10px;
+}
+.navbar-nav .nav-item {
+    margin-bottom: 13px;
+    margin-left: 0px !important;
+}
+.loadingLine{
+    display: none;
+}
+.navbar-nav {
+    text-align: left;
+    align-items: end;
+    margin-top: 10px;
+}
+.navbar-nav .nav-item {
+    margin-bottom: 13px;
+    margin-left: 0px !important;
+}
 
-@media (min-width: 320px) and (max-width: 480px) {
-    .navbar-toggler {
-        float: right;
-    }
-
-    .navbar-nav {
-        text-align: left;
-        align-items: end;
-        margin-top: 10px;
-    }
-
-    .navbar-nav .nav-item {
-        margin-bottom: 13px;
-        margin-left: 0px !important;
-    }
-
+.loadingLine{
+    display: none;
+}
 
 }
 

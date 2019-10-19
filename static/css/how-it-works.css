@@ -13,7 +13,17 @@
 
 .card.testemonial {
     background-color: #F7f9ff;
+    max-height: 130px;
+    height: 130px;
+    box-shadow: 1px 1px 9px #8a8a8a26;
+    border-radius: 0px;  
 }
+.card.testemonial.p-3 p {
+    margin-bottom: 0;
+    max-height: 50px;
+    height: 50px;
+}
+
 
 .slidecontainer {
     width: 90%;
@@ -85,4 +95,86 @@
 .slidecontainer .irs--flat .irs-handle {
     top: 25px;
     height: 25px;
+}
+
+/************* Accordion  ******************/
+
+.panel-heading {
+    padding: 0;
+    border:0;
+}
+.panel-group .panel-body {
+    padding: 15px 14px;
+}
+.panel-title>a, .panel-title>a:active{
+  display:block;
+  padding:15px;
+  color:#555;
+  font-size:16px;
+  font-weight:bold;
+  text-transform:capitalize;
+  letter-spacing:1px;
+  word-spacing:3px;
+  text-decoration:none;
+  margin-bottom: 10px;
+  background: #f7f9ff;
+}
+.panel-heading  a:before {
+   content: "\f054";    
+   font-family: 'FontAwesome';
+   float: right;
+   transition: all 0.5s;
+}
+.panel-heading.active a:before {
+    -webkit-transform: rotate(86deg);
+    -moz-transform: rotate(86deg);
+    transform: rotate(86deg);
+} 
+.card-upper-content{
+    text-align: center;
+}
+.card-body .text-center:before {
+    position: absolute;
+    content: '';
+    background: #00b7ff;
+    height: 145px;
+    width: 100%;
+    left: 0;
+    top: 0;
+}
+.card-body .text-center .card-title {
+    margin-bottom: .75rem;
+    font-size: 27px;
+    font-weight: 600;
+    position: relative;
+    color: white;
+    margin-top: -16px;
+    height: 50px;
+    line-height: 25px;
+}
+.card-body .text-center strong{
+    font-weight: 100;
+    font-size: 15px;
+    position: relative;
+    top: -10px;
+    color: white;
+}
+.card-body .text-center .divider-30{
+    border-top: 1px solid white;
+    padding-bottom: 16px;
+    width: 31%;
+    margin: auto;
+    z-index: 99999;
+    position: relative;
+}
+.card-body .text-center h3{
+    font-size: 23px;
+    position: relative;
+    background: white;
+    padding: 11px 0px;
+    box-shadow: 1px 1px 11px #9e9e9e52;
+    border-radius: 4px;
+}
+.landing-block-title{
+    font-weight: bold;
 }
