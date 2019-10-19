@@ -10,9 +10,7 @@
         <!-- Required meta tags -->
         <meta charset="utf-8">
     <meta name="title" content="{{ title }}"/>
-        <meta name="description" content="Search Book Save with Wanderift. Wanderift will change how you book airline tickets. We have
-            our popular subscription plans, corporate airline travel plans, as well as daily bookings. Book
-            with Wanderift and save."/>
+        <meta name="description" content="Wanderift helps you find your next big adventure. Save money on your next trip with Wanderift by joining our Flight Club or book an exciting Retail Flight. Search, Book, and Save with Wanderift."/>
         <link rel="icon" href="{% static "logo/favicon.png" %}">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -63,6 +61,10 @@
 <script src="{% static "js/lightpick.js" %}"></script>
 <script src="{% static "js/promo.js" %}"></script>
 <script src="https://cdn.useproof.com/proof.js?acc=ZaTK6We7bUMEbNI7wlB7YcTOWB72" async></script>
+{% include "_includes/facebook/breadcrumblist-schema.html" %}
+{% include "_includes/facebook/faq-schema.html" %}
+{% include "_includes/facebook/local-business-schema.html" %}
+{% include "_includes/facebook/organization.html" %}
 {% include "js/django_user.html" %}
 {% block jscontent %}
 {% endblock %}

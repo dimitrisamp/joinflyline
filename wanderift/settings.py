@@ -209,3 +209,5 @@ SENDGRID_API_KEY = (
     "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"
 )
 PRICE_LIMIT_SUBSCRIBER = 350
+
+SITEMAP_FILE = os.path.join(BASE_DIR, 'wanderift', 'sitemap.xml')
