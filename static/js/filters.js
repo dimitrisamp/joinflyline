@@ -458,3 +458,9 @@ $(window).on('resize', function () {
         $('.search-bar-section').addClass('sticky-searchbar')
     }
 });
+$(function(){
+    setTimeout(function(){
+        $('.loading_animation').hide();
+    }, 7000);
+});
+
