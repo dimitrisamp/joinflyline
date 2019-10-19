@@ -460,7 +460,7 @@ $(window).on('resize', function () {
 });
 $(function(){
     setTimeout(function(){
-        $('.loading_animation').hide();
+        //$('.loading_animation').hide();
     }, 7000);
 });
 

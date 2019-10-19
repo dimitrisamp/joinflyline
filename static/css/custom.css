@@ -407,14 +407,7 @@
     position: absolute;
     margin-top: -163px;
     border-radius: 4px;
-}
-.animationLoading{
-  background:#fffefe73;
-  border-radius: 3px; 
-  display: block;
-  height: 163px;
-  width: 494px;
-  padding: 12px;
+    left: 0px;
 }
 @keyframes animate {
      0% {
@@ -425,13 +418,7 @@
    }
 
 }
-
-#container-animation-loading{
-  width:100%;
-  height:30px;
-}
-#one,#two,#three,#four,#five,#six
-{
+#animate-02,#animate-01,#animate-03,#animate-04,#animate-05{
   position:relative;
   background-color: #CCC;
   height: 6px;
@@ -444,41 +431,33 @@
   background: linear-gradient(to right, #eeeeee 8%, #dddddd 18%, #eeeeee 33%);
   -webkit-background-size: 800px 104px;  
 }
-#one{  
+#animate-02{  
     left: 0;
     height: 27px;
     width: 79px;
-    margin-top: 54px;
+    margin-top: 20px;
     top: 5px;
 }
-#two{
-    left: 96px;
-    top: -256px;
-    width:11%;
-    height: 40px;
+#animate-01{
+    width: 75px;
+    height: 20px;
+    margin-top: 74px;
 }
-#Three{
-  left:50px;
-  top:-20px;
-  width: 15%;
+#animate-03{
+    margin-top: 66px;
+    height: 27px;
+    width: 79px;
 }
-#four{
-    left: 41%;
-    top: -74px;
-    width: 101%;
-    height: 11px;
+#animate-04{
+    width: 100%;
+    height: 12px;
+    margin: 34px 0;
 }
-#five{
-    left: 21%;
-    top: 0px;
-    width:11%;
-    height: 38px;
-}
-#six{
-    left: 41%;
-    top: -26px;
-    width: 101%;
-    height: 11px;
+#animate-05{
+    width: 100%;
+    height: 12px;
+    margin: 24px 0;
+    top: 30%;
 }
 
 
