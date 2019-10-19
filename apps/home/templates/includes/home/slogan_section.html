@@ -1,5 +1,5 @@
-{% if user.is_authenticated %}
-    {% if user.subscriptions %}
+{% if user.is_authenticated or demo %}
+    {% if user.subscriptions or demo %}
         {% include "includes/home/subscriber/slogan.html" %}
     {% else %}
         {% include "includes/home/non-subscriber/slogan.html" %}

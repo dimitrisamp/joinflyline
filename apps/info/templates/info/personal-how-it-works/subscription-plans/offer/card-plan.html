@@ -3,17 +3,17 @@
     <div class="card background-colored subscription-card-light mb-3 p-4 mh-5">
         <div class="card-body d-flex flex-column">
             <div class="text-center">
-                <h2 class="card-title">{{ plan_name }}</h2>
-                <strong>*{{ flight_num }} Round Trip Flights</strong>
+                <h2 class="card-title" style="font-weight: bold;">{{ plan_name }} (Billed Monthly)</h2>
+                <strong>{{ flight_num_per_month }} Round Trip{{ flight_num_per_month | pluralize:"s" }} Per Month</strong>
                 <div class="divider-30"></div>
-                <h3>${{ price_mo }}/mo </h3>
+                <h3 style="font-weight: bold;">${{ price_mo }}/mo for {{ credits_per_month }} credit{{ credits_per_month | pluralize:"s" }}</h3>
             </div>
             <div class="card-upper-content">
                 <div class="divider-30"></div>
                 <br>
                 <div class="divider-15"></div>
-                <strong>- Credits Expire 1 year from date of
-                    purchase</strong>
+                <br>
+                <strong>{{ credits_per_month }} Deposited Each Month</strong>
                 <div class="divider-30"></div>
                 <strong>- Fly Major U.S. Airlines - Alaska Airlines,
                     American, Delta, jetBlue, Southwest, United

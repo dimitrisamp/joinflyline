@@ -1,9 +1,10 @@
 <script>
-{% if user.is_authenticated %}
-    {% if user.is_subscriber %}
+{% if user.is_authenticated or demo %}
+    {% if user.is_subscriber or demo %}
         const DjangoUser = {
             authenticated: true,
-            subscriber: true
+            subscriber: true,
+            {% if demo %}demo: true,{% endif %}
         };
     {% else %}
         const DjangoUser = {

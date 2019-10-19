@@ -57,15 +57,18 @@ def md2dm(s):
 class CityAutocomplete(View):
     def get(self, request):
         term = request.GET.get("term")
-        if term is None:
-            return JsonResponse({"message": "`term` is not specified"}, status=400)
         city_from = request.GET.get("city_from")
         if city_from is None:
             return JsonResponse({"locations": wrap_city_data(get_city_from(term))})
         else:
-            return JsonResponse(
-                {"locations": wrap_city_data(get_city_to(city_from, term))}
-            )
+            if term == '__all__':
+                return JsonResponse(
+                    {"locations": wrap_city_data(get_city_to(city_from))}
+                )
+            else:
+                return JsonResponse(
+                    {"locations": wrap_city_data(get_city_to(city_from, term))}
+                )
 
 
 class ResultsView(TemplateView):
@@ -82,6 +85,11 @@ class ResultsView(TemplateView):
         "infants": "infants",
         "selected_cabins": "selected_cabins",
     }
+
+    def get(self, request, *args, **kwargs):
+        demo = request.GET.get('demo')
+        self.demo = bool(demo) and demo.lower() in ('true', 1)
+        return super().get(request, *args, **kwargs)
 
     def save_flight_data(self, flight, search_result):
         booking_token = flight["booking_token"]
@@ -116,7 +124,7 @@ class ResultsView(TemplateView):
             return ["results/results.html"]
 
     def validate(self, search_params):
-        if self.request.user.is_subscriber():
+        if self.request.user.is_subscriber() or self.demo:
             city_from = AIRPORT_TO_CITY.get(search_params["fly_from"])
             city_to = AIRPORT_TO_CITY.get(search_params["fly_to"])
             if city_to not in ADJACENCY.get(city_from, set()):
@@ -145,7 +153,7 @@ class ResultsView(TemplateView):
         request = self.request
         filter_params = {k: GET.get(k) for k in FILTER_KEYS if k in GET}
 
-        if request.user.is_authenticated:
+        if request.user.is_subscriber or self.demo:
             selected_airlines = request.GET.get("select_airlines")
             if not selected_airlines:
                 airlines = S.SUBSCRIBER_AIRLINES
@@ -231,6 +239,7 @@ class ResultsView(TemplateView):
             "filter_params": filter_params,
             "search_params": search_params,
             "sort": sort_params,
+            "demo": self.demo
         }
         if self.request.is_ajax():
             data = self.query_endpoint(search_params, filter_params, sort_params, limit)

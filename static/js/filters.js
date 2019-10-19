@@ -17,20 +17,6 @@ $(document).ready(function () {
     app.form.placeTo = searchQuery.placeTo;
 });
 
-$(document).ready(function () {
-    var Stopover = new Slider("input#stopover", {
-        min: 2,
-        max: 24,
-        step: 1,
-        value: [2, 24],
-        tooltip: "hide",
-        formatter: stopover
-    });
-    Stopover.on('slideStop', function () {
-    }).on('slide', function () {
-        stopover(Stopover.getValue());
-    });
-});
 
 function getUrlParams() {
     const u = new URL(window.location);

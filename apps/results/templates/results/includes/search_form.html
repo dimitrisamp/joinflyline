@@ -51,7 +51,15 @@
         <div class="flexed-search-item">
             <label class="search_label"
             >
-                <h6>Departure City :
+                <h6 class="city-select-container">Departure City :
+                    {% if user.is_subscriber or demo %}
+                        <select class="city-selector" name="placesFrom" v-on:change="fromCityChange" id="placesFrom">
+                            <option value="">--</option>
+                            {% for city, state, country, airport_code in city_airports %}
+                                <option value="{{ airport_code }}" data-city="{{ city }}">{{ city }}, {{ state }}, {{ country }}({{ airport_code }})</option>
+                            {% endfor %}
+                        </select>
+                    {% else %}
                     <input type="text"
                            autocomplete="off"
                            class="search_input"
@@ -59,6 +67,7 @@
                            v-on:input="fromCityHandler"
                            name="placesFrom"
                            id="placesFrom"/>
+                    {% endif %}
                 </h6>
             </label>
 
@@ -93,8 +102,11 @@
         </div>
         <div class="flexed-search-item">
             <label class="search_label">
-                <h6>
+                <h6 class="city-select-container">
                     Arrival City :
+                    {% if user.is_subscriber or demo %}
+                        <select class="city-selector" name="placesTo" id="placesTo" v-on:change="toCityChange" :disabled="!form.placeFrom"></select>
+                    {% else %}
                     <input type="text"
                            autocomplete="off"
                            class="search_input"
@@ -102,6 +114,7 @@
                            v-on:input="toCityHandler"
                            name="placesTo"
                            id="placesTo" :disabled="DjangoUser.subscriber && !form.placeFrom"/>
+                    {% endif %}
                 </h6>
             </label>
         </div>
