@@ -64,6 +64,9 @@ def plan_calc(plan):
     if plan["annual"]:
         result["price_annual"] = result["price_mo_annual"] * 12
         result["savings"] = result["price_mo"] * 12 - result["price_annual"]
+        result["billing_price"] = result["price_annual"]
+    else:
+        result['billing_price'] = result['price']
     result["credits_per_month"] = f"{result['credits'] / 12:.1f}".rstrip("0").rstrip(
         "."
     )

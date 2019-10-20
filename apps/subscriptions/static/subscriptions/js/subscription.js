@@ -1,5 +1,5 @@
 $(function(){
-    if (DjangoUser.authenticated) {
+    if (DjangoUser.is_subscriber) {
         new Lightpick({
             field: document.getElementById('dob'),
         });
