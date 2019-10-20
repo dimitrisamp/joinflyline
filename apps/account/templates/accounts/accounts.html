@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block csscontent %}
+    <link rel="stylesheet" href="{% static "css/lightpick.css" %}"
+          xmlns:v-on="http://www.w3.org/1999/xhtml"
+          xmlns:v-on="http://www.w3.org/1999/xhtml">
+    <link rel="stylesheet" href="{% static "css/custom.css" %}">
+    <link rel="stylesheet" href="{% static "home/css/style.css" %}">
+{% endblock %}
+
+{% block content %}
+    <section class="navbar-section">
+        {% include "_includes/navbar.html" with page="accounts" %}
+    </section>
+    <section class="background-colored">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 mt-5 mb-5">
+                    <h1 class="page-title main">Welcome to Wanderift!</h1>
+                    <div class="d-flex align-left page-sub-text">
+                        <p class="mr-4">
+                            <span class="account-label">Account: </span>
+                            <strong class="account-name">{{ user.username }}</strong>
+                        </p>
+                        <p>
+                            <span class="airport-label">Home Airport: </span>
+                            <strong class="airport-name">{% if user.profile.market %}
+                                {{ user.profile.market }}{% else %}
+                                None{% endif %}</strong>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="white-block pt-4 pb-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <ul class="nav nav-tabs pb-1 mb-3 border-0">
+                            <li class="mr-3">
+                                <a data-toggle="tab" href="#overview" class="active">Overview</a>
+                            </li>
+                            <li>
+                                <a data-toggle="tab" href="#billing">Billing</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="tab-content">
+                        {% include "accounts/includes/general.html" %}
+                        {% include "accounts/includes/billing.html" %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    {% include "_includes/footer.html" %}
+{% endblock %}
+
+{% block jscontent %}
+    <script>
+        new Lightpick({
+            field: document.getElementById('dob')
+        });
+
+        new Lightpick({
+            field: document.getElementById('expiry')
+        });
+    </script>
+{% endblock %}

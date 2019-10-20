@@ -31,6 +31,7 @@ class Profile(models.Model):
     phone_number = models.CharField(max_length=20, blank=True)
     dob = models.DateField(blank=True, null=True)
     customer_id = models.CharField(max_length=70, blank=True)
+    tsa_precheck_number = models.CharField(max_length=30, blank=True, null=True)
 
 
 @receiver(post_save, sender=User)

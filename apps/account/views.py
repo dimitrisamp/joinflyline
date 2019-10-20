@@ -26,11 +26,11 @@ def account_view(request):
 
     if account is not None:
         context = {"title": "Accounts", "account": account}
-        return render(request, "accounts.html", context)
+        return render(request, "accounts/accounts.html", context)
     else:
         account = {}
         context = {"title": "Accounts", "account": account}
-        return render(request, "accounts.html", context)
+        return render(request, "accounts/accounts.html", context)
 
 
 @login_required()
@@ -46,6 +46,7 @@ def update_profile(request):
             user.profile.dob = cd["dob"]
             user.profile.gender = cd["gender"]
             user.profile.market = cd["market"]
+            user.profile.tsa_precheck_number = cd["tsa_precheck_number"]
             user.profile.save()
             user.save()
     return redirect("accounts")

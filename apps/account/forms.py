@@ -10,3 +10,4 @@ class ProfileForm(forms.Form):
     dob = forms.DateField(required=False)
     gender = forms.TypedChoiceField(choices=Gender.choices(), coerce=int)
     market = forms.CharField(required=False)
+    tsa_precheck_number = forms.CharField(required=False)
