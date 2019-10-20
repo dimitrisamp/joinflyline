@@ -1,57 +1,109 @@
-<div class="card">
-    <div class="card-body">
-        <div class="card-title">
-            <h3 class="bold p-0">Subscriptions</h3>
+  <section class="mf-club-plan">
+    <div class="container">
+
+     <div class="row">
+       <div class="col-md-offset-1 col-md-10 col-md-offset-1">
+
+        <div class="f-club-title">
+           <h3>
+            Flight Club Plans
+           </h3>    
         </div>
-        <div class="card-body">
+        
+        <div class="fc-mainbox">
+          <h3 class="fc-boxtitle"> <b>Credit Packs | </b> purchase a pack of flight credits, use them where you want  when you want</h3>    
+
+          <div class="flight-p-list">
+            <h3 class="f-title">3 Pack of Flights (6 Credits)</h3>
             <div class="row">
-                <div class="col-sm-7">
-                    <h4 class="bold m-0">Wanderift Lite $369</h4>
-                </div>
-                <div class="col-sm-5 mt-2 mt-md-0">
-                    {% ifequal user.subscriptions.plan 'lite' %}
-                        <button class="thin-blue-btn">Current Plan</button>
-                    {% else %}
-                        <a href="{% url "plan" 'lite' %}">
-                            <button class="thin-blue-btn">Subscribe</button>
-                        </a>
-                    {% endifequal %}
-                </div>
+              <div class="col-md-8 col-sm-8">
+                <ul class="p-detail">
+                  <li>- 3 Round Trip Flights</li>   
+                  <li>- Credits Expire in One Year</li> 
+                </ul>
+              </div>    
+              <div class="col-md-4 col-sm-4">
+                <a href="" class="btn btn-default pull-right f-selectBtn">Select</a>
+              </div>    
             </div>
-            <div class="row mt-3">
-                <div class="col-sm-12">
-                    <p class="pl-2 pr-2">- 3 Credits (3 one-way flights)</p>
-                    <p class="pl-2 pr-2">- 1 Unused Credit Rolls over</p>
-                    <p class="pl-2 pr-2">- No Long Term Commitment</p>
-                </div>
+          </div>
+
+          <div class="flight-p-list">
+            <h3 class="f-title">6 Pack of Flights (12 Credits)</h3>
+            <div class="row">
+              <div class="col-md-8 col-sm-8">
+                <ul class="p-detail">
+                  <li>- 6 Round Trip Flights</li>   
+                  <li>- Credits Expire in One Year</li> 
+                  <li>- Ability to Share Credits with Companion</li>
+                </ul>
+              </div>    
+              <div class="col-md-4 col-sm-4">
+                <a href="" class="btn btn-default pull-right f-selectBtn">Select</a>
+              </div>    
             </div>
-            <div class="row mt-3">
-                <div class="col-sm-7">
-                    <h4 class="bold m-0">Wanderift Pro $459</h4>
-                </div>
-                <div class="col-sm-5  mt-2 mt-md-0">
-                    {% ifequal user.subscriptions.plan 'pro' %}
-                        <button class="search_btn pb-1 pt-1">Current Plan
-                        </button>
-                    {% else %}
-                        <a href="{% url "plan" 'pro' %}">
-                            <button class="thin-blue-btn">Subscribe</button>
-                        </a>
-                    {% endifequal %}
-                </div>
-            </div>
-            <div class="row mt-3">
-                <div class="col-sm-7">
-                    <p class="pl-2 pr-2">- 4 Credits (4 one-way flights)</p>
-                    <p class="pl-2 pr-2">- 2 Unused Credit Rolls over</p>
-                    <p class="pl-2 pr-2">- No Long Term Commitment</p>
-                </div>
-                <div class="col-sm-5  mt-2 mt-md-0">
-                    <a href="{% url "how-it-works" %}">
-                        <button class="thin-blue-btn">Learn More</button>
-                    </a>
-                </div>
-            </div>
+          </div>
         </div>
+
+
+        <div class="fc-mainbox">
+          <h3 class="fc-boxtitle"> <b>Subscriptions  | </b> Subscribe to one of our plans and get a certain amount of flights each month </h3>  
+
+          <div class="flight-p-list">
+            <h3 class="f-title">Wanderift Lite $269/mo for 2 Credits (1 Round Trip)</h3>
+            <div class="row">
+              <div class="col-md-8 col-sm-8">
+                <ul class="p-detail">
+                  <li>- 1 Round Trip Trip Per Month</li>    
+                  <li>- Fly Major Airlines - Alaska Airlines, American, Delta United Southwest, Sun Country jetBlue</li>    
+                </ul>
+              </div>    
+              <div class="col-md-4 col-sm-4">
+                <a href="" class="btn btn-default pull-right f-selectBtn">Select</a>
+              </div>    
+            </div>
+          </div>
+
+          <div class="flight-p-list">
+            <h3 class="f-title">Wanderift Pro $359/mo for 3 Credits (1.5 Round Trip)</h3>
+            <div class="row">
+              <div class="col-md-8 col-sm-8">
+                <ul class="p-detail">
+                  <li>- 1.5 Round Trip Per Month</li>   
+                  <li>- 1 Unused Credit Rollover</li>   
+                  <li>- Share Credits with a Companion</li>
+                  <li>- Fly Major Airlines - Alaska Airlines, American, Delta, United Southwest, Sun Country jetBlue</li>
+                </ul>
+              </div>    
+              <div class="col-md-4 col-sm-4">
+                <a href="" class="btn btn-default pull-right f-selectBtn">Select</a>
+              </div>    
+            </div>
+          </div>
+
+
+          <div class="flight-p-list">
+            <h3 class="f-title">Wanderift Biz $449/mo for 4 Credits (1.5 Round Trip)</h3>
+            <div class="row">
+              <div class="col-md-8 col-sm-8">
+                <ul class="p-detail">
+                  <li>- 2 Round Trip Per Month</li> 
+                  <li>- 2 Unused Credit Rollover</li>   
+                  <li>- Share Credits with a Companion</li>
+                  <li>- Fly Major Airlines - Alaska Airlines, American, Delta, United Southwest, Sun Country jetBlue</li>
+                </ul>
+              </div>    
+              <div class="col-md-4 col-sm-4">
+                <a href="" class="btn btn-default pull-right f-selectBtn">Select</a>
+              </div>    
+            </div>
+          </div>
+
+        </div>
+
+
+
+       </div>   
+     </div> 
     </div>
-</div>
+  </section>
