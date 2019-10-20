@@ -83,32 +83,35 @@ const app = new Vue({
                 );
             });
         },
-        fromCityChange: () => {
-            const selectbox = window.document.getElementById('placesFrom');
+        fillToCityWithData: (data) => {
             const placesTo = window.document.getElementById('placesTo');
-            if (selectbox.value === "") {
-                placesTo.setAttribute('disabled', 'disabled');
-                return;
+            while (placesTo.firstChild) placesTo.firstChild.remove();
+            let option = window.document.createElement('option');
+            option.text = "--";
+            option.value = "";
+            placesTo.appendChild(option);
+            for (let location of data.locations) {
+                let option = window.document.createElement('option');
+                option.text = `${location.name}, ${location.subdivision ? location.subdivision.name : ""}, ${location.country.code} (${location.code})`;
+                option.value = location.code;
+                option.setAttribute('data-city', location.name);
+                placesTo.appendChild(option);
             }
-            app.form.placeFrom = selectbox.value;
+            placesTo.removeAttribute('disabled');
+        },
+        updateCityFrom: () => {
+            const selectbox = window.document.getElementById('placesFrom');
             app.form.city_from = selectbox.options[selectbox.selectedIndex].getAttribute('data-city');
-            app.locationSearch('__all__', app.form.city_from).then((data) => {
-
-                while (placesTo.firstChild) placesTo.firstChild.remove();
-                for (let location of data.locations) {
-                    let option = window.document.createElement('option');
-                    option.text = `${location.name}, ${location.subdivision?location.subdivision.name:""}, ${location.country.code} (${location.code})`;
-                    option.value = location.code;
-                    option.setAttribute('data-city', location.name);
-                    placesTo.appendChild(option);
-                }
-                placesTo.removeAttribute('disabled');
-            });
+        },
+        fromCityChange: () => {
+            app.updateCityFrom();
+            app.locationSearch('__all__', app.form.city_from).then(app.fillToCityWithData);
         },
         toCityChange: () => {
             const selectbox = window.document.getElementById('placesTo');
-            app.form.placeTo = selectbox.value;
-            app.form.city_to = selectbox.options[selectbox.selectedIndex].getAttribute('data-city');
+            if (selectbox.options && selectbox.options[selectbox.selectedIndex]) {
+                app.form.city_to = selectbox.options[selectbox.selectedIndex].getAttribute('data-city');
+            }
         },
         fromCityHandler: debounce(function () {
             if (app.form.city_from === null || app.form.city_from === "" || app.form.city_from.length < 3) {
@@ -432,7 +435,7 @@ const app = new Vue({
     }
 });
 
-$(function(){
+$(function () {
     document.querySelector(".btn-group");
     new Lightpick({
         field: document.getElementById('departure_date'),

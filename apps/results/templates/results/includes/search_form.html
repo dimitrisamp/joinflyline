@@ -53,7 +53,7 @@
             >
                 <h6 class="city-select-container">Departure City :
                     {% if user.is_subscriber or demo %}
-                        <select class="city-selector" name="placesFrom" v-on:change="fromCityChange" id="placesFrom">
+                        <select class="city-selector" name="placesFrom" v-on:change="fromCityChange" id="placesFrom" v-model="form.placeFrom">
                             <option value="">--</option>
                             {% for city, state, country, airport_code in city_airports %}
                                 <option value="{{ airport_code }}" data-city="{{ city }}">{{ city }}, {{ state }}, {{ country }}({{ airport_code }})</option>
@@ -105,7 +105,9 @@
                 <h6 class="city-select-container">
                     Arrival City :
                     {% if user.is_subscriber or demo %}
-                        <select class="city-selector" name="placesTo" id="placesTo" v-on:change="toCityChange" :disabled="!form.placeFrom"></select>
+                        <select class="city-selector" name="placesTo" id="placesTo" v-on:change="toCityChange" :disabled="!form.placeFrom" v-model="form.placeTo">
+
+                        </select>
                     {% else %}
                     <input type="text"
                            autocomplete="off"
