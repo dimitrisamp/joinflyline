@@ -164,7 +164,6 @@
     padding-bottom: 16px;
     width: 31%;
     margin: auto;
-    z-index: 99999;
     position: relative;
 }
 .card-body .text-center h3{
