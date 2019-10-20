@@ -7,6 +7,7 @@ from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 import stripe
 
+from apps.account.forms import ProfileForm
 from apps.account.models import Account
 from apps.payments.models import Plans
 from apps.subscriptions.models import Subscriptions
@@ -34,17 +35,19 @@ def account_view(request):
 
 @login_required()
 def update_profile(request):
-    user_id = request.user.id
     if request.method == "POST":
-        user = User.objects.get(pk=user_id)
-        user.first_name = request.POST["first_name"]
-        user.last_name = request.POST["last_name"]
-        user.email = request.POST["email"]
-        user.profile.dob = request.POST["dob"]
-        user.profile.gender = request.POST["gender"]
-        user.profile.market = request.POST["market"]
-        user.save()
-    messages.success(request, "Details updated Successfully")
+        user = request.user
+        form = ProfileForm(request.POST)
+        if form.is_valid():
+            cd = form.cleaned_data
+            user.first_name = cd['first_name']
+            user.last_name = cd["last_name"]
+            user.email = cd["email"]
+            user.profile.dob = cd["dob"]
+            user.profile.gender = cd["gender"]
+            user.profile.market = cd["market"]
+            user.profile.save()
+            user.save()
     return redirect("accounts")
 
 

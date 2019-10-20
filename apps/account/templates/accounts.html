@@ -26,7 +26,7 @@
                         </p>
                         <p>
                             <span class="airport-label">Home Airport: </span>
-                            <strong class="airport-name">Dallas Forth Worth Airport</strong>
+                            <strong class="airport-name">{% if user.profile.market %}{{ user.profile.market }}{% else %}None{% endif %}</strong>
                         </p>
                     </div>
                 </div>
@@ -80,14 +80,15 @@
                                                     </div>
                                                     <div class="form-group col-sm-6">
                                                         <label class="pb-2">Date Of Birth</label>
-                                                        <input class="form-control" value="{{ user.profile.dob }}"
+                                                        <input class="form-control" value="{{ user.profile.dob | date:"m/d/Y" }}"
                                                                name="dob" type="text" id="dob" placeholder="Date of Birth">
                                                     </div>
                                                     <div class="form-group col-sm-6">
                                                         <label class="pb-2">Gender</label>
-                                                        <input class="form-control" type="text"
-                                                               value="{{ user.profile.gender }}" name="gender"
-                                                               placeholder="Gender">
+                                                        <select class="form-control" name="gender">
+                                                            <option value="0" {% if user.profile.gender == 0 %}selected{% endif %}>Male</option>
+                                                            <option value="1" {% if user.profile.gender == 1 %}selected{% endif %}>Female</option>
+                                                        </select>
                                                     </div>
                                                     <div class="form-group col-sm-6">
                                                         <label class="pb-2">Market</label>

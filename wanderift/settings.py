@@ -211,3 +211,5 @@ SENDGRID_API_KEY = (
 PRICE_LIMIT_SUBSCRIBER = 350
 
 SITEMAP_FILE = os.path.join(BASE_DIR, 'wanderift', 'sitemap.xml')
+
+DATE_INPUT_FORMATS = ['%Y-%m-%d', '%m/%d/%Y']

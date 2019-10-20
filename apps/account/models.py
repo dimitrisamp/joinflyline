@@ -2,6 +2,9 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from django_enumfield import enum
+
+from apps.account import enums
 
 
 class Account(models.Model):
@@ -24,7 +27,7 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=5, blank=True)
     market = models.CharField(max_length=30, blank=True)
-    gender = models.CharField(max_length=10, blank=True)
+    gender = enum.EnumField(enums.Gender)
     phone_number = models.CharField(max_length=20, blank=True)
     dob = models.DateField(blank=True, null=True)
     customer_id = models.CharField(max_length=70, blank=True)
