@@ -17,7 +17,9 @@ Including another URLconf
 from django.contrib import admin
 from django.contrib.staticfiles.urls import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from django.http import HttpResponse
 from django.urls import path, include
+from django.views import View
 
 from apps.booking.views import (
     retail_booking_view,
@@ -29,6 +31,14 @@ from apps.emails.views import booking_success
 from apps.home.views import index_view, home_view, SignInView, SignUpView
 from apps.results.views import CityAutocomplete, ResultsView
 from django.conf import settings
+
+
+class SiteMapView(View):
+    def get(self, request, *args, **kwargs):
+        return HttpResponse(
+            open(settings.SITEMAP_FILE).read(), content_type="application/xml"
+        )
+
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -60,9 +70,8 @@ urlpatterns = [
     path("sign-in/", SignInView.as_view(), name="sign-in"),
     path("sign-up/", SignUpView.as_view(), name="sign-up"),
     path("city/query", CityAutocomplete.as_view(), name="city-query"),
+    path("sitemap.xml", SiteMapView.as_view(), name="sitemap"),
 ]
 
 urlpatterns += staticfiles_urlpatterns()
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
-

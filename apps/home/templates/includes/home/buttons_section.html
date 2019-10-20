@@ -1,6 +1,6 @@
 <section>
     {% if user.is_authenticated %}
-        {% if user.subscriptions.plan %}
+        {% if user.is_subscriber %}
             {% include "includes/home/subscriber/buttons.html" %}
         {% else %}
             {% include "includes/home/non-subscriber/buttons.html" %}
