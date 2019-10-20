@@ -4,12 +4,14 @@ PLANS = {
         "credits": 6,
         "price": 879,
         "annual": False,
+        "companion": False,
     },
     "six-pack": {
         "name": "6 Pack of Flights",
         "credits": 12,
         "price": 1699,
         "annual": False,
+        "companion": True,
     },
     "lite": {
         "credits": 24,
