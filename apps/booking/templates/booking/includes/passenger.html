@@ -19,8 +19,8 @@
                                 class="control-label">Title</label>
                         <select class="form-control"
                                 name="gender">
-                            <option value="mr" selected>mr</option>
-                            <option value="ms">ms</option>
+                            <option value="mr" {% if user.profile.gender == 0 %}selected{% endif %}>mr</option>
+                            <option value="ms" {% if user.profile.gender == 1 %}selected{% endif %}>ms</option>
                         </select>
                     </div>
 
@@ -30,14 +30,14 @@
                         names</label>
                     <input type="text" class="form-control"
                             name="givennames"
-                            placeholder="e.g Johnny Apple" required>
+                           placeholder="e.g Johnny Apple" required value="{{ user.first_name | default_if_none:"" }}" />
                 </div>
                 <div class="col-md-4 form-group form-group-sm">
                     <label for="surenames"
                             class="control-label">Surname(s)</label>
                     <input type="text" class="form-control"
                             name="surenames"
-                            placeholder="e.g. Seed" required>
+                            placeholder="e.g. Seed" required value="{{ user.last_name | default_if_none:"" }}">
                 </div>
             </div>
             <div class="row">

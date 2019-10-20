@@ -98,7 +98,7 @@ $(function () {
     }
 
     var yearSelect = document.querySelector('#yearofbirth');
-
+    var byear = yearSelect.getAttribute('value');
     var date = new Date();
     var year = date.getFullYear();
 
@@ -106,7 +106,7 @@ $(function () {
     for (var i = 0; i <= 100; i++) {
         var option = document.createElement('option');
         option.textContent = year - i;
-        if (i === 20) option.selected = true;
+        if (parseInt(byear) === year - i) option.selected = true;
         yearSelect.appendChild(option);
     }
 
