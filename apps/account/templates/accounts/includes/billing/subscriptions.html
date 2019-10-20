@@ -46,7 +46,9 @@
           {% for plan in subscriptions %}
 
           <div class="flight-p-list">
-            <h3 class="f-title">{{ plan.name }} ${{ plan.price_mo_annual }}/mo for {{ plan.credits_per_month }} Credits ({{ plan.flight_num }} Round Trip)</h3>
+            <h3 class="f-title">{{ plan.name }} ${{ plan.price_mo_annual }}/mo for
+                {{ plan.credits_per_month }} Credit{{ plan.credits_per_month|pluralize:"s" }}
+                ({{ plan.flight_num_per_month }} Round Trip{{ plan.flight_num_per_month|pluralize:"s" }})</h3>
             <div class="row">
               <div class="col-md-8 col-sm-8">
                 <ul class="p-detail">
