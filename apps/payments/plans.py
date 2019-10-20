@@ -17,6 +17,8 @@ PLANS = {
         "price_mo": 279,
         "price_mo_annual": 269,
         "annual": True,
+        "rollover": 0,
+        "companion": False,
     },
     "pro": {
         "credits": 36,
@@ -24,6 +26,8 @@ PLANS = {
         "price_mo": 389,
         "price_mo_annual": 359,
         "annual": True,
+        "rollover": 1,
+        "companion": True,
     },
     "biz": {
         "credits": 48,
@@ -31,6 +35,8 @@ PLANS = {
         "price_mo": 479,
         "price_mo_annual": 449,
         "annual": True,
+        "rollover": 2,
+        "companion": True,
     },
 }
 

@@ -10,6 +10,7 @@ import stripe
 from apps.account.forms import ProfileForm, MARKET_CHOICES
 from apps.account.models import Account
 from apps.payments.models import Plans
+from apps.payments.plans import get_available_plans
 from apps.subscriptions.models import Subscriptions
 
 stripe.api_key = settings.STRIPE_API_KEY
@@ -26,6 +27,9 @@ def account_view(request):
 
     context = {"title": "Accounts", "account": account}
     context['market_choices'] = MARKET_CHOICES
+    plans = get_available_plans()
+    context['credit_packs'] = [plans[c] for c in ['three-pack', 'six-pack']]
+    context['subscriptions'] = [plans[c] for c in ['lite', 'pro', 'biz']]
     return render(request, "accounts/accounts.html", context)
 
 
