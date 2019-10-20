@@ -65,16 +65,16 @@ body {
     text-decoration: none!important;
 }
 
+.index-header ul li a.nav-link:hover {
+    color: #00B7FF;
+}
+
 a {
     color: #000;
 }
 
-a:hover {
-    color: #00B7FF;
-}
-
 .index-header .right-menu {
-    margin-left: 50px;    
+    margin-left: 50px;
 }
 
 .index-header .left-menu {
@@ -111,7 +111,6 @@ a:hover {
 
 .btn-blue:hover {
     background: transparent;
-    color: #00B7FF;
 }
 
 .btn-blue.active {

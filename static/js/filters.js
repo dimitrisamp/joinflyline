@@ -12,9 +12,12 @@ $(document).ready(function () {
     app.form.departure_date = searchQuery.dep_date;
     app.form.arrival_date = searchQuery.ret_date;
     app.form.city_from = searchQuery.city_from;
-    app.form.city_to = searchQuery.city_to;
     app.form.placeFrom = searchQuery.placeFrom;
-    app.form.placeTo = searchQuery.placeTo;
+    app.locationSearch('__all__', app.form.city_from).then((data) => {
+        app.fillToCityWithData(data);
+        app.form.placeTo = searchQuery.placeTo;
+        app.form.city_to = searchQuery.city_to;
+    });
 });
 
 
@@ -446,6 +449,7 @@ $(document).ready(function () {
         $(this).find('.arrow-indicator').find('img').toggleClass('d-none');
     });
     applyFilterNow();
+
 });
 $(window).on('resize', function () {
     let is_mobile = false;

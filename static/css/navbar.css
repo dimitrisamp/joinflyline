@@ -1,3 +1,7 @@
+a.custom_nav_link:hover {
+    color: #00B7FF;
+}
+
 .navbar-section {
     border-bottom: 1px solid silver;
 }

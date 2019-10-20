@@ -19,7 +19,7 @@ from apps.results.adjacency import (
     wrap_city_data,
     AIRPORT_TO_CITY,
     ADJACENCY,
-)
+    CITY_STATE_COUNTRY_AIRPORT)
 from apps.results.models import SearchDetails, BookingCache
 from wanderift.utils import pairwise
 
@@ -239,7 +239,9 @@ class ResultsView(TemplateView):
             "filter_params": filter_params,
             "search_params": search_params,
             "sort": sort_params,
-            "demo": self.demo
+            "demo": self.demo,
+            "city_airports": [o for o in CITY_STATE_COUNTRY_AIRPORT if
+                              o[0] in ADJACENCY]
         }
         if self.request.is_ajax():
             data = self.query_endpoint(search_params, filter_params, sort_params, limit)
