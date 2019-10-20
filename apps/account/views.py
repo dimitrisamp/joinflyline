@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 import stripe
 
-from apps.account.forms import ProfileForm
+from apps.account.forms import ProfileForm, MARKET_CHOICES
 from apps.account.models import Account
 from apps.payments.models import Plans
 from apps.subscriptions.models import Subscriptions
@@ -24,13 +24,9 @@ def account_view(request):
     except Account.DoesNotExist:
         account = None
 
-    if account is not None:
-        context = {"title": "Accounts", "account": account}
-        return render(request, "accounts/accounts.html", context)
-    else:
-        account = {}
-        context = {"title": "Accounts", "account": account}
-        return render(request, "accounts/accounts.html", context)
+    context = {"title": "Accounts", "account": account}
+    context['market_choices'] = MARKET_CHOICES
+    return render(request, "accounts/accounts.html", context)
 
 
 @login_required()

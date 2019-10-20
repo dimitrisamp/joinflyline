@@ -37,9 +37,13 @@
     </div>
     <div class="form-group col-sm-6">
         <label class="pb-2">Market</label>
-        <input class="form-control" type="text"
-               value="{{ user.profile.market }}" name="market"
-               placeholder="Market">
+        <select class="form-control" name="market">
+            <option value="">--</option>
+            {% for label, value in market_choices %}
+                <option value="{{ value }}"
+                        {% if user.profile.market == value %}selected{% endif %}>{{ label }}</option>
+            {% endfor %}
+        </select>
     </div>
     <div class="form-group col-sm-6">
         <label class="pb-2">TSA precheck number</label>

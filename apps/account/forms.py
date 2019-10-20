@@ -1,6 +1,10 @@
 from django import forms
 
 from apps.account.enums import Gender
+from apps.results import adjacency
+
+
+MARKET_CHOICES = list(zip(*[list(adjacency.ADJACENCY.keys())] * 2))
 
 
 class ProfileForm(forms.Form):
@@ -9,5 +13,5 @@ class ProfileForm(forms.Form):
     email = forms.EmailField(required=False)
     dob = forms.DateField(required=False)
     gender = forms.TypedChoiceField(choices=Gender.choices(), coerce=int)
-    market = forms.CharField(required=False)
+    market = forms.ChoiceField(choices=MARKET_CHOICES, required=False)
     tsa_precheck_number = forms.CharField(required=False)
