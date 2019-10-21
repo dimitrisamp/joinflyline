@@ -46,16 +46,16 @@
         </div>
     </div>
 </div>
-<div class="container">
+<div class="">
     <div class="row search-row">
-        <div class="col-md-3">
+        <div class="col-md-3 col-xs-12 col-sm-3">
             <div class="search-item search-item-to" v-bind:class="{shadowsrch: cityFromInput.focused}" >
                 <div class="input-group input-group-sm search-dropdown">
                     <span class="input-group-text search-form-input">Arrival City:</span>
                     <input type="text" class="form-control search-input"
                            aria-describedby="basic-addon3" @focus="cityFromInputFocused" @blur="cityFromInputBlurred" v-model="cityFromInput.text" v-on:input="fromCityHandler">
                 </div>
-                <div class="dropdown-list" v-cloak v-bind:class="{hidden: !cityFromInput.focused && !cityFromInput.searchProgress}" >
+                <div class="dropdown-list" id="listdata" v-cloak v-bind:class="{hidden: !cityFromInput.focused && !cityFromInput.searchProgress}" >
                     <ul class="list-Sdown" v-if="cityFromInput.searchResults.length > 0">
                         <li v-for="(place, index) of cityFromInput.searchResults" v-on:click="cityFromInputChoose(index)">
                             <div class="dropdown-icon"><i class="fa fa-plane"></i></div>
@@ -68,14 +68,14 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-3 col-xs-12 col-sm-3">
             <div class="search-item search-item-to" v-bind:class="{shadowsrch: cityToInput.focused}" >
                 <div class="input-group input-group-sm search-dropdown">
                     <span class="input-group-text search-form-input">Arrival City:</span>
                     <input type="text" class="form-control search-input"
                            aria-describedby="basic-addon3" @focus="cityToInputFocused" @blur="cityToInputBlurred" v-model="cityToInput.text" v-on:input="toCityHandler">
                 </div>
-                <div class="dropdown-list" v-cloak v-bind:class="{hidden: !cityToInput.focused && !cityToInput.searchProgress}" >
+                <div class="dropdown-list" id="listdata" v-cloak v-bind:class="{hidden: !cityToInput.focused && !cityToInput.searchProgress}" >
                     <ul class="list-Sdown" v-if="cityToInput.searchResults.length > 0">
                         <li v-for="(place, index) of cityToInput.searchResults" v-on:click="cityToInputChoose(index)">
                             <div class="dropdown-icon"><i class="fa fa-plane"></i></div>
@@ -88,7 +88,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-2">
+        <div class="col-md-2 col-xs-12 col-sm-2">
             <div class="search-item">
                 <div class="input-group input-group-sm search-dropdown">
                     <span class="input-group-text search-form-input">Departure:</span>
@@ -96,7 +96,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-2">
+        <div class="col-md-2 col-xs-12 col-sm-2">
             <div class="search-item">
                 <div class="input-group input-group-sm search-dropdown">
                     <span class="input-group-text search-form-input">Return:</span>
@@ -104,7 +104,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-2">
+        <div class="col-md-2 col-xs-12 col-sm-2">
             <button class="search_btn" @click="search">Search</button>
         </div>
     </div>

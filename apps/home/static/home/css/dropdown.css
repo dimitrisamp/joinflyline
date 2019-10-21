@@ -10,20 +10,20 @@
     margin-top: 20px;
     height: 50px;
 }
-.search-item {
-    position: absolute;
-}
 .search-item.shadowsrch {
     position: absolute;
-    padding: 15px;
     min-width: 300px;
     top: -15px;
     left: 0px;
     z-index: 50;
 }
-
+.shadowsrch .search-dropdown {
+    padding-left: 15px;
+    padding-top: 15px;
+    padding-right: 15px;
+}
 .search-dropdown .form-control {
-    border-radius: 4px;
+    border-radius: 2px;
     border-left: 0;
     padding: 20px 0;
 }
@@ -50,7 +50,9 @@
 .search-item .dropdown-list{
 	background: #fff;
     max-height: 300px;
-    overflow-y: scroll;
+    padding-top: 10px;
+    overflow-x:hidden;
+    overflow-y:visible;
 }
 .search-item .dropdown-list.hidden{
 	display: none;
@@ -71,7 +73,7 @@
 .list-Sdown i{
 	transform: rotate(-45deg);
     font-size: 21px;
-    margin: 9px 0px;
+    margin: 2px 0px;
 }
 
 .flight_name{
@@ -96,10 +98,42 @@
     text-align: left;
     margin: 4px 0;
 }
-.search-dropdown {
-    padding-right: 0px;
-    padding-left: 0px;
-}
 .child-li{
 	padding: 0px 30px;
 }
+.search-row .col-md-3 {
+    padding: 0 5px;
+}
+.search-row .col-md-2 {
+    padding: 0 5px;
+}
+.lightpick {
+    margin-left:-48px;
+    margin-top: 3px;
+}
+button.search_btn{
+    padding:8.6px 40px !important;
+}
+.dropdown-list p{
+    padding: 0px 16px;
+}
+
+@media(min-width: 320px) and (max-width: 480px){
+.search-dropdown{
+    margin-bottom: 10px;
+}   
+.asset_box{
+    margin-top: 68px;   
+}
+.search-row .col-md-2 {
+    padding: 0px 15px;
+}
+.search-row .col-md-3 {
+    padding: 0px 15px;
+}
+.search-item.shadowsrch{
+    min-width: 97%;
+}
+
+}
+
