@@ -109,6 +109,7 @@ ADJACENCY = {
         "Boston",
         "Charlotte",
         "Philadelphia",
+        "New York",
     ),
     "Charlotte": (
         "Las Vegas",
