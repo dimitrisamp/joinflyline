@@ -29,7 +29,7 @@
     <section class="navbar-section">
         {% include "_includes/navbar.html" with page="results" %}
     </section>
-    <section class="search-bar-section bg-white border-bottom">
+    <section class="search-bar-section bg-white border-bottom{% if not user.is_subscriber %} banner-above{% endif %}">
         <div class="sidebar__inner">
             <div class="container content-holder wide-container"
                  style="padding-bottom: 10px;padding-top: 5px;">

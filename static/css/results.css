@@ -18,8 +18,11 @@
 .sticky-searchbar {
     position: -webkit-sticky;
     position: sticky;
-    top: 59px;
     z-index: 1020;
+    top: 0;
+}
+.sticky-searchbar.banner-above {
+    top: 59px;
 }
 .search-results-section {
     padding-bottom: 50px;
@@ -45,8 +48,12 @@
     .sticky-item {
         position: -webkit-sticky;
         position: sticky;
-        top: 275px;
+        top: 245px;
         padding: 0 15px;
+    }
+
+    .sticky-item.banner-above {
+        top: 186px;
     }
 }
 

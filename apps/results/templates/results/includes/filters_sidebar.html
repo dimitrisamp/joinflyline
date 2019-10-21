@@ -3,7 +3,7 @@
 {% load airlines %}
 <div id="filters-sidebar{% if not visible %}-hidden{% endif %}" class="col-xl-3{% if not visible %}hidden{% endif %}">
     <div class="s-sidebar">
-        <div class="sticky-item">
+        <div class="sticky-item {% if user.is_subscriber %}banner-above{% endif %}">
             <div class="card">
                 <div class="card-header card-toggler bg-white cursor-pointer"
                      data-toggle="collapse"
