@@ -227,9 +227,6 @@ class ResultsView(TemplateView):
 
     def get_context_data(self, **kwargs):
         search_params = self.get_search_params()
-        vresp = self.validate(search_params)
-        if vresp:
-            return vresp
         sort_params = self.get_sort_params()
         filter_params = self.get_filter_params(search_params)
         limit = int(self.request.GET.get("limit", 20))
@@ -244,6 +241,7 @@ class ResultsView(TemplateView):
                               o[0] in ADJACENCY]
         }
         if self.request.is_ajax():
+            self.validate(search_params)
             data = self.query_endpoint(search_params, filter_params, sort_params, limit)
             context_data.update(data)
         return context_data
