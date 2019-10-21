@@ -51,7 +51,7 @@
         <div class="col-md-3 col-xs-12 col-sm-3">
             <div class="search-item search-item-to" v-bind:class="{shadowsrch: cityFromInput.focused}" >
                 <div class="input-group input-group-sm search-dropdown">
-                    <span class="input-group-text search-form-input">Arrival City:</span>
+                    <span class="input-group-text search-form-input">Departure City:</span>
                     <input type="text" class="form-control search-input"
                            aria-describedby="basic-addon3" @focus="cityFromInputFocused" @blur="cityFromInputBlurred" v-model="cityFromInput.text" v-on:input="fromCityHandler">
                 </div>
@@ -91,7 +91,7 @@
         <div class="col-md-2 col-xs-12 col-sm-2">
             <div class="search-item">
                 <div class="input-group input-group-sm search-dropdown">
-                    <span class="input-group-text search-form-input">Departure:</span>
+                    <span class="input-group-text search-form-input">Departure date:</span>
                     <input type="text" class="form-control" id="departure_date" v-model="form.departure_date">
                 </div>
             </div>
@@ -99,7 +99,7 @@
         <div class="col-md-2 col-xs-12 col-sm-2">
             <div class="search-item">
                 <div class="input-group input-group-sm search-dropdown">
-                    <span class="input-group-text search-form-input">Return:</span>
+                    <span class="input-group-text search-form-input">Return date:</span>
                     <input type="text" class="form-control" id="return_date" v-bind:disabled="form.destinationTypeId === 'oneway'" v-model="form.return_date">
                 </div>
             </div>
