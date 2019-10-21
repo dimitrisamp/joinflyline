@@ -8,7 +8,7 @@
 {% endblock %}
 {% block content %}
     <section class="navbar-section pre-dark">
-        {% include "_includes/promo.html"%}
+        {% include "_includes/promo.html" %}
     </section>
     <section class="navbar-section pre-dark">
         {% include "_includes/navbar.html" with page="plans" %}
@@ -17,8 +17,10 @@
     <section class="topbox">
         <div class="container">
             <div class="text-center topboxFont">
-                <h3 style="margin-top: 60px; margin-bottom: 5px; font-size: 40px;">Pick the Plan Based on Your Travel Needs</h3>
-                <p style="margin-bottom: 40px; font-size:20px;">Browse the Plans We Offer and See Which One <br/>
+                <h3 style="margin-top: 60px; margin-bottom: 5px; font-size: 40px;">Pick
+                    the Plan Based on Your Travel Needs</h3>
+                <p style="margin-bottom: 40px; font-size:20px;">Browse the Plans We
+                    Offer and See Which One <br/>
                     Fits Your Travel Needs</p>
             </div>
         </div>
@@ -30,8 +32,10 @@
         <div class="container">
 
             <div class="text-center howitFont">
-                <h3 style="margin-top: 60px; font-size: 30px;">How You'll Wander Away</h3>
-                <p style="font-size: 20px; margin-bottom: 80px;">Here is How It All Works</p>
+                <h3 style="margin-top: 60px; font-size: 30px;">How You'll Wander
+                    Away</h3>
+                <p style="font-size: 20px; margin-bottom: 80px;">Here is How It All
+                    Works</p>
             </div>
 
             <div class="row topspace" style="margin-bottom: 60px;">
@@ -53,7 +57,8 @@
                     <div class="text-center box-04">
                         <span class="fa fa-refresh"></span>
                         <h3>Upgrade or Rollover</h3>
-                        <p>You can upgrade your plan (or downgrade your plan) whenever.</p>
+                        <p>You can upgrade your plan (or downgrade your plan)
+                            whenever.</p>
                     </div>
                 </div><!-- col/4 -->
             </div>
@@ -65,43 +70,57 @@
     <section class="available-plan">
         <div class="container">
             <div class="text-center howitFont">
-                <h3 style="margin-top: 80px; font-size: 30px;">Available Plans on Wanderift</h3>
-                <p style="font-size: 20px; margin-bottom: 80px;">Pick a plan… upgrade… downgrade… cancel at anytime</p>
+                <h3 style="margin-top: 80px; font-size: 30px;">Available Plans on
+                    Wanderift</h3>
+                <p style="font-size: 20px; margin-bottom: 80px;">Pick a plan… upgrade…
+                    downgrade… cancel at anytime</p>
             </div>
 
             <div class="row topspace" style="margin-bottom: 40px;">
                 <div class="col-md-3 col-sm-3">
-                    <div class="text-center box-03">
+                    <div class="text-center box-03 plan-description">
                         <h3>Credits Pack</h3>
                         <p>Choose between either the 3(3 round trip flights) or 6 pack
                             (6 round trip flights)</p>
                     </div>
+                    <div class="text-center btn-get">
+                        <a href="{% url "subscription" %}?code=three-pack" class="btn btn-default">Get
+                            Started</a>
+                    </div>
                 </div><!-- col/3 -->
                 <div class="col-md-3 col-sm-3">
-                    <div class="text-center box-03">
+                    <div class="text-center box-03 plan-description">
                         <h3>2 Credits / mo</h3>
                         <p>Wanderift Lite starts at $269/mo. you get 2 credits(1 round
                             trip) per month</p>
                     </div>
+                    <div class="text-center btn-get">
+                        <a href="{% url "subscription" %}?code=lite" class="btn btn-default">Get
+                            Started</a>
+                    </div>
                 </div><!-- col/3 -->
                 <div class="col-md-3 col-sm-3">
-                    <div class="text-center box-03">
+                    <div class="text-center box-03 plan-description">
                         <h3>3 Credits / mo</h3>
                         <p>Wanderift Pro starts at $359/mo. you get 3 credits(1.5 round
                             trip) per month</p>
                     </div>
+                    <div class="text-center btn-get">
+                        <a href="{% url "subscription" %}?code=pro" class="btn btn-default">Get
+                            Started</a>
+                    </div>
                 </div><!-- col/3 -->
                 <div class="col-md-3 col-sm-3">
-                    <div class="text-center box-03">
+                    <div class="text-center box-03 plan-description">
                         <h3>4 Credits / mo</h3>
                         <p>Wanderift Biz starts at $449/mo. you get 4 credits(2 round
                             trips) per month</p>
                     </div>
+                    <div class="text-center btn-get">
+                        <a href="{% url "subscription" %}?code=biz" class="btn btn-default">Get
+                            Started</a>
+                    </div>
                 </div><!-- col/3 -->
-            </div>
-
-            <div class="text-center btn-get">
-                <a href="{% url "plans" %}" class="btn btn-default">Get Started</a>
             </div>
 
 

@@ -399,6 +399,13 @@
 }
 
 /************* Loading Animation *************/
+.plan-description {
+    min-height: 12em;
+}
+
+.btn-get .btn.btn-default {
+    margin-top: 0px;
+}
 
 .loading_animation {
     background: #fff;
