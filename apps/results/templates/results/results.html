@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="{% static "css/custom.css" %}">
     <link rel="stylesheet" href="{% static "css/results.css" %}">
     <link rel="stylesheet" href="{% static "home/css/style.css" %}">
+    <link rel="stylesheet" href="{% static "home/css/dropdown.css" %}">
 {% endblock %}
 
 
@@ -55,6 +56,8 @@
                     {% include "results/includes/left-sidebar.html" %}
                     <div class="col-md-6 search result p-3 p-md-0" id="result-list">
 
+                        {% include "results/includes/loading-animation.html" %}
+
                     </div>
                     <!-- Filters -->
                     {% include "results/includes/filters_sidebar.html" with visible=1 %}
@@ -76,4 +79,6 @@
     <script src="{% static "js/bootstrap-slider.js" %}"></script>
 
     <script src="{% static "js/filters.js" %}"></script>
+    <script src="{% static "home/js/dropdown.js" %}"></script>
+
 {% endblock %}

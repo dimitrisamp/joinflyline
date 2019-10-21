@@ -5,8 +5,6 @@ const seatTypes = {
     'F': 'First Class'
 };
 
-$('.dropdown-wrapper-to').css("left", $($('.flexed-search-item')[1]).position().left);
-
 
 function debounce(fn, delay, ...rest) {
     let timeoutID = null;
@@ -18,6 +16,21 @@ function debounce(fn, delay, ...rest) {
         }, delay)
     }
 }
+
+function getCityInputData(k) {
+    const jsonData = sessionStorage.getItem(`city${k}Input`);
+    const data = JSON.parse(jsonData);
+    if (data) return data;
+    return {
+        focused: false,
+        searchResults: [],
+        requestProgress: false,
+        searchProgress: false,
+        selectedIndex: 0,
+        text: "",
+    }
+}
+
 
 const app = new Vue({
     el: '#app',
@@ -36,6 +49,8 @@ const app = new Vue({
         searchParameter: '',
         searchQuery: {},
         seatTypeName: "Economy",
+        cityFromInput: getCityInputData('From'),
+        cityToInput: getCityInputData('To'),
         form: {
             destinationType: "Return",
             noOfPassengers: "Passengers",
@@ -45,7 +60,7 @@ const app = new Vue({
             valChildren: 0,
             valInfants: 0,
             departure_date: "",
-            arrival_date: "",
+            return_date: "",
             city_from: "",
             city_to: "",
             placeFrom: "",
@@ -53,7 +68,47 @@ const app = new Vue({
         }
     },
     methods: {
-        locationSearch: (term, cityFrom) => {
+        cityFromInputFocused() {
+            this.cityFromInput.focused = true;
+        },
+        cityFromInputBlurred() {
+            const that = this;
+            setTimeout(() => {
+                that.cityFromInput.focused = false;
+            }, 150);
+            this.cityFromInput.searchProgress = false;
+        },
+        cityToInputFocused() {
+            app.cityToInput.focused = true;
+        },
+        cityToInputBlurred() {
+            const that = this;
+            setTimeout(() => {
+                that.cityToInput.focused = false;
+            }, 150);
+            this.cityToInput.searchProgress = false;
+        },
+        cityToInputChoose(i) {
+            this.cityToInput.selectedIndex = i;
+            this.cityToInput.text = app.formatPlace(this.cityToInput.searchResults[i]);
+            this.cityToInput.searchProgress = false;
+        },
+        cityFromInputChoose(i) {
+            this.cityFromInput.selectedIndex = i;
+            const place = app.cityFromInput.searchResults[i]
+            this.cityFromInput.text = app.formatPlace(place);
+            this.cityFromInput.searchProgress = false;
+            if (DjangoUser.subscriber) {
+                const that = this;
+                this.locationSearch('__all__', place.name).then((data) => {
+                    that.cityToInput.searchResults = data.locations;
+                });
+            }
+        },
+        formatPlace(place) {
+            return `${place.name} ${place.subdivision ? place.subdivision.name : ""} ${place.country.code} (${place.code})`;
+        },
+        locationSearch(term, cityFrom) {
             return new Promise((resolve) => {
                 let url;
                 if (DjangoUser.subscriber) {
@@ -83,48 +138,28 @@ const app = new Vue({
                 );
             });
         },
-        fillToCityWithData: (data) => {
-            const placesTo = window.document.getElementById('placesTo');
-            while (placesTo.firstChild) placesTo.firstChild.remove();
-            let option = window.document.createElement('option');
-            option.text = "--";
-            option.value = "";
-            placesTo.appendChild(option);
-            for (let location of data.locations) {
-                let option = window.document.createElement('option');
-                option.text = `${location.name}, ${location.subdivision ? location.subdivision.name : ""}, ${location.country.code} (${location.code})`;
-                option.value = location.code;
-                option.setAttribute('data-city', location.name);
-                placesTo.appendChild(option);
-            }
-            placesTo.removeAttribute('disabled');
-        },
-        updateCityFrom: () => {
-            const selectbox = window.document.getElementById('placesFrom');
-            app.form.city_from = selectbox.options[selectbox.selectedIndex].getAttribute('data-city');
-        },
-        fromCityChange: () => {
-            app.updateCityFrom();
-            app.locationSearch('__all__', app.form.city_from).then(app.fillToCityWithData);
-        },
-        toCityChange: () => {
-            const selectbox = window.document.getElementById('placesTo');
-            if (selectbox.options && selectbox.options[selectbox.selectedIndex]) {
-                app.form.city_to = selectbox.options[selectbox.selectedIndex].getAttribute('data-city');
+        updateCityFrom() {
+            if (DjangoUser.subscriber) {
+                const that = this;
+                this.locationSearch('__all__').then(function (data) {
+                    that.cityFromInput.searchResults = data.locations;
+                });
             }
         },
         fromCityHandler: debounce(function () {
-            if (app.form.city_from === null || app.form.city_from === "" || app.form.city_from.length < 3) {
-                app.cityFromSearchProgress = false;
+            if (this.cityFromInput.text === null || this.cityFromInput.text === "" || this.cityFromInput.text.length < 3) {
+                this.cityFromInput.searchProgress = false;
                 return;
             }
-            app.selectionOption = 1;
-            app.cityFromSearchProgress = true;
-            app.cityFromRequestProgress = true;
-            app.locationSearch(app.form.city_from
+            this.cityFromInput.searchProgress = true;
+            this.cityFromInput.requestProgress = true;
+
+            const that = this;
+            this.locationSearch(
+                that.cityFromInput.text
             ).then(
                 (data) => {
-                    app.searchResultPlacesFrom = data.locations;
+                    that.cityFromInput.searchResults = data.locations;
                 }
             ).catch(
                 () => {
@@ -132,23 +167,23 @@ const app = new Vue({
                 }
             ).finally(
                 () => {
-                    app.cityFromRequestProgress = false;
+                    that.cityFromInput.requestProgress = false;
                 }
             );
         }, 500),
         toCityHandler: debounce(function () {
-            if (app.form.city_to === null || app.form.city_to === "" || app.form.city_to.length < 3) {
-                app.cityToSearchProgress = false;
+            if (this.cityToInput.text === null || this.cityToInput.text === "" || this.cityToInput.text.length < 3) {
+                this.cityToInput.searchProgress = false;
                 return;
             }
-            $('#dropdown-wrapper-to').css("left", $($('.flexed-search-item')[1]).position().left);
-            app.cityToSearchProgress = true;
-            app.selectionOption = 2;
-            app.cityToRequestProgress = true;
-            app.locationSearch(app.form.city_to, app.form.city_from
+            this.cityToInput.searchProgress = true;
+            this.cityToInput.requestProgress = true;
+            const that = this;
+            this.locationSearch(
+                that.cityToInput.text
             ).then(
                 (data) => {
-                    app.searchResultPlacesTo = data.locations;
+                    that.cityToInput.searchResults = data.locations;
                 }
             ).catch(
                 () => {
@@ -156,32 +191,32 @@ const app = new Vue({
                 }
             ).finally(
                 () => {
-                    app.cityToRequestProgress = false;
+                    that.cityToInput.requestProgress = false;
                 }
             );
         }, 500),
-        clearList: function () {
+        clearList() {
             document.getElementById('mySelectedPlace').style.display = 'block';
         },
 
-        clearPlaceItem: function (index) {
+        clearPlaceItem(index) {
             this.mySelection.splice(index, 1);
         },
 
-        getSelectedRadioValue: function (item, index) {
+        getSelectedRadioValue(item, index) {
             console.log(item);
             if (item.checked === true) {
-                app.form.stop = item.value;
+                this.form.stop = item.value;
 
             }
 
         },
-        setStopOverValue: function (stopOverTo, stopOverFrom) {
-            app.form.stopOverFrom = stopOverFrom + ":" + "00";
-            app.form.stopOverTo = stopOverTo + ":" + "00";
+        setStopOverValue(stopOverTo, stopOverFrom) {
+            this.form.stopOverFrom = stopOverFrom + ":" + "00";
+            this.form.stopOverTo = stopOverTo + ":" + "00";
         },
 
-        search: () => {
+        search() {
             let formData = new FormData;
 
             if (document.getElementById('stopover') != null) {
@@ -203,235 +238,172 @@ const app = new Vue({
                     stopOverTo = chars[1];
                 }
 
-                app.setStopOverValue(stopOverTo, stopOverFrom);
+                this.setStopOverValue(stopOverTo, stopOverFrom);
             }
 
             if (document.getElementsByName("stop") != null) {
-                document.getElementsByName("stop").forEach(app.getSelectedRadioValue)
+                document.getElementsByName("stop").forEach(this.getSelectedRadioValue)
             }
 
-
-            formData.append("city_from", app.form.city_from);
-            formData.append("city_to", app.form.city_to);
-            formData.append("placeFrom", app.form.placeFrom);
-            formData.append("placeTo", app.form.placeTo);
-            formData.append("dep_date", document.getElementById('departure_date').value);
-            formData.append("type", app.form.destinationTypeId);
-            if (app.form.destinationTypeId === "round") {
-                formData.append("ret_date", document.getElementById('return_date').value);
+            const placeTo = this.cityToInput.searchResults[this.cityToInput.selectedIndex];
+            const placeFrom = this.cityFromInput.searchResults[this.cityFromInput.selectedIndex];
+            formData.append("city_from", this.formatPlace(placeFrom));
+            formData.append("city_to", this.formatPlace(placeTo));
+            formData.append("placeFrom", placeFrom.code);
+            formData.append("placeTo", placeTo.code);
+            formData.append("dep_date", this.form.departure_date);
+            formData.append("type", this.form.destinationTypeId);
+            if (this.form.destinationTypeId === "round") {
+                formData.append("ret_date", this.form.return_date);
             }
-            formData.append("adults", app.form.valAdults);
-            formData.append("infants", app.form.valInfants);
-            formData.append("children", app.form.valChildren);
-            formData.append("selected_cabins", app.form.seatType);
-            if (app.form.stop) formData.append("max_stopovers", app.form.stop);
-            if (app.form.stopOverFrom) formData.append("stopover_from", app.form.stopOverFrom);
-            if (app.form.stopOverTo) formData.append("stopover_to", app.form.stopOverTo);
+            formData.append("adults", this.form.valAdults);
+            formData.append("infants", this.form.valInfants);
+            formData.append("children", this.form.valChildren);
+            formData.append("selected_cabins", this.form.seatType);
+            if (this.form.stop) formData.append("max_stopovers", this.form.stop);
+            if (this.form.stopOverFrom) formData.append("stopover_from", this.form.stopOverFrom);
+            if (this.form.stopOverTo) formData.append("stopover_to", this.form.stopOverTo);
             if (DjangoUser.demo) formData.append('demo', true);
             let url = new URL('/results', window.location);
             url.search = new URLSearchParams(formData);
+            window.sessionStorage.setItem('cityToInput', JSON.stringify(this.cityToInput));
+            window.sessionStorage.setItem('cityFromInput', JSON.stringify(this.cityFromInput));
             window.location = url;
         },
 
-        swapPlaces: () => {
-            let city_from = app.form.city_from;
-            app.form.city_from = app.form.city_to;
-            app.form.city_to = city_from;
-            let placeTo = app.form.placeTo;
-            app.form.placeTo = app.form.placeFrom;
-            app.form.placeFrom = placeTo;
+        swapPlaces() {
+            let city_from = this.form.city_from;
+            this.form.city_from = this.form.city_to;
+            this.form.city_to = city_from;
+            let placeTo = this.form.placeTo;
+            this.form.placeTo = this.form.placeFrom;
+            this.form.placeFrom = placeTo;
         },
 
-        setPlace: function (placeName, codeIataCity, index) {
-            this.searchResultPlaces.splice(index, 1);
-            this.searchResultPlaces = [];
-            document.getElementById('mySelectedPlace').innerText = placeName;
-            document.getElementById('mySelectedPlace').placeholder = codeIataCity;
-            document.getElementById('mySelectedPlace').style.display = 'block';
 
-            switch (app.selectionOption) {
-                case 1:
-                    app.form.city_from = document.getElementById('mySelectedPlace').placeholder;
-                    break;
-                case 2:
-                    app.form.city_to = document.getElementById('mySelectedPlace').placeholder;
-            }
-        },
-
-        selectDestType: (type) => {
+        selectDestType(type) {
             let returnDateInput = document.getElementById('return_date');
             switch (type) {
                 case "round":
-                    app.form.destinationTypeId = 'round';
-                    app.form.destinationType = 'Return';
-                    returnDateInput.removeAttribute("disabled");
-                    returnDateInput.closest('label.search_label').classList.remove("disabled");
+                    this.form.destinationTypeId = 'round';
+                    this.form.destinationType = 'Return';
                     return;
                 case "oneway":
-                    app.form.destinationTypeId = 'oneway';
-                    app.form.destinationType = 'One way';
-                    document.getElementById('return_date').setAttribute("disabled", "disabled");
-                    returnDateInput.closest('label.search_label').classList.add("disabled");
+                    this.form.destinationTypeId = 'oneway';
+                    this.form.destinationType = 'One way';
                     return;
                 default:
-                    app.form.destinationTypeId = 'round';
-                    app.form.destinationType = 'Return';
-                    document.getElementById('return_date').removeAttribute("disabled");
-                    returnDateInput.closest('label.search_label').classList.remove("disabled");
+                    this.form.destinationTypeId = 'round';
+                    this.form.destinationType = 'Return';
                     return;
             }
         },
 
-        selectSeatType: (type) => {
+        selectSeatType(type) {
             if (seatTypes.hasOwnProperty(type)) {
-                app.form.seatType = type;
+                this.form.seatType = type;
 
             } else {
-                app.form.seatType = 'M';
+                this.form.seatType = 'M';
             }
-            app.seatTypeName = seatTypes[type];
+            this.seatTypeName = seatTypes[type];
         },
-        choosePlaces: function () {
-            let place = document.getElementById('mySelectedPlace').innerText;
-            let placeId = document.getElementById('mySelectedPlace').placeholder;
-            // window.locVal = document.getElementById('addLocation').value;
+        increment (index) {
 
-            switch (app.selectionOption) {
-                case 1:
-                    document.getElementById('placesFrom').value = place;
-                    app.form.city_from = placeId;
-                    $('#placesModal').modal('hide');
-                    return;
-                case 2:
-                    document.getElementById('placesTo').value = place;
-                    app.form.city_to = placeId;
-                    $('#placesModal').modal('hide');
-                    return;
-            }
+            this.valPassengers = this.form.valAdults + this.form.valChildren + this.form.valInfants;
 
-        },
-        setPlace: function (placeName, codeIataCity, index) {
-            this.searchResultPlaces.splice(index, 1);
-            // this.searchResultPlaces = [];
-            document.getElementById('mySelectedPlace').innerText = placeName;
-            document.getElementById('mySelectedPlace').placeholder = codeIataCity;
-            document.getElementById('mySelectedPlace').style.display = 'block';
-
-            switch (app.selectionOption) {
-                case 1:
-                    document.getElementById('placesFrom').value = placeName;
-                    app.form.placeFrom = document.getElementById('mySelectedPlace').placeholder;
-                    break;
-                case 2:
-                    document.getElementById('placesTo').value = placeName;
-                    app.form.placeTo = document.getElementById('mySelectedPlace').placeholder;
-            }
-        },
-
-        chooseFromPlace: function (placeName, codeIataCity, index) {
-            app.form.city_from = placeName;
-            app.form.placeFrom = codeIataCity;
-            app.cityFromSearchProgress = false;
-        },
-        chooseToPlace: function (placeName, codeIataCity, index) {
-            app.form.city_to = placeName;
-            app.form.placeTo = codeIataCity;
-            app.cityToSearchProgress = false;
-        },
-
-        increment: function (index) {
-
-            app.valPassengers = app.form.valAdults + app.form.valChildren + app.form.valInfants;
-
-            if (app.valPassengers !== 9) {
+            if (this.valPassengers !== 9) {
 
                 switch (index) {
                     case 1:
 
-                        if (app.form.valAdults !== 9) {
-                            app.form.valAdults++;
-                            app.valPassengers++;
+                        if (this.form.valAdults !== 9) {
+                            this.form.valAdults++;
+                            this.valPassengers++;
                         } else {
                             document.getElementById('valAdultsIncrement').disable = true;
                         }
-                        app.sumTotalsPassengers();
+                        this.sumTotalsPassengers();
                         return;
                     case 2:
 
-                        if (app.form.valChildren !== 8) {
-                            app.form.valChildren++;
-                            app.valPassengers++;
+                        if (this.form.valChildren !== 8) {
+                            this.form.valChildren++;
+                            this.valPassengers++;
                         } else {
                             document.getElementById('valChildrenIncrement').disable = true;
                         }
-                        app.sumTotalsPassengers();
+                        this.sumTotalsPassengers();
                         return;
                     case 3:
 
-                        if (app.form.valInfants !== app.form.valAdults) {
-                            app.form.valInfants++;
-                            app.valPassengers++;
+                        if (this.form.valInfants !== this.form.valAdults) {
+                            this.form.valInfants++;
+                            this.valPassengers++;
                         } else {
                             document.getElementById('valInfantsIncrement').disable = true;
                         }
-                        app.sumTotalsPassengers();
+                        this.sumTotalsPassengers();
                         return;
                 }
             }
 
         },
 
-        decrement: function (index) {
+        decrement(index) {
 
-            app.valPassengers = app.form.valAdults + app.form.valChildren + app.form.valInfants;
+            this.valPassengers = this.form.valAdults + this.form.valChildren + this.form.valInfants;
 
-            if (app.valPassengers !== 1) {
+            if (this.valPassengers !== 1) {
 
                 switch (index) {
                     case 1:
 
-                        if (app.form.valAdults !== 1) {
-                            app.form.valAdults--;
-                            app.valPassengers--;
-                            if (app.form.valInfants > app.form.valAdults) {
-                                app.valPassengers--;
-                                app.form.valInfants--;
+                        if (this.form.valAdults !== 1) {
+                            this.form.valAdults--;
+                            this.valPassengers--;
+                            if (this.form.valInfants > this.form.valAdults) {
+                                this.valPassengers--;
+                                this.form.valInfants--;
                             }
                         } else {
                             document.getElementById('valAdultsIncrement').disable = true;
                         }
-                        app.sumTotalsPassengers();
+                        this.sumTotalsPassengers();
                         return;
                     case 2:
-                        if (app.form.valChildren !== 0) {
-                            app.form.valChildren--;
-                            app.valPassengers--;
+                        if (this.form.valChildren !== 0) {
+                            this.form.valChildren--;
+                            this.valPassengers--;
                         } else {
                             document.getElementById('valChildrenIncrement').disable = true;
                         }
-                        app.sumTotalsPassengers();
+                        this.sumTotalsPassengers();
                         return;
                     case 3:
-                        if (app.form.valInfants !== 0) {
-                            app.form.valInfants--;
-                            app.valPassengers--;
+                        if (this.form.valInfants !== 0) {
+                            this.form.valInfants--;
+                            this.valPassengers--;
                         } else {
                             document.getElementById('valInfantsIncrement').disable = true;
                         }
-                        app.sumTotalsPassengers();
+                        this.sumTotalsPassengers();
                         return;
                 }
             }
 
         },
 
-        sumTotalsPassengers: function () {
-            if (app.valPassengers === 1) {
-                app.form.noOfPassengers = 'Passengers';
+        sumTotalsPassenger () {
+            if (this.valPassengers === 1) {
+                this.form.noOfPassengers = 'Passengers';
             } else {
-                app.form.noOfPassengers = app.valPassengers + ' Passengers'
+                this.form.noOfPassengers = this.valPassengers + ' Passengers'
             }
         },
+    },
+    mounted() {
+        this.updateCityFrom();
     }
 });
 
@@ -441,5 +413,9 @@ $(function () {
         field: document.getElementById('departure_date'),
         secondField: document.getElementById('return_date'),
         singleDate: false,
+        onSelect(start, end) {
+            app.form.departure_date = start.format('MM/DD/YYYY');
+            app.form.return_date = end.format('MM/DD/YYYY');
+        }
     });
 });

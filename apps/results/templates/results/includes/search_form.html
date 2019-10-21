@@ -46,135 +46,66 @@
         </div>
     </div>
 </div>
-<div class="row mt-4">
-    <div class="col-sm-12 flexed-search-bar pl-0">
-        <div class="flexed-search-item">
-            <label class="search_label"
-            >
-                <h6 class="city-select-container">Departure City :
-                    {% if user.is_subscriber or demo %}
-                        <select class="city-selector" name="placesFrom" v-on:change="fromCityChange" id="placesFrom" v-model="form.placeFrom">
-                            <option value="">--</option>
-                            {% for city, state, country, airport_code in city_airports %}
-                                <option value="{{ airport_code }}" data-city="{{ city }}">{{ city }}, {{ state }}, {{ country }}({{ airport_code }})</option>
-                            {% endfor %}
-                        </select>
-                    {% else %}
-                    <input type="text"
-                           autocomplete="off"
-                           class="search_input"
-                           v-model="form.city_from"
-                           v-on:input="fromCityHandler"
-                           name="placesFrom"
-                           id="placesFrom"/>
-                    {% endif %}
-                </h6>
-            </label>
-
-
-            <img class="icon_repeat" src="{% static "images/repeat.svg" %}"
-                 @click="swapPlaces">
+<div class="container">
+    <div class="row search-row">
+        <div class="col-md-3">
+            <div class="search-item search-item-to" v-bind:class="{shadowsrch: cityFromInput.focused}" >
+                <div class="input-group input-group-sm search-dropdown">
+                    <span class="input-group-text search-form-input">Arrival City:</span>
+                    <input type="text" class="form-control search-input"
+                           aria-describedby="basic-addon3" @focus="cityFromInputFocused" @blur="cityFromInputBlurred" v-model="cityFromInput.text" v-on:input="fromCityHandler">
+                </div>
+                <div class="dropdown-list" v-cloak v-bind:class="{hidden: !cityFromInput.focused && !cityFromInput.searchProgress}" >
+                    <ul class="list-Sdown" v-if="cityFromInput.searchResults.length > 0">
+                        <li v-for="(place, index) of cityFromInput.searchResults" v-on:click="cityFromInputChoose(index)">
+                            <div class="dropdown-icon"><i class="fa fa-plane"></i></div>
+                            <div class="">{( formatPlace(place) )}</div>
+                        </li>
+                    </ul>
+                    <p v-else-if="!cityFromInput.requestProgress">Start typing city name...</p>
+                    <p v-else-if="cityFromInput.requestProgress">Loading...</p>
+                    <p v-else-if="!cityFromInput.requestProgress">No results for your request.</p>
+                </div>
+            </div>
         </div>
-        <div class="dropdown-wrapper"
-             id="dropdown-wrapper-from"
-             v-cloak
-             v-show="cityFromSearchProgress">
-            <h4 class="dropdown-wrapper-error badge badge-warning"
-                v-if="searchResultPlacesFrom.length === 0 && !cityFromRequestProgress">
-                We couldn't find a location that matched your input.</h4>
-            <h4 class="dropdown-wrapper-loading badge"
-                v-if="searchResultPlacesFrom.length === 0 && cityFromRequestProgress">
-                Loading...</h4>
-            <ol v-if="searchResultPlacesFrom.length > 0" class="search_result_list">
-                <li v-for="(place, index) of searchResultPlacesFrom">
-                    <button class="btn search_result_list_item"
-                            @click="chooseFromPlace(place.name,place.code,index)">
-                        <i class="fa fa-building" style="padding-right: 2%"></i>
-                        {( place.name )} {( place.subdivision?place.subdivision.name:"" )} {( place.country.code )}
-                    </button>
-                    <button class="btn search_result_list_item"
-                            @click="chooseFromPlace(place.name,place.code,index)">
-                        <i class="fa fa-plane" style="padding-right: 2%"></i>
-                        {( place.code)}
-                    </button>
-                </li>
-            </ol>
+        <div class="col-md-3">
+            <div class="search-item search-item-to" v-bind:class="{shadowsrch: cityToInput.focused}" >
+                <div class="input-group input-group-sm search-dropdown">
+                    <span class="input-group-text search-form-input">Arrival City:</span>
+                    <input type="text" class="form-control search-input"
+                           aria-describedby="basic-addon3" @focus="cityToInputFocused" @blur="cityToInputBlurred" v-model="cityToInput.text" v-on:input="toCityHandler">
+                </div>
+                <div class="dropdown-list" v-cloak v-bind:class="{hidden: !cityToInput.focused && !cityToInput.searchProgress}" >
+                    <ul class="list-Sdown" v-if="cityToInput.searchResults.length > 0">
+                        <li v-for="(place, index) of cityToInput.searchResults" v-on:click="cityToInputChoose(index)">
+                            <div class="dropdown-icon"><i class="fa fa-plane"></i></div>
+                            <div class="">{( formatPlace(place) )}</div>
+                        </li>
+                    </ul>
+                    <p v-else-if="!cityToInput.requestProgress">Start typing city name...</p>
+                    <p v-else-if="cityToInput.requestProgress">Loading...</p>
+                    <p v-else-if="!cityToInput.requestProgress">No results for your request.</p>
+                </div>
+            </div>
         </div>
-        <div class="flexed-search-item">
-            <label class="search_label">
-                <h6 class="city-select-container">
-                    Arrival City :
-                    {% if user.is_subscriber or demo %}
-                        <select class="city-selector" name="placesTo" id="placesTo" v-on:change="toCityChange" :disabled="!form.placeFrom" v-model="form.placeTo">
-
-                        </select>
-                    {% else %}
-                    <input type="text"
-                           autocomplete="off"
-                           class="search_input"
-                           v-model="form.city_to"
-                           v-on:input="toCityHandler"
-                           name="placesTo"
-                           id="placesTo" :disabled="DjangoUser.subscriber && !form.placeFrom"/>
-                    {% endif %}
-                </h6>
-            </label>
+        <div class="col-md-2">
+            <div class="search-item">
+                <div class="input-group input-group-sm search-dropdown">
+                    <span class="input-group-text search-form-input">Departure:</span>
+                    <input type="text" class="form-control" id="departure_date" v-model="form.departure_date">
+                </div>
+            </div>
         </div>
-        <div class="dropdown-wrapper"
-             id="dropdown-wrapper-to"
-             v-cloak
-             v-show="form.city_to && cityToSearchProgress"
-        >
-            <p v-if="searchResultPlacesTo.length === 0 && !cityToRequestProgress"
-               class="dropdown-wrapper-error badge badge-warning">"We couldn't find a
-                location that matched your input. Why not try again ?"</p>
-            <h4 class="dropdown-wrapper-loading badge"
-                v-if="searchResultPlacesFrom.length === 0 && cityToRequestProgress">
-                Loading...</h4>
-            <ol v-if="searchResultPlacesTo.length > 0"
-                class="search_result_list">
-                <li v-for="(place, index) of searchResultPlacesTo">
-                    <button class="btn search_result_list_item"
-                            @click="chooseToPlace(place.name,place.code,index)">
-                        <i class="fa fa-building" style="padding-right: 2%"></i>
-                       {( place.name )} {( place.subdivision?place.subdivision.name:"" )} {( place.country.code )}
-                    </button>
-                    <button class="btn search_result_list_item"
-                            @click="chooseToPlace(place.name,place.code,index)">
-                        <i class="fa fa-plane" style="padding-right: 2%"></i>
-                        {( place.code )}
-                    </button>
-                </li>
-            </ol>
+        <div class="col-md-2">
+            <div class="search-item">
+                <div class="input-group input-group-sm search-dropdown">
+                    <span class="input-group-text search-form-input">Return:</span>
+                    <input type="text" class="form-control" id="return_date" v-bind:disabled="form.destinationTypeId === 'oneway'" v-model="form.return_date">
+                </div>
+            </div>
         </div>
-        <div class="flexed-search-item">
-            <label class="search_label">
-                <h6>Departure Date :
-                    <input type="text"
-                           name="dep_date"
-                           id="departure_date"
-                           autocomplete="off"
-                           v-model="form.departure_date"
-                           class="search_input">
-                </h6>
-            </label>
-        </div>
-        <div class="flexed-search-item">
-            <label class="search_label">
-                <h6>Return Date :
-                    <input type="text"
-                           name="ret_date"
-                           id="return_date"
-                           autocomplete="off"
-                           v-model="form.arrival_date"
-                           class="search_input">
-                </h6>
-            </label>
-        </div>
-        <div class="flexed-search-item">
-            <button class="search_btn"
-                    @click="search">Search
-            </button>
+        <div class="col-md-2">
+            <button class="search_btn" @click="search">Search</button>
         </div>
     </div>
 </div>

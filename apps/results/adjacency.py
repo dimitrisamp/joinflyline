@@ -223,7 +223,10 @@ def wrap_city_data(cities):
 
 
 def get_city_from(term):
-    return list(sorted(v for k, v in LOWER_KEYS.items() if term.lower() in k))
+    if term == '__all__':
+        return list(sorted(v for k, v in LOWER_KEYS.items()))
+    else:
+        return list(sorted(v for k, v in LOWER_KEYS.items() if term.lower() in k))
 
 
 def get_city_to(city_from, term=None):

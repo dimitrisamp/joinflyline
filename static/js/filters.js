@@ -10,7 +10,7 @@ $(document).ready(function () {
     app.form.valChildren = children;
     app.form.valInfants = infants;
     app.form.departure_date = searchQuery.dep_date;
-    app.form.arrival_date = searchQuery.ret_date;
+    app.form.return_date = searchQuery.ret_date;
     app.form.city_from = searchQuery.city_from;
     app.form.placeFrom = searchQuery.placeFrom;
     app.locationSearch('__all__', app.form.city_from).then((data) => {
@@ -462,9 +462,3 @@ $(window).on('resize', function () {
         $('.search-bar-section').addClass('sticky-searchbar')
     }
 });
-$(function(){
-    setTimeout(function(){
-       $('.loading_animation').hide();
-    }, 70);
-});
-
