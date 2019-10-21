@@ -128,7 +128,7 @@ class ResultsView(TemplateView):
             city_from = AIRPORT_TO_CITY.get(search_params["fly_from"])
             city_to = AIRPORT_TO_CITY.get(search_params["fly_to"])
             if city_to not in ADJACENCY.get(city_from, set()):
-                return HttpResponseRedirect(reverse("home"))
+                raise Http404(f'The route {city_from} -> {city_to} is not available')
 
     def get_search_params(self):
         request = self.request
