@@ -1,3 +1,5 @@
+import ClickOutside from './v-click-outside.js';
+
 const seatTypes = {
     'M': 'Economy',
     'W': 'Premium Economy',
@@ -53,6 +55,7 @@ const app = new Vue({
         cityToInput: getCityInputData('To'),
         destinationTypes: {"return": "Round Trip", "oneway": "Oneway"},
         destinationTypeSelectProgress: false,
+        passengerSelectProgress: false,
         form: {
             noOfPassengers: "Passengers",
             destinationTypeId: 'return',
@@ -68,7 +71,23 @@ const app = new Vue({
             placeTo: "",
         }
     },
+    directives: {
+        ClickOutside,
+    },
     methods: {
+        openPassengersForm() {
+            setTimeout(
+                () => {
+                    this.passengerSelectProgress = true;
+                }, 50
+            );
+
+        },
+        closePassengersForm() {
+            if (this.passengerSelectProgress) {
+                this.passengerSelectProgress = false;
+            }
+        },
         openDestinationType() {
             this.destinationTypeSelectProgress = true;
         },
@@ -297,7 +316,7 @@ const app = new Vue({
             }
             this.seatTypeName = seatTypes[type];
         },
-        increment (index) {
+        increment(index) {
 
             this.valPassengers = this.form.valAdults + this.form.valChildren + this.form.valInfants;
 
@@ -312,7 +331,6 @@ const app = new Vue({
                         } else {
                             document.getElementById('valAdultsIncrement').disable = true;
                         }
-                        this.sumTotalsPassengers();
                         return;
                     case 2:
 
@@ -322,17 +340,13 @@ const app = new Vue({
                         } else {
                             document.getElementById('valChildrenIncrement').disable = true;
                         }
-                        this.sumTotalsPassengers();
                         return;
                     case 3:
 
                         if (this.form.valInfants !== this.form.valAdults) {
                             this.form.valInfants++;
                             this.valPassengers++;
-                        } else {
-                            document.getElementById('valInfantsIncrement').disable = true;
                         }
-                        this.sumTotalsPassengers();
                         return;
                 }
             }
@@ -358,7 +372,6 @@ const app = new Vue({
                         } else {
                             document.getElementById('valAdultsIncrement').disable = true;
                         }
-                        this.sumTotalsPassengers();
                         return;
                     case 2:
                         if (this.form.valChildren !== 0) {
@@ -367,7 +380,6 @@ const app = new Vue({
                         } else {
                             document.getElementById('valChildrenIncrement').disable = true;
                         }
-                        this.sumTotalsPassengers();
                         return;
                     case 3:
                         if (this.form.valInfants !== 0) {
@@ -376,14 +388,13 @@ const app = new Vue({
                         } else {
                             document.getElementById('valInfantsIncrement').disable = true;
                         }
-                        this.sumTotalsPassengers();
                         return;
                 }
             }
 
         },
 
-        sumTotalsPassenger () {
+        sumTotalsPassenger() {
             if (this.valPassengers === 1) {
                 this.form.noOfPassengers = 'Passengers';
             } else {
