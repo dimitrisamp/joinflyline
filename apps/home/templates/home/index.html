@@ -5,307 +5,422 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Home -</title>
     <link rel="stylesheet" type="text/css" href="{% static "home/css/bootstrap.css" %}">
-    <link rel="stylesheet" type="text/css" href="{% static "home/css/full-page-scroll.css" %}">
+    <link rel="stylesheet" type="text/css"
+          href="{% static "home/css/full-page-scroll.css" %}">
     <link rel="stylesheet" type="text/css" href="{% static "home/css/home-page.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "home/css/dropdown.css" %}">
     <link rel="stylesheet" type="text/css" href="{% static "css/lightpick.css" %}">
-<link href="https://fonts.googleapis.com/css?family=Montserrat:400,600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600&display=swap"
+          rel="stylesheet">
 <body>
 
 <div id="main" v-cloak class="scroll-container">
-  <section class="section1" data-index="0">
-    <div class="H-scroll">
-      
-		 <div class="section-01">
-		  <div class="container">
-		  	<div class="nav-logo">
-		  	  <h3>flyline</h3>	
-		  	</div>
+    <section class="section1" data-index="0">
+        <div class="H-scroll">
 
-		  	<div class="h-headermain">
-		  	  <div class="row">  		
-		  	    <div class="col-6">
-		  	   	 <div class="h-dealform">
-				    
-				    <div class="row">
-	                  <div class="col-3 h-select-box s-result-dropdown s-result-dropdown_destination-type">
-			  	  	   	 <p class="btn btn-info" @click="openDestinationType">{(destinationTypes[form.destinationTypeId])}</p>
+            <div class="section-01">
+                <div class="container">
+                    <div class="nav-logo">
+                        <h3>flyline</h3>
+                    </div>
 
-	                     <div class="search-f-dropdown" v-if="destinationTypeSelectProgress" v-click-outside="closeDestinationType">
-	                       <ul class="s-dropdown-list">
-	                         <li v-for="(dtype, dtypeId) in destinationTypes" @click="selectDestinationType(dtypeId)"><a href="#">{(dtype)}</a></li>
-	                       </ul>
-	                     </div>  
+                    <div class="h-headermain">
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="h-dealform">
 
-			  	  	   </div>			
-			  	  	   <div class="col-4 h-select-box s-result-dropdown s-result-dropdown_passengers">
-	                      <p href="#" @click="openPassengersForm" class="btn btn-info">{( valPassengers )} Passenger{( valPassengers > 1?"s":"" )}</p>
+                                    <div class="row">
+                                        <div class="col-3 h-select-box s-result-dropdown s-result-dropdown_destination-type">
+                                            <p class="btn btn-info"
+                                               @click="openDestinationType">
+                                                {(destinationTypes[form.destinationTypeId])}</p>
 
-	                       <div class="passengers-dropdown" v-if="passengerSelectProgress" v-click-outside="closePassengersForm">
-	                         <ul class="passengers-dropdown-list">
-	                           <li class="p-category">
-	                            <b>Adults</b>
-	                            <input type="button" value="-" @click="decrement(1)" class="increment">
-	                            <input type="text" readonly="readonly" v-model="form.valAdults"  class="value-select">
-	                            <input type="button" value="+" @click="increment(1)" class="increment"></li>
+                                            <div class="search-f-dropdown"
+                                                 v-if="destinationTypeSelectProgress"
+                                                 v-click-outside="closeDestinationType">
+                                                <ul class="s-dropdown-list">
+                                                    <li v-for="(dtype, dtypeId) in destinationTypes"
+                                                        @click="selectDestinationType(dtypeId)">
+                                                        <a href="#">{(dtype)}</a></li>
+                                                </ul>
+                                            </div>
 
-	                           <li class="p-category">
-	                            <b>Children</b>
-	                            <input type="button" value="-" @click="decrement(2)" class="increment">
-	                            <input type="text" readonly="readonly" v-model="form.valChildren" class="value-select">
-	                            <input type="button" id="valAdultsIncrement" value="+" @click="increment(2)" class="increment"></li>
+                                        </div>
+                                        <div class="col-4 h-select-box s-result-dropdown s-result-dropdown_passengers">
+                                            <p href="#" @click="openPassengersForm"
+                                               class="btn btn-info">{( valPassengers )}
+                                                Passenger{( valPassengers > 1?"s":""
+                                                )}</p>
 
-	                           <li class="p-category">
-	                            <b>Infants</b>
-	                            <input type="button" value="-" @click="decrement(3)" class="increment">
-	                            <input type="text" readonly="readonly" v-model="form.valInfants" class="value-select">
-	                            <input type="button" value="+" @click="increment(3)" class="increment"></li>
+                                            <div class="passengers-dropdown"
+                                                 v-if="passengerSelectProgress"
+                                                 v-click-outside="closePassengersForm">
+                                                <ul class="passengers-dropdown-list">
+                                                    <li class="p-category">
+                                                        <b>Adults</b>
+                                                        <input type="button" value="-"
+                                                               @click="decrement(1)"
+                                                               class="increment">
+                                                        <input type="text"
+                                                               readonly="readonly"
+                                                               v-model="form.valAdults"
+                                                               class="value-select">
+                                                        <input type="button" value="+"
+                                                               @click="increment(1)"
+                                                               class="increment"></li>
 
-	                         </ul>
-	                       </div>   
+                                                    <li class="p-category">
+                                                        <b>Children</b>
+                                                        <input type="button" value="-"
+                                                               @click="decrement(2)"
+                                                               class="increment">
+                                                        <input type="text"
+                                                               readonly="readonly"
+                                                               v-model="form.valChildren"
+                                                               class="value-select">
+                                                        <input type="button"
+                                                               id="valAdultsIncrement"
+                                                               value="+"
+                                                               @click="increment(2)"
+                                                               class="increment"></li>
 
-                     </div>  
+                                                    <li class="p-category">
+                                                        <b>Infants</b>
+                                                        <input type="button" value="-"
+                                                               @click="decrement(3)"
+                                                               class="increment">
+                                                        <input type="text"
+                                                               readonly="readonly"
+                                                               v-model="form.valInfants"
+                                                               class="value-select">
+                                                        <input type="button" value="+"
+                                                               @click="increment(3)"
+                                                               class="increment"></li>
 
-			  	  	   <div class="col-4 h-ecenomylink s-result-dropdown s-result-dropdown_seat-type">
-                       <p @click="openSeatTypeSelect" class="btn btn-info">{(seatTypes[form.seatType])}</p>
+                                                </ul>
+                                            </div>
 
-                         <div class="search-f-dropdown" v-if="seatTypeSelectProgress" v-click-outside="closeSeatTypeSelect">
-                           <ul class="s-dropdown-list">
-                             <li v-for="(name, type) in seatTypes" @click="selectSeatType(type)"><a>{( name )}</a></li>
-                           </ul>
-                         </div>   
+                                        </div>
 
-                     </div>   
+                                        <div class="col-4 h-ecenomylink s-result-dropdown s-result-dropdown_seat-type">
+                                            <p @click="openSeatTypeSelect"
+                                               class="btn btn-info">
+                                                {(seatTypes[form.seatType])}</p>
 
+                                            <div class="search-f-dropdown"
+                                                 v-if="seatTypeSelectProgress"
+                                                 v-click-outside="closeSeatTypeSelect">
+                                                <ul class="s-dropdown-list">
+                                                    <li v-for="(name, type) in seatTypes"
+                                                        @click="selectSeatType(type)">
+                                                        <a>{( name )}</a></li>
+                                                </ul>
+                                            </div>
 
-					<div class="input-group input-group-sm search-dropdown col-12">
-                    
-                       <span class="input-group-text search-form-input">Departure City</span> 
-                       <input type="text" class="form-control search-input">
-
-                         <div class="search-f-dropdown city-dropdown" style="display: none;">
-                           <ul class="s-dropdown-list">
-                             <li><a href="">One - Way</a></li>
-                             <li><a href="">Nomad</a></li>
-                           </ul>
-                         </div>  
-
-                    </div>   
-
-                    <div class="input-group input-group-sm search-dropdown col-12">
-                       <span class="input-group-text search-form-input">Arrival City</span> 
-                       <input type="text" class="form-control search-input">
-
-                         <div class="search-f-dropdown city-dropdown" style="display: none;">
-                           <ul class="s-dropdown-list">
-                             <li><a href="">One - Way</a></li>
-                             <li><a href="">Nomad</a></li>
-                           </ul>
-                         </div>  
-                    </div>    
-
-			  	  	  <div class="input-group input-group-sm search-dropdown col-6">
-			  	  	  	 <span class="input-group-text search-form-input">Departure Date</span> 
-			  	  	  	 <input type="text" id="departure_date" aria-describedby="basic-addon3" class="form-control search-input">
-			  	  	  </div>	 
-
-			  	  	  <div class="input-group input-group-sm search-dropdown col-6">
-			  	  	  	 <span class="input-group-text search-form-input">Return Date</span> 
-			  	  	  	 <input type="text" id="return_date" aria-describedby="basic-addon3" class="form-control search-input">
-			  	  	  </div>	 
-
-			  	  	 <div class="search-button col-12"> 	
-			  	  	 	<button type="submit" class="btn btn-info">Search Our Deals</button>
-			  	  	 </div>	
-
-				    </div>		  	   	 	
+                                        </div>
 
 
-		  	  	 </div>
-		  	  </div>	
+                                        <div class="input-group input-group-sm search-dropdown-outer col-12">
+                                            <div class="search-item search-item-from"
+                                                 v-bind:class="{shadowsrch: cityFromInput.focused}">
+                                                <div class="input-group input-group-sm search-dropdown">
+                                                    <span class="input-group-text search-form-input">Departure City:</span>
+                                                    <input type="text"
+                                                           class="form-control search-input"
+                                                           @focus="cityFromInputFocused"
+                                                           @blur="cityFromInputBlurred"
+                                                           v-model="cityFromInput.text"
+                                                           v-on:input="cityFromHandler">
+                                                </div>
+                                                <div class="dropdown-list"
+                                                     v-bind:class="{hidden: !cityFromInput.focused && !cityFromInput.searchProgress}">
+                                                    <ul class="list-Sdown"
+                                                        v-if="cityFromInput.searchResults.length > 0">
+                                                        <li v-for="(place, index) of cityFromInput.searchResults"
+                                                            v-on:click="cityFromInputChoose(index)">
+                                                            <div class="dropdown-icon">
+                                                                <i class="fa fa-plane"></i>
+                                                            </div>
+                                                            <div class="">{(
+                                                                formatPlace(place) )}
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                    <p v-else-if="!cityFromInput.requestProgress">
+                                                        Start typing city name...</p>
+                                                    <p v-else-if="cityFromInput.requestProgress">
+                                                        Loading...</p>
+                                                    <p v-else-if="!cityFromInput.requestProgress">
+                                                        No results for your request.</p>
+                                                </div>
+                                            </div>
 
-		  	  <div class="col-6">
-		  	  	<div class="h-contentarea">
-		  	  		<h3>Travel Made <br/> Simple, Cheap</h3>
-		  	  		<p>Discount Priice Alerts <br/> 
-		  	  		    Exclusive Non  Public Fares <br/>	
-		  	  		   Direct Booking With No Redirects
-		  	  		</p>
-		  	  		<div class="h-btngroups">
-		  	  			<a href="#" class="btn btn-default h-blackbg">Learn More</a>
-						<a href="#" class="btn btn-default">Get Started</a>
-		  	  		</div>
-		  	  	</div>	
-		  	  </div>
-		  	</div>
-		  	</div><!-- h-headermain -->
-		  </div>	
-		 </div>
+                                        </div>
 
-		 <div class="assets-section">
-		  <div class="container">
-		  	 <div class="row justify-content-center">
-		  	 	<div class="col-3">
-		  	 		<a href="#" target="_blank">
-		  	 			<img src="{% static "home/img/tech-crunch.png" %}" class="img_asset">
-		  	 		</a>
-		  	 	</div>
-		  	 	<div class="col-3">
-		  	 		<a href="#" target="_blank">
-		  	 			<img src="{% static "home/img/forbes.png" %}" class="img_asset">
-		  	 		</a>
-		  	 	</div>
-		  	 	<div class="col-3">
-		  	 		<a href="#" target="_blank">
-		  	 			<img src="{% static "home/img/simple.png" %}" class="img_asset">
-		  	 		</a>
-		  	 	</div>
-		  	 	<div class="col-3">
-		  	 		<a href="#" target="_blank">
-		  	 			<img src="{% static "home/img/smart.png" %}" class="img_asset">
-		  	 		</a>
-		  	 	</div>  	 	  	 	
-		  	 </div>
-		  </div>	
-		</div>
+                                        <div class="input-group input-group-sm search-dropdown-outer col-12">
+                                            <div class="search-item search-item-to"
+                                                 v-bind:class="{shadowsrch: cityToInput.focused}">
+                                                <div class="input-group input-group-sm search-dropdown">
+                                                    <span class="input-group-text search-form-input">Arrival City:</span>
+                                                    <input type="text"
+                                                           class="form-control search-input"
+                                                           @focus="cityToInputFocused"
+                                                           @blur="cityToInputBlurred"
+                                                           v-model="cityToInput.text"
+                                                           v-on:input="cityToHandler">
+                                                </div>
+                                                <div class="dropdown-list"
+                                                     v-bind:class="{hidden: !cityToInput.focused && !cityToInput.searchProgress}">
+                                                    <ul class="list-Sdown"
+                                                        v-if="cityToInput.searchResults.length > 0">
+                                                        <li v-for="(place, index) of cityToInput.searchResults"
+                                                            v-on:click="cityToInputChoose(index)">
+                                                            <div class="dropdown-icon">
+                                                                <i class="fa fa-plane"></i>
+                                                            </div>
+                                                            <div class="">{(
+                                                                formatPlace(place) )}
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                    <p v-else-if="!cityToInput.requestProgress">
+                                                        Start typing city name...</p>
+                                                    <p v-else-if="cityToInput.requestProgress">
+                                                        Loading...</p>
+                                                    <p v-else-if="!cityToInput.requestProgress">
+                                                        No results for your request.</p>
+                                                </div>
+                                            </div>
 
-		<div class="h-flyline-bar">
-		 <h3>What is Flyline</h3>	
-		</div>
+                                        </div>
 
-    </div>
-  </section>
+                                        <div class="input-group input-group-sm search-dropdown col-6">
+                                            <span class="input-group-text search-form-input">Departure Date</span>
+                                            <input type="text" id="departure_date"
+                                                   aria-describedby="basic-addon3"
+                                                   class="form-control search-input">
+                                        </div>
 
-  <section class="section2">
-    <div class="H-scroll">
-      
-		<div class="container">
-		   <div class="row">
-		   	 <div class="col-5">
-		   	  <div class="section2-content">
-		   	    <h3>Exclusive Non Public Fares</h3>	
-		   	    <p>When booking on flyline enjoy <br /> thousand of discounts on both <br /> international and domestic flights, with <br /> an average savings of 30%</p>
-		   	  </div>	
-		   	 </div>
-		   	 <div class="col-7"></div>
-		   </div>	
-		 </div>
-    </div>
-  </section>
-  <section class="section3">
-    <div class="H-scroll">
-      
-	  <div class="section3-Bg">
-	   <div class="container">
-	     <div class="row">
-	   	 	<div class="col-6"> <img src="{% static "home/img/iphone-white.png" %}" class="mobile-img"> </div>
-	   	 	<div class="col-6">
-	   	 	  <div class="section3-content">
-	   	 	  	<h3>Discount Price Alerts</h3>	
-	   	 	  	<p>Never miss a deal with discount Price <br/> Alerts, Enter your home market and the <br/> destinations out of that market you'd <br/> want us to watch and the price range<br/> you want. Then we'll send you<br/> notifications when flight prices hit your <br/> paramters</p>	
-	   	 	  	<a href="" class="btn btn-default">Start For Free</a>
-	   	 	  </div>	
-	   	 	</div>	
-	   	 </div>
-	   </div>	
-	  </div>
+                                        <div class="input-group input-group-sm search-dropdown col-6">
+                                            <span class="input-group-text search-form-input">Return Date</span>
+                                            <input type="text" id="return_date"
+                                                   aria-describedby="basic-addon3"
+                                                   class="form-control search-input">
+                                        </div>
 
-    </div>
-  </section>
-  <section class="section4">
-    <div class="H-scroll">
-      	
-	    <div class="container">
-	     <div class="row">
-	   	 	<div class="col-12">
-	   	 	  <div class="section4-content text-center">
-	   	 	  	<h3>Stay On Flyline With Direct Booking</h3>	
-	   	 	  	<p>Book all your flights directly through flyline, no redirecting to other sites and annoying time staking booking. Addtional enter your traveler information when creating an account and booking is simple and easy</p>	
-	   	 	  	<a href="" class="btn btn-default">Get it a Try</a>
-	   	 	  </div>	
-	   	 	</div>	
-	   	 </div>
-	   </div>
+                                        <div class="search-button col-12">
+                                            <button type="submit" class="btn btn-info">
+                                                Search Our Deals
+                                            </button>
+                                        </div>
 
-    </div>
-  </section>
+                                    </div>
 
-  <section class="section5">
-    <div class="H-scroll">
-      
-		<div class="section5-Bg">
-		  <div class="text-center section5-content">
-		  	<h3>Ready to Start Saving</h3>	
-		  	<p>Enter your email to get started with a 10 day free trail</p>
-		  </div>
 
-		  <div class="container">	 	
-			  <div class="row justify-content-center">
-			  	<div class="col-4">
-			  	  <div class="h-planbox text-center">
-			  	  	<span class="mark-heading">10 Day Free Trail</span>
-			  	  	<h3>Basic</h3>
-			  	  	<strong>$4.99/mo</strong>
-			  	  	<p>No Long Term Commitment</p>
-			  	  	<strong>or $50 Billed Annually</strong>
-			  	  	<ul class="plan-list">
-			  	  	 <li>- Exclusive Private Discount Flights</li>	
-			  	  	 <li>- Price Alert Notifications</li>
-			  	  	 <li>- Access to flyline travel portal</li>
-			  	  	</ul>
-			  	  	<a href="#" class="btn btn-default">Start Saving</a>
-			  	  </div>	
-			  	</div>
-			  </div>
-		  </div>
-			
-		 </div>	
-    </div>
-  </section>
+                                </div>
+                            </div>
+
+                            <div class="col-6">
+                                <div class="h-contentarea">
+                                    <h3>Travel Made <br/> Simple, Cheap</h3>
+                                    <p>Discount Priice Alerts <br/>
+                                        Exclusive Non Public Fares <br/>
+                                        Direct Booking With No Redirects
+                                    </p>
+                                    <div class="h-btngroups">
+                                        <a href="#" class="btn btn-default h-blackbg">Learn
+                                            More</a>
+                                        <a href="#" class="btn btn-default">Get
+                                            Started</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- h-headermain -->
+                </div>
+            </div>
+
+            <div class="assets-section">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-3">
+                            <a href="#" target="_blank">
+                                <img src="{% static "home/img/tech-crunch.png" %}"
+                                     class="img_asset">
+                            </a>
+                        </div>
+                        <div class="col-3">
+                            <a href="#" target="_blank">
+                                <img src="{% static "home/img/forbes.png" %}"
+                                     class="img_asset">
+                            </a>
+                        </div>
+                        <div class="col-3">
+                            <a href="#" target="_blank">
+                                <img src="{% static "home/img/simple.png" %}"
+                                     class="img_asset">
+                            </a>
+                        </div>
+                        <div class="col-3">
+                            <a href="#" target="_blank">
+                                <img src="{% static "home/img/smart.png" %}"
+                                     class="img_asset">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="h-flyline-bar">
+                <h3>What is Flyline</h3>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="section2">
+        <div class="H-scroll">
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-5">
+                        <div class="section2-content">
+                            <h3>Exclusive Non Public Fares</h3>
+                            <p>When booking on flyline enjoy <br/> thousand of discounts
+                                on both <br/> international and domestic flights, with
+                                <br/> an average savings of 30%</p>
+                        </div>
+                    </div>
+                    <div class="col-7"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section3">
+        <div class="H-scroll">
+
+            <div class="section3-Bg">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-6"><img
+                                src="{% static "home/img/iphone-white.png" %}"
+                                class="mobile-img"></div>
+                        <div class="col-6">
+                            <div class="section3-content">
+                                <h3>Discount Price Alerts</h3>
+                                <p>Never miss a deal with discount Price <br/> Alerts,
+                                    Enter your home market and the <br/> destinations
+                                    out of that market you'd <br/> want us to watch and
+                                    the price range<br/> you want. Then we'll send
+                                    you<br/> notifications when flight prices hit your
+                                    <br/> paramters</p>
+                                <a href="" class="btn btn-default">Start For Free</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <section class="section4">
+        <div class="H-scroll">
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="section4-content text-center">
+                            <h3>Stay On Flyline With Direct Booking</h3>
+                            <p>Book all your flights directly through flyline, no
+                                redirecting to other sites and annoying time staking
+                                booking. Addtional enter your traveler information when
+                                creating an account and booking is simple and easy</p>
+                            <a href="" class="btn btn-default">Get it a Try</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="section5">
+        <div class="H-scroll">
+
+            <div class="section5-Bg">
+                <div class="text-center section5-content">
+                    <h3>Ready to Start Saving</h3>
+                    <p>Enter your email to get started with a 10 day free trail</p>
+                </div>
+
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-4">
+                            <div class="h-planbox text-center">
+                                <span class="mark-heading">10 Day Free Trail</span>
+                                <h3>Basic</h3>
+                                <strong>$4.99/mo</strong>
+                                <p>No Long Term Commitment</p>
+                                <strong>or $50 Billed Annually</strong>
+                                <ul class="plan-list">
+                                    <li>- Exclusive Private Discount Flights</li>
+                                    <li>- Price Alert Notifications</li>
+                                    <li>- Access to flyline travel portal</li>
+                                </ul>
+                                <a href="#" class="btn btn-default">Start Saving</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
 </div>
 
 <footer>
     <div class="top-footer">
-       <div class="container">
-       	 <div class="row justify-content-center">
-       	 	<div class="col-4">
-            <h3>Contact</h3>
-            <ul class="content">
-                <li><a href="{% url "faq" %}">Help</a></li>
-                <li><a href="{% url "news" %}">Press</a></li>
-                <li><a href="{% url "partners" %}">Partners</a></li>
-            </ul>
-            <h3>Company</h3>
-            <ul class="content">
-            	<li><a href="{% url "about" %}">About</a></li>
-                <li><a href="{% url "plans" %}">Flyline Team</a></li>
-            </ul>
-        </div>
-        <div class="col-4">
-            <h3>Popular Flight</h3>
-            <ul class="content">
-                <li><a href="#">Dallas-Las Vegas</a></li>
-                <li><a href="#">New York - San Francisco</a></li>
-                <li><a href="#">San Francisco - Seattle</a></li>
-                <li><a href="#">San Francisco - Las Vegas</a></li>
-                <li><a href="#">New York - Atlanta</a></li>
-                <li><a href="#">Los Angeles - San Francisco</a></li>
-                <li><a href="#">Dallas - Los Angeles</a></li>
-                <li><a href="#">San Francisco - Austin</a></li>
-            </ul>
-        </div>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-4">
+                    <h3>Contact</h3>
+                    <ul class="content">
+                        <li><a href="{% url "faq" %}">Help</a></li>
+                        <li><a href="{% url "news" %}">Press</a></li>
+                        <li><a href="{% url "partners" %}">Partners</a></li>
+                    </ul>
+                    <h3>Company</h3>
+                    <ul class="content">
+                        <li><a href="{% url "about" %}">About</a></li>
+                        <li><a href="{% url "plans" %}">Flyline Team</a></li>
+                    </ul>
+                </div>
+                <div class="col-4">
+                    <h3>Popular Flight</h3>
+                    <ul class="content">
+                        <li><a href="#">Dallas-Las Vegas</a></li>
+                        <li><a href="#">New York - San Francisco</a></li>
+                        <li><a href="#">San Francisco - Seattle</a></li>
+                        <li><a href="#">San Francisco - Las Vegas</a></li>
+                        <li><a href="#">New York - Atlanta</a></li>
+                        <li><a href="#">Los Angeles - San Francisco</a></li>
+                        <li><a href="#">Dallas - Los Angeles</a></li>
+                        <li><a href="#">San Francisco - Austin</a></li>
+                    </ul>
+                </div>
 
-        <div class="col-4">
-            <h3>Travel Tips</h3>
-            <ul class="content">
-                <li><a href="#">When to Book Last Minute</a></li>
-                <li><a href="#">Top Airlines</a></li>
-                <li><a href="#">Where Not to Book</a></li>
-                <li><a href="#">Cheapest Cities to Fly</a></li>
-                <li><a href="#">When Not to Book</a></li>
-            </ul>
+                <div class="col-4">
+                    <h3>Travel Tips</h3>
+                    <ul class="content">
+                        <li><a href="#">When to Book Last Minute</a></li>
+                        <li><a href="#">Top Airlines</a></li>
+                        <li><a href="#">Where Not to Book</a></li>
+                        <li><a href="#">Cheapest Cities to Fly</a></li>
+                        <li><a href="#">When Not to Book</a></li>
+                    </ul>
+                </div>
+            </div>
         </div>
-       	 </div>
-       </div>   
     </div>
     <div class="bottom-footer">
         <div class="sub-menus">
@@ -316,14 +431,14 @@
             </ul>
         </div>
     </div>
-	</footer>
+</footer>
 
-    {% include "js/django_user.html" %}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
-    <script src="{% static "js/lightpick.js" %}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
-    <script type="module" src="{% static "js/home.js" %}"></script>
-    <script src="{% static "home/js/jquery-2.1.4.min.js" %}"></script>
-	<script src="{% static "home/js/bootstrap.js" %}"></script>
-	<script src="{% static "home/js/full-page-scroll.js" %}"></script>
+{% include "js/django_user.html" %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+<script src="{% static "js/lightpick.js" %}"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script type="module" src="{% static "js/home.js" %}"></script>
+<script src="{% static "home/js/jquery-2.1.4.min.js" %}"></script>
+<script src="{% static "home/js/bootstrap.js" %}"></script>
+<script src="{% static "home/js/full-page-scroll.js" %}"></script>
 

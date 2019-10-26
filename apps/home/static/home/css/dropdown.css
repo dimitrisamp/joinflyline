@@ -1,15 +1,3 @@
-.search-form-input.input-group-text{
-	background: #fff;
-    border-radius:4px 0 0 4px;
-    border-right: none;
-    font-size: 13px;
-    font-weight: 600;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-}
-.search-row {
-    margin-top: 20px;
-    height: 50px;
-}
 .search-item.shadowsrch {
     position: absolute;
     min-width: 300px;
@@ -22,31 +10,16 @@
     padding-top: 15px;
     padding-right: 15px;
 }
-.search-dropdown .form-control {
-    border-radius: 2px;
-    border-left: 0;
-    padding: 20px 0;
-}
-.search-dropdown .form-control:focus{
-	box-shadow: none !important;
-	border-color: #ccc !important;
-}
-.title-d1{
-	font-size: 12px;
-    font-weight: 700;
-    color: #252A31;
-    line-height: 16px;
-    text-align: left;
-    text-transform: uppercase;
-    margin: 0;
-    padding: 0 15px;
-    margin-bottom: 6px;
+.search-dropdown-outer {
+    min-height: 68px;
 }
 .shadowsrch{
 	background: #fff;
     box-shadow: 1px 1px 17px #ccc;
 }
-
+.search-item {
+    width: 100%;
+}
 .search-item .dropdown-list{
 	background: #fff;
     max-height: 300px;
@@ -119,7 +92,7 @@ button.search_btn{
 }
 
 @media(min-width: 320px) and (max-width: 480px){
-.search-dropdown{
+.search-dropdown-outer{
     margin-bottom: 10px;
 }   
 .asset_box{

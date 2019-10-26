@@ -124,7 +124,7 @@ const app = new Vue({
             this.cityFromInput.searchProgress = false;
         },
         cityToInputFocused() {
-            app.cityToInput.focused = true;
+            this.cityToInput.focused = true;
         },
         cityToInputBlurred() {
             const that = this;
@@ -135,13 +135,13 @@ const app = new Vue({
         },
         cityToInputChoose(i) {
             this.cityToInput.selectedIndex = i;
-            this.cityToInput.text = app.formatPlace(this.cityToInput.searchResults[i]);
+            this.cityToInput.text = this.formatPlace(this.cityToInput.searchResults[i]);
             this.cityToInput.searchProgress = false;
         },
         cityFromInputChoose(i) {
             this.cityFromInput.selectedIndex = i;
-            const place = app.cityFromInput.searchResults[i]
-            this.cityFromInput.text = app.formatPlace(place);
+            const place = this.cityFromInput.searchResults[i];
+            this.cityFromInput.text = this.formatPlace(place);
             this.cityFromInput.searchProgress = false;
             if (DjangoUser.subscriber) {
                 const that = this;
@@ -191,7 +191,7 @@ const app = new Vue({
                 });
             }
         },
-        fromCityHandler: debounce(function () {
+        cityFromHandler: debounce(function () {
             if (this.cityFromInput.text === null || this.cityFromInput.text === "" || this.cityFromInput.text.length < 3) {
                 this.cityFromInput.searchProgress = false;
                 return;
@@ -204,7 +204,7 @@ const app = new Vue({
                 that.cityFromInput.text
             ).then(
                 (data) => {
-                    that.cityFromInput.searchResults = data.locations;
+                    that.cityFromInput.searchResults = [...data.locations];
                 }
             ).catch(
                 () => {
@@ -216,7 +216,7 @@ const app = new Vue({
                 }
             );
         }, 500),
-        toCityHandler: debounce(function () {
+        cityToHandler: debounce(function () {
             if (this.cityToInput.text === null || this.cityToInput.text === "" || this.cityToInput.text.length < 3) {
                 this.cityToInput.searchProgress = false;
                 return;
