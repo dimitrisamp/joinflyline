@@ -50,14 +50,22 @@ const app = new Vue({
         destinationTypeSelectProgress: false,
         passengerSelectProgress: false,
         seatTypeSelectProgress: false,
+        maxStopsSelectProgress: false,
+        maxStopsText: '',
         seatTypes: {
             'M': 'Economy',
             'W': 'Premium Economy',
             'C': 'Business',
             'F': 'First Class'
         },
-        searchResults: false,
+        maxStopsFilterOptions: {
+            0: "No Stops",
+            1: "One Stop",
+            2: "Two Stops",
+        },
+        searchResults: true,
         form: {
+            maxStops: null,
             noOfPassengers: "Passengers",
             destinationTypeId: 'return',
             seatType: 'M',
@@ -76,6 +84,19 @@ const app = new Vue({
         ClickOutside,
     },
     methods: {
+        closeMaxStopsSelect() {
+            this.maxStopsSelectProgress = false;
+        },
+        openMaxStopsSelect() {
+            setTimeout(() => {
+                this.maxStopsSelectProgress = true;
+            }, 150);
+        },
+        selectMaxStops(maxStops) {
+            this.form.maxStops = maxStops;
+            this.maxStopsText = this.maxStopsFilterOptions[this.form.maxStops];
+            this.closeMaxStopsSelect();
+        },
         openSeatTypeSelect() {
             setTimeout(() => {
                 this.seatTypeSelectProgress = true;
