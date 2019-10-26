@@ -33,7 +33,7 @@ function getCityInputData(k) {
 
 
 const app = new Vue({
-    el: '#app',
+    el: '#main',
     delimiters: ['{(', ')}'],
     data: {
         searchResultPlaces: [],
@@ -51,10 +51,11 @@ const app = new Vue({
         seatTypeName: "Economy",
         cityFromInput: getCityInputData('From'),
         cityToInput: getCityInputData('To'),
+        destinationTypes: {"return": "Round Trip", "oneway": "Oneway"},
+        destinationTypeSelectProgress: false,
         form: {
-            destinationType: "Return",
             noOfPassengers: "Passengers",
-            destinationTypeId: 'round',
+            destinationTypeId: 'return',
             seatType: 'M',
             valAdults: 1,
             valChildren: 0,
@@ -68,6 +69,13 @@ const app = new Vue({
         }
     },
     methods: {
+        openDestinationType() {
+            this.destinationTypeSelectProgress = true;
+        },
+        selectDestinationType(dtypeId) {
+            this.form.destinationTypeId = dtypeId;
+            this.destinationTypeSelectProgress = false;
+        },
         cityFromInputFocused() {
             this.cityFromInput.focused = true;
         },
@@ -278,25 +286,6 @@ const app = new Vue({
             let placeTo = this.form.placeTo;
             this.form.placeTo = this.form.placeFrom;
             this.form.placeFrom = placeTo;
-        },
-
-
-        selectDestType(type) {
-            let returnDateInput = document.getElementById('return_date');
-            switch (type) {
-                case "round":
-                    this.form.destinationTypeId = 'round';
-                    this.form.destinationType = 'Return';
-                    return;
-                case "oneway":
-                    this.form.destinationTypeId = 'oneway';
-                    this.form.destinationType = 'One way';
-                    return;
-                default:
-                    this.form.destinationTypeId = 'round';
-                    this.form.destinationType = 'Return';
-                    return;
-            }
         },
 
         selectSeatType(type) {

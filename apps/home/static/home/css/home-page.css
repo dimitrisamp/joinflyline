@@ -85,9 +85,6 @@ body{
 }
 .search-button .btn{
     background:#000;
-}
-.search-button .btn {
-    background: #000;
     width: 100%;
     padding: 16px 0;
     font-size: 18px;
@@ -335,6 +332,7 @@ body{
     padding: 7px 20px;
     font-size: 15px;
     border-radius: 0px;
+    min-width: 132px;
 }
 .search-result-btn .btn{
     margin-top: 10px;
@@ -392,6 +390,9 @@ body{
     background: #fff;
     border:1px solid #ccc;
     margin-top: 5px;
+    position: absolute;
+    z-index: 2;
+    min-width: 132px;
 }
 .search-f-dropdown .s-dropdown-list{
     list-style: none;
@@ -652,4 +653,8 @@ section .H-scroll {
 
 .section5 {
     background: #000;
+}
+
+[v-cloak] {
+    display: none;
 }
