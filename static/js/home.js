@@ -426,4 +426,10 @@ $(function () {
             app.form.return_date = end.format('MM/DD/YYYY');
         }
     });
+    new fullScroll({
+        displayDots: true,
+        dotsPosition: 'right',
+        animateTime: 0.7,
+        animateFunction: 'ease'
+    });
 });
