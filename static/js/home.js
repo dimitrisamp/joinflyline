@@ -64,7 +64,13 @@ const app = new Vue({
             2: "Two Stops",
         },
         searchResults: true,
+        airlinesSelectProgress: false,
+        airlinesText: '',
         form: {
+            airlines: [
+                {name: "American Airlines", checked: false, code: "AA"},
+                {name: "United Airlines", checked: false, code: "UA"},
+            ],
             maxStops: null,
             noOfPassengers: "Passengers",
             destinationTypeId: 'return',
@@ -84,6 +90,21 @@ const app = new Vue({
         ClickOutside,
     },
     methods: {
+        updateAirlinesSelection() {
+            this.airlinesText = this.form.airlines.filter(
+                (a) => a.checked
+            ).map(
+                (a) => a.name
+            ).join(', ');
+        },
+        openAirlinesSelect() {
+            setTimeout(() => {
+                this.airlinesSelectProgress = true;
+            }, 150);
+        },
+        closeAirlinesSelect() {
+            this.airlinesSelectProgress = false;
+        },
         closeMaxStopsSelect() {
             this.maxStopsSelectProgress = false;
         },
