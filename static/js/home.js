@@ -1,12 +1,5 @@
 import ClickOutside from './v-click-outside.js';
 
-const seatTypes = {
-    'M': 'Economy',
-    'W': 'Premium Economy',
-    'C': 'Business',
-    'F': 'First Class'
-};
-
 
 function debounce(fn, delay, ...rest) {
     let timeoutID = null;
@@ -56,6 +49,13 @@ const app = new Vue({
         destinationTypes: {"return": "Round Trip", "oneway": "Oneway"},
         destinationTypeSelectProgress: false,
         passengerSelectProgress: false,
+        seatTypeSelectProgress: false,
+        seatTypes: {
+            'M': 'Economy',
+            'W': 'Premium Economy',
+            'C': 'Business',
+            'F': 'First Class'
+        },
         form: {
             noOfPassengers: "Passengers",
             destinationTypeId: 'return',
@@ -75,6 +75,19 @@ const app = new Vue({
         ClickOutside,
     },
     methods: {
+        openSeatTypeSelect() {
+            setTimeout(() => {
+                this.seatTypeSelectProgress = true;
+            }, 50);
+
+        },
+        closeSeatTypeSelect() {
+            this.seatTypeSelectProgress = false;
+        },
+        selectSeatType(type) {
+            this.form.seatType = type;
+            this.closeSeatTypeSelect();
+        },
         openPassengersForm() {
             setTimeout(
                 () => {
@@ -89,11 +102,16 @@ const app = new Vue({
             }
         },
         openDestinationType() {
-            this.destinationTypeSelectProgress = true;
+            setTimeout(() => {
+                this.destinationTypeSelectProgress = true;
+            }, 50);
+        },
+        closeDestinationType() {
+            this.destinationTypeSelectProgress = false;
         },
         selectDestinationType(dtypeId) {
             this.form.destinationTypeId = dtypeId;
-            this.destinationTypeSelectProgress = false;
+            this.closeDestinationType();
         },
         cityFromInputFocused() {
             this.cityFromInput.focused = true;
@@ -305,16 +323,6 @@ const app = new Vue({
             let placeTo = this.form.placeTo;
             this.form.placeTo = this.form.placeFrom;
             this.form.placeFrom = placeTo;
-        },
-
-        selectSeatType(type) {
-            if (seatTypes.hasOwnProperty(type)) {
-                this.form.seatType = type;
-
-            } else {
-                this.form.seatType = 'M';
-            }
-            this.seatTypeName = seatTypes[type];
         },
         increment(index) {
 

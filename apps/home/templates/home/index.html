@@ -23,14 +23,14 @@
 
 		  	<div class="h-headermain">
 		  	  <div class="row">  		
-		  	    <div class="col-5">
+		  	    <div class="col-6">
 		  	   	 <div class="h-dealform">
 				    
 				    <div class="row">
-	                  <div class="col-4 h-select-box s-result-dropdown s-result-dropdown_destination-type">
+	                  <div class="col-3 h-select-box s-result-dropdown s-result-dropdown_destination-type">
 			  	  	   	 <p class="btn btn-info" @click="openDestinationType">{(destinationTypes[form.destinationTypeId])}</p>
 
-	                     <div class="search-f-dropdown" v-if="destinationTypeSelectProgress" v-cloak>
+	                     <div class="search-f-dropdown" v-if="destinationTypeSelectProgress" v-click-outside="closeDestinationType">
 	                       <ul class="s-dropdown-list">
 	                         <li v-for="(dtype, dtypeId) in destinationTypes" @click="selectDestinationType(dtypeId)"><a href="#">{(dtype)}</a></li>
 	                       </ul>
@@ -65,15 +65,12 @@
 
                      </div>  
 
-			  	  	   <div class="col-4 h-ecenomylink s-result-dropdown">
-                       <a href="" class="btn btn-info">Economy</a>
+			  	  	   <div class="col-4 h-ecenomylink s-result-dropdown s-result-dropdown_seat-type">
+                       <p @click="openSeatTypeSelect" class="btn btn-info">{(seatTypes[form.seatType])}</p>
 
-                         <div class="search-f-dropdown" style="display: none;">
+                         <div class="search-f-dropdown" v-if="seatTypeSelectProgress" v-click-outside="closeSeatTypeSelect">
                            <ul class="s-dropdown-list">
-                             <li><a href="">Economy</a></li>
-                             <li><a href="">Economy +</a></li>
-                             <li><a href="">Business</a></li>
-                             <li><a href="">First Class</a></li>
+                             <li v-for="(name, type) in seatTypes" @click="selectSeatType(type)"><a>{( name )}</a></li>
                            </ul>
                          </div>   
 
@@ -126,7 +123,7 @@
 		  	  	 </div>
 		  	  </div>	
 
-		  	  <div class="col-7">
+		  	  <div class="col-6">
 		  	  	<div class="h-contentarea">
 		  	  		<h3>Travel Made <br/> Simple, Cheap</h3>
 		  	  		<p>Discount Priice Alerts <br/> 

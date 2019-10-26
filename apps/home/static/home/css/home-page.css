@@ -339,6 +339,9 @@ body{
 .s-result-dropdown_passengers .btn {
     min-width: 150px;
 }
+.s-result-dropdown_seat-type .btn {
+    min-width: 195px;
+}
 .search-result-btn .btn{
     margin-top: 10px;
 }
@@ -397,7 +400,12 @@ body{
     margin-top: 5px;
     position: absolute;
     z-index: 2;
+}
+.s-result-dropdown_destination-type .search-f-dropdown {
     min-width: 132px;
+}
+.s-result-dropdown_seat-type .search-f-dropdown {
+    min-width: 195px;
 }
 .search-f-dropdown .s-dropdown-list{
     list-style: none;
