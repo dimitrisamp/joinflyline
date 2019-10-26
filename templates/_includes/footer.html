@@ -1,67 +1,54 @@
 {% load static %}
 <footer>
     <div class="top-footer">
-        <div class="col2">
-            <h3>Contact</h3>
-            <ul class="content">
-                <li><a href="{% url "about" %}">About</a></li>
-                <li><a href="{% url "news" %}">Press</a></li>
-                <li><a href="{% url "partners" %}">Partners</a></li>
-            </ul>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-4">
+                    <h3>Contact</h3>
+                    <ul class="content">
+                        <li><a href="{% url "faq" %}">Help</a></li>
+                        <li><a href="{% url "news" %}">Press</a></li>
+                        <li><a href="{% url "partners" %}">Partners</a></li>
+                    </ul>
+                    <h3>Company</h3>
+                    <ul class="content">
+                        <li><a href="{% url "about" %}">About</a></li>
+                        <li><a href="{% url "plans" %}">Flyline Team</a></li>
+                    </ul>
+                </div>
+                <div class="col-4">
+                    <h3>Popular Flight</h3>
+                    <ul class="content">
+                        <li><a href="#">Dallas-Las Vegas</a></li>
+                        <li><a href="#">New York - San Francisco</a></li>
+                        <li><a href="#">San Francisco - Seattle</a></li>
+                        <li><a href="#">San Francisco - Las Vegas</a></li>
+                        <li><a href="#">New York - Atlanta</a></li>
+                        <li><a href="#">Los Angeles - San Francisco</a></li>
+                        <li><a href="#">Dallas - Los Angeles</a></li>
+                        <li><a href="#">San Francisco - Austin</a></li>
+                    </ul>
+                </div>
 
-            <h3>Company</h3>
-            <ul class="content">
-                <li><a href="{% url "faq" %}">Help - FAQ</a></li>
-                <li><a href="{% url "faq" %}">Mobile Booking</a></li>
-                <li><a href="{% url "plans" %}">Subscriptions</a></li>
-            </ul>
-        </div>
-
-        <div class="col2">
-            <h3>Shortcuts</h3>
-            <ul class="content">
-                <li><a href="{% url "how-it-works" %}">Personal Subscriptions</a></li>
-                <li><a href="{% url "home" %}">Retail Bookings</a></li>
-                <li><a href="{% url "news" %}">Travel News</a></li>
-                <li><a href="{% url "sign-in" %}">Sign In</a>-<a href="{% url "sign-up" %}">Sign Up</a></li>
-            </ul>
-        </div>
-
-        <div class="col2">
-            <h3>Popular Flight Searches</h3>
-            <ul class="content">
-                <li><a href="#">Dallas-Las Vegas</a></li>
-                <li><a href="#">New York - San Francisco</a></li>
-                <li><a href="#">San Francisco - Seattle</a></li>
-                <li><a href="#">San Francisco - Las Vegas</a></li>
-                <li><a href="#">New York - Atlanta</a></li>
-                <li><a href="#">Los Angeles - San Francisco</a></li>
-                <li><a href="#">Dallas - Los Angeles</a></li>
-                <li><a href="#">San Francisco - Austin</a></li>
-            </ul>
-        </div>
-
-        <div class="col2">
-            <h3>Top Travel Tips</h3>
-            <ul class="content">
-                <li><a href="#">When to Book Last Minute</a></li>
-                <li><a href="#">Top Airlines</a></li>
-                <li><a href="#">Where Not to Book</a></li>
-                <li><a href="#">Cheapest Cities to Fly</a></li>
-                <li><a href="#">When Not to Book</a></li>
-            </ul>
+                <div class="col-4">
+                    <h3>Travel Tips</h3>
+                    <ul class="content">
+                        <li><a href="#">When to Book Last Minute</a></li>
+                        <li><a href="#">Top Airlines</a></li>
+                        <li><a href="#">Where Not to Book</a></li>
+                        <li><a href="#">Cheapest Cities to Fly</a></li>
+                        <li><a href="#">When Not to Book</a></li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
-
     <div class="bottom-footer">
-        <div class="logo">
-            <img src="{% static "home/img/logo.png" %}">
-        </div>
         <div class="sub-menus">
             <ul>
-                <li><a href="#">Wanderift 2017 - 2019 </a></li>
-                <li><a href="#">Terms & Conditions</a></li>
-                <li><a href="#">Privacy Policy </a></li>
+                <li><a href="#">Built in Dallas </a></li>
+                <li><a href="#">Terms & Use</a></li>
+                <li><a href="#">Privacy Policy</a></li>
             </ul>
         </div>
     </div>

@@ -28,7 +28,7 @@ function getCityInputData(k) {
 
 
 const app = new Vue({
-    el: '#main',
+    el: '#dealform',
     delimiters: ['{(', ')}'],
     data: {
         searchResultPlaces: [],
@@ -56,6 +56,7 @@ const app = new Vue({
             'C': 'Business',
             'F': 'First Class'
         },
+        searchResults: false,
         form: {
             noOfPassengers: "Passengers",
             destinationTypeId: 'return',

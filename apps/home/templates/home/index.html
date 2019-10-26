@@ -12,9 +12,10 @@
     <link rel="stylesheet" type="text/css" href="{% static "css/lightpick.css" %}">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600&display=swap"
           rel="stylesheet">
+</head>
 <body>
 
-<div id="main" v-cloak class="scroll-container">
+<div id="main" class="scroll-container">
     <section class="section1" data-index="0">
         <div class="H-scroll">
 
@@ -27,197 +28,7 @@
                     <div class="h-headermain">
                         <div class="row">
                             <div class="col-6">
-                                <div class="h-dealform">
-
-                                    <div class="row">
-                                        <div class="col-3 h-select-box s-result-dropdown s-result-dropdown_destination-type">
-                                            <p class="btn btn-info"
-                                               @click="openDestinationType">
-                                                {(destinationTypes[form.destinationTypeId])}</p>
-
-                                            <div class="search-f-dropdown"
-                                                 v-if="destinationTypeSelectProgress"
-                                                 v-click-outside="closeDestinationType">
-                                                <ul class="s-dropdown-list">
-                                                    <li v-for="(dtype, dtypeId) in destinationTypes"
-                                                        @click="selectDestinationType(dtypeId)">
-                                                        <a href="#">{(dtype)}</a></li>
-                                                </ul>
-                                            </div>
-
-                                        </div>
-                                        <div class="col-4 h-select-box s-result-dropdown s-result-dropdown_passengers">
-                                            <p href="#" @click="openPassengersForm"
-                                               class="btn btn-info">{( valPassengers )}
-                                                Passenger{( valPassengers > 1?"s":""
-                                                )}</p>
-
-                                            <div class="passengers-dropdown"
-                                                 v-if="passengerSelectProgress"
-                                                 v-click-outside="closePassengersForm">
-                                                <ul class="passengers-dropdown-list">
-                                                    <li class="p-category">
-                                                        <b>Adults</b>
-                                                        <input type="button" value="-"
-                                                               @click="decrement(1)"
-                                                               class="increment">
-                                                        <input type="text"
-                                                               readonly="readonly"
-                                                               v-model="form.valAdults"
-                                                               class="value-select">
-                                                        <input type="button" value="+"
-                                                               @click="increment(1)"
-                                                               class="increment"></li>
-
-                                                    <li class="p-category">
-                                                        <b>Children</b>
-                                                        <input type="button" value="-"
-                                                               @click="decrement(2)"
-                                                               class="increment">
-                                                        <input type="text"
-                                                               readonly="readonly"
-                                                               v-model="form.valChildren"
-                                                               class="value-select">
-                                                        <input type="button"
-                                                               id="valAdultsIncrement"
-                                                               value="+"
-                                                               @click="increment(2)"
-                                                               class="increment"></li>
-
-                                                    <li class="p-category">
-                                                        <b>Infants</b>
-                                                        <input type="button" value="-"
-                                                               @click="decrement(3)"
-                                                               class="increment">
-                                                        <input type="text"
-                                                               readonly="readonly"
-                                                               v-model="form.valInfants"
-                                                               class="value-select">
-                                                        <input type="button" value="+"
-                                                               @click="increment(3)"
-                                                               class="increment"></li>
-
-                                                </ul>
-                                            </div>
-
-                                        </div>
-
-                                        <div class="col-4 h-ecenomylink s-result-dropdown s-result-dropdown_seat-type">
-                                            <p @click="openSeatTypeSelect"
-                                               class="btn btn-info">
-                                                {(seatTypes[form.seatType])}</p>
-
-                                            <div class="search-f-dropdown"
-                                                 v-if="seatTypeSelectProgress"
-                                                 v-click-outside="closeSeatTypeSelect">
-                                                <ul class="s-dropdown-list">
-                                                    <li v-for="(name, type) in seatTypes"
-                                                        @click="selectSeatType(type)">
-                                                        <a>{( name )}</a></li>
-                                                </ul>
-                                            </div>
-
-                                        </div>
-
-
-                                        <div class="input-group input-group-sm search-dropdown-outer col-12">
-                                            <div class="search-item search-item-from"
-                                                 v-bind:class="{shadowsrch: cityFromInput.focused}">
-                                                <div class="input-group input-group-sm search-dropdown">
-                                                    <span class="input-group-text search-form-input">Departure City:</span>
-                                                    <input type="text"
-                                                           class="form-control search-input"
-                                                           @focus="cityFromInputFocused"
-                                                           @blur="cityFromInputBlurred"
-                                                           v-model="cityFromInput.text"
-                                                           v-on:input="cityFromHandler">
-                                                </div>
-                                                <div class="dropdown-list"
-                                                     v-bind:class="{hidden: !cityFromInput.focused && !cityFromInput.searchProgress}">
-                                                    <ul class="list-Sdown"
-                                                        v-if="cityFromInput.searchResults.length > 0">
-                                                        <li v-for="(place, index) of cityFromInput.searchResults"
-                                                            v-on:click="cityFromInputChoose(index)">
-                                                            <div class="dropdown-icon">
-                                                                <i class="fa fa-plane"></i>
-                                                            </div>
-                                                            <div class="">{(
-                                                                formatPlace(place) )}
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                    <p v-else-if="!cityFromInput.requestProgress">
-                                                        Start typing city name...</p>
-                                                    <p v-else-if="cityFromInput.requestProgress">
-                                                        Loading...</p>
-                                                    <p v-else-if="!cityFromInput.requestProgress">
-                                                        No results for your request.</p>
-                                                </div>
-                                            </div>
-
-                                        </div>
-
-                                        <div class="input-group input-group-sm search-dropdown-outer col-12">
-                                            <div class="search-item search-item-to"
-                                                 v-bind:class="{shadowsrch: cityToInput.focused}">
-                                                <div class="input-group input-group-sm search-dropdown">
-                                                    <span class="input-group-text search-form-input">Arrival City:</span>
-                                                    <input type="text"
-                                                           class="form-control search-input"
-                                                           @focus="cityToInputFocused"
-                                                           @blur="cityToInputBlurred"
-                                                           v-model="cityToInput.text"
-                                                           v-on:input="cityToHandler">
-                                                </div>
-                                                <div class="dropdown-list"
-                                                     v-bind:class="{hidden: !cityToInput.focused && !cityToInput.searchProgress}">
-                                                    <ul class="list-Sdown"
-                                                        v-if="cityToInput.searchResults.length > 0">
-                                                        <li v-for="(place, index) of cityToInput.searchResults"
-                                                            v-on:click="cityToInputChoose(index)">
-                                                            <div class="dropdown-icon">
-                                                                <i class="fa fa-plane"></i>
-                                                            </div>
-                                                            <div class="">{(
-                                                                formatPlace(place) )}
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                    <p v-else-if="!cityToInput.requestProgress">
-                                                        Start typing city name...</p>
-                                                    <p v-else-if="cityToInput.requestProgress">
-                                                        Loading...</p>
-                                                    <p v-else-if="!cityToInput.requestProgress">
-                                                        No results for your request.</p>
-                                                </div>
-                                            </div>
-
-                                        </div>
-
-                                        <div class="input-group input-group-sm search-dropdown col-6">
-                                            <span class="input-group-text search-form-input">Departure Date</span>
-                                            <input type="text" id="departure_date"
-                                                   aria-describedby="basic-addon3"
-                                                   class="form-control search-input">
-                                        </div>
-
-                                        <div class="input-group input-group-sm search-dropdown col-6">
-                                            <span class="input-group-text search-form-input">Return Date</span>
-                                            <input type="text" id="return_date"
-                                                   aria-describedby="basic-addon3"
-                                                   class="form-control search-input">
-                                        </div>
-
-                                        <div class="search-button col-12">
-                                            <button type="submit" class="btn btn-info" @click="search">
-                                                Search Our Deals
-                                            </button>
-                                        </div>
-
-                                    </div>
-
-
-                                </div>
+                                {% include "home/dealform.html" %}
                             </div>
 
                             <div class="col-6">
@@ -377,61 +188,7 @@
         </div>
     </section>
 </div>
-
-<footer>
-    <div class="top-footer">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-4">
-                    <h3>Contact</h3>
-                    <ul class="content">
-                        <li><a href="{% url "faq" %}">Help</a></li>
-                        <li><a href="{% url "news" %}">Press</a></li>
-                        <li><a href="{% url "partners" %}">Partners</a></li>
-                    </ul>
-                    <h3>Company</h3>
-                    <ul class="content">
-                        <li><a href="{% url "about" %}">About</a></li>
-                        <li><a href="{% url "plans" %}">Flyline Team</a></li>
-                    </ul>
-                </div>
-                <div class="col-4">
-                    <h3>Popular Flight</h3>
-                    <ul class="content">
-                        <li><a href="#">Dallas-Las Vegas</a></li>
-                        <li><a href="#">New York - San Francisco</a></li>
-                        <li><a href="#">San Francisco - Seattle</a></li>
-                        <li><a href="#">San Francisco - Las Vegas</a></li>
-                        <li><a href="#">New York - Atlanta</a></li>
-                        <li><a href="#">Los Angeles - San Francisco</a></li>
-                        <li><a href="#">Dallas - Los Angeles</a></li>
-                        <li><a href="#">San Francisco - Austin</a></li>
-                    </ul>
-                </div>
-
-                <div class="col-4">
-                    <h3>Travel Tips</h3>
-                    <ul class="content">
-                        <li><a href="#">When to Book Last Minute</a></li>
-                        <li><a href="#">Top Airlines</a></li>
-                        <li><a href="#">Where Not to Book</a></li>
-                        <li><a href="#">Cheapest Cities to Fly</a></li>
-                        <li><a href="#">When Not to Book</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="bottom-footer">
-        <div class="sub-menus">
-            <ul>
-                <li><a href="#">Built in Dallas </a></li>
-                <li><a href="#">Terms & Use</a></li>
-                <li><a href="#">Privacy Policy</a></li>
-            </ul>
-        </div>
-    </div>
-</footer>
+{% include "_includes/footer.html" %}
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
 <script src="{% static "js/lightpick.js" %}"></script>
@@ -440,4 +197,5 @@
 <script src="{% static "home/js/jquery-2.1.4.min.js" %}"></script>
 <script src="{% static "home/js/bootstrap.js" %}"></script>
 <script src="{% static "home/js/full-page-scroll.js" %}"></script>
-
+</body>
+</html>
