@@ -140,35 +140,20 @@ const app = new Vue({
         },
         cityFromInputChoose(i) {
             this.cityFromInput.selectedIndex = i;
-            const place = this.cityFromInput.searchResults[i];
-            this.cityFromInput.text = this.formatPlace(place);
+            this.cityFromInput.text = this.formatPlace(this.cityFromInput.searchResults[i]);
             this.cityFromInput.searchProgress = false;
-            if (DjangoUser.subscriber) {
-                const that = this;
-                this.locationSearch('__all__', place.name).then((data) => {
-                    that.cityToInput.searchResults = data.locations;
-                });
-            }
         },
         formatPlace(place) {
             return `${place.name} ${place.subdivision ? place.subdivision.name : ""} ${place.country.code} (${place.code})`;
         },
-        locationSearch(term, cityFrom) {
+        locationSearch(term) {
             return new Promise((resolve) => {
-                let url;
-                if (DjangoUser.subscriber) {
-                    url = new URL('/city/query', window.location);
-                } else {
-                    url = new URL('https://kiwicom-prod.apigee.net/locations/query');
-                }
+                let url = new URL('https://kiwicom-prod.apigee.net/locations/query');
                 let searchParams = {
                     term,
                     locale: 'en-US',
                     location_types: 'city',
                 };
-                if (DjangoUser.subscriber && cityFrom) {
-                    searchParams.city_from = cityFrom;
-                }
                 url.search = new URLSearchParams(searchParams);
                 fetch(url, {
                     method: 'GET',
@@ -183,14 +168,6 @@ const app = new Vue({
                 );
             });
         },
-        updateCityFrom() {
-            if (DjangoUser.subscriber) {
-                const that = this;
-                this.locationSearch('__all__').then(function (data) {
-                    that.cityFromInput.searchResults = data.locations;
-                });
-            }
-        },
         cityFromHandler: debounce(function () {
             if (this.cityFromInput.text === null || this.cityFromInput.text === "" || this.cityFromInput.text.length < 3) {
                 this.cityFromInput.searchProgress = false;
@@ -204,7 +181,7 @@ const app = new Vue({
                 that.cityFromInput.text
             ).then(
                 (data) => {
-                    that.cityFromInput.searchResults = [...data.locations];
+                    that.cityFromInput.searchResults = data.locations;
                 }
             ).catch(
                 () => {
@@ -308,7 +285,6 @@ const app = new Vue({
             if (this.form.stop) formData.append("max_stopovers", this.form.stop);
             if (this.form.stopOverFrom) formData.append("stopover_from", this.form.stopOverFrom);
             if (this.form.stopOverTo) formData.append("stopover_to", this.form.stopOverTo);
-            if (DjangoUser.demo) formData.append('demo', true);
             let url = new URL('/results', window.location);
             url.search = new URLSearchParams(formData);
             window.sessionStorage.setItem('cityToInput', JSON.stringify(this.cityToInput));
@@ -410,9 +386,6 @@ const app = new Vue({
             }
         },
     },
-    mounted() {
-        this.updateCityFrom();
-    }
 });
 
 $(function () {
