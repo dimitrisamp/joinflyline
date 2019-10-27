@@ -17,7 +17,7 @@ Vue.component('flight', {
     delimiters: ['{(', ')}'],
     data() {
         return {
-            collapsed: false,
+            collapsed: true,
         }
     },
     methods: {
@@ -39,7 +39,7 @@ Vue.component('flight', {
             return `${days_part}${hours_part}${minutes}m`;
         },
         formatDate(value) {
-            return moment(value).format("D MMM");
+            return moment.utc(value).format("D MMM");
         },
         timeInterval(route) {
             const utc_departure = new Date(route.utc_departure);
@@ -54,10 +54,11 @@ Vue.component('flight', {
             return `/static/images/${AIRLINE_ICONS[name]}.png`;
         },
         formatTime(value) {
-            return moment(value).format("hh:mm A");
+            return moment.utc(value).format("hh:mm A");
         },
         getSpecificRoute(routes, _return, last) {
-            const subroutes = routes.filter((r)=>r.return === _return?1:0);
+            const returnValue = _return?1:0;
+            const subroutes = routes.filter((r)=>r.return === returnValue);
             if (subroutes) {
                 if (last) {
                     return subroutes[subroutes.length - 1];

@@ -66,7 +66,7 @@
                             <label class="mb-0"><strong>
                                 {( formatTime(getSpecificRoute(flight.route, true, false).local_departure) )}
                                 -
-                                {( formatTime(getSpecificRoute(flight.route, true, true).local_departure) )}
+                                {( formatTime(getSpecificRoute(flight.route, true, true).local_arrival  ) )}
                             </strong></label>
                             <br>
                             <span class="small text-muted">
@@ -78,7 +78,7 @@
                         <div class="">
                             <label class="mb-0">
                                 <strong>
-                                    {( formatDate(flight.route[flight.route.length - 1]) )}
+                                    {( formatDate(flight.route[flight.route.length - 1].local_departure) )}
                                 </strong>
                             </label>
                             <br>
@@ -126,13 +126,13 @@
                 </div>
             </div>
             <div class="arrow-indicator p-2 pt-3 pr-md-5 d-flex align-items-center justify-content-center" @click="toggleCollapsed">
-                <img :src="collapsed?static('images/icons/up-arrow.png'):static('images/icons/down-arrow.png')"
+                <img :src="!collapsed?static('images/icons/up-arrow.png'):static('images/icons/down-arrow.png')"
                      alt="Pull down"
                      height="15">
             </div>
         </div>
 
-        <div v-if="!collapsed" class="result-details collapse container-fluid">
+        <div v-if="!collapsed" class="result-details container-fluid">
             <hr class="m-0">
 
             <div class="route-box row">
@@ -157,12 +157,12 @@
                                         <div class="mr-auto">
                                             <div class="airlines-labels">
                                                 <label class="mb-0">
-                                                    <span class="dark-text">{( formatDate(route.local_departure) )}</span>
+                                                    <span class="dark-text">{( formatTime(route.local_departure) )}</span>
                                                     <span class="text-muted">{( route.cityFrom )} {( route.flyFrom )}</span>
                                                 </label>
                                                 <br>
                                                 <label class="mb-0">
-                                                    <span class="dark-text">{( formatDate(route.local_arrival) )}</span>
+                                                    <span class="dark-text">{( formatTime(route.local_arrival) )}</span>
                                                     <span class="text-muted">{( route.cityTo )} {( route.flyTo )}</span>
                                                 </label>
                                             </div>
