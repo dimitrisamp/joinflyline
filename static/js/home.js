@@ -46,6 +46,7 @@ const app = new Vue({
         searchResultPlaces: [],
         searchResultPlacesFrom: [],
         searchResultPlacesTo: [],
+        searchProgress: false,
         searchResults: [],
         searchLocation: '',
         noOfPassengers: 'Passengers',
@@ -375,17 +376,26 @@ const app = new Vue({
         },
         displaySearchResults(data) {
             if (this.searchResults.length === 0) {
-                this.form.airlines = data.airlines.map((a) => ({code: a, name: AIRLINE_NAMES[a], checked: false}));
+                this.form.airlines = data.airlines.map((a) => ({
+                    code: a,
+                    name: AIRLINE_NAMES[a],
+                    checked: false
+                }));
             }
             this.searchResults = data.data.data;
         },
         search() {
+            this.searchProgress = true;
             fetch(this.getSearchURL()
             ).then(
-                (response)=>response.json()
+                (response) => response.json()
             ).then(
                 (data) => {
                     this.displaySearchResults(data);
+                }
+            ).finally(
+                () => {
+                    this.searchProgress = false;
                 }
             )
         },
