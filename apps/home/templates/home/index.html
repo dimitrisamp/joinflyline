@@ -48,7 +48,7 @@
                                     </div>
                                 </div>
                                 <div class="search-results" v-else>
-                                    <flight v-for="flight in searchResults" :flight="flight" :form="form" v-bind:id="flight.id" />
+                                    <flight v-for="flight in searchResults" :flight="flight" :form="form" :key="flight.id" />
                                 </div>
                             </div>
                         </div>
