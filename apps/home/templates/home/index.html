@@ -9,9 +9,11 @@
     <link rel="stylesheet" type="text/css" href="{% static "home/css/dropdown.css" %}">
     <link rel="stylesheet" type="text/css" href="{% static "css/results.css" %}">
     <link rel="stylesheet" type="text/css" href="{% static "css/lightpick.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "home/css/loading-animation.css" %}" />
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600&display=swap"
           rel="stylesheet">
-    <link href="{% static "/home/vue-slider-component/theme/default.css" %}" rel="stylesheet" />
+    <link href="{% static "/home/vue-slider-component/theme/default.css" %}"
+          rel="stylesheet"/>
 </head>
 <body id="home-page">
 
@@ -41,6 +43,7 @@
 
                             <div class="col-md-7 col-12">
                                 <div v-if="searchResults.length === 0" class="h-contentarea">
+
                                     <h3>Travel Made <br/> Simple, Cheap</h3>
                                     <p>Discount Priice Alerts <br/>
                                         Exclusive Non Public Fares <br/>
@@ -53,8 +56,39 @@
                                             Started</a>
                                     </div>
                                 </div>
-                                <div class="search-results" v-else>
-                                    <flight v-for="flight in searchResults" :flight="flight" :form="form" :key="flight.id" />
+                                <div class="search-results" v-if="searchProgress">
+                                    <div v-for="i in 5" :key="i">
+                                        <div class="result-item mb-2 w-100"
+                                             style="width: 90%">
+                                            <div class="result-block result-toggler w-100 d-block d-md-flex justify-content-start p-2 pt-3 pb-3"
+                                                 data-toggle="collapse"
+                                                 data-target="#result-item27180">
+                                                <div class="loading_animation">
+                                                    <div class="col-md-12">
+                                                        <div class="row">
+                                                            <div class="col-md-2">
+                                                                <div class="animate-element animate-element-01"></div>
+                                                            </div>
+                                                            <div class="col-md-2">
+                                                                <div class="animate-element animate-element-02"></div>
+                                                                <div class="animate-element animate-element-03"></div>
+                                                            </div>
+                                                            <div class="col-md-8">
+                                                                <div class="animate-element animate-element-04"></div>
+                                                                <div class="animate-element animate-element-05"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="divider-30"></div>
+                                    </div>
+                                </div>
+                                <div class="search-results" v-if="!searchProgress && searchResults.length !== 0">
+                                    <flight v-for="flight in searchResults"
+                                            :flight="flight" :form="form"
+                                            :key="flight.id"/>
                                 </div>
                             </div>
                         </div>
