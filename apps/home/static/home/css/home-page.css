@@ -554,6 +554,19 @@ body{
     top: 50px; 
     z-index: 999;
 }
+.price-dropdown{
+    position: absolute;
+    min-height: 25px;
+    left: 0;
+    right: 0;
+    top: 50px;
+    z-index: 2;
+    margin: 15px;
+}
+.price-slider-container {
+    padding: 10px 15px;
+    width: 100%;
+}
 .s-filder-dropdown{
     background: #fff;
     padding: 10px;

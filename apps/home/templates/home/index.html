@@ -12,6 +12,7 @@
     <link rel="stylesheet" type="text/css" href="{% static "css/lightpick.css" %}">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600&display=swap"
           rel="stylesheet">
+    <link href="{% static "/home/vue-slider-component/theme/default.css" %}" rel="stylesheet" />
 </head>
 <body>
 
@@ -193,9 +194,11 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
 <script src="{% static "js/lightpick.js" %}"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-<script type="module" src="{% static "js/home.js" %}"></script>
 <script src="{% static "home/js/jquery-2.1.4.min.js" %}"></script>
 <script src="{% static "home/js/bootstrap.js" %}"></script>
 <script src="{% static "home/js/full-page-scroll.js" %}"></script>
+<script src="{% static "home/vue-slider-component/dist/vue-slider-component.umd.min.js" %}"></script>
+<script type="module" src="{% static "js/home.js" %}"></script>
+
 </body>
 </html>

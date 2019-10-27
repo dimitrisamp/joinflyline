@@ -66,7 +66,10 @@ const app = new Vue({
         searchResults: true,
         airlinesSelectProgress: false,
         airlinesText: '',
+        priceSelectProgress: false,
+        priceText: '',
         form: {
+            priceRange: [0, 3000],
             airlines: [
                 {name: "American Airlines", checked: false, code: "AA"},
                 {name: "United Airlines", checked: false, code: "UA"},
@@ -89,7 +92,22 @@ const app = new Vue({
     directives: {
         ClickOutside,
     },
+    components: {
+        VueSlider: window['vue-slider-component'],
+    },
     methods: {
+        updatePriceText() {
+            const [a, b] = this.form.priceRange;
+            this.priceText = `$${a}-$${b}`;
+        },
+        openPriceSelect() {
+            setTimeout(() => {
+                this.priceSelectProgress = true;
+            }, 150)
+        },
+        closePriceSelect() {
+            this.priceSelectProgress = false;
+        },
         updateAirlinesSelection() {
             this.airlinesText = this.form.airlines.filter(
                 (a) => a.checked
@@ -429,6 +447,9 @@ const app = new Vue({
             }
         },
     },
+    mounted() {
+        this.updatePriceText();
+    }
 });
 
 $(function () {
