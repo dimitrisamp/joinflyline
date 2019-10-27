@@ -362,8 +362,6 @@ header.sticky{
     margin-bottom: 0px;
     width: 100%;
     overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
 }
 /*.s-result-dropdown_destination-type .btn {
     min-width: 132px;
