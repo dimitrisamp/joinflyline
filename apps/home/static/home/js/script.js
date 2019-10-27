@@ -18,4 +18,15 @@ $(document).ready(function() {
             $("header").removeClass("sticky");
           }
     });
+
+    var sticky = 20;
+
+    $(window).scroll(function() {
+        if ($(window).scrollTop() > sticky) {
+            $("body").addClass("dotvisible");
+          } else {
+            $("body").removeClass("dotvisible");
+          }
+    });
+
 });

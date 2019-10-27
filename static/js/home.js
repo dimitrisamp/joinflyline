@@ -480,4 +480,17 @@ $(function () {
         animateTime: 0.7,
         animateFunction: 'ease'
     });
+
+    var sticky = 10;
+
+    $(window).scroll(function() {
+        if ($(window).scrollTop() > sticky) {
+            $("header").addClass("sticky");
+          } else {
+            $("header").removeClass("sticky");
+          }
+    });
+
+
+    
 });
