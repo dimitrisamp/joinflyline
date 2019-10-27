@@ -86,7 +86,7 @@ header.sticky{
     border-radius: 0px;
 }
 .h-ecenomylink .search-f-dropdown{
-    margin-right: 15px;
+    margin-right: 20px;
 }
 .search-form-input{
     background: #fff;
@@ -149,7 +149,7 @@ header.sticky{
     font-size: 21px;
     padding: 9px 30px;
     margin-right: 40px;
-    margin-top: 13px;
+    margin-top: 6px;
 }
 .h-contentarea {
     margin: 0 50px;
@@ -362,6 +362,7 @@ header.sticky{
     padding: 7px 20px;
     font-size: 14px;
     border-radius: 0px;
+    margin-bottom: 0px;
 }
 /*.s-result-dropdown_destination-type .btn {
     min-width: 132px;
@@ -432,10 +433,10 @@ header.sticky{
     z-index: 2;
 }
 .s-result-dropdown_destination-type .search-f-dropdown {
-    min-width: 132px;
+    min-width: 124px;
 }
 .s-result-dropdown_seat-type .search-f-dropdown {
-    min-width: 195px;
+    min-width: 111px;
 }
 .search-f-dropdown .s-dropdown-list{
     list-style: none;
