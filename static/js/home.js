@@ -1,5 +1,17 @@
 import ClickOutside from './v-click-outside.js';
 
+const AIRLINE_NAMES = {
+    "DL": "Delta",
+    "AS": "Alaska",
+    "NK": "Spirit",
+    "B6": "JetBlue",
+    "F9": "Frontier",
+    "G4": "Allegiant",
+    "UA": "United",
+    "AA": "American",
+    "WN": "Southwest",
+    "SY": "Sun Country",
+};
 
 function debounce(fn, delay, ...rest) {
     let timeoutID = null;
@@ -343,15 +355,28 @@ const app = new Vue({
             formData.append("infants", this.form.valInfants);
             formData.append("children", this.form.valChildren);
             formData.append("selected_cabins", this.form.seatType);
-            if (this.form.stop) formData.append("max_stopovers", this.form.stop);
-            if (this.form.stopOverFrom) formData.append("stopover_from", this.form.stopOverFrom);
-            if (this.form.stopOverTo) formData.append("stopover_to", this.form.stopOverTo);
+            if (this.searchResults.length !== 0) {
+                if (this.form.priceRange !== [0, 3000]) {
+                    const [price_from, price_to] = this.form.priceRange;
+                    formData.append("price_from", price_from);
+                    formData.append("price_to", price_to);
+                }
+                const selectedAirlines = this.form.airlines.filter((a) => a.checked);
+                if (selectedAirlines) {
+                    formData.append('select_airlines', selectedAirlines.map((a) => a.code).join(','));
+                }
+                if (this.form.maxStops !== null) {
+                    formData.append('max_stopovers', this.form.maxStops);
+                }
+            }
             let url = new URL('/results', window.location);
             url.search = new URLSearchParams(formData);
             return url
         },
         displaySearchResults(data) {
-            this.form.airlines = data.airlines;
+            if (this.searchResults.length === 0) {
+                this.form.airlines = data.airlines.map((a) => ({code: a, name: AIRLINE_NAMES[a], checked: false}));
+            }
             this.searchResults = data.data.data;
         },
         search() {
