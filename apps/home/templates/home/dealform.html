@@ -190,7 +190,7 @@
 
         </div>
 
-        <div class="input-group input-group-sm search-dropdown col-12" v-if="searchResults">
+        <div class="input-group input-group-sm search-dropdown col-12" v-if="searchResults.length !== 0">
             <span class="input-group-text search-form-input">Stops Filter</span>
             <input type="text" class="form-control search-input" @focus="openMaxStopsSelect" v-model="maxStopsText">
 
@@ -202,7 +202,7 @@
 
         </div>
 
-        <div class="input-group input-group-sm search-dropdown col-12" v-if="searchResults">
+        <div class="input-group input-group-sm search-dropdown col-12" v-if="searchResults.length !== 0">
             <span class="input-group-text search-form-input">Pricing Filter</span>
             <input type="text" class="form-control search-input" @focus="openPriceSelect" v-model="priceText">
 
