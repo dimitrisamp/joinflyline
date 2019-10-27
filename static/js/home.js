@@ -474,15 +474,7 @@ $(function () {
             if (end) app.form.return_date = end.format('MM/DD/YYYY');
         }
     });
-    new fullScroll({
-        displayDots: true,
-        dotsPosition: 'right',
-        animateTime: 0.7,
-        animateFunction: 'ease'
-    });
-
-    var sticky = 10;
-
+    var sticky = 650;
     $(window).scroll(function() {
         if ($(window).scrollTop() > sticky) {
             $("header").addClass("sticky");
@@ -491,6 +483,10 @@ $(function () {
           }
     });
 
+    $(".clickdown a").click(function() {
+      $("html, body").animate({ scrollTop: 700 }, "slow");
+      return false;
+    });
 
     
 });
