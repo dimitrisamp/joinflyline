@@ -818,10 +818,6 @@ footer .bottom-footer ul li:first-child:before {
     padding-top: 10px;
     padding-bottom: 10px;
 }
-.section2-content {
-    position: relative;
-    top: 100%;
-}
 .section2-content h3{
     font-size: 29px;
     line-height: 30px;
@@ -840,6 +836,28 @@ footer .bottom-footer ul li:first-child:before {
     height: 18px;
     max-width: 67px;
 }
+.section2 {
+    padding: 70px 0px;
+}
+.section4 {
+    padding: 70px 0px;
+}
+.s-result-dropdown {
+    margin-bottom: 10px;
+}
+.search-dropdown {
+    margin-bottom: 10px;
+}
+.search-dropdown-outer{
+    margin-bottom: 0px !important;
+}
+.search-dropdown-outer {
+    min-height: 0px !important;
+}
+.s-result-dropdown_destination-type .search-f-dropdown{
+    width: auto;
+}
+
 
 } 
 
