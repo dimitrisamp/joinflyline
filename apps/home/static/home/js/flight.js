@@ -67,8 +67,8 @@ Vue.component('flight', {
                 }
             }
         },
-        getRetailUrl() {
-            return 'hello';
+        getRetailUrl(bookingToken) {
+            return `retail/${bookingToken}`;
         },
         toggleCollapsed() {
             this.collapsed = !this.collapsed;
