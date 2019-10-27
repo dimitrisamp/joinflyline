@@ -330,10 +330,10 @@ body{
     background: transparent;
     color: #000000;
     padding: 7px 20px;
-    font-size: 15px;
+    font-size: 14px;
     border-radius: 0px;
 }
-.s-result-dropdown_destination-type .btn {
+/*.s-result-dropdown_destination-type .btn {
     min-width: 132px;
 }
 .s-result-dropdown_passengers .btn {
@@ -341,7 +341,7 @@ body{
 }
 .s-result-dropdown_seat-type .btn {
     min-width: 195px;
-}
+}*/
 .search-result-btn .btn{
     margin-top: 10px;
 }
