@@ -684,3 +684,8 @@ section .H-scroll {
 [v-cloak] {
     display: none;
 }
+
+.search-results {
+    max-height: 700px;
+    overflow-y: scroll;
+}

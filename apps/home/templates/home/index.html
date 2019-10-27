@@ -33,7 +33,7 @@
                             </div>
 
                             <div class="col-6">
-                                <div class="h-contentarea">
+                                <div v-if="!searchResults" class="h-contentarea">
                                     <h3>Travel Made <br/> Simple, Cheap</h3>
                                     <p>Discount Priice Alerts <br/>
                                         Exclusive Non Public Fares <br/>
@@ -45,6 +45,9 @@
                                         <a href="#" class="btn btn-default">Get
                                             Started</a>
                                     </div>
+                                </div>
+                                <div class="search-results" v-else>
+                                    <flight v-for="flight in searchResults" :flight="flight" :form="form" v-bind:id="flight.id" />
                                 </div>
                             </div>
                         </div>
@@ -197,7 +200,10 @@
 <script src="{% static "home/js/jquery-2.1.4.min.js" %}"></script>
 <script src="{% static "home/js/bootstrap.js" %}"></script>
 <script src="{% static "home/js/full-page-scroll.js" %}"></script>
+{% include "home/vue-flight-template.html" %}
+<script src="{% static "home/js/flight.js" %}"></script>
 <script src="{% static "home/vue-slider-component/dist/vue-slider-component.umd.min.js" %}"></script>
+
 <script type="module" src="{% static "js/home.js" %}"></script>
 
 </body>

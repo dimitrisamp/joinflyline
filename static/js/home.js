@@ -28,12 +28,13 @@ function getCityInputData(k) {
 
 
 const app = new Vue({
-    el: '#dealform',
+    el: '#main',
     delimiters: ['{(', ')}'],
     data: {
         searchResultPlaces: [],
         searchResultPlacesFrom: [],
         searchResultPlacesTo: [],
+        searchResults: [],
         searchLocation: '',
         noOfPassengers: 'Passengers',
         cityFromRequestProgress: false,
@@ -63,7 +64,6 @@ const app = new Vue({
             1: "One Stop",
             2: "Two Stops",
         },
-        searchResults: true,
         airlinesSelectProgress: false,
         airlinesText: '',
         priceSelectProgress: false,
@@ -299,7 +299,7 @@ const app = new Vue({
             this.form.stopOverTo = stopOverTo + ":" + "00";
         },
 
-        search() {
+        getSearchURL() {
             let formData = new FormData;
 
             if (document.getElementById('stopover') != null) {
@@ -348,11 +348,22 @@ const app = new Vue({
             if (this.form.stopOverTo) formData.append("stopover_to", this.form.stopOverTo);
             let url = new URL('/results', window.location);
             url.search = new URLSearchParams(formData);
-            window.sessionStorage.setItem('cityToInput', JSON.stringify(this.cityToInput));
-            window.sessionStorage.setItem('cityFromInput', JSON.stringify(this.cityFromInput));
-            window.location = url;
+            return url
         },
-
+        displaySearchResults(data) {
+            this.form.airlines = data.airlines;
+            this.searchResults = data.data.data;
+        },
+        search() {
+            fetch(this.getSearchURL()
+            ).then(
+                (response)=>response.json()
+            ).then(
+                (data) => {
+                    this.displaySearchResults(data);
+                }
+            )
+        },
         swapPlaces() {
             let city_from = this.form.city_from;
             this.form.city_from = this.form.city_to;
@@ -459,8 +470,8 @@ $(function () {
         secondField: document.getElementById('return_date'),
         singleDate: false,
         onSelect(start, end) {
-            app.form.departure_date = start.format('MM/DD/YYYY');
-            app.form.return_date = end.format('MM/DD/YYYY');
+            if (start) app.form.departure_date = start.format('MM/DD/YYYY');
+            if (end) app.form.return_date = end.format('MM/DD/YYYY');
         }
     });
     new fullScroll({
