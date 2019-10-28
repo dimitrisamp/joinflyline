@@ -508,20 +508,5 @@ $(function () {
             if (start) app.form.departure_date = start.format('MM/DD/YYYY');
             if (end) app.form.return_date = end.format('MM/DD/YYYY');
         }
-    });
-    var sticky = 650;
-    $(window).scroll(function() {
-        if ($(window).scrollTop() > sticky) {
-            $("header").addClass("sticky");
-          } else {
-            $("header").removeClass("sticky");
-          }
-    });
-
-    $(".clickdown a").click(function() {
-      $("html, body").animate({ scrollTop: 700 }, "slow");
-      return false;
-    });
-
-    
+    });    
 });
