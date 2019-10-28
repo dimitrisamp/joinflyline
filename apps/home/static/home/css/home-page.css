@@ -44,10 +44,14 @@ header.sticky{
     background: #b7bfc8;
     border-color: #b7bfc8;
     border-radius: 0;
-    color: #fff;
+    color: #fff !important;
     font-weight: 600;
-    padding: 11px 29px;
+    padding: 11px 25px;
     letter-spacing: 1px;
+    margin-right: 15px;
+}
+.nav-btn .white-btn{
+    color: #000 !important;
 }
 .h-headermain {
     margin: 10px 0;
