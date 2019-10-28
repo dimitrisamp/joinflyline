@@ -499,7 +499,6 @@ const app = new Vue({
 });
 
 $(function () {
-    document.querySelector(".btn-group");
     new Lightpick({
         field: document.getElementById('departure_date'),
         secondField: document.getElementById('return_date'),
@@ -508,5 +507,17 @@ $(function () {
             if (start) app.form.departure_date = start.format('MM/DD/YYYY');
             if (end) app.form.return_date = end.format('MM/DD/YYYY');
         }
-    });    
+    });
+    $('#fullpage').fullpage({
+      scrollBar: true,
+      navigation: true
+    });
+    var sticky = 400;
+    $(window).scroll(function() {
+        if ($(window).scrollTop() > sticky) {
+            $("header").addClass("sticky");
+          } else {
+            $("header").removeClass("sticky");
+          }
+    });
 });

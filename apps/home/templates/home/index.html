@@ -244,26 +244,6 @@
 <script src="{% static "home/js/jquery.fullPage.js" %}"></script>
 <script src="{% static "home/vue-slider-component/dist/vue-slider-component.umd.min.js" %}"></script>
 <script type="module" src="{% static "js/home.js" %}"></script>
-
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $('#fullpage').fullpage({
-              scrollBar: true,
-              navigation: true
-            });
-        });
-        var sticky = 400;
-        $(window).scroll(function() {
-            if ($(window).scrollTop() > sticky) {
-                $("header").addClass("sticky");
-              } else {
-                $("header").removeClass("sticky");
-              }
-        });
-
-    </script>
-
-
-
+<script type="module" src="{% static "home/js/drift.js" %}"></script>
 </body>
 </html>
