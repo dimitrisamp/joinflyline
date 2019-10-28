@@ -6,11 +6,10 @@ body{
 *****************************/
 .section-01{
     background: url(../img/headerbg.png);
-    height: auto;
+    height: 100%;
     width: 100%;
     background-size: cover;
     background-position: center;
-    padding-bottom: 78px;
 }
 header.sticky{
     background: #000;
@@ -23,9 +22,6 @@ header.sticky{
     color: #f5f5f5;
     font-size: 38px;
     font-weight: 600;
-}
-.h-user-home{
-    padding-top:17px;
 }
 .navbar-light{
     background: transparent !important;
@@ -162,6 +158,11 @@ header.sticky{
 }
 .assets-section {
     padding: 25px 0;
+    background: white;
+    position: absolute;
+    bottom: 42px;
+    right: 0;
+    left: 0;
 }
 .assets-section .img_asset{
     max-height: 33px;
@@ -627,6 +628,10 @@ header.sticky{
     padding: 200px 0px;   
 }
 .clickdown a{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
     text-decoration: none;
 }
 .home-page-dots {
@@ -770,9 +775,6 @@ footer .bottom-footer ul li:first-child:before {
 .h-headermain {
     margin: 20px 0;
 }
-.section-01{
-    padding-top: 26px;   
-}
 .h-dealform{
     padding-top: 15px;
     padding-bottom: 15px;   
@@ -875,7 +877,7 @@ footer .bottom-footer ul li:first-child:before {
 
 @media(min-width:768px) and (max-width: 1024px){
 .section-01{
-    background-size: auto; 
+    background-size: auto;
 }
 .h-contentarea h3 {
     font-size: 48px;
@@ -896,9 +898,6 @@ footer .bottom-footer ul li:first-child:before {
 }
 .h-headermain {
     margin: 20px 0;
-}
-.section-01{
-    padding-top: 26px;   
 }
 .h-dealform{
     padding-top: 15px;
