@@ -66,6 +66,7 @@
                                             More</a>
                                     </div>
                                 </div>
+                                <quicklinks v-if="searchResults.length !== 0" :sort="form.sort" :data="quickFiltersData" @sort-by="sortResultsBy"></quicklinks>
                                 <div class="search-results" v-if="searchProgress"
                                      v-cloak>
                                     <div class="w-100" v-for="i in 5" :key="i">
@@ -258,9 +259,11 @@
 <script src="{% static "home/js/jquery-2.1.4.min.js" %}"></script>
 <script src="{% static "home/js/bootstrap.js" %}"></script>
 {% include "home/vue-flight-template.html" %}
+{% include "home/vue-quicklinks-template.html" %}
 <script type="text/javascript"
         src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script type="module" src="{% static "home/js/flight.js" %}"></script>
+<script type="module" src="{% static "home/js/quicklinks.js" %}"></script>
 <script src="{% static "home/fullPage.js-master/dist/fullpage.min.js" %}"></script>
 <script src="{% static "home/vue-slider-component/dist/vue-slider-component.umd.min.js" %}"></script>
 <script type="module" src="{% static "js/home.js" %}"></script>

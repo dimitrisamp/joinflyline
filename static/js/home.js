@@ -48,6 +48,7 @@ const app = new Vue({
         searchResultPlacesTo: [],
         searchProgress: false,
         searchResults: [],
+        quickFiltersData: null,
         searchLocation: '',
         noOfPassengers: 'Passengers',
         cityFromRequestProgress: false,
@@ -83,6 +84,7 @@ const app = new Vue({
         priceText: '',
         form: {
             limit: 20,
+            sort: null,
             priceRange: [0, 3000],
             airlines: [
                 {name: "American Airlines", checked: false, code: "AA"},
@@ -249,6 +251,10 @@ const app = new Vue({
             this.form.limit = this.form.limit + 10;
             this.search();
         },
+        sortResultsBy(sort) {
+            this.form.sort = sort;
+            this.search();
+        },
         cityFromHandler: debounce(function () {
             if (this.cityFromInput.text === null || this.cityFromInput.text === "" || this.cityFromInput.text.length < 3) {
                 this.cityFromInput.searchProgress = false;
@@ -376,7 +382,11 @@ const app = new Vue({
             if (this.form.maxStops !== null) {
                 formData.append('max_stopovers', this.form.maxStops);
             }
+            if (this.form.sort !== null) {
+                formData.append('sort', this.form.sort);
+            }
             formData.append('limit', this.form.limit);
+            formData.append('curr', 'USD');
             let url = new URL('https://kiwicom-prod.apigee.net/v2/search', window.location);
             url.search = new URLSearchParams(formData);
             return url
@@ -409,6 +419,20 @@ const app = new Vue({
                 return_departure,
             }
         },
+        getQuickLinksData(flights) {
+            const data = flights.map((f) => ({
+                price: f.conversion.USD,
+                duration: f.duration.total,
+                quality: f.quality,
+                date: new Date(f.local_departure)
+            }));
+            return {
+                price: data.reduce((prev, curr) => prev.price < curr.price?prev:curr),
+                duration: data.reduce((prev, curr) => prev.duration < curr.duration?prev:curr),
+                quality: data.reduce((prev, curr) => prev.quality < curr.quality?prev:curr),
+                date: data.reduce((prev, curr) => prev.date < curr.date?prev:curr),
+            }
+        },
         displaySearchResults(data) {
             if (this.searchResults.length === 0) {
                 this.form.airlines = data.airlines.map((a) => ({
@@ -429,6 +453,7 @@ const app = new Vue({
                 (data) => {
                     data.data = data.data.map(this.processFlight);
                     const airlines = this.getAirlines(data.data);
+                    this.quickFiltersData = this.getQuickLinksData(data.data);
                     this.displaySearchResults({data, airlines});
                 }
             ).finally(
