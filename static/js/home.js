@@ -82,6 +82,7 @@ const app = new Vue({
         priceSelectProgress: false,
         priceText: '',
         form: {
+            limit: 20,
             priceRange: [0, 3000],
             airlines: [
                 {name: "American Airlines", checked: false, code: "AA"},
@@ -244,6 +245,10 @@ const app = new Vue({
                 );
             });
         },
+        loadMore() {
+            this.form.limit = this.form.limit + 10;
+            this.search();
+        },
         cityFromHandler: debounce(function () {
             if (this.cityFromInput.text === null || this.cityFromInput.text === "" || this.cityFromInput.text.length < 3) {
                 this.cityFromInput.searchProgress = false;
@@ -371,6 +376,7 @@ const app = new Vue({
             if (this.form.maxStops !== null) {
                 formData.append('max_stopovers', this.form.maxStops);
             }
+            formData.append('limit', this.form.limit);
             let url = new URL('https://kiwicom-prod.apigee.net/v2/search', window.location);
             url.search = new URLSearchParams(formData);
             return url

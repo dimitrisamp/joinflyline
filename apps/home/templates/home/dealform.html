@@ -1,4 +1,4 @@
-<div id="dealform" class="h-dealform">
+<div id="dealform" class="h-dealform" v-cloak>
     <div class="row">
         <div class="col-md-4 col-12 h-select-box s-result-dropdown s-result-dropdown_destination-type">
             <p class="btn btn-info"
@@ -6,6 +6,7 @@
                 {(destinationTypes[form.destinationTypeId])}</p>
 
             <div class="search-f-dropdown"
+                 v-cloak
                  v-if="destinationTypeSelectProgress"
                  v-click-outside="closeDestinationType">
                 <ul class="s-dropdown-list">
@@ -23,6 +24,7 @@
                 )}</p>
 
             <div class="passengers-dropdown"
+                 v-cloak
                  v-if="passengerSelectProgress"
                  v-click-outside="closePassengersForm">
                 <ul class="passengers-dropdown-list">
@@ -78,6 +80,7 @@
                 {(seatTypes[form.seatType])}</p>
 
             <div class="search-f-dropdown"
+                 v-cloak
                  v-if="seatTypeSelectProgress"
                  v-click-outside="closeSeatTypeSelect">
                 <ul class="s-dropdown-list">

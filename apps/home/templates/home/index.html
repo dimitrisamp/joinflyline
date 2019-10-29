@@ -29,9 +29,12 @@
                 <header class="">
                     <nav class="navbar navbar-light bg-light justify-content-between">
                         <div class="container">
-                            <a class="navbar-brand nav-logo"> <img src="{% static "home/img/flyline_logos-01-1.png" %}"> </a>
+                            <a class="navbar-brand nav-logo"> <img
+                                    src="{% static "home/img/flyline_logos-01-1.png" %}">
+                            </a>
                             <form class="form-inline nav-btn">
-                                <a class="btn btn-outline-success blue-scheme my-2 my-sm-0">Log In</a>
+                                <a class="btn btn-outline-success blue-scheme my-2 my-sm-0">Log
+                                    In</a>
                             </form>
                         </div>
                     </nav>
@@ -42,10 +45,10 @@
                         <div class="row">
                             <div class="col-md-4 col-12">
                                 <div class="search-flight-home">
-                                  <h3>Search our Deals</h3>   
-                                  <p>Exclusive private flights for members</p>
-                                
-                                  {% include "home/dealform.html" %}
+                                    <h3>Search our Deals</h3>
+                                    <p>Exclusive private flights for members</p>
+
+                                    {% include "home/dealform.html" %}
                                 </div>
                             </div>
 
@@ -57,12 +60,15 @@
                                     <strong>Weekend Getways</strong>
                                     <p>Book travel for all occuscions and save</p>
                                     <div class="h-btngroups">
-                                        <a href="#" class="btn btn-default h-blackbg">Get Started</a>
-                                        <a href="#" class="btn btn-default">Learn More</a>
+                                        <a href="#" class="btn btn-default h-blackbg">Get
+                                            Started</a>
+                                        <a href="#" class="btn btn-default">Learn
+                                            More</a>
                                     </div>
                                 </div>
-                                <div class="search-results" v-if="searchProgress">
-                                    <div v-for="i in 5" :key="i">
+                                <div class="search-results" v-if="searchProgress"
+                                     v-cloak>
+                                    <div class="w-100" v-for="i in 5" :key="i">
                                         <div class="result-item mb-2 w-100"
                                              style="width: 90%">
                                             <div class="result-block result-toggler w-100 d-block d-md-flex justify-content-start p-2 pt-3 pb-3"
@@ -91,10 +97,18 @@
                                     </div>
                                 </div>
                                 <div class="search-results"
+                                     v-cloak
                                      v-if="!searchProgress && searchResults.length !== 0">
                                     <flight v-for="flight in searchResults"
                                             :flight="flight" :form="form"
-                                            :key="flight.id"/>
+                                            :key="flight.id"></flight>
+
+                                    <div class="h-btngroups">
+                                        <a class="btn btn-default" href="#"
+                                           @click="loadMore">Load
+                                            More</a>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
