@@ -311,7 +311,6 @@ const app = new Vue({
             this.form.stopOverFrom = stopOverFrom + ":" + "00";
             this.form.stopOverTo = stopOverTo + ":" + "00";
         },
-
         getSearchURL() {
             let formData = new FormData;
 
@@ -493,6 +492,18 @@ const app = new Vue({
     },
     mounted() {
         this.updatePriceText();
+    },
+    computed: {
+        isFormIncomplete() {
+            if (this.form.destinationTypeId === "round") {
+                if (!this.form.return_date) return true;
+            }
+            if (!this.form.departure_date) return true;
+            const placeTo = this.cityToInput.searchResults[this.cityToInput.selectedIndex];
+            const placeFrom = this.cityFromInput.searchResults[this.cityFromInput.selectedIndex];
+            if (!placeTo || !placeFrom) return true;
+            return false;
+        }
     }
 });
 
@@ -507,15 +518,15 @@ $(function () {
         }
     });
     $('#fullpage').fullpage({
-      scrollBar: true,
-      navigation: true
+        scrollBar: true,
+        navigation: true
     });
     var sticky = 400;
-    $(window).scroll(function() {
+    $(window).scroll(function () {
         if ($(window).scrollTop() > sticky) {
             $("header").addClass("sticky");
-          } else {
+        } else {
             $("header").removeClass("sticky");
-          }
+        }
     });
 });

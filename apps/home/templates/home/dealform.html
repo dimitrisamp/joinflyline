@@ -177,8 +177,10 @@
                    aria-describedby="basic-addon3"
                    class="form-control search-input">
         </div>
-
-        <div class="input-group input-group-sm search-dropdown col-12" v-if="searchResults.length !== 0">
+        <div class="filter-field">
+            <b>Filters</b>
+        </div>
+        <div class="input-group input-group-sm search-dropdown col-12">
             <span class="input-group-text search-form-input">Airline Filter</span>
             <input type="text" class="form-control search-input" @focus="openAirlinesSelect" v-model="airlinesText">
 
@@ -190,7 +192,7 @@
 
         </div>
 
-        <div class="input-group input-group-sm search-dropdown col-12" v-if="searchResults.length !== 0">
+        <div class="input-group input-group-sm search-dropdown col-12">
             <span class="input-group-text search-form-input">Stops Filter</span>
             <input type="text" class="form-control search-input" @focus="openMaxStopsSelect" v-model="maxStopsText">
 
@@ -201,7 +203,7 @@
             </div>
         </div>
 
-        <div class="input-group input-group-sm search-dropdown col-12" v-if="searchResults.length !== 0">
+        <div class="input-group input-group-sm search-dropdown col-12">
             <span class="input-group-text search-form-input">Pricing Filter</span>
             <input type="text" class="form-control search-input" @focus="openPriceSelect" v-model="priceText">
 
@@ -213,63 +215,10 @@
         </div>
 
         <div class="search-button col-12">
-            <button type="submit" class="btn btn-info" @click="search">
+            <button type="submit" class="btn btn-info" @click="search" :disabled="isFormIncomplete">
                 Search Our Deals
             </button>
         </div>
-
-        <div class="filter-field">
-           <b>Filters</b> 
-        <div class="row">
-  
-        <div class="input-group input-group-sm search-dropdown col-12">
-            <span class="input-group-text search-form-input">Stops</span>
-            <input type="text" class="form-control search-input">
-
-            <div class="search-f-dropdown stop-filder-dropdown" style="display: none;">
-               <ul class="s-dropdown-list">
-                <li><a>No Stops</a></li>
-                <li><a>One Stop</a></li>
-                <li><a>Two Stops</a></li>
-               </ul>
-            </div>
-        </div>
-
-        <div class="input-group input-group-sm search-dropdown col-12">
-            <span class="input-group-text search-form-input">Airlines</span>
-            <input type="text" class="form-control search-input">
-
-            <div class="search-f-dropdown airline-f-dropdown" style="display: none;">
-                <ul class="s-dropdown-list">
-                  <li>
-                     <label>
-                      <input type="checkbox">American Airlines<span class="checkmark"></span>
-                     </label>
-                    </li>
-                    <li>
-                     <label>
-                      <input type="checkbox">United Airlines<span class="checkmark"></span>
-                     </label>
-                    </li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="input-group input-group-sm search-dropdown col-12">
-            <span class="input-group-text search-form-input">Pricer</span>
-            <input type="text" class="form-control search-input">
-            <div class="search-f-dropdown price-dropdown" style="display: none;">
-                <div class="price-slider-container">
-                  
-                </div>
-            </div>
-        </div>
-
-
-
-         </div>   
-        </div>
-
 
     </div>
 
