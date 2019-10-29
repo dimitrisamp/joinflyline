@@ -96,6 +96,8 @@ const app = new Vue({
             valInfants: 0,
             departure_date: "",
             return_date: "",
+            depareture_date_data: null,
+            return_date_data: null,
             city_from: "",
             city_to: "",
             placeFrom: "",
@@ -342,14 +344,16 @@ const app = new Vue({
 
             const placeTo = this.cityToInput.searchResults[this.cityToInput.selectedIndex];
             const placeFrom = this.cityFromInput.searchResults[this.cityFromInput.selectedIndex];
-            formData.append("city_from", this.formatPlace(placeFrom));
-            formData.append("city_to", this.formatPlace(placeTo));
-            formData.append("placeFrom", placeFrom.code);
-            formData.append("placeTo", placeTo.code);
-            formData.append("dep_date", this.form.departure_date);
+            formData.append("fly_from", placeFrom.code);
+            formData.append("fly_to", placeTo.code);
+            const dateFrom = this.form.departure_date_data.format('DD/MM/YYYY');
+            formData.append("date_from", dateFrom);
+            formData.append("date_to", dateFrom);
             formData.append("type", this.form.destinationTypeId);
             if (this.form.destinationTypeId === "round") {
-                formData.append("ret_date", this.form.return_date);
+                const dateTo = this.form.return_date_data.format('DD/MM/YYYY');
+                formData.append("return_from", dateTo);
+                formData.append("return_to", dateTo);
             }
             formData.append("adults", this.form.valAdults);
             formData.append("infants", this.form.valInfants);
@@ -367,9 +371,37 @@ const app = new Vue({
             if (this.form.maxStops !== null) {
                 formData.append('max_stopovers', this.form.maxStops);
             }
-            let url = new URL('/results', window.location);
+            let url = new URL('https://kiwicom-prod.apigee.net/v2/search', window.location);
             url.search = new URLSearchParams(formData);
             return url
+        },
+        calculateLayovers(routes) {
+            for (let i = 0; i < routes.length - 1; i++) {
+                let [prev, next] = [routes[i], routes[i + 1]];
+                prev.layover = (new Date(next.utc_departure).getTime() - new Date(prev.utc_arrival).getTime()) / 1000;
+            }
+        },
+        getAirlines(flights) {
+            let airlines = new Set();
+            for (const flight of flights) {
+                for (const airline of flight.airlines) {
+                    airlines.add(airline);
+                }
+            }
+            return [...airlines].sort();
+        },
+        processFlight(sr) {
+            const to_routes = sr.route.filter((r) => r.return === 0);
+            const return_routes = sr.route.filter((r) => r.return === 1);
+            this.calculateLayovers(to_routes);
+            this.calculateLayovers(return_routes);
+            const roundtrip = return_routes.length > 0;
+            const return_departure = roundtrip ? return_routes[0].local_departure : null;
+            return {
+                ...sr,
+                roundtrip,
+                return_departure,
+            }
         },
         displaySearchResults(data) {
             if (this.searchResults.length === 0) {
@@ -383,12 +415,15 @@ const app = new Vue({
         },
         search() {
             this.searchProgress = true;
-            fetch(this.getSearchURL()
-            ).then(
+            fetch(this.getSearchURL(), {
+                headers: {'apikey': 'xklKtpJ5fxZnk4rsDepqOzLUaYYAO9dI'},
+            }).then(
                 (response) => response.json()
             ).then(
                 (data) => {
-                    this.displaySearchResults(data);
+                    data.data = data.data.map(this.processFlight);
+                    const airlines = this.getAirlines(data.data);
+                    this.displaySearchResults({data, airlines});
                 }
             ).finally(
                 () => {
@@ -503,7 +538,7 @@ const app = new Vue({
             const placeFrom = this.cityFromInput.searchResults[this.cityFromInput.selectedIndex];
             if (!placeTo || !placeFrom) return true;
             return false;
-        }
+        },
     }
 });
 
@@ -515,6 +550,8 @@ $(function () {
         onSelect(start, end) {
             if (start) app.form.departure_date = start.format('MM/DD/YYYY');
             if (end) app.form.return_date = end.format('MM/DD/YYYY');
+            app.form.departure_date_data = start;
+            app.form.return_date_data = end;
         }
     });
     $('#fullpage').fullpage({
