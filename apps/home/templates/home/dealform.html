@@ -94,7 +94,7 @@
             <div class="search-item search-item-from"
                  v-bind:class="{shadowsrch: cityFromInput.focused}">
                 <div class="input-group input-group-sm search-dropdown">
-                    <span class="input-group-text search-form-input">Departure City:</span>
+                    <span class="input-group-text search-form-input">Enter a Departure City</span>
                     <input type="text"
                            class="form-control search-input"
                            @focus="cityFromInputFocused"
@@ -131,7 +131,7 @@
             <div class="search-item search-item-to"
                  v-bind:class="{shadowsrch: cityToInput.focused}">
                 <div class="input-group input-group-sm search-dropdown">
-                    <span class="input-group-text search-form-input">Arrival City:</span>
+                    <span class="input-group-text search-form-input">Enter an Arrival City</span>
                     <input type="text"
                            class="form-control search-input"
                            @focus="cityToInputFocused"
@@ -165,20 +165,22 @@
         </div>
 
         <div class="input-group input-group-sm search-dropdown col-md-6 col-12">
-            <span class="input-group-text search-form-input">Departure Date</span>
+            <span class="input-group-text search-form-input">Dep Date</span>
             <input type="text" id="departure_date"
                    aria-describedby="basic-addon3"
                    class="form-control search-input">
         </div>
 
         <div class="input-group input-group-sm search-dropdown col-md-6 col-12">
-            <span class="input-group-text search-form-input">Return Date</span>
+            <span class="input-group-text search-form-input">Ret Date</span>
             <input type="text" id="return_date"
                    aria-describedby="basic-addon3"
                    class="form-control search-input">
         </div>
-
-        <div class="input-group input-group-sm search-dropdown col-12" v-if="searchResults.length !== 0">
+        <div class="filter-field">
+            <b>Filters</b>
+        </div>
+        <div class="input-group input-group-sm search-dropdown col-12">
             <span class="input-group-text search-form-input">Airline Filter</span>
             <input type="text" class="form-control search-input" @focus="openAirlinesSelect" v-model="airlinesText">
 
@@ -190,7 +192,7 @@
 
         </div>
 
-        <div class="input-group input-group-sm search-dropdown col-12" v-if="searchResults.length !== 0">
+        <div class="input-group input-group-sm search-dropdown col-12">
             <span class="input-group-text search-form-input">Stops Filter</span>
             <input type="text" class="form-control search-input" @focus="openMaxStopsSelect" v-model="maxStopsText">
 
@@ -199,10 +201,9 @@
                     <li v-for="(value, maxStops) in maxStopsFilterOptions" @click="selectMaxStops(maxStops)"><a>{( value )}</a></li>
                 </ul>
             </div>
-
         </div>
 
-        <div class="input-group input-group-sm search-dropdown col-12" v-if="searchResults.length !== 0">
+        <div class="input-group input-group-sm search-dropdown col-12">
             <span class="input-group-text search-form-input">Pricing Filter</span>
             <input type="text" class="form-control search-input" @focus="openPriceSelect" v-model="priceText">
 
@@ -211,11 +212,10 @@
                 <vue-slider v-model="form.priceRange" :enable-cross="false" :max="3000" @change="updatePriceText"></vue-slider>
                 </div>
             </div>
-
         </div>
 
         <div class="search-button col-12">
-            <button type="submit" class="btn btn-info" @click="search">
+            <button type="submit" class="btn btn-info" @click="search" :disabled="isFormIncomplete">
                 Search Our Deals
             </button>
         </div>
