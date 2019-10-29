@@ -224,33 +224,43 @@
   
         <div class="input-group input-group-sm search-dropdown col-12">
             <span class="input-group-text search-form-input">Stops</span>
-            <input type="text" class="form-control search-input" @focus="openMaxStopsSelect" v-model="maxStopsText">
+            <input type="text" class="form-control search-input">
 
-            <div class="search-f-dropdown stop-filder-dropdown" v-if="maxStopsSelectProgress" v-click-outside="closeMaxStopsSelect">
-                <ul class="s-dropdown-list">
-                    <li v-for="(value, maxStops) in maxStopsFilterOptions" @click="selectMaxStops(maxStops)"><a>{( value )}</a></li>
-                </ul>
+            <div class="search-f-dropdown stop-filder-dropdown" style="display: none;">
+               <ul class="s-dropdown-list">
+                <li><a>No Stops</a></li>
+                <li><a>One Stop</a></li>
+                <li><a>Two Stops</a></li>
+               </ul>
             </div>
         </div>
 
         <div class="input-group input-group-sm search-dropdown col-12">
             <span class="input-group-text search-form-input">Airlines</span>
-            <input type="text" class="form-control search-input" @focus="openAirlinesSelect" v-model="airlinesText">
+            <input type="text" class="form-control search-input">
 
-            <div class="search-f-dropdown airline-f-dropdown" v-if="airlinesSelectProgress" v-click-outside="closeAirlinesSelect">
+            <div class="search-f-dropdown airline-f-dropdown" style="display: none;">
                 <ul class="s-dropdown-list">
-                    <li v-for="airlineData in form.airlines"><label><input type="checkbox" v-model="airlineData.checked" @change="updateAirlinesSelection">{( airlineData.name )}<span class="checkmark"></span></label></li>
+                  <li>
+                     <label>
+                      <input type="checkbox">American Airlines<span class="checkmark"></span>
+                     </label>
+                    </li>
+                    <li>
+                     <label>
+                      <input type="checkbox">United Airlines<span class="checkmark"></span>
+                     </label>
+                    </li>
                 </ul>
             </div>
         </div>
 
         <div class="input-group input-group-sm search-dropdown col-12">
             <span class="input-group-text search-form-input">Pricer</span>
-            <input type="text" class="form-control search-input" @focus="openPriceSelect" v-model="priceText">
-
-            <div class="search-f-dropdown price-dropdown" v-show="priceSelectProgress" v-click-outside="closePriceSelect">
+            <input type="text" class="form-control search-input">
+            <div class="search-f-dropdown price-dropdown" style="display: none;">
                 <div class="price-slider-container">
-                <vue-slider v-model="form.priceRange" :enable-cross="false" :max="3000" @change="updatePriceText"></vue-slider>
+                  
                 </div>
             </div>
         </div>
