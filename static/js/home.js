@@ -356,19 +356,17 @@ const app = new Vue({
             formData.append("infants", this.form.valInfants);
             formData.append("children", this.form.valChildren);
             formData.append("selected_cabins", this.form.seatType);
-            if (this.searchResults.length !== 0) {
-                if (this.form.priceRange !== [0, 3000]) {
-                    const [price_from, price_to] = this.form.priceRange;
-                    formData.append("price_from", price_from);
-                    formData.append("price_to", price_to);
-                }
-                const selectedAirlines = this.form.airlines.filter((a) => a.checked);
-                if (selectedAirlines) {
-                    formData.append('select_airlines', selectedAirlines.map((a) => a.code).join(','));
-                }
-                if (this.form.maxStops !== null) {
-                    formData.append('max_stopovers', this.form.maxStops);
-                }
+            if (this.form.priceRange !== [0, 3000]) {
+                const [price_from, price_to] = this.form.priceRange;
+                formData.append("price_from", price_from);
+                formData.append("price_to", price_to);
+            }
+            const selectedAirlines = this.form.airlines.filter((a) => a.checked);
+            if (selectedAirlines) {
+                formData.append('select_airlines', selectedAirlines.map((a) => a.code).join(','));
+            }
+            if (this.form.maxStops !== null) {
+                formData.append('max_stopovers', this.form.maxStops);
             }
             let url = new URL('/results', window.location);
             url.search = new URLSearchParams(formData);
