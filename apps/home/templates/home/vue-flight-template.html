@@ -285,10 +285,7 @@
                 <!-------------End Return flights------------------->
             </div>
             <div class="search-results-buttons text-right p-2 pt-3">
-                <a :href="getRetailUrl(flight.booking_token)">
-                    <button class="search_btn book-btn mt-1"> Book for ${( flight.price )}
-                    </button>
-                </a>
+                <button @click="proceedToBooking(flight)" class="search_btn book-btn mt-1"> Book for ${( flight.price )}</button>
             </div>
         </div>
     </div>

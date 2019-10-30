@@ -113,8 +113,7 @@ def make_hold_bags(flight_ids, bags):
     return result
 
 
-def save_booking(request, booking_token, passengers, payment, zooz=True, test=False):
-    retail_info = get_retail_info(booking_token)
+def save_booking(request, retail_info, passengers, payment, zooz=True, test=False):
     flight_ids = [o["id"] for o in retail_info["route"]]
     total_bags = 0
     for p in passengers:
@@ -127,7 +126,7 @@ def save_booking(request, booking_token, passengers, payment, zooz=True, test=Fa
         p["email"] = S.RECEIVE_EMAIL
         p["phone"] = payment.get("phone", S.RECEIVE_PHONE)
     body = {
-        "booking_token": booking_token,
+        "booking_token": retail_info['booking_token'],
         "currency": "USD",
         "lang": "en",
         "locale": "en",
@@ -190,7 +189,7 @@ class SaveBookingView(View):
         try:
             save_booking(
                 request,
-                data["booking_token"],
+                data["retail_info"],
                 data["passengers"],
                 data["payment"],
                 zooz=True,
@@ -275,8 +274,8 @@ def get_retail_info(booking_token):
     return json.loads(BookingCache.objects.get(booking_token=booking_token).data)
 
 
-def retail_booking_view(request, booking_token):
-    retail_info = get_retail_info(booking_token)
+def retail_booking_view(request):
+    retail_info = json.loads(request.POST.get('retail_info'))
     one_way = not bool(o for o in retail_info["route"] if o["return"] == 1)
     for flight in retail_info["route"]:
         dep_time = parse_isodatetime(flight["local_departure"])

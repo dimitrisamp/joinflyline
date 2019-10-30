@@ -6,7 +6,8 @@ import {
     getSpecificRoute,
     secs2hm,
     staticUrl,
-    timeInterval
+    timeInterval,
+    getCookie,
 } from './utils.js';
 
 
@@ -27,6 +28,22 @@ Vue.component('flight', {
             const childrenText = valChildren === 0 ? '' : `${valChildren} Child${valChildren > 1 ? 'ren' : ''}`;
             const infantsText = valInfants === 0 ? '' : `${valInfants} Infant${valInfants > 1 ? 's' : ''}`;
             return [adultsText, childrenText, infantsText].filter((v) => v.length > 0).join(', ');
+        },
+        proceedToBooking(flight) {
+            let form = document.createElement("form");
+            form.style.visibility = 'hidden';
+            form.method = 'POST';
+            form.action = '/retail/';
+            let input = document.createElement('input');
+            input.name = 'retail_info';
+            input.value = JSON.stringify(flight);
+            form.appendChild(input);
+            let csrfmiddlewaretoken = document.createElement('input');
+            csrfmiddlewaretoken.name = 'csrfmiddlewaretoken';
+            csrfmiddlewaretoken.value = getCookie('csrftoken');
+            form.appendChild(csrfmiddlewaretoken);
+            document.body.appendChild(form);
+            form.submit();
         },
         toggleCollapsed() {
             this.collapsed = !this.collapsed;

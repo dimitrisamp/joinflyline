@@ -1,7 +1,8 @@
 $(function () {
     const $passengersBlock = $("#passengers");
     const $primaryPassengerBlock = $("#primary-passenger-block");
-    const $promocode = $("#promocode")
+    const $promocode = $("#promocode");
+    const retailInfo = JSON.parse(document.getElementById('retail-info').textContent);
 
     $('#js-add-passenger').on("click", function () {
         let $block_copy = $primaryPassengerBlock.clone().removeAttr("id");
@@ -26,8 +27,7 @@ $(function () {
     }
 
     function getBookingToken() {
-        let url = new URL(window.location);
-        return url.pathname.split('/').slice(-1)[0];
+        return retailInfo.booking_token;
     }
 
     window.getCookie = function (name) {
@@ -118,9 +118,9 @@ $(function () {
         const passengers = getPassengersData();
 
         const data = {
-            "booking_token": getBookingToken(),
             "passengers": passengers,
             "payment": getCheckoutFormData(),
+            "retail_info": retailInfo,
         };
 
         $.ajax({

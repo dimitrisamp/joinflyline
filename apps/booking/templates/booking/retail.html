@@ -51,6 +51,7 @@
     {% include "_includes/footer.html" %}
 {% endblock %}
 {% block jscontent %}
+    {{ retail_info | json_script:"retail-info"}}
     <script src="{% static "js/passenger.js" %}"></script>
     <script src="{% static "js/bookflight.js" %}"></script>
 {% endblock %}

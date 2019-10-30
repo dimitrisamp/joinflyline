@@ -451,7 +451,10 @@ const app = new Vue({
                 (response) => response.json()
             ).then(
                 (data) => {
+                    let parent = {...data};
+                    delete parent.data;
                     data.data = data.data.map(this.processFlight);
+                    data.data = data.data.map((o) => {o.parent = parent; return o});
                     const airlines = this.getAirlines(data.data);
                     this.quickFiltersData = this.getQuickLinksData(data.data);
                     this.displaySearchResults({data, airlines});
