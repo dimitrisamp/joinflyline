@@ -74,9 +74,10 @@ header.sticky{
 .search-flight-home:before {
     content: '';
     position: absolute;
-    border-right: 2px solid #ccc;
-    height: 100%;
+    height: 80vh;
     right: 0;
+    width: 2px;
+    background: #ccc;
 }
 .search-flight-home {
     padding-right:20px;
@@ -210,7 +211,7 @@ header.sticky{
     letter-spacing: 1px;
 }
 .filter-field {
-    padding: 14px 15px;
+    padding: 6px 15px;
 }
 .filter-field b{
     font-size: 18px;
@@ -682,7 +683,7 @@ header.sticky{
 *****************************/
 
 footer {
-    background: #000;
+    background: #fff;
     padding: 50px 0px;
     padding-top: 10px;
 }
@@ -694,7 +695,7 @@ footer .top-footer h3 {
     font-size: 24px;
     font-weight: 700;
     line-height: 19px;
-    color: #fff;
+    color: #000;
     margin-bottom: 23px;
 }
 
@@ -713,7 +714,7 @@ footer .top-footer ul li {
 
 footer .top-footer a {
     text-decoration: none;    
-    color: #fff;
+    color: #000;
 }
 
 footer .bottom-footer {
@@ -739,7 +740,7 @@ footer .bottom-footer  ul {
 }
 
 footer .bottom-footer a {
-    color: #fff;
+    color: #000;
     text-decoration: none;
     font-size: 19px;
     font-weight: 600;
@@ -760,7 +761,7 @@ footer .bottom-footer ul li:before{
     font-weight: 400;
     display: inline-block;
     margin: 0 15px;
-    color: #fff;
+    color: #000;
 }
 .logo h3 {
     color: #fff;
