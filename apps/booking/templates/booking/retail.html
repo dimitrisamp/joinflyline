@@ -8,9 +8,9 @@
 
 {% endblock %}
 {% block content %}
-    <section class="navbar-section">
+<!--     <section class="navbar-section">
         {% include "_includes/promo.html" %}
-    </section>
+    </section> -->
     <section class="navbar-section">
         {% include "_includes/navbar.html" with page="retail" %}
     </section>
@@ -28,7 +28,7 @@
                     <div id="passengers">
                     {% include "booking/includes/passenger.html" %}
                     </div>
-                    <div class="text-center">
+                    <div class="text-center booking-p-button">
                         <button type="submit" class="btn btn-default add-btn" id="js-add-passenger"><span
                                 class="fa fa-user-plus"></span> Add another passenger
                         </button>

@@ -94,7 +94,7 @@ a {
     font-size: 16px;
     line-height: 40px;
     color: #fff;
-    border-radius: 4px;
+    border-radius: 0px;
     padding: 0 50px;
     display: inline-block;
     text-decoration: none;
@@ -304,7 +304,7 @@ header .mobile-menu {
 }
 
 footer {
-    background: #F7F9FF;
+    background: #fff;
     padding: 50px 100px;
 }
 
@@ -315,6 +315,9 @@ footer .top-footer {
     max-width: 1200px;
     margin: 0 auto;
     justify-content: space-between;
+}
+.centeralign-footer {
+    padding: 0 60px;
 }
 
 footer .top-footer .col2 {
@@ -349,7 +352,6 @@ footer .top-footer a {
 }
 
 footer .bottom-footer {
-    border-top: 3px solid #F1F1F1;
     padding-top: 40px;    
 }
 

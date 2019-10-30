@@ -7,16 +7,16 @@ body{
 
 .summary-section{
     background: #fff;
-    border: 1px solid #cccccc57;
+    border: 2px solid #ccc;
     padding: 26px 24px;
     margin-top: 20px;
     border-radius: 2px;
 }
 .trip-summary{
-    font-weight: 500;
-    font-size: 18px;
+    font-weight: 600;
+    font-size: 20px;
     margin: 0;
-    margin-bottom: 11px;
+    margin-bottom: 20px;
 }
 .trip-summary span{
     margin-right: 10px;
@@ -102,6 +102,15 @@ body{
 	padding: 12px 15px;
 	margin-top:20px;
 	background: #fff;
+    border: 2px solid #ccc;
+    border-bottom: none;
+}
+.booking-p-button{
+    background: #fff;
+    margin-bottom: 40px;
+    border-left: 2px solid #ccc;
+    border-right: 2px solid #ccc;
+    border-bottom: 2px solid #ccc;
 }
 .col-sub{
     position: absolute;
@@ -122,8 +131,16 @@ body{
     margin-top: 30px;
 }
 .more-info h3{
-    font-size: 14px;
+    font-size: 20px;
     font-weight: bold;
+}
+.more-info {
+    margin-top: 20px;
+}
+b.passenger-kind {
+    font-size: 20px;
+    margin: 11px 6px;
+    display: inline-grid;
 }
 .more-info .fa-mobile{
     font-size: 29px;
@@ -196,11 +213,12 @@ body{
 /*alert bar */
 
 .alert-info{
-	font-size:12px;
-	background: #e5f7ff !important;
-	color: #3778b4 !important;
-    margin-top: 36px;
-    margin-bottom: 34px;
+    font-size: 12px;
+    background: #e5f7ff !important;
+    color: #3778b4 !important;
+    margin-top: 5px;
+    margin-bottom: 19px;
+    border-radius: 0px;
 }
 .alert-info span{
 	margin-right: 10px;
@@ -246,6 +264,8 @@ body{
 }
 .userForm input[type="text"] {
     border-color: #c7d1dd;
+    border-radius: 0px;
+    border: 2px solid #ccc; 
 }
 .userForm input[type="text"]::placeholder{
   color: #c7d1dd;
@@ -253,9 +273,13 @@ body{
 .userForm select {
     border-color: #c7d1dd;
     height: 39px !important;
+    border-radius: 0px;
+    width: 100%;
+    border: 2px solid #ccc; 
 }
 .form-group-sm label {
-    font-size: 12px;
+    font-size: 13px;
+    color: #000;
 }
 
 /*Optionnal section */
@@ -264,7 +288,7 @@ body{
 	margin-top: 30px;
 }
 .heading {
-    font-size: 12px;
+    font-size: 20px;
     text-transform: uppercase;
     font-weight: 800;
 }
@@ -276,7 +300,7 @@ body{
 .order-list{
     border:2px solid #00B7FF;
     padding: 2px 15px;
-    border-radius: 4px;
+    border-radius: 0px;
     margin-bottom: 20px;
 }
 
@@ -349,7 +373,10 @@ input[type="radio"] {
 	margin-right: 5px;
 }
 .price_detail{
-	margin-top: 20px;
+    margin-top: 7px;
+    background: #fff;
+    padding: 15px 17px;
+    border:2px solid #cccccc;
 }
 .list-price-detail{
 	list-style: none;
@@ -380,7 +407,7 @@ input[type="radio"] {
     background: #fff;
     padding: 14px 36px;
     margin-top: 40px;
-    border: 1px solid #cccccc57;
+    border: 2px solid #cccccc;
 }
 .checkout-section h3 {
     margin-top: 22px;
@@ -389,12 +416,17 @@ input[type="radio"] {
     font-weight: 600;
 }
 .checkout-section label{
-    font-size: 11px;
+    font-size: 13px;
+    color: #000;
 }
 .checkout-section input[type="text"]{
-    margin-bottom: 17px;
-    border-radius: 3px;
+    margin-bottom: 0px;
+    border-radius: 0px;
     padding: 17px 10px;
+    border:2px solid #ccc;
+}
+.checkout-section .form-group{
+    margin-bottom: 10px;
 }
 .checkout-section .btn{
     background: #00B7FF;
@@ -403,8 +435,8 @@ input[type="radio"] {
     color: #fff;
 		font-weight: bold;
     font-size: 15px;
-    border-radius: 3px;
-    padding: 7px 0;
+    border-radius: 0px;
+    padding: 5px 0;
     margin-bottom: 10px;
     margin-top: -10px;
 }
@@ -420,10 +452,10 @@ input[type="radio"] {
 
 .subcribe-section{
     background: #fff;
-    border: 1px solid #cccccc57;
+    border: 2px solid #cccccc;
     padding: 10px 10px;
-    margin-top: 60px;
-    margin-bottom: 20px;
+    margin-top: 20px;
+    margin-bottom: 10px;
 }
 .subcribe-btn .btn{
     background: #00b9ff;
