@@ -42,10 +42,10 @@
                         <div class="row">
                             <div class="col-md-4 col-12">
                                 <div class="search-flight-home">
-                                  <h3>Search our Deals</h3>   
-                                  <p>Exclusive private flights for members</p>
-                                
-                                  {% include "home/dealform.html" %}
+                                    <h3>Search our Deals</h3>
+                                    <p>Exclusive private flights for members</p>
+
+                                    {% include "home/dealform.html" %}
                                 </div>
                             </div>
 
@@ -61,8 +61,10 @@
                                         <a href="#" class="btn btn-default">Learn More</a>
                                     </div>
                                 </div>
-                                <div class="search-results" v-if="searchProgress">
-                                    <div v-for="i in 5" :key="i">
+                                <quicklinks v-if="searchResults.length !== 0" :sort="form.sort" :data="quickFiltersData" @sort-by="sortResultsBy"></quicklinks>
+                                <div class="search-results" v-if="searchProgress"
+                                     v-cloak>
+                                    <div class="w-100" v-for="i in 5" :key="i">
                                         <div class="result-item mb-2 w-100"
                                              style="width: 90%">
                                             <div class="result-block result-toggler w-100 d-block d-md-flex justify-content-start p-2 pt-3 pb-3"
@@ -91,10 +93,19 @@
                                     </div>
                                 </div>
                                 <div class="search-results"
+                                     v-cloak
                                      v-if="!searchProgress && searchResults.length !== 0">
+
                                     <flight v-for="flight in searchResults"
                                             :flight="flight" :form="form"
-                                            :key="flight.id"/>
+                                            :key="flight.id"></flight>
+
+                                    <div class="h-btngroups">
+                                        <a class="btn btn-default" href="#"
+                                           @click="loadMore">Load
+                                            More</a>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
@@ -243,9 +254,11 @@
 <script src="{% static "home/js/jquery-2.1.4.min.js" %}"></script>
 <script src="{% static "home/js/bootstrap.js" %}"></script>
 {% include "home/vue-flight-template.html" %}
+{% include "home/vue-quicklinks-template.html" %}
 <script type="text/javascript"
         src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<script src="{% static "home/js/flight.js" %}"></script>
+<script type="module" src="{% static "home/js/flight.js" %}"></script>
+<script type="module" src="{% static "home/js/quicklinks.js" %}"></script>
 <script src="{% static "home/fullPage.js-master/dist/fullpage.min.js" %}"></script>
 <script src="{% static "home/vue-slider-component/dist/vue-slider-component.umd.min.js" %}"></script>
 <script type="module" src="{% static "js/home.js" %}"></script>

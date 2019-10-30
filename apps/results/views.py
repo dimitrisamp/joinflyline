@@ -115,12 +115,6 @@ class ResultsView(View):
                 "date": min(data, key=lambda x: x["date"]),
             }
 
-    def get_template_names(self):
-        if self.request.is_ajax():
-            return ["results/includes/results_center.html"]
-        else:
-            return ["results/results.html"]
-
     def get_search_params(self):
         request = self.request
         search_params = {k: request.GET[v] for k, v in self.param_mapping.items()}
