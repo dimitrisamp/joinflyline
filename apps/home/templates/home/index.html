@@ -7,6 +7,7 @@
     <link rel="stylesheet" type="text/css" href="{% static "home/css/bootstrap.css" %}">
     <link rel="stylesheet" type="text/css" href="{% static "home/css/home-page.css" %}">
     <link rel="stylesheet" type="text/css" href="{% static "home/css/dropdown.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "home/css/rotate-animation.css" %}">
     <link rel="stylesheet" type="text/css"
           href="{% static "home/fullPage.js-master/dist/fullpage.min.css" %}">
     <link rel="stylesheet" type="text/css" href="{% static "css/results.css" %}">
@@ -52,9 +53,16 @@
                             <div class="col-md-8 col-12">
                                 <div v-if="searchResults.length === 0 && !searchProgress"
                                      class="h-contentarea">
-
                                     <h3>The Flight Club Build For</h3>
-                                    <strong>Weekend Getways</strong>
+                                    <div class="cd-intro">
+                                        <h6 class="cd-headline slide loading-bar">
+                                            <span class="cd-words-wrapper">
+                                                <b class="is-visible">Weekend Getways</b>
+                                                <b>Weekend Getways</b>
+                                                <b>Weekend Getways</b>
+                                            </span>
+                                        </h6>
+                                    </div> <!-- cd-intro -->
                                     <p>Book travel for all occuscions and save</p>
                                     <div class="h-btngroups">
                                         <a href="#" class="btn btn-default h-blackbg">Get Started</a>
@@ -253,6 +261,7 @@
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="{% static "home/js/jquery-2.1.4.min.js" %}"></script>
 <script src="{% static "home/js/bootstrap.js" %}"></script>
+<script src="{% static "home/js/rotate-animationscript.js" %}"></script>
 {% include "home/vue-flight-template.html" %}
 {% include "home/vue-quicklinks-template.html" %}
 <script type="text/javascript"
