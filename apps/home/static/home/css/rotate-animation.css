@@ -69,7 +69,7 @@
   content: '';
   position: absolute;
   left: 0;
-  bottom: 0;
+  bottom: 10px !important;
   height: 3px;
   width: 0;
   background:#00b0f5;
