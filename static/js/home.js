@@ -576,6 +576,9 @@ const app = new Vue({
             if (!placeTo || !placeFrom) return true;
             return false;
         },
+        showWideForm() {
+            return this.user.anonymous && this.searchResults.length === 0;
+        }
     }
 });
 
