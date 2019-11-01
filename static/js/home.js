@@ -82,6 +82,9 @@ const app = new Vue({
         airlinesText: '',
         priceSelectProgress: false,
         priceText: '',
+        user: {
+            anonymous: true,
+        },
         form: {
             limit: 20,
             sort: null,

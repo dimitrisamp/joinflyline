@@ -180,7 +180,7 @@
                    aria-describedby="basic-addon3"
                    class="form-control search-input">
         </div>
-        {% comment %}
+        <div v-if="!user.anonymous">
         <div class="filter-field">
             <b>Filters (Optional)</b>
         </div>
@@ -217,7 +217,7 @@
                 </div>
             </div>
         </div>
-        {% endcomment %}
+        </div>
 
         <div class="search-button col-12">
             <button type="submit" class="btn btn-info" @click="search" :disabled="isFormIncomplete">

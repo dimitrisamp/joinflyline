@@ -41,17 +41,18 @@
                 <div class="container">
                     <div class="h-headermain">
                         <div class="row">
-                            <div class="col-md-12 col-12">
+                            <div class="col-12" :class="user.anonymous?'col-md-12':'col-md-4'">
                                 <div class="search-flight-home">
+                                    <div v-if="user.anonymous">
                                     {% include "home/cd-intro.html" %}
+                                    </div>
                                     <h3>Search our Deals</h3>
                                     <p>Exclusive private flights for members</p>
 
                                     {% include "home/dealform.html" %}
                                 </div>
                             </div>
-                            {% comment %}
-                            <div class="col-md-8 col-12">
+                            <div v-if="!user.anonymous || searchResults.length !== 0" class="col-md-8 col-12">
                                 <div v-if="searchResults.length === 0 && !searchProgress"
                                      class="h-contentarea">
                                     {% include "home/cd-intro.html" %}
@@ -108,7 +109,6 @@
 
                                 </div>
                             </div>
-                            {% endcomment %}
                         </div>
                     </div><!-- h-headermain -->
                 </div>
