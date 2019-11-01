@@ -596,8 +596,12 @@ $(function () {
     $(window).scroll(function () {
         if ($(window).scrollTop() > sticky) {
             $("header").addClass("sticky");
+            $("#fp-nav").addClass("dots-display");
         } else {
             $("header").removeClass("sticky");
+            $("#fp-nav").removeClass("dots-display");
         }
     });
+
+
 });
