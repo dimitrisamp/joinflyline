@@ -46,8 +46,10 @@
                                     <div v-if="user.anonymous">
                                     {% include "home/cd-intro.html" %}
                                     </div>
-                                    <h3>Search our Deals</h3>
-                                    <p>Exclusive private flights for members</p>
+                                    <div v-if="!user.anonymous">
+                                     <h3>Search our Deals</h3>
+                                     <p>Exclusive private flights for members</p>
+                                    </div>
                                     <div v-if="user.anonymous && searchResults.length === 0 ">
                                     {% include "home/dealform-horizontal.html" %}
                                     </div>
@@ -116,7 +118,7 @@
                         </div>
                     </div><!-- h-headermain -->
                 </div>
-                <div class="assets-section">
+                <div class="assets-section" v-if="!user.anonymous && searchResults.length === 0">
                     <div class="container">
                         <div class="row justify-content-center">
                             <div class="col-3">
@@ -145,6 +147,58 @@
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="home-slider" v-if="user.anonymous && searchResults.length === 0">
+                   <h3 class="slider-title">Never miss out on a Flyline deal</h3>  
+                  <div class="container">
+                    <div class="row">
+                     
+                     <div class="col-md-3 col-12">
+                       <div class="slider-box">
+                           <img src="{% static "home/img/closing-photo.jpg" %}" />
+                           <div class="h-slider-caption">
+                               <strong>New York</strong>
+                               <p>$275+ Round Trip | Typical Price</p>
+                               <b>$342 Round Trip | Found on Flyline</b>
+                           </div>
+                       </div>  
+                     </div>   
+
+                     <div class="col-md-3 col-12">
+                       <div class="slider-box">
+                           <img src="{% static "home/img/closing-photo.jpg" %}" />
+                           <div class="h-slider-caption">
+                               <strong>New York</strong>
+                               <p>$275+ Round Trip | Typical Price</p>
+                               <b>$342 Round Trip | Found on Flyline</b>
+                           </div>
+                       </div>  
+                     </div>   
+
+                     <div class="col-md-3 col-12">
+                       <div class="slider-box">
+                           <img src="{% static "home/img/closing-photo.jpg" %}" />
+                           <div class="h-slider-caption">
+                               <strong>New York</strong>
+                               <p>$275+ Round Trip | Typical Price</p>
+                               <b>$342 Round Trip | Found on Flyline</b>
+                           </div>
+                       </div>  
+                     </div>   
+
+                     <div class="col-md-3 col-12">
+                       <div class="slider-box">
+                           <img src="{% static "home/img/closing-photo.jpg" %}" />
+                           <div class="h-slider-caption">
+                               <strong>New York</strong>
+                               <p>$275+ Round Trip | Typical Price</p>
+                               <b>$342 Round Trip | Found on Flyline</b>
+                           </div>
+                       </div>  
+                     </div>   
+
+                   </div>
+                  </div>
                 </div>
                 <div class="clickdown">
                     <a href="#Section02" class="fliLine-Banner">

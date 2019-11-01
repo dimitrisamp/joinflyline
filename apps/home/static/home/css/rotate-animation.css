@@ -7,6 +7,13 @@
   max-width: auto;
   text-align: center;
 }
+.full-web-form h6{
+    font-size: 40px !important;
+    font-family: dona-blackItalic;
+    color: #00b0f5;
+    margin-top: -8px !important;
+    margin-left: 10px;
+}
 .cd-intro {
   margin: 0 auto;
 }

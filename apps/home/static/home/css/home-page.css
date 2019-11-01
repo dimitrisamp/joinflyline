@@ -75,12 +75,30 @@ header.sticky{
     margin-bottom: 0;
     font-family:Dona-Regular;
 }
+.newhome-form h3{
+    font-weight: 600;
+    font-size: 40px;
+    padding-top: 25px;
+    color: #000;
+    margin-bottom: 0;
+    font-family: Dona-black;
+    display: inline-flex;
+}
 .search-flight-home p {
     font-family:Dona-Regular;
     font-size: 16px;
     margin: 0;
     padding-bottom: 7px;
     color: #7d7d7d;
+}
+#newhome-form p{
+    font-family: Dona-Regular;
+    font-size: 25px;
+    margin: 0;
+    padding-bottom: 7px;
+    color: #7d7d7d;
+    margin-top: -16px;
+    margin-bottom: 10px;   
 }
 .search-flight-home:before {
     content: '';
@@ -89,6 +107,13 @@ header.sticky{
     right: 0;
     width: 2px;
     background: #ccc;
+}
+.wide-form .search-flight-home:before{
+    display: none !important;
+}
+.wide-form{
+    padding-top: 46px;
+    padding-bottom: 30px;
 }
 .search-flight-home {
     padding-right:20px;
@@ -241,6 +266,63 @@ header.sticky{
     font-family:Dona-Regular;
     color: #000;
 }
+.horizontal-form .search-dropdown-outer{
+    padding-right: 0px;
+}
+.horizontal-form .search-dropdown{
+    padding-right: 0px;
+}
+.horizontal-f-btn .btn-saerch {
+    background: #00b0f5;
+    border-color: #00b0f5 !important;
+    padding: 7px 31px;
+    border: 1px solid #00b0f5;
+}
+
+/*****************************
+       Home Slider
+*****************************/
+
+.home-slider{
+    background: #f9f9f9;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-top: 2px solid #D7D7D7;
+}
+.home-slider .slider-title{
+    font-size: 25px;
+    color: black;
+    font-weight: bold;    
+    font-family:Dona-Regular;
+    color: #000;
+    text-align: center;
+}
+.home-slider img{
+    height: 190px;
+    max-height: 190px;
+}
+.h-slider-caption{
+    background: #fff;
+    padding-top: 5px;
+    padding-left: 10px;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+.h-slider-caption strong{
+    font-family:Dona-Black;
+}
+.h-slider-caption p{
+    margin-bottom: 0;
+    font-size: 11px;
+    color: #ccc;   
+    font-family:Dona-Regular;
+}
+.h-slider-caption b{
+    font-size: 13px;
+    font-family:Dona-Regular;
+    color: #000;
+}
+
 
 /*****************************
            Section 02
