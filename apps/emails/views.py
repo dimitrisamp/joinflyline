@@ -1,11 +1,9 @@
-from django.conf import settings as S
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.template.loader import render_to_string
-from sendgrid import Content, sendgrid
-from sendgrid.helpers.mail import Mail
 
 from apps.booking.models import BookingContact
+from django.core.mail import send_mail
 
 
 def booking_success(request, booking):
@@ -16,15 +14,13 @@ def booking_success(request, booking):
             "emails/booking_success.html",
             {"data": booking, "i": 0, "booking_contact": booking_contact},
         )
-        sg = sendgrid.SendGridAPIClient(S.SENDGRID_API_KEY)
         from_email = "booking@wanderift.com"
         to_email = booking_contact["email"]
         text_content = Content("text/html", htm_content)
         subject = "Booking Successful"
-        mail = Mail(from_email, to_email, subject)
-        mail.add_content(text_content)
         try:
-            sg.send(mail)
+            send_mail(subject, "text body", from_email,
+                      [to_email], html_message=text_content)
         except Exception as e:
             print(e)
         return render(
