@@ -48,7 +48,7 @@
                                     </div>
                                     <h3>Search our Deals</h3>
                                     <p>Exclusive private flights for members</p>
-                                    <div v-if="user.anonymous">
+                                    <div v-if="user.anonymous && searchResults.length === 0 ">
                                     {% include "home/dealform-horizontal.html" %}
                                     </div>
                                     <div v-else>
