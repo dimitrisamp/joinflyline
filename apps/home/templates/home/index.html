@@ -41,16 +41,16 @@
                 <div class="container">
                     <div class="h-headermain">
                         <div class="row">
-                            <div class="col-12" :class="{'col-md-12': user.anonymous && searchResults.length === 0, 'col-md-4': !user.anonymous || searchResults.length !== 0, 'wide-form'}">
+                            <div class="col-12" :class="{'col-md-12': showWideForm, 'col-md-4': !showWideForm, 'wide-form': showWideForm}">
                                 <div class="search-flight-home">
-                                    <div v-if="user.anonymous">
+                                    <div v-if="showWideForm">
                                     {% include "home/cd-intro.html" %}
                                     </div>
-                                    <div v-if="!user.anonymous">
+                                    <div v-if="!showWideForm">
                                      <h3>Search our Deals</h3>
                                      <p>Exclusive private flights for members</p>
                                     </div>
-                                    <div v-if="user.anonymous && searchResults.length === 0 ">
+                                    <div v-if="showWideForm">
                                     {% include "home/dealform-horizontal.html" %}
                                     </div>
                                     <div v-else>
@@ -58,7 +58,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div v-if="!user.anonymous || searchResults.length !== 0" class="col-md-8 col-12">
+                            <div v-if="!showWideForm" class="col-md-8 col-12">
                                 <div v-if="searchResults.length === 0 && !searchProgress"
                                      class="h-contentarea">
                                     {% include "home/cd-intro.html" %}
@@ -118,7 +118,7 @@
                         </div>
                     </div><!-- h-headermain -->
                 </div>
-                <div class="assets-section" v-if="!user.anonymous && searchResults.length === 0">
+                <div class="assets-section" v-if="!showWideForm">
                     <div class="container">
                         <div class="row justify-content-center">
                             <div class="col-3">
@@ -148,7 +148,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="home-slider" v-if="user.anonymous && searchResults.length === 0">
+                <div class="home-slider" v-if="showWideForm">
                    <h3 class="slider-title">Never miss out on a Flyline deal</h3>  
                   <div class="container">
                     <div class="row">
