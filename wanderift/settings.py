@@ -64,6 +64,7 @@ INSTALLED_APPS = [
     "apps.info",
     "apps.emails",
     "apps.common",
+    "anymail"
 ]
 
 MIDDLEWARE = [
