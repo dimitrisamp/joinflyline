@@ -1,5 +1,9 @@
+@font-face {
+  font-family:Dona-Regular;
+  src: url(fonts/Dona/Dona-Regular.ttf);
+}
 body{
-	font-family: 'Montserrat', sans-serif !important;
+      font-family:Dona-Regular !important;
 }
 .navbar-navigation{
 	border: none;
