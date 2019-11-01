@@ -82,6 +82,9 @@ const app = new Vue({
         airlinesText: '',
         priceSelectProgress: false,
         priceText: '',
+        user: {
+            anonymous: true,
+        },
         form: {
             limit: 20,
             sort: null,
@@ -573,6 +576,9 @@ const app = new Vue({
             if (!placeTo || !placeFrom) return true;
             return false;
         },
+        showWideForm() {
+            return this.user.anonymous && this.searchResults.length === 0;
+        }
     }
 });
 

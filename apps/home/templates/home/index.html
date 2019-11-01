@@ -41,30 +41,27 @@
                 <div class="container">
                     <div class="h-headermain">
                         <div class="row">
-                            <div class="col-md-4 col-12">
+                            <div class="col-12" :class="{'col-md-12': showWideForm, 'col-md-4': !showWideForm, 'wide-form': showWideForm}">
                                 <div class="search-flight-home">
-                                    <h3>Search our Deals</h3>
-                                    <p>Exclusive private flights for members</p>
-
-                                    {% include "home/dealform.html" %}
+                                    <div v-if="showWideForm">
+                                    {% include "home/cd-intro.html" %}
+                                    </div>
+                                    <div v-if="!showWideForm">
+                                     <h3>Search our Deals</h3>
+                                     <p>Exclusive private flights for members</p>
+                                    </div>
+                                    <div v-if="showWideForm">
+                                    {% include "home/dealform-horizontal.html" %}
+                                    </div>
+                                    <div v-else>
+                                        {% include "home/dealform.html" %}
+                                    </div>
                                 </div>
                             </div>
-
-                            <div class="col-md-8 col-12">
+                            <div v-if="!showWideForm" class="col-md-8 col-12">
                                 <div v-if="searchResults.length === 0 && !searchProgress"
                                      class="h-contentarea">
-                                    <h3>The Flight Club Bulit
-                                    <div class="cd-intro">
-                                        <h6 class="cd-headline slide loading-bar">
-                                           <span class="h-fot-heading">For</span>  
-                                            <span class="cd-words-wrapper">
-                                                <b class="is-visible">Weekend Getaways</b>
-                                                <b>Weekend Getaways</b>
-                                                <b>Weekend Getaways</b>
-                                            </span>
-                                        </h6>
-                                    </div> <!-- cd-intro -->
-                                    </h3>
+                                    {% include "home/cd-intro.html" %}
                                     <p>Book travel for all occuscions and save</p>
                                     <div class="h-btngroups">
                                         <a href="#" class="btn btn-default h-blackbg">Get Started</a>
@@ -121,7 +118,7 @@
                         </div>
                     </div><!-- h-headermain -->
                 </div>
-                <div class="assets-section">
+                <div class="assets-section" v-if="!showWideForm">
                     <div class="container">
                         <div class="row justify-content-center">
                             <div class="col-3">
@@ -150,6 +147,58 @@
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="home-slider" v-if="showWideForm">
+                   <h3 class="slider-title">Never miss out on a Flyline deal</h3>  
+                  <div class="container">
+                    <div class="row">
+                     
+                     <div class="col-md-3 col-12">
+                       <div class="slider-box">
+                           <img src="{% static "home/img/closing-photo.jpg" %}" />
+                           <div class="h-slider-caption">
+                               <strong>New York</strong>
+                               <p>$275+ Round Trip | Typical Price</p>
+                               <b>$342 Round Trip | Found on Flyline</b>
+                           </div>
+                       </div>  
+                     </div>   
+
+                     <div class="col-md-3 col-12">
+                       <div class="slider-box">
+                           <img src="{% static "home/img/closing-photo.jpg" %}" />
+                           <div class="h-slider-caption">
+                               <strong>New York</strong>
+                               <p>$275+ Round Trip | Typical Price</p>
+                               <b>$342 Round Trip | Found on Flyline</b>
+                           </div>
+                       </div>  
+                     </div>   
+
+                     <div class="col-md-3 col-12">
+                       <div class="slider-box">
+                           <img src="{% static "home/img/closing-photo.jpg" %}" />
+                           <div class="h-slider-caption">
+                               <strong>New York</strong>
+                               <p>$275+ Round Trip | Typical Price</p>
+                               <b>$342 Round Trip | Found on Flyline</b>
+                           </div>
+                       </div>  
+                     </div>   
+
+                     <div class="col-md-3 col-12">
+                       <div class="slider-box">
+                           <img src="{% static "home/img/closing-photo.jpg" %}" />
+                           <div class="h-slider-caption">
+                               <strong>New York</strong>
+                               <p>$275+ Round Trip | Typical Price</p>
+                               <b>$342 Round Trip | Found on Flyline</b>
+                           </div>
+                       </div>  
+                     </div>   
+
+                   </div>
+                  </div>
                 </div>
                 <div class="clickdown">
                     <a href="#Section02" class="fliLine-Banner">
