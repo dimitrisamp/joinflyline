@@ -336,6 +336,30 @@ header.sticky{
     font-family:Dona-Regular;
     color: #000;
 }
+.search-results .result-item{
+    margin-top: 0;
+}
+.search-results .result-block {
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+    border: 1px solid #ccc;
+}
+.search-results p {
+    font-size: 10px;
+}
+.search-results strong {
+    font-size: 13px;
+    margin: 0;
+}
+.search-results span {
+    font-size: 12px;
+    margin-top: -1px;
+    text-align: center !important;
+    display: flow-root;
+}
+.flight-divider span {
+    width: 80px;
+}
 
 
 /*****************************
@@ -909,11 +933,16 @@ footer .bottom-footer ul li:first-child:before {
 }
 
 .search-results {
-    max-height: 700px;
-    overflow-y: scroll;
-    display: flex;
-    flex-direction: column;
+    max-height: 680px;
     align-items: center;
+    overflow-x: hidden;
+    overflow-y: visible;
+}
+.search-results .h-btngroups .btn{
+    width: 100% !important;
+}
+.search-results .h-btngroups {
+    display: block !important;
 }
 #fp-nav{
     display: none;
