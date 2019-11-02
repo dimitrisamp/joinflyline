@@ -86,7 +86,7 @@ const app = new Vue({
             anonymous: true,
         },
         form: {
-            limit: 20,
+            limit: 4,
             sort: null,
             priceRange: [0, 3000],
             airlines: [
@@ -251,7 +251,7 @@ const app = new Vue({
             });
         },
         loadMore() {
-            this.form.limit = this.form.limit + 10;
+            this.form.limit = this.form.limit + 4;
             this.search();
         },
         sortResultsBy(sort) {
