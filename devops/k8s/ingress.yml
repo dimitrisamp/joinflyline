@@ -9,10 +9,10 @@ metadata:
 spec:
   tls:
     - hosts:
-        - wanderift.com
+        - joinflyline.com
       secretName: wanderift-secret
   rules:
-    - host: wanderift.com
+    - host: joinflyline.com
       http:
         paths:
           - path: /
