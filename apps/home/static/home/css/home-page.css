@@ -266,6 +266,9 @@ header.sticky{
     font-family:Dona-Regular;
     color: #000;
 }
+.horizontal-form{
+    background: transparent;
+}
 .horizontal-form .search-dropdown-outer{
     padding-right: 0px;
 }
@@ -278,6 +281,16 @@ header.sticky{
     padding: 7px 31px;
     border: 1px solid #00b0f5;
 }
+.header-background{
+    background:url('../img/headerbackground.png');
+    width: 100%;
+    background-size: cover;
+    background-position: bottom;
+}
+.horizontal-form .s-result-dropdown .btn{
+    background: #fff;
+}
+
 
 /*****************************
        Home Slider
@@ -300,6 +313,7 @@ header.sticky{
 .home-slider img{
     height: 190px;
     max-height: 190px;
+    width: 100%;
 }
 .h-slider-caption{
     background: #fff;
