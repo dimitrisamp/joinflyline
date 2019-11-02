@@ -32,9 +32,7 @@ class BookingContact(models.Model):
         )
         current_time = now() + timedelta(days=2)
         has_past_routes = any(r["utc_departure"] <= current_time for r in obj["route"])
-        has_future_routes = any(
-            r["utc_departure"] > current_time for r in obj["route"]
-        )
+        has_future_routes = any(r["utc_departure"] > current_time for r in obj["route"])
         obj["in_progress"] = has_past_routes and has_future_routes
 
         return obj
@@ -99,3 +97,20 @@ class Flight(models.Model):
         data["dst"] = self.airport_to
         data["return"] = 1 if self.is_return else 0
         return data
+
+
+class Deal(models.Model):
+    departure_city = models.CharField(max_length=50)
+    arrival_city = models.CharField(max_length=50)
+    departure_date = models.DateTimeField()
+    return_date = models.DateTimeField()
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+    booking_token = models.TextField()
+    updated = models.DateTimeField(auto_now_add=True)
+    is_past = models.BooleanField(default=False)
+
+    def __str__(self):
+        return (
+            f"{self.departure_city} -> {self.arrival_city} "
+            f"${self.price} {self.updated.isoformat()}"
+        )

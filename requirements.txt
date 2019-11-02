@@ -15,3 +15,5 @@ invoke
 django-extensions
 factory-boy
 django-enumfield
+
+aiohttp[speedups]

@@ -23,7 +23,7 @@ from apps.results.adjacency import (
 from apps.results.models import SearchDetails, BookingCache
 from wanderift.utils import pairwise
 
-API_URL = "https://kiwicom-prod.apigee.net/v2/search"
+SEARCH_API_URL = "https://kiwicom-prod.apigee.net/v2/search"
 
 LOCATION_API_URL = "https://kiwicom-prod.apigee.net/locations/query"
 
@@ -172,7 +172,7 @@ class ResultsView(View):
         )
         try:
             response = requests.get(
-                API_URL,
+                SEARCH_API_URL,
                 params={
                     **search_query,
                     **search_params,
