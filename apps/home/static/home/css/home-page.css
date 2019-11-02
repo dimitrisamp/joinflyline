@@ -284,7 +284,6 @@ header.sticky{
 .header-background{
     background:url('../img/headerbackground.png');
     width: 100%;
-    background-size: cover;
     background-position: bottom;
 }
 .horizontal-form .s-result-dropdown .btn{
