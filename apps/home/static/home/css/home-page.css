@@ -344,8 +344,8 @@ header.sticky{
     border: 1px solid #ccc;
 }
 .home-slider img{
-    height: 190px;
-    max-height: 190px;
+    height: 160px;
+    max-height: 160px;
     width: 100%;
 }
 .h-slider-caption{
@@ -405,20 +405,22 @@ header.sticky{
 *****************************/
 #Section02{
     width: 100%;
+    background: url('../img/wallpaper.png');
+    background-size: cover;
 }
 .H-secion2{
     margin: 150px 0px;
 }
 .section2-content h3{
-    font-size: 40px;
+    font-size: 50px;
     font-weight: 600;
     color: #000000;
     line-height: 65px;
     margin-bottom: 19px;
 }
 .section2-content p {
-    font-size: 19px;
-    line-height: 36px;
+    font-size: 22px;
+    line-height: 41px;
     color: #b7b9b9;
 }
 .section2-content .btn{
@@ -441,16 +443,19 @@ header.sticky{
 .mobile-img{
     margin-top: -60px;
 }
+.section3-content {
+    margin: 130px 0;
+}
 .section3-content h3{
-    font-size: 40px;
+    font-size: 50px;
     color: #ffffff;
     font-weight: 700;
     margin-bottom: 32px;
 }
 .section3-content p{
     color: #ffffff;
-    font-size: 19px;
-    line-height: 38px;
+    font-size: 22px;
+    line-height: 41px;
 }
 .section3-content .btn{
     background: #ffffff;
@@ -467,25 +472,22 @@ header.sticky{
            Section 04
 *****************************/
 #sec4-bg{
-    background: url('../img/8843bbb861de3ef13e7d99f96898463643f0e5be.png');
+    background: url('../img/wallpaper.png');
     background-size: cover;
-    background-position: bottom;
-}
-.H-secion4{
-    margin: 150px 0px;   
 }
 .section4-content h3{
-    font-size: 35px;
+    font-size: 50px;
     font-weight: 600;
     color: #000000;
     margin-top: 0;
     text-align: right;
+    margin-top: 20px;
 }
 .section4-content p{
     color: #ababab;
-    font-size: 18px;
-    margin-top: 20px;
-    line-height: 31px; 
+    font-size: 22px;
+    margin-top: 30px;
+    line-height: 42px; 
     text-align: right;
 }
 .section4-content .btn{
@@ -495,43 +497,18 @@ header.sticky{
     padding: 12px 57px;
     border-radius: 0;
 }
-.sec4-boxes img{
+.content-img img{
+    margin-top: 20px;
+}
+.h-result-list{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    margin-top: 50px;
+}
+.h-result-list li img{
     width: 100%;
-    height: 300px;
-}
-.sec4-boxes h3 {
-    font-size: 18px;
-    font-weight: 600;
-    border: 2px solid #00b0f5;
-    padding: 5px;
-    margin-bottom: 0;
-    background: #fff;
-}
-.sec4-secondbox{
-    position: absolute;
-}
-.main-secbxes {
-    padding-left: 75px;
-}
-.main-secbxes .sec4-1{
-    position: relative;
-    top: -50px;
-}
-.main-secbxes .sec4-secondbox:nth-child(2){
-    margin-top:-20px;
-    margin-right: 15px;
-}
-.sec4-2{
-    position: relative;
-    top: 200px;
-}
-.sec4-3{
-    position: relative;
-    top: 240px;
-}
-.sec4-4{
-    position: relative;
-    top: 190px;
+    margin-bottom: 10px;
 }
 
 /*****************************
@@ -541,7 +518,8 @@ header.sticky{
 .section5-Bg{
     padding-top: 60px;
     padding-bottom: 50px;
-    background:linear-gradient( rgb(0, 176, 245) 100%, rgb(0, 176, 245 )100%),url(../img/f67077acc337ac08a762ba8d7b8c050c2550af3f.png);
+    background:url(../img/pricing_background.png);
+    background-size: cover;
 }
 .section5-content h3{
     font-size: 22px;
@@ -911,7 +889,6 @@ header.sticky{
 footer {
     background: #fff;
     padding-top: 40px;
-    border-top: 5px solid #000000;
 }
 .top-footer {
     padding-bottom: 80px;
@@ -935,7 +912,6 @@ footer .top-footer ul li {
     font-size: 13px;
     line-height: 13px;
     margin-bottom: 15px;
-    font-weight: 600;
 }
 
 footer .top-footer a {
@@ -1003,6 +979,7 @@ footer .bottom-footer ul li:first-child:before {
     margin-right: 0px !important;
     color: #fff;
     font-weight: 600;
+    letter-spacing: 1px;
 }
 .social-icon ul li a{
     margin-right: 20px;
@@ -1031,11 +1008,11 @@ footer .bottom-footer ul li:first-child:before {
 #fp-nav{
     display: none;
 }
-.dots-display{
+/*.dots-display{
     display: block !important;
     left: 17px !important;
 }
-
+*/
 
 /*****************************
           Media Query 
