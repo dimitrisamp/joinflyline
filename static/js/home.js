@@ -578,6 +578,14 @@ const app = new Vue({
         },
         showWideForm() {
             return this.user.anonymous && this.searchResults.length === 0;
+        },
+        cityFromTo() {
+            const cityFrom = this.cityFromInput.searchResults[this.cityFromInput.selectedIndex].name;
+            const cityTo = this.cityToInput.searchResults[this.cityToInput.selectedIndex].name;
+            return `${cityFrom} -> ${cityTo}`;
+        },
+        airlineNames() {
+            return this.form.airlines.map((e)=>e.name).join(', ');
         }
     }
 });

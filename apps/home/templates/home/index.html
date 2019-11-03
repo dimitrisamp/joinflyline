@@ -56,9 +56,13 @@
                                         <div v-if="showWideForm">
                                             <cd-intro/>
                                         </div>
-                                        <div v-if="!showWideForm">
+                                        <div v-if="!user.anonymous && searchResults.length === 0">
                                             <h3>Search our Deals</h3>
                                             <p>Exclusive private flights for members</p>
+                                        </div>
+                                        <div v-if="searchResults.length !== 0">
+                                            <h3>{( cityFromTo )}</h3>
+                                            <p>Carriers {( airlineNames )}</p>
                                         </div>
                                         <div v-if="showWideForm">
                                             {% include "home/dealform-horizontal.html" %}
