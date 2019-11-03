@@ -10,10 +10,7 @@ def index_view(request):
     context = {
         "title": S.SITE_TITLE
     }
-    if request.user.is_authenticated:
-        return render(request, "home/home.html", context)
-    else:
-        return render(request, "home/index.html", context)
+    return render(request, "home/index.html", context)
 
 
 def home_view(request):
