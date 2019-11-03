@@ -596,7 +596,8 @@ $(function () {
     });
     $('#fullpage').fullpage({
         scrollBar: true,
-        navigation: true
+        navigation: true,
+        scrollOverflow:true,
     });
     var sticky = 400;
     $(window).scroll(function () {
