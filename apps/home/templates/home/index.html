@@ -28,29 +28,35 @@
         <div class="section">
             <div class="section-01 h-user-home">
 
-                <header class="">
-                    <nav class="navbar navbar-light bg-light justify-content-between">
+                <header class="fp-auto-height">
+                    <nav class="navbar navbar-light bg-light">
                         <div class="container">
-                            <a class="navbar-brand nav-logo"> <img
+                            <a class="navbar-brand nav-logo flex-grow-1"> <img
                                     src="{% static "home/img/flyline_logos-01-1.png" %}">
                             </a>
                             <form class="form-inline nav-btn">
                                 <a href="{% url "sign-in" %}"
-                                   class="btn btn-outline-success blue-scheme my-2 my-sm-0">Log
+                                   class="btn my-2 my-sm-0">Sign
                                     In</a>
+                            </form>
+                            <form class="form-inline nav-btn">
+                                <a href="{% url "sign-up" %}"
+                                   class="btn my-2 my-sm-0">Sign
+                                    Up</a>
                             </form>
                         </div>
                     </nav>
                 </header>
-                <div class="header-background">
-                    <div class="container">
+
+                <div class="d-flex fp-auto-height-responsive header-background first-page-body">
+                    <div class="container align-self-center">
                         <div class="h-headermain">
                             <div class="row">
                                 <div class="col-12"
                                      :class="{'col-md-12': showWideForm, 'col-md-4': !showWideForm, 'wide-form': showWideForm}">
                                     <div class="search-flight-home">
                                         <div v-if="showWideForm">
-                                            {% include "home/cd-intro.html" %}
+                                            <cd-intro/>
                                         </div>
                                         <div v-if="!showWideForm">
                                             <h3>Search our Deals</h3>
@@ -67,7 +73,7 @@
                                 <div v-if="!showWideForm" class="col-md-8 col-12">
                                     <div v-if="searchResults.length === 0 && !searchProgress"
                                          class="h-contentarea">
-                                        {% include "home/cd-intro.html" %}
+                                        <cd-intro/>
                                         <p>Book travel for all occuscions and save</p>
                                         <div class="h-btngroups">
                                             <a href="#"
@@ -77,62 +83,23 @@
                                                 More</a>
                                         </div>
                                     </div>
-                                    <quicklinks v-if="searchResults.length !== 0"
-                                                :sort="form.sort"
-                                                :data="quickFiltersData"
-                                                @sort-by="sortResultsBy"></quicklinks>
-                                    <div class="search-results" v-if="searchProgress"
-                                         v-cloak>
-                                        <div class="w-100" v-for="i in 5" :key="i">
-                                            <div class="result-item mb-2 w-100"
-                                                 style="width: 90%">
-                                                <div class="result-block result-toggler w-100 d-block d-md-flex justify-content-start p-2 pt-3 pb-3"
-                                                     data-toggle="collapse"
-                                                     data-target="#result-item27180">
-                                                    <div class="loading_animation">
-                                                        <div class="col-md-12">
-                                                            <div class="row">
-                                                                <div class="col-md-2">
-                                                                    <div class="animate-element animate-element-01"></div>
-                                                                </div>
-                                                                <div class="col-md-2">
-                                                                    <div class="animate-element animate-element-02"></div>
-                                                                    <div class="animate-element animate-element-03"></div>
-                                                                </div>
-                                                                <div class="col-md-8">
-                                                                    <div class="animate-element animate-element-04"></div>
-                                                                    <div class="animate-element animate-element-05"></div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="divider-30"></div>
-                                        </div>
-                                    </div>
-                                    <div class="search-results"
-                                         v-cloak
-                                         v-if="!searchProgress && searchResults.length !== 0">
-
-                                        <flight v-for="flight in searchResults"
-                                                :flight="flight" :form="form"
-                                                :key="flight.id"></flight>
-
-                                        <div class="h-btngroups">
-                                            <a class="btn btn-default" href="#"
-                                               @click="loadMore">Load
-                                                More</a>
-                                        </div>
-
-                                    </div>
+                                    <search-results :search-results="searchResults"
+                                                    :search-progress="searchProgress"
+                                                    :load-more="loadMore" :form="form"
+                                                    :sort-results-by="sortResultsBy"
+                                                    :quick-filters-data="quickFiltersData" />
                                 </div>
                             </div>
                         </div><!-- h-headermain -->
                     </div>
                 </div><!-- header bg -->
-                <div class="home-slider" v-if="showWideForm">
-                    <h3 class="slider-title">Never miss out on a Flyline deal</h3>
+                <div class="d-flex flex-column justify-content-around home-slider"
+                     v-if="showWideForm">
+                    <div>
+                        <h3 class="slider-title">Never miss out on a Flyline deal</h3>
+                        <p class="slider-title-second">Save Hundreds on both
+                            International and Domestic Flights</p>
+                    </div>
                     <div class="container">
                         <div class="row">
 
@@ -298,12 +265,17 @@
 <script src="{% static "home/js/rotate-animationscript.js" %}"></script>
 {% include "home/vue-flight-template.html" %}
 {% include "home/vue-quicklinks-template.html" %}
+{% include "home/vue-cd-intro-template.html" %}
+{% include "home/vue-search-results-template.html" %}
 <script type="text/javascript"
         src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script type="module" src="{% static "home/js/flight.js" %}"></script>
 <script type="module" src="{% static "home/js/quicklinks.js" %}"></script>
+<script type="module" src="{% static "home/js/cd-intro.js" %}"></script>
+<script type="module" src="{% static "home/js/search-results.js" %}"></script>
 <script src="{% static "home/fullPage.js-master/dist/fullpage.min.js" %}"></script>
-<script type="text/javascript" src="{% static "home/fullPage.js-master/dist/scrolloverflow.js" %}"></script>
+<script type="text/javascript"
+        src="{% static "home/fullPage.js-master/dist/scrolloverflow.js" %}"></script>
 <script src="{% static "home/vue-slider-component/dist/vue-slider-component.umd.min.js" %}"></script>
 <script type="module" src="{% static "js/home.js" %}"></script>
 <script type="module" src="{% static "home/js/drift.js" %}"></script>
