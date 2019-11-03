@@ -1,7 +1,7 @@
 <script type="text/x-template" id="vue-quicklinks-template">
 <div class="d-flex border mb-3 white-block w-100">
 
-    <div class="col-md-3 mt-2 mb-0 pb-2 text-center search-quick-filter" :class="{applied: sort === 'price'}">
+    <div class="col-md-3 pt-2 mb-0 pb-2 text-center search-quick-filter" :class="{applied: sort === 'price'}">
         <a @click="sortResultsBy('price')">
             <div class="search-quick-filter-filter-name border-right">
                 <strong>Best Value</strong>
@@ -12,7 +12,7 @@
         </a>
         <div class="border-line w-75 mx-auto"></div>
     </div>
-    <div class="col-md-3  mt-2 mb-0 pb-2 text-center search-quick-filter" :class="{applied: sort === 'quality'}">
+    <div class="col-md-3  pt-2 mb-0 pb-2 text-center search-quick-filter" :class="{applied: sort === 'quality'}">
         <a @click="sortResultsBy('quality')">
             <div class="search-quick-filter-filter-name border-right">
                 <strong>Recommended</strong>
@@ -23,7 +23,7 @@
         </a>
         <div class="border-line w-75 mx-auto"></div>
     </div>
-    <div class="col-md-3  mt-2 mb-0 pb-2 text-center search-quick-filter" :class="{applied: sort === 'duration'}">
+    <div class="col-md-3  pt-2 mb-0 pb-2 text-center search-quick-filter" :class="{applied: sort === 'duration'}">
         <a @click="sortResultsBy('duration')">
             <div class="search-quick-filter-filter-name border-right">
                 <strong>Quickest</strong>
@@ -34,7 +34,7 @@
         </a>
         <div class="border-line w-75 mx-auto"></div>
     </div>
-    <div class="col-md-3 mt-2 mb-0 pb-2 text-center search-quick-filter" :class="{applied: sort === 'date'}">
+    <div class="col-md-3 pt-2 mb-0 pb-2 text-center search-quick-filter" :class="{applied: sort === 'date'}">
         <a @click="sortResultsBy('date')">
             <div class="search-quick-filter-filter-name">
                 <strong>Earliest</strong>
