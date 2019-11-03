@@ -112,7 +112,7 @@ header.sticky{
     display: none !important;
 }
 .wide-form{
-    padding-top: 46px;
+    padding-top: 34px;
     padding-bottom: 30px;
 }
 .search-flight-home {
@@ -309,6 +309,13 @@ header.sticky{
     color: #000;
     text-align: center;
 }
+.home-slider .slider-dec{
+    text-align: center;
+    color: #7d7d7d;
+}
+.slider-box {
+    border: 1px solid #ccc;
+}
 .home-slider img{
     height: 190px;
     max-height: 190px;
@@ -318,8 +325,7 @@ header.sticky{
     background: #fff;
     padding-top: 5px;
     padding-left: 10px;
-    padding-bottom: 10px;
-    margin-bottom: 10px;
+    padding-bottom: 5px;
 }
 .h-slider-caption strong{
     font-family:Dona-Black;
@@ -329,6 +335,8 @@ header.sticky{
     font-size: 11px;
     color: #ccc;   
     font-family:Dona-Regular;
+    position: relative;
+    top: 5px;
 }
 .h-slider-caption b{
     font-size: 13px;
@@ -364,34 +372,40 @@ header.sticky{
 /*****************************
            Section 02
 *****************************/
-
+#Section02{
+    width: 100%;
+}
 .H-secion2{
     margin: 150px 0px;
 }
-.section2-content{
-     padding-top: 40px;   
-}
 .section2-content h3{
-    font-size: 51px;
+    font-size: 40px;
     font-weight: 600;
     color: #000000;
     line-height: 65px;
     margin-bottom: 19px;
 }
 .section2-content p {
-    font-size: 20px;
-    font-weight: 600;
+    font-size: 19px;
     line-height: 36px;
-    color: #000000;
+    color: #b7b9b9;
 }
+.section2-content .btn{
+    background: #00b0f5;
+    color: #fff;
+    border-radius: 0;
+    padding: 11px 56px;
+    font-size: 17px;
+    margin-top: 20px;
+}
+
 
 /*****************************
            Section 03
 *****************************/
 
-.section3-Bg{
-    background: #000000;
-    padding-top: 140px;
+#sec3-Bg{
+    background: #00b0f5;
 }
 .mobile-img{
     margin-top: -60px;
@@ -404,9 +418,8 @@ header.sticky{
 }
 .section3-content p{
     color: #ffffff;
-    font-size: 16px;
-    line-height: 33px;
-    font-weight: 600;
+    font-size: 19px;
+    line-height: 38px;
 }
 .section3-content .btn{
     background: #ffffff;
@@ -422,22 +435,27 @@ header.sticky{
 /*****************************
            Section 04
 *****************************/
-
+#sec4-bg{
+    background: url('../img/8843bbb861de3ef13e7d99f96898463643f0e5be.png');
+    background-size: cover;
+    background-position: bottom;
+}
 .H-secion4{
     margin: 150px 0px;   
 }
 .section4-content h3{
-    font-size: 44px;
+    font-size: 35px;
     font-weight: 600;
     color: #000000;
     margin-top: 0;
+    text-align: right;
 }
 .section4-content p{
-    color: #000000;
-    font-weight: 600;
+    color: #ababab;
     font-size: 18px;
-    margin: 38px 220px;
+    margin-top: 20px;
     line-height: 31px; 
+    text-align: right;
 }
 .section4-content .btn{
     background: black;
@@ -446,29 +464,67 @@ header.sticky{
     padding: 12px 57px;
     border-radius: 0;
 }
+.sec4-boxes img{
+    width: 100%;
+    height: 300px;
+}
+.sec4-boxes h3 {
+    font-size: 18px;
+    font-weight: 600;
+    border: 2px solid #00b0f5;
+    padding: 5px;
+    margin-bottom: 0;
+    background: #fff;
+}
+.sec4-secondbox{
+    position: absolute;
+}
+.main-secbxes {
+    padding-left: 75px;
+}
+.main-secbxes .sec4-1{
+    position: relative;
+    top: -50px;
+}
+.main-secbxes .sec4-secondbox:nth-child(2){
+    margin-top:-20px;
+    margin-right: 15px;
+}
+.sec4-2{
+    position: relative;
+    top: 200px;
+}
+.sec4-3{
+    position: relative;
+    top: 240px;
+}
+.sec4-4{
+    position: relative;
+    top: 190px;
+}
 
 /*****************************
            Section 05
 *****************************/
 
 .section5-Bg{
-    background: #000;
-    padding-top:60px;
-    padding-bottom: 30px;
+    padding-top: 60px;
+    padding-bottom: 50px;
+    background:linear-gradient( rgb(0, 176, 245) 100%, rgb(0, 176, 245 )100%),url(../img/f67077acc337ac08a762ba8d7b8c050c2550af3f.png);
 }
 .section5-content h3{
-    font-size: 44px;
+    font-size: 22px;
     font-weight: 600;
     color: #fff;
     margin-top: 0;
-
+    letter-spacing: 1px;
 }
 .section5-content p{
     color: #fff;
-    font-weight: 600;
-    font-size: 18px;
-    margin: 20px 220px;
-    line-height: 31px; 
+    font-size: 21px;
+    margin: 25px 220px;
+    line-height: 31px;
+    margin-bottom: 0;
 }
 .h-planbox{
     background:#fff;
@@ -476,11 +532,11 @@ header.sticky{
     margin-top: 20px;
 }
 .h-planbox .mark-heading{
-    background: #000;
+    background: #00b0f5;
     color: #fff;
-    padding: 6px 25px;
-    font-size: 12px;
-    margin-bottom: 12px;
+    padding: 9px 20px;
+    font-size: 14px;
+    margin-bottom: 21px;
     display: inline-block;
 }
 .h-planbox h3{
@@ -491,7 +547,8 @@ header.sticky{
 .plan-list{
     list-style: none;
     margin: 0;
-    padding: 0;
+    padding: 0 56px;
+    text-align: left;
 }
 .h-planbox strong{
     color: #000;
@@ -512,15 +569,15 @@ header.sticky{
     color: #000;
 }
 .h-planbox .btn {
-    background: #000;
-    color: #fff;
+    color: #000;
     border-radius: 0;
-    font-size: 15px;
-    padding: 9px 32px;
+    font-size: 18px;
+    padding: 9px 21px;
     font-weight: 600;
-    margin-top: 55px;
+    margin-top: 19px;
     width: 100%;
-    margin-bottom: 25px;
+    margin-bottom: 10px;
+    border: 2px solid #00b0f5;
 }
 
 /*****************************
