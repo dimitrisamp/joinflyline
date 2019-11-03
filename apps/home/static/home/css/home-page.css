@@ -6,7 +6,10 @@
   font-family:Dona-Regular;
   src: url(fonts/Dona/Dona-Regular.ttf);
 }
-
+@font-face {
+    font-family: Dona-Bold;
+    src: url(fonts/Dona/Dona-Bold.ttf);
+}
 body{
       font-family:Dona-Regular !important;
 }
