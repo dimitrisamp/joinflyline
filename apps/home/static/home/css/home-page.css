@@ -1286,6 +1286,10 @@ footer .bottom-footer ul li:first-child:before {
     font-size: 12px;
 }
 
+.newhome-form {
+    padding-top: 60px;
+}
+
 .newhome-form h3 {
     display: none;
 }
@@ -1300,7 +1304,6 @@ footer .bottom-footer ul li:first-child:before {
     font-weight: 600;
     line-height: 1;
     font-family: dona-black;
-    padding-top: 65px;
 }
 
 .home-slider {
