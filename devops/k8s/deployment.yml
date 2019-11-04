@@ -44,7 +44,7 @@ spec:
             - name: POSTGRES_DB
               value: postgres
 
-            - name: GCE_SERVICE_ACCOUNT_KEY
+            - name: GOOGLE_APPLICATION_CREDENTIALS
               value: /etc/secrets/GCE_SERVICE_ACCOUNT_KEY
 
             - name: FOR_GODS_SAKE_PLEASE_REDEPLOY
