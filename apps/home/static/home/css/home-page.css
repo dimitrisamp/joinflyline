@@ -1273,9 +1273,6 @@ footer .bottom-footer ul li:first-child:before {
     font-size: 12px;
     margin-right: 7px;
 }
-.wide-form {
-    padding-top: 90px;
-}
 .search-button {
     text-align: center;
     padding-right: 0;
@@ -1587,7 +1584,7 @@ footer .bottom-footer ul li:first-child:before {
 @media not all and (min-resolution:.001dpcm) {
   @supports (-webkit-appearance: none) and (stroke-color:transparent) {
     .search-flight-home {
-        margin-top: 60px !important;
+        margin-top: 70px !important;
     }  
   }
 }
