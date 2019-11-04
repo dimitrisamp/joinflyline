@@ -9,6 +9,19 @@ export const AIRLINE_ICONS = {
     "AA": "american",
     "WN": "southwest",
     "SY": "suncountry",
+    "4O": 'interjet',
+    "AC": 'air canada',
+    "AF": 'Air France',
+    "AM": 'Aeroméxico',
+    "DI": 'Norwegian Air UK',
+    "EK": 'Emirates Airlines',
+    "F8": 'Flair Airlines',
+    "HU": 'Hainan Airlines',
+    "KL": 'KLM',
+    "LH": 'Lufthansa',
+    "LX": 'Swiss International Air Lines',
+    "TS": 'Air Transat',
+    "WS": 'WestJet',
 };
 
 export function secs2hm(value) {
@@ -38,7 +51,7 @@ export function staticUrl(path) {
 }
 
 export function airlineIcon(name) {
-    return `/static/images/${AIRLINE_ICONS[name]}.png`;
+    return `/static/images/airlines/${name}.png`;
 }
 
 export function formatTime(value) {
