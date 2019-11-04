@@ -31,4 +31,4 @@ def reset(c):
 @task
 def production_migrate_and_run(c):
     c.run("python manage.py migrate", pty=True)
-    c.run("python manage.py runserver 0.0.0.0:8000", pty=True)
+    c.run("gunicorn wanderift.wsgi", pty=True)

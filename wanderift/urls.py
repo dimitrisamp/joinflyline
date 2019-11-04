@@ -28,7 +28,8 @@ from apps.booking.views import (
     CheckPromoView,
 )
 from apps.emails.views import booking_success
-from apps.home.views import index_view, home_view, SignInView, SignUpView
+from apps.home.views import index_view, home_view, SignInView, SignUpView, \
+    PromoLandingView
 from apps.results.views import CityAutocomplete, ResultsView
 from django.conf import settings
 
@@ -63,6 +64,7 @@ urlpatterns = [
     # Information about Wanderift
     path("info/", include("apps.info.urls")),
     # booking
+    path("promo/", PromoLandingView.as_view(), name="promo-landing"),
     path("retail/", retail_booking_view, name="retail"),
     path("booking_flight/", SaveBookingView.as_view(), name="book"),
     path("check-flights/", CheckFlightsView.as_view(), name="check-flights"),

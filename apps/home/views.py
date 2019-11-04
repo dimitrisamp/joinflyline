@@ -40,3 +40,7 @@ class SignUpView(TemplateView):
         return {
             "title": S.SITE_TITLE
         }
+
+
+class PromoLandingView(TemplateView):
+    template_name = "home/promotional_landing.html"
