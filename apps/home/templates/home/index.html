@@ -26,6 +26,13 @@
     <div id="fullpage">
 
         <div class="section">
+
+        <div class="h-topbar text-center">
+           <p>Join Flyline experince unmatched savings on flights 
+            <a href="#" class="btn btn-default">Savings Explained</a>
+           </p>   
+        </div>
+
             <div class="section-01 h-user-home">
 
                 <header class="fp-auto-height">
@@ -232,18 +239,18 @@
                     </div>
                     <div class="col-md-6 col-12">
                         <ul class="h-result-list">
-                            <li><img
-                                    src="{% static "home/img/flight_option_one.png" %}">
-                            </li>
-                            <li><img
-                                    src="{% static "home/img/flight_option_two.png" %}">
-                            </li>
-                            <li><img
-                                    src="{% static "home/img/flight_option_three.png" %}">
-                            </li>
-                            <li><img
-                                    src="{% static "home/img/flight_option_four.png" %}">
-                            </li>
+                          <marquee behavior="alternate" direction="up" height="500" scrolldelay="1" onmouseover="this.stop()" onmouseout="this.start()">
+                            <li><img src="{% static "home/img/flight_option_one.png" %}"></li>
+                            <li><img src="{% static "home/img/flight_option_two.png" %}"></li>
+                            <li><img src="{% static "home/img/flight_option_three.png" %}"></li>
+                            <li><img src="{% static "home/img/flight_option_four.png" %}"></li>
+                            <li><img src="{% static "home/img/Sevem.png" %}"></li>
+                            <li><img src="{% static "home/img/Three.png" %}"></li>
+                            <li><img src="{% static "home/img/One.png" %}"></li>
+                            <li><img src="{% static "home/img/Two.png" %}"></li>
+                            <li><img src="{% static "home/img/Five.png" %}"></li>
+                            <li><img src="{% static "home/img/Six.png" %}"></li>
+                            </marquee>
                         </ul>
                         <!-- <img src="{% static "home/img/iphone-white.png" %}" class="mobile-img"> -->
                     </div>
@@ -271,7 +278,7 @@
             </div>
         </div><!--  Section four  -->
 
-        <div class="section">
+        <div class="section" id="section5-Bg">
             <div class="section5-Bg">
                 <div class="text-center section5-content">
                     <h3>Your Easiest Travel Decision</h3>
@@ -301,9 +308,12 @@
                 </div>
             </div>
 
-            {% include "_includes/footer.html" %}
 
         </div><!--  Section Five  -->
+
+        <div class="section" id="footer-section">
+            {% include "_includes/footer.html" %}
+        </div>    
 
     </div>
 </div>

@@ -57,14 +57,35 @@ Container emulation
 /*****************************
            Section 01
 *****************************/
+.h-topbar {
+    background: #00b0f5;
+    color: #fff;
+    padding: 5px 0;
+}
+.h-topbar p{
+    margin: 0;
+    font-family:Dona-Regular;
+    letter-spacing: 1px;
+    font-weight: 600;
+}
+.h-topbar p .btn{
+    background: #fff;
+    border-radius: 0px;
+    color: #00b0f5;
+    font-weight: 600;
+    margin-left: 14px;
+    padding: 14px 17px;
+    line-height: 9px;
+}
 .left-form-pane {
     background: white;
     border-right: solid 1px rgb(204, 204, 204);
-    padding-right: 15px;
+    padding-right: 30px;
     flex: 1;
 }
 .right-body-pane {
     flex: 2;
+    padding-left: 25px;
 
 }
 .section-01{
@@ -122,27 +143,67 @@ header.sticky{
     background: #fff;
 }
 .search-flight-home h3 {
-     font-weight: 600;
-    font-size: 32px;
+    font-weight: 600;
+    font-size: 37px;
     padding-top: 25px;
     color: #000;
-    margin-bottom: 0;
-    font-family:Dona-Regular;
+    margin-bottom: 13px;
+    font-family: Dona-Regular;
+}
+.left-form-pane .search-flight-home h3 {
+    font-weight: 600;
+    font-size: 37px;
+    padding-top: 25px;
+    color: #000;
+    margin-bottom: 13px;
+    font-family: Dona-Regular;
+}
+.left-form-pane .s-result-dropdown .btn{
+    margin-bottom: 16px;
+    padding: 10px 5px;
+}
+.left-form-pane .search-dropdown {
+    margin-bottom: 16px;
+}
+.left-form-pane .filter-field b{
+    margin-bottom: 9px !important;
+    display: block;
+}
+.left-form-pane .search-f-dropdown{
+     margin-top: -13px;   
+}
+.left-form-pane .passengers-dropdown{
+     margin-top: -13px;   
+}
+.left-form-pane .airline-f-dropdown{
+    margin-top: 47px;   
+}
+.left-form-pane .price-slider-container {
+    padding: 10px 15px;
+    width: 100%;
+    margin-top: 1px;
 }
 .newhome-form h3{
     font-weight: 600;
-    font-size: 40px;
+    font-size: 45px;
     padding-top: 25px;
     color: #000;
     margin-bottom: 0;
     font-family: dona-black;
     display: inline-flex;
 }
-.search-flight-home p {
-    font-family:Dona-Regular;
-    font-size: 16px;
+.left-form-pane .search-flight-home p {
+    font-family: Dona-Regular;
+    font-size: 17px;
     margin: 0;
-    padding-bottom: 7px;
+    padding-bottom: 18px;
+    color: #7d7d7d;
+}
+.search-flight-home p {
+    font-family: Dona-Regular;
+    font-size: 17px;
+    margin: 0;
+    padding-bottom: 18px;
     color: #7d7d7d;
 }
 .newhome-form p{
@@ -170,7 +231,7 @@ header.sticky{
 }
 .wide-form{
     padding-top: 34px;
-    padding-bottom: 30px;
+    padding-bottom: 20px;
 }
 .search-flight-home {
     padding-right:20px;
@@ -353,6 +414,9 @@ header.sticky{
     padding: 7px 31px;
     border: 1px solid #00b0f5;
 }
+.horizontal-f-btn .btn-search img{
+    height: 27px;
+}
 .header-background{
     background:url('../img/headerbackground.png');
     width: 100%;
@@ -405,9 +469,7 @@ header.sticky{
     width: 100%;
 }
 .h-slider-caption{
-    border-color: #00AEEF;
-    border-style: solid;
-    border-width: 2px;
+    border:1.2px solid #00AEEF;
     border-top: none;
     background: #fff;
     padding-top: 5px;
@@ -564,18 +626,21 @@ header.sticky{
 }
 .h-result-list li img{
     width: 100%;
-    margin-bottom: 10px;
+}
+.h-result-list li img:hover{
+    cursor: pointer;
 }
 
 /*****************************
            Section 05
 *****************************/
 
-.section5-Bg{
-    padding-top: 60px;
-    padding-bottom: 50px;
+#section5-Bg{
     background:url(../img/pricing_background.png);
     background-size: cover;
+}
+.section5-Bg{
+    margin-top: 50px;
 }
 .section5-content h3{
     font-size: 22px;
@@ -593,8 +658,8 @@ header.sticky{
 }
 .h-planbox{
     background:#fff;
-    padding: 9px 30px;
-    margin-top: 20px;
+    padding: 20px 30px;
+    margin-top: 40px;
 }
 .h-planbox .mark-heading{
     background: #00b0f5;
@@ -659,7 +724,7 @@ header.sticky{
     padding-bottom: 28px;
 }
 .s-result-dropdown{
-    margin-bottom: 10px;
+    margin-bottom: 0px;
 }
 .s-result-dropdown .btn {
     text-align: center;
@@ -936,13 +1001,21 @@ header.sticky{
 .home-page-dots {
     position: absolute;
 }
-
+.search-top-result{
+    margin-top: 20px;   
+}
 
 
 
 /*****************************
            Footer
 *****************************/
+#footer-section{
+    height: 300px !important;
+}
+#footer-section .fp-tableCell{
+    height: 300px !important;
+}
 
 footer {
     background: #fff;
