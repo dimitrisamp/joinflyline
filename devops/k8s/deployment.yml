@@ -51,7 +51,7 @@ spec:
               value: 'THIS_STRING_IS_REPLACED_DURING_BUILD'
           volumeMounts:
             - name: gce-service-account-key
-              readonly: true
+              readOnly: true
               mountPath: /etc/secrets
 
 
