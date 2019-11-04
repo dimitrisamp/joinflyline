@@ -1602,7 +1602,12 @@ footer .bottom-footer ul li:first-child:before {
 @media not all and (min-resolution:.001dpcm) {
   @supports (-webkit-appearance: none) and (stroke-color:transparent) {
     .search-flight-home {
+<<<<<<< HEAD
         margin-top: 110px !important;
     }
+=======
+        margin-top: 150px !important;
+    }  
+>>>>>>> e2ddb6c6268bbde6ad66f2d317e5e5cdda1b8a91
   }
 }

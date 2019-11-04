@@ -32,8 +32,9 @@ k8s-deploy:
   - kubectl config set-context wanderift-django-13935299-dev --cluster=wanderift-app --user=admin
   - kubectl config use-context wanderift-django-13935299-dev
   - kubectl delete secret gitlab-registry --ignore-not-found -n wanderift-django-13935299-dev
+  - kubectl delete secret gce-service-account-key --ignore-not-found -n wanderift-django-13935299-dev
   - kubectl create secret docker-registry gitlab-registry --docker-server=${CI_REGISTRY} --docker-username=${CI_REGISTRY_USER} --docker-password=${CI_REGISTRY_PASSWORD} --docker-email=${CI_REGISTRY_EMAIL} -n wanderift-django-13935299-dev
-  - kubectl create secret generic gce-service-account-key --from-file=${GCE_SERVICE_ACCOUNT_KEY}
+  - kubectl create secret generic gce-service-account-key --from-file=${GCE_SERVICE_ACCOUNT_KEY} -n wanderift-django-13935299-dev
   - kubectl apply -f devops/k8s/postgres-secret.yml -n wanderift-django-13935299-dev
   - sed -ie "s/THIS_STRING_IS_REPLACED_DURING_BUILD/$(date)/g" devops/k8s/deployment.yml
   - kubectl apply -f devops/k8s/deployment.yml -n wanderift-django-13935299-dev
