@@ -13,9 +13,60 @@
 body{
       font-family:Dona-Regular !important;
 }
+
+/*
+Container emulation
+ */
+
+@media (min-width: 576px) {
+    .container-pad-left {
+        padding-left: calc(100%/2 - 540px/2 + 15px);
+    }
+    .container-pad-right {
+        padding-right: calc(100%/2 - 540px/2 + 15px);
+    }
+}
+
+@media (min-width: 768px) {
+    .container-pad-left {
+        padding-left: calc(100%/2 - 720px/2 + 15px);
+    }
+    .container-pad-right {
+        padding-right: calc(100%/2 - 720px/2 + 15px);
+    }
+}
+
+@media (min-width: 992px) {
+    .container-pad-left {
+        padding-left: calc(100%/2 - 960px/2 + 15px);
+    }
+    .container-pad-right {
+        padding-right: calc(100%/2 - 960px/2 + 15px);
+    }
+}
+
+@media (min-width: 1200px) {
+    .container-pad-left {
+        padding-left: calc(100%/2 - 1140px/2 + 15px);
+    }
+    .container-pad-right {
+        padding-right: calc(100%/2 - 1140px/2 + 15px);
+    }
+}
+
 /*****************************
            Section 01
 *****************************/
+.left-form-pane {
+    background: white;
+    border-right: solid 1px rgb(204, 204, 204);
+    padding-right: 15px;
+    flex: 1;
+}
+.right-body-pane {
+    flex: 2;
+
+}
 .section-01{
     height: 100%;
     width: 100%;

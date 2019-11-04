@@ -577,7 +577,7 @@ const app = new Vue({
             return false;
         },
         showWideForm() {
-            return this.user.anonymous && this.searchResults.length === 0;
+            return this.user.anonymous && this.searchResults.length === 0 && !this.searchProgress;
         },
         cityFromTo() {
             const cityFrom = this.cityFromInput.searchResults[this.cityFromInput.selectedIndex].name;
