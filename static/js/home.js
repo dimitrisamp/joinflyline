@@ -605,6 +605,7 @@ $(function () {
     $('#fullpage').fullpage({
         scrollBar: true,
         navigation: true,
+        normalScrollElements: '.normal-scroll',
     });
 
     var sticky = 400;

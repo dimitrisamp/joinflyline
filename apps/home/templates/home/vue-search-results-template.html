@@ -6,7 +6,7 @@
                     @sort-by="sortResultsBy"></quicklinks>
         <div class="search-results" v-if="searchProgress"
              v-cloak>
-            <div class="w-100" v-for="i in 5" :key="i">
+            <div class="w-100" v-for="i in 4" :key="i">
                 <div class="result-item mb-2 w-100"
                      style="width: 90%">
                     <div class="result-block result-toggler w-100 d-block d-md-flex justify-content-start p-2 pt-3 pb-3"
@@ -34,7 +34,7 @@
                 <div class="divider-30"></div>
             </div>
         </div>
-        <div class="search-results"
+        <div class="search-results normal-scroll"
              v-cloak
              v-if="!searchProgress && searchResults.length !== 0">
 
