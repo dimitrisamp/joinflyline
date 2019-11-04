@@ -155,11 +155,11 @@ header.sticky{
 }
 .left-form-pane .search-flight-home h3 {
     font-weight: 600;
-    font-size: 37px;
+    font-size: 32px;
     padding-top: 25px;
     color: #000;
     margin-bottom: 13px;
-    font-family: Dona-Regular;
+    font-family: Dona-Black;
 }
 .left-form-pane .s-result-dropdown .btn{
     margin-bottom: 16px;
@@ -179,6 +179,7 @@ header.sticky{
 .left-form-pane .filter-field b{
     margin-bottom: 9px !important;
     display: block;
+    font-family:dona-black;
 }
 .left-form-pane .search-f-dropdown{
      margin-top: -13px;   
@@ -204,11 +205,11 @@ header.sticky{
     display: inline-flex;
 }
 .left-form-pane .search-flight-home p {
-    font-family: Dona-Regular;
+    font-family: Dona-Black;
     font-size: 17px;
     margin: 0;
     padding-bottom: 18px;
-    color: #7d7d7d;
+    color: #000;
 }
 .search-flight-home p {
     font-family: Dona-Regular;
@@ -242,7 +243,7 @@ header.sticky{
 }
 .wide-form{
     padding-top: 34px;
-    padding-bottom: 20px;
+    padding-bottom: 25px;
 }
 .search-flight-home {
     padding-right:20px;
@@ -381,6 +382,8 @@ header.sticky{
     background:#00b0f5;
     text-align: center;
     padding: 10px 0;
+    position: relative;
+    top: 10px;
 }
 .h-flyline-bar h3{
     color: #fff;
@@ -455,8 +458,7 @@ header.sticky{
     align-self: stretch;
     flex: 1;
     background: #ffff;
-    padding-top: 5px;
-    padding-bottom: 20px;
+    padding-top: 13px;
     border-top: 2px solid #f2f2f2;
 }
 .home-slider .slider-title{
