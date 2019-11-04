@@ -82,9 +82,7 @@ const app = new Vue({
         airlinesText: '',
         priceSelectProgress: false,
         priceText: '',
-        user: {
-            anonymous: true,
-        },
+        user: JSON.parse(document.getElementById('django_user').textContent),
         form: {
             limit: 4,
             sort: null,

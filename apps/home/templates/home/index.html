@@ -27,11 +27,11 @@
 
         <div class="section">
 
-        <div class="h-topbar text-center">
-           <p>Join Flyline experince unmatched savings on flights 
-            <a href="#" class="btn btn-default">Savings Explained</a>
-           </p>   
-        </div>
+            <div class="h-topbar text-center">
+                <p>Join Flyline experince unmatched savings on flights
+                    <a href="#" class="btn btn-default">Savings Explained</a>
+                </p>
+            </div>
 
             <div class="section-01 h-user-home">
 
@@ -41,14 +41,21 @@
                             <a class="navbar-brand nav-logo flex-grow-1"> <img
                                     src="{% static "home/img/flyline_logos-01-1.png" %}">
                             </a>
-                            <form class="form-inline nav-btn">
+                            <div v-if="user.anonymous">
                                 <a href="{% url "sign-in" %}"
                                    class="btn my-2 login-btn my-sm-0">Log In</a>
-                            </form>
-                            <form class="form-inline nav-btn">
                                 <a href="{% url "sign-up" %}"
-                                   class="btn my-2 get-s-btn my-sm-0">Get Started</a>
-                            </form>
+                                   class="btn my-2 get-s-btn my-sm-0">Get
+                                    Started</a>
+                            </div>
+                            <div v-else>
+                                <a href="{% url "manage-trips" %}"
+                                   class="btn my-2 login-btn my-sm-0">Trips</a>
+                                <a href="{% url "accounts" %}"
+                                   class="btn my-2 get-s-btn my-sm-0">Account<a>
+                                <a href="{% url "logout" %}"
+                                   class="btn my-2 get-s-btn my-sm-0">Log Out</a>
+                            </div>
                         </div>
                     </nav>
                 </header>
@@ -68,7 +75,8 @@
                             </div>
                             {% include "home/dealform.html" %}
                         </div>
-                        <div class="right-body-pane" :class="{'container-pad-right': searchResults.length !== 0 || searchProgress}">
+                        <div class="right-body-pane"
+                             :class="{'container-pad-right': searchResults.length !== 0 || searchProgress}">
                             <div v-if="searchResults.length === 0 && !searchProgress"
                                  class="h-contentarea">
                                 <cd-intro/>
@@ -239,17 +247,27 @@
                     </div>
                     <div class="col-md-6 col-12">
                         <ul class="h-result-list">
-                          <marquee behavior="alternate" direction="up" height="500" scrolldelay="1" onmouseover="this.stop()" onmouseout="this.start()">
-                            <li><img src="{% static "home/img/flight_option_one.png" %}"></li>
-                            <li><img src="{% static "home/img/flight_option_two.png" %}"></li>
-                            <li><img src="{% static "home/img/flight_option_three.png" %}"></li>
-                            <li><img src="{% static "home/img/flight_option_four.png" %}"></li>
-                            <li><img src="{% static "home/img/Sevem.png" %}"></li>
-                            <li><img src="{% static "home/img/Three.png" %}"></li>
-                            <li><img src="{% static "home/img/One.png" %}"></li>
-                            <li><img src="{% static "home/img/Two.png" %}"></li>
-                            <li><img src="{% static "home/img/Five.png" %}"></li>
-                            <li><img src="{% static "home/img/Six.png" %}"></li>
+                            <marquee behavior="alternate" direction="up" height="500"
+                                     scrolldelay="1" onmouseover="this.stop()"
+                                     onmouseout="this.start()">
+                                <li><img
+                                        src="{% static "home/img/flight_option_one.png" %}">
+                                </li>
+                                <li><img
+                                        src="{% static "home/img/flight_option_two.png" %}">
+                                </li>
+                                <li><img
+                                        src="{% static "home/img/flight_option_three.png" %}">
+                                </li>
+                                <li><img
+                                        src="{% static "home/img/flight_option_four.png" %}">
+                                </li>
+                                <li><img src="{% static "home/img/Sevem.png" %}"></li>
+                                <li><img src="{% static "home/img/Three.png" %}"></li>
+                                <li><img src="{% static "home/img/One.png" %}"></li>
+                                <li><img src="{% static "home/img/Two.png" %}"></li>
+                                <li><img src="{% static "home/img/Five.png" %}"></li>
+                                <li><img src="{% static "home/img/Six.png" %}"></li>
                             </marquee>
                         </ul>
                         <!-- <img src="{% static "home/img/iphone-white.png" %}" class="mobile-img"> -->
@@ -313,7 +331,7 @@
 
         <div class="section" id="footer-section">
             {% include "_includes/footer.html" %}
-        </div>    
+        </div>
 
     </div>
 </div>
@@ -329,6 +347,7 @@
 {% include "home/vue-quicklinks-template.html" %}
 {% include "home/vue-cd-intro-template.html" %}
 {% include "home/vue-search-results-template.html" %}
+{{ django_user | json_script:"django_user" }}
 <script type="text/javascript"
         src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script type="module" src="{% static "home/js/flight.js" %}"></script>
