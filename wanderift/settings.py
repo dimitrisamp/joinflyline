@@ -64,6 +64,7 @@ INSTALLED_APPS = [
     "apps.info",
     "apps.emails",
     "apps.common",
+    "anymail"
 ]
 
 MIDDLEWARE = [
@@ -209,5 +210,15 @@ SENDGRID_API_KEY = (
 PRICE_LIMIT_SUBSCRIBER = 350
 
 SITEMAP_FILE = os.path.join(BASE_DIR, "wanderift", "sitemap.xml")
+ROBOTS_TXT = os.path.join(BASE_DIR, "wanderift", "robots.txt")
 
 DATE_INPUT_FORMATS = ["%Y-%m-%d", "%m/%d/%Y"]
+
+ANYMAIL = {
+    "SENDGRID_API_KEY": "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",
+}
+
+SENDGRID_API_URL = "https://api.sendgrid.com/v3/"
+EMAIL_BACKEND = "anymail.backends.sendgrid.EmailBackend"
+DEFAULT_FROM_EMAIL = "noreply@joinflyline.com"
+SERVER_EMAIL = "noreply@joinflyline.com"

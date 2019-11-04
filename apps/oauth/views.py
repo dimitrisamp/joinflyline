@@ -7,6 +7,8 @@ from django.shortcuts import redirect
 from apps.account.views import account_view
 from apps.home.views import index_view
 
+from apps.emails.views import signup_success
+
 
 def create_user(request):
     username = request.POST.get("email", "admin@gmail.com")  # TODO: who should we use that default email?
@@ -15,6 +17,8 @@ def create_user(request):
 
     user = User.objects.create_user(username, email, password)
     user.save()
+    signup_success(request, user)
+
     user = authenticate(request, username=username, password=password)
     auth.login(request, user)
     return redirect(account_view)
