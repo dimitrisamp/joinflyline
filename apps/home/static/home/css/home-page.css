@@ -1300,6 +1300,7 @@ footer .bottom-footer ul li:first-child:before {
     font-weight: 600;
     line-height: 1;
     font-family: dona-black;
+    padding-top: 50px;
 }
 
 .home-slider {
