@@ -46,9 +46,8 @@
   }
 }
 @media(min-width:320px) and (max-width: 480px) {
-  .full-web-form h6 {
-    font-size: 22px !important;
-    margin-top: 0px !important;
+  .full-web-form {
+    display: none;
   }
 }
 .cd-words-wrapper {
