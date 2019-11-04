@@ -135,7 +135,7 @@ header.sticky{
     padding-top: 25px;
     color: #000;
     margin-bottom: 0;
-    font-family: Dona-black;
+    font-family: dona-black;
     display: inline-flex;
 }
 .search-flight-home p {
@@ -1223,6 +1223,8 @@ footer .bottom-footer ul li:first-child:before {
     display: inline;
     font-size: 48px;
     font-weight: 600;
+    line-height: 1;
+    font-family: dona-black;
 }
 
 .home-slider {
