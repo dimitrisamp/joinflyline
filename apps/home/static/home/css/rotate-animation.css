@@ -42,6 +42,15 @@
     font-size: 6rem;
   }
 }
+@media(min-width:320px) and (max-width: 480px) {
+  .full-web-form h6{
+    font-size: 22px !important;
+    font-family: dona-blackItalic;
+    color: #00b0f5;
+    margin-top: 0px !important;
+    margin-left: 10px;
+  }
+}
 .cd-words-wrapper {
   display: inline-block;
   position: relative;

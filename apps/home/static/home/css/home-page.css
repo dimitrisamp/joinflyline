@@ -289,7 +289,7 @@ header.sticky{
 .horizontal-form .search-dropdown{
     padding-right: 0px;
 }
-.horizontal-f-btn .btn-saerch {
+.horizontal-f-btn .btn-search {
     background: #00b0f5;
     border-color: #00b0f5 !important;
     padding: 7px 31px;
@@ -1033,6 +1033,12 @@ footer .bottom-footer ul li:first-child:before {
     font-size: 12px;
     margin-right: 7px;
 }
+.search-button {
+    text-align: center;
+}
+.search-button .btn-search {
+    width: 150px;
+}
 .search-button .btn{
     margin-top: 0px;
 }
@@ -1059,6 +1065,9 @@ footer .bottom-footer ul li:first-child:before {
 .section3-Bg {
     background: #000000;
     padding-top: 36px;
+}
+.section3-content {
+    margin-bottom: 0px;
 }
 .section3-content h3 {
     font-size: 26px;
@@ -1123,7 +1132,7 @@ footer .bottom-footer ul li:first-child:before {
 .search-dropdown {
     margin-bottom: 10px;
 }
-.search-dropdown-outer{
+.search-dropdown-outer {
     margin-bottom: 0px !important;
 }
 .search-dropdown-outer {
@@ -1133,6 +1142,41 @@ footer .bottom-footer ul li:first-child:before {
     width: auto;
 }
 
+.nav-btn .btn {
+    border-radius: 0;
+    color: #00B0F5;
+    padding: 0px;
+    letter-spacing: 0px;
+    margin-right: 10px;
+    font-weight: 600;
+    font-size: 12px;
+}
+
+.newhome-form h3 {
+    font-weight: 600;
+    font-size: 20px;
+    padding-top: 0px;
+    color: #000;
+    margin-bottom: 0;
+    font-family: Dona-black;
+    display: block;
+}
+
+#newhome-form p {
+    font-family: Dona-Regular;
+    font-size: 15px;
+    margin: 0;
+    padding-bottom: 0px;
+    color: #7d7d7d;
+}
+
+.home-slider .slider-title {
+    font-size: 22px;
+}
+
+.home-slider .slider-title-second {
+    font-size: 14px;
+}
 
 }
 
