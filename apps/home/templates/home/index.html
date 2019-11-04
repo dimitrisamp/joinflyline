@@ -61,7 +61,7 @@
                             </div>
                             {% include "home/dealform.html" %}
                         </div>
-                        <div class="right-body-pane container-pad-right">
+                        <div class="right-body-pane" :class="{'container-pad-right': searchResults.length !== 0 || searchProgress}">
                             <div v-if="searchResults.length === 0 && !searchProgress"
                                  class="h-contentarea">
                                 <cd-intro/>
