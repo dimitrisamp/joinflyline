@@ -1079,7 +1079,7 @@ header.sticky{
     padding-top: 5px;
 }
 .landing-full-papge strong{
-    font-size: 30px;
+    font-size: 42px;
     color: #000;
     margin-top: 30px;
     display: block;
@@ -1092,13 +1092,14 @@ header.sticky{
     margin-top: 21px;
 }
 .landing-full-papge .btn{
-    background: #00a3da;
+    background: #00b0f5;
+    font-family: dona-bold;
     border-radius: 0px;
     padding: 13px 33px;
     margin-bottom: 24px;
     margin-top: 20px;
     color: #fff;
-    border: 2px solid #00a3da;
+    border: 2px solid #00b0f5;
     letter-spacing: 1px;
 }
 .landing-manage-form input{
@@ -1107,7 +1108,7 @@ header.sticky{
     background-clip: border-box;
     padding: 24px 20px;
     margin-top: 20px;
-    border: 2px solid #00a3da;
+    border: 2px solid #ececec;
 }
 .landing-manage-form input::placeholder{
     font-weight: 600;
@@ -1125,7 +1126,7 @@ header.sticky{
     margin-left: 10px;
 }
 .landingp-footer {
-    border-top: 2px solid #cacaca;
+    border-top: 1.2px solid #cfcfcf47;
 }
 .full-section .promo-p-space{
     padding-right: 5px;
@@ -1602,12 +1603,7 @@ footer .bottom-footer ul li:first-child:before {
 @media not all and (min-resolution:.001dpcm) {
   @supports (-webkit-appearance: none) and (stroke-color:transparent) {
     .search-flight-home {
-<<<<<<< HEAD
-        margin-top: 110px !important;
-    }
-=======
         margin-top: 150px !important;
-    }  
->>>>>>> e2ddb6c6268bbde6ad66f2d317e5e5cdda1b8a91
+    }
   }
 }
