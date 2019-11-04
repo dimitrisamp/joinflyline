@@ -3,7 +3,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Home -</title>
+    <title>Subscription Flight Search, Deal Alerts, Direct Booking | Flyline</title>
     <link rel="stylesheet" type="text/css" href="{% static "home/css/bootstrap.css" %}">
     <link rel="stylesheet" type="text/css" href="{% static "home/css/home-page.css" %}">
     <link rel="stylesheet" type="text/css" href="{% static "home/css/dropdown.css" %}">
@@ -19,6 +19,10 @@
           rel="stylesheet">
     <link href="{% static "/home/vue-slider-component/theme/default.css" %}"
           rel="stylesheet"/>
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static "home/img/favicon/16x16.png" %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static "home/img/favicon/32x32.png" %}">
+    <link rel="icon" type="image/png" sizes="48x48" href="{% static "home/img/favicon/48x48.png" %}">
+    <meta name="description" content="Find your next exciting adventure with Flyline. Search our thousands of discount flights exclusive to Flyline members, and travel without breaking the bank. Travel more and spend less with Flyline."/>
 </head>
 <body>
 
@@ -27,11 +31,11 @@
 
         <div class="section">
 
-        <div class="h-topbar text-center">
-           <p>Join Flyline experince unmatched savings on flights 
-            <a href="#" class="btn btn-default">Savings Explained</a>
-           </p>   
-        </div>
+            <div class="h-topbar text-center">
+                <p>Join Flyline to Experience Unmatched Flight Savings
+                    <a href="#" class="btn btn-default">Savings Explained</a>
+                </p>
+            </div>
 
             <div class="section-01 h-user-home">
 
@@ -41,14 +45,21 @@
                             <a class="navbar-brand nav-logo flex-grow-1"> <img
                                     src="{% static "home/img/flyline_logos-01-1.png" %}">
                             </a>
-                            <form class="form-inline nav-btn">
+                            <div v-if="user.anonymous">
                                 <a href="{% url "sign-in" %}"
                                    class="btn my-2 login-btn my-sm-0">Log In</a>
-                            </form>
-                            <form class="form-inline nav-btn">
                                 <a href="{% url "sign-up" %}"
-                                   class="btn my-2 get-s-btn my-sm-0">Get Started</a>
-                            </form>
+                                   class="btn my-2 get-s-btn my-sm-0">Get
+                                    Started</a>
+                            </div>
+                            <div v-else>
+                                <a href="{% url "manage-trips" %}"
+                                   class="btn my-2 login-btn my-sm-0">Trips</a>
+                                <a href="{% url "accounts" %}"
+                                   class="btn my-2 get-s-btn my-sm-0">Account<a>
+                                <a href="{% url "logout" %}"
+                                   class="btn my-2 get-s-btn my-sm-0">Log Out</a>
+                            </div>
                         </div>
                     </nav>
                 </header>
@@ -68,7 +79,8 @@
                             </div>
                             {% include "home/dealform.html" %}
                         </div>
-                        <div class="right-body-pane" :class="{'container-pad-right': searchResults.length !== 0 || searchProgress}">
+                        <div class="right-body-pane"
+                             :class="{'container-pad-right': searchResults.length !== 0 || searchProgress}">
                             <div v-if="searchResults.length === 0 && !searchProgress"
                                  class="h-contentarea">
                                 <cd-intro/>
@@ -147,9 +159,9 @@
                                 <div class="slider-box">
                                     <img src="{% static "home/img/barcelona-buildings-city-1388030.jpg" %}"/>
                                     <div class="h-slider-caption">
-                                        <strong>New York</strong>
-                                        <p>$275+ Round Trip | Typical Price</p>
-                                        <b>$342 Round Trip | Found on Flyline</b>
+                                        <strong>Barcelona</strong>
+                                        <p>$750+ Round Trip | Typical Price</p>
+                                        <b>$432 Round Trip | Found on Flyline</b>
                                     </div>
                                 </div>
                             </div>
@@ -158,9 +170,9 @@
                                 <div class="slider-box">
                                     <img src="{% static "home/img/architecture-building-capital-1850619.jpg" %}"/>
                                     <div class="h-slider-caption">
-                                        <strong>New York</strong>
-                                        <p>$275+ Round Trip | Typical Price</p>
-                                        <b>$342 Round Trip | Found on Flyline</b>
+                                        <strong>Paris</strong>
+                                        <p>$820+ Round Trip | Typical Price</p>
+                                        <b>$475 Round Trip | Found on Flyline</b>
                                     </div>
                                 </div>
                             </div>
@@ -170,8 +182,8 @@
                                     <img src="{% static "home/img/architecture-buildings-city-2190283.jpg" %}"/>
                                     <div class="h-slider-caption">
                                         <strong>New York</strong>
-                                        <p>$275+ Round Trip | Typical Price</p>
-                                        <b>$342 Round Trip | Found on Flyline</b>
+                                        <p>$375+ Round Trip | Typical Price</p>
+                                        <b>$152 Round Trip | Found on Flyline</b>
                                     </div>
                                 </div>
                             </div>
@@ -180,9 +192,9 @@
                                 <div class="slider-box">
                                     <img src="{% static "home/img/ancient-architectural-design-architecture-2166553.jpg" %}"/>
                                     <div class="h-slider-caption">
-                                        <strong>New York</strong>
-                                        <p>$275+ Round Trip | Typical Price</p>
-                                        <b>$342 Round Trip | Found on Flyline</b>
+                                        <strong>Bali</strong>
+                                        <p>$850+ Round Trip | Typical Price</p>
+                                        <b>$534 Round Trip | Found on Flyline</b>
                                     </div>
                                 </div>
                             </div>
@@ -239,17 +251,27 @@
                     </div>
                     <div class="col-md-6 col-12">
                         <ul class="h-result-list">
-                          <marquee behavior="alternate" direction="up" height="500" scrolldelay="1" onmouseover="this.stop()" onmouseout="this.start()">
-                            <li><img src="{% static "home/img/flight_option_one.png" %}"></li>
-                            <li><img src="{% static "home/img/flight_option_two.png" %}"></li>
-                            <li><img src="{% static "home/img/flight_option_three.png" %}"></li>
-                            <li><img src="{% static "home/img/flight_option_four.png" %}"></li>
-                            <li><img src="{% static "home/img/Sevem.png" %}"></li>
-                            <li><img src="{% static "home/img/Three.png" %}"></li>
-                            <li><img src="{% static "home/img/One.png" %}"></li>
-                            <li><img src="{% static "home/img/Two.png" %}"></li>
-                            <li><img src="{% static "home/img/Five.png" %}"></li>
-                            <li><img src="{% static "home/img/Six.png" %}"></li>
+                            <marquee behavior="alternate" direction="up" height="500"
+                                     scrolldelay="1" onmouseover="this.stop()"
+                                     onmouseout="this.start()">
+                                <li><img
+                                        src="{% static "home/img/flight_option_one.png" %}">
+                                </li>
+                                <li><img
+                                        src="{% static "home/img/flight_option_two.png" %}">
+                                </li>
+                                <li><img
+                                        src="{% static "home/img/flight_option_three.png" %}">
+                                </li>
+                                <li><img
+                                        src="{% static "home/img/flight_option_four.png" %}">
+                                </li>
+                                <li><img src="{% static "home/img/Sevem.png" %}"></li>
+                                <li><img src="{% static "home/img/Three.png" %}"></li>
+                                <li><img src="{% static "home/img/One.png" %}"></li>
+                                <li><img src="{% static "home/img/Two.png" %}"></li>
+                                <li><img src="{% static "home/img/Five.png" %}"></li>
+                                <li><img src="{% static "home/img/Six.png" %}"></li>
                             </marquee>
                         </ul>
                         <!-- <img src="{% static "home/img/iphone-white.png" %}" class="mobile-img"> -->
@@ -266,7 +288,7 @@
                              class="mobile-img">
                     </div>
                     <div class="col-md-6 col-12">
-                        <div class="section4-content text-center">
+                        <div class="section4-content">
                             <h3>No More Redirects</h3>
                             <p>Our members don't get the run-around, <br> search and
                                 book directly with flyline. Stop<br> wasting time wih
@@ -313,7 +335,7 @@
 
         <div class="section" id="footer-section">
             {% include "_includes/footer.html" %}
-        </div>    
+        </div>
 
     </div>
 </div>
@@ -329,6 +351,7 @@
 {% include "home/vue-quicklinks-template.html" %}
 {% include "home/vue-cd-intro-template.html" %}
 {% include "home/vue-search-results-template.html" %}
+{{ django_user | json_script:"django_user" }}
 <script type="text/javascript"
         src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script type="module" src="{% static "home/js/flight.js" %}"></script>

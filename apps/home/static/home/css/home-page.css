@@ -206,7 +206,7 @@ header.sticky{
     padding-bottom: 18px;
     color: #7d7d7d;
 }
-.newhome-form p{
+.newhome-form p {
     font-family: Dona-Regular;
     font-size: 25px;
     margin: 0;
@@ -1284,12 +1284,17 @@ footer .bottom-footer ul li:first-child:before {
 .section3-content .btn{
     width: 100%;
 }
+.section4-content h3 {
+    font-size: 18px;
+    text-align: center;
+}
 .section4-content p {
     color: #000000;
     font-weight: 600;
     font-size: 12px;
     margin: 19px 10px;
     line-height: 21px;
+    text-align: center;
 }
 .section5-content p {
     color: #fff;
@@ -1316,9 +1321,6 @@ footer .bottom-footer ul li:first-child:before {
     font-weight: 600;
     line-height: 28px;
     color: #000000;
-}
-.section4-content h3 {
-    font-size: 18px;
 }
 .assets-section .img_asset {
     height: 18px;
@@ -1366,10 +1368,11 @@ footer .bottom-footer ul li:first-child:before {
 
 .newhome-form span {
     display: inline;
-    font-size: 48px;
+    font-size: 44px;
     font-weight: 600;
     line-height: 1;
     font-family: dona-black;
+    padding-top: 65px;
 }
 
 .home-slider {

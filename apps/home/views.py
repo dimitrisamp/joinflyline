@@ -8,7 +8,7 @@ from apps.results.adjacency import CITY_STATE_COUNTRY_AIRPORT, ADJACENCY
 
 def index_view(request):
     context = {
-        "title": S.SITE_TITLE
+        "title": S.SITE_TITLE,
     }
     return render(request, "home/index.html", context)
 
