@@ -112,6 +112,9 @@ header.sticky{
     padding:10px 0;
     border-bottom: 1.2px solid #cfcfcf47;
 }
+.navbar-light .btn{
+    font-family: Dona-Bold;
+}
 .nav-logo img {
     position: relative;
     top: -3px;
@@ -161,6 +164,14 @@ header.sticky{
 .left-form-pane .s-result-dropdown .btn{
     margin-bottom: 16px;
     padding: 10px 5px;
+}
+.left-form-pane .s-result-dropdown .btn:active{
+    border: 2px solid #ececec !important;
+    background: #fff !important;
+    color: #7d7d7d !important;
+}
+.airline-logo-holder.d-flex {
+    width: 100px;
 }
 .left-form-pane .search-dropdown {
     margin-bottom: 16px;
@@ -394,7 +405,7 @@ header.sticky{
 }
 .first-page-body {
     align-self: stretch;
-    flex: 1;
+/*    flex: 1;*/
 }
 .horizontal-form{
     background: transparent;
@@ -425,6 +436,11 @@ header.sticky{
 .horizontal-form .s-result-dropdown .btn{
     background: #fff;
 }
+.horizontal-form .s-result-dropdown .btn:active{
+    background: #fff !important;
+    border: 2px solid #ececec !important;
+    color: #7d7d7d !important;
+}
 .sign-up-header {
     border: 2px solid #00b0f5;
     color: #000 !important;
@@ -439,7 +455,7 @@ header.sticky{
     align-self: stretch;
     flex: 1;
     background: #ffff;
-    padding-top: 20px;
+    padding-top: 5px;
     padding-bottom: 20px;
     border-top: 2px solid #f2f2f2;
 }
@@ -455,6 +471,7 @@ header.sticky{
     color: grey;
     font-family:Dona-Regular;
     text-align: center;
+    margin-bottom: 0;
 }
 .home-slider .slider-dec{
     text-align: center;
@@ -504,8 +521,12 @@ header.sticky{
     font-size: 10px;
 }
 .search-results strong {
-    font-size: 13px;
+    font-size: 15px;
     margin: 0;
+    color: #000;
+}
+.search-results h5{
+    color: #000;
 }
 .search-results span {
     font-size: 12px;
@@ -514,7 +535,20 @@ header.sticky{
     display: flow-root;
 }
 .flight-divider span {
-    width: 80px;
+    width: 90px !important;
+}
+.search-flight-devider {
+    background: #cccccc6e;
+    height: 2px;
+    margin-bottom: 19px;
+    width: 100%;
+}
+.filter-devider{
+    background: #cccccc6e;
+    height: 3px;
+    width: 100%;
+    margin: 0px 15px;
+    margin-bottom: 20px;
 }
 
 
