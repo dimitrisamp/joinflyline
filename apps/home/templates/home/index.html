@@ -19,26 +19,27 @@
           rel="stylesheet">
     <link href="{% static "/home/vue-slider-component/theme/default.css" %}"
           rel="stylesheet"/>
-    <link rel="icon" type="image/png" sizes="16x16" href="{% static "home/img/favicon/16x16.png" %}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{% static "home/img/favicon/32x32.png" %}">
-    <link rel="icon" type="image/png" sizes="48x48" href="{% static "home/img/favicon/48x48.png" %}">
-    <meta name="description" content="Find your next exciting adventure with Flyline. Search our thousands of discount flights exclusive to Flyline members, and travel without breaking the bank. Travel more and spend less with Flyline."/>
+    <link rel="icon" type="image/png" sizes="16x16"
+          href="{% static "home/img/favicon/16x16.png" %}">
+    <link rel="icon" type="image/png" sizes="32x32"
+          href="{% static "home/img/favicon/32x32.png" %}">
+    <link rel="icon" type="image/png" sizes="48x48"
+          href="{% static "home/img/favicon/48x48.png" %}">
+    <meta name="description"
+          content="Find your next exciting adventure with Flyline. Search our thousands of discount flights exclusive to Flyline members, and travel without breaking the bank. Travel more and spend less with Flyline."/>
 </head>
 <body>
 
 <div id="main" v-cloak>
     <div id="fullpage">
+        <div class="h-topbar text-center">
+            <p>Join Flyline to Experience Unmatched Flight Savings
+                <a href="#" class="btn btn-default">Savings Explained</a>
+            </p>
+        </div>
 
         <div class="section">
-
-            <div class="h-topbar text-center">
-                <p>Join Flyline to Experience Unmatched Flight Savings
-                    <a href="#" class="btn btn-default">Savings Explained</a>
-                </p>
-            </div>
-
             <div class="section-01 h-user-home">
-
                 <header class="fp-auto-height">
                     <nav class="navbar navbar-light bg-light">
                         <div class="container">
@@ -57,8 +58,8 @@
                                    class="btn my-2 login-btn my-sm-0">Trips</a>
                                 <a href="{% url "accounts" %}"
                                    class="btn my-2 get-s-btn my-sm-0">Account<a>
-                                <a href="{% url "logout" %}"
-                                   class="btn my-2 get-s-btn my-sm-0">Log Out</a>
+                                    <a href="{% url "logout" %}"
+                                       class="btn my-2 get-s-btn my-sm-0">Log Out</a>
                             </div>
                         </div>
                     </nav>

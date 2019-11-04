@@ -1,0 +1,69 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Lannding -</title>
+    <link rel="stylesheet" type="text/css" href="{% static "home/css/bootstrap.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "home/css/home-page.css" %}">    
+</head>
+<body>
+
+
+<div class="full-papge">
+  <div class="container">
+    <section class="full-section">
+      <div class="landing-p-logo"> <img src="{% static "home/img/flyline_logos-01-1.png" %}"> </div>      
+      <strong>Spend Less, Travel More</strong>
+      <p>For $4.99 get access to thousands of private disounts on flights, <br /> unlimited notification on cheap flights to the destinations you want, <br /> annd automatic checkin, Sign Up for a 10 day free trail and start saving</p>
+
+      <a href="#" class="btn btn-default">Learn More</a>
+
+      <strong>Win $500 Booking Credit on flyline</strong>
+      <p>Enter your email for the chance to win $500 in flight booking eredit <br/> through flyline</p>
+
+      <div class="row">
+    <div class="col-md-6 col-12">
+        <div class="form-group landing-manage-form">
+             <input class="form-control" type="text" placeholder="Enter Email Address">
+        </div>  
+    </div>
+    <div class="col-md-6 col-12">
+      <button type="submit" class="btn btn-default landing-submit-btn">Enter to Win</button>  
+    </div>        
+      </div>
+    </section>  
+  </div>
+</div>
+
+<div class="landingp-footer">
+   {% include "_includes/footer.html" %}
+</div>
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+<script src="{% static "js/lightpick.js" %}"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="{% static "home/js/jquery-2.1.4.min.js" %}"></script>
+<script src="{% static "home/js/bootstrap.js" %}"></script>
+<script src="{% static "home/js/rotate-animationscript.js" %}"></script>
+{% include "home/vue-flight-template.html" %}
+{% include "home/vue-quicklinks-template.html" %}
+{% include "home/vue-cd-intro-template.html" %}
+{% include "home/vue-search-results-template.html" %}
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script type="module" src="{% static "home/js/flight.js" %}"></script>
+<script type="module" src="{% static "home/js/quicklinks.js" %}"></script>
+<script type="module" src="{% static "home/js/cd-intro.js" %}"></script>
+<script type="module" src="{% static "home/js/search-results.js" %}"></script>
+<script src="{% static "home/fullPage.js-master/dist/fullpage.min.js" %}"></script>
+<script type="text/javascript"
+        src="{% static "home/fullPage.js-master/dist/scrolloverflow.js" %}"></script>
+<script src="{% static "home/vue-slider-component/dist/vue-slider-component.umd.min.js" %}"></script>
+<script type="module" src="{% static "js/home.js" %}"></script>
+<script type="module" src="{% static "home/js/drift.js" %}"></script>
+</body>
+</html>
