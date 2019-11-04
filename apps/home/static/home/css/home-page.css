@@ -1578,6 +1578,15 @@ footer .bottom-footer ul li:first-child:before {
     margin: 200px 20px;
 }
 
+}
 
+@media only screen 
+and (min-device-width : 375px) 
+and (max-device-width : 812px)
+and (-webkit-device-pixel-ratio : 3) { 
+
+.search-flight-home {
+    margin-top: 50px;
+}  
 
 }
