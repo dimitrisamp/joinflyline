@@ -12,6 +12,10 @@ spec:
       labels:
         app: wanderift
     spec:
+      volumes:
+        - name: gce-service-account-key
+          secret:
+            secretName: gce-service-account-key
       containers:
         - name: wanderift
           image: registry.gitlab.com/zburau/wanderift-django
@@ -40,8 +44,16 @@ spec:
             - name: POSTGRES_DB
               value: postgres
 
+            - name: GCE_SERVICE_ACCOUNT_KEY
+              value: /etc/secrets/GCE_SERVICE_ACCOUNT_KEY
+
             - name: FOR_GODS_SAKE_PLEASE_REDEPLOY
               value: 'THIS_STRING_IS_REPLACED_DURING_BUILD'
+          volumeMounts:
+            - name: gce-service-account-key
+              readonly: true
+              mountPath: /etc/secrets
+
 
       imagePullSecrets:
         - name: gitlab-registry
