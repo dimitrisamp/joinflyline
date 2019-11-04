@@ -241,7 +241,7 @@ header.sticky{
 }
 .h-contentarea h3 {
     color: #000;
-    font-size: 20px;
+    font-size: 24px;
     font-weight: 600;
     font-family:dona-black !important;
 }
@@ -653,7 +653,7 @@ header.sticky{
 }
 .search-result{
     border-radius: 0px;
-    padding-bottom: 24px;
+    padding-bottom: 28px;
 }
 .s-result-dropdown{
     margin-bottom: 10px;
