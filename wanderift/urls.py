@@ -39,6 +39,11 @@ class SiteMapView(View):
             open(settings.SITEMAP_FILE).read(), content_type="application/xml"
         )
 
+class RobotsTxtView(View):
+    def get(self, request, *args, **kwargs):
+        return HttpResponse(
+            open(settings.ROBOTS_TXT).read(), content_type="text/plain"
+        )
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -71,6 +76,7 @@ urlpatterns = [
     path("sign-up/", SignUpView.as_view(), name="sign-up"),
     path("city/query", CityAutocomplete.as_view(), name="city-query"),
     path("sitemap.xml", SiteMapView.as_view(), name="sitemap"),
+    path("robots.txt", RobotsTxtView.as_view(), name="robots"),
 ]
 
 urlpatterns += staticfiles_urlpatterns()
