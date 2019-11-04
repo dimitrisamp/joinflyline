@@ -140,6 +140,78 @@ body{
     display: none;
 }
 
+.setep-2{
+    margin:70px 0px;
+}
+.step-formbg{
+    background: #fff;
+    padding: 10px 40px;
+    margin-top: 30px;
+    border: 2px solid #ccc;
+    padding-top: 30px;
+}
+.form-logo h3{
+    font-size: 36px;
+    font-weight: 600;
+    color: #000;
+}
+.form-descrption strong{
+    color: #7d7d7d;
+    font-size: 21px;
+    text-align: center;
+    display: block;
+    padding-top: 30px;
+    padding-bottom: 10px;
+}
+.form-descrption span{
+    font-size: 12px;
+    color: #7d7d7d;
+    font-weight: 600;
+}
+.form-descrption p{
+    color: #7d7d7d;
+    font-size: 18px;
+    margin: 0 40px;
+    line-height: 40px;
+    margin-bottom: 10px;
+    font-weight: 600;
+    margin-top: 12px;
+}
+.step-f-inputs .form-control{
+    border-radius: 0px;
+    padding: 24px 27px;
+    border-color: #e6e6e6d1;
+    margin-bottom: 16px;
+    background-clip: inherit;
+    border: 2px solid #e6e6e6d1;
+}
+.step-f-inputs .form-control::placeholder{
+    font-size: 15px;
+    color:#989595;
+    font-weight: 600;
+}
+.step-f-inputs .btn{
+    border: 2px solid #fff;
+    color: #fff;
+    width: 100%;
+    border-radius: 0px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    font-size: 21px;
+    padding: 10px 0 !important;
+    background: #00a3da;
+    margin-bottom: 24px;
+}
+.step-01 p{
+    font-size: 14px;
+    margin: 0 8px;
+    margin-bottom: 20px;
+}
+.onborad1-form {
+    margin-bottom: 60px;
+    padding-bottom: 0px;
+}
+/*End Get started Form css*/
 
 
 @media(min-width: 320px) and (max-width: 480px){
