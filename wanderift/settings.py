@@ -64,7 +64,7 @@ INSTALLED_APPS = [
     "apps.info",
     "apps.emails",
     "apps.common",
-    "anymail"
+    "anymail",
 ]
 
 MIDDLEWARE = [
@@ -195,6 +195,12 @@ SENTRY_DSN = "https://a875b98b313142d8afd40797b84f235e@sentry.io/1773547"
 
 if STAGE == "production":
     sentry_sdk.init(dsn=SENTRY_DSN, integrations=[DjangoIntegration()])
+    DEFAULT_FILE_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
+    STATICFILES_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
+
+    GS_BUCKET_NAME = "joinflyline"
+    MEDIA_ROOT = "media"
+
 SITE_TITLE = "Wanderift | Airline Travel Subscription | Save on Retail Flights"
 SUBSCRIBER_AIRLINES = {
     "AA",  # American
@@ -215,7 +221,7 @@ ROBOTS_TXT = os.path.join(BASE_DIR, "wanderift", "robots.txt")
 DATE_INPUT_FORMATS = ["%Y-%m-%d", "%m/%d/%Y"]
 
 ANYMAIL = {
-    "SENDGRID_API_KEY": "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",
+    "SENDGRID_API_KEY": "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"
 }
 
 SENDGRID_API_URL = "https://api.sendgrid.com/v3/"
