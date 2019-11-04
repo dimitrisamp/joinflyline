@@ -1093,6 +1093,7 @@ footer .bottom-footer ul li:first-child:before {
 }
 .search-button {
     text-align: center;
+    padding-right: 0;
 }
 .search-button .btn-search {
     width: 100%;
