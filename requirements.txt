@@ -16,3 +16,5 @@ django-extensions
 factory-boy
 django-enumfield
 django-anymail
+django-storages[google]
+gunicorn
