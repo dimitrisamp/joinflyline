@@ -145,7 +145,7 @@ header.sticky{
     padding-bottom: 7px;
     color: #7d7d7d;
 }
-#newhome-form p{
+.newhome-form p{
     font-family: Dona-Regular;
     font-size: 25px;
     margin: 0;
@@ -153,6 +153,9 @@ header.sticky{
     color: #7d7d7d;
     margin-top: -16px;
     margin-bottom: 10px;
+}
+.newhome-form span {
+    display: none;
 }
 .search-flight-home:before {
     content: '';
@@ -1092,7 +1095,7 @@ footer .bottom-footer ul li:first-child:before {
     text-align: center;
 }
 .search-button .btn-search {
-    width: 150px;
+    width: 100%;
 }
 .search-button .btn{
     margin-top: 0px;
@@ -1196,6 +1199,9 @@ footer .bottom-footer ul li:first-child:before {
 .s-result-dropdown_destination-type .search-f-dropdown{
     width: auto;
 }
+.h-select-box,.h-ecenomylink{
+    padding-right: 0px;
+}
 
 .nav-btn .btn {
     padding: 0px;
@@ -1205,22 +1211,21 @@ footer .bottom-footer ul li:first-child:before {
 }
 
 .newhome-form h3 {
-    font-size: 20px;
-    padding-top: 0px;
-    display: block;
+    display: none;
 }
 
-#newhome-form p {
-    font-size: 15px;
-    padding-bottom: 0px;
+.newhome-form p {
+    display: none;
 }
 
-.home-slider .slider-title {
-    font-size: 22px;
+.newhome-form span {
+    display: inline;
+    font-size: 48px;
+    font-weight: 600;
 }
 
-.home-slider .slider-title-second {
-    font-size: 14px;
+.home-slider {
+    display: none !important;
 }
 
 }
