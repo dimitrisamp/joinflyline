@@ -9,3 +9,6 @@ db.sqlite3
 venv/
 
 .vscode/
+
+node_modules/
+package-lock.json

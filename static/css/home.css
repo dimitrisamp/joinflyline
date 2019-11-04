@@ -40,9 +40,9 @@ button.custom_btn {
     background: #00B7FF;
     border: 2.3px solid #00B7FF;
     box-sizing: border-box;
-    border-radius: 4px;
+    border-radius: px;
     cursor: pointer;
-    padding: 5px 20px;
+    padding: 5px 30px;
 }
 button.custom_btn_white {
     color: #00B7FF;
@@ -51,9 +51,9 @@ button.custom_btn_white {
     background: #ffffff;
     border: 2.3px solid #00B7FF;
     box-sizing: border-box;
-    border-radius: 4px;
+    border-radius: 0px;
     cursor: pointer;
-    padding: 5px 20px;
+    padding: 5px 30px;
 }
 
 .navbar-nav {

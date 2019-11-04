@@ -9,13 +9,4 @@ $(document).ready(function() {
         
     });
 
-    var sticky = 10;
-
-    $(window).scroll(function() {
-        if ($(window).scrollTop() > sticky) {
-            $("header").addClass("sticky");
-          } else {
-            $("header").removeClass("sticky");
-          }
-    });
 });

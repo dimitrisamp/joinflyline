@@ -1,5 +1,9 @@
+@font-face {
+  font-family:Dona-Regular;
+  src: url(fonts/Dona/Dona-Regular.ttf);
+}
 body{
-	font-family: 'Karla', sans-serif;
+      font-family:Dona-Regular !important;
 }
 .navbar-navigation{
 	border: none;
@@ -24,15 +28,24 @@ body{
     top: 11px;
 }
 .formBg{
-	background: #fff;
-	padding: 10px 15px;
-	border: 1px solid #ccc;
-    padding-bottom: 40px;
-    margin: 73px auto;
-    max-width: 420px;
+    background: #fff;
+    padding: 20px 41px;
+    border: 2px solid #d7d7d7;
+    padding-bottom: 30px;
+    margin: 120px auto;
+    max-width: 400px;
+    margin-bottom: 20px;
+}
+.sign-bottom{
+    max-width: 400px;
+    border: 2px solid #d7d7d7;
+    margin: 0 auto;
+    padding: 20px 0px;
+    background: #fff;
 }
 .center-logo{
-    padding-top: 70px;
+    margin-top: 10px;
+    margin-bottom: 40px;
 }
 .formBg h3{
 	text-align: center;
@@ -49,38 +62,53 @@ body{
 	font-size: 11px;
 }
 .formBg .form-group input{
-	padding: 19px 10px;
+    padding: 20px 15px;
     border-color: #ccc;
-    border-radius: 3px;
+    border-radius: 0;
+    border: 2px solid #00aeef;
+}
+.formBg .form-group input::placeholder{
+    font-weight: bold;
+    color: #8d8d8d;
+    font-size: 12px;
 }
 .formBg .submit-btn{
-	background: #00b7ff;
+    background: #00b7ff;
     width: 100%;
     color: #eaeaea;
-    padding: 5px 0;
+    padding: 0px 0;
     border-color: #00b7ff;
-    border-radius: 4px;
+    border-radius: 0;
     font-weight: bold;
-    font-size: 15px;
+    font-size: 17px;
     letter-spacing: 1px;
-    margin-top: 20px;
+    margin-top: 10px;
     margin-bottom: 20px;
 }
 .already-txt{
-	text-align: center;
-	margin-top: 0 !important;
-	font-size: 9px !important;
+    text-align: center;
+    font-size: 14px;
+    margin: 0;
+    font-weight: bold;
+    color: #828282;
 }
 .already-txt a{
-	color: #333;
+    color: #00b7ff;
+    font-size: 15px;
+    margin-left: 2px;
 }
 .forgot-link{
-    font-size: 11px;
-    color: #3333339e;
+    font-size: 14px;
+    color: #3333339e !important;
     font-weight: bold;
+    text-align: center;
+    display: block;
+    margin-top: 10px;
 }
-.white-block {
-    background-color: white;
+.full-bg-image {
+    background: url(/static/home/img/headerbackground.png);
+    width: 100%;
+    background-position: bottom;
 }
 .bottom-footer .sub-menus{
     text-align: center;

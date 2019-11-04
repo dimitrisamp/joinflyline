@@ -1,0 +1,233 @@
+<div id="dealform" class="h-dealform horizontal-form">
+    <div class="row">
+        <div class="col-md-2 col-12 h-select-box s-result-dropdown s-result-dropdown_destination-type">
+            <p class="btn btn-info"
+               @click="openDestinationType">
+                {(destinationTypes[form.destinationTypeId])}</p>
+
+            <div class="search-f-dropdown"
+                 v-cloak
+                 v-if="destinationTypeSelectProgress"
+                 v-click-outside="closeDestinationType">
+                <ul class="s-dropdown-list">
+                    <li v-for="(dtype, dtypeId) in destinationTypes"
+                        @click="selectDestinationType(dtypeId)">
+                        <a href="#">{(dtype)}</a></li>
+                </ul>
+            </div>
+
+        </div>
+        <div class="col-md-2 col-12 h-select-box s-result-dropdown s-result-dropdown_passengers">
+            <p href="#" @click="openPassengersForm"
+               class="btn btn-info">{( valPassengers )}
+                Passenger{( valPassengers > 1?"s":""
+                )}</p>
+
+            <div class="passengers-dropdown"
+                 v-cloak
+                 v-if="passengerSelectProgress"
+                 v-click-outside="closePassengersForm">
+                <ul class="passengers-dropdown-list">
+                    <li class="p-category">
+                        <b>Adults</b>
+                        <input type="button" value="-"
+                               @click="decrement(1)"
+                               class="increment">
+                        <input type="text"
+                               readonly="readonly"
+                               v-model="form.valAdults"
+                               class="value-select">
+                        <input type="button" value="+"
+                               @click="increment(1)"
+                               class="increment"></li>
+
+                    <li class="p-category">
+                        <b>Children</b>
+                        <input type="button" value="-"
+                               @click="decrement(2)"
+                               class="increment">
+                        <input type="text"
+                               readonly="readonly"
+                               v-model="form.valChildren"
+                               class="value-select">
+                        <input type="button"
+                               id="valAdultsIncrement"
+                               value="+"
+                               @click="increment(2)"
+                               class="increment"></li>
+
+                    <li class="p-category">
+                        <b>Infants</b>
+                        <input type="button" value="-"
+                               @click="decrement(3)"
+                               class="increment">
+                        <input type="text"
+                               readonly="readonly"
+                               v-model="form.valInfants"
+                               class="value-select">
+                        <input type="button" value="+"
+                               @click="increment(3)"
+                               class="increment"></li>
+
+                </ul>
+            </div>
+
+        </div>
+        <div class="col-md-2 col-12 h-ecenomylink s-result-dropdown s-result-dropdown_seat-type">
+            <p @click="openSeatTypeSelect"
+               class="btn btn-info">
+                {(seatTypes[form.seatType])}</p>
+
+            <div class="search-f-dropdown"
+                 v-cloak
+                 v-if="seatTypeSelectProgress"
+                 v-click-outside="closeSeatTypeSelect">
+                <ul class="s-dropdown-list">
+                    <li v-for="(name, type) in seatTypes"
+                        @click="selectSeatType(type)">
+                        <a>{( name )}</a></li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="input-group input-group-sm search-dropdown-outer col-md-3 col-12">
+            <div class="search-item search-item-from"
+                 v-bind:class="{shadowsrch: cityFromInput.focused}">
+                <div class="input-group input-group-sm search-dropdown">
+                    <span class="input-group-text search-form-input">From</span>
+                    <input type="text"
+                           class="form-control search-input"
+                           @focus="cityFromInputFocused"
+                           @blur="cityFromInputBlurred"
+                           v-model="cityFromInput.text"
+                           v-on:input="cityFromHandler">
+                </div>
+                <div class="dropdown-list"
+                     v-bind:class="{hidden: !cityFromInput.focused && !cityFromInput.searchProgress}">
+                    <ul class="list-Sdown"
+                        v-if="cityFromInput.searchResults.length > 0">
+                        <li v-for="(place, index) of cityFromInput.searchResults"
+                            v-on:click="cityFromInputChoose(index)">
+                            <div class="dropdown-icon">
+                                <i class="fa fa-plane"></i>
+                            </div>
+                            <div class="">{(
+                                formatPlace(place) )}
+                            </div>
+                        </li>
+                    </ul>
+                    <p v-else-if="!cityFromInput.requestProgress">
+                        Start typing city name...</p>
+                    <p v-else-if="cityFromInput.requestProgress">
+                        Loading...</p>
+                    <p v-else-if="!cityFromInput.requestProgress">
+                        No results for your request.</p>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="input-group input-group-sm search-dropdown-outer col-md-3 col-12">
+            <div class="search-item search-item-to"
+                 v-bind:class="{shadowsrch: cityToInput.focused}">
+                <div class="input-group input-group-sm search-dropdown">
+                    <span class="input-group-text search-form-input">To</span>
+                    <input type="text"
+                           class="form-control search-input"
+                           @focus="cityToInputFocused"
+                           @blur="cityToInputBlurred"
+                           v-model="cityToInput.text"
+                           v-on:input="cityToHandler">
+                </div>
+                <div class="dropdown-list"
+                     v-bind:class="{hidden: !cityToInput.focused && !cityToInput.searchProgress}">
+                    <ul class="list-Sdown"
+                        v-if="cityToInput.searchResults.length > 0">
+                        <li v-for="(place, index) of cityToInput.searchResults"
+                            v-on:click="cityToInputChoose(index)">
+                            <div class="dropdown-icon">
+                                <i class="fa fa-plane"></i>
+                            </div>
+                            <div class="">{(
+                                formatPlace(place) )}
+                            </div>
+                        </li>
+                    </ul>
+                    <p v-else-if="!cityToInput.requestProgress">
+                        Start typing city name...</p>
+                    <p v-else-if="cityToInput.requestProgress">
+                        Loading...</p>
+                    <p v-else-if="!cityToInput.requestProgress">
+                        No results for your request.</p>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="input-group input-group-sm search-dropdown col-md-2 col-12">
+            <span class="input-group-text search-form-input">Dep</span>
+            <input type="text" id="departure_date"
+                   aria-describedby="basic-addon3"
+                   class="form-control search-input"
+                   v-model="form.departure_date" />
+
+        </div>
+
+        <div class="input-group input-group-sm search-dropdown col-md-2 col-12">
+            <span class="input-group-text search-form-input">Ret</span>
+            <input type="text" id="return_date"
+                   aria-describedby="basic-addon3"
+                   class="form-control search-input"
+                   v-model="form.return_date" />
+        </div>
+        <div v-if="!user.anonymous">
+        <div class="filter-field">
+            <b>Filters (Optional)</b>
+        </div>
+        <div class="input-group input-group-sm search-dropdown  col-12">
+            <span class="input-group-text search-form-input">Airline</span>
+            <input type="text" class="form-control search-input" @focus="openAirlinesSelect" v-model="airlinesText">
+
+            <div class="search-f-dropdown airline-f-dropdown" v-if="airlinesSelectProgress" v-click-outside="closeAirlinesSelect">
+                <ul class="s-dropdown-list">
+                    <li v-for="airlineData in form.airlines"><label><input type="checkbox" v-model="airlineData.checked" @change="updateAirlinesSelection">{( airlineData.name )}<span class="checkmark"></span></label></li>
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="input-group input-group-sm search-dropdown col-12">
+            <span class="input-group-text search-form-input">Stops</span>
+            <input type="text" class="form-control search-input" @focus="openMaxStopsSelect" v-model="maxStopsText">
+
+            <div class="search-f-dropdown stop-filder-dropdown" v-if="maxStopsSelectProgress" v-click-outside="closeMaxStopsSelect">
+                <ul class="s-dropdown-list">
+                    <li v-for="(value, maxStops) in maxStopsFilterOptions" @click="selectMaxStops(maxStops)"><a>{( value )}</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="input-group input-group-sm search-dropdown col-12">
+            <span class="input-group-text search-form-input">Pricing</span>
+            <input type="text" class="form-control search-input" @focus="openPriceSelect" v-model="priceText">
+
+            <div class="search-f-dropdown price-dropdown" v-show="priceSelectProgress" v-click-outside="closePriceSelect">
+                <div class="price-slider-container">
+                <vue-slider v-model="form.priceRange" :enable-cross="false" :max="3000" @change="updatePriceText"></vue-slider>
+                </div>
+            </div>
+        </div>
+        </div>
+
+        <div class="search-button horizontal-f-btn col-md-2 col-12">
+            <button type="submit" class="btn-search" @click="search" :disabled="isFormIncomplete">
+                <img src="static/home/img/search.png">
+            </button>
+        </div>
+
+    </div>
+
+
+</div>

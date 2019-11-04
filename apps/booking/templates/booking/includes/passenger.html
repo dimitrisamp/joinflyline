@@ -1,7 +1,7 @@
 <div class="whiteBg" id="primary-passenger-block" class="passenger-block">
     <div class="row">
         <div class="col-md-6">
-            <span class="fa fa-user-circle"></span> <b class="passenger-kind">Primary passenger</b></span>
+         <b class="passenger-kind">Primary passenger</b></span>
         </div>
         <div class="col-md-6"></div>
     </div><!-- inner row -->
@@ -14,7 +14,7 @@
     <div class="userForm">
         <form class="passengerForm">
             <div class="row">
-                <div class="col-md-3 form-group form-group-sm">
+                <div class="col-md-2 form-group form-group-sm">
                         <label for="gender"
                                 class="control-label">Title</label>
                         <select class="form-control"
@@ -24,7 +24,7 @@
                         </select>
                     </div>
 
-                <div class="col-md-4 form-group form-group-sm">
+                <div class="col-md-5 form-group form-group-sm">
                     <label for="givennames"
                             class="control-label">Given
                         names</label>
@@ -32,7 +32,7 @@
                             name="givennames"
                            placeholder="e.g Johnny Apple" required value="{{ user.first_name | default_if_none:"" }}" />
                 </div>
-                <div class="col-md-4 form-group form-group-sm">
+                <div class="col-md-5 form-group form-group-sm">
                     <label for="surenames"
                             class="control-label">Surname(s)</label>
                     <input type="text" class="form-control"
@@ -45,13 +45,13 @@
                 {% include "booking/includes/passenger/birthdate.html" %}
             </div>
             <div class="row">
-                <div class="col-md-4 form-group form-group-sm">
+                <div class="col-md-6 form-group form-group-sm">
                     <label for="cardno"
                             class="control-label">Passport/ID number</label>
                     <input type="text" class="form-control"
                             name="cardno">
                 </div>
-                <div class="col-md-4 form-group form-group-sm">
+                <div class="col-md-6 form-group form-group-sm">
                     <label for="expiration"
                             class="control-label">Expiration</label>
                     <input type="text" class="form-control"

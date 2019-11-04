@@ -8,27 +8,29 @@
 
 {% endblock %}
 {% block content %}
-    <section class="navbar-section">
+<!--     <section class="navbar-section">
         {% include "_includes/promo.html" %}
-    </section>
+    </section> -->
     <section class="navbar-section">
         {% include "_includes/navbar.html" with page="retail" %}
     </section>
     <section>
         <div class="container">
-            <div class="row">
-                <div class="col-md-8">
 
                     <div class="main-heading">
                         <h3>{{ retail_info.cityFrom }} <span class="fa fa-long-arrow-right"></span> {{ retail_info.cityTo }}
                                 {% if not one_way %}and back{% endif %}</h3>
+                        <p>Confirm your trip details, enter your traveler information, and enter your payment <br/> detail and you’ll be ready for take off</p>        
                     </div>
+
+            <div class="row">
+                <div class="col-md-8">
 
                     {% include "booking/includes/summary.html" %}
                     <div id="passengers">
                     {% include "booking/includes/passenger.html" %}
                     </div>
-                    <div class="text-center">
+                    <div class="text-center booking-p-button">
                         <button type="submit" class="btn btn-default add-btn" id="js-add-passenger"><span
                                 class="fa fa-user-plus"></span> Add another passenger
                         </button>
@@ -37,11 +39,12 @@
                         </button>
                     </div>
                 </div>
-                <div class="col-md-4" style="top: 80px;">
+                <div class="col-md-4">
                     {% include "booking/includes/totals.html" %}
                     {% if subscription_benefits %}{% include "booking/includes/benefits.html" %}{% endif %}
                     {% include "booking/includes/checkout.html" %}
                 </div>
+
             </div><!-- row -->
         </div>
     </section>
@@ -49,6 +52,7 @@
     {% include "_includes/footer.html" %}
 {% endblock %}
 {% block jscontent %}
+    {{ retail_info | json_script:"retail-info"}}
     <script src="{% static "js/passenger.js" %}"></script>
     <script src="{% static "js/bookflight.js" %}"></script>
 {% endblock %}

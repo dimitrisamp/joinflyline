@@ -1,4 +1,3 @@
-
 {% load static %}
 <!DOCTYPE html>
 <html>
@@ -21,54 +20,42 @@
             async></script>
     <title>{{ title }}</title>
 </head>
-<body>
+<body class="full-bg-image">
 
 <!-- Form -->
 <section class="white-block">
 
-    <div class="center-logo text-center">
-       <a href="{% url "index" %}"> <img src="{% static "images/logo.png" %}" class="r-logo" alt="Logo"></a>
-    </div>
-
     <div class="container">
         <div class="formBg mx-auto">
-            <h3>Sign In</h3>
-            <p>Enter your email and password to <br/>
-                start wandering</p>
+
+            <div class="center-logo text-center">
+               <a href="{% url "index" %}"> <img src="{% static "home/img/flyline_logos-01-1.png" %}" class="r-logo" alt="Logo"></a>
+            </div>
 
             <form action="{% url "login" %}" method="POST">
                 {% csrf_token %}
                 <div class="form-group">
-                    <label for="email" class="control-label">Email Address</label>
-                    <input type="text" class="form-control" name="email">
+                    <input type="text" class="form-control" name="email" placeholder="Email Address">
                 </div>
 
                 <div class="form-group">
-                    <label for="password" class="control-label">Password</label>
-                    <input type="password" class="form-control" name="password">
+                    <input type="password" class="form-control" name="password" placeholder="Password">
                 </div>
 
-                <a href="#" class="forgot-link">Forgot Password</a>
-
-                <button type="submit" class="btn btn-default submit-btn">Sign In
+                <button type="submit" class="btn btn-default submit-btn">Log In
                 </button>
 
-                <p class="already-txt">Dont't have an account?
-                    <a href="{% url "sign-up" %}">Sign Up</a> and start saving today!
-                </p>
+                <a href="#" class="forgot-link">Forgot Password?</a>
 
             </form>
         </div>
-    </div>
 
-     <div class="bottom-footer">
-        <div class="sub-menus">
-            <ul>
-                <li><a href="#">Wanderift 2017 - 2019 </a></li>
-                <li><a href="#">Terms & Conditions</a></li>
-                <li><a href="#">Privacy Policy </a></li>
-            </ul>
+        <div class="sign-bottom">
+            <p class="already-txt">Dont't have an account? 
+                <a href="{% url "sign-up" %}">Sign Up</a>
+            </p>            
         </div>
+
     </div>
 
 </section>

@@ -1,0 +1,53 @@
+<script type="text/x-template" id="vue-search-results-template">
+    <div>
+        <quicklinks v-if="searchResults.length !== 0"
+                    :sort="form.sort"
+                    :data="quickFiltersData"
+                    @sort-by="sortResultsBy"></quicklinks>
+        <div class="search-results" v-if="searchProgress"
+             v-cloak>
+            <div class="w-100" v-for="i in 4" :key="i">
+                <div class="result-item mb-2 w-100"
+                     style="width: 90%">
+                    <div class="result-block result-toggler w-100 d-block d-md-flex justify-content-start p-2 pt-3 pb-3"
+                         data-toggle="collapse"
+                         data-target="#result-item27180">
+                        <div class="loading_animation">
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <div class="animate-element animate-element-01"></div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="animate-element animate-element-02"></div>
+                                        <div class="animate-element animate-element-03"></div>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="animate-element animate-element-04"></div>
+                                        <div class="animate-element animate-element-05"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="divider-30"></div>
+            </div>
+        </div>
+        <div class="search-results normal-scroll"
+             v-cloak
+             v-if="!searchProgress && searchResults.length !== 0">
+
+            <flight v-for="flight in searchResults"
+                    :flight="flight" :form="form"
+                    :key="flight.id"></flight>
+
+            <div class="h-btngroups">
+                <a class="btn btn-default" href="#"
+                   @click="loadMore">Load
+                    More</a>
+            </div>
+
+        </div>
+    </div>
+</script>

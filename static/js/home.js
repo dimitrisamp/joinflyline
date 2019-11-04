@@ -1,10 +1,17 @@
-const seatTypes = {
-    'M': 'Economy',
-    'W': 'Premium Economy',
-    'C': 'Business',
-    'F': 'First Class'
-};
+import ClickOutside from './v-click-outside.js';
 
+const AIRLINE_NAMES = {
+    "DL": "Delta",
+    "AS": "Alaska",
+    "NK": "Spirit",
+    "B6": "JetBlue",
+    "F9": "Frontier",
+    "G4": "Allegiant",
+    "UA": "United",
+    "AA": "American",
+    "WN": "Southwest",
+    "SY": "Sun Country",
+};
 
 function debounce(fn, delay, ...rest) {
     let timeoutID = null;
@@ -33,12 +40,15 @@ function getCityInputData(k) {
 
 
 const app = new Vue({
-    el: '#app',
+    el: '#main',
     delimiters: ['{(', ')}'],
     data: {
         searchResultPlaces: [],
         searchResultPlacesFrom: [],
         searchResultPlacesTo: [],
+        searchProgress: false,
+        searchResults: [],
+        quickFiltersData: null,
         searchLocation: '',
         noOfPassengers: 'Passengers',
         cityFromRequestProgress: false,
@@ -51,8 +61,37 @@ const app = new Vue({
         seatTypeName: "Economy",
         cityFromInput: getCityInputData('From'),
         cityToInput: getCityInputData('To'),
+        destinationTypes: {"round": "Round Trip", "oneway": "Oneway"},
+        destinationTypeSelectProgress: false,
+        passengerSelectProgress: false,
+        seatTypeSelectProgress: false,
+        maxStopsSelectProgress: false,
+        maxStopsText: '',
+        seatTypes: {
+            'M': 'Economy',
+            'W': 'Premium Economy',
+            'C': 'Business',
+            'F': 'First Class'
+        },
+        maxStopsFilterOptions: {
+            0: "No Stops",
+            1: "One Stop",
+            2: "Two Stops",
+        },
+        airlinesSelectProgress: false,
+        airlinesText: '',
+        priceSelectProgress: false,
+        priceText: '',
+        user: JSON.parse(document.getElementById('django_user').textContent),
         form: {
-            destinationType: "Return",
+            limit: 4,
+            sort: null,
+            priceRange: [0, 3000],
+            airlines: [
+                {name: "American Airlines", checked: false, code: "AA"},
+                {name: "United Airlines", checked: false, code: "UA"},
+            ],
+            maxStops: null,
             noOfPassengers: "Passengers",
             destinationTypeId: 'round',
             seatType: 'M',
@@ -61,13 +100,99 @@ const app = new Vue({
             valInfants: 0,
             departure_date: "",
             return_date: "",
+            depareture_date_data: null,
+            return_date_data: null,
             city_from: "",
             city_to: "",
             placeFrom: "",
             placeTo: "",
         }
     },
+    directives: {
+        ClickOutside,
+    },
+    components: {
+        VueSlider: window['vue-slider-component'],
+    },
     methods: {
+        updatePriceText() {
+            const [a, b] = this.form.priceRange;
+            this.priceText = `$${a}-$${b}`;
+        },
+        openPriceSelect() {
+            setTimeout(() => {
+                this.priceSelectProgress = true;
+            }, 150)
+        },
+        closePriceSelect() {
+            this.priceSelectProgress = false;
+        },
+        updateAirlinesSelection() {
+            this.airlinesText = this.form.airlines.filter(
+                (a) => a.checked
+            ).map(
+                (a) => a.name
+            ).join(', ');
+        },
+        openAirlinesSelect() {
+            setTimeout(() => {
+                this.airlinesSelectProgress = true;
+            }, 150);
+        },
+        closeAirlinesSelect() {
+            this.airlinesSelectProgress = false;
+        },
+        closeMaxStopsSelect() {
+            this.maxStopsSelectProgress = false;
+        },
+        openMaxStopsSelect() {
+            setTimeout(() => {
+                this.maxStopsSelectProgress = true;
+            }, 150);
+        },
+        selectMaxStops(maxStops) {
+            this.form.maxStops = maxStops;
+            this.maxStopsText = this.maxStopsFilterOptions[this.form.maxStops];
+            this.closeMaxStopsSelect();
+        },
+        openSeatTypeSelect() {
+            setTimeout(() => {
+                this.seatTypeSelectProgress = true;
+            }, 50);
+
+        },
+        closeSeatTypeSelect() {
+            this.seatTypeSelectProgress = false;
+        },
+        selectSeatType(type) {
+            this.form.seatType = type;
+            this.closeSeatTypeSelect();
+        },
+        openPassengersForm() {
+            setTimeout(
+                () => {
+                    this.passengerSelectProgress = true;
+                }, 50
+            );
+
+        },
+        closePassengersForm() {
+            if (this.passengerSelectProgress) {
+                this.passengerSelectProgress = false;
+            }
+        },
+        openDestinationType() {
+            setTimeout(() => {
+                this.destinationTypeSelectProgress = true;
+            }, 50);
+        },
+        closeDestinationType() {
+            this.destinationTypeSelectProgress = false;
+        },
+        selectDestinationType(dtypeId) {
+            this.form.destinationTypeId = dtypeId;
+            this.closeDestinationType();
+        },
         cityFromInputFocused() {
             this.cityFromInput.focused = true;
         },
@@ -79,7 +204,7 @@ const app = new Vue({
             this.cityFromInput.searchProgress = false;
         },
         cityToInputFocused() {
-            app.cityToInput.focused = true;
+            this.cityToInput.focused = true;
         },
         cityToInputBlurred() {
             const that = this;
@@ -90,40 +215,25 @@ const app = new Vue({
         },
         cityToInputChoose(i) {
             this.cityToInput.selectedIndex = i;
-            this.cityToInput.text = app.formatPlace(this.cityToInput.searchResults[i]);
+            this.cityToInput.text = this.formatPlace(this.cityToInput.searchResults[i]);
             this.cityToInput.searchProgress = false;
         },
         cityFromInputChoose(i) {
             this.cityFromInput.selectedIndex = i;
-            const place = app.cityFromInput.searchResults[i]
-            this.cityFromInput.text = app.formatPlace(place);
+            this.cityFromInput.text = this.formatPlace(this.cityFromInput.searchResults[i]);
             this.cityFromInput.searchProgress = false;
-            if (DjangoUser.subscriber) {
-                const that = this;
-                this.locationSearch('__all__', place.name).then((data) => {
-                    that.cityToInput.searchResults = data.locations;
-                });
-            }
         },
         formatPlace(place) {
             return `${place.name} ${place.subdivision ? place.subdivision.name : ""} ${place.country.code} (${place.code})`;
         },
-        locationSearch(term, cityFrom) {
+        locationSearch(term) {
             return new Promise((resolve) => {
-                let url;
-                if (DjangoUser.subscriber) {
-                    url = new URL('/city/query', window.location);
-                } else {
-                    url = new URL('https://kiwicom-prod.apigee.net/locations/query');
-                }
+                let url = new URL('https://kiwicom-prod.apigee.net/locations/query');
                 let searchParams = {
                     term,
                     locale: 'en-US',
                     location_types: 'city',
                 };
-                if (DjangoUser.subscriber && cityFrom) {
-                    searchParams.city_from = cityFrom;
-                }
                 url.search = new URLSearchParams(searchParams);
                 fetch(url, {
                     method: 'GET',
@@ -138,15 +248,15 @@ const app = new Vue({
                 );
             });
         },
-        updateCityFrom() {
-            if (DjangoUser.subscriber) {
-                const that = this;
-                this.locationSearch('__all__').then(function (data) {
-                    that.cityFromInput.searchResults = data.locations;
-                });
-            }
+        loadMore() {
+            this.form.limit = this.form.limit + 4;
+            this.search();
         },
-        fromCityHandler: debounce(function () {
+        sortResultsBy(sort) {
+            this.form.sort = sort;
+            this.search();
+        },
+        cityFromHandler: debounce(function () {
             if (this.cityFromInput.text === null || this.cityFromInput.text === "" || this.cityFromInput.text.length < 3) {
                 this.cityFromInput.searchProgress = false;
                 return;
@@ -171,7 +281,7 @@ const app = new Vue({
                 }
             );
         }, 500),
-        toCityHandler: debounce(function () {
+        cityToHandler: debounce(function () {
             if (this.cityToInput.text === null || this.cityToInput.text === "" || this.cityToInput.text.length < 3) {
                 this.cityToInput.searchProgress = false;
                 return;
@@ -215,8 +325,7 @@ const app = new Vue({
             this.form.stopOverFrom = stopOverFrom + ":" + "00";
             this.form.stopOverTo = stopOverTo + ":" + "00";
         },
-
-        search() {
+        getSearchURL() {
             let formData = new FormData;
 
             if (document.getElementById('stopover') != null) {
@@ -247,30 +356,116 @@ const app = new Vue({
 
             const placeTo = this.cityToInput.searchResults[this.cityToInput.selectedIndex];
             const placeFrom = this.cityFromInput.searchResults[this.cityFromInput.selectedIndex];
-            formData.append("city_from", this.formatPlace(placeFrom));
-            formData.append("city_to", this.formatPlace(placeTo));
-            formData.append("placeFrom", placeFrom.code);
-            formData.append("placeTo", placeTo.code);
-            formData.append("dep_date", this.form.departure_date);
+            formData.append("fly_from", placeFrom.code);
+            formData.append("fly_to", placeTo.code);
+            const dateFrom = this.form.departure_date_data.format('DD/MM/YYYY');
+            formData.append("date_from", dateFrom);
+            formData.append("date_to", dateFrom);
             formData.append("type", this.form.destinationTypeId);
             if (this.form.destinationTypeId === "round") {
-                formData.append("ret_date", this.form.return_date);
+                const dateTo = this.form.return_date_data.format('DD/MM/YYYY');
+                formData.append("return_from", dateTo);
+                formData.append("return_to", dateTo);
             }
             formData.append("adults", this.form.valAdults);
             formData.append("infants", this.form.valInfants);
             formData.append("children", this.form.valChildren);
             formData.append("selected_cabins", this.form.seatType);
-            if (this.form.stop) formData.append("max_stopovers", this.form.stop);
-            if (this.form.stopOverFrom) formData.append("stopover_from", this.form.stopOverFrom);
-            if (this.form.stopOverTo) formData.append("stopover_to", this.form.stopOverTo);
-            if (DjangoUser.demo) formData.append('demo', true);
-            let url = new URL('/results', window.location);
+            if (this.form.priceRange !== [0, 3000]) {
+                const [price_from, price_to] = this.form.priceRange;
+                formData.append("price_from", price_from);
+                formData.append("price_to", price_to);
+            }
+            const selectedAirlines = this.form.airlines.filter((a) => a.checked);
+            if (selectedAirlines) {
+                formData.append('select_airlines', selectedAirlines.map((a) => a.code).join(','));
+            }
+            if (this.form.maxStops !== null) {
+                formData.append('max_stopovers', this.form.maxStops);
+            }
+            if (this.form.sort !== null) {
+                formData.append('sort', this.form.sort);
+            }
+            formData.append('limit', this.form.limit);
+            formData.append('curr', 'USD');
+            let url = new URL('https://kiwicom-prod.apigee.net/v2/search', window.location);
             url.search = new URLSearchParams(formData);
-            window.sessionStorage.setItem('cityToInput', JSON.stringify(this.cityToInput));
-            window.sessionStorage.setItem('cityFromInput', JSON.stringify(this.cityFromInput));
-            window.location = url;
+            return url
         },
-
+        calculateLayovers(routes) {
+            for (let i = 0; i < routes.length - 1; i++) {
+                let [prev, next] = [routes[i], routes[i + 1]];
+                prev.layover = (new Date(next.utc_departure).getTime() - new Date(prev.utc_arrival).getTime()) / 1000;
+            }
+        },
+        getAirlines(flights) {
+            let airlines = new Set();
+            for (const flight of flights) {
+                for (const airline of flight.airlines) {
+                    airlines.add(airline);
+                }
+            }
+            return [...airlines].sort();
+        },
+        processFlight(sr) {
+            const to_routes = sr.route.filter((r) => r.return === 0);
+            const return_routes = sr.route.filter((r) => r.return === 1);
+            this.calculateLayovers(to_routes);
+            this.calculateLayovers(return_routes);
+            const roundtrip = return_routes.length > 0;
+            const return_departure = roundtrip ? return_routes[0].local_departure : null;
+            return {
+                ...sr,
+                roundtrip,
+                return_departure,
+            }
+        },
+        getQuickLinksData(flights) {
+            const data = flights.map((f) => ({
+                price: f.conversion.USD,
+                duration: f.duration.total,
+                quality: f.quality,
+                date: new Date(f.local_departure)
+            }));
+            return {
+                price: data.reduce((prev, curr) => prev.price < curr.price?prev:curr),
+                duration: data.reduce((prev, curr) => prev.duration < curr.duration?prev:curr),
+                quality: data.reduce((prev, curr) => prev.quality < curr.quality?prev:curr),
+                date: data.reduce((prev, curr) => prev.date < curr.date?prev:curr),
+            }
+        },
+        displaySearchResults(data) {
+            if (this.searchResults.length === 0) {
+                this.form.airlines = data.airlines.map((a) => ({
+                    code: a,
+                    name: AIRLINE_NAMES[a],
+                    checked: false
+                }));
+            }
+            this.searchResults = data.data.data;
+        },
+        search() {
+            this.searchProgress = true;
+            fetch(this.getSearchURL(), {
+                headers: {'apikey': 'xklKtpJ5fxZnk4rsDepqOzLUaYYAO9dI'},
+            }).then(
+                (response) => response.json()
+            ).then(
+                (data) => {
+                    let parent = {...data};
+                    delete parent.data;
+                    data.data = data.data.map(this.processFlight);
+                    data.data = data.data.map((o) => {o.parent = parent; return o});
+                    const airlines = this.getAirlines(data.data);
+                    this.quickFiltersData = this.getQuickLinksData(data.data);
+                    this.displaySearchResults({data, airlines});
+                }
+            ).finally(
+                () => {
+                    this.searchProgress = false;
+                }
+            )
+        },
         swapPlaces() {
             let city_from = this.form.city_from;
             this.form.city_from = this.form.city_to;
@@ -279,36 +474,7 @@ const app = new Vue({
             this.form.placeTo = this.form.placeFrom;
             this.form.placeFrom = placeTo;
         },
-
-
-        selectDestType(type) {
-            let returnDateInput = document.getElementById('return_date');
-            switch (type) {
-                case "round":
-                    this.form.destinationTypeId = 'round';
-                    this.form.destinationType = 'Return';
-                    return;
-                case "oneway":
-                    this.form.destinationTypeId = 'oneway';
-                    this.form.destinationType = 'One way';
-                    return;
-                default:
-                    this.form.destinationTypeId = 'round';
-                    this.form.destinationType = 'Return';
-                    return;
-            }
-        },
-
-        selectSeatType(type) {
-            if (seatTypes.hasOwnProperty(type)) {
-                this.form.seatType = type;
-
-            } else {
-                this.form.seatType = 'M';
-            }
-            this.seatTypeName = seatTypes[type];
-        },
-        increment (index) {
+        increment(index) {
 
             this.valPassengers = this.form.valAdults + this.form.valChildren + this.form.valInfants;
 
@@ -323,7 +489,6 @@ const app = new Vue({
                         } else {
                             document.getElementById('valAdultsIncrement').disable = true;
                         }
-                        this.sumTotalsPassengers();
                         return;
                     case 2:
 
@@ -333,17 +498,13 @@ const app = new Vue({
                         } else {
                             document.getElementById('valChildrenIncrement').disable = true;
                         }
-                        this.sumTotalsPassengers();
                         return;
                     case 3:
 
                         if (this.form.valInfants !== this.form.valAdults) {
                             this.form.valInfants++;
                             this.valPassengers++;
-                        } else {
-                            document.getElementById('valInfantsIncrement').disable = true;
                         }
-                        this.sumTotalsPassengers();
                         return;
                 }
             }
@@ -369,7 +530,6 @@ const app = new Vue({
                         } else {
                             document.getElementById('valAdultsIncrement').disable = true;
                         }
-                        this.sumTotalsPassengers();
                         return;
                     case 2:
                         if (this.form.valChildren !== 0) {
@@ -378,7 +538,6 @@ const app = new Vue({
                         } else {
                             document.getElementById('valChildrenIncrement').disable = true;
                         }
-                        this.sumTotalsPassengers();
                         return;
                     case 3:
                         if (this.form.valInfants !== 0) {
@@ -387,14 +546,13 @@ const app = new Vue({
                         } else {
                             document.getElementById('valInfantsIncrement').disable = true;
                         }
-                        this.sumTotalsPassengers();
                         return;
                 }
             }
 
         },
 
-        sumTotalsPassenger () {
+        sumTotalsPassenger() {
             if (this.valPassengers === 1) {
                 this.form.noOfPassengers = 'Passengers';
             } else {
@@ -403,19 +561,61 @@ const app = new Vue({
         },
     },
     mounted() {
-        this.updateCityFrom();
+        this.updatePriceText();
+    },
+    computed: {
+        isFormIncomplete() {
+            if (this.form.destinationTypeId === "round") {
+                if (!this.form.return_date) return true;
+            }
+            if (!this.form.departure_date) return true;
+            const placeTo = this.cityToInput.searchResults[this.cityToInput.selectedIndex];
+            const placeFrom = this.cityFromInput.searchResults[this.cityFromInput.selectedIndex];
+            if (!placeTo || !placeFrom) return true;
+            return false;
+        },
+        showWideForm() {
+            return this.user.anonymous && this.searchResults.length === 0 && !this.searchProgress;
+        },
+        cityFromTo() {
+            const cityFrom = this.cityFromInput.searchResults[this.cityFromInput.selectedIndex].name;
+            const cityTo = this.cityToInput.searchResults[this.cityToInput.selectedIndex].name;
+            return `${cityFrom} -> ${cityTo}`;
+        },
+        airlineNames() {
+            return this.form.airlines.map((e)=>e.name).join(', ');
+        }
     }
 });
 
 $(function () {
-    document.querySelector(".btn-group");
     new Lightpick({
         field: document.getElementById('departure_date'),
         secondField: document.getElementById('return_date'),
         singleDate: false,
         onSelect(start, end) {
-            app.form.departure_date = start.format('MM/DD/YYYY');
-            app.form.return_date = end.format('MM/DD/YYYY');
+            if (start) app.form.departure_date = start.format('MM/DD/YYYY');
+            if (end) app.form.return_date = end.format('MM/DD/YYYY');
+            app.form.departure_date_data = start;
+            app.form.return_date_data = end;
         }
     });
+    $('#fullpage').fullpage({
+        scrollBar: true,
+        navigation: true,
+        normalScrollElements: '.normal-scroll',
+    });
+
+    var sticky = 400;
+    $(window).scroll(function () {
+        if ($(window).scrollTop() > sticky) {
+            $("header").addClass("sticky");
+            $("#fp-nav").addClass("dots-display");
+        } else {
+            $("header").removeClass("sticky");
+            $("#fp-nav").removeClass("dots-display");
+        }
+    });
+
+
 });

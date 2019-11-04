@@ -58,7 +58,7 @@ urlpatterns = [
     # Information about Wanderift
     path("info/", include("apps.info.urls")),
     # booking
-    path("retail/<str:booking_token>", retail_booking_view, name="retail"),
+    path("retail/", retail_booking_view, name="retail"),
     path("booking_flight/", SaveBookingView.as_view(), name="book"),
     path("check-flights/", CheckFlightsView.as_view(), name="check-flights"),
     path("check-promo/", CheckPromoView.as_view(), name="check-promo"),

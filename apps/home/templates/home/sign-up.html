@@ -20,32 +20,26 @@
             async></script>
     <title>{{ title }}</title>
 </head>
-<body>
+<body  class="full-bg-image">
 
 <!-- Form -->
 
 <section class="form white-block">
 
-   <div class="center-logo text-center">
-      <a href="{% url "index" %}"> <img src="{% static "images/logo.png" %}" class="r-logo" alt="Logo"></a>
-    </div>
-
     <div class="container">
         <div class="formBg mx-auto">
-            <h3>Sign Up</h3>
-            <p>getting started is easy enter an email and<br/>
-                password and you'll be saving in no time!</p>
+
+            <div class="center-logo text-center">
+               <a href="{% url "index" %}"> <img src="{% static "home/img/flyline_logos-01-1.png" %}" class="r-logo" alt="Logo"></a>
+            </div>
 
             <form action="{% url "signup" %}" method="POST">
                 {% csrf_token %}
                 <div class="form-group">
-                    <label for="email" class="control-label">Email
-                        Address</label>
                     <input type="text" class="form-control" name="email">
                 </div>
 
                 <div class="form-group">
-                    <label for="password" class="control-label">Password</label>
                     <input type="password" class="form-control" name="password">
                 </div>
 
@@ -53,22 +47,15 @@
                     Saving
                 </button>
 
-                <p class="already-txt">Already have an account? Click 
-                    <a href="{% url "sign-in" %}">HERE</a> to sign in</p>
             </form>
         </div>
-    </div>
 
-
-     <div class="bottom-footer">
-        <div class="sub-menus">
-            <ul>
-                <li><a href="#">Wanderift 2017 - 2019 </a></li>
-                <li><a href="#">Terms & Conditions</a></li>
-                <li><a href="#">Privacy Policy </a></li>
-            </ul>
+        <div class="sign-bottom">
+            <p class="already-txt"> Already have an account? Click 
+                <a href="{% url "sign-in" %}">HERE</a> to sign in</p>
         </div>
-     </div>
+
+    </div>
 
 </section>
 
