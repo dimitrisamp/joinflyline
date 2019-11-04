@@ -17,18 +17,8 @@ def booking_success(request, booking):
         from_email = "booking@joinflyline.com"
         to_email = booking_contact["email"]
         subject = "Booking Successful"
-        try:
-            send_mail(subject, "text body", from_email,
-                      [to_email], html_message=htm_content)
-        except Exception as e:
-            print(e)
-        return render(
-            request,
-            "emails/booking_success.html",
-            context={"data": booking, "i": 0, "booking_contact": booking_contact},
-        )
-    else:
-        return HttpResponse(status=500)
+        send_mail(subject, "text body", from_email,
+                  [to_email], html_message=htm_content)
 
 
 def signup_success(request, user):
@@ -40,18 +30,8 @@ def signup_success(request, user):
         from_email = "noreply@joinflyline.com"
         to_email = user.email
         subject = "SignUp Successful"
-        try:
-            send_mail(subject, "text body", from_email,
-                      [to_email], html_message=htm_content)
-        except Exception as e:
-            print(e)
-        return render(
-            request,
-            "emails/add-traveler-information.html",
-            context={"data": user},
-        )
-    else:
-        return HttpResponse(status=500)
+        send_mail(subject, "text body", from_email,
+                  [to_email], html_message=htm_content)
 
 
 def finish_setting_up_account(request, user):
@@ -63,18 +43,7 @@ def finish_setting_up_account(request, user):
         from_email = "noreply@joinflyline.com"
         to_email = user.email
         subject = "Finish Setting Up Account"
-        try:
-            send_mail(subject, "text body", from_email,
-                      [to_email], html_message=htm_content)
-        except Exception as e:
-            print(e)
-        return render(
-            request,
-            "emails/finish-setting-up-account.html",
-            context={"data": user},
-        )
-    else:
-        return HttpResponse(status=500)
+        send_mail(subject, "text body", from_email, [to_email], html_message=htm_content)
 
 
 def forgot_password(request, user):
@@ -86,18 +55,7 @@ def forgot_password(request, user):
         from_email = "noreply@joinflyline.com"
         to_email = user.email
         subject = "Forgot Password"
-        try:
-            send_mail(subject, "text body", from_email,
-                      [to_email], html_message=htm_content)
-        except Exception as e:
-            print(e)
-        return render(
-            request,
-            "emails/forgot_password.html",
-            context={"data": user},
-        )
-    else:
-        return HttpResponse(status=500)
+        send_mail(subject, "text body", from_email, [to_email], html_message=htm_content)
 
 
 def search_discount_flights(request, user):
@@ -109,16 +67,5 @@ def search_discount_flights(request, user):
         from_email = "noreply@joinflyline.com"
         to_email = user.email
         subject = "Search Discount Flights"
-        try:
-            send_mail(subject, "text body", from_email,
-                      [to_email], html_message=htm_content)
-        except Exception as e:
-            print(e)
-        return render(
-            request,
-            "emails/search-discount-flights.html",
-            context={"data": user},
-        )
-    else:
-        return HttpResponse(status=500)
+        send_mail(subject, "text body", from_email, [to_email], html_message=htm_content)
 
