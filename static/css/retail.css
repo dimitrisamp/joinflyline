@@ -1,5 +1,18 @@
+@font-face {
+  font-family:dona-black;
+  src: url(fonts/Dona/DonaAlt-Black.ttf);
+}
+@font-face {
+  font-family:Dona-Regular;
+  src: url(fonts/Dona/Dona-Regular.ttf);
+}
+@font-face {
+    font-family: Dona-Bold;
+    src: url(fonts/Dona/Dona-Bold.ttf);
+}
 body{
-	background: #FFF;
+      background: #FFF;
+      font-family:Dona-Regular !important;
 }
 
 
