@@ -1006,6 +1006,78 @@ header.sticky{
 }
 
 
+/*****************************
+        Landing Page
+*****************************/
+
+.landing-p-logo img {
+    height: 40px;
+    margin-bottom: 40px;
+    margin-top: 20px;
+}
+.landing-full-papge{
+    background: #fff;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+.landing-full-papge{
+    padding:50px 135px;
+}
+.landing-full-papge .logo{
+    font-size: 30px;
+    color: #fff;
+    font-weight: 600;
+    padding-top: 5px;
+}
+.landing-full-papge strong{
+    font-size: 30px;
+    color: #000;
+    font-weight: 600;
+    margin-top: 30px;   
+    display: block;
+}
+.landing-full-papge p{
+    font-size: 21px;
+    color: #b3b3b3;
+    line-height: 39px;
+    margin-top: 21px;   
+}
+.landing-full-papge .btn{
+    background: #fff;
+    border-radius: 0px;
+    font-weight: 600;
+    padding: 13px 33px;
+    margin-bottom: 24px;
+    margin-top: 20px;
+    color: #000;
+    border: 2px solid #00a3da;
+}
+.landing-manage-form input{
+    border-radius: 0px;
+    margin: 0;
+    background-clip: border-box;
+    padding: 24px 20px;
+    margin-top: 20px;
+    border: 2px solid #00a3da;
+}
+.landing-manage-form input::placeholder{
+    font-weight: 600;
+    color: #000;
+    font-size: 17px;
+}
+.landing-submit-btn{
+    background: #fff;
+    border-radius: 0px;
+    font-weight: 600;
+    padding: 11px 33px !important;
+    margin-bottom: 24px;
+    margin-top: 20px;
+    color: #000;
+    font-size: 18px;
+    margin-left: 10px;
+}
+
 
 /*****************************
            Footer
@@ -1309,6 +1381,35 @@ footer .bottom-footer ul li:first-child:before {
 .home-slider {
     display: none !important;
 }
+
+.landing-full-papge{
+    padding: 50px 10px;
+}
+.landing-full-papge{
+    position: relative;
+    background: #fff;
+}
+.landing-full-papge .logo{
+    color: #000;
+}
+.landing-full-papge strong{
+    color: #000;    
+    margin-right: 44px;
+}
+.landing-full-papge p{
+    color: #000;
+    font-size: 16px;
+    line-height: 27px;
+}
+.landing-full-papge .btn{
+    background: #000;
+    color: #fff;
+}
+.landing-submit-btn{
+    width: 100%;
+    margin-left: 0;
+}
+
 
 }
 
