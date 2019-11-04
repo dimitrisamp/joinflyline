@@ -1583,13 +1583,11 @@ footer .bottom-footer ul li:first-child:before {
 
 }
 
-@media only screen 
-and (min-device-width : 375px) 
-and (max-device-width : 812px)
-and (-webkit-device-pixel-ratio : 3) { 
-
-.search-flight-home {
-    margin-top: 50px;
-}  
-
+/* Safari */
+@media not all and (min-resolution:.001dpcm) {
+  @supports (-webkit-appearance: none) and (stroke-color:transparent) {
+    .search-flight-home {
+        margin-top: 60px !important;
+    }  
+  }
 }
