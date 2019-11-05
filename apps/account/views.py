@@ -4,10 +4,13 @@ from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import render, redirect
 import stripe
+from django.urls import reverse
+from django.views.generic import TemplateView, FormView
 
-from apps.account.forms import ProfileForm, MARKET_CHOICES
+from apps.account.forms import ProfileForm, MARKET_CHOICES, WizardForm
 from apps.account.models import Account
 from apps.payments.models import Plans
 from apps.payments.plans import get_available_plans
@@ -26,10 +29,10 @@ def account_view(request):
         account = None
 
     context = {"title": "Accounts", "account": account}
-    context['market_choices'] = MARKET_CHOICES
+    context["market_choices"] = MARKET_CHOICES
     plans = get_available_plans()
-    context['credit_packs'] = [plans[c] for c in ['three-pack', 'six-pack']]
-    context['subscriptions'] = [plans[c] for c in ['lite', 'pro', 'biz']]
+    context["credit_packs"] = [plans[c] for c in ["three-pack", "six-pack"]]
+    context["subscriptions"] = [plans[c] for c in ["lite", "pro", "biz"]]
     return render(request, "accounts/accounts.html", context)
 
 
@@ -40,7 +43,7 @@ def update_profile(request):
         form = ProfileForm(request.POST)
         if form.is_valid():
             cd = form.cleaned_data
-            user.first_name = cd['first_name']
+            user.first_name = cd["first_name"]
             user.last_name = cd["last_name"]
             user.email = cd["email"]
             user.profile.dob = cd["dob"]
@@ -136,3 +139,37 @@ def sub_user(request):
             subscription.save()
             messages.success(request, "You subscribed to lite plan successfully")
     return redirect(account_view)
+
+
+class WizardView(FormView):
+    template_name = "home/wizard.html"
+    form_class = WizardForm
+
+    def form_invalid(self, form):
+        return JsonResponse({"errors": form.errors.as_json()}, status=400)
+
+    def form_valid(self, form):
+        cd = form.cleaned_data
+        if User.objects.filter(email=cd["email"]).exists():
+            return JsonResponse(
+                {"errors": {"email": "User already exists"}}, status=400
+            )
+        new_user = User.objects.create_user(
+            cd["email"],
+            cd["email"],
+            cd["password"],
+            first_name=cd["first_name"],
+            last_name=cd["last_name"],
+        )
+        # TODO: send verification email
+        # TODO: handle promocode
+        Account.objects.create(
+            user=new_user,
+            card_number=cd["card_number"],
+            cvc=cd["cvc"],
+            expiry=cd["expiry"],
+            zip=cd["zip"],
+        )
+        new_user.profile.market = cd["home_airport"]
+        new_user.profile.save()
+        return JsonResponse({"success": True})
