@@ -29,3 +29,9 @@ class Command(BaseCommand):
         nsub_password = os.getenv("NON_SUBSCRIBER_PASSWORD")
         if nsub_name:
             User.objects.create_user(nsub_name, nsub_name, nsub_password)
+        for u in User.objects.all():
+            u.first_name = 'John'
+            u.last_name = 'Smith'
+            u.profile.market = 'New York'
+            u.profile.save()
+            u.save()
