@@ -205,11 +205,10 @@ header.sticky{
     display: inline-flex;
 }
 .left-form-pane .search-flight-home p {
-    font-family: Dona-Black;
-    font-size: 17px;
+    font-size: 15px;
     margin: 0;
     padding-bottom: 18px;
-    color: #000;
+    color: #7d7d7d;
 }
 .search-flight-home p {
     font-family: Dona-Regular;
@@ -1114,6 +1113,59 @@ header.sticky{
 }
 .full-section .promo-p-space{
     padding-right: 5px;
+}
+
+
+/*****************************
+      Search Result page
+*****************************/
+
+.search-results-rightcontent{
+    padding:160px 20px;
+}
+.search-results-rightcontent h3{
+    font-size: 47px;
+    font-family: dona-black;
+    color: #000;
+    margin-bottom: 20px;
+}
+.search-results-rightcontent p{
+    font-size: 24px;
+    font-weight: 600;
+    color: #7d7d7d;
+    margin-bottom: 11px;
+}
+.search-results-rightcontent p i{
+    font-size: 24px;
+    font-weight: 600;
+    color: #00b0f5;
+    font-family: dona-black;
+}
+.result-btn{
+    margin-top: 50px;
+}
+.result-btn .btn{
+    border: 2px solid #00b0f5;
+    border-radius: 0px;
+    font-size: 18px;
+    color: #000;
+    font-weight: 600;
+    background: #fff;
+    padding: 14px 16px;
+    margin-bottom: 15px;
+    width: 277px;
+    margin-right: 18px;
+}
+.viewdeal-bottom{
+    background: #00b0f5;
+    height: 40px;
+    width: 100%;
+    flex: 1;
+    bottom: 0;
+    position: absolute;
+    color: #fff;
+    line-height: 44px;
+    font-size: 21px;
 }
 
 /*****************************

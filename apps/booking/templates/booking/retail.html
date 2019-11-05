@@ -41,8 +41,8 @@
                 </div>
                 <div class="col-md-4">
                     {% include "booking/includes/totals.html" %}
-                    <!-- {% if subscription_benefits %}{% include "booking/includes/benefits.html" %}{% endif %} -->
-                    <!-- {% include "booking/includes/checkout.html" %} -->
+                    {% if subscription_benefits %}{% include "booking/includes/benefits.html" %}{% endif %}
+                    {% include "booking/includes/checkout.html" %}
                 </div>
 
             </div><!-- row -->
