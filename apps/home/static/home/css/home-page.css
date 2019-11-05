@@ -88,6 +88,11 @@ Container emulation
     padding-left: 25px;
 
 }
+.search_btn {
+    border: 2px solid #00AEEF;
+    background: #fff;
+    font-weight: 600;
+}
 .section-01{
     height: 100%;
     width: 100%;
