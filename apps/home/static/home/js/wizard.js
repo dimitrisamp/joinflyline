@@ -28,7 +28,9 @@ Vue.component("wizard", {
       let formData = new FormData();
       formData.append("csrfmiddlewaretoken", csrfmiddlewaretoken);
       for (let k in this.form) {
-        formData.append(k, this.form[k]);
+        if (this.form[k]) {
+          formData.append(k, this.form[k]);
+        }
       }
       fetch("/wizard/", {
         method: "POST",
@@ -55,11 +57,7 @@ Vue.component("wizard", {
     isStep2Complete() {
       return (
         this.form.first_name !== "" &&
-        this.form.last_name !== "" &&
-        this.form.zip !== "" &&
-        this.form.card_number !== "" &&
-        this.form.expiry !== "" &&
-        this.form.cvc !== ""
+        this.form.last_name !== ""
       );
     }
   }
