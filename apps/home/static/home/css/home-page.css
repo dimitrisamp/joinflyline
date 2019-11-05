@@ -1603,7 +1603,7 @@ footer .bottom-footer ul li:first-child:before {
 @media not all and (min-resolution:.001dpcm) {
   @supports (-webkit-appearance: none) and (stroke-color:transparent) {
     .search-flight-home {
-        margin-top: 150px !important;
+        margin-top: 170px !important;
     }
   }
 }
