@@ -221,7 +221,7 @@ body{
     padding-bottom: 0px;
 }
 section.step-2 {
-    margin: 100px 0px;
+    margin: 50px 0px;
 }
 /*End Get started Form css*/
 
@@ -240,11 +240,28 @@ section.step-2 {
 .center-logo{
     padding-top: 30px;
 }
+.step-formbg{
+     padding: 10px 20px;
+   
+}
+.step-2 {
+    margin: 50px 0px;
+}
+.form-descrption p {
+    color: #7d7d7d;
+    font-size: 11px;
+    margin: 0 10px;
+    line-height: 14px;
+    margin-bottom: 10px;
+    font-weight: 600;
+    margin-top: 7px;
+    font-family: dona-bold;
+}
 
 }
 @media(max-width:768px){
 .sm-12{
-    max-width: 75% !important;
+    max-width: 90% !important;
     flex: 65.666667% !important;
 }
 
