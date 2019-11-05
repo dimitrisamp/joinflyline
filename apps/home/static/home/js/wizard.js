@@ -25,7 +25,7 @@ Vue.component("wizard", {
       this.step = 2;
     },
     submit() {
-      let formData = new FormData(this.form);
+      let formData = new FormData();
       formData.append("csrfmiddlewaretoken", getCookie("csrftoken"));
       for (let k in this.form) {
         formData.append(k, this.form[k]);
