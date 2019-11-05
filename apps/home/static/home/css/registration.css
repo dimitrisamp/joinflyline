@@ -63,6 +63,7 @@ body{
 }
 .formBg .form-group input{
     padding: 20px 15px;
+    font-family: dona-bold;
     border-color: #ccc;
     border-radius: 0;
     border: 2px solid #00aeef;
@@ -80,6 +81,7 @@ body{
     border-color: #00b7ff;
     border-radius: 0;
     font-weight: bold;
+    font-family: dona-bold;
     font-size: 17px;
     letter-spacing: 1px;
     margin-top: 10px;
@@ -88,6 +90,7 @@ body{
 .already-txt{
     text-align: center;
     font-size: 14px;
+    font-family: dona-bold;
     margin: 0;
     font-weight: bold;
     color: #828282;
@@ -101,6 +104,7 @@ body{
     font-size: 14px;
     color: #3333339e !important;
     font-weight: bold;
+    font-family: dona-bold;
     text-align: center;
     display: block;
     margin-top: 10px;
@@ -156,8 +160,9 @@ body{
     color: #000;
 }
 .form-descrption strong{
-    color: #7d7d7d;
+    color: #000;
     font-size: 21px;
+    font-family: dona-black;
     text-align: center;
     display: block;
     padding-top: 30px;
@@ -167,15 +172,17 @@ body{
     font-size: 12px;
     color: #7d7d7d;
     font-weight: 600;
+    font-family: dona-bold;
 }
 .form-descrption p{
     color: #7d7d7d;
-    font-size: 18px;
+    font-size: 14px;
     margin: 0 40px;
     line-height: 40px;
     margin-bottom: 10px;
     font-weight: 600;
     margin-top: 12px;
+    font-family: dona-bold;
 }
 .step-f-inputs .form-control{
     border-radius: 0px;
@@ -184,6 +191,7 @@ body{
     margin-bottom: 16px;
     background-clip: inherit;
     border: 2px solid #e6e6e6d1;
+    font-family: dona-bold;
 }
 .step-f-inputs .form-control::placeholder{
     font-size: 15px;
@@ -198,8 +206,9 @@ body{
     font-weight: 600;
     letter-spacing: 1px;
     font-size: 21px;
+    font-family: dona-bold;
     padding: 10px 0 !important;
-    background: #00a3da;
+    background: #00AEEF;
     margin-bottom: 24px;
 }
 .step-01 p{
@@ -210,6 +219,9 @@ body{
 .onborad1-form {
     margin-bottom: 60px;
     padding-bottom: 0px;
+}
+section.step-2 {
+    margin: 100px 0px;
 }
 /*End Get started Form css*/
 
@@ -230,3 +242,21 @@ body{
 }
 
 }
+@media(max-width:768px){
+.sm-12{
+    max-width: 75% !important;
+    flex: 65.666667% !important;
+}
+
+}
+
+
+@media(min-width:768px) and (max-width: 1024px){
+.sm-12{
+    max-width: 75% !important;
+    flex: 65.666667% !important;
+}
+
+}
+
+
