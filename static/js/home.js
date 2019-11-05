@@ -108,6 +108,11 @@ const app = new Vue({
             placeTo: "",
         }
     },
+    watch: {
+        searchResults: function(val, oldVal) {
+            setDatePick();
+        }
+    },
     directives: {
         ClickOutside,
     },
@@ -562,6 +567,7 @@ const app = new Vue({
     },
     mounted() {
         this.updatePriceText();
+        setDatePick();
     },
     computed: {
         isFormIncomplete() {
@@ -588,7 +594,7 @@ const app = new Vue({
     }
 });
 
-$(function () {
+function setDatePick() {
     new Lightpick({
         field: document.getElementById('departure_date'),
         secondField: document.getElementById('return_date'),
@@ -600,6 +606,9 @@ $(function () {
             app.form.return_date_data = end;
         }
     });
+}
+
+$(function () {
     $('#fullpage').fullpage({
         scrollBar: true,
         navigation: true,
