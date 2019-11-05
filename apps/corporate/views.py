@@ -1,7 +1,9 @@
 import json
 
+from django.contrib.auth.decorators import login_required
 from django.db.models.functions import Now
 from django.shortcuts import render
+from django.utils.decorators import method_decorator
 from django.views.generic import TemplateView
 
 from apps.booking.models import BookingContact
@@ -20,6 +22,10 @@ def trips_view(request, *args, **kwargs):
 
 class ManageTripsView(TemplateView):
     template_name = "corporate/manage-trips.html"
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
 
     def get_context_data(self, **kwargs):
         user_bookings = BookingContact.objects.filter(user=self.request.user)

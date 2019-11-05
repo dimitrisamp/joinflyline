@@ -11,7 +11,7 @@
     src: url(fonts/Dona/Dona-Bold.ttf);
 }
 body{
-      font-family:Dona-Regular !important;
+      font-family:Dona-Regular;
 }
 
 /*
@@ -64,7 +64,7 @@ Container emulation
 }
 .h-topbar p{
     margin: 0;
-    font-family:Dona-Regular;
+    font-family:Dona-Bold;
     letter-spacing: 1px;
     font-weight: 600;
 }
@@ -80,6 +80,7 @@ Container emulation
 .left-form-pane {
     background: white;
     border-right: solid 1px rgb(204, 204, 204);
+    padding-top: 20px;
     padding-right: 30px;
     flex: 1;
 }
@@ -87,6 +88,11 @@ Container emulation
     flex: 2;
     padding-left: 25px;
 
+}
+.search_btn {
+    border: 2px solid #00AEEF;
+    background: #fff;
+    font-weight: 600;
 }
 .section-01{
     height: 100%;
@@ -114,6 +120,7 @@ header.sticky{
 }
 .navbar-light .btn{
     font-family: Dona-Bold;
+    color: #00AEEF;    
 }
 .nav-logo img {
     position: relative;
@@ -181,14 +188,19 @@ header.sticky{
     display: block;
     font-family:dona-black;
 }
+.left-form-pane h3{
+    font-family:dona-black;   
+    font-size: 33px;
+    padding-top: 20px;
+}
 .left-form-pane .search-f-dropdown{
-     margin-top: -13px;   
+     margin-top: -13px;
 }
 .left-form-pane .passengers-dropdown{
-     margin-top: -13px;   
+     margin-top: -13px;
 }
 .left-form-pane .airline-f-dropdown{
-    margin-top: 47px;   
+    margin-top: 47px;
 }
 .left-form-pane .price-slider-container {
     padding: 10px 15px;
@@ -197,7 +209,7 @@ header.sticky{
 }
 .newhome-form h3{
     font-weight: 600;
-    font-size: 45px;
+    font-size: 43px;
     padding-top: 25px;
     color: #000;
     margin-bottom: 0;
@@ -205,11 +217,10 @@ header.sticky{
     display: inline-flex;
 }
 .left-form-pane .search-flight-home p {
-    font-family: Dona-Black;
-    font-size: 17px;
+    font-size: 15px;
     margin: 0;
     padding-bottom: 18px;
-    color: #000;
+    color: #7d7d7d;
 }
 .search-flight-home p {
     font-family: Dona-Regular;
@@ -219,8 +230,8 @@ header.sticky{
     color: #7d7d7d;
 }
 .newhome-form p {
-    font-family: Dona-Regular;
-    font-size: 25px;
+    font-family: Dona-Bold;
+    font-size: 18px;
     margin: 0;
     padding-bottom: 7px;
     color: #7d7d7d;
@@ -281,6 +292,7 @@ header.sticky{
     border-right: none;
     font-size: 13px;
     font-weight: 600;
+    font-family: dona-bold;
     color: #7d7d7d;
     border: 2px solid #ececec;
     border-right: transparent;
@@ -382,8 +394,6 @@ header.sticky{
     background:#00b0f5;
     text-align: center;
     padding: 10px 0;
-    position: relative;
-    top: 10px;
 }
 .h-flyline-bar h3{
     color: #fff;
@@ -408,7 +418,7 @@ header.sticky{
 }
 .first-page-body {
     align-self: stretch;
-/*    flex: 1;*/
+    flex: 1;
 }
 .horizontal-form{
     background: transparent;
@@ -465,13 +475,13 @@ header.sticky{
     font-size: 30px;
     color: black;
     font-weight: bold;
-    font-family:Dona-Bold;
+    font-family:Dona-Black;
     text-align: center;
 }
 .home-slider .slider-title-second {
     font-size: 16px;
     color: grey;
-    font-family:Dona-Regular;
+    font-family:Dona-bold;
     text-align: center;
     margin-bottom: 0;
 }
@@ -488,7 +498,7 @@ header.sticky{
     width: 100%;
 }
 .h-slider-caption{
-    border:1.2px solid #00AEEF;
+    border:.5px solid #ececec;
     border-top: none;
     background: #fff;
     padding-top: 5px;
@@ -500,15 +510,15 @@ header.sticky{
 }
 .h-slider-caption p{
     margin-bottom: 0;
-    font-size: 11px;
+    font-size: 14px;
     color: #ccc;
-    font-family:Dona-Regular;
+    font-family:Dona-Bold;
     position: relative;
     top: 5px;
 }
 .h-slider-caption b{
-    font-size: 13px;
-    font-family:Dona-Regular;
+    font-size: 14px;
+    font-family:Dona-Bold;
     color: #000;
 }
 .search-results .result-item{
@@ -517,7 +527,7 @@ header.sticky{
 .search-results .result-block {
     padding-top: 10px !important;
     padding-bottom: 10px !important;
-    border: 1px solid #ccc;
+    border: .5px solid #ececec;
 }
 .search-results p {
     font-size: 10px;
@@ -568,12 +578,14 @@ header.sticky{
 .section2-content h3{
     font-size: 50px;
     font-weight: 600;
+    font-family: dona-black;
     color: #000000;
     line-height: 65px;
     margin-bottom: 19px;
 }
 .section2-content p {
     font-size: 22px;
+    font-family: dona-bold;
     line-height: 41px;
     color: #b7b9b9;
 }
@@ -583,6 +595,7 @@ header.sticky{
     border-radius: 0;
     padding: 11px 56px;
     font-size: 17px;
+    font-family: dona-bold;
     margin-top: 20px;
 }
 
@@ -592,7 +605,8 @@ header.sticky{
 *****************************/
 
 #sec3-Bg{
-    background: #00b0f5;
+    background:url(../img/pricing_background.png);
+    background-size: cover;
 }
 .mobile-img{
     margin-top: -60px;
@@ -602,6 +616,7 @@ header.sticky{
 }
 .section3-content h3{
     font-size: 50px;
+    font-family: dona-black;
     color: #ffffff;
     font-weight: 700;
     margin-bottom: 32px;
@@ -609,6 +624,7 @@ header.sticky{
 .section3-content p{
     color: #ffffff;
     font-size: 22px;
+    font-family: dona-bold;
     line-height: 41px;
 }
 .section3-content .btn{
@@ -632,6 +648,7 @@ header.sticky{
 .section4-content h3{
     font-size: 50px;
     font-weight: 600;
+    font-family: dona-black;
     color: #000000;
     margin-top: 0;
     text-align: right;
@@ -640,8 +657,9 @@ header.sticky{
 .section4-content p{
     color: #ababab;
     font-size: 22px;
+    font-family: dona-bold;
     margin-top: 30px;
-    line-height: 42px; 
+    line-height: 42px;
     text-align: right;
 }
 .section4-content .btn{
@@ -679,8 +697,9 @@ header.sticky{
     margin-top: 50px;
 }
 .section5-content h3{
-    font-size: 22px;
+    font-size: 50px;
     font-weight: 600;
+    font-family: dona-black;
     color: #fff;
     margin-top: 0;
     letter-spacing: 1px;
@@ -688,6 +707,7 @@ header.sticky{
 .section5-content p{
     color: #fff;
     font-size: 21px;
+    font-family: dona-bold;
     margin: 25px 220px;
     line-height: 31px;
     margin-bottom: 0;
@@ -702,35 +722,40 @@ header.sticky{
     color: #fff;
     padding: 9px 20px;
     font-size: 14px;
+    font-family: dona-bold;
     margin-bottom: 21px;
     display: inline-block;
 }
 .h-planbox h3{
     color: #000;
     font-weight: 600;
-    font-size: 26px;
+    font-size: 32px;
+    font-family: dona-black
 }
 .plan-list{
     list-style: none;
     margin: 0;
-    padding: 0 56px;
+    padding: 0 37px;
     text-align: left;
 }
 .h-planbox strong{
     color: #000;
-    font-size: 16px;
+    font-size: 24px;
+    font-family: dona-bold;
     margin-bottom: 7px;
     display: block;
 }
 .h-planbox p{
     font-size: 13px;
-    color: #000;
+    font-family: dona-bold;
+    color: #ababab;
 }
 .plan-list{
     margin-top: 30px;
 }
 .plan-list li {
-    font-size: 15px;
+    font-size: 16px;
+    font-family: dona-bold;
     line-height: 33px;
     color: #000;
 }
@@ -740,10 +765,11 @@ header.sticky{
     font-size: 18px;
     padding: 9px 21px;
     font-weight: 600;
+    font-family: dona-bold;
     margin-top: 19px;
     width: 100%;
     margin-bottom: 10px;
-    border: 2px solid #00b0f5;
+    border: 3px solid #00b0f5;
 }
 
 /*****************************
@@ -766,6 +792,7 @@ header.sticky{
     text-align: center;
     border: 2px solid #ececec;
     font-weight: bold;
+    font-family: dona-bold;
     background: transparent;
     color: #000000;
     padding: 7px 5px;
@@ -1038,7 +1065,7 @@ header.sticky{
     position: absolute;
 }
 .search-top-result{
-    margin-top: 20px;   
+    margin-top: 20px;
 }
 
 
@@ -1064,9 +1091,9 @@ header.sticky{
     padding-top: 5px;
 }
 .landing-full-papge strong{
-    font-size: 30px;
+    font-size: 42px;
     color: #000;
-    margin-top: 30px;   
+    margin-top: 30px;
     display: block;
     font-family:dona-black;
 }
@@ -1074,16 +1101,17 @@ header.sticky{
     font-size: 21px;
     color: #b3b3b3;
     line-height: 39px;
-    margin-top: 21px;   
+    margin-top: 21px;
 }
 .landing-full-papge .btn{
-    background: #00a3da;
+    background: #00b0f5;
+    font-family: dona-bold;
     border-radius: 0px;
     padding: 13px 33px;
     margin-bottom: 24px;
     margin-top: 20px;
     color: #fff;
-    border: 2px solid #00a3da;
+    border: 2px solid #00b0f5;
     letter-spacing: 1px;
 }
 .landing-manage-form input{
@@ -1092,7 +1120,7 @@ header.sticky{
     background-clip: border-box;
     padding: 24px 20px;
     margin-top: 20px;
-    border: 2px solid #00a3da;
+    border: 2px solid #ececec;
 }
 .landing-manage-form input::placeholder{
     font-weight: 600;
@@ -1110,10 +1138,59 @@ header.sticky{
     margin-left: 10px;
 }
 .landingp-footer {
-    border-top: 2px solid #cacaca;
+    border-top: 1.2px solid #cfcfcf47;
 }
 .full-section .promo-p-space{
     padding-right: 5px;
+}
+
+
+/*****************************
+      Search Result page
+*****************************/
+.search-results-rightcontent h3{
+    font-size: 47px;
+    font-family: dona-black;
+    color: #000;
+    margin-bottom: 20px;
+}
+.search-results-rightcontent p{
+    font-size: 24px !important;
+    font-weight: 600;
+    color: #7d7d7d;
+    margin-bottom: 40px !important;
+}
+.search-results-rightcontent p i{
+    font-size: 24px;
+    font-weight: 600;
+    color: #00b0f5;
+    font-family: dona-black;
+}
+.result-btn{
+    margin-top: 50px;
+}
+.result-btn .btn{
+    border: 2px solid #00b0f5;
+    border-radius: 0px;
+    font-size: 18px;
+    color: #000;
+    font-weight: 600;
+    background: #fff;
+    padding: 14px 16px;
+    margin-bottom: 15px;
+    width: 277px;
+    margin-right: 18px;
+}
+.viewdeal-bottom{
+    background: #00b0f5;
+    height: 40px;
+    width: 100%;
+    flex: 1;
+    bottom: 0;
+    position: absolute;
+    color: #fff;
+    line-height: 44px;
+    font-size: 21px;
 }
 
 /*****************************
@@ -1137,6 +1214,7 @@ footer .top-footer h3 {
     margin-top: 40px;
     font-size: 27px;
     font-weight: bold;
+    font-family: dona-black;
     line-height: 19px;
     color: #000;
     margin-bottom: 32px;
@@ -1156,8 +1234,9 @@ footer .top-footer ul li {
 
 footer .top-footer a {
     text-decoration: none;
-    color: #383838;
+    color: #ababab;
     font-size: 16px;
+    font-family: dona-bold;
     margin-bottom: 26px;
     display: block;
 }
@@ -1191,6 +1270,7 @@ footer .bottom-footer a {
     text-decoration: none;
     font-size: 15px;
     font-weight: 600;
+    font-family: dona-bold;
     letter-spacing: 1px;
 }
 
@@ -1219,6 +1299,7 @@ footer .bottom-footer ul li:first-child:before {
     margin-right: 0px !important;
     color: #fff;
     font-weight: 600;
+    font-family: dona-bold;
     letter-spacing: 1px;
 }
 .social-icon ul li a{
@@ -1288,7 +1369,7 @@ footer .bottom-footer ul li:first-child:before {
     padding-bottom: 15px;
 }
 .h-select-box,.h-ecenomylink{
-    padding-right: 15px;
+    padding-right: 0px;
 }
 .s-result-dropdown .btn{
     width: 100%;
@@ -1301,7 +1382,7 @@ footer .bottom-footer ul li:first-child:before {
     height: 200px;
     margin: auto;
     width: 150px;
-    display: block;
+    display: none;
 }
 .section3-Bg {
     background: #000000;
@@ -1315,22 +1396,22 @@ footer .bottom-footer ul li:first-child:before {
     margin-bottom: 13px;
 }
 .section3-content p {
-    font-size: 13px;
-    line-height: 20px;
+    font-size: 15px;
+    line-height: 24px;
 }
 .section3-content .btn{
     width: 100%;
 }
 .section4-content h3 {
-    font-size: 18px;
+    font-size: 34px;
     text-align: center;
 }
 .section4-content p {
     color: #000000;
     font-weight: 600;
-    font-size: 12px;
+    font-size: 17px;
     margin: 19px 10px;
-    line-height: 21px;
+    line-height: 37px;
     text-align: center;
 }
 .section5-content p {
@@ -1344,7 +1425,6 @@ footer .bottom-footer ul li:first-child:before {
     font-size: 29px;
 }
 .section5-Bg {
-    background: #000;
     padding-top: 10px;
     padding-bottom: 10px;
 }
@@ -1353,10 +1433,13 @@ footer .bottom-footer ul li:first-child:before {
     line-height: 30px;
     margin-bottom: 9px;
 }
+.section2-content{
+    margin-top: 50px;
+}
 .section2-content p {
-    font-size: 16px;
+    font-size: 17px;
     font-weight: 600;
-    line-height: 28px;
+    line-height: 31px;
     color: #000000;
 }
 .assets-section .img_asset {
@@ -1383,9 +1466,6 @@ footer .bottom-footer ul li:first-child:before {
 }
 .s-result-dropdown_destination-type .search-f-dropdown{
     width: auto;
-}
-.h-select-box,.h-ecenomylink{
-    padding-right: 0px;
 }
 
 .nav-btn .btn {
@@ -1426,7 +1506,7 @@ footer .bottom-footer ul li:first-child:before {
     color: #000;
 }
 .landing-full-papge strong{
-    color: #000;    
+    color: #000;
     margin-right: 44px;
 }
 .landing-full-papge p{
@@ -1435,18 +1515,51 @@ footer .bottom-footer ul li:first-child:before {
     line-height: 27px;
 }
 .landing-full-papge .btn{
-    background: #000;
+    background: #00b0f5;
     color: #fff;
+    border: 2px solid #00b0f5;
 }
 .landing-submit-btn{
     width: 100%;
     margin-left: 0;
 }
-
-
+.landing-full-papge{
+    padding-top: 20px !important;
+    padding-bottom: 20px !important;
+}
+.landing-full-papge strong{
+    font-size: 29px;
+    margin-top: 11px;
+    margin-bottom: 20px;
+}
+.search-panel {
+    display: inline !important;
+}
+.left-form-pane {
+    padding-left: 30px;
+}
+.left-form-pane .search-flight-home h3 {
+    font-size: 24px;
+}
+.right-body-pane {
+    padding-right: 25px;
+}
+.right-body-pane .search-top-result {
+    display: inline !important;
 }
 
+}
+@media(max-width:768px){
+.sm-12{
+    width: 75% !important;
+    flex: 65.666667% !important;
+}
+}
 @media(min-width:768px) and (max-width: 1024px){
+.sm-12{
+    width: 75% !important;
+    flex: 65.666667% !important;
+}
 .section-01{
     background-size: auto;
 }
@@ -1475,7 +1588,7 @@ footer .bottom-footer ul li:first-child:before {
     padding-bottom: 15px;
 }
 .h-select-box,.h-ecenomylink{
-    padding-right: 15px;
+    padding-right: 0px;
 }
 .h-contentarea {
     margin: 0 5px;
@@ -1485,7 +1598,7 @@ footer .bottom-footer ul li:first-child:before {
     height: 200px;
     margin: auto;
     width: 150px;
-    display: block;
+    display: none;
 }
 .section3-Bg {
     background: #000000;
@@ -1521,7 +1634,6 @@ footer .bottom-footer ul li:first-child:before {
     font-size: 29px;
 }
 .section5-Bg {
-    background: #000;
     padding-top: 10px;
     padding-bottom: 10px;
 }
@@ -1580,10 +1692,22 @@ footer .bottom-footer ul li:first-child:before {
 
 }
 
+@media(min-width: 1992px) and (max-width: 2561px){
+
+.left-form-pane{
+    padding-top:50px;
+}
+.right-body-pane{
+    padding-top:50px;   
+}
+
+}
+
+
 @media not all and (min-resolution:.001dpcm) {
   @supports (-webkit-appearance: none) and (stroke-color:transparent) {
     .search-flight-home {
-        margin-top: 150px !important;
-    }  
+        margin-top: 170px !important;
+    }
   }
 }

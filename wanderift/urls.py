@@ -30,6 +30,7 @@ from apps.booking.views import (
 from apps.emails.views import booking_success
 from apps.home.views import index_view, home_view, SignInView, SignUpView, \
     PromoLandingView
+from apps.account.views import WizardView
 from apps.results.views import CityAutocomplete, ResultsView
 from django.conf import settings
 
@@ -76,6 +77,7 @@ urlpatterns = [
     path("pay/", include("apps.payments.urls")),
     path("sign-in/", SignInView.as_view(), name="sign-in"),
     path("sign-up/", SignUpView.as_view(), name="sign-up"),
+    path("wizard/", WizardView.as_view(), name="wizard"),
     path("city/query", CityAutocomplete.as_view(), name="city-query"),
     path("sitemap.xml", SiteMapView.as_view(), name="sitemap"),
     path("robots.txt", RobotsTxtView.as_view(), name="robots"),

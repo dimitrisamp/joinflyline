@@ -1,4 +1,5 @@
 from django import template
+from django.contrib.staticfiles.templatetags.staticfiles import static
 
 register = template.Library()
 
@@ -14,6 +15,19 @@ AIRLINE_ICONS = {
     "AA": "american",
     "WN": "southwest",
     "SY": "suncountry",
+    "4O": 'interjet',
+    "AC": 'air canada',
+    "AF": 'Air France',
+    "AM": 'Aeroméxico',
+    "DI": 'Norwegian Air UK',
+    "EK": 'Emirates Airlines',
+    "F8": 'Flair Airlines',
+    "HU": 'Hainan Airlines',
+    "KL": 'KLM',
+    "LH": 'Lufthansa',
+    "LX": 'Swiss International Air Lines',
+    "TS": 'Air Transat',
+    "WS": 'WestJet',
 }
 
 
@@ -21,4 +35,4 @@ AIRLINE_ICONS = {
 def aircon(value):
     if isinstance(value, dict):
         value = value['code']
-    return AIRLINE_ICONS.get(value)
+    return static(f'images/airlines/{value}.png')

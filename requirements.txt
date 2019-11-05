@@ -18,3 +18,4 @@ django-enumfield
 django-anymail
 django-storages[google]
 gunicorn
+django-credit-cards

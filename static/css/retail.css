@@ -12,7 +12,7 @@
 }
 body{
       background: #FFF;
-      font-family:Dona-Regular !important;
+         font-family: Dona-Bold !important;
 }
 
 
@@ -153,6 +153,7 @@ body{
     font-weight: bold;
     color: #000;
     margin-bottom: 20px;
+    font-family: Dona-Bold;
 }
 .more-info {
     margin-top: 20px;
@@ -161,6 +162,7 @@ b.passenger-kind {
     font-size: 20px;
     margin: 11px 6px;
     display: inline-grid;
+    font-family: Dona-Bold;
 }
 .more-info .fa-mobile{
     font-size: 29px;
@@ -222,6 +224,7 @@ b.passenger-kind {
 .main-heading h3{
     font-size: 35px;
     font-weight: 700;
+    font-family: dona-black;
     color: #252A31;
     line-height: 44px;
     margin: 0;
@@ -229,6 +232,7 @@ b.passenger-kind {
     margin-top: 22px;
 }
 .p-tripsummry{
+    font-family: Dona-Bold;
     font-size: 20px;
     font-weight: bold;
     color: #000;
@@ -354,7 +358,7 @@ b.passenger-kind {
 .userForm input[type="text"] {
     border-color: #c7d1dd;
     border-radius: 0px;
-    border: 2px solid #ccc; 
+    border: 2px solid #ccc;
 }
 .userForm input[type="text"]::placeholder{
   color: #c7d1dd;
@@ -364,7 +368,7 @@ b.passenger-kind {
     height: 39px !important;
     border-radius: 0px;
     width: 100%;
-    border: 2px solid #ccc; 
+    border: 2px solid #ccc;
 }
 .form-group-sm label {
     font-size: 13px;
@@ -377,6 +381,7 @@ b.passenger-kind {
 	margin-top: 30px;
 }
 .heading {
+    font-family: Dona-Bold;
     font-size: 20px;
     text-transform: uppercase;
     font-weight: 800;
@@ -408,6 +413,7 @@ b.passenger-kind {
     position: relative;
     padding-left: 25px;
     top: 25%;
+    font-size: 15px;
 }
 input[type="radio"] {
     position: absolute;

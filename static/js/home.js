@@ -84,7 +84,7 @@ const app = new Vue({
         priceText: '',
         user: JSON.parse(document.getElementById('django_user').textContent),
         form: {
-            limit: 4,
+            limit: 20,
             sort: null,
             priceRange: [0, 3000],
             airlines: [
@@ -106,6 +106,11 @@ const app = new Vue({
             city_to: "",
             placeFrom: "",
             placeTo: "",
+        }
+    },
+    watch: {
+        searchResults: function(val, oldVal) {
+            setDatePick();
         }
     },
     directives: {
@@ -249,7 +254,7 @@ const app = new Vue({
             });
         },
         loadMore() {
-            this.form.limit = this.form.limit + 4;
+            this.form.limit = this.form.limit + 10;
             this.search();
         },
         sortResultsBy(sort) {
@@ -562,6 +567,7 @@ const app = new Vue({
     },
     mounted() {
         this.updatePriceText();
+        setDatePick();
     },
     computed: {
         isFormIncomplete() {
@@ -588,7 +594,7 @@ const app = new Vue({
     }
 });
 
-$(function () {
+function setDatePick() {
     new Lightpick({
         field: document.getElementById('departure_date'),
         secondField: document.getElementById('return_date'),
@@ -600,6 +606,9 @@ $(function () {
             app.form.return_date_data = end;
         }
     });
+}
+
+$(function () {
     $('#fullpage').fullpage({
         scrollBar: true,
         navigation: true,
