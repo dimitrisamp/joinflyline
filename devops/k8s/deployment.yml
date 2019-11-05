@@ -90,6 +90,10 @@ spec:
 
             - name: STAGE
               value: production
+          volumeMounts:
+            - name: gce-service-account-key
+              readOnly: true
+              mountPath: /etc/secrets
         - name: collectstatic
           image: registry.gitlab.com/zburau/wanderift-django
           command: ['python', 'manage.py', 'collectstatic', '--noinput',  '-v', '3']
@@ -123,5 +127,9 @@ spec:
 
             - name: STAGE
               value: production
+          volumeMounts:
+            - name: gce-service-account-key
+              readOnly: true
+              mountPath: /etc/secrets
       imagePullSecrets:
         - name: gitlab-registry
