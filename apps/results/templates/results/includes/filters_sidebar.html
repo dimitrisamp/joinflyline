@@ -30,7 +30,7 @@
                                        {% if airline in filter_params.select_airlines %}checked{% endif %}>
                                 <label for="airline-{{ airline }}">
                                     <img class="mr-1"
-                                         src="/images/{{ airline |aircon }}.png"
+                                         src="{{ airline |aircon }}"
                                          style="width: 25px;"/>
                                     {{ airline | airlines }}
                                     Airlines

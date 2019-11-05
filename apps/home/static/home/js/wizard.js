@@ -38,6 +38,8 @@ Vue.component("wizard", {
         .then(data => {
           if (data.success) {
             this.$emit('success');
+          } else {
+            window.alert(JSON.stringify(data));
           }
         });
     }
