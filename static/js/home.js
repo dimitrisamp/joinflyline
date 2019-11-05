@@ -84,7 +84,7 @@ const app = new Vue({
         priceText: '',
         user: JSON.parse(document.getElementById('django_user').textContent),
         form: {
-            limit: 4,
+            limit: 20,
             sort: null,
             priceRange: [0, 3000],
             airlines: [
@@ -249,7 +249,7 @@ const app = new Vue({
             });
         },
         loadMore() {
-            this.form.limit = this.form.limit + 4;
+            this.form.limit = this.form.limit + 10;
             this.search();
         },
         sortResultsBy(sort) {
