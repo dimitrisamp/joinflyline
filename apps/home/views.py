@@ -44,3 +44,5 @@ class SignUpView(TemplateView):
 
 class PromoLandingView(TemplateView):
     template_name = "home/promotional_landing.html"
+
+

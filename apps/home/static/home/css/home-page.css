@@ -11,7 +11,7 @@
     src: url(fonts/Dona/Dona-Bold.ttf);
 }
 body{
-      font-family:Dona-Regular !important;
+      font-family:Dona-Regular;
 }
 
 /*
@@ -64,7 +64,7 @@ Container emulation
 }
 .h-topbar p{
     margin: 0;
-    font-family:Dona-Regular;
+    font-family:Dona-Bold;
     letter-spacing: 1px;
     font-weight: 600;
 }
@@ -182,13 +182,13 @@ header.sticky{
     font-family:dona-black;
 }
 .left-form-pane .search-f-dropdown{
-     margin-top: -13px;   
+     margin-top: -13px;
 }
 .left-form-pane .passengers-dropdown{
-     margin-top: -13px;   
+     margin-top: -13px;
 }
 .left-form-pane .airline-f-dropdown{
-    margin-top: 47px;   
+    margin-top: 47px;
 }
 .left-form-pane .price-slider-container {
     padding: 10px 15px;
@@ -516,7 +516,7 @@ header.sticky{
 .search-results .result-block {
     padding-top: 10px !important;
     padding-bottom: 10px !important;
-    border: 1px solid #ccc;
+    border: .5px solid #ececec;
 }
 .search-results p {
     font-size: 10px;
@@ -567,12 +567,14 @@ header.sticky{
 .section2-content h3{
     font-size: 50px;
     font-weight: 600;
+    font-family: dona-black;
     color: #000000;
     line-height: 65px;
     margin-bottom: 19px;
 }
 .section2-content p {
     font-size: 22px;
+    font-family: dona-bold;
     line-height: 41px;
     color: #b7b9b9;
 }
@@ -582,6 +584,7 @@ header.sticky{
     border-radius: 0;
     padding: 11px 56px;
     font-size: 17px;
+    font-family: dona-bold;
     margin-top: 20px;
 }
 
@@ -601,6 +604,7 @@ header.sticky{
 }
 .section3-content h3{
     font-size: 50px;
+    font-family: dona-black;
     color: #ffffff;
     font-weight: 700;
     margin-bottom: 32px;
@@ -608,6 +612,7 @@ header.sticky{
 .section3-content p{
     color: #ffffff;
     font-size: 22px;
+    font-family: dona-bold;
     line-height: 41px;
 }
 .section3-content .btn{
@@ -631,6 +636,7 @@ header.sticky{
 .section4-content h3{
     font-size: 50px;
     font-weight: 600;
+    font-family: dona-black;
     color: #000000;
     margin-top: 0;
     text-align: right;
@@ -639,8 +645,9 @@ header.sticky{
 .section4-content p{
     color: #ababab;
     font-size: 22px;
+    font-family: dona-bold;
     margin-top: 30px;
-    line-height: 42px; 
+    line-height: 42px;
     text-align: right;
 }
 .section4-content .btn{
@@ -678,8 +685,9 @@ header.sticky{
     margin-top: 50px;
 }
 .section5-content h3{
-    font-size: 22px;
+    font-size: 50px;
     font-weight: 600;
+    font-family: dona-black;
     color: #fff;
     margin-top: 0;
     letter-spacing: 1px;
@@ -687,6 +695,7 @@ header.sticky{
 .section5-content p{
     color: #fff;
     font-size: 21px;
+    font-family: dona-bold;
     margin: 25px 220px;
     line-height: 31px;
     margin-bottom: 0;
@@ -701,13 +710,15 @@ header.sticky{
     color: #fff;
     padding: 9px 20px;
     font-size: 14px;
+    font-family: dona-bold;
     margin-bottom: 21px;
     display: inline-block;
 }
 .h-planbox h3{
     color: #000;
     font-weight: 600;
-    font-size: 26px;
+    font-size: 32px;
+    font-family: dona-black
 }
 .plan-list{
     list-style: none;
@@ -717,19 +728,22 @@ header.sticky{
 }
 .h-planbox strong{
     color: #000;
-    font-size: 16px;
+    font-size: 24px;
+    font-family: dona-bold;
     margin-bottom: 7px;
     display: block;
 }
 .h-planbox p{
     font-size: 13px;
-    color: #000;
+    font-family: dona-bold;
+    color: #ababab;
 }
 .plan-list{
     margin-top: 30px;
 }
 .plan-list li {
-    font-size: 15px;
+    font-size: 16px;
+    font-family: dona-bold;
     line-height: 33px;
     color: #000;
 }
@@ -739,10 +753,11 @@ header.sticky{
     font-size: 18px;
     padding: 9px 21px;
     font-weight: 600;
+    font-family: dona-bold;
     margin-top: 19px;
     width: 100%;
     margin-bottom: 10px;
-    border: 2px solid #00b0f5;
+    border: 3px solid #00b0f5;
 }
 
 /*****************************
@@ -1037,7 +1052,7 @@ header.sticky{
     position: absolute;
 }
 .search-top-result{
-    margin-top: 20px;   
+    margin-top: 20px;
 }
 
 
@@ -1063,9 +1078,9 @@ header.sticky{
     padding-top: 5px;
 }
 .landing-full-papge strong{
-    font-size: 30px;
+    font-size: 42px;
     color: #000;
-    margin-top: 30px;   
+    margin-top: 30px;
     display: block;
     font-family:dona-black;
 }
@@ -1073,16 +1088,17 @@ header.sticky{
     font-size: 21px;
     color: #b3b3b3;
     line-height: 39px;
-    margin-top: 21px;   
+    margin-top: 21px;
 }
 .landing-full-papge .btn{
-    background: #00a3da;
+    background: #00b0f5;
+    font-family: dona-bold;
     border-radius: 0px;
     padding: 13px 33px;
     margin-bottom: 24px;
     margin-top: 20px;
     color: #fff;
-    border: 2px solid #00a3da;
+    border: 2px solid #00b0f5;
     letter-spacing: 1px;
 }
 .landing-manage-form input{
@@ -1091,7 +1107,7 @@ header.sticky{
     background-clip: border-box;
     padding: 24px 20px;
     margin-top: 20px;
-    border: 2px solid #00a3da;
+    border: 2px solid #ececec;
 }
 .landing-manage-form input::placeholder{
     font-weight: 600;
@@ -1109,7 +1125,7 @@ header.sticky{
     margin-left: 10px;
 }
 .landingp-footer {
-    border-top: 2px solid #cacaca;
+    border-top: 1.2px solid #cfcfcf47;
 }
 .full-section .promo-p-space{
     padding-right: 5px;
@@ -1189,6 +1205,7 @@ footer .top-footer h3 {
     margin-top: 40px;
     font-size: 27px;
     font-weight: bold;
+    font-family: dona-black;
     line-height: 19px;
     color: #000;
     margin-bottom: 32px;
@@ -1208,8 +1225,9 @@ footer .top-footer ul li {
 
 footer .top-footer a {
     text-decoration: none;
-    color: #383838;
+    color: #ababab;
     font-size: 16px;
+    font-family: dona-bold;
     margin-bottom: 26px;
     display: block;
 }
@@ -1243,6 +1261,7 @@ footer .bottom-footer a {
     text-decoration: none;
     font-size: 15px;
     font-weight: 600;
+    font-family: dona-bold;
     letter-spacing: 1px;
 }
 
@@ -1271,6 +1290,7 @@ footer .bottom-footer ul li:first-child:before {
     margin-right: 0px !important;
     color: #fff;
     font-weight: 600;
+    font-family: dona-bold;
     letter-spacing: 1px;
 }
 .social-icon ul li a{
@@ -1478,7 +1498,7 @@ footer .bottom-footer ul li:first-child:before {
     color: #000;
 }
 .landing-full-papge strong{
-    color: #000;    
+    color: #000;
     margin-right: 44px;
 }
 .landing-full-papge p{
@@ -1635,7 +1655,7 @@ footer .bottom-footer ul li:first-child:before {
 @media not all and (min-resolution:.001dpcm) {
   @supports (-webkit-appearance: none) and (stroke-color:transparent) {
     .search-flight-home {
-        margin-top: 110px !important;
-    }  
+        margin-top: 170px !important;
+    }
   }
 }
