@@ -196,9 +196,11 @@ if STAGE == "production":
     sentry_sdk.init(dsn=SENTRY_DSN, integrations=[DjangoIntegration()])
     DEFAULT_FILE_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
     STATICFILES_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
-
     GS_BUCKET_NAME = "joinflyline"
+    GS_DEFAULT_ACL = "publicRead"
+    GS_CACHE_CONTROL = "max-age=120"
     MEDIA_ROOT = "media"
+    DEBUG = False
 
 SITE_TITLE = "Wanderift | Airline Travel Subscription | Save on Retail Flights"
 SUBSCRIBER_AIRLINES = {

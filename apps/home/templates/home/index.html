@@ -468,6 +468,10 @@
         {% include "home/vue-cd-intro-template.html" %}
         {% include "home/vue-search-results-template.html" %}
         {{ django_user | json_script:"django_user" }}
+        {{ get_static_prefix | json_script:"static-url" }}
+        <script type="text/javascript">
+            const staticUrlValue = '{% static "/" %}';
+        </script>
         <script type="text/javascript"
                 src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
         <script type="module"
