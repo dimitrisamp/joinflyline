@@ -1,6 +1,6 @@
 <div id="dealform" class="h-dealform" v-cloak>
     <div class="row">
-        <div class="col-md-4 col-12 h-select-box s-result-dropdown s-result-dropdown_destination-type">
+        <div class="col-md-4 col-12 s-result-dropdown s-result-dropdown_destination-type">
             <p class="btn btn-info"
                @click="openDestinationType">
                 {(destinationTypes[form.destinationTypeId])}</p>
@@ -17,7 +17,7 @@
             </div>
 
         </div>
-        <div class="col-md-4 col-12 h-select-box s-result-dropdown s-result-dropdown_passengers">
+        <div class="col-md-4 col-12 s-result-dropdown s-result-dropdown_passengers">
             <p href="#" @click="openPassengersForm"
                class="btn btn-info">{( valPassengers )}
                 Passenger{( valPassengers > 1?"s":""
@@ -74,7 +74,7 @@
 
         </div>
 
-        <div class="col-md-4 col-12 h-ecenomylink s-result-dropdown s-result-dropdown_seat-type">
+        <div class="col-md-4 col-12 s-result-dropdown s-result-dropdown_seat-type">
             <p @click="openSeatTypeSelect"
                class="btn btn-info">
                 {(seatTypes[form.seatType])}</p>
