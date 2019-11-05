@@ -187,6 +187,11 @@ header.sticky{
     display: block;
     font-family:dona-black;
 }
+.left-form-pane h3{
+    font-family:dona-black;   
+    font-size: 33px;
+    padding-top: 20px;
+}
 .left-form-pane .search-f-dropdown{
      margin-top: -13px;
 }
@@ -412,7 +417,7 @@ header.sticky{
 }
 .first-page-body {
     align-self: stretch;
-/*    flex: 1;*/
+    flex: 1;
 }
 .horizontal-form{
     background: transparent;
@@ -1142,10 +1147,6 @@ header.sticky{
 /*****************************
       Search Result page
 *****************************/
-
-.search-results-rightcontent{
-    padding:160px 20px;
-}
 .search-results-rightcontent h3{
     font-size: 47px;
     font-family: dona-black;
@@ -1153,10 +1154,10 @@ header.sticky{
     margin-bottom: 20px;
 }
 .search-results-rightcontent p{
-    font-size: 24px;
+    font-size: 24px !important;
     font-weight: 600;
     color: #7d7d7d;
-    margin-bottom: 11px;
+    margin-bottom: 40px !important;
 }
 .search-results-rightcontent p i{
     font-size: 24px;
