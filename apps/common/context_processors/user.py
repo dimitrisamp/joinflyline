@@ -1,10 +1,12 @@
 def user_processor(request):
     user = request.user
-    return {
-        'django_user': {
-            'anonymous': user.is_anonymous,
-            'first_name': user.first_name,
-            'last_name': user.last_name,
-            'username': user.username,
-        }
-    }
+    django_user = {"anonymous": user.is_anonymous}
+    if not user.is_anonymous:
+        django_user.update(
+            {
+                "first_name": user.first_name,
+                "last_name": user.last_name,
+                "username": user.username,
+            }
+        )
+    return {"django_user": django_user}
