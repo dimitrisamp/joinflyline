@@ -80,6 +80,7 @@ Container emulation
 .left-form-pane {
     background: white;
     border-right: solid 1px rgb(204, 204, 204);
+    padding-top: 20px;
     padding-right: 30px;
     flex: 1;
 }
@@ -1367,7 +1368,7 @@ footer .bottom-footer ul li:first-child:before {
     padding-bottom: 15px;
 }
 .h-select-box,.h-ecenomylink{
-    padding-right: 15px;
+    padding-right: 0px;
 }
 .s-result-dropdown .btn{
     width: 100%;
@@ -1465,9 +1466,6 @@ footer .bottom-footer ul li:first-child:before {
 .s-result-dropdown_destination-type .search-f-dropdown{
     width: auto;
 }
-.h-select-box,.h-ecenomylink{
-    padding-right: 0px;
-}
 
 .nav-btn .btn {
     padding: 0px;
@@ -1533,6 +1531,21 @@ footer .bottom-footer ul li:first-child:before {
     margin-top: 11px;
     margin-bottom: 20px;
 }
+.d-flex {
+    display: inline !important;
+}
+.left-form-pane {
+    padding-left: 30px;
+}
+.left-form-pane .search-flight-home h3 {
+    font-size: 24px;
+}
+.right-body-pane {
+    padding-right: 25px;
+}
+.right-body-pane .search-results div {
+    display: inline;
+}
 
 }
 @media(max-width:768px){
@@ -1574,7 +1587,7 @@ footer .bottom-footer ul li:first-child:before {
     padding-bottom: 15px;
 }
 .h-select-box,.h-ecenomylink{
-    padding-right: 15px;
+    padding-right: 0px;
 }
 .h-contentarea {
     margin: 0 5px;
