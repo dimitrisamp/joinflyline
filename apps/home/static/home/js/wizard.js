@@ -64,5 +64,11 @@ Vue.component("wizard", {
 });
 
 const wizardApp = new Vue({
-  el: "#main"
+  el: "#main",
+  delimiters: ['{(', ')}'],
+  methods: {
+    goHome() {
+      window.location = '/';
+    }
+  }
 });

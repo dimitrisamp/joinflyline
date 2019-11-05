@@ -21,7 +21,7 @@
     </head>
     <body class="full-bg-image">
         <div id="main">
-            <wizard />
+            <wizard @success="goHome" />
         </div>
         {% include "home/vue-wizard-template.html" %}
         <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
