@@ -1378,7 +1378,7 @@ footer .bottom-footer ul li:first-child:before {
     height: 200px;
     margin: auto;
     width: 150px;
-    display: block;
+    display: none;
 }
 .section3-Bg {
     background: #000000;
@@ -1579,7 +1579,7 @@ footer .bottom-footer ul li:first-child:before {
     height: 200px;
     margin: auto;
     width: 150px;
-    display: block;
+    display: none;
 }
 .section3-Bg {
     background: #000000;
