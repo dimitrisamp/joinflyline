@@ -1,5 +1,5 @@
 from datetime import datetime
-
+from django.contrib.auth import login
 from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -172,4 +172,5 @@ class WizardView(FormView):
         )
         new_user.profile.market = cd["home_airport"]
         new_user.profile.save()
+        login(self.request, new_user)
         return JsonResponse({"success": True})
