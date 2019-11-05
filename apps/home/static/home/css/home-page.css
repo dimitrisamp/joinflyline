@@ -1530,7 +1530,7 @@ footer .bottom-footer ul li:first-child:before {
     margin-top: 11px;
     margin-bottom: 20px;
 }
-.d-flex {
+.search-panel {
     display: inline !important;
 }
 .left-form-pane {
@@ -1542,8 +1542,8 @@ footer .bottom-footer ul li:first-child:before {
 .right-body-pane {
     padding-right: 25px;
 }
-.right-body-pane .search-results div {
-    display: inline;
+.right-body-pane .search-top-result {
+    display: inline !important;
 }
 
 }
