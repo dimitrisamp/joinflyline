@@ -80,6 +80,7 @@ Container emulation
 .left-form-pane {
     background: white;
     border-right: solid 1px rgb(204, 204, 204);
+    padding-top: 20px;
     padding-right: 30px;
     flex: 1;
 }
@@ -202,7 +203,7 @@ header.sticky{
 }
 .newhome-form h3{
     font-weight: 600;
-    font-size: 45px;
+    font-size: 43px;
     padding-top: 25px;
     color: #000;
     margin-bottom: 0;
@@ -598,7 +599,8 @@ header.sticky{
 *****************************/
 
 #sec3-Bg{
-    background: #00b0f5;
+    background:url(../img/pricing_background.png);
+    background-size: cover;
 }
 .mobile-img{
     margin-top: -60px;
@@ -1365,7 +1367,7 @@ footer .bottom-footer ul li:first-child:before {
     padding-bottom: 15px;
 }
 .h-select-box,.h-ecenomylink{
-    padding-right: 15px;
+    padding-right: 0px;
 }
 .s-result-dropdown .btn{
     width: 100%;
@@ -1392,22 +1394,22 @@ footer .bottom-footer ul li:first-child:before {
     margin-bottom: 13px;
 }
 .section3-content p {
-    font-size: 13px;
-    line-height: 20px;
+    font-size: 15px;
+    line-height: 24px;
 }
 .section3-content .btn{
     width: 100%;
 }
 .section4-content h3 {
-    font-size: 18px;
+    font-size: 34px;
     text-align: center;
 }
 .section4-content p {
     color: #000000;
     font-weight: 600;
-    font-size: 12px;
+    font-size: 17px;
     margin: 19px 10px;
-    line-height: 21px;
+    line-height: 37px;
     text-align: center;
 }
 .section5-content p {
@@ -1429,10 +1431,13 @@ footer .bottom-footer ul li:first-child:before {
     line-height: 30px;
     margin-bottom: 9px;
 }
+.section2-content{
+    margin-top: 50px;
+}
 .section2-content p {
-    font-size: 16px;
+    font-size: 17px;
     font-weight: 600;
-    line-height: 28px;
+    line-height: 31px;
     color: #000000;
 }
 .assets-section .img_asset {
@@ -1459,9 +1464,6 @@ footer .bottom-footer ul li:first-child:before {
 }
 .s-result-dropdown_destination-type .search-f-dropdown{
     width: auto;
-}
-.h-select-box,.h-ecenomylink{
-    padding-right: 0px;
 }
 
 .nav-btn .btn {
@@ -1528,6 +1530,21 @@ footer .bottom-footer ul li:first-child:before {
     margin-top: 11px;
     margin-bottom: 20px;
 }
+.d-flex {
+    display: inline !important;
+}
+.left-form-pane {
+    padding-left: 30px;
+}
+.left-form-pane .search-flight-home h3 {
+    font-size: 24px;
+}
+.right-body-pane {
+    padding-right: 25px;
+}
+.right-body-pane .search-results div {
+    display: inline;
+}
 
 }
 @media(max-width:768px){
@@ -1569,7 +1586,7 @@ footer .bottom-footer ul li:first-child:before {
     padding-bottom: 15px;
 }
 .h-select-box,.h-ecenomylink{
-    padding-right: 15px;
+    padding-right: 0px;
 }
 .h-contentarea {
     margin: 0 5px;
