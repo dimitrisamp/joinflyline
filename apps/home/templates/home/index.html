@@ -1,377 +1,497 @@
 {% load static %}
 <!DOCTYPE html>
 <html>
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Subscription Flight Search, Deal Alerts, Direct Booking | Flyline</title>
-    <link rel="stylesheet" type="text/css" href="{% static "home/css/bootstrap.css" %}">
-    <link rel="stylesheet" type="text/css" href="{% static "home/css/home-page.css" %}">
-    <link rel="stylesheet" type="text/css" href="{% static "home/css/dropdown.css" %}">
-    <link rel="stylesheet" type="text/css"
-          href="{% static "home/css/rotate-animation.css" %}">
-    <link rel="stylesheet" type="text/css"
-          href="{% static "home/fullPage.js-master/dist/fullpage.min.css" %}">
-    <link rel="stylesheet" type="text/css" href="{% static "css/results.css" %}">
-    <link rel="stylesheet" type="text/css" href="{% static "css/lightpick.css" %}">
-    <link rel="stylesheet" type="text/css"
-          href="{% static "home/css/loading-animation.css" %}"/>
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600&display=swap"
-          rel="stylesheet">
-    <link href="{% static "/home/vue-slider-component/theme/default.css" %}"
-          rel="stylesheet"/>
-    <link rel="icon" type="image/png" sizes="16x16"
-          href="{% static "home/img/favicon/16x16.png" %}">
-    <link rel="icon" type="image/png" sizes="32x32"
-          href="{% static "home/img/favicon/32x32.png" %}">
-    <link rel="icon" type="image/png" sizes="48x48"
-          href="{% static "home/img/favicon/48x48.png" %}">
-    <meta name="description"
-          content="Find your next exciting adventure with Flyline. Search our thousands of discount flights exclusive to Flyline members, and travel without breaking the bank. Travel more and spend less with Flyline."/>
-</head>
-<body>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Subscription Flight Search, Deal Alerts, Direct Booking | Flyline</title>
+        <link rel="stylesheet" type="text/css"
+              href="{% static "home/css/bootstrap.css" %}">
+        <link rel="stylesheet" type="text/css"
+              href="{% static "home/css/home-page.css" %}">
+        <link rel="stylesheet" type="text/css"
+              href="{% static "home/css/dropdown.css" %}">
+        <link rel="stylesheet" type="text/css"
+              href="{% static "home/css/rotate-animation.css" %}">
+        <link rel="stylesheet" type="text/css"
+              href="{% static "home/fullPage.js-master/dist/fullpage.min.css" %}">
+        <link rel="stylesheet" type="text/css" href="{% static "css/results.css" %}">
+        <link rel="stylesheet" type="text/css" href="{% static "css/lightpick.css" %}">
+        <link rel="stylesheet" type="text/css"
+              href="{% static "home/css/loading-animation.css" %}"/>
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600&display=swap"
+              rel="stylesheet">
+        <link href="{% static "/home/vue-slider-component/theme/default.css" %}"
+              rel="stylesheet"/>
+        <link rel="icon" type="image/png" sizes="16x16"
+              href="{% static "home/img/favicon/16x16.png" %}">
+        <link rel="icon" type="image/png" sizes="32x32"
+              href="{% static "home/img/favicon/32x32.png" %}">
+        <link rel="icon" type="image/png" sizes="48x48"
+              href="{% static "home/img/favicon/48x48.png" %}">
+        <meta name="description"
+              content="Find your next exciting adventure with Flyline. Search our thousands of discount flights exclusive to Flyline members, and travel without breaking the bank. Travel more and spend less with Flyline."/>
+    </head>
+    <body>
 
-<div id="main" v-cloak>
-    <div id="fullpage">
-        <div class="section">
-            <div class="section-01 h-user-home">
-                <header class="fp-auto-height">
-                    <div class="h-topbar text-center">
-                        <p>Join Flyline to Experience Unmatched Flight Savings
-                            <a href="#" class="btn btn-default">Savings Explained</a>
-                        </p>
-                    </div>
-                    <nav class="navbar navbar-light bg-light">
-                        <div class="container">
-                            <a class="navbar-brand nav-logo flex-grow-1"> <img
-                                    src="{% static "home/img/flyline_logos-01-1.png" %}">
-                            </a>
-                            <div v-if="user.anonymous">
-                                <a href="{% url "sign-in" %}"
-                                   class="btn my-2 login-btn my-sm-0">Log In</a>
-                                <a href="{% url "wizard" %}"
-                                   class="btn my-2 get-s-btn my-sm-0">Get
-                                    Started</a>
+        <div id="main" v-cloak>
+            <div id="fullpage">
+                <div class="section">
+                    <div class="section-01 h-user-home">
+                        <header class="fp-auto-height">
+                            <div class="h-topbar text-center">
+                                <p>Join Flyline to Experience Unmatched Flight Savings
+                                    <a href="#" class="btn btn-default">Savings
+                                        Explained</a>
+                                </p>
                             </div>
-                            <div v-else>
-                                <a href="{% url "manage-trips" %}"
-                                   class="btn my-2 login-btn my-sm-0">Trips</a>
-                                <a href="{% url "accounts" %}"
-                                   class="btn my-2 get-s-btn my-sm-0">Account<a>
-                                    <a href="{% url "logout" %}"
-                                       class="btn my-2 get-s-btn my-sm-0">Log Out</a>
-                            </div>
-                        </div>
-                    </nav>
-                </header>
-
-                <div class="d-flex fp-auto-height-responsive header-background first-page-body">
-                    <div v-if="!user.anonymous || searchResults.length !== 0 || searchProgress"
-                         class="d-flex flex-row">
-                        <div class="left-form-pane container-pad-left">
-                            <div v-if="searchResults.length === 0">
-                                <h3>Search our Deals</h3>
-                                <p>Exclusive private flights for
-                                    members</p>
-                            </div>
-                            <div v-else class="search-flight-home">
-                                <h3>{( cityFromTo )}</h3>
-                                <p>Carriers: {( airlineNames )}</p>
-                                <div class="search-flight-devider"></div>
-                            </div>
-                            {% include "home/dealform.html" %}
-                        </div>
-                        <div class="right-body-pane"
-                             :class="{'container-pad-right': searchResults.length !== 0 || searchProgress}">
-                            <div v-if="searchResults.length === 0 && !searchProgress"
-                                 class="h-contentarea">
-                                <cd-intro/>
-                                <p>Book travel for all occuscions and save</p>
-                                <div class="h-btngroups">
-                                    <a href="#" class="btn btn-default h-blackbg">Get
-                                        Started</a>
-                                    <a href="#" class="btn btn-default">Learn More</a>
+                            <nav class="navbar navbar-light bg-light">
+                                <div class="container">
+                                    <a class="navbar-brand nav-logo flex-grow-1"> <img
+                                            src="{% static "home/img/flyline_logos-01-1.png" %}">
+                                    </a>
+                                    <div v-if="user.anonymous">
+                                        <a href="{% url "sign-in" %}"
+                                           class="btn my-2 login-btn my-sm-0">Log In</a>
+                                        <a href="{% url "wizard" %}"
+                                           class="btn my-2 get-s-btn my-sm-0">Get
+                                            Started</a>
+                                    </div>
+                                    <div v-else>
+                                        <a href="{% url "manage-trips" %}"
+                                           class="btn my-2 login-btn my-sm-0">Trips</a>
+                                        <a href="{% url "accounts" %}"
+                                           class="btn my-2 get-s-btn my-sm-0">Account<a>
+                                            <a href="{% url "logout" %}"
+                                               class="btn my-2 get-s-btn my-sm-0">Log
+                                                Out</a>
+                                    </div>
                                 </div>
-                            </div>
-                            <div v-else-if="searchProgress">
-                                <div class="w-100" v-for="i in 5" :key="i">
-                                    <div class="result-item mb-2 w-100"
-                                         style="width: 90%">
-                                        <div class="result-block result-toggler w-100 d-block d-md-flex justify-content-start p-2 pt-3 pb-3"
-                                             data-toggle="collapse"
-                                             data-target="#result-item27180">
-                                            <div class="loading_animation">
-                                                <div class="col-md-12">
-                                                    <div class="row">
-                                                        <div class="col-md-2">
-                                                            <div class="animate-element animate-element-01"></div>
-                                                        </div>
-                                                        <div class="col-md-2">
-                                                            <div class="animate-element animate-element-02"></div>
-                                                            <div class="animate-element animate-element-03"></div>
-                                                        </div>
-                                                        <div class="col-md-8">
-                                                            <div class="animate-element animate-element-04"></div>
-                                                            <div class="animate-element animate-element-05"></div>
+                            </nav>
+                        </header>
+
+                        <div class="d-flex fp-auto-height-responsive header-background first-page-body">
+                            <div v-if="!user.anonymous || searchResults.length !== 0 || searchProgress"
+                                 class="d-flex flex-row">
+                                <div class="left-form-pane container-pad-left">
+                                    <div v-if="searchResults.length === 0">
+                                        <h3>Search our Deals</h3>
+                                        <p>Exclusive private flights for
+                                            members</p>
+                                    </div>
+                                    <div v-else class="search-flight-home">
+                                        <h3>{( cityFromTo )}</h3>
+                                        <p>Carriers: {( airlineNames )}</p>
+                                        <div class="search-flight-devider"></div>
+                                    </div>
+                                    {% include "home/dealform.html" %}
+                                </div>
+                                <div class="right-body-pane"
+                                     :class="{'container-pad-right': searchResults.length !== 0 || searchProgress}">
+                                    <div v-if="searchResults.length === 0 && !searchProgress"
+                                         class="h-contentarea">
+                                        <div class="search-results-rightcontent">
+                                            <h3>Welcome to Flyline Adam</h3>
+                                            <p>Search and Book to <i>Dallas</i></p>
+                                            <p>To get the most out of flyline finish
+                                                your account setup below</p>
+                                            <div class="result-btn">
+                                                <a href="#" class="btn btn-default">Add
+                                                    Traveler Information</a>
+                                                <a href="#" class="btn btn-default">Add
+                                                    Deal Alert Destinations</a>
+                                                <a href="#" class="btn btn-default">Download
+                                                    Mobile App</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div v-else-if="searchProgress">
+                                        <div class="w-100" v-for="i in 5"
+                                             :key="i">
+                                            <div class="result-item mb-2 w-100"
+                                                 style="width: 90%">
+                                                <div class="result-block result-toggler w-100 d-block d-md-flex justify-content-start p-2 pt-3 pb-3"
+                                                     data-toggle="collapse"
+                                                     data-target="#result-item27180">
+                                                    <div class="loading_animation">
+                                                        <div class="col-md-12">
+                                                            <div class="row">
+                                                                <div class="col-md-2">
+                                                                    <div class="animate-element animate-element-01"></div>
+                                                                </div>
+                                                                <div class="col-md-2">
+                                                                    <div class="animate-element animate-element-02"></div>
+                                                                    <div class="animate-element animate-element-03"></div>
+                                                                </div>
+                                                                <div class="col-md-8">
+                                                                    <div class="animate-element animate-element-04"></div>
+                                                                    <div class="animate-element animate-element-05"></div>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div class="divider-30"></div>
                                         </div>
                                     </div>
-                                    <div class="divider-30"></div>
+                                    <search-results v-else
+                                                    :search-results="searchResults"
+                                                    :search-progress="searchProgress"
+                                                    :load-more="loadMore"
+                                                    :form="form"
+                                                    :sort-results-by="sortResultsBy"
+                                                    :quick-filters-data="quickFiltersData"/>
                                 </div>
                             </div>
-                            <search-results v-else
-                                            :search-results="searchResults"
-                                            :search-progress="searchProgress"
-                                            :load-more="loadMore" :form="form"
-                                            :sort-results-by="sortResultsBy"
-                                            :quick-filters-data="quickFiltersData"/>
+                            <div v-else
+                                 class="container align-self-center">
+                                <div class="h-headermain">
+                                    <div class="row">
+                                        <div class="col-12 col-md-12 wide-form">
+                                            <div class="search-flight-home">
+                                                <div>
+                                                    <cd-intro/>
+                                                </div>
+                                                <div>
+                                                    {% include "home/dealform-horizontal.html" %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div><!-- h-headermain -->
+                            </div>
+                            <div class="viewdeal-bottom text-center">
+                                Enter Your Deal Alert Destinations to
+                                View Deals
+                            </div>
+                        </div><!-- header bg -->
+                        <div class="d-flex flex-column justify-content-around home-slider"
+                             v-if="showWideForm">
+                            <div>
+                                <h3 class="slider-title">Never miss
+                                    out on a Flyline deal</h3>
+                                <p class="slider-title-second">Save
+                                    Hundreds on both
+                                    International and Domestic
+                                    Flights</p>
+                            </div>
+                            <div class="container">
+                                <div class="row">
+
+                                    <div class="col-md-3 col-12">
+                                        <div class="slider-box">
+                                            <img src="{% static "home/img/barcelona-buildings-city-1388030.jpg" %}"/>
+                                            <div class="h-slider-caption">
+                                                <strong>Barcelona</strong>
+                                                <p>$750+ Round Trip
+                                                    | Typical
+                                                    Price</p>
+                                                <b>$432 Round Trip |
+                                                    Found on
+                                                    Flyline</b>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3 col-12">
+                                        <div class="slider-box">
+                                            <img src="{% static "home/img/architecture-building-capital-1850619.jpg" %}"/>
+                                            <div class="h-slider-caption">
+                                                <strong>Paris</strong>
+                                                <p>$820+ Round Trip
+                                                    | Typical
+                                                    Price</p>
+                                                <b>$475 Round Trip |
+                                                    Found on
+                                                    Flyline</b>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3 col-12">
+                                        <div class="slider-box">
+                                            <img src="{% static "home/img/architecture-buildings-city-2190283.jpg" %}"/>
+                                            <div class="h-slider-caption">
+                                                <strong>New
+                                                    York</strong>
+                                                <p>$375+ Round Trip
+                                                    | Typical
+                                                    Price</p>
+                                                <b>$152 Round Trip |
+                                                    Found on
+                                                    Flyline</b>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3 col-12">
+                                        <div class="slider-box">
+                                            <img src="{% static "home/img/ancient-architectural-design-architecture-2166553.jpg" %}"/>
+                                            <div class="h-slider-caption">
+                                                <strong>Bali</strong>
+                                                <p>$850+ Round Trip
+                                                    | Typical
+                                                    Price</p>
+                                                <b>$534 Round Trip |
+                                                    Found on
+                                                    Flyline</b>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="clickdown">
+                                <a href="#Section02"
+                                   class="fliLine-Banner">
+                                    <div class="h-flyline-bar">
+                                        <h3>What is Flyline</h3>
+                                    </div>
+                                </a>
+                            </div>
                         </div>
                     </div>
-                    <div v-else class="container align-self-center">
-                        <div class="h-headermain">
-                            <div class="row">
-                                <div class="col-12 col-md-12 wide-form">
-                                    <div class="search-flight-home">
-                                        <div>
-                                            <cd-intro/>
-                                        </div>
-                                        <div>
-                                            {% include "home/dealform-horizontal.html" %}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div><!-- h-headermain -->
-                    </div>
-                 <div class="viewdeal-bottom text-center">
-                     Enter Your Deal Alert Destinations to View Deals
-                 </div>
-                </div><!-- header bg -->
-                <div class="d-flex flex-column justify-content-around home-slider"
-                     v-if="showWideForm">
-                    <div>
-                        <h3 class="slider-title">Never miss out on a Flyline deal</h3>
-                        <p class="slider-title-second">Save Hundreds on both
-                            International and Domestic Flights</p>
-                    </div>
+
+
+                </div>
+
+                <div class="section" id="Section02">
                     <div class="container">
                         <div class="row">
-
-                            <div class="col-md-3 col-12">
-                                <div class="slider-box">
-                                    <img src="{% static "home/img/barcelona-buildings-city-1388030.jpg" %}"/>
-                                    <div class="h-slider-caption">
-                                        <strong>Barcelona</strong>
-                                        <p>$750+ Round Trip | Typical Price</p>
-                                        <b>$432 Round Trip | Found on Flyline</b>
-                                    </div>
+                            <div class="col-md-12 col-12">
+                                <div class="section2-content text-center">
+                                    <h3 style="font-family: dona-black;">
+                                        No More Booking
+                                        Fees</h3>
+                                    <p>Our members save an
+                                        average of $90 on
+                                        domestic flights
+                                        and an average of
+                                        <br> $500 + on
+                                        international trips
+                                        by
+                                        purchasing FlyLine’s
+                                        exclusive discounted
+                                        <br> and
+                                        "fee-free" flights
+                                        that aren't
+                                        available to the
+                                        public
+                                    </p>
+                                    <a href=""
+                                       class="btn btn-default">Saving
+                                        Explained</a>
                                 </div>
                             </div>
-
-                            <div class="col-md-3 col-12">
-                                <div class="slider-box">
-                                    <img src="{% static "home/img/architecture-building-capital-1850619.jpg" %}"/>
-                                    <div class="h-slider-caption">
-                                        <strong>Paris</strong>
-                                        <p>$820+ Round Trip | Typical Price</p>
-                                        <b>$475 Round Trip | Found on Flyline</b>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-3 col-12">
-                                <div class="slider-box">
-                                    <img src="{% static "home/img/architecture-buildings-city-2190283.jpg" %}"/>
-                                    <div class="h-slider-caption">
-                                        <strong>New York</strong>
-                                        <p>$375+ Round Trip | Typical Price</p>
-                                        <b>$152 Round Trip | Found on Flyline</b>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-3 col-12">
-                                <div class="slider-box">
-                                    <img src="{% static "home/img/ancient-architectural-design-architecture-2166553.jpg" %}"/>
-                                    <div class="h-slider-caption">
-                                        <strong>Bali</strong>
-                                        <p>$850+ Round Trip | Typical Price</p>
-                                        <b>$534 Round Trip | Found on Flyline</b>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="clickdown">
-                        <a href="#Section02" class="fliLine-Banner">
-                            <div class="h-flyline-bar">
-                                <h3>What is Flyline</h3>
-                            </div>
-                        </a>
-                   </div>
-                </div>
-            </div>
-
-
-        </div>
-
-        <div class="section" id="Section02">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12 col-12">
-                        <div class="section2-content text-center">
-                            <h3 style="font-family: dona-black;">No More Booking Fees</h3>
-                            <p>Our members save an average of $90 on domestic flights
-                                and an average of <br> $500 + on international trips by
-                                purchasing FlyLine’s exclusive discounted <br> and
-                                "fee-free" flights that aren't available to the public
-                            </p>
-                            <a href="" class="btn btn-default">Saving Explained</a>
-                        </div>
-                    </div>
-                    <!--      <div class="col-md-7 col-12 home-macbook-img">
+                            <!--      <div class="col-md-7 col-12 home-macbook-img">
                         <img src="{% static "home/img/MacBook_Mock.png" %}">
                     </div> -->
-                </div>
-            </div>
-        </div><!--  second section -->
-
-        <div class="section" id="sec3-Bg">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-6 col-12">
-                        <div class="section3-content">
-                            <h3>No More FOMO</h3>
-                            <p>Our members never miss out on <br> massive savings and
-                                once in a lifetime <br> trips through constant
-                                personalized <br> deal alerts based on there specific
-                                <br> travel preferences.</p>
                         </div>
                     </div>
-                    <div class="col-md-6 col-12">
-                        <ul class="h-result-list">
-                            <marquee behavior="alternate" direction="up" height="500"
-                                     scrolldelay="1" onmouseover="this.stop()"
-                                     onmouseout="this.start()">
-                                <li><img
-                                        src="{% static "home/img/flight_option_one.png" %}">
-                                </li>
-                                <li><img
-                                        src="{% static "home/img/flight_option_two.png" %}">
-                                </li>
-                                <li><img
-                                        src="{% static "home/img/flight_option_three.png" %}">
-                                </li>
-                                <li><img
-                                        src="{% static "home/img/flight_option_four.png" %}">
-                                </li>
-                                <li><img src="{% static "home/img/Sevem.png" %}"></li>
-                                <li><img src="{% static "home/img/Three.png" %}"></li>
-                                <li><img src="{% static "home/img/One.png" %}"></li>
-                                <li><img src="{% static "home/img/Two.png" %}"></li>
-                                <li><img src="{% static "home/img/Five.png" %}"></li>
-                                <li><img src="{% static "home/img/Six.png" %}"></li>
-                            </marquee>
-                        </ul>
-                        <!-- <img src="{% static "home/img/iphone-white.png" %}" class="mobile-img"> -->
-                    </div>
-                </div>
-            </div>
-        </div><!--  Section Three  -->
+                </div><!--  second section -->
 
-        <div class="section" id="sec4-bg">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-6 col-12 content-img">
-                        <img src="{% static "home/img/redirects_mock.png" %}"
-                             class="mobile-img">
-                    </div>
-                    <div class="col-md-6 col-12">
-                        <div class="section4-content">
-                            <h3>No More Redirects</h3>
-                            <p>Our members don't get the run-around, <br> search and
-                                book directly with flyline. Stop<br> wasting time wih
-                                deal sites and search<br> engines that redirect you to
-                                "fee-heavy"<br> online travel agencies.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div><!--  Section four  -->
-
-        <div class="section" id="section5-Bg">
-            <div class="section5-Bg">
-                <div class="text-center section5-content">
-                    <h3>Your Easiest Travel Decision</h3>
-                    <p style="margin-top: 16px;">Tap into More Savings, More Benefits, and More <br> Travel with a flyline membership</p>
-                </div>
-
-                <div class="container">
-                    <div class="row justify-content-center">
-                        <div class="col-md-4 col-12">
-                            <div class="h-planbox text-center">
-                                <span class="mark-heading" style="margin-bottom: 30px;margin-top: 5px;">10 Day Free Tr</span>
-                                <h3>Flyline Basic</h3>
-                                <strong>$6.99/mo</strong>
-                                <p>No Long Term Commitment</p>
-                                <ul class="plan-list" style="margin-bottom: 30px;">
-                                    <li style="width: 400px;">* Exclusive Discount Flights </li>
-                                    <li style="width: 400px;">* Price Alert Notifications</li>
-                                    <li style="width: 400px;">* Automatic Check-In</li>
-                                    <li style="width: 400px;">* FlyLine Travel Portal</li>
+                <div class="section" id="sec3-Bg">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-6 col-12">
+                                <div class="section3-content">
+                                    <h3>No More FOMO</h3>
+                                    <p>Our members never
+                                        miss out on <br>
+                                        massive savings and
+                                        once in a lifetime
+                                        <br> trips through
+                                        constant
+                                        personalized <br>
+                                        deal alerts based on
+                                        there specific
+                                        <br> travel
+                                        preferences.</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-12">
+                                <ul class="h-result-list">
+                                    <marquee
+                                            behavior="alternate"
+                                            direction="up"
+                                            height="500"
+                                            scrolldelay="1"
+                                            onmouseover="this.stop()"
+                                            onmouseout="this.start()">
+                                        <li><img
+                                                src="{% static "home/img/flight_option_one.png" %}">
+                                        </li>
+                                        <li><img
+                                                src="{% static "home/img/flight_option_two.png" %}">
+                                        </li>
+                                        <li><img
+                                                src="{% static "home/img/flight_option_three.png" %}">
+                                        </li>
+                                        <li><img
+                                                src="{% static "home/img/flight_option_four.png" %}">
+                                        </li>
+                                        <li><img
+                                                src="{% static "home/img/Sevem.png" %}">
+                                        </li>
+                                        <li><img
+                                                src="{% static "home/img/Three.png" %}">
+                                        </li>
+                                        <li><img
+                                                src="{% static "home/img/One.png" %}">
+                                        </li>
+                                        <li><img
+                                                src="{% static "home/img/Two.png" %}">
+                                        </li>
+                                        <li><img
+                                                src="{% static "home/img/Five.png" %}">
+                                        </li>
+                                        <li><img
+                                                src="{% static "home/img/Six.png" %}">
+                                        </li>
+                                    </marquee>
                                 </ul>
-                                <a href="#" class="btn btn-default">Start Saving</a>
+                                <!-- <img src="{% static "home/img/iphone-white.png" %}" class="mobile-img"> -->
                             </div>
                         </div>
                     </div>
+                </div><!--  Section Three  -->
+
+                <div class="section" id="sec4-bg">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-6 col-12 content-img">
+                                <img src="{% static "home/img/redirects_mock.png" %}"
+                                     class="mobile-img">
+                            </div>
+                            <div class="col-md-6 col-12">
+                                <div class="section4-content">
+                                    <h3>No More
+                                        Redirects</h3>
+                                    <p>Our members don't get
+                                        the run-around, <br>
+                                        search and
+                                        book directly with
+                                        flyline. Stop<br>
+                                        wasting time wih
+                                        deal sites and
+                                        search<br> engines
+                                        that redirect you to
+                                        "fee-heavy"<br>
+                                        online travel
+                                        agencies.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div><!--  Section four  -->
+
+                <div class="section" id="section5-Bg">
+                    <div class="section5-Bg">
+                        <div class="text-center section5-content">
+                            <h3>Your Easiest Travel
+                                Decision</h3>
+                            <p style="margin-top: 16px;">Tap
+                                into More Savings, More
+                                Benefits, and More <br>
+                                Travel with a flyline
+                                membership</p>
+                        </div>
+
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-md-4 col-12">
+                                    <div class="h-planbox text-center">
+                                                                    <span class="mark-heading"
+                                                                          style="margin-bottom: 30px;margin-top: 5px;">10 Day Free Tr</span>
+                                        <h3>Flyline
+                                            Basic</h3>
+                                        <strong>$6.99/mo</strong>
+                                        <p>No Long Term
+                                            Commitment</p>
+                                        <ul class="plan-list"
+                                            style="margin-bottom: 30px;">
+                                            <li style="width: 400px;">
+                                                * Exclusive
+                                                Discount
+                                                Flights
+                                            </li>
+                                            <li style="width: 400px;">
+                                                * Price
+                                                Alert
+                                                Notifications
+                                            </li>
+                                            <li style="width: 400px;">
+                                                * Automatic
+                                                Check-In
+                                            </li>
+                                            <li style="width: 400px;">
+                                                * FlyLine
+                                                Travel
+                                                Portal
+                                            </li>
+                                        </ul>
+                                        <a href="#"
+                                           class="btn btn-default">Start
+                                            Saving</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div><!--  Section Five  -->
+
+                <div class="section" id="footer-section">
+                    {% include "_includes/footer.html" %}
                 </div>
+
             </div>
-
-
-        </div><!--  Section Five  -->
-
-        <div class="section" id="footer-section">
-            {% include "_includes/footer.html" %}
         </div>
 
-    </div>
-</div>
 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+        <script src="{% static "js/lightpick.js" %}"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script src="{% static "home/js/jquery-2.1.4.min.js" %}"></script>
+        <script src="{% static "home/js/bootstrap.js" %}"></script>
+        <script src="{% static "home/js/rotate-animationscript.js" %}"></script>
+        {% include "home/vue-flight-template.html" %}
+        {% include "home/vue-quicklinks-template.html" %}
+        {% include "home/vue-cd-intro-template.html" %}
+        {% include "home/vue-search-results-template.html" %}
+        {{ django_user | json_script:"django_user" }}
+        <script type="text/javascript"
+                src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <script type="module"
+                src="{% static "home/js/flight.js" %}"></script>
+        <script type="module"
+                src="{% static "home/js/quicklinks.js" %}"></script>
+        <script type="module"
+                src="{% static "home/js/cd-intro.js" %}"></script>
+        <script type="module"
+                src="{% static "home/js/search-results.js" %}"></script>
+        <script src="{% static "home/fullPage.js-master/dist/fullpage.min.js" %}"></script>
+        <script type="text/javascript"
+                src="{% static "home/fullPage.js-master/dist/scrolloverflow.js" %}"></script>
+        <script src="{% static "home/vue-slider-component/dist/vue-slider-component.umd.min.js" %}"></script>
+        <script type="module"
+                src="{% static "js/home.js" %}"></script>
+        <script type="module"
+                src="{% static "home/js/drift.js" %}"></script>
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async
+                src="https://www.googletagmanager.com/gtag/js?id=UA-151437513-1"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
-<script src="{% static "js/lightpick.js" %}"></script>
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-<script src="{% static "home/js/jquery-2.1.4.min.js" %}"></script>
-<script src="{% static "home/js/bootstrap.js" %}"></script>
-<script src="{% static "home/js/rotate-animationscript.js" %}"></script>
-{% include "home/vue-flight-template.html" %}
-{% include "home/vue-quicklinks-template.html" %}
-{% include "home/vue-cd-intro-template.html" %}
-{% include "home/vue-search-results-template.html" %}
-{{ django_user | json_script:"django_user" }}
-<script type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<script type="module" src="{% static "home/js/flight.js" %}"></script>
-<script type="module" src="{% static "home/js/quicklinks.js" %}"></script>
-<script type="module" src="{% static "home/js/cd-intro.js" %}"></script>
-<script type="module" src="{% static "home/js/search-results.js" %}"></script>
-<script src="{% static "home/fullPage.js-master/dist/fullpage.min.js" %}"></script>
-<script type="text/javascript"
-        src="{% static "home/fullPage.js-master/dist/scrolloverflow.js" %}"></script>
-<script src="{% static "home/vue-slider-component/dist/vue-slider-component.umd.min.js" %}"></script>
-<script type="module" src="{% static "js/home.js" %}"></script>
-<script type="module" src="{% static "home/js/drift.js" %}"></script>
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-151437513-1"></script>
-<script>
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
+            function gtag() {
+                dataLayer.push(arguments);
+            }
 
-gtag('config', 'UA-151437513-1');
-</script>
-</body>
+            gtag('js', new Date());
+
+            gtag('config', 'UA-151437513-1');
+        </script>
+    </body>
 </html>
