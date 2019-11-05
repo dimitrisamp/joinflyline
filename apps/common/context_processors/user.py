@@ -7,6 +7,7 @@ def user_processor(request):
                 "first_name": user.first_name,
                 "last_name": user.last_name,
                 "username": user.username,
+                "market": user.profile.market,
             }
         )
     return {"django_user": django_user}

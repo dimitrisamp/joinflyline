@@ -90,8 +90,8 @@
                                     <div v-if="searchResults.length === 0 && !searchProgress"
                                          class="h-contentarea">
                                         <div class="search-results-rightcontent">
-                                            <h3>Welcome to Flyline Adam</h3>
-                                            <p>Search and Book to <i>Dallas</i></p>
+                                            <h3>Welcome to Flyline {( user.first_name )}</h3>
+                                            <p>Search and Book to <i>{( user.market )}</i></p>
                                             <p>To get the most out of flyline finish
                                                 your account setup below</p>
                                             <div class="result-btn">
