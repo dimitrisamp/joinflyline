@@ -12,7 +12,7 @@
     <div class="detail-box">
         <p>{{ flight.dep_time }} <span>{{ flight.cityFrom }} {{ flight.flyFrom }}</span></p>
         <p>{{ flight.arr_time }} <span>{{ flight.cityTo }} {{ flight.flyTo }}</span></p>
-        <img src="/images/{{ flight.airline | aircon }}.png" alt="{{ flight.airline }}">
+        <img src="{{ flight.airline | aircon }}" alt="{{ flight.airline }}">
         <sub class="col-sub">{{ flight.duration }}{# 3h 33m #}</sub>
     </div>
 
