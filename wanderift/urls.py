@@ -28,7 +28,7 @@ from apps.booking.views import (
     CheckPromoView,
 )
 from apps.emails.views import booking_success
-from apps.home.views import index_view, home_view, SignInView, ForgotPassView, SignUpView, \
+from apps.home.views import index_view, home_view, SignInView, ForgotPasswordView, SignUpView, \
     PromoLandingView
 from apps.account.views import WizardView
 from apps.results.views import CityAutocomplete, ResultsView
