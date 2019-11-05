@@ -218,8 +218,8 @@ header.sticky{
     color: #7d7d7d;
 }
 .newhome-form p {
-    font-family: Dona-Regular;
-    font-size: 25px;
+    font-family: Dona-Bold;
+    font-size: 18px;
     margin: 0;
     padding-bottom: 7px;
     color: #7d7d7d;
@@ -280,6 +280,7 @@ header.sticky{
     border-right: none;
     font-size: 13px;
     font-weight: 600;
+    font-family: dona-bold;
     color: #7d7d7d;
     border: 2px solid #ececec;
     border-right: transparent;
@@ -464,13 +465,13 @@ header.sticky{
     font-size: 30px;
     color: black;
     font-weight: bold;
-    font-family:Dona-Bold;
+    font-family:Dona-Black;
     text-align: center;
 }
 .home-slider .slider-title-second {
     font-size: 16px;
     color: grey;
-    font-family:Dona-Regular;
+    font-family:Dona-bold;
     text-align: center;
     margin-bottom: 0;
 }
@@ -487,7 +488,7 @@ header.sticky{
     width: 100%;
 }
 .h-slider-caption{
-    border:1.2px solid #00AEEF;
+    border:.5px solid #ececec;
     border-top: none;
     background: #fff;
     padding-top: 5px;
@@ -499,15 +500,15 @@ header.sticky{
 }
 .h-slider-caption p{
     margin-bottom: 0;
-    font-size: 11px;
+    font-size: 14px;
     color: #ccc;
-    font-family:Dona-Regular;
+    font-family:Dona-Bold;
     position: relative;
     top: 5px;
 }
 .h-slider-caption b{
-    font-size: 13px;
-    font-family:Dona-Regular;
+    font-size: 14px;
+    font-family:Dona-Bold;
     color: #000;
 }
 .search-results .result-item{
@@ -780,6 +781,7 @@ header.sticky{
     text-align: center;
     border: 2px solid #ececec;
     font-weight: bold;
+    font-family: dona-bold;
     background: transparent;
     color: #000000;
     padding: 7px 5px;
