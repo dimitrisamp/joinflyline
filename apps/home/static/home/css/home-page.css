@@ -449,6 +449,13 @@ header.sticky{
 .horizontal-form .s-result-dropdown .btn{
     background: #fff;
 }
+.horizontal-form .s-result-dropdown .btn img{
+    height: 23px;
+    width: 23px;
+    margin-right: 9px;
+    position: relative;
+    top: 0px;
+}
 .horizontal-form .s-result-dropdown .btn:active{
     background: #fff !important;
     border: 2px solid #ececec !important;
@@ -472,7 +479,7 @@ header.sticky{
     border-top: 2px solid #f2f2f2;
 }
 .home-slider .slider-title{
-    font-size: 30px;
+    font-size: 36px;
     color: black;
     font-weight: bold;
     font-family:Dona-Black;
@@ -695,13 +702,15 @@ header.sticky{
 }
 .section5-Bg{
     margin-top: 50px;
+    padding-top: 25px;
+    padding-bottom: 20px;
 }
 .section5-content h3{
     font-size: 50px;
     font-weight: 600;
     font-family: dona-black;
     color: #fff;
-    margin-top: 0;
+    margin-top: 34px;
     letter-spacing: 1px;
 }
 .section5-content p{
@@ -715,7 +724,7 @@ header.sticky{
 .h-planbox{
     background:#fff;
     padding: 20px 30px;
-    margin-top: 40px;
+    margin-top: 20px;
 }
 .h-planbox .mark-heading{
     background: #00b0f5;
@@ -748,7 +757,7 @@ header.sticky{
 .h-planbox p{
     font-size: 13px;
     font-family: dona-bold;
-    color: #ababab;
+    color: #00AEEF;
 }
 .plan-list{
     margin-top: 30px;
@@ -770,6 +779,10 @@ header.sticky{
     width: 100%;
     margin-bottom: 10px;
     border: 3px solid #00b0f5;
+}
+.h-planbox .btn:hover{
+    background: #00AEEF;
+    color: #fff;
 }
 
 /*****************************
@@ -1339,7 +1352,9 @@ footer .bottom-footer ul li:first-child:before {
           Media Query
 *****************************/
 @media(min-width:320px) and (max-width: 768px){
-
+.h-topbar{
+    display: none !important;
+}
 .h-contentarea h3 {
     font-size: 28px;
     margin-top: 19px;
@@ -1700,6 +1715,11 @@ footer .bottom-footer ul li:first-child:before {
 .right-body-pane{
     padding-top:50px;   
 }
+.slider-box {
+    border: 1px solid #ccc;
+    margin-top: -16px;
+}
+
 
 }
 
