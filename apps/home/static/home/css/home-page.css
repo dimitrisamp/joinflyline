@@ -1668,6 +1668,18 @@ footer .bottom-footer ul li:first-child:before {
 
 }
 
+@media(min-width: 1992px) and (max-width: 2561px){
+
+.left-form-pane{
+    padding-top:50px;
+}
+.right-body-pane{
+    padding-top:50px;   
+}
+
+}
+
+
 @media not all and (min-resolution:.001dpcm) {
   @supports (-webkit-appearance: none) and (stroke-color:transparent) {
     .search-flight-home {
