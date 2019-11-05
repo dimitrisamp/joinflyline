@@ -29,6 +29,8 @@ class Profile(models.Model):
     market = models.CharField(max_length=30, blank=True)
     gender = enum.EnumField(enums.Gender)
     phone_number = models.CharField(max_length=20, blank=True)
+    secret = models.CharField(max_length=16, blank=True)
+    expiration_time = models.DateField(blank=True, null=True)
     dob = models.DateField(blank=True, null=True)
     customer_id = models.CharField(max_length=70, blank=True)
     tsa_precheck_number = models.CharField(max_length=30, blank=True, null=True)

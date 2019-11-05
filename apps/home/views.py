@@ -32,6 +32,13 @@ class SignInView(TemplateView):
             "title": S.SITE_TITLE
         }
 
+class ForgotPasswordView(TemplateView):
+    template_name = "home/forgot-password.html"
+
+    def get_context_data(self, **kwargs):
+        return {
+            "title": S.SITE_TITLE
+        }
 
 class SignUpView(TemplateView):
     template_name = "home/sign-up.html"
