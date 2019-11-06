@@ -1771,3 +1771,46 @@ footer .bottom-footer ul li:first-child:before {
     }
   }
 }
+
+/* Popup */
+
+.flight-popup {
+    padding: 19px 27px;
+    border-radius: 0px !important;
+    margin-top: 20vh;
+}
+.flight-popup h3 {
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0 28px;
+    color: #000;
+    line-height: 25px;
+    margin-bottom: 20px;
+    margin-top: 30px;
+}
+.flight-popup p{
+    font-size: 13px;
+    color: #ccc;
+    margin-bottom: 20px;
+}
+.flight-popup .btn{
+    border: 2px solid #00B7FF;
+    color: #000;
+    margin-bottom: 10px;
+}
+.flight-modal{
+    max-width:350px;
+}
+.close-btn-popup{
+    border: none !important;
+    background: none !important;
+    position: absolute;
+    left: -35px;
+    top: 3px;
+    color: #000000c7;
+}
+.close-btn-popup:focus{
+    border: none !important;
+    background: none !important;
+    box-shadow: none !important;
+}

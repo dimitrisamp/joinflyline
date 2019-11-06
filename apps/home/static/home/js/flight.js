@@ -14,7 +14,7 @@ import {
 
 Vue.component('flight', {
     template: '#vue-flight-template',
-    props: ['flight', 'form'],
+    props: ['flight', 'form', 'user', 'popupVisible'],
     delimiters: ['{(', ')}'],
     data() {
         return {
@@ -28,6 +28,19 @@ Vue.component('flight', {
             const childrenText = valChildren === 0 ? '' : `${valChildren} Child${valChildren > 1 ? 'ren' : ''}`;
             const infantsText = valInfants === 0 ? '' : `${valInfants} Infant${valInfants > 1 ? 's' : ''}`;
             return [adultsText, childrenText, infantsText].filter((v) => v.length > 0).join(', ');
+        },
+        showPopup() {
+            this.popupVisible = true;
+        },
+        hidePopup() {
+            this.popupVisible = false;
+        },
+        bookFlight(flight) {
+            if (user.anonymous) {
+                this.showPopup();
+            } else {
+                this.proceedToBooking(flight);
+            }
         },
         proceedToBooking(flight) {
             let form = document.createElement("form");

@@ -2,6 +2,11 @@ import {secs2hm} from './utils.js';
 
 Vue.component('search-results', {
     template: '#vue-search-results-template',
-    props: ['searchProgress', 'searchResults', 'loadMore', 'form', 'sortResultsBy', 'quickFiltersData'],
+    data () {
+        return {
+            popupVisible: false,
+        }
+    },
+    props: ['searchProgress', 'searchResults', 'loadMore', 'form', 'sortResultsBy', 'quickFiltersData', 'user'],
     delimiters: ['{(', ')}']
 });
