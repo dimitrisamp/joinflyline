@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col-md-2 col-12 h-select-box s-result-dropdown s-result-dropdown_destination-type">
             <p class="btn btn-info"
-               @click="openDestinationType"> <img src="static/home/img/Round_Trip.png">
+               @click="openDestinationType"> <img src="{% static "home/img/Round_Trip.png" %}">
                 {(destinationTypes[form.destinationTypeId])}</p>
 
             <div class="search-f-dropdown"
@@ -20,7 +20,7 @@
         </div>
         <div class="col-md-2 col-12 h-select-box s-result-dropdown s-result-dropdown_passengers">
             <p href="#" @click="openPassengersForm"
-               class="btn btn-info"><img src="static/home/img/One_Passenger.png">{( valPassengers )}
+               class="btn btn-info"><img src="{% static "home/img/One_Passenger.png" %}">{( valPassengers )}
                 Passenger{( valPassengers > 1?"s":""
                 )}</p>
 
@@ -76,7 +76,7 @@
         </div>
         <div class="col-md-2 col-12 h-ecenomylink s-result-dropdown s-result-dropdown_seat-type">
             <p @click="openSeatTypeSelect"
-               class="btn btn-info"><img src="static/home/img/Economy.png">
+               class="btn btn-info"><img src="{% static "home/img/Economy.png" %}">
                 {(seatTypes[form.seatType])}</p>
 
             <div class="search-f-dropdown"
