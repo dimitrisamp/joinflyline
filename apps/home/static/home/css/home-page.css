@@ -80,8 +80,7 @@ Container emulation
 .left-form-pane {
     background:url('../img/Wallpaper-Left.png');
     border-right: solid 1px rgb(204, 204, 204);
-    padding-top: 20px;
-    padding-right: 30px;
+    padding: 20px 30px;
     flex: 1;
     background-size: cover;
 }
