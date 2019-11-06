@@ -32,7 +32,7 @@ body{
     padding: 20px 41px;
     border: 2px solid #d7d7d7;
     padding-bottom: 30px;
-    margin: 120px auto;
+    margin: 79px auto;
     max-width: 400px;
     margin-bottom: 20px;
 }
@@ -222,6 +222,15 @@ body{
 }
 section.step-2 {
     margin: 50px 0px;
+}
+.back-to-home a {
+    text-decoration: none;
+    font-family: dona-bold;
+    text-align: center;
+    color: #000;
+    display: block;
+    font-size: 27px;
+    margin-top: 80px;
 }
 /*End Get started Form css*/
 

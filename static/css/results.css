@@ -1,3 +1,19 @@
+@font-face {
+  font-family:dona-black;
+  src: url(fonts/Dona/DonaAlt-Black.ttf);
+}
+@font-face {
+  font-family:Dona-Regular;
+  src: url(fonts/Dona/Dona-Regular.ttf);
+}
+@font-face {
+    font-family: Dona-Bold;
+    src: url(fonts/Dona/Dona-Bold.ttf);
+}
+body{
+      font-family:Dona-Regular;
+}
+
 .container.results-container {
     max-width: 1400px;
 }
@@ -104,12 +120,16 @@
 }
 
 .search-quick-filter.applied .border-line {
-    border-bottom: 2px solid #00B7FF;
     position: absolute;
     bottom: 0;
     left: 12%;
 }
-
+.applied{
+    border:1px solid #00b0f5 !important;
+}
+.result-details{
+    border:1px solid #00b0f5 !important;   
+}
 
 .search-quick-filter:last-child {
     border-right: none;
@@ -118,4 +138,10 @@
 .search-quick-filter-filter-name {
     margin-left: auto;
     margin-right: auto;
+}
+.search-quick-filter-filter-name strong{
+    font-family:dona-black;
+}
+.search-quick-filter-filter-name .small{
+    color: #000;
 }

@@ -47,7 +47,7 @@ Container emulation
 
 @media (min-width: 1200px) {
     .container-pad-left {
-        padding-left: calc(100%/2 - 1140px/2 + 15px);
+        padding-left:calc(80%/2 - 1000px/2 + 15px);
     }
     .container-pad-right {
         padding-right: calc(100%/2 - 1140px/2 + 15px);
@@ -78,17 +78,21 @@ Container emulation
     line-height: 9px;
 }
 .left-form-pane {
-    background: white;
+    background:url('../img/Wallpaper-Left.png');
     border-right: solid 1px rgb(204, 204, 204);
     padding-top: 20px;
     padding-right: 30px;
     flex: 1;
+    background-size: cover;
+}
+.left-form-pane .search-dropdown .form-control{
+    color: #00aeef !important;
 }
 .right-body-pane {
     flex: 2;
     padding-left: 25px;
-
 }
+
 .search_btn {
     border: 2px solid #00AEEF;
     background: #fff;
@@ -149,9 +153,6 @@ header.sticky{
 .nav-btn .white-btn{
     color: #000 !important;
 }
-.h-dealform{
-    background: #fff;
-}
 .search-flight-home h3 {
     font-weight: 600;
     font-size: 37px;
@@ -164,18 +165,25 @@ header.sticky{
     font-weight: 600;
     font-size: 32px;
     padding-top: 25px;
-    color: #000;
+    color: #fff;
     margin-bottom: 13px;
     font-family: Dona-Black;
 }
 .left-form-pane .s-result-dropdown .btn{
     margin-bottom: 16px;
     padding: 10px 5px;
+    background: #fff;
+    color: #00b0f5;
+    font-family: Dona-Bold;
 }
 .left-form-pane .s-result-dropdown .btn:active{
     border: 2px solid #ececec !important;
     background: #fff !important;
     color: #7d7d7d !important;
+}
+.left-form-pane .search-form-input{
+    color: #00b0f5 !important;
+    font-family: Dona-Bold;
 }
 .airline-logo-holder.d-flex {
     width: 100px;
@@ -187,11 +195,17 @@ header.sticky{
     margin-bottom: 9px !important;
     display: block;
     font-family:dona-black;
+    color: #fff !important;
+    font-size: 26px;
 }
 .left-form-pane h3{
     font-family:dona-black;   
     font-size: 33px;
     padding-top: 20px;
+    color:#fff; 
+}
+.left-form-pane p{
+    color:#fff;    
 }
 .left-form-pane .search-f-dropdown{
      margin-top: -13px;
@@ -220,7 +234,7 @@ header.sticky{
     font-size: 15px;
     margin: 0;
     padding-bottom: 18px;
-    color: #7d7d7d;
+    color: #fff;
 }
 .search-flight-home p {
     font-family: Dona-Regular;
@@ -320,8 +334,8 @@ header.sticky{
     margin-top: 10px;
     border-radius: 0;
     font-weight: bold;
-    border: 2px solid #00b0f5;
-    color: #000;
+    border: 2px solid #fff;
+    color: #fff;
     opacity: 1;
 }
 .search-button .btn:focus{
@@ -449,6 +463,13 @@ header.sticky{
 .horizontal-form .s-result-dropdown .btn{
     background: #fff;
 }
+.horizontal-form .s-result-dropdown .btn img{
+    height: 23px;
+    width: 23px;
+    margin-right: 9px;
+    position: relative;
+    top: 0px;
+}
 .horizontal-form .s-result-dropdown .btn:active{
     background: #fff !important;
     border: 2px solid #ececec !important;
@@ -472,7 +493,7 @@ header.sticky{
     border-top: 2px solid #f2f2f2;
 }
 .home-slider .slider-title{
-    font-size: 30px;
+    font-size: 36px;
     color: black;
     font-weight: bold;
     font-family:Dona-Black;
@@ -529,6 +550,10 @@ header.sticky{
     padding-bottom: 10px !important;
     border: .5px solid #ececec;
 }
+.search-results .result-block:hover{
+    border: .5px solid #00b0f5;   
+    box-shadow: 1px 1px 4px #00AEEF;
+}
 .search-results p {
     font-size: 10px;
 }
@@ -536,9 +561,11 @@ header.sticky{
     font-size: 15px;
     margin: 0;
     color: #000;
+    font-family:dona-black;
 }
 .search-results h5{
     color: #000;
+    font-family:dona-black;
 }
 .search-results span {
     font-size: 12px;
@@ -550,13 +577,13 @@ header.sticky{
     width: 90px !important;
 }
 .search-flight-devider {
-    background: #cccccc6e;
+    background: #fff;
     height: 2px;
     margin-bottom: 19px;
     width: 100%;
 }
 .filter-devider{
-    background: #cccccc6e;
+    background: #fff;
     height: 3px;
     width: 100%;
     margin: 0px 15px;
@@ -695,13 +722,15 @@ header.sticky{
 }
 .section5-Bg{
     margin-top: 50px;
+    padding-top: 25px;
+    padding-bottom: 20px;
 }
 .section5-content h3{
     font-size: 50px;
     font-weight: 600;
     font-family: dona-black;
     color: #fff;
-    margin-top: 0;
+    margin-top: 34px;
     letter-spacing: 1px;
 }
 .section5-content p{
@@ -715,7 +744,7 @@ header.sticky{
 .h-planbox{
     background:#fff;
     padding: 20px 30px;
-    margin-top: 40px;
+    margin-top: 20px;
 }
 .h-planbox .mark-heading{
     background: #00b0f5;
@@ -748,7 +777,7 @@ header.sticky{
 .h-planbox p{
     font-size: 13px;
     font-family: dona-bold;
-    color: #ababab;
+    color: #00AEEF;
 }
 .plan-list{
     margin-top: 30px;
@@ -770,6 +799,10 @@ header.sticky{
     width: 100%;
     margin-bottom: 10px;
     border: 3px solid #00b0f5;
+}
+.h-planbox .btn:hover{
+    background: #00AEEF;
+    color: #fff;
 }
 
 /*****************************
@@ -862,7 +895,7 @@ header.sticky{
     width: 100%!important;
 }
 .text-muted {
-    color: #6c757d!important;
+    color: #000 !important;
 }
 .search-f-dropdown{
     background: #fff;
@@ -1339,7 +1372,9 @@ footer .bottom-footer ul li:first-child:before {
           Media Query
 *****************************/
 @media(min-width:320px) and (max-width: 768px){
-
+.h-topbar{
+    display: none !important;
+}
 .h-contentarea h3 {
     font-size: 28px;
     margin-top: 19px;
@@ -1695,11 +1730,16 @@ footer .bottom-footer ul li:first-child:before {
 @media(min-width: 1992px) and (max-width: 2561px){
 
 .left-form-pane{
-    padding-top:50px;
+    padding-top:20px;
 }
 .right-body-pane{
-    padding-top:50px;   
+    padding-top:20px;   
 }
+.slider-box {
+    border: 1px solid #ccc;
+    margin-top: -16px;
+}
+
 
 }
 
