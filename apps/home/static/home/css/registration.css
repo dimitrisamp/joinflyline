@@ -110,7 +110,7 @@ body{
     margin-top: 10px;
 }
 .full-bg-image {
-    background: url(/static/home/img/headerbackground.png);
+    background: url(../img/headerbackground.png);
     width: 100%;
     background-position: bottom;
 }

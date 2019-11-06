@@ -1,3 +1,4 @@
+{% load static %}
 <div id="dealform" class="h-dealform horizontal-form">
     <div class="row">
         <div class="col-md-2 col-12 h-select-box s-result-dropdown s-result-dropdown_destination-type">
@@ -223,7 +224,7 @@
 
         <div class="search-button horizontal-f-btn col-md-2 col-12">
             <button type="submit" class="btn-search" @click="search" :disabled="isFormIncomplete">
-                <img src="static/home/img/search.png">
+                <img src="{% static "home/img/search.png" %}">
             </button>
         </div>
 
