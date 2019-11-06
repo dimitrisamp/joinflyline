@@ -81,6 +81,7 @@ Container emulation
     background:url('../img/Wallpaper-Left.png');
     border-right: solid 1px rgb(204, 204, 204);
     padding: 20px 30px;
+    padding-left: calc(80%/2 - 1000px/2 + 15px);
     flex: 1;
     background-size: cover;
 }
@@ -1785,6 +1786,7 @@ footer .bottom-footer ul li:first-child:before {
 @media(min-width: 1992px) and (max-width: 2561px){
 
 .left-form-pane{
+    padding-left: calc(80%/2 - 1000px/2 + 15px);
     padding-top:20px;
 }
 .right-body-pane{
