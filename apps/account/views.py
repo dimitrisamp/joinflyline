@@ -12,6 +12,7 @@ from django.views.generic import TemplateView, FormView
 
 from apps.account.forms import ProfileForm, MARKET_CHOICES, WizardForm
 from apps.account.models import Account
+from apps.emails.views import signup_success
 from apps.payments.models import Plans
 from apps.payments.plans import get_available_plans
 from apps.subscriptions.models import Subscriptions
@@ -170,7 +171,7 @@ class WizardView(FormView):
             first_name=cd["first_name"],
             last_name=cd["last_name"],
         )
-        # TODO: send verification email
+        signup_success(new_user.pk)
         # TODO: handle promocode
         Account.objects.create(
             user=new_user,
