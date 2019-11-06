@@ -27,7 +27,10 @@
             <wizard @success="goHome"/>
         </div>
         {% include "home/vue-wizard-template.html" %}
-        <script type="text/javascript">const csrfmiddlewaretoken = '{{ csrf_token }}';</script>
+        <script type="text/javascript">
+            const csrfmiddlewaretoken = '{{ csrf_token }}';
+            const getStartedUrl = '{% url "wizard" %}';
+        </script>
         <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
         <script type="module" src="{% static "home/js/wizard.js" %}"></script>
     </body>

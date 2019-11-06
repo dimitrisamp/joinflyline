@@ -32,7 +32,7 @@ Vue.component("wizard", {
           formData.append(k, this.form[k]);
         }
       }
-      fetch("/get-started/", { // TODO: we need to use Django's url for that
+      fetch(getStartedUrl, {
         method: "POST",
         body: formData
       })
