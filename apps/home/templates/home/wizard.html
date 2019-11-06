@@ -20,8 +20,11 @@
         <title>{{ title }}</title>
     </head>
     <body class="full-bg-image">
+        <div class="back-to-home">
+            <a href="{% url "index" %}">Back to Home</a>
+        </div>
         <div id="main">
-            <wizard @success="goHome" />
+            <wizard @success="goHome"/>
         </div>
         {% include "home/vue-wizard-template.html" %}
         <script type="text/javascript">const csrfmiddlewaretoken = '{{ csrf_token }}';</script>
