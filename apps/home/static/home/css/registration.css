@@ -286,3 +286,10 @@ section.step-2 {
 }
 
 
+p.label__plan-description {
+    font-family: dona-bold;
+    border: solid 2px rgba(230, 230, 230, 0.82);
+    padding: 14px;
+    padding-left: 27px;
+    color: #8d8d8d;
+}
