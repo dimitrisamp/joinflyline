@@ -7,14 +7,13 @@ import {
     secs2hm,
     staticUrl,
     timeInterval,
-    getCookie,
 } from './utils.js';
 
 
 
 Vue.component('flight', {
     template: '#vue-flight-template',
-    props: ['flight', 'form', 'user', 'popupVisible'],
+    props: ['flight', 'form', 'user'],
     delimiters: ['{(', ')}'],
     data() {
         return {
@@ -29,15 +28,9 @@ Vue.component('flight', {
             const infantsText = valInfants === 0 ? '' : `${valInfants} Infant${valInfants > 1 ? 's' : ''}`;
             return [adultsText, childrenText, infantsText].filter((v) => v.length > 0).join(', ');
         },
-        showPopup() {
-            this.popupVisible = true;
-        },
-        hidePopup() {
-            this.popupVisible = false;
-        },
         bookFlight(flight) {
-            if (user.anonymous) {
-                this.showPopup();
+            if (this.user.anonymous) {
+                this.$emit('showPopup');
             } else {
                 this.proceedToBooking(flight);
             }
@@ -51,9 +44,9 @@ Vue.component('flight', {
             input.name = 'retail_info';
             input.value = JSON.stringify(flight);
             form.appendChild(input);
-            let csrfmiddlewaretoken = document.createElement('input');
-            csrfmiddlewaretoken.name = 'csrfmiddlewaretoken';
-            csrfmiddlewaretoken.value = getCookie('csrftoken');
+            let token = document.createElement('input');
+            token.name = 'csrfmiddlewaretoken';
+            token.value = csrfmiddlewaretoken;
             form.appendChild(csrfmiddlewaretoken);
             document.body.appendChild(form);
             form.submit();

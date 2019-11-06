@@ -40,7 +40,7 @@
 
             <flight v-for="flight in searchResults"
                     :flight="flight" :form="form" :user="user"
-                    :key="flight.id" :popup-visible="popupVisible"></flight>
+                    :key="flight.id" @show-popup="showPopup"></flight>
 
             <div class="h-btngroups">
                 <a class="btn btn-default" href="#"
@@ -49,20 +49,20 @@
             </div>
 
         </div>
-    </div>
-    <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog"
-         aria-labelledby="mySmallModalLabel" v-cloak v-if="popupVisible">
-        <div class="modal-dialog modal-sm flight-modal">
-            <div class="modal-content flight-popup text-center">
-                <button type="button" class="btn btn-secondary close-btn-popup"
-                        data-dismiss="modal">Close
-                </button>
-                <h3>Login or join flyline to book this flight</h3>
-                <p>Our exclusive deals and feesless flights are for flyline members,
-                    have an account, sign in, Not a member start your 10 day free trail
-                    today</p>
-                <a href="#" class="btn btn-default">Log In</a>
-                <a href="#" class="btn btn-default">Get Started</a>
+        <div class="modal bd-example-modal-sm" tabindex="-1" v-cloak v-if="popupVisible">
+            <div class="modal-dialog modal-sm flight-modal">
+                <div class="modal-content flight-popup text-center">
+                    <button type="button" class="btn btn-secondary close-btn-popup"
+                            data-dismiss="modal">Close
+                    </button>
+                    <h3>Login or join flyline to book this flight</h3>
+                    <p>Our exclusive deals and feesless flights are for flyline members,
+                        have an account, sign in, Not a member start your 10 day free
+                        trail
+                        today</p>
+                    <a href="#" class="btn btn-default">Log In</a>
+                    <a href="#" class="btn btn-default">Get Started</a>
+                </div>
             </div>
         </div>
     </div>

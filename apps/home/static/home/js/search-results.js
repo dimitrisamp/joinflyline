@@ -7,6 +7,14 @@ Vue.component('search-results', {
             popupVisible: false,
         }
     },
+    methods: {
+        showPopup() {
+            this.popupVisible = true;
+        },
+        hidePopup() {
+            this.popupVisible = false;
+        }
+    },
     props: ['searchProgress', 'searchResults', 'loadMore', 'form', 'sortResultsBy', 'quickFiltersData', 'user'],
     delimiters: ['{(', ')}']
 });
