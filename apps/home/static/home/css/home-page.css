@@ -1228,6 +1228,18 @@ header.sticky{
     line-height: 44px;
     font-size: 21px;
 }
+img.round-trip-icon {
+    width: 26px !important;
+    height: 26px !important;
+}
+img.passenger-icon {
+    width: 18px !important;
+}
+img.ecenomy-icon {
+    width: 18px !important;
+}
+
+
 
 /*****************************
            Footer
