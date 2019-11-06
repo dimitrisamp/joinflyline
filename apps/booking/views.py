@@ -307,6 +307,6 @@ def retail_booking_view(request):
             "passengers"
         ],
         "total_price": retail_info["conversion"]["USD"],
-        "title": S.SITE_TITLE,
+        "title": "Confirm Booking | FlyLine",
     }
     return render(request, "booking/retail.html", context)
