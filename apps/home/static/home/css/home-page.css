@@ -1387,7 +1387,9 @@ footer .bottom-footer ul li:first-child:before {
           Media Query
 *****************************/
 @media(min-width:320px) and (max-width: 768px){
-
+.h-result-list{
+    display: none;
+}
 .h-topbar{
     display: none !important;
 }
@@ -1764,7 +1766,6 @@ footer .bottom-footer ul li:first-child:before {
     border: 1px solid #ccc;
     margin-top: -16px;
 }
-
 
 }
 
