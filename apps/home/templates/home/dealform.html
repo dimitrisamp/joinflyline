@@ -187,8 +187,8 @@
         </div>
         <div class="filter-devider"></div>
         <div class="input-group input-group-sm search-dropdown col-12">
-            <span class="input-group-text search-form-input">Airline</span>
-            <input type="text" class="form-control search-input" @focus="openAirlinesSelect" v-model="airlinesText">
+            <span class="input-group-text search-form-input">Airline filter</span>
+            <input type="text" class="form-control search-input" @focus="openAirlinesSelect" v-model="airlinesText" placeholder="Ex, American Airlines, Delta">
 
             <div class="search-f-dropdown airline-f-dropdown" v-if="airlinesSelectProgress" v-click-outside="closeAirlinesSelect">
                 <ul class="s-dropdown-list">
@@ -199,8 +199,8 @@
         </div>
 
         <div class="input-group input-group-sm search-dropdown col-12">
-            <span class="input-group-text search-form-input">Stops</span>
-            <input type="text" class="form-control search-input" @focus="openMaxStopsSelect" v-model="maxStopsText">
+            <span class="input-group-text search-form-input">Stops Filter</span>
+            <input type="text" class="form-control search-input" @focus="openMaxStopsSelect" v-model="maxStopsText" placeholder="Ex, Nonstop, One stop">
 
             <div class="search-f-dropdown stop-filder-dropdown" v-if="maxStopsSelectProgress" v-click-outside="closeMaxStopsSelect">
                 <ul class="s-dropdown-list">
@@ -210,7 +210,7 @@
         </div>
 
         <div class="input-group input-group-sm search-dropdown col-12">
-            <span class="input-group-text search-form-input">Pricing</span>
+            <span class="input-group-text search-form-input">Price Filter</span>
             <input type="text" class="form-control search-input" @focus="openPriceSelect" v-model="priceText">
 
             <div class="search-f-dropdown price-dropdown" v-show="priceSelectProgress" v-click-outside="closePriceSelect">

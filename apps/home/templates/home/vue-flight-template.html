@@ -1,5 +1,5 @@
 <script type="text/x-template" id="vue-flight-template">
-    <div class="result-item mb-2 w-100">
+    <div class="result-item mb-2 w-100" @click="toggleCollapsed">
         <div class="result-block result-toggler w-100 d-block d-md-flex justify-content-start p-2 pt-3 pb-3">
             <div class="price-block d-flex align-items-center justify-content-center pl-3 pr-3">
                 <div>
@@ -125,7 +125,7 @@
 
                 </div>
             </div>
-            <div class="arrow-indicator p-2 pt-3 pr-md-5 d-flex align-items-center justify-content-center" @click="toggleCollapsed">
+            <div class="arrow-indicator p-2 pt-3 pr-md-5 d-flex align-items-center justify-content-center">
                 <img :src="!collapsed?staticUrl('images/icons/up-arrow.png'):staticUrl('images/icons/down-arrow.png')"
                      alt="Pull down"
                      height="15">
