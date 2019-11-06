@@ -3,12 +3,18 @@ from django.contrib.auth import authenticate, logout
 from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.shortcuts import redirect
+from django.template.loader import render_to_string
 
 from apps.account.views import account_view
 from apps.home.views import index_view
 
 from apps.emails.views import signup_success
-import uuid
+from apps.oauth.forms import PasswordResetForm
+from django.core.mail import send_mail
+from datetime import datetime, timedelta
+from django.conf import settings
+
+import random
 
 
 def create_user(request):
@@ -37,18 +43,44 @@ def login_user(request):
 
 
 # TODO: ???? This allows anyone to easily change anybody's password
-def forgot_password(request):
-    user = User.objects.get(username=request.POST["email"])
+def password_reset_email(request):
+    if request.method == "POST":
+        form = PasswordResetForm(request.POST)
+        if form.is_valid():
+            data = form.cleaned_data
+            try:
+                user = User.objects.get(username=data["email"])
 
-    if user is not None:
-        secret = uuid.uuid4().hex[0:16]
-        user.profile.secret = secret
-        user.profile.save()
+                secret = random_16bit_hex_string()
 
-        return HttpResponse(secret + "Password reset request is sent successfully", status=200)
-    else:
-        return HttpResponse("Failed: Email does not exist", status=405)
+                htm_content = render_to_string(
+                    "emails/forgot-password.html",
+                    {
+                        "data": user,
+                        "secret": secret
+                    },
+                )
+                from_email = settings.DEFAULT_FROM_EMAIL
+                to_email = user.email
+                subject = "Forgot Password"
+                send_mail(subject, "text body", from_email, [to_email], html_message=htm_content)
 
+                user.profile.secret = secret
+                user.profile.expiration_time = datetime.now() + timedelta(seconds=settings.SECRET_LINK_EXPIRATION_SECONDS)
+
+                user.profile.save()
+            except User.DoesNotExist:
+                return redirect("forgot-password")
+
+    return redirect("forgot-password")
+
+def random_16bit_hex_string():
+    hex_characters = '0123456789abcdef'
+    hex_string = ''
+    for x in range(16):
+        hex_string += random.choice(hex_characters)
+
+    return hex_string
 
 def logout_view(request):
     logout(request)

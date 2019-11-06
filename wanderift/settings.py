@@ -229,3 +229,5 @@ SENDGRID_API_URL = "https://api.sendgrid.com/v3/"
 EMAIL_BACKEND = "anymail.backends.sendgrid.EmailBackend"
 DEFAULT_FROM_EMAIL = "noreply@joinflyline.com"
 SERVER_EMAIL = "noreply@joinflyline.com"
+
+SECRET_LINK_EXPIRATION_SECONDS=3600
