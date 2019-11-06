@@ -231,3 +231,5 @@ DEFAULT_FROM_EMAIL = "noreply@joinflyline.com"
 SERVER_EMAIL = "noreply@joinflyline.com"
 
 SECRET_LINK_EXPIRATION_SECONDS=3600
+
+SITE_URL = os.getenv('SITE_URL', 'https://joinflyline.com')
