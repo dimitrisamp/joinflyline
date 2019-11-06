@@ -110,7 +110,7 @@ body{
     margin-top: 10px;
 }
 .full-bg-image {
-    background: url(/static/home/img/headerbackground.png);
+    background: url(../img/headerbackground.png);
     width: 100%;
     background-position: bottom;
 }
@@ -225,12 +225,12 @@ section.step-2 {
 }
 .back-to-home a {
     text-decoration: none;
+    margin-top : 40px;
     font-family: dona-bold;
     text-align: center;
-    color: #000;
+    color: #8d8d8d;
     display: block;
-    font-size: 27px;
-    margin-top: 80px;
+    font-size: 14px;
 }
 /*End Get started Form css*/
 
@@ -286,3 +286,10 @@ section.step-2 {
 }
 
 
+p.label__plan-description {
+    font-family: dona-bold;
+    border: solid 2px rgba(230, 230, 230, 0.82);
+    padding: 14px;
+    padding-left: 27px;
+    color: #8d8d8d;
+}

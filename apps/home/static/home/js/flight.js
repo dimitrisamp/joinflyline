@@ -7,14 +7,13 @@ import {
     secs2hm,
     staticUrl,
     timeInterval,
-    getCookie,
 } from './utils.js';
 
 
 
 Vue.component('flight', {
     template: '#vue-flight-template',
-    props: ['flight', 'form'],
+    props: ['flight', 'form', 'user'],
     delimiters: ['{(', ')}'],
     data() {
         return {
@@ -29,6 +28,13 @@ Vue.component('flight', {
             const infantsText = valInfants === 0 ? '' : `${valInfants} Infant${valInfants > 1 ? 's' : ''}`;
             return [adultsText, childrenText, infantsText].filter((v) => v.length > 0).join(', ');
         },
+        bookFlight(flight) {
+            if (this.user.anonymous) {
+                this.$emit('showPopup');
+            } else {
+                this.proceedToBooking(flight);
+            }
+        },
         proceedToBooking(flight) {
             let form = document.createElement("form");
             form.style.visibility = 'hidden';
@@ -38,10 +44,10 @@ Vue.component('flight', {
             input.name = 'retail_info';
             input.value = JSON.stringify(flight);
             form.appendChild(input);
-            let csrfmiddlewaretoken = document.createElement('input');
-            csrfmiddlewaretoken.name = 'csrfmiddlewaretoken';
-            csrfmiddlewaretoken.value = getCookie('csrftoken');
-            form.appendChild(csrfmiddlewaretoken);
+            let token = document.createElement('input');
+            token.name = 'csrfmiddlewaretoken';
+            token.value = csrfmiddlewaretoken;
+            form.appendChild(token);
             document.body.appendChild(form);
             form.submit();
         },

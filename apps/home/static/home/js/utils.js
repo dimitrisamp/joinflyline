@@ -47,11 +47,11 @@ export function timeInterval(route) {
 }
 
 export function staticUrl(path) {
-    return `/static/${path}`;
+    return `${staticUrlValue}${path}`;
 }
 
 export function airlineIcon(name) {
-    return `/static/images/airlines/${name}.png`;
+    return `${staticUrlValue}images/airlines/${name}.png`;
 }
 
 export function formatTime(value) {

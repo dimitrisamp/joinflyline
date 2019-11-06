@@ -100,12 +100,11 @@ def stripe_customer(user):
 
 
 def card_token(card_number, expiry, cvc):
-    date_object = datetime.strptime(expiry, "%d/%m/%Y")
     return stripe.Token.create(
         card={
             "number": card_number,
-            "exp_month": date_object.month,
-            "exp_year": date_object.year,
+            "exp_month": expiry.month,
+            "exp_year": expiry.year,
             "cvc": cvc,
         }
     )
@@ -141,6 +140,16 @@ def sub_user(request):
     return redirect(account_view)
 
 
+def add_to_stripe(user):
+    account = user.account_set.all()[0]
+    stripe_card_token = card_token(account.card_number, account.expiry, account.cvc)
+    account.token = stripe_card_token.id
+    account.save()
+    customer = stripe_customer(user)
+    user.profile.customer_id = customer.id
+    user.profile.save()
+
+
 class WizardView(FormView):
     template_name = "home/wizard.html"
     form_class = WizardForm
@@ -172,5 +181,6 @@ class WizardView(FormView):
         )
         new_user.profile.market = cd["home_airport"]
         new_user.profile.save()
+        add_to_stripe(new_user)  # TODO: make async
         login(self.request, new_user)
         return JsonResponse({"success": True})

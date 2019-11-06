@@ -28,7 +28,7 @@ from apps.booking.views import (
     CheckPromoView,
 )
 from apps.emails.views import booking_success
-from apps.home.views import index_view, home_view, SignInView, SignUpView, \
+from apps.home.views import index_view, home_view, SignInView, ForgotPasswordView, SignUpView, \
     PromoLandingView
 from apps.account.views import WizardView
 from apps.results.views import CityAutocomplete, ResultsView
@@ -77,11 +77,9 @@ urlpatterns = [
     path("pay/", include("apps.payments.urls")),
     path("sign-in/", SignInView.as_view(), name="sign-in"),
     path("sign-up/", SignUpView.as_view(), name="sign-up"),
-    path("wizard/", WizardView.as_view(), name="wizard"),
+    path("forgot-password/", ForgotPasswordView.as_view(), name="forgot-password"),
+    path("get-started/", WizardView.as_view(), name="wizard"),
     path("city/query", CityAutocomplete.as_view(), name="city-query"),
     path("sitemap.xml", SiteMapView.as_view(), name="sitemap"),
     path("robots.txt", RobotsTxtView.as_view(), name="robots"),
 ]
-
-urlpatterns += staticfiles_urlpatterns()
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

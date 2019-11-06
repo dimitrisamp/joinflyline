@@ -3,15 +3,16 @@ from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django_enumfield import enum
+from creditcards.models import CardExpiryField, CardNumberField, SecurityCodeField
 
 from apps.account import enums
 
 
 class Account(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    card_number = models.CharField(max_length=30, blank=True, null=True)
-    cvc = models.CharField(max_length=3, blank=True, null=True)
-    expiry = models.CharField(max_length=10, blank=True, null=True)
+    card_number = CardNumberField(null=True)
+    cvc = SecurityCodeField(null=True)
+    expiry = CardExpiryField(null=True)
     country = models.CharField(max_length=30, blank=True)
     zip = models.CharField(max_length=20, blank=True)
     brand = models.CharField(max_length=10, blank=True)
@@ -29,6 +30,8 @@ class Profile(models.Model):
     market = models.CharField(max_length=30, blank=True)
     gender = enum.EnumField(enums.Gender)
     phone_number = models.CharField(max_length=20, blank=True)
+    secret = models.CharField(max_length=16, blank=True)
+    expiration_time = models.DateTimeField(blank=True, null=True)
     dob = models.DateField(blank=True, null=True)
     customer_id = models.CharField(max_length=70, blank=True)
     tsa_precheck_number = models.CharField(max_length=30, blank=True, null=True)

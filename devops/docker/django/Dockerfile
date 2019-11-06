@@ -12,5 +12,5 @@ COPY . .
 
 EXPOSE 8000
 
-CMD [ "inv", "production-migrate-and-run" ]
+CMD [ "inv", "production-run" ]
 

@@ -1,8 +1,9 @@
+{% load static %}
 <div id="dealform" class="h-dealform horizontal-form">
     <div class="row">
         <div class="col-md-2 col-12 h-select-box s-result-dropdown s-result-dropdown_destination-type">
             <p class="btn btn-info"
-               @click="openDestinationType"> <img src="static/home/img/Round_Trip.png" class="round-trip-icon">
+               @click="openDestinationType"> <img src="{% static "home/img/Round_Trip.png" class="round-trip-icon">
                 {(destinationTypes[form.destinationTypeId])}</p>
 
             <div class="search-f-dropdown"
@@ -19,7 +20,7 @@
         </div>
         <div class="col-md-2 col-12 h-select-box s-result-dropdown s-result-dropdown_passengers">
             <p href="#" @click="openPassengersForm"
-               class="btn btn-info"><img src="static/home/img/One_Passenger.png" class="passenger-icon">{( valPassengers )}
+               class="btn btn-info"><img src="{% static "home/img/One_Passenger.png" %}" class="passenger-icon">{( valPassengers )}
                 Passenger{( valPassengers > 1?"s":""
                 )}</p>
 
@@ -75,9 +76,8 @@
         </div>
         <div class="col-md-2 col-12 h-ecenomylink s-result-dropdown s-result-dropdown_seat-type">
             <p @click="openSeatTypeSelect"
-               class="btn btn-info"><img src="static/home/img/Economy.png" class="ecenomy-icon">
+               class="btn btn-info"><img src="{% static "home/img/Economy.png" %}" class="ecenomy-icon">
                 {(seatTypes[form.seatType])}</p>
-
             <div class="search-f-dropdown"
                  v-cloak
                  v-if="seatTypeSelectProgress"
@@ -223,7 +223,7 @@
 
         <div class="search-button horizontal-f-btn col-md-2 col-12">
             <button type="submit" class="btn-search" @click="search" :disabled="isFormIncomplete">
-                <img src="static/home/img/search.png">
+                <img src="{% static "home/img/search.png" %}">
             </button>
         </div>
 

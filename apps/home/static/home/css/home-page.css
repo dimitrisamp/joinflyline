@@ -80,8 +80,7 @@ Container emulation
 .left-form-pane {
     background:url('../img/Wallpaper-Left.png');
     border-right: solid 1px rgb(204, 204, 204);
-    padding-top: 20px;
-    padding-right: 30px;
+    padding: 20px 30px;
     flex: 1;
     background-size: cover;
 }
@@ -762,6 +761,9 @@ header.sticky{
     font-size: 32px;
     font-family: Dona-Black;
 }
+.h-planbox__header {
+    margin-top: 20px;
+}
 .plan-list{
     list-style: none;
     margin: 0;
@@ -1377,6 +1379,32 @@ footer .bottom-footer ul li:first-child:before {
 #fp-nav{
     display: none;
 }
+.trips-nav a {
+    margin: 0 22px;
+    font-size: 20px;
+    font-weight: 600;
+    color: #00b0f5 !important;
+}
+.trips-nav .btn{
+    background: #00b0f5;
+    color: #fff !important;
+    border-radius: 0px;
+    margin-left: 19px;
+    font-size: 15px;
+    padding: 9px 36px;
+    border-color: #00b0f5 !important;
+    line-height: 20px;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+.b-nav-logo img{
+    height: 33px;
+}
+.b-nav-logo{
+    color: #f5f5f5 !important;
+    font-size: 33px;
+    font-weight: 600;
+}
 /*.dots-display{
     display: block !important;
     left: 17px !important;
@@ -1776,4 +1804,47 @@ footer .bottom-footer ul li:first-child:before {
         margin-top: 170px !important;
     }
   }
+}
+
+/* Popup */
+
+.flight-popup {
+    padding: 19px 27px;
+    border-radius: 0px !important;
+    margin-top: 20vh;
+}
+.flight-popup h3 {
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0 28px;
+    color: #000;
+    line-height: 25px;
+    margin-bottom: 20px;
+    margin-top: 30px;
+}
+.flight-popup p{
+    font-size: 13px;
+    color: #ccc;
+    margin-bottom: 20px;
+}
+.flight-popup .btn{
+    border: 2px solid #00B7FF;
+    color: #000;
+    margin-bottom: 10px;
+}
+.flight-modal{
+    max-width:350px;
+}
+.close-btn-popup{
+    border: none !important;
+    background: none !important;
+    position: absolute;
+    right: 0;
+    top: 0;
+    color: #000000c7;
+}
+.close-btn-popup:focus{
+    border: none !important;
+    background: none !important;
+    box-shadow: none !important;
 }

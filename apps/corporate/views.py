@@ -35,12 +35,12 @@ class ManageTripsView(TemplateView):
             "title": "Manage Corporates Trips",
             "upcoming_trips": [o.to_data() for o in upcoming_trips],
             "past_trips": [o.to_data() for o in past_trips],
-            "watched_flights": [
-                json.loads(o.data)
-                for o in BookingCache.objects.filter(user=self.request.user).order_by(
-                    "-created"
-                )[:3]
-            ],
+            # "watched_flights": [
+            #     json.loads(o.data)
+            #     for o in BookingCache.objects.filter(user=self.request.user).order_by(
+            #         "-created"
+            #     )[:3]
+            # ],
         }
         return context
 
