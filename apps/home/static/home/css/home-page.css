@@ -1364,6 +1364,32 @@ footer .bottom-footer ul li:first-child:before {
 #fp-nav{
     display: none;
 }
+.trips-nav a {
+    margin: 0 22px;
+    font-size: 20px;
+    font-weight: 600;
+    color: #00b0f5 !important;
+}
+.trips-nav .btn{
+    background: #00b0f5;
+    color: #fff !important;
+    border-radius: 0px;
+    margin-left: 19px;
+    font-size: 15px;
+    padding: 9px 36px;
+    border-color: #00b0f5 !important;
+    line-height: 20px;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+.b-nav-logo img{
+    height: 33px;
+}
+.b-nav-logo{
+    color: #f5f5f5 !important;
+    font-size: 33px;
+    font-weight: 600;
+}
 /*.dots-display{
     display: block !important;
     left: 17px !important;
