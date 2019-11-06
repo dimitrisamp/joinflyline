@@ -1387,6 +1387,7 @@ footer .bottom-footer ul li:first-child:before {
           Media Query
 *****************************/
 @media(min-width:320px) and (max-width: 768px){
+
 .h-topbar{
     display: none !important;
 }
@@ -1597,6 +1598,15 @@ footer .bottom-footer ul li:first-child:before {
 .right-body-pane .search-top-result {
     display: inline !important;
 }
+#footer-section{
+    height: 300px !important;
+}
+#footer-section .fp-tableCell{
+    height: 300px !important;
+}
+
+
+
 
 }
 @media(max-width:768px){
