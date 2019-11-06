@@ -86,6 +86,8 @@
 }
 button.search_btn{
     padding:8.6px 40px !important;
+    width: 100% !important;
+    margin-bottom: 6px;
 }
 .dropdown-list p{
     padding: 0px 16px;
