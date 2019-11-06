@@ -761,6 +761,9 @@ header.sticky{
     font-size: 32px;
     font-family: Dona-Black;
 }
+.h-planbox__header {
+    margin-top: 20px;
+}
 .plan-list{
     list-style: none;
     margin: 0;
