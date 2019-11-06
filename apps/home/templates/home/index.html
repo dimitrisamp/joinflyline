@@ -46,24 +46,21 @@
                             </div>
                             <nav class="navbar navbar-light bg-light">
                                 <div class="container">
-                                    <a class="navbar-brand nav-logo flex-grow-1"> <img
-                                            src="{% static "home/img/flyline_logos-01-1.png" %}">
+                                    <a class="navbar-brand b-nav-logo">
+                                        <img src="{% static "home/img/flyline_logos-01-1.png" %}">
                                     </a>
                                     <div v-if="user.anonymous">
-                                        <a href="{% url "sign-in" %}"
-                                           class="btn my-2 login-btn my-sm-0">Log In</a>
-                                        <a href="{% url "wizard" %}"
-                                           class="btn my-2 get-s-btn my-sm-0">Get
-                                            Started</a>
+                                        <form class="form-inline trips-nav b-nav-btn">
+                                            <a href="{% url "sign-in" %}" class="my-2 my-sm-0">Log In</a>
+                                            <a href="{% url "wizard" %}" class="my-2 my-sm-0">Account</a>
+                                        </form>
                                     </div>
                                     <div v-else>
-                                        <a href="{% url "manage-trips" %}"
-                                           class="btn my-2 login-btn my-sm-0">Trips</a>
-                                        <a href="{% url "accounts" %}"
-                                           class="btn my-2 get-s-btn my-sm-0">Account<a>
-                                            <a href="{% url "logout" %}"
-                                               class="btn my-2 get-s-btn my-sm-0">Log
-                                                Out</a>
+                                        <form class="form-inline trips-nav b-nav-btn">
+                                            <a href="{% url "manage-trips" %}" class="my-2 my-sm-0">Trips</a>
+                                            <a href="{% url "accounts" %}" class="my-2 my-sm-0">Account</a>
+                                            <a href="{% url "logout" %}" class="btn btn-outline-success my-2 my-sm-0">Log Out</a>
+                                        </form>
                                     </div>
                                 </div>
                             </nav>
