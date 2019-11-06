@@ -202,6 +202,10 @@ header.sticky{
     font-family:dona-black;   
     font-size: 33px;
     padding-top: 20px;
+    color:#fff; 
+}
+.left-form-pane p{
+    color:#fff;    
 }
 .left-form-pane .search-f-dropdown{
      margin-top: -13px;
