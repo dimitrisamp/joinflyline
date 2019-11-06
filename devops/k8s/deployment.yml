@@ -52,6 +52,10 @@ spec:
 
             - name: STAGE
               value: production
+
+            - name: STRIPE_API_KEY
+              value: ${STRIPE_API_KEY}
+
           volumeMounts:
             - name: gce-service-account-key
               readOnly: true
