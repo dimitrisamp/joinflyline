@@ -42,7 +42,7 @@
                         <input type="text" value="{{ user.first_name }}" aria-describedby="basic-addon3" class="form-control" placeholder="First Name">
                     </div>
                     <div class="input-group input-group-sm account-inputs">
-                        <input type="text" aria-describedby="basic-addon3" class="form-control" placeholder="Date of Birth">
+                        <input type="text" value="{% if user.profile.dob %}{{ user.profile.dob }}{% endif %}" aria-describedby="basic-addon3" class="form-control" placeholder="Date of Birth">
                     </div>
                     <div class="input-group input-group-sm account-inputs">
                         <input type="text" value = "{% if user.profile.market %}{{ user.profile.market }}{% else %}None{% endif %}"
