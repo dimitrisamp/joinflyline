@@ -8,6 +8,7 @@ from apps.account.views import account_view
 from apps.home.views import index_view
 
 from apps.emails.views import signup_success
+import uuid
 
 
 def create_user(request):
@@ -40,9 +41,11 @@ def forgot_password(request):
     user = User.objects.get(username=request.POST["email"])
 
     if user is not None:
-        user.set_password(request.POST["password"])
-        user.save()
-        return HttpResponse("Password reset successfully", status=200)
+        secret = uuid.uuid4().hex[0:16]
+        user.profile.secret = secret
+        user.profile.save()
+
+        return HttpResponse(secret + "Password reset request is sent successfully", status=200)
     else:
         return HttpResponse("Failed: Email does not exist", status=405)
 
