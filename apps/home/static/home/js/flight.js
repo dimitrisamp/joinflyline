@@ -47,7 +47,7 @@ Vue.component('flight', {
             let token = document.createElement('input');
             token.name = 'csrfmiddlewaretoken';
             token.value = csrfmiddlewaretoken;
-            form.appendChild(csrfmiddlewaretoken);
+            form.appendChild(token);
             document.body.appendChild(form);
             form.submit();
         },

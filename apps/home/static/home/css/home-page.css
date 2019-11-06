@@ -1813,8 +1813,8 @@ footer .bottom-footer ul li:first-child:before {
     border: none !important;
     background: none !important;
     position: absolute;
-    left: -35px;
-    top: 3px;
+    right: 0;
+    top: 0;
     color: #000000c7;
 }
 .close-btn-popup:focus{

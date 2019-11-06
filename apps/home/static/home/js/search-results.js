@@ -9,11 +9,8 @@ Vue.component('search-results', {
     },
     methods: {
         showPopup() {
-            this.popupVisible = true;
+            $('#search-results-popup').modal();
         },
-        hidePopup() {
-            this.popupVisible = false;
-        }
     },
     props: ['searchProgress', 'searchResults', 'loadMore', 'form', 'sortResultsBy', 'quickFiltersData', 'user'],
     delimiters: ['{(', ')}']
