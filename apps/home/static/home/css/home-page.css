@@ -1,5 +1,5 @@
 @font-face {
-  font-family:dona-black;
+  font-family:Dona-Black;
   src: url(fonts/Dona/DonaAlt-Black.ttf);
 }
 @font-face {
@@ -194,12 +194,12 @@ header.sticky{
 .left-form-pane .filter-field b{
     margin-bottom: 9px !important;
     display: block;
-    font-family:dona-black;
+    font-family:Dona-Black;
     color: #fff !important;
     font-size: 26px;
 }
 .left-form-pane h3{
-    font-family:dona-black;   
+    font-family:Dona-Black;   
     font-size: 33px;
     padding-top: 20px;
     color:#fff; 
@@ -227,7 +227,7 @@ header.sticky{
     padding-top: 25px;
     color: #000;
     margin-bottom: 0;
-    font-family: dona-black;
+    font-family: Dona-Black;
     display: inline-flex;
 }
 .left-form-pane .search-flight-home p {
@@ -306,7 +306,7 @@ header.sticky{
     border-right: none;
     font-size: 13px;
     font-weight: 600;
-    font-family: dona-bold;
+    font-family: Dona-Bold;
     color: #7d7d7d;
     border: 2px solid #ececec;
     border-right: transparent;
@@ -345,7 +345,7 @@ header.sticky{
     color: #000;
     font-size: 24px;
     font-weight: 600;
-    font-family:dona-black !important;
+    font-family:Dona-Black !important;
 }
 .h-contentarea p {
     font-size: 15px !important;
@@ -353,7 +353,7 @@ header.sticky{
 }
 .h-fot-heading{
     font-style: normal !important;
-    font-family:dona-black !important;
+    font-family:Dona-Black !important;
     color: #000;
     font-size: 53px;
 }
@@ -561,17 +561,18 @@ header.sticky{
     font-size: 15px;
     margin: 0;
     color: #000;
-    font-family:dona-black;
+    font-family:Dona-Black;
 }
 .search-results h5{
     color: #000;
-    font-family:dona-black;
+    font-family:Dona-Black;
 }
 .search-results span {
     font-size: 12px;
     margin-top: -1px;
     text-align: center !important;
     display: flow-root;
+    font-family:Dona-Bold;
 }
 .flight-divider span {
     width: 90px !important;
@@ -605,14 +606,14 @@ header.sticky{
 .section2-content h3{
     font-size: 50px;
     font-weight: 600;
-    font-family: dona-black;
+    font-family: Dona-Black;
     color: #000000;
     line-height: 65px;
     margin-bottom: 19px;
 }
 .section2-content p {
     font-size: 22px;
-    font-family: dona-bold;
+    font-family: Dona-Bold;
     line-height: 41px;
     color: #b7b9b9;
 }
@@ -622,7 +623,7 @@ header.sticky{
     border-radius: 0;
     padding: 11px 56px;
     font-size: 17px;
-    font-family: dona-bold;
+    font-family: Dona-Bold;
     margin-top: 20px;
 }
 
@@ -643,7 +644,7 @@ header.sticky{
 }
 .section3-content h3{
     font-size: 50px;
-    font-family: dona-black;
+    font-family: Dona-Black;
     color: #ffffff;
     font-weight: 700;
     margin-bottom: 32px;
@@ -651,7 +652,7 @@ header.sticky{
 .section3-content p{
     color: #ffffff;
     font-size: 22px;
-    font-family: dona-bold;
+    font-family: Dona-Bold;
     line-height: 41px;
 }
 .section3-content .btn{
@@ -675,7 +676,7 @@ header.sticky{
 .section4-content h3{
     font-size: 50px;
     font-weight: 600;
-    font-family: dona-black;
+    font-family: Dona-Black;
     color: #000000;
     margin-top: 0;
     text-align: right;
@@ -684,7 +685,7 @@ header.sticky{
 .section4-content p{
     color: #ababab;
     font-size: 22px;
-    font-family: dona-bold;
+    font-family: Dona-Bold;
     margin-top: 30px;
     line-height: 42px;
     text-align: right;
@@ -728,7 +729,7 @@ header.sticky{
 .section5-content h3{
     font-size: 50px;
     font-weight: 600;
-    font-family: dona-black;
+    font-family: Dona-Black;
     color: #fff;
     margin-top: 34px;
     letter-spacing: 1px;
@@ -736,7 +737,7 @@ header.sticky{
 .section5-content p{
     color: #fff;
     font-size: 21px;
-    font-family: dona-bold;
+    font-family: Dona-Bold;
     margin: 25px 220px;
     line-height: 31px;
     margin-bottom: 0;
@@ -751,7 +752,7 @@ header.sticky{
     color: #fff;
     padding: 9px 20px;
     font-size: 14px;
-    font-family: dona-bold;
+    font-family: Dona-Bold;
     margin-bottom: 21px;
     display: inline-block;
 }
@@ -759,7 +760,7 @@ header.sticky{
     color: #000;
     font-weight: 600;
     font-size: 32px;
-    font-family: dona-black
+    font-family: Dona-Black;
 }
 .plan-list{
     list-style: none;
@@ -770,13 +771,13 @@ header.sticky{
 .h-planbox strong{
     color: #000;
     font-size: 24px;
-    font-family: dona-bold;
+    font-family: Dona-Bold;
     margin-bottom: 7px;
     display: block;
 }
 .h-planbox p{
     font-size: 13px;
-    font-family: dona-bold;
+    font-family: Dona-Bold;
     color: #00AEEF;
 }
 .plan-list{
@@ -784,7 +785,7 @@ header.sticky{
 }
 .plan-list li {
     font-size: 16px;
-    font-family: dona-bold;
+    font-family: Dona-Bold;
     line-height: 33px;
     color: #000;
 }
@@ -794,7 +795,7 @@ header.sticky{
     font-size: 18px;
     padding: 9px 21px;
     font-weight: 600;
-    font-family: dona-bold;
+    font-family: Dona-Bold;
     margin-top: 19px;
     width: 100%;
     margin-bottom: 10px;
@@ -896,6 +897,7 @@ header.sticky{
 }
 .text-muted {
     color: #000 !important;
+    font-family: Dona-Black;
 }
 .search-f-dropdown{
     background: #fff;
@@ -1128,7 +1130,7 @@ header.sticky{
     color: #000;
     margin-top: 30px;
     display: block;
-    font-family:dona-black;
+    font-family:Dona-Black;
 }
 .landing-full-papge p{
     font-size: 21px;
@@ -1138,7 +1140,7 @@ header.sticky{
 }
 .landing-full-papge .btn{
     background: #00b0f5;
-    font-family: dona-bold;
+    font-family: Dona-Bold;
     border-radius: 0px;
     padding: 13px 33px;
     margin-bottom: 24px;
@@ -1182,25 +1184,25 @@ header.sticky{
       Search Result page
 *****************************/
 .search-results-rightcontent h3{
-    font-size: 47px;
-    font-family: dona-black;
+    font-size: 53px;
+    font-family: Dona-Black;
     color: #000;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 .search-results-rightcontent p{
-    font-size: 24px !important;
+    font-size: 30px !important;
     font-weight: 600;
     color: #7d7d7d;
-    margin-bottom: 40px !important;
+    margin-top: 14px !important;
 }
 .search-results-rightcontent p i{
-    font-size: 24px;
+    font-size: 31px;
     font-weight: 600;
     color: #00b0f5;
-    font-family: dona-black;
+    font-family: Dona-Black;
 }
 .result-btn{
-    margin-top: 50px;
+    margin-top:37px;
 }
 .result-btn .btn{
     border: 2px solid #00b0f5;
@@ -1247,7 +1249,7 @@ footer .top-footer h3 {
     margin-top: 40px;
     font-size: 27px;
     font-weight: bold;
-    font-family: dona-black;
+    font-family: Dona-Black;
     line-height: 19px;
     color: #000;
     margin-bottom: 32px;
@@ -1523,7 +1525,7 @@ footer .bottom-footer ul li:first-child:before {
     font-size: 44px;
     font-weight: 600;
     line-height: 1;
-    font-family: dona-black;
+    font-family: Dona-Black;
 }
 
 .home-slider {
