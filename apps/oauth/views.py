@@ -76,9 +76,7 @@ def password_reset_email(request):
 
 def random_16bit_hex_string():
     hex_characters = '0123456789abcdef'
-    hex_string = ''
-    for x in range(16):
-        hex_string += random.choice(hex_characters)
+    hex_string = ''.join([random.choice(hex_characters) for _ in range(16)])
 
     return hex_string
 
