@@ -7,6 +7,7 @@ from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import render, redirect
 import stripe
+import stripe.error
 from django.urls import reverse
 from django.utils.decorators import method_decorator
 from django.views.generic import TemplateView, FormView
@@ -51,10 +52,6 @@ class AccountView(FormView):
             user.set_password(cd['password'])
         user.save()
         return super().form_valid(form)
-
-    def form_invalid(self, form):
-        print()
-
 
 
 @login_required()
@@ -142,6 +139,23 @@ def sub_user(request):
     return redirect(account_view)
 
 
+def add_subscription(user_id):
+    if isinstance(user_id, (int, str)):
+        user = User.objects.get(pk=user_id)
+    else:
+        user = user_id
+    if not Subscriptions.objects.filter(user=user).exists():
+        subscription = stripe.Subscription.create(
+            customer=user.profile.customer_id,
+            items=[
+                {
+                    "plan": settings.STRIPE_BASIC_PLAN_ID
+                }
+            ]
+        )
+        Subscriptions.objects.create(user=user, plan=settings.STRIPE_BASIC_PLAN_ID)
+
+
 def add_to_stripe(user):
     account = user.account_set.all()[0]
     stripe_card_token = card_token(account.card_number, account.expiry, account.cvc)
@@ -150,6 +164,7 @@ def add_to_stripe(user):
     customer = stripe_customer(user)
     user.profile.customer_id = customer.id
     user.profile.save()
+    add_subscription(user)
 
 
 class WizardView(FormView):
