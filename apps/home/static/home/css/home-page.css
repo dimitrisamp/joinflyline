@@ -1224,8 +1224,9 @@ header.sticky{
     background: #fff;
     padding: 14px 16px;
     margin-bottom: 15px;
-    width: 277px;
     margin-right: 18px;
+    width: -webkit-max-content;
+    width: max-content;
 }
 .viewdeal-bottom{
     background: #00b0f5;
@@ -1818,14 +1819,6 @@ footer .bottom-footer ul li:first-child:before {
 
 }
 
-
-@media not all and (min-resolution:.001dpcm) {
-  @supports (-webkit-appearance: none) and (stroke-color:transparent) {
-    .search-flight-home {
-        margin-top: 170px !important;
-    }
-  }
-}
 
 /* Popup */
 
