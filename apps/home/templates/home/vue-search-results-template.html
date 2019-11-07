@@ -4,7 +4,7 @@
                     :sort="form.sort"
                     :data="quickFiltersData"
                     @sort-by="sortResultsBy"></quicklinks>
-        <div class="search-results" v-if="searchProgress"
+        <div class="search-results" :class="{anonymous: user.anonymous}" v-if="searchProgress"
              v-cloak>
             <div class="w-100" v-for="i in 4" :key="i">
                 <div class="result-item mb-2 w-100"
@@ -34,7 +34,7 @@
                 <div class="divider-30"></div>
             </div>
         </div>
-        <div class="search-results normal-scroll"
+        <div class="search-results normal-scroll" :class="{anonymous: user.anonymous}"
              v-cloak
              v-if="!searchProgress && searchResults.length !== 0">
 
@@ -57,10 +57,8 @@
                     </button>
                     <h3>Login or join flyline to book this flight</h3>
                     <p>Our exclusive deals and feesless flights are for flyline members,
-                        have an account, sign in, Not a member start your 10 day free
-                        trail
-                        today</p>
-                    <a href="{% url "login" %}" class="btn btn-default">Log In</a>
+                        have an account, sign in, Not a member start today</p>
+                    <a href="{% url "sign-in" %}" class="btn btn-default">Log In</a>
                     <a href="{% url "wizard" %}" class="btn btn-default">Get Started</a>
                 </div>
             </div>

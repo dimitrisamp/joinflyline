@@ -1,3 +1,4 @@
+
 def user_processor(request):
     user = request.user
     django_user = {"anonymous": user.is_anonymous}

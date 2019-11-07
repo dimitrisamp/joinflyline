@@ -32,7 +32,7 @@ Vue.component("wizard", {
           formData.append(k, this.form[k]);
         }
       }
-      fetch("/wizard/", {
+      fetch(getStartedUrl, {
         method: "POST",
         body: formData
       })

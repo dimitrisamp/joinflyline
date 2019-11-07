@@ -1,17 +1,6 @@
 import ClickOutside from './v-click-outside.js';
+import {AIRLINE_ICONS} from './utils.js';
 
-const AIRLINE_NAMES = {
-    "DL": "Delta",
-    "AS": "Alaska",
-    "NK": "Spirit",
-    "B6": "JetBlue",
-    "F9": "Frontier",
-    "G4": "Allegiant",
-    "UA": "United",
-    "AA": "American",
-    "WN": "Southwest",
-    "SY": "Sun Country",
-};
 
 function debounce(fn, delay, ...rest) {
     let timeoutID = null;
@@ -441,9 +430,9 @@ const app = new Vue({
         },
         displaySearchResults(data) {
             if (this.searchResults.length === 0) {
-                this.form.airlines = data.airlines.map((a) => ({
+                this.form.airlines = data.airlines.map(a => ({
                     code: a,
-                    name: AIRLINE_NAMES[a],
+                    name: AIRLINE_ICONS[a] || a,
                     checked: false
                 }));
             }

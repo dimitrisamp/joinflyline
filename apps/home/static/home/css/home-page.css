@@ -81,6 +81,7 @@ Container emulation
     background:url('../img/Wallpaper-Left.png');
     border-right: solid 1px rgb(204, 204, 204);
     padding: 20px 30px;
+    padding-left: calc(80%/2 - 1000px/2 + 15px);
     flex: 1;
     background-size: cover;
     padding-left:calc(80%/2 - 1000px/2 + 15px);
@@ -1186,6 +1187,7 @@ header.sticky{
 /*****************************
       Search Result page
 *****************************/
+
 .search-results-rightcontent h3{
     font-size: 53px;
     font-family: Dona-Black;
@@ -1230,6 +1232,18 @@ header.sticky{
     line-height: 44px;
     font-size: 21px;
 }
+img.round-trip-icon {
+    width: 26px !important;
+    height: 26px !important;
+}
+img.passenger-icon {
+    width: 18px !important;
+}
+img.ecenomy-icon {
+    width: 18px !important;
+}
+
+
 
 /*****************************
            Footer
@@ -1353,11 +1367,22 @@ footer .bottom-footer ul li:first-child:before {
 }
 
 .search-results {
-    max-height: 680px;
     align-items: center;
     overflow-x: hidden;
     overflow-y: visible;
+    padding-bottom: 20px;
 }
+
+@media(min-width: 768px) {
+    .search-results {
+        max-height: calc(100vh - 160px);
+    }
+}
+
+.search-results.anonymous {
+    max-height: calc(100vh - 209px);
+}
+
 .search-results .h-btngroups .btn{
     width: 100% !important;
 }
@@ -1617,12 +1642,11 @@ footer .bottom-footer ul li:first-child:before {
     display: inline !important;
 }
 #footer-section{
-    height:600px !important;
+    height:600px;
 }
 #footer-section .fp-tableCell{
-    height:600px !important;
+    height:600px;
 }
-
 
 }
 @media(max-width:768px){
@@ -1771,6 +1795,7 @@ footer .bottom-footer ul li:first-child:before {
 @media(min-width: 1992px) and (max-width: 2561px){
 
 .left-form-pane{
+    padding-left: calc(80%/2 - 1000px/2 + 15px);
     padding-top:20px;
 }
 .right-body-pane{
@@ -1780,7 +1805,6 @@ footer .bottom-footer ul li:first-child:before {
     border: 1px solid #ccc;
     margin-top: -16px;
 }
-
 
 }
 

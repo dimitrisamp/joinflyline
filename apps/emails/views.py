@@ -1,10 +1,14 @@
+from django.contrib.auth import get_user_model
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.template.loader import render_to_string
 
 from apps.booking.models import BookingContact
 from django.core.mail import send_mail
+from django.conf import settings
 
+
+User = get_user_model()
 
 def booking_success(request, booking):
     booking_contact = BookingContact.objects.filter(booking_id=booking["booking_id"])
@@ -21,17 +25,17 @@ def booking_success(request, booking):
                   [to_email], html_message=htm_content)
 
 
-def signup_success(request, user):
-    if user:
-        htm_content = render_to_string(
-            "emails/add-traveler-information.html",
-            {"data": user},
-        )
-        from_email = "noreply@joinflyline.com"
-        to_email = user.email
-        subject = "SignUp Successful"
-        send_mail(subject, "text body", from_email,
-                  [to_email], html_message=htm_content)
+def signup_success(user_id):
+    user = User.objects.get(pk=user_id)
+    htm_content = render_to_string(
+        "emails/add-traveler-information.html",
+        {"data": user, 'SITE_URL': settings.SITE_URL},
+    )
+    from_email = "noreply@joinflyline.com"
+    to_email = user.email
+    subject = "Welcome to FlyLine"
+    send_mail(subject, "text body", from_email,
+              [to_email], html_message=htm_content)
 
 
 def finish_setting_up_account(request, user):
