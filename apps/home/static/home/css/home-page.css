@@ -85,6 +85,13 @@ Container emulation
     flex: 1;
     background-size: cover;
 }
+
+.left-form-pane .bg-white-close-holes {
+    background: white;
+    display: flex;
+    flex-grow: 1;
+}
+
 .left-form-pane .search-dropdown .form-control{
     color: #00aeef !important;
 }
@@ -1634,6 +1641,7 @@ footer .bottom-footer ul li:first-child:before {
 .left-form-pane .search-flight-home h3 {
     font-size: 24px;
 }
+
 .right-body-pane {
     padding-right: 25px;
 }
