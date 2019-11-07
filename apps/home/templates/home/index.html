@@ -438,7 +438,6 @@
         {{ get_static_prefix | json_script:"static-url" }}
         <script type="text/javascript">
             window.staticUrlValue = '{% static "/" %}';
-            console.log(staticUrlValue);
         </script>
         <script type="module"
                 src="{% static "home/js/flight.js" %}"></script>
