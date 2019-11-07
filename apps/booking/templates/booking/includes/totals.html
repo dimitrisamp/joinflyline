@@ -1,4 +1,5 @@
 <div class="price_detail">
+    <h3>Trip Summry</h3>
     <ul class="list-price-detail">
         <li> <span id="totals-passengers-count">{{ passenger_count }}</span>x Passenger{{ passenger_count|pluralize }}
             <span class="pull-right">
@@ -13,7 +14,7 @@
                            id="totals-bags-price">{{ baggage_price }}</span></li>
         <li> Automatic flight check-in <span class="pull-right"> Free </span>
         </li>
-       <!--  <li><span class="totalusd">Trip Total</span> <span
-                class="pull-right"> <b>{% if user.subscriptions %}{{ total_credits }}{% else %}$<span id="totals-total-price">{{ total_price }}</span>{% endif %}</b> </span></li> -->
+        <li><span class="totalusd">Trip Total</span> <span
+                class="pull-right"> <b>{% if user.subscriptions %}{{ total_credits }}{% else %}$<span id="totals-total-price">{{ total_price }}</span>{% endif %}</b> </span></li>
     </ul>
 </div>

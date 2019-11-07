@@ -565,14 +565,33 @@ header.sticky{
     font-size: 10px;
 }
 .search-results strong {
-    font-size: 15px;
+    font-size: 19px;
     margin: 0;
     color: #000;
-    font-family:Dona-Black;
+    font-family: Dona-Black;
+    margin-bottom: 5px;
+    display: block;
+}
+.route-box .text-muted span {
+    display: table-cell;
+    margin: 10px 0;
+    position: relative;
+    top: 9px;
+    font-size: 15px;
+    text-align: left;
+}
+.airlines-labels {
+    display: flex;
+}
+.airlines-labels label span {
+    font-size: 15px;
+    margin: 6px 0;
 }
 .search-results h5{
     color: #000;
     font-family:Dona-Black;
+    font-weight: bold;
+    font-family: 19px;
 }
 .search-results span {
     font-size: 12px;
@@ -908,6 +927,8 @@ header.sticky{
 .text-muted {
     color: #000 !important;
     font-family: Dona-Black;
+    font-size: 19px;
+    margin: 3px 0px;
 }
 .search-f-dropdown{
     background: #fff;
@@ -915,6 +936,11 @@ header.sticky{
     margin-top: 5px;
     position: absolute;
     z-index: 2;
+}
+.route-box strong {
+    margin-top: 31px;
+    display: block;
+    margin-bottom: 15px;
 }
 .s-result-dropdown_destination-type .search-f-dropdown {
     min-width: 124px;
@@ -1142,11 +1168,15 @@ header.sticky{
     display: block;
     font-family:Dona-Black;
 }
+.landing-full-papge strong img{
+    height: 110px;
+    margin-left: 10px;
+}
 .landing-full-papge p{
     font-size: 21px;
     color: #b3b3b3;
     line-height: 39px;
-    margin-top: 21px;
+    margin-top: -21px;
 }
 .landing-full-papge .btn{
     background: #00b0f5;
@@ -1169,7 +1199,7 @@ header.sticky{
 }
 .landing-manage-form input::placeholder{
     font-weight: 600;
-    color: #000;
+    color: #b8b8b8;
     font-size: 17px;
 }
 .landing-submit-btn{
@@ -1188,6 +1218,26 @@ header.sticky{
 .full-section .promo-p-space{
     padding-right: 5px;
 }
+.contact-rule-promopage h3{
+    font-size: 19px;
+    font-weight: bold;
+    font-family:Dona-Black;
+    color: #000;
+    margin-top: 40px;
+}
+.contact-rule-promopage ul{
+    list-style: none;
+    margin:0;
+    padding: 0;
+    margin-top: 20px;
+}
+.contact-rule-promopage li{
+    font-family: 22px;
+    font-family:Dona-Bold;
+    margin-bottom: 20px;
+    color: #b8b8b8;
+}
+
 
 
 /*****************************
@@ -1632,6 +1682,10 @@ footer .bottom-footer ul li:first-child:before {
     font-size: 29px;
     margin-top: 11px;
     margin-bottom: 20px;
+}
+.landing-full-papge strong img {
+    height: 37px;
+    margin-left: 10px;
 }
 .search-panel {
     display: inline !important;
