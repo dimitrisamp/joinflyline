@@ -190,6 +190,7 @@ RECEIVE_EMAIL = "bookings@wanderift.com"
 RECEIVE_PHONE = "+18105131533"
 KIWI_API_KEY = "4TMnq4G90OPMYDAGVHzlP9LQo2hvzzdc"
 STRIPE_API_KEY = os.getenv('STRIPE_API_KEY')
+STRIPE_BASIC_PLAN_ID = os.getenv('STRIPE_BASIC_PLAN_ID')
 SENTRY_DSN = "https://a875b98b313142d8afd40797b84f235e@sentry.io/1773547"
 
 if STAGE == "production":
