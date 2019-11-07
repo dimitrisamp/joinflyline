@@ -85,6 +85,13 @@ Container emulation
     flex: 1;
     background-size: cover;
 }
+
+.left-form-pane .bg-white-close-holes {
+    background: white;
+    display: flex;
+    flex-grow: 1;
+}
+
 .left-form-pane .search-dropdown .form-control{
     color: #00aeef !important;
 }
@@ -1366,11 +1373,22 @@ footer .bottom-footer ul li:first-child:before {
 }
 
 .search-results {
-    max-height: 680px;
     align-items: center;
     overflow-x: hidden;
     overflow-y: visible;
+    padding-bottom: 20px;
 }
+
+@media(min-width: 768px) {
+    .search-results {
+        max-height: calc(100vh - 160px);
+    }
+}
+
+.search-results.anonymous {
+    max-height: calc(100vh - 209px);
+}
+
 .search-results .h-btngroups .btn{
     width: 100% !important;
 }
@@ -1623,6 +1641,7 @@ footer .bottom-footer ul li:first-child:before {
 .left-form-pane .search-flight-home h3 {
     font-size: 24px;
 }
+
 .right-body-pane {
     padding-right: 25px;
 }

@@ -56,7 +56,7 @@
                              class="img-airline">
                             <div class="airline">
                                 <img :src="airlineIcon(route.airline)"
-                                     alt="AA"
+                                     :alt="route.airline"
                                      style="width:25px; margin-right: 4px;">
                             </div>
                         </div>
@@ -95,7 +95,7 @@
                         <div v-for="airline in flight.airlines" class="img-airline">
                             <div class="airline">
                                 <img :src="airlineIcon(airline)"
-                                     alt="AA"
+                                     :alt="airline"
                                      style="width:25px; margin-right: 4px;">
                             </div>
                         </div>

@@ -12,70 +12,51 @@
             <a class="navbar-brand nav-logo mx-auto" href="{% url "index" %}">
                 <img src="{% static "home/img/flyline_logos-01-1.png" %}">
             </a>
-        <button class="navbar-toggler ml-auto collapsed" type="button" data-toggle="collapse" data-target="#navb"
-                aria-expanded="false">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+            <button class="navbar-toggler ml-auto collapsed" type="button"
+                    data-toggle="collapse" data-target="#navb"
+                    aria-expanded="false">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-        <div class="clearfix"></div>
-        <div>
-            <div class="navbar-collapse collapse p-2" id="navb">
-                <ul class="navbar-nav ml-auto">
-                    {% if user.is_authenticated %}
-                        {% if user.is_subscriber %}
+            <div class="clearfix"></div>
+            <div>
+                <div class="navbar-collapse collapse p-2" id="navb">
+                    <ul class="navbar-nav ml-auto">
+                        {% if user.is_authenticated %}
                             <li class="nav-item ml-md-4">
-                                <a class="custom_nav_link" href="{% url "manage-trips" %}">Trips </a>
+                                <a class="custom_nav_link"
+                                   href="{% url "manage-trips" %}">Trips </a>
                             </li>
                             <li class="nav-item ml-md-4">
                                 <a class="custom_nav_link" href="{% url "accounts" %}">Account</a>
                             </li>
                             <li class="nav-item ml-md-4">
-                                <a class="custom_nav_link" href="{% url "accounts" %}">
-                                    <button class="custom_btn_white">{{ user.subscriptions.tokens }} credits</button>
-                                </a>
-                            </li>
-                            <li class="nav-item ml-md-4">
-                                <a class="custom_nav_link" href="{% url "logout" %}?next={% url "index" %}">
+                                <a class="custom_nav_link"
+                                   href="{% url "logout" %}?next={% url "index" %}">
                                     <button class="custom_btn">Logout</button>
                                 </a>
                             </li>
+
                         {% else %}
                             <li class="nav-item ml-md-4">
-                                <a class="custom_nav_link" href="{% url "manage-trips" %}">Trips </a>
-                            </li>
-                            <li class="nav-item ml-md-4">
-                                <a class="custom_nav_link" href="{% url "accounts" %}">Account</a>
-                            </li>
-                            <li class="nav-item ml-md-4">
-                                <a class="custom_nav_link" href="{% url "accounts" %}">
-                                    <button class="custom_btn_white">Subscribe</button>
+                                <a class="custom_nav_link" href="{% url "sign-in" %}">
+                                    <button class="custom_btn">Log In</button>
                                 </a>
                             </li>
                             <li class="nav-item ml-md-4">
-                                <a class="custom_nav_link" href="{% url "logout" %}?next={% url "index" %}">
-                                    <button class="custom_btn">Logout</button>
+                                <a class="custom_nav_link" href="{% url "sign-up" %}">
+                                    <button class="custom_btn_white">Get started
+                                    </button>
                                 </a>
                             </li>
                         {% endif %}
-                    {% else %}
-                        <li class="nav-item ml-md-4">
-                            <a class="custom_nav_link" href="{% url "sign-up" %}">
-                                <button class="custom_btn_white">Sign Up</button>
-                            </a>
-                        </li>
-                        <li class="nav-item ml-md-4">
-                            <a class="custom_nav_link" href="{% url "sign-in" %}">
-                                <button class="custom_btn">Sign In</button>
-                            </a>
-                        </li>
-                    {% endif %}
-                </ul>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
-  </div>
-<div id="navbar-progress">
-    <div id="navbar-progress-indicator"></div>
- </div>
+    <div id="navbar-progress">
+        <div id="navbar-progress-indicator"></div>
+    </div>
 </nav>
 

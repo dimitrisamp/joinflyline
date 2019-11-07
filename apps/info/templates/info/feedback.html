@@ -9,9 +9,6 @@
 
 {% block content %}
     <section class="navbar-section">
-        {% include "_includes/promo.html" %}
-    </section>
-    <section class="navbar-section">
         {% include "_includes/navbar.html" with page="feedback" %}
     </section>
 
@@ -63,7 +60,7 @@
     </section>
 {% endblock %}
 {% block jscontent %}
-    <script src="{% static "js/home.js" %}"></script>
+    <script src="{% static "home/js/home.js" %}"></script>
     <script src="{% static "js/lightpick.js" %}">
     </script>
     <script>

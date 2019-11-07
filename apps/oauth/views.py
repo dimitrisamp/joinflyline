@@ -4,8 +4,8 @@ from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.shortcuts import redirect
 from django.template.loader import render_to_string
+from django.urls import reverse
 
-from apps.account.views import account_view
 from apps.home.views import index_view
 
 from apps.emails.views import signup_success
@@ -28,7 +28,7 @@ def create_user(request):
 
     user = authenticate(request, username=username, password=password)
     auth.login(request, user)
-    return redirect(account_view)
+    return redirect(reverse('accounts'))
 
 
 def login_user(request):
