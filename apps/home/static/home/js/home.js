@@ -430,9 +430,9 @@ const app = new Vue({
         },
         displaySearchResults(data) {
             if (this.searchResults.length === 0) {
-                this.form.airlines = data.airlines.map((a) => ({
+                this.form.airlines = data.airlines.map(a => ({
                     code: a,
-                    name: AIRLINE_ICONS.hasOwnProperty(a)?AIRLINE_ICONS[a]:a,
+                    name: AIRLINE_ICONS[a] || a,
                     checked: false
                 }));
             }
