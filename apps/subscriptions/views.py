@@ -4,10 +4,10 @@ from django.contrib.auth.models import User
 from django.http import Http404
 from django.shortcuts import render, redirect
 from django.conf import settings
+from django.urls import reverse
 from django.utils.timezone import now
 
 from apps.account.models import Account
-from apps.account.views import account_view
 from apps.payments.models import Plans
 from apps.payments.plans import plan2group, GROUP_TO_PLAN, get_available_plans
 from apps.payments.views import sub_payment
@@ -178,7 +178,7 @@ def plan_subscription(request, plan):
             )
             messages.success(request, "You subscribed to lite plan successfully")
 
-        return redirect(account_view)
+        return redirect(reverse('accounts'))
     else:
         messages.error(request, "Please update your profile and card details")
-        return redirect(account_view)
+        return redirect(reverse('accounts'))

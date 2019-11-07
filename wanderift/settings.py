@@ -164,7 +164,7 @@ TIME_ZONE = "UTC"
 
 USE_I18N = True
 
-USE_L10N = True
+USE_L10N = False
 
 USE_TZ = True
 
@@ -219,6 +219,7 @@ PRICE_LIMIT_SUBSCRIBER = 350
 SITEMAP_FILE = os.path.join(BASE_DIR, "wanderift", "sitemap.xml")
 ROBOTS_TXT = os.path.join(BASE_DIR, "wanderift", "robots.txt")
 
+DATE_FORMAT = "m/d/Y"
 DATE_INPUT_FORMATS = ["%Y-%m-%d", "%m/%d/%Y"]
 
 ANYMAIL = {
