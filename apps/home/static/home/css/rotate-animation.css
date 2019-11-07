@@ -134,7 +134,7 @@
   -webkit-animation: slide-out 0.6s;
   -moz-animation: slide-out 0.6s;
   animation: slide-out 0.6s;
-  visibility: hidden;
+  /*visibility: hidden;*/
 }
 
 @-webkit-keyframes slide-in {
