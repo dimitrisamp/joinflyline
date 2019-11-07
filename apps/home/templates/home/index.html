@@ -437,7 +437,7 @@
         {{ django_user | json_script:"django_user" }}
         {{ get_static_prefix | json_script:"static-url" }}
         <script type="text/javascript">
-            const staticUrlValue = '{% static "/" %}';
+            window.staticUrlValue = '{% static "/" %}';
         </script>
         <script type="module"
                 src="{% static "home/js/flight.js" %}"></script>
