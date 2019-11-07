@@ -24,9 +24,6 @@
 
 {% block content %}
     <section class="navbar-section">
-        {% include "_includes/promo.html" %}
-    </section>
-    <section class="navbar-section">
         {% include "_includes/navbar.html" with page="results" %}
     </section>
     <section class="search-bar-section bg-white border-bottom{% if not user.is_subscriber %} banner-above{% endif %}">
