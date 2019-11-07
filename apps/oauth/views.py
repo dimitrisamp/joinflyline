@@ -65,7 +65,7 @@ class ForgotPasswordView(FormView):
             seconds=settings.SECRET_LINK_EXPIRATION_SECONDS)
         user.profile.save()
 
-        return redirect("/")
+        return redirect(index_view)
 
 def random_16bit_hex_string():
     hex_characters = '0123456789abcdef'
