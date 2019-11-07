@@ -15,16 +15,15 @@
     </section>
 
     <section class="background-colored">
+
+        <div class="title-section">
+           <div class="container">
+               <h3 class="trip-title">Trip Activity</h3>
+               <p class="title-sec-descrption">Get a "birds every view" off all your travel. On Trip Activity look at your upcoming trip, prvious trip <span class="txt-block"></span> and flights you've recent searched for</p>
+           </div> 
+        </div>
+
         <div class="container t-space">
-            <div class="row">
-                <div class="col-6">
-                    <h3 class="trip-title">Trip Activity</h3>
-                </div>
-                <div class="col-6">
-                    <a href="{% url "index" %}" class="btn btn-default trips-btn">Book a Flight</a>
-                </div>
-            </div>
-            <div class="trips-line"></div>
             <div class="row">
                 <div class="col-md-6">
                     <div class="activity-box">
@@ -35,7 +34,7 @@
                             {% endfor %}
                         {% else %}
                         <div class="text-center tips-select">
-                            You have no upcoming trips
+                            No Upcoming Trips
                         </div>
                         {% endif %}
                     </div>
@@ -49,7 +48,7 @@
                             {% endfor %}
                         {% else %}
                         <div class="text-center tips-select">
-                            You have no Previous Trips
+                            No Previous Trips
                         </div>
                         {% endif %}
                     </div>
@@ -58,7 +57,7 @@
                     <div class="activity-box">
                         <h3>Recent Searches</h3>
                         <div class="text-center tips-select">
-                            Boo
+                            No Viewed Flights
                         </div>
                     </div>
                 </div>

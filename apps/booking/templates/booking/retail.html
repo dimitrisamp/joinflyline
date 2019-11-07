@@ -12,28 +12,32 @@
         {% include "_includes/navbar.html" with page="retail" %}
     </section>
     <section>
-        <div class="container">
 
-                    <div class="main-heading">
-                        <h3 style="margin-top: 30px;">{{ retail_info.cityFrom }} <span class="fa fa-long-arrow-right"></span> {{ retail_info.cityTo }}
+
+        <div class="title-section">
+           <div class="container">
+            <h3  class="trip-title">{{ retail_info.cityFrom }} <span class="fa fa-long-arrow-right"></span> {{ retail_info.cityTo }}
                                 {% if not one_way %}and back{% endif %}</h3>
-                        <p>Confirm your trip details, enter your traveler information, and enter your payment <br/> detail and you’ll be ready for take off</p>
-                    </div>
+               <p class="title-sec-descrption">Confirm your trip details, enter your traveler information, and enter your payment<span class="txt-block"></span> detail and you'll be ready for take off</p>
+           </div> 
+        </div>
+
+
+        <div class="container">
 
             <div class="row">
                 <div class="col-md-8">
 
                     {% include "booking/includes/summary.html" %}
                     <div id="passengers">
-                    {% include "booking/includes/passenger.html" %}
+                     {% include "booking/includes/passenger.html" %}
                     </div>
                     <div class="text-center booking-p-button">
-                        <button type="submit" class="btn btn-default add-btn" id="js-add-passenger"><span
-                                class="fa fa-user-plus"></span> Add another passenger
+                        <button type="submit" class="btn btn-default add-btn" id="js-add-passenger">Add another passenger
                         </button>
-                        <button type="submit" class="btn btn-default add-btn" id="js-delete-passenger">
+                        <!-- <button type="submit" class="btn btn-default add-btn" id="js-delete-passenger">
                             <span class="fa fa-user-plus"></span> Delete passenger
-                        </button>
+                        </button> -->
                     </div>
                 </div>
                 <div class="col-md-4">
