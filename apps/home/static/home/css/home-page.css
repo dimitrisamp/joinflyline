@@ -559,14 +559,33 @@ header.sticky{
     font-size: 10px;
 }
 .search-results strong {
-    font-size: 15px;
+    font-size: 19px;
     margin: 0;
     color: #000;
-    font-family:Dona-Black;
+    font-family: Dona-Black;
+    margin-bottom: 5px;
+    display: block;
+}
+.route-box .text-muted span {
+    display: table-cell;
+    margin: 10px 0;
+    position: relative;
+    top: 9px;
+    font-size: 15px;
+    text-align: left;
+}
+.airlines-labels {
+    display: flex;
+}
+.airlines-labels label span {
+    font-size: 15px;
+    margin: 6px 0;
 }
 .search-results h5{
     color: #000;
     font-family:Dona-Black;
+    font-weight: bold;
+    font-family: 19px;
 }
 .search-results span {
     font-size: 12px;
@@ -902,6 +921,8 @@ header.sticky{
 .text-muted {
     color: #000 !important;
     font-family: Dona-Black;
+    font-size: 19px;
+    margin: 3px 0px;
 }
 .search-f-dropdown{
     background: #fff;
@@ -909,6 +930,11 @@ header.sticky{
     margin-top: 5px;
     position: absolute;
     z-index: 2;
+}
+.route-box strong {
+    margin-top: 31px;
+    display: block;
+    margin-bottom: 15px;
 }
 .s-result-dropdown_destination-type .search-f-dropdown {
     min-width: 124px;
