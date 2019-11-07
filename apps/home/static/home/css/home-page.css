@@ -1255,12 +1255,12 @@ img.ecenomy-icon {
 /*****************************
            Footer
 *****************************/
-#footer-section{
-    height: 300px !important;
-}
-#footer-section .fp-tableCell{
-    height: 300px !important;
-}
+/*#footer-section{*/
+    /*height: 300px !important;*/
+/*}*/
+/*#footer-section .fp-tableCell{*/
+    /*height: 300px !important;*/
+/*}*/
 
 footer {
     background: #fff;
@@ -1301,7 +1301,7 @@ footer .top-footer a {
 }
 
 footer .bottom-footer {
-    background: #00b0f5;
+    background: white;
     padding: 10px 0;
 }
 
@@ -1325,7 +1325,7 @@ footer .bottom-footer  ul {
 }
 
 footer .bottom-footer a {
-    color: #fff;
+    color: #00b0f5;
     text-decoration: none;
     font-size: 15px;
     font-weight: 600;
@@ -1335,7 +1335,30 @@ footer .bottom-footer a {
 
 footer .bottom-footer ul li {
     display: inline-block;
-    margin-right: 50px;
+    margin-right: 40px;
+}
+
+footer .bottom-footer ul li:last-child {
+    margin-right: 0px;
+}
+
+footer .bottom-footer ul li p {
+    margin-bottom: 0px;
+    display: inline-block;
+    color: #00b0f5;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 600;
+    font-family: dona-bold;
+    letter-spacing: 1px;
+}
+
+footer .bottom-footer ul li ul.content {
+    display: inline-block;
+}
+
+footer .bottom-footer ul li ul.content li {
+    margin-right: 0px;
 }
 
 .logo h3 {
