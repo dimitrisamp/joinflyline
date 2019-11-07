@@ -1264,7 +1264,6 @@ img.ecenomy-icon {
 
 footer {
     background: #fff;
-    padding-top: 40px;
 }
 .top-footer {
     padding-bottom: 80px;
@@ -1342,7 +1341,7 @@ footer .bottom-footer ul li:last-child {
     margin-right: 0px;
 }
 
-footer .bottom-footer ul li p {
+footer .bottom-footer p {
     margin-bottom: 0px;
     display: inline-block;
     color: #00b0f5;
@@ -1351,13 +1350,14 @@ footer .bottom-footer ul li p {
     font-weight: 600;
     font-family: dona-bold;
     letter-spacing: 1px;
+    padding-right: 15px;
 }
 
-footer .bottom-footer ul li ul.content {
+footer .bottom-footer ul.content {
     display: inline-block;
 }
 
-footer .bottom-footer ul li ul.content li {
+footer .bottom-footer ul.content li {
     margin-right: 0px;
 }
 
