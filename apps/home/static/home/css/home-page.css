@@ -83,6 +83,7 @@ Container emulation
     padding: 20px 30px;
     flex: 1;
     background-size: cover;
+    padding-left:calc(80%/2 - 1000px/2 + 15px);
 }
 .left-form-pane .search-dropdown .form-control{
     color: #00aeef !important;
