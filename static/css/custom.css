@@ -1,5 +1,23 @@
+@font-face {
+  font-family:Dona-Black;
+  src: url(fonts/Dona/DonaAlt-Black.ttf);
+}
+@font-face {
+  font-family:Dona-Regular;
+  src: url(fonts/Dona/Dona-Regular.ttf);
+}
+@font-face {
+    font-family: Dona-Bold;
+    src: url(fonts/Dona/Dona-Bold.ttf);
+}
+
+body{
+    font-family:Dona-Regular;
+}
 .background-colored {
-    background-color: #f7f9ff;
+    background-color: #fff;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 50px;
 }
 
 .content-holder {
@@ -486,20 +504,39 @@
 }
 .trip-title{
     font-size: 40px;
-    color: #000;
+    color: #fff;
     font-weight: 600;
+    font-family:Dona-Bold;
+    margin-top: 10px;
+}
+.title-sec-descrption{
+    color: #fff;
+    font-size: 19px;
+    margin-bottom: 0;
+    padding-top: 10px;
+}
+.txt-block{
+    display: block;
+}
+.title-section{
+    background: url('../images/home/pricing_background.png');
+    width: 100%;
+    background-size: cover;
+    padding: 20px 0px;
 }
 .activity-box h3{
+    font-family:Dona-Black;
     font-size: 26px;
     font-weight: 600;
     color: #000;
     margin-top: 20px;
 }
 .tips-select {
+    font-family: Dona-Bold;
     border: 2px solid #ccc;
-    font-size: 19px;
+    font-size: 22px;
     font-weight: 600;
-    color: #878787;
+    color: #000;
     padding: 50px 0;
     margin-top: 20px;
     margin-bottom: 30px;
