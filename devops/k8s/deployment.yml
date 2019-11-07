@@ -53,6 +53,12 @@ spec:
                   name: api-keys
                   key: STRIPE_API_KEY
 
+            - name: STRIPE_BASIC_PLAN_ID
+              valueFrom:
+                - secretKeyRef:
+                    name: api-keys
+                    key: STRIPE_BASIC_PLAN_ID
+
             - name: FOR_GODS_SAKE_PLEASE_REDEPLOY
               value: 'THIS_STRING_IS_REPLACED_DURING_BUILD'
 
