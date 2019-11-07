@@ -4,7 +4,7 @@
                     :sort="form.sort"
                     :data="quickFiltersData"
                     @sort-by="sortResultsBy"></quicklinks>
-        <div class="search-results" v-if="searchProgress"
+        <div class="search-results" :class="{anonymous: user.anonymous}" v-if="searchProgress"
              v-cloak>
             <div class="w-100" v-for="i in 4" :key="i">
                 <div class="result-item mb-2 w-100"
@@ -34,7 +34,7 @@
                 <div class="divider-30"></div>
             </div>
         </div>
-        <div class="search-results normal-scroll"
+        <div class="search-results normal-scroll" :class="{anonymous: user.anonymous}"
              v-cloak
              v-if="!searchProgress && searchResults.length !== 0">
 

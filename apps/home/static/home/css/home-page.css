@@ -1366,11 +1366,22 @@ footer .bottom-footer ul li:first-child:before {
 }
 
 .search-results {
-    max-height: 680px;
     align-items: center;
     overflow-x: hidden;
     overflow-y: visible;
+    padding-bottom: 20px;
 }
+
+@media(min-width: 768px) {
+    .search-results {
+        max-height: calc(100vh - 160px);
+    }
+}
+
+.search-results.anonymous {
+    max-height: calc(100vh - 209px);
+}
+
 .search-results .h-btngroups .btn{
     width: 100% !important;
 }
