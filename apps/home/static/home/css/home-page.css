@@ -1477,7 +1477,81 @@ footer .bottom-footer ul li:first-child:before {
 /*****************************
           Media Query
 *****************************/
+@media(min-width:320px) and (max-width: 480px){
+.s-result-dropdown .btn {
+    width: auto;
+    float: left !important;
+    margin-left: 15px;
+    background: none !important;
+    border: none;
+    color: #fff;
+    margin-bottom: 0px; 
+}    
+.horizontal-form .s-result-dropdown .btn img{
+    display: none;
+}
+.s-result-dropdown {
+    margin-bottom: 10px;
+    float: left;
+    display: contents;
+}
+.homepage-background{
+    background: url(../img/pricing_background.png) !important;
+    width: 100%;
+    background-position: bottom;    
+}
+.newhome-form span{
+    color: #fff;
+}
+.search-form-input{
+    color: #00aeef;
+}
+.horizontal-f-btn .btn-search {
+    background: transparent;
+    border-color: #fff !important;
+    padding: 7px 31px;
+    border: 2px solid #fff;
+}
+.section2-content p {
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 31px;
+    color: #000000;
+    text-align: left;
+}
+.section2-content h3 {
+    font-size: 40px;
+    line-height: 46px;
+    margin-bottom: 20px;
+    text-align: left;
+}
+.section2-content .btn{
+    display: none;
+}
+.horizontal-form .s-result-dropdown .btn:active{
+    background: transparent !important;
+    border: none !important;
+    color: #fff !important;
+} 
+.navbar-light .btn {
+    font-family: Dona-Bold;
+    color: #00AEEF;
+    width: 100%;
+    text-align: left;
+    font-family: Dona-Black;
+    font-size: 16px;
+    padding: 3px 25px;
+}
+
+
+}
 @media(min-width:320px) and (max-width: 768px){
+.nav-logo {
+    margin:0px 18px;
+}
+.nav-home{
+    margin-right: 15px;
+}
 .h-result-list{
     display: none;
 }
@@ -1514,9 +1588,6 @@ footer .bottom-footer ul li:first-child:before {
 }
 .h-select-box,.h-ecenomylink{
     padding-right: 0px;
-}
-.s-result-dropdown .btn{
-    width: 100%;
 }
 .h-contentarea {
     margin: 0 5px;
@@ -1572,19 +1643,8 @@ footer .bottom-footer ul li:first-child:before {
     padding-top: 10px;
     padding-bottom: 10px;
 }
-.section2-content h3{
-    font-size: 29px;
-    line-height: 30px;
-    margin-bottom: 9px;
-}
 .section2-content{
     margin-top: 50px;
-}
-.section2-content p {
-    font-size: 17px;
-    font-weight: 600;
-    line-height: 31px;
-    color: #000000;
 }
 .assets-section .img_asset {
     height: 18px;

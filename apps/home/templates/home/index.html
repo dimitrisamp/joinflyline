@@ -30,7 +30,7 @@
 
         <div id="main" v-cloak>
             <div id="fullpage">
-                <div class="section fp-table">
+                <div class="section fp-section fp-table">
                     <div class="section-01 h-user-home">
                         <header class="fp-auto-height">
                             <div class="h-topbar text-center" v-if="user.anonymous">
@@ -39,7 +39,35 @@
                                         Explained</a>
                                 </p>
                             </div>
-                            <nav class="navbar navbar-light nav-navbar-trip default-nav justify-content-between">
+                            <nav class="navbar navbar-expand-lg navbar-light  nav-navbar-trip default-nav justify-content-between bg-light">
+                              <div class="container">
+                                  <a class="navbar-brand nav-logo flex-grow-1" href="#"><img src="{% static "home/img/flyline_logos-01-1.png" %}"></a>
+                                  <button class="navbar-toggler nav-home" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                                    <span class="navbar-toggler-icon"></span>
+                                  </button>
+                                  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                                    <div class="navbar-nav ml-auto">
+                                      <div class="nav-item"  v-if="user.anonymous">
+                                        <a href="{% url "sign-in" %}"
+                                           class="btn my-2 login-btn my-sm-0">Log In</a>
+                                        <a href="{% url "wizard" %}"
+                                           class="btn my-2 get-s-btn my-sm-0">Get
+                                            Started</a>
+                                      </div>
+                                      <div class="nav-item" v-else>
+                                        <a href="{% url "manage-trips" %}"
+                                           class="btn my-2 login-btn my-sm-0">Trips</a>
+                                        <a href="{% url "accounts" %}"
+                                           class="btn my-2 get-s-btn my-sm-0">Account<a>
+                                            <a href="{% url "logout" %}"
+                                               class="btn my-2 get-s-btn my-sm-0">Log
+                                                Out</a>
+                                      </div>                                      
+                                    </div>
+                                  </div>
+                                </div>     
+                                </nav>
+                            <!-- <nav class="navbar navbar-light nav-navbar-trip default-nav justify-content-between">
                                 <div class="container">
                                     <a class="navbar-brand nav-logo flex-grow-1"> <img
                                             src="{% static "home/img/flyline_logos-01-1.png" %}">
@@ -61,10 +89,10 @@
                                                 Out</a>
                                     </div>
                                 </div>
-                            </nav>
+                            </nav> -->
                         </header>
 
-                        <div class="d-flex fp-auto-height-responsive header-background first-page-body">
+                        <div class="d-flex fp-auto-height-responsive header-background homepage-background first-page-body">
                             <div v-if="!user.anonymous || searchResults.length !== 0 || searchProgress"
                                  class="d-flex flex-row search-panel">
                                 <div class="left-form-pane container-pad-left">
@@ -255,7 +283,7 @@
 
                 </div>
 
-                <div v-if="user.anonymous && searchResults.length === 0" class="section" id="Section02">
+                <div v-if="user.anonymous && searchResults.length === 0" class="section fp-section" id="Section02">
                     <div class="container">
                         <div class="row">
                             <div class="col-md-12 col-12">
@@ -281,7 +309,7 @@
                     </div>
                 </div><!--  second section -->
 
-                <div v-if="user.anonymous && searchResults.length === 0" class="section" id="sec3-Bg">
+                <div v-if="user.anonymous && searchResults.length === 0" class="section fp-section" id="sec3-Bg">
                     <div class="container">
                         <div class="row">
                             <div class="col-md-6 col-12">
@@ -346,7 +374,7 @@
                     </div>
                 </div><!--  Section Three  -->
 
-                <div v-if="user.anonymous && searchResults.length === 0" class="section" id="sec4-bg">
+                <div v-if="user.anonymous && searchResults.length === 0" class="section fp-section" id="sec4-bg">
                     <div class="container">
                         <div class="row">
                             <div class="col-md-6 col-12 content-img">
@@ -363,7 +391,7 @@
                     </div>
                 </div><!--  Section four  -->
 
-                <div v-if="user.anonymous && searchResults.length === 0" class="section" id="section5-Bg">
+                <div v-if="user.anonymous && searchResults.length === 0" class="section fp-section" id="section5-Bg">
                     <div class="section5-Bg">
                         <div class="text-center section5-content">
                             <h3>Your Easiest Travel
@@ -416,7 +444,7 @@
 
                 </div><!--  Section Five  -->
 
-                <div class="section" id="footer-section">
+                <div class="section fp-section" id="footer-section">
                     {% include "_includes/footer.html" %}
                 </div>
 
@@ -468,7 +496,8 @@
 
             gtag('js', new Date());
 
-            gtag('config', 'UA-151437513-1');
+            gtag('config', 'UA-151437513-1');    
+
         </script>
     </body>
 </html>
