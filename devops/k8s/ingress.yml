@@ -10,6 +10,7 @@ spec:
   tls:
     - hosts:
         - joinflyline.com
+        - www.joinflyline.com
       secretName: wanderift-secret
   rules:
     - host: joinflyline.com
