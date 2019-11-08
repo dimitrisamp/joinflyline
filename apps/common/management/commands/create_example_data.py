@@ -22,9 +22,7 @@ class Command(BaseCommand):
         sub_password = os.getenv("SUBSCRIBER_PASSWORD")
         if sub_name:
             u = User.objects.create_user(sub_name, sub_name, sub_password)
-            Subscriptions.objects.create(
-                user=u, plan="lite", tokens=3, rollover=1, price=369
-            )
+            Subscriptions.objects.create(user=u, plan="lite")
         nsub_name = os.getenv("NON_SUBSCRIBER_NAME")
         nsub_password = os.getenv("NON_SUBSCRIBER_PASSWORD")
         if nsub_name:

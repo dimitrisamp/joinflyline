@@ -7,7 +7,9 @@ from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import render, redirect
 import stripe
+import stripe.error
 from django.urls import reverse
+from django.utils.decorators import method_decorator
 from django.views.generic import TemplateView, FormView
 
 from apps.account.forms import ProfileForm, MARKET_CHOICES, WizardForm
@@ -20,40 +22,36 @@ from apps.subscriptions.models import Subscriptions
 stripe.api_key = settings.STRIPE_API_KEY
 
 
-@login_required
-def account_view(request):
-    user_id = request.user.id
-    user = User.objects.get(pk=user_id)
-    try:
-        account = Account.objects.filter(user=user)
-    except Account.DoesNotExist:
-        account = None
+class AccountView(FormView):
+    form_class = ProfileForm
+    template_name = 'accounts/accounts.html'
 
-    context = {"title": "Accounts", "account": account}
-    context["market_choices"] = MARKET_CHOICES
-    plans = get_available_plans()
-    context["credit_packs"] = [plans[c] for c in ["three-pack", "six-pack"]]
-    context["subscriptions"] = [plans[c] for c in ["lite", "pro", "biz"]]
-    return render(request, "accounts/accounts.html", context)
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
 
+    def get_success_url(self):
+        return reverse('accounts')
 
-@login_required()
-def update_profile(request):
-    if request.method == "POST":
-        user = request.user
-        form = ProfileForm(request.POST)
-        if form.is_valid():
-            cd = form.cleaned_data
-            user.first_name = cd["first_name"]
-            user.last_name = cd["last_name"]
-            user.email = cd["email"]
-            user.profile.dob = cd["dob"]
-            user.profile.gender = cd["gender"]
-            user.profile.market = cd["market"]
-            user.profile.tsa_precheck_number = cd["tsa_precheck_number"]
-            user.profile.save()
-            user.save()
-    return redirect("accounts")
+    def get_context_data(self, **kwargs):
+        context = {"title": "Accounts"}
+
+    def form_valid(self, form):
+        user = self.request.user
+        cd = form.cleaned_data
+        user.first_name = cd["first_name"]
+        user.last_name = cd["last_name"]
+        user.email = cd["email"]
+        user.profile.dob = cd["dob"]
+        user.profile.gender = cd["gender"]
+        user.profile.market = cd["market"]
+        user.profile.tsa_precheck_number = cd["tsa_precheck_number"]
+        user.profile.phone_number = cd['phone_number']
+        user.profile.save()
+        if cd['password']:
+            user.set_password(cd['password'])
+        user.save()
+        return super().form_valid(form)
 
 
 @login_required()
@@ -141,6 +139,23 @@ def sub_user(request):
     return redirect(account_view)
 
 
+def add_subscription(user_id):
+    if isinstance(user_id, (int, str)):
+        user = User.objects.get(pk=user_id)
+    else:
+        user = user_id
+    if not Subscriptions.objects.filter(user=user).exists():
+        subscription = stripe.Subscription.create(
+            customer=user.profile.customer_id,
+            items=[
+                {
+                    "plan": settings.STRIPE_BASIC_PLAN_ID
+                }
+            ]
+        )
+        Subscriptions.objects.create(user=user, plan=settings.STRIPE_BASIC_PLAN_ID)
+
+
 def add_to_stripe(user):
     account = user.account_set.all()[0]
     stripe_card_token = card_token(account.card_number, account.expiry, account.cvc)
@@ -149,6 +164,7 @@ def add_to_stripe(user):
     customer = stripe_customer(user)
     user.profile.customer_id = customer.id
     user.profile.save()
+    add_subscription(user)
 
 
 class WizardView(FormView):

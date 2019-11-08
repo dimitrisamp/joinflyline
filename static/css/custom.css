@@ -603,7 +603,7 @@ body{
     color: #000 !important;
     outline: 0;
 }
-.account-inputs input {
+.account-inputs input{
     border-radius: 0px !important;
     border: 2px solid #D7D7D7;
     padding: 19px 15px !important;
@@ -615,6 +615,12 @@ body{
     width: 100%;
     font-family: Dona-Bold;
     letter-spacing: 1px;
+}
+.account-inputs select  {
+    border-radius: 0px !important;
+    border: 2px solid #D7D7D7;
+    height: 42px !important;
+    font-weight: bold;
 }
 .account-inputs input::placeholder{
     color: #000;

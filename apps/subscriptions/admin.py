@@ -14,7 +14,7 @@ class InlineSubscription(admin.TabularInline):
 
 class SubscriptionsAdmin(admin.ModelAdmin):
     inlines = [InlineSubscription]
-    list_display = ("user", "plan", "tokens", "rollover", "price")
+    list_display = ("user", "plan")
     list_display_links = ("plan", "user")
     search_fields = ["plan"]
     list_per_page = 25
