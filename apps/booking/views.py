@@ -265,6 +265,7 @@ def confirm_payment_zooz(booking, payment, test=True):
     )
     if response.status_code != 200:
         raise ClientException(response.json())
+    booking_success(requests, booking)
     data = response.json()
     if data["status"] != 0:
         raise ClientException(data)
