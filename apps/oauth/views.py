@@ -76,3 +76,12 @@ def random_16bit_hex_string():
 def logout_view(request):
     logout(request)
     return redirect(index_view)
+
+
+def check_user_view(request):
+    email = request.GET.get('email')
+    result = False
+    if email:
+        if User.objects.filter(email=email).exists():
+            result = True
+    return JsonResponse({'exists': result})

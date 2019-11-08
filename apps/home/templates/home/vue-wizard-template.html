@@ -23,9 +23,10 @@
                                        v-model="form.home_airport">
                             </div>
 
-                            <div class="input-group input-group-sm step-f-inputs">
-                                <input type="text" class="form-control"
-                                       placeholder="Email Address" v-model="form.email">
+                            <div class="form-group input-group-sm step-f-inputs">
+                                <input type="text" class="form-control" :class="{'email-exists': emailExists}"
+                                       placeholder="Email Address" v-model="form.email" @blur="onEmailChange" @change="onEmailChange">
+                                <small v-if="emailVerified && emailExists" class="form-text text-danger">User with that email is already registered</small>
                             </div>
 
                             <div class="input-group input-group-sm step-f-inputs">
