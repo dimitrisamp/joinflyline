@@ -219,3 +219,10 @@ DEFAULT_FROM_EMAIL = "noreply@joinflyline.com"
 SERVER_EMAIL = "noreply@joinflyline.com"
 
 SECRET_LINK_EXPIRATION_SECONDS=3600
+
+CELERY_BROKER_URL = 'redis://localhost:6379'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379'
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TIMEZONE = TIME_ZONE
