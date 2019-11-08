@@ -3,12 +3,22 @@ from django.contrib.auth import authenticate, logout
 from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.shortcuts import redirect
+from django.template.loader import render_to_string
 from django.urls import reverse
 
 from apps.home.views import index_view
 
-from apps.emails.views import signup_success
-import uuid
+from apps.emails.views import signup_success, forgot_password
+from apps.oauth.forms import PasswordResetForm
+from django.core.mail import send_mail
+from datetime import datetime, timedelta
+from django.conf import settings
+
+from django.views.generic import FormView
+from django.http import JsonResponse
+from django.conf import settings
+
+import random
 
 
 def create_user(request):
@@ -36,19 +46,32 @@ def login_user(request):
         return redirect(index_view)
 
 
-# TODO: ???? This allows anyone to easily change anybody's password
-def forgot_password(request):
-    user = User.objects.get(username=request.POST["email"])
+class ForgotPasswordView(FormView):
+    form_class = PasswordResetForm
+    template_name = "oauth/forgot-password.html"
 
-    if user is not None:
-        secret = uuid.uuid4().hex[0:16]
+    def form_valid(self, form):
+        data = form.cleaned_data
+        try:
+            user = User.objects.get(email=data["email"])
+        except User.DoesNotExist:
+            return redirect("forgot-password")
+
+        secret = random_16bit_hex_string()
+        forgot_password(user.pk, secret)
+
         user.profile.secret = secret
+        user.profile.expiration_time = datetime.now() + timedelta(
+            seconds=settings.SECRET_LINK_EXPIRATION_SECONDS)
         user.profile.save()
 
-        return HttpResponse(secret + "Password reset request is sent successfully", status=200)
-    else:
-        return HttpResponse("Failed: Email does not exist", status=405)
+        return redirect(index_view)
 
+def random_16bit_hex_string():
+    hex_characters = '0123456789abcdef'
+    hex_string = ''.join([random.choice(hex_characters) for _ in range(16)])
+
+    return hex_string
 
 def logout_view(request):
     logout(request)

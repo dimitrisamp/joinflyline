@@ -11,7 +11,7 @@ from django.conf import settings
 User = get_user_model()
 
 def booking_success(request, booking):
-    booking_contact = BookingContact.objects.filter(booking_id=booking["booking_id"])
+    booking_contact = BookingContact.objects.filter(booking_id=booking["booking_id"]).first()
 
     if booking_contact:
         htm_content = render_to_string(
@@ -19,7 +19,7 @@ def booking_success(request, booking):
             {"data": booking, "i": 0, "booking_contact": booking_contact},
         )
         from_email = "booking@joinflyline.com"
-        to_email = booking_contact["email"]
+        to_email = booking_contact.email
         subject = "Booking Successful"
         send_mail(subject, "text body", from_email,
                   [to_email], html_message=htm_content)
@@ -31,7 +31,7 @@ def signup_success(user_id):
         "emails/add-traveler-information.html",
         {"data": user, 'SITE_URL': settings.SITE_URL},
     )
-    from_email = "noreply@joinflyline.com"
+    from_email = settings.DEFAULT_FROM_EMAIL
     to_email = user.email
     subject = "Welcome to FlyLine"
     send_mail(subject, "text body", from_email,
@@ -44,22 +44,25 @@ def finish_setting_up_account(request, user):
             "emails/finish-setting-up-account.html",
             {"data": user},
         )
-        from_email = "noreply@joinflyline.com"
+        from_email = settings.DEFAULT_FROM_EMAIL
         to_email = user.email
         subject = "Finish Setting Up Account"
         send_mail(subject, "text body", from_email, [to_email], html_message=htm_content)
 
 
-def forgot_password(request, user):
-    if user:
-        htm_content = render_to_string(
-            "emails/forgot-password.html",
-            {"data": user},
-        )
-        from_email = "noreply@joinflyline.com"
-        to_email = user.email
-        subject = "Forgot Password"
-        send_mail(subject, "text body", from_email, [to_email], html_message=htm_content)
+def forgot_password(user_id, secret):
+    user = User.objects.get(pk=user_id)
+    htm_content = render_to_string(
+        "emails/forgot-password.html",
+        {
+            "user": user,
+            "secret": secret
+        },
+    )
+    from_email = settings.DEFAULT_FROM_EMAIL
+    to_email = user.email
+    subject = "Forgot Password"
+    send_mail(subject, "text body", from_email, [to_email], html_message=htm_content)
 
 
 def search_discount_flights(request, user):
@@ -68,7 +71,7 @@ def search_discount_flights(request, user):
             "emails/search-discount-flights.html",
             {"data": user},
         )
-        from_email = "noreply@joinflyline.com"
+        from_email = settings.DEFAULT_FROM_EMAIL
         to_email = user.email
         subject = "Search Discount Flights"
         send_mail(subject, "text body", from_email, [to_email], html_message=htm_content)

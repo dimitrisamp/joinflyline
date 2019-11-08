@@ -10,9 +10,17 @@ spec:
   tls:
     - hosts:
         - joinflyline.com
+        - www.joinflyline.com
       secretName: wanderift-secret
   rules:
     - host: joinflyline.com
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: wanderift-service
+              servicePort: 80
+    - host: www.joinflyline.com
       http:
         paths:
           - path: /
