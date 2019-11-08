@@ -34,6 +34,7 @@ from apps.account.views import WizardView
 from apps.results.views import CityAutocomplete, ResultsView
 from django.conf import settings
 
+
 class SiteMapView(View):
     def get(self, request, *args, **kwargs):
         return HttpResponse(
