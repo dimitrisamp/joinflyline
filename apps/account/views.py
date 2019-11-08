@@ -4,16 +4,17 @@ from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import render, redirect
 import stripe
 import stripe.error
 from django.urls import reverse
 from django.utils.decorators import method_decorator
-from django.views.generic import TemplateView, FormView
+from django.views.generic import TemplateView, FormView, UpdateView
 
 from apps.account.forms import ProfileForm, MARKET_CHOICES, WizardForm
-from apps.account.models import Account
+from apps.account.models import Account, FrequentFlyer
 from apps.emails.views import signup_success
 from apps.payments.models import Plans
 from apps.payments.plans import get_available_plans
@@ -52,6 +53,30 @@ class AccountView(FormView):
             user.set_password(cd['password'])
         user.save()
         return super().form_valid(form)
+
+
+class FrequentFlyerEdit(LoginRequiredMixin, UpdateView):
+    model = FrequentFlyer
+    fields = [
+        'american_airlines',
+        'united_airlines',
+        'southwest_airlines',
+        'sun_country_airlines',
+        'frontier_airlines',
+        'delta_airlines',
+        'alaska_airlines',
+        'jetBlue',
+        'spirit_airlines',
+        'allegiant_air',
+        'hawaiian_airlines'
+    ]
+    template_name = 'accounts/accounts.html'
+
+    def get_object(self, queryset=None):
+        return self.model.objects.get_or_create(user=self.request.user)[0]
+
+    def get_success_url(self):
+        return reverse('accounts')
 
 
 @login_required()
