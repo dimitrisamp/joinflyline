@@ -24,7 +24,7 @@
     </div>
 
     <div class="container t-space">
-        <form action="{% url "accounts" %}" method="post">
+        <form action="{% url "accounts" %}" method="post" autocomplete="off">
             {% csrf_token %}
             <div class="row">
                 <div class="col-6">
@@ -105,6 +105,84 @@
                                    value="{{ user.profile.tsa_precheck_number }}"
                                    aria-describedby="basic-addon3" class="form-control"
                                    placeholder="TSA Precheck Number">
+                        </div>
+
+                        <input type="submit" class="btn btn-default account-btn"
+                               value="Save"/>
+                    </div>
+                </div>
+            </div>
+            <div class="bottom-line"></div>
+        </form>
+
+        <form action="" method="post">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-6 text-center">
+                    <div class="account-info">
+                        <h3>Frequent Flyer Information</h3>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="ac-input-list">
+                        <div class="input-group input-group-sm account-inputs">
+                            <input type="text" name="american_airlines"
+                                   aria-describedby="basic-addon3" class="form-control"
+                                   placeholder="American Airlines">
+                        </div>
+                        <div class="input-group input-group-sm account-inputs">
+                            <input type="text" name="united_airlines"
+                                   aria-describedby="basic-addon3" class="form-control"
+                                   placeholder="United Airlines">
+                        </div>
+                        <div class="input-group input-group-sm account-inputs">
+                            <input type="text" name="southwest_airlines"
+                                   aria-describedby="basic-addon3" class="form-control"
+                                   placeholder="Southwest Airlines">
+                        </div>
+                        <div class="input-group input-group-sm account-inputs">
+                            <input type="text" name="sun_country_airlines"
+                                   aria-describedby="basic-addon3" class="form-control"
+                                   placeholder="Sun Country Airlines">
+                        </div>
+                        <div class="input-group input-group-sm account-inputs">
+                            <input type="text" name="frontier_airlines"
+                                   aria-describedby="basic-addon3" class="form-control"
+                                   placeholder="Frontier Airlines">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="ac-input-list">
+                        <div class="input-group input-group-sm account-inputs">
+                            <input type="text" name="delta_airlines"
+                                   aria-describedby="basic-addon3" class="form-control"
+                                   placeholder="Delta Airlines">
+                        </div>
+                        <div class="input-group input-group-sm account-inputs">
+                            <input type="text" name="alaska_airlines"
+                                   aria-describedby="basic-addon3" class="form-control"
+                                   placeholder="Alaska Airlines">
+                        </div>
+                        <div class="input-group input-group-sm account-inputs">
+                            <input type="text" name="jetBlue"
+                                   aria-describedby="basic-addon3" class="form-control"
+                                   placeholder="jetBlue">
+                        </div>
+                        <div class="input-group input-group-sm account-inputs">
+                            <input type="text" name="spirit_airlines"
+                                   aria-describedby="basic-addon3" class="form-control"
+                                   placeholder="Spirit Airlines">
+                        </div>
+                        <div class="input-group input-group-sm account-inputs">
+                            <input type="text" name="allegiant_air"
+                                   aria-describedby="basic-addon3" class="form-control"
+                                   placeholder="Allegiant Air">
+                        </div>
+                        <div class="input-group input-group-sm account-inputs">
+                            <input type="text" name="hawaiian_airlines"
+                                   aria-describedby="basic-addon3" class="form-control"
+                                   placeholder="Hawaiian Airlines">
                         </div>
 
                         <input type="submit" class="btn btn-default account-btn"
