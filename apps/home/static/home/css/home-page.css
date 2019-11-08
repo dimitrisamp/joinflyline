@@ -1460,10 +1460,14 @@ footer .bottom-footer ul li:first-child:before {
     }
 }
 
+/*
+This one is disabled until top blue line is back
+ */
+/*
 .search-results.anonymous {
     max-height: calc(100vh - 209px);
 }
-
+*/
 .search-results .h-btngroups .btn{
     width: 100% !important;
 }
