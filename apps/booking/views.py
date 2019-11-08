@@ -168,6 +168,7 @@ def save_booking(request, retail_info, passengers, payment, zooz=True, test=Fals
         user=user,
         retail_info=retail_info,
     )
+    booking_success(requests, booking)
 
 
 class CheckPromoView(View):
@@ -216,7 +217,6 @@ def confirm_payment(booking):
     except requests.RequestException as e:
         raise ClientException() from e
     data = response.json()
-    booking_success(requests, booking)
     if response.status_code != 200:
         raise ClientException(data)
     if data["status"] != 0:
@@ -265,7 +265,6 @@ def confirm_payment_zooz(booking, payment, test=True):
     )
     if response.status_code != 200:
         raise ClientException(response.json())
-    booking_success(requests, booking)
     data = response.json()
     if data["status"] != 0:
         raise ClientException(data)

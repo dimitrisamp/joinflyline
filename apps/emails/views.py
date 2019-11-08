@@ -11,7 +11,7 @@ from django.conf import settings
 User = get_user_model()
 
 def booking_success(request, booking):
-    booking_contact = BookingContact.objects.filter(booking_id=booking["booking_id"])
+    booking_contact = BookingContact.objects.filter(booking_id=booking["booking_id"]).first()
 
     if booking_contact:
         htm_content = render_to_string(
@@ -19,7 +19,7 @@ def booking_success(request, booking):
             {"data": booking, "i": 0, "booking_contact": booking_contact},
         )
         from_email = "booking@joinflyline.com"
-        to_email = booking_contact["email"]
+        to_email = booking_contact.email
         subject = "Booking Successful"
         send_mail(subject, "text body", from_email,
                   [to_email], html_message=htm_content)
