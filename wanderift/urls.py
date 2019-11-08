@@ -34,7 +34,6 @@ from apps.account.views import WizardView
 from apps.results.views import CityAutocomplete, ResultsView
 from django.conf import settings
 
-
 class SiteMapView(View):
     def get(self, request, *args, **kwargs):
         return HttpResponse(
@@ -82,3 +81,9 @@ urlpatterns = [
     path("sitemap.xml", SiteMapView.as_view(), name="sitemap"),
     path("robots.txt", RobotsTxtView.as_view(), name="robots"),
 ]
+
+if settings.DEBUG:
+    import debug_toolbar
+    urlpatterns = [
+        path('__debug__/', include(debug_toolbar.urls))
+    ] + urlpatterns
