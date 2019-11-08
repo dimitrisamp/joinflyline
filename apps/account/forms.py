@@ -15,6 +15,8 @@ class ProfileForm(forms.Form):
     gender = forms.TypedChoiceField(choices=Gender.choices(), coerce=int)
     market = forms.ChoiceField(choices=MARKET_CHOICES, required=False)
     tsa_precheck_number = forms.CharField(required=False)
+    phone_number = forms.CharField(required=False)
+    password = forms.CharField(widget=forms.PasswordInput, required=False)
 
 
 class WizardForm(forms.Form):

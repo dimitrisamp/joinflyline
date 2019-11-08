@@ -164,7 +164,7 @@ TIME_ZONE = "UTC"
 
 USE_I18N = True
 
-USE_L10N = True
+USE_L10N = False
 
 USE_TZ = True
 
@@ -190,6 +190,7 @@ RECEIVE_EMAIL = "bookings@wanderift.com"
 RECEIVE_PHONE = "+18105131533"
 KIWI_API_KEY = "4TMnq4G90OPMYDAGVHzlP9LQo2hvzzdc"
 STRIPE_API_KEY = os.getenv('STRIPE_API_KEY')
+STRIPE_BASIC_PLAN_ID = 'plan_G8WEw4WJ7o212y'
 SENTRY_DSN = "https://a875b98b313142d8afd40797b84f235e@sentry.io/1773547"
 
 if STAGE == "production":
@@ -219,6 +220,7 @@ PRICE_LIMIT_SUBSCRIBER = 350
 SITEMAP_FILE = os.path.join(BASE_DIR, "wanderift", "sitemap.xml")
 ROBOTS_TXT = os.path.join(BASE_DIR, "wanderift", "robots.txt")
 
+DATE_FORMAT = "m/d/Y"
 DATE_INPUT_FORMATS = ["%Y-%m-%d", "%m/%d/%Y"]
 
 ANYMAIL = {

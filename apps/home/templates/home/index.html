@@ -67,29 +67,7 @@
                                   </div>
                                 </div>     
                                 </nav>
-                            <!-- <nav class="navbar navbar-light nav-navbar-trip default-nav justify-content-between">
-                                <div class="container">
-                                    <a class="navbar-brand nav-logo flex-grow-1"> <img
-                                            src="{% static "home/img/flyline_logos-01-1.png" %}">
-                                    </a>
-                                    <div v-if="user.anonymous">
-                                        <a href="{% url "sign-in" %}"
-                                           class="btn my-2 login-btn my-sm-0">Log In</a>
-                                        <a href="{% url "wizard" %}"
-                                           class="btn my-2 get-s-btn my-sm-0">Get
-                                            Started</a>
-                                    </div>
-                                    <div v-else>
-                                        <a href="{% url "manage-trips" %}"
-                                           class="btn my-2 login-btn my-sm-0">Trips</a>
-                                        <a href="{% url "accounts" %}"
-                                           class="btn my-2 get-s-btn my-sm-0">Account<a>
-                                            <a href="{% url "logout" %}"
-                                               class="btn my-2 get-s-btn my-sm-0">Log
-                                                Out</a>
-                                    </div>
-                                </div>
-                            </nav> -->
+
                         </header>
 
                         <div class="d-flex fp-auto-height-responsive header-background homepage-background first-page-body">
@@ -444,7 +422,11 @@
 
                 </div><!--  Section Five  -->
 
+<<<<<<< HEAD
                 <div class="section fp-section" id="footer-section">
+=======
+                <div class="" id="footer-section">
+>>>>>>> 0af63c565d05c07595f5014a883ecb88a9d4f0dc
                     {% include "_includes/footer.html" %}
                 </div>
 
@@ -465,7 +447,7 @@
         {{ django_user | json_script:"django_user" }}
         {{ get_static_prefix | json_script:"static-url" }}
         <script type="text/javascript">
-            const staticUrlValue = '{% static "/" %}';
+            window.staticUrlValue = '{% static "/" %}';
         </script>
         <script type="module"
                 src="{% static "home/js/flight.js" %}"></script>
@@ -484,6 +466,7 @@
         <!-- <script type="module"
                 src="{% static "home/js/drift.js" %}"></script> -->
         <!-- Global site tag (gtag.js) - Google Analytics -->
+<<<<<<< HEAD
         <script async
                 src="https://www.googletagmanager.com/gtag/js?id=UA-151437513-1"></script>
         <script type="text/javascript">const csrfmiddlewaretoken = '{{ csrf_token }}';</script>
@@ -499,5 +482,9 @@
             gtag('config', 'UA-151437513-1');    
 
         </script>
+=======
+        <script type="text/javascript">window.csrfmiddlewaretoken = '{{ csrf_token }}';</script>
+        {% include "_includes/google_analytics.html" %}
+>>>>>>> 0af63c565d05c07595f5014a883ecb88a9d4f0dc
     </body>
 </html>

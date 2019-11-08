@@ -19,114 +19,101 @@
     <div class="title-section">
        <div class="container">
            <h3 class="trip-title">Account</h3>
-           <p class="title-sec-descrption">Add your traveler information to speed up the booking process, and enter yyour Deal Alert Prefrances<span class="txt-block"></span> so we can notify you of our best deals that fit your paratmers.</p>
+           <p class="title-sec-descrption">Add your traveler information to speed up the booking process, and enter your Deal Alert Preferences<span class="txt-block"></span> so we can notify you of our best deals that fit your paratmers.</p>
        </div> 
     </div>
 
-
     <div class="container t-space">
-        <div class="row">
-            <div class="col-md-6 col-12 text-center">
-                <div class="account-info">
-                    <h3>Account Information</h3>
-                    <h3>Traveler Information</h3>
+        <form action="{% url "accounts" %}" method="post">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-6">
+                    <h3 class="account-title">Account</h3>
                 </div>
             </div>
-            <div class="col-md-3 col-12">
-                <div class="ac-input-list">
-                    <div class="input-group input-group-sm account-inputs">
-                        <input type="text" value="{{ user.email }}" aria-describedby="basic-addon3" class="form-control" placeholder="Email Address">
-                    </div>
-                    <div class="input-group input-group-sm account-inputs">
-                        <input type="text" value="{{ user.first_name }}" aria-describedby="basic-addon3" class="form-control" placeholder="First Name">
-                    </div>
-                    <div class="input-group input-group-sm account-inputs">
-                        <input type="text" value="{% if user.profile.dob %}{{ user.profile.dob }}{% endif %}" aria-describedby="basic-addon3" class="form-control" placeholder="Date of Birth">
-                    </div>
-                    <div class="input-group input-group-sm account-inputs">
-                        <input type="text" value = "{% if user.profile.market %}{{ user.profile.market }}{% else %}None{% endif %}"
-                               aria-describedby="basic-addon3" class="form-control" placeholder="Home Airport">
-                    </div>
-                    <div class="input-group input-group-sm account-inputs">
-                        <input type="text" aria-describedby="basic-addon3" class="form-control" placeholder="Basic Plan - $6.99/mo">
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 col-12">
-                <div class="ac-input-list">
-                    <div class="input-group input-group-sm account-inputs">
-                        <input type="text" aria-describedby="basic-addon3" class="form-control" placeholder="Password">
-                    </div>
-                    <div class="input-group input-group-sm account-inputs">
-                        <input type="text" value="{{ user.last_name }}" aria-describedby="basic-addon3" class="form-control" placeholder="Last Name">
-                    </div>
-                    <div class="input-group input-group-sm account-inputs">
-                        <input type="text" value = "{% if user.profile.gender == 0 %}Male{% else %}Female{% endif %}" aria-describedby="basic-addon3" class="form-control" placeholder="Gender">
-                    </div>
-                    <div class="input-group input-group-sm account-inputs">
-                        <input type="text" value="{{ user.phone_number }}" aria-describedby="basic-addon3" class="form-control" placeholder="Phone Number">
-                    </div>
-                    <div class="input-group input-group-sm account-inputs">
-                        <input type="text" value="{{ user.tsa_precheck_number }}" aria-describedby="basic-addon3" class="form-control" placeholder="TSA Precheck Number">
-                    </div>
-                </div>
-              <a href="" class="btn btn-default account-btn account-info-btn">Save</a>
-            </div>
-        </div>
-        <div class="bottom-line"></div>
+            <div class="bottom-line"></div>
 
+            <div class="row">
+                <div class="col-6 text-center">
+                    <div class="account-info">
+                        <h3>Account Information</h3>
+                        <h3>Traveler Information</h3>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="ac-input-list">
+                        <div class="input-group input-group-sm account-inputs">
+                            <input type="text" name="email" value="{{ user.email }}"
+                                   aria-describedby="basic-addon3" class="form-control"
+                                   placeholder="Email Address">
+                        </div>
+                        <div class="input-group input-group-sm account-inputs">
+                            <input type="text" name="first_name"
+                                   value="{{ user.first_name }}"
+                                   aria-describedby="basic-addon3" class="form-control"
+                                   placeholder="First Name">
+                        </div>
+                        <div class="input-group input-group-sm account-inputs">
+                            <input type="text" name="dob" value="{% if user.profile.dob %}{{ user.profile.dob }}{% endif %}"
+                                   aria-describedby="basic-addon3" class="form-control"
+                                   placeholder="Date of Birth">
+                        </div>
+                        <div class="input-group input-group-sm account-inputs">
+                            <input type="text" name="market" value="{% if user.profile.market %}{{ user.profile.market }}{% else %}None{% endif %}"
+                                   aria-describedby="basic-addon3" class="form-control"
+                                   placeholder="Home Airport">
+                        </div>
+                        <div class="input-group input-group-sm account-inputs">
+                            <input type="text" aria-describedby="basic-addon3"
+                                   class="form-control"
+                                   placeholder="Basic Plan - $6.99/mo">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="ac-input-list">
+                        <div class="input-group input-group-sm account-inputs">
+                            <input type="password" name="password"
+                                   aria-describedby="basic-addon3" class="form-control"
+                                   placeholder="Password">
+                        </div>
+                        <div class="input-group input-group-sm account-inputs">
+                            <input type="text" name="last_name"
+                                   value="{{ user.last_name }}"
+                                   aria-describedby="basic-addon3" class="form-control"
+                                   placeholder="Last Name">
+                        </div>
+                        <div class="input-group input-group-sm account-inputs">
+                            <select name="gender" class="form-control">
+                                <option value="0"{% if user.profile.gender == 0 %}
+                                        selected{% endif %}>Male
+                                </option>
+                                <option value="1"{% if user.profile.gender == 1 %}
+                                        selected{% endif %}>Female
+                                </option>
+                            </select>
+                        </div>
+                        <div class="input-group input-group-sm account-inputs">
+                            <input type="text" name="phone_number"
+                                   value="{{ user.profile.phone_number }}"
+                                   aria-describedby="basic-addon3" class="form-control"
+                                   placeholder="Phone Number">
+                            <span style="font-size: 11px;position: absolute;bottom: -18px;margin-left: 13px;">(optional For Flight Deal Alerts)</span>
+                        </div>
+                        <div class="input-group input-group-sm account-inputs">
+                            <input type="text" name="tsa_precheck_number"
+                                   value="{{ user.profile.tsa_precheck_number }}"
+                                   aria-describedby="basic-addon3" class="form-control"
+                                   placeholder="TSA Precheck Number">
+                        </div>
 
-        <div class="row">
-            <div class="col-md-6 col-12 text-center">
-                <div class="account-info">
-                    <h3>Frequent Flyer Information</h3>
-                </div>
-            </div>
-            <div class="col-md-3 col-12">
-                <div class="ac-input-list">
-                    <div class="input-group input-group-sm account-inputs">
-                        <input type="text" value="" aria-describedby="basic-addon3" class="form-control" placeholder="American Airlines">
-                    </div>
-                    <div class="input-group input-group-sm account-inputs">
-                        <input type="text" value="" aria-describedby="basic-addon3" class="form-control" placeholder="United Airlines">
-                    </div>
-                    <div class="input-group input-group-sm account-inputs">
-                        <input type="text" value="" aria-describedby="basic-addon3" class="form-control" placeholder="Southwest Airlines">
-                    </div>
-                    <div class="input-group input-group-sm account-inputs">
-                        <input type="text" value="" aria-describedby="basic-addon3" class="form-control" placeholder="Sun Country Airlines">
-                    </div>
-                    <div class="input-group input-group-sm account-inputs">
-                        <input type="text" aria-describedby="basic-addon3" class="form-control" placeholder="Frontier Airlines">
+                        <input type="submit" class="btn btn-default account-btn"
+                               value="Save"/>
                     </div>
                 </div>
             </div>
-            <div class="col-md-3 col-12">
-                <div class="ac-input-list">
-                    <div class="input-group input-group-sm account-inputs">
-                        <input type="text" aria-describedby="basic-addon3" class="form-control" placeholder="Delta Airlines">
-                    </div>
-                    <div class="input-group input-group-sm account-inputs">
-                        <input type="text" value="" aria-describedby="basic-addon3" class="form-control" placeholder="Alaska Airlines">
-                    </div>
-                    <div class="input-group input-group-sm account-inputs">
-                        <input type="text" value = "" aria-describedby="basic-addon3" class="form-control" placeholder="JetBlue">
-                    </div>
-                    <div class="input-group input-group-sm account-inputs">
-                        <input type="text" value="" aria-describedby="basic-addon3" class="form-control" placeholder="Spirit Airlines">
-                    </div>
-                    <div class="input-group input-group-sm account-inputs">
-                        <input type="text" value="" aria-describedby="basic-addon3" class="form-control" placeholder="Allegiant Air">
-                    </div>
-                    <div class="input-group input-group-sm account-inputs">
-                        <input type="text" value="" aria-describedby="basic-addon3" class="form-control" placeholder="Hawaiian Airlines">
-                    </div>
-                </div>
-              <a href="" class="btn btn-default account-btn account-info-btn">Save</a>
-            </div>
-        </div>
-
-        <div class="bottom-line"></div>
+            <div class="bottom-line"></div>
+        </form>
 
         <!-- Discount Price Alert -->
         <section class="discount-price">
@@ -141,17 +128,20 @@
             <div class="row">
                 <div class="col-md-4 col-12">
                     <div class="input-group input-group-sm account-inputs">
-                        <input type="text" aria-describedby="basic-addon3" class="form-control" placeholder="Destination">
+                        <input type="text" aria-describedby="basic-addon3"
+                               class="form-control" placeholder="Destination">
                     </div>
                 </div>
                 <div class="col-md-3 col-12">
                     <div class="input-group input-group-sm account-inputs">
-                        <input type="text" aria-describedby="basic-addon3" class="form-control" placeholder="Max Price">
+                        <input type="text" aria-describedby="basic-addon3"
+                               class="form-control" placeholder="Max Price">
                     </div>
                 </div>
                 <div class="col-md-5 col-12">
                     <div class="input-group input-group-sm account-inputs">
-                        <input type="text" aria-describedby="basic-addon3" class="form-control" placeholder="Specific Airlines">
+                        <input type="text" aria-describedby="basic-addon3"
+                               class="form-control" placeholder="Specific Airlines">
                     </div>
                 </div>
             </div>
@@ -160,17 +150,20 @@
             <div class="row">
                 <div class="col-md-4 col-12">
                     <div class="input-group input-group-sm account-inputs">
-                        <input type="text" aria-describedby="basic-addon3" class="form-control" placeholder="Destination">
+                        <input type="text" aria-describedby="basic-addon3"
+                               class="form-control" placeholder="Destination">
                     </div>
                 </div>
                 <div class="col-md-3 col-12">
                     <div class="input-group input-group-sm account-inputs">
-                        <input type="text" aria-describedby="basic-addon3" class="form-control" placeholder="Max Price">
+                        <input type="text" aria-describedby="basic-addon3"
+                               class="form-control" placeholder="Max Price">
                     </div>
                 </div>
                 <div class="col-md-5 col-12">
                     <div class="input-group input-group-sm account-inputs">
-                        <input type="text" aria-describedby="basic-addon3" class="form-control" placeholder="Specific Airlines">
+                        <input type="text" aria-describedby="basic-addon3"
+                               class="form-control" placeholder="Specific Airlines">
                     </div>
                 </div>
             </div>
