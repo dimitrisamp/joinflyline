@@ -84,6 +84,7 @@ Container emulation
     padding-left: calc(80%/2 - 1000px/2 + 15px);
     flex: 1;
     background-size: cover;
+    padding-left:calc(80%/2 - 1000px/2 + 15px);
 }
 
 .left-form-pane .bg-white-close-holes {
@@ -1727,14 +1728,11 @@ footer .bottom-footer ul li:first-child:before {
     display: inline !important;
 }
 #footer-section{
-    height: 300px !important;
+    height:600px;
 }
 #footer-section .fp-tableCell{
-    height: 300px !important;
+    height:600px;
 }
-
-
-
 
 }
 @media(max-width:768px){

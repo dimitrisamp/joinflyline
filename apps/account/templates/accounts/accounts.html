@@ -15,6 +15,14 @@
     <section class="navbar-section">
         {% include "_includes/navbar.html" with page="accounts" %}
     </section>
+
+    <div class="title-section">
+       <div class="container">
+           <h3 class="trip-title">Account</h3>
+           <p class="title-sec-descrption">Add your traveler information to speed up the booking process, and enter your Deal Alert Preferences<span class="txt-block"></span> so we can notify you of our best deals that fit your paratmers.</p>
+       </div> 
+    </div>
+
     <div class="container t-space">
         <form action="{% url "accounts" %}" method="post">
             {% csrf_token %}
@@ -46,14 +54,12 @@
                                    placeholder="First Name">
                         </div>
                         <div class="input-group input-group-sm account-inputs">
-                            <input type="text" name="dob" value="
-                                    {% if user.profile.dob %}{{ user.profile.dob }}{% endif %}"
+                            <input type="text" name="dob" value="{% if user.profile.dob %}{{ user.profile.dob }}{% endif %}"
                                    aria-describedby="basic-addon3" class="form-control"
                                    placeholder="Date of Birth">
                         </div>
                         <div class="input-group input-group-sm account-inputs">
-                            <input type="text" name="market" value="
-                                    {% if user.profile.market %}{{ user.profile.market }}{% else %}None{% endif %}"
+                            <input type="text" name="market" value="{% if user.profile.market %}{{ user.profile.market }}{% else %}None{% endif %}"
                                    aria-describedby="basic-addon3" class="form-control"
                                    placeholder="Home Airport">
                         </div>
@@ -103,39 +109,36 @@
 
                         <input type="submit" class="btn btn-default account-btn"
                                value="Save"/>
-
                     </div>
                 </div>
             </div>
             <div class="bottom-line"></div>
         </form>
+
         <!-- Discount Price Alert -->
         <section class="discount-price">
             <div class="row">
-                <div class="col-8">
-                    <h3 class="account-title">Discount Price Alerts</h3>
+                <div class="col-md-8 col-12">
+                    <h3 class="account-title">Deal Alerts Notifications</h3>
                     <p>Enter your notification parameters and your good to go</p>
-                </div>
-                <div class="col-4">
-                    <a href="" class="btn btn-default account-btn">Save</a>
                 </div>
             </div>
             <h3 class="d-heading">Destination One</h3>
 
             <div class="row">
-                <div class="col-4">
+                <div class="col-md-4 col-12">
                     <div class="input-group input-group-sm account-inputs">
                         <input type="text" aria-describedby="basic-addon3"
                                class="form-control" placeholder="Destination">
                     </div>
                 </div>
-                <div class="col-3">
+                <div class="col-md-3 col-12">
                     <div class="input-group input-group-sm account-inputs">
                         <input type="text" aria-describedby="basic-addon3"
                                class="form-control" placeholder="Max Price">
                     </div>
                 </div>
-                <div class="col-5">
+                <div class="col-md-5 col-12">
                     <div class="input-group input-group-sm account-inputs">
                         <input type="text" aria-describedby="basic-addon3"
                                class="form-control" placeholder="Specific Airlines">
@@ -145,26 +148,26 @@
             <h3 class="d-heading">Destination Two</h3>
 
             <div class="row">
-                <div class="col-4">
+                <div class="col-md-4 col-12">
                     <div class="input-group input-group-sm account-inputs">
                         <input type="text" aria-describedby="basic-addon3"
                                class="form-control" placeholder="Destination">
                     </div>
                 </div>
-                <div class="col-3">
+                <div class="col-md-3 col-12">
                     <div class="input-group input-group-sm account-inputs">
                         <input type="text" aria-describedby="basic-addon3"
                                class="form-control" placeholder="Max Price">
                     </div>
                 </div>
-                <div class="col-5">
+                <div class="col-md-5 col-12">
                     <div class="input-group input-group-sm account-inputs">
                         <input type="text" aria-describedby="basic-addon3"
                                class="form-control" placeholder="Specific Airlines">
                     </div>
                 </div>
             </div>
-            <a href="" class="btn btn-default account-btn">Add More</a>
+            <a href="" class="btn btn-default account-btn">Save</a>
         </section>
     </div>
     {% include "_includes/footer.html" %}

@@ -565,7 +565,7 @@ body{
     margin-top: 60px;
 }
 .account-title{
-    font-size: 43px;
+    font-size: 31px;
     color: #000;
     font-weight: 600;
 }
@@ -585,18 +585,19 @@ body{
     margin: 18px 0;
 }
 .account-info h3{
+    font-family: Dona-Bold;
     color: #000;
-    font-size: 23px;
+    font-size: 27px;
     font-weight: 600;
-    margin-bottom: 61px;
-    margin-top: 28px;
-    text-align: center;
+    margin-bottom: 39px;
+    margin-top: 24px;
+    text-align: left;
 }
 .ac-input-list{
     margin-top: 20px;
 }
 .account-inputs{
-    margin-bottom: 40px;
+    margin-bottom: 26px;
 }
 .account-inputs input:focus{
     color: #000 !important;
@@ -607,6 +608,13 @@ body{
     border: 2px solid #D7D7D7;
     padding: 19px 15px !important;
     font-weight: bold;
+    color: #000;
+}
+.account-info-btn{
+    font-size: 22px;
+    width: 100%;
+    font-family: Dona-Bold;
+    letter-spacing: 1px;
 }
 .account-inputs select  {
     border-radius: 0px !important;
@@ -617,6 +625,8 @@ body{
 .account-inputs input::placeholder{
     color: #000;
     font-size: 12px;
+    font-family: Dona-Bold;
+    font-weight: bold;
 }
 .discount-price{
     margin-top: 50px;
@@ -629,11 +639,12 @@ body{
     font-size: 18px;
 }
 .d-heading{
-    color: #141414;
+    color: #000;
     font-size: 23px;
     font-weight: 600;
     margin-top: 0;
     margin-bottom: 15px;
+    font-family: Dona-Bold;
 }
 
 /*SMALL DEVICES*/
