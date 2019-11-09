@@ -57,7 +57,7 @@ def check_flights(booking_token, bnum, adults, children, infants):
     if response.status_code != 200:
         raise ClientException()
     data = response.json()
-    if data["flights_invalid"]:
+    if data.get("flights_invalid"):
         raise FlightsInvalidException()
     if not data["flights_checked"]:
         raise FlightsNotCheckedYetException()
