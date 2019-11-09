@@ -29,6 +29,10 @@ class ClientException(Exception):
     pass
 
 
+class StatusErrorException(ClientException):
+    pass
+
+
 class FlightsInvalidException(ClientException):
     pass
 
@@ -57,6 +61,8 @@ def check_flights(booking_token, bnum, adults, children, infants):
     if response.status_code != 200:
         raise ClientException()
     data = response.json()
+    if 'status' in data and data["status"] == "error":
+        raise StatusErrorException()
     if data.get("flights_invalid"):
         raise FlightsInvalidException()
     if not data["flights_checked"]:
@@ -88,6 +94,8 @@ class CheckFlightsView(View):
             return JsonResponse({"code": "flights-invalid"}, status=404)
         except FlightsNotCheckedYetException:
             return JsonResponse({"code": "not-checked-yet"}, status=404)
+        except StatusErrorException:
+            return JsonResponse({"code": "status-error"}, status=404)
         return JsonResponse(result)
 
 
