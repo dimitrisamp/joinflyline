@@ -214,7 +214,7 @@ class WizardView(FormView):
         )
         signup_success(new_user.pk)
         # TODO: handle promocode
-        Account.objects.create(
+        account = Account.objects.create(
             user=new_user,
             card_number=cd["card_number"],
             cvc=cd["cvc"],
@@ -223,6 +223,7 @@ class WizardView(FormView):
         )
         new_user.profile.market = cd["home_airport"]
         new_user.profile.save()
-        add_to_stripe(new_user)  # TODO: make async
+        if account.card_number and account.expiry and account.cvc:
+            add_to_stripe(new_user)
         login(self.request, new_user)
         return JsonResponse({"success": True})
