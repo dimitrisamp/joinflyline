@@ -1,3 +1,19 @@
+@font-face {
+  font-family:Dona-Black;
+  src: url(fonts/Dona/DonaAlt-Black.ttf);
+}
+@font-face {
+  font-family:Dona-Regular;
+  src: url(fonts/Dona/Dona-Regular.ttf);
+}
+@font-face {
+    font-family: Dona-Bold;
+    src: url(fonts/Dona/Dona-Bold.ttf);
+}
+body{
+      font-family:Dona-Regular;
+}
+
 .search-item.shadowsrch {
     position: absolute;
     min-width: 300px;
@@ -89,6 +105,7 @@ button.search_btn{
     width: 100% !important;
     margin-bottom: 6px;
     font-size: 21px;
+    font-family: Dona-Bold;
 }
 .dropdown-list p{
     padding: 0px 16px;

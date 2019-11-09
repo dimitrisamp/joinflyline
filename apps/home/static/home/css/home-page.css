@@ -81,10 +81,9 @@ Container emulation
     background:url('../img/Wallpaper-Left.png');
     border-right: solid 1px rgb(204, 204, 204);
     padding: 20px 30px;
-    padding-left: calc(80%/2 - 1000px/2 + 15px);
     flex: 1;
     background-size: cover;
-    padding-left:calc(80%/2 - 1000px/2 + 15px);
+    padding-left:calc(95%/2 - 1000px/2 + 15px);
 }
 
 .left-form-pane .bg-white-close-holes {
@@ -95,10 +94,12 @@ Container emulation
 
 .left-form-pane .search-dropdown .form-control{
     color: #00aeef !important;
+    font-family: Dona-Bold;
 }
 .right-body-pane {
     flex: 2;
     padding-left: 25px;
+    padding-right: calc(100%/2 - 1140px/2 + 15px);
 }
 
 .search_btn {
@@ -243,6 +244,10 @@ header.sticky{
     margin: 0;
     padding-bottom: 18px;
     color: #fff;
+    font-family: Dona-Bold;
+}
+.search-quick-filter .small {
+    font-family: Dona-Bold;
 }
 .search-flight-home p {
     font-family: Dona-Regular;
@@ -329,6 +334,9 @@ header.sticky{
     border: 2px solid #ececec;
     border-left: none;
 }
+.search-dropdown .form-control::placeholder{
+    color: #00b0f5 !important;
+}
 .search-dropdown .search-input:focus{
     border-color: #ececec;
     outline: 0;
@@ -345,6 +353,7 @@ header.sticky{
     border: 2px solid #fff;
     color: #fff;
     opacity: 1;
+    font-family: Dona-Bold;
 }
 .search-button .btn:focus{
     box-shadow: none !important;
@@ -597,7 +606,7 @@ header.sticky{
 .search-results span {
     font-size: 12px;
     margin-top: -1px;
-    text-align: center !important;
+    text-align: center;
     display: flow-root;
     font-family:Dona-Bold;
 }
@@ -739,6 +748,13 @@ header.sticky{
 .h-result-list li img:hover{
     cursor: pointer;
 }
+.s-arrow {
+    margin-right: 18px !important;
+}
+.list-f {
+    text-align: left !important;
+}
+
 
 /*****************************
            Section 05
@@ -961,6 +977,7 @@ header.sticky{
 .search-f-dropdown .s-dropdown-list li{
     border-bottom: 1px solid #ccc;
     padding: 4px 0;
+    font-family: Dona-Bold;
 }
 .search-f-dropdown .s-dropdown-list li:hover{
     background: #000;
@@ -1246,7 +1263,7 @@ header.sticky{
 *****************************/
 
 .search-results-rightcontent h3{
-    font-size: 53px;
+    font-size: 48px;
     font-family: Dona-Black;
     color: #000;
     margin-bottom: 30px;
