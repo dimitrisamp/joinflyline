@@ -5,7 +5,7 @@ django
 requests
 django-spurl
 sendgrid
-sentry-sdk==0.12.3
+sentry-sdk
 django-suit
 
 python-dotenv
