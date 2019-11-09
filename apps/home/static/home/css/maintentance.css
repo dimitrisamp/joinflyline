@@ -1,0 +1,25 @@
+.full-bg{
+    background: url('../img/b895dfb9d1a65fbea4bf389e72604a9da8cf29c3.png');
+}
+.maintenance-logo{
+    margin: 50px 0px;
+}
+.maintenance-box{
+    background: #fff;
+    border: 2px solid #ccc;
+    padding: 70px 25px;
+    max-width: 500px;
+    margin: 80px auto;
+    box-shadow: 1px 1px 4px #cccccc9e;
+    border-radius: 2px;
+}
+.maintenance-box h3{
+    font-family:Dona-Black;
+}
+.maintenance-box p{
+    font-family: Dona-Bold;
+    color: #000;
+    padding-top: 27px;
+    font-size: 17px;
+    line-height: 29px;
+}

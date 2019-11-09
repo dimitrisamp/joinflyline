@@ -20,6 +20,7 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.http import HttpResponse
 from django.urls import path, include
 from django.views import View
+from django.views.generic import TemplateView
 
 from apps.booking.views import (
     CheckFlightsView,
@@ -80,4 +81,5 @@ urlpatterns = [
     path("city/query", CityAutocomplete.as_view(), name="city-query"),
     path("sitemap.xml", SiteMapView.as_view(), name="sitemap"),
     path("robots.txt", RobotsTxtView.as_view(), name="robots"),
+    path("maintenance/", TemplateView.as_view(template_name="503.html"), name="maintenance")
 ]

@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     # 3rd party libs
     "spurl",
     "django_extensions",
+    "maintenancemode",
     # My apps
     "apps.construction",
     "apps.subscriptions.apps.SubscriptionsConfig",
@@ -73,12 +74,19 @@ MIDDLEWARE = [
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "maintenancemode.middleware.MaintenanceModeMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "django.middleware.common.CommonMiddleware",
 ]
 
 ROOT_URLCONF = "wanderift.urls"
+
+MAINTENANCE_MODE = (
+    os.getenv("MAINTENANCE_MODE").strip().lower() == "true"
+    if os.getenv("MAINTENANCE_MODE")
+    else False
+)
 
 TEMPLATES = [
     {
@@ -232,6 +240,6 @@ EMAIL_BACKEND = "anymail.backends.sendgrid.EmailBackend"
 DEFAULT_FROM_EMAIL = "noreply@joinflyline.com"
 SERVER_EMAIL = "noreply@joinflyline.com"
 
-SECRET_LINK_EXPIRATION_SECONDS=3600
+SECRET_LINK_EXPIRATION_SECONDS = 3600
 
 SITE_URL = os.getenv('SITE_URL', 'https://joinflyline.com')
