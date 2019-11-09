@@ -31,3 +31,7 @@ def reset(c):
 @task
 def production_run(c):
     c.run("gunicorn -c wanderift/gunicorn_config.py wanderift.wsgi", pty=True)
+
+
+def worker(c):
+    c.run("celery worker -A wanderift -l info", pty=True)
