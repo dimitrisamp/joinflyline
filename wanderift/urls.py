@@ -22,11 +22,10 @@ from django.urls import path, include
 from django.views import View
 
 from apps.booking.views import (
-    retail_booking_view,
     CheckFlightsView,
     SaveBookingView,
     CheckPromoView,
-)
+    RetailBookingView)
 from apps.emails.views import booking_success
 from apps.home.views import index_view, home_view, SignInView, SignUpView, \
     PromoLandingView
@@ -66,7 +65,7 @@ urlpatterns = [
     path("info/", include("apps.info.urls")),
     # booking
     path("promo/", PromoLandingView.as_view(), name="promo-landing"),
-    path("retail/", retail_booking_view, name="retail"),
+    path("retail/", RetailBookingView.as_view(), name="retail"),
     path("booking_flight/", SaveBookingView.as_view(), name="book"),
     path("check-flights/", CheckFlightsView.as_view(), name="check-flights"),
     path("check-promo/", CheckPromoView.as_view(), name="check-promo"),
