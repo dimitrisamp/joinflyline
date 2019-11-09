@@ -174,10 +174,13 @@
                             ${{ flight | comparison }}</button>
                     </a>
                 {% endif %}
-                <a href="{% url 'retail' flight.booking_token %}">
+                {% comment %}
+                TODO: this one is to be fixed and displayed only for recently searched flights not all of them
+                <a href="#">
                     <button class="search_btn book-btn mt-1"> Book for
                         ${{ flight.price }}</button>
                 </a>
+                {% endcomment %}
             </div>
         </div>
 

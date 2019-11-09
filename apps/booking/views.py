@@ -29,6 +29,10 @@ class ClientException(Exception):
     pass
 
 
+class StatusErrorException(ClientException):
+    pass
+
+
 class FlightsInvalidException(ClientException):
     pass
 
@@ -57,7 +61,9 @@ def check_flights(booking_token, bnum, adults, children, infants):
     if response.status_code != 200:
         raise ClientException()
     data = response.json()
-    if data["flights_invalid"]:
+    if 'status' in data and data["status"] == "error":
+        raise StatusErrorException()
+    if data.get("flights_invalid"):
         raise FlightsInvalidException()
     if not data["flights_checked"]:
         raise FlightsNotCheckedYetException()
@@ -88,6 +94,8 @@ class CheckFlightsView(View):
             return JsonResponse({"code": "flights-invalid"}, status=404)
         except FlightsNotCheckedYetException:
             return JsonResponse({"code": "not-checked-yet"}, status=404)
+        except StatusErrorException:
+            return JsonResponse({"code": "status-error"}, status=404)
         return JsonResponse(result)
 
 
@@ -274,39 +282,40 @@ def get_retail_info(booking_token):
     return json.loads(BookingCache.objects.get(booking_token=booking_token).data)
 
 
-def retail_booking_view(request):
-    retail_info = json.loads(request.POST.get('retail_info'))
-    one_way = not bool(o for o in retail_info["route"] if o["return"] == 1)
-    for flight in retail_info["route"]:
-        dep_time = parse_isodatetime(flight["local_departure"])
-        arr_time = parse_isodatetime(flight["local_arrival"])
-        flight["date"] = dep_time.strftime("%a %b %d")
-        flight["arr_time"] = arr_time.strftime("%I:%M %p")
-        flight["dep_time"] = dep_time.strftime("%I:%M %p")
-        duration = int(
-            (
-                parse_isodatetime(flight["utc_arrival"])
-                - parse_isodatetime(flight["utc_departure"])
-            ).total_seconds()
-        )
-        hours = duration // 3600
-        minutes = (duration // 60) % 60
-        flight["duration"] = f"{hours}h {minutes:02d}m"
-    if not one_way:
-        last_flight_to_destination = list(
-            takewhile(lambda o: o["return"] == 0, retail_info["route"])
-        )[-1]
-        last_flight_to_destination["nightsInDest"] = retail_info["nightsInDest"]
+class RetailBookingView(View):
+    def post(self, request):
+        retail_info = json.loads(request.POST.get('retail_info'))
+        one_way = not bool(o for o in retail_info["route"] if o["return"] == 1)
+        for flight in retail_info["route"]:
+            dep_time = parse_isodatetime(flight["local_departure"])
+            arr_time = parse_isodatetime(flight["local_arrival"])
+            flight["date"] = dep_time.strftime("%a %b %d")
+            flight["arr_time"] = arr_time.strftime("%I:%M %p")
+            flight["dep_time"] = dep_time.strftime("%I:%M %p")
+            duration = int(
+                (
+                    parse_isodatetime(flight["utc_arrival"])
+                    - parse_isodatetime(flight["utc_departure"])
+                ).total_seconds()
+            )
+            hours = duration // 3600
+            minutes = (duration // 60) % 60
+            flight["duration"] = f"{hours}h {minutes:02d}m"
+        if not one_way:
+            last_flight_to_destination = list(
+                takewhile(lambda o: o["return"] == 0, retail_info["route"])
+            )[-1]
+            last_flight_to_destination["nightsInDest"] = retail_info["nightsInDest"]
 
-    context = {
-        "retail_info": retail_info,
-        "one_way": one_way,
-        "total_credits": 1 if one_way else 2,
-        "subscription_benefits": comparison(retail_info),
-        "passenger_count": retail_info["parent"]["search_params"]["seats"][
-            "passengers"
-        ],
-        "total_price": retail_info["conversion"]["USD"],
-        "title": "Confirm Booking | FlyLine",
-    }
-    return render(request, "booking/retail.html", context)
+        context = {
+            "retail_info": retail_info,
+            "one_way": one_way,
+            "total_credits": 1 if one_way else 2,
+            "subscription_benefits": comparison(retail_info),
+            "passenger_count": retail_info["parent"]["search_params"]["seats"][
+                "passengers"
+            ],
+            "total_price": retail_info["conversion"]["USD"],
+            "title": "Confirm Booking | FlyLine",
+        }
+        return render(request, "booking/retail.html", context)

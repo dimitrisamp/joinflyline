@@ -37,6 +37,21 @@ class Profile(models.Model):
     tsa_precheck_number = models.CharField(max_length=30, blank=True, null=True)
 
 
+class FrequentFlyer(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    american_airlines = models.CharField(max_length=30, blank=True)
+    united_airlines = models.CharField(max_length=30, blank=True)
+    southwest_airlines = models.CharField(max_length=30, blank=True)
+    sun_country_airlines = models.CharField(max_length=30, blank=True)
+    frontier_airlines = models.CharField(max_length=30, blank=True)
+    delta_airlines = models.CharField(max_length=30, blank=True)
+    alaska_airlines = models.CharField(max_length=30, blank=True)
+    jetBlue = models.CharField(max_length=30, blank=True)
+    spirit_airlines = models.CharField(max_length=30, blank=True)
+    allegiant_air = models.CharField(max_length=30, blank=True)
+    hawaiian_airlines = models.CharField(max_length=30, blank=True)
+
+
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
     if created:

@@ -85,7 +85,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
-                "apps.common.context_processors.user.user_processor",
+                "apps.common.context_processors.common.common_processor",
             ],
             "libraries": {
                 "airlines": "apps.results.templatetags.airlines",
@@ -184,7 +184,7 @@ RECEIVE_EMAIL = "bookings@wanderift.com"
 RECEIVE_PHONE = "+18105131533"
 
 KIWI_API_KEY = "4TMnq4G90OPMYDAGVHzlP9LQo2hvzzdc"
-STRIPE_BASIC_PLAN_ID = 'plan_G8WEw4WJ7o212y'
+STRIPE_BASIC_PLAN_ID = os.getenv('STRIPE_BASIC_PLAN_ID')
 SENTRY_DSN = "https://a875b98b313142d8afd40797b84f235e@sentry.io/1773547"
 STRIPE_API_KEY = os.getenv('STRIPE_API_KEY')
 SENDGRID_API_KEY = (

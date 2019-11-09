@@ -115,7 +115,7 @@
             <div class="bottom-line"></div>
         </form>
 
-        <form action="" method="post">
+        <form action="{% url "frequent-flyer" %}" method="post">
             {% csrf_token %}
             <div class="row">
                 <div class="col-6 text-center">
@@ -127,26 +127,31 @@
                     <div class="ac-input-list">
                         <div class="input-group input-group-sm account-inputs">
                             <input type="text" name="american_airlines"
+                                   value="{{ user.frequentflyer.american_airlines }}"
                                    aria-describedby="basic-addon3" class="form-control"
                                    placeholder="American Airlines">
                         </div>
                         <div class="input-group input-group-sm account-inputs">
                             <input type="text" name="united_airlines"
+                                   value="{{ user.frequentflyer.united_airlines }}"
                                    aria-describedby="basic-addon3" class="form-control"
                                    placeholder="United Airlines">
                         </div>
                         <div class="input-group input-group-sm account-inputs">
                             <input type="text" name="southwest_airlines"
+                                   value="{{ user.frequentflyer.southwest_airlines }}"
                                    aria-describedby="basic-addon3" class="form-control"
                                    placeholder="Southwest Airlines">
                         </div>
                         <div class="input-group input-group-sm account-inputs">
                             <input type="text" name="sun_country_airlines"
+                                   value="{{ user.frequentflyer.sun_country_airlines }}"
                                    aria-describedby="basic-addon3" class="form-control"
                                    placeholder="Sun Country Airlines">
                         </div>
                         <div class="input-group input-group-sm account-inputs">
                             <input type="text" name="frontier_airlines"
+                                   value="{{ user.frequentflyer.frontier_airlines }}"
                                    aria-describedby="basic-addon3" class="form-control"
                                    placeholder="Frontier Airlines">
                         </div>
@@ -156,31 +161,37 @@
                     <div class="ac-input-list">
                         <div class="input-group input-group-sm account-inputs">
                             <input type="text" name="delta_airlines"
+                                   value="{{ user.frequentflyer.delta_airlines }}"
                                    aria-describedby="basic-addon3" class="form-control"
                                    placeholder="Delta Airlines">
                         </div>
                         <div class="input-group input-group-sm account-inputs">
                             <input type="text" name="alaska_airlines"
+                                   value="{{ user.frequentflyer.alaska_airlines }}"
                                    aria-describedby="basic-addon3" class="form-control"
                                    placeholder="Alaska Airlines">
                         </div>
                         <div class="input-group input-group-sm account-inputs">
                             <input type="text" name="jetBlue"
+                                   value="{{ user.frequentflyer.jetBlue }}"
                                    aria-describedby="basic-addon3" class="form-control"
                                    placeholder="jetBlue">
                         </div>
                         <div class="input-group input-group-sm account-inputs">
                             <input type="text" name="spirit_airlines"
+                                   value="{{ user.frequentflyer.spirit_airlines }}"
                                    aria-describedby="basic-addon3" class="form-control"
                                    placeholder="Spirit Airlines">
                         </div>
                         <div class="input-group input-group-sm account-inputs">
                             <input type="text" name="allegiant_air"
+                                   value="{{ user.frequentflyer.allegiant_air }}"
                                    aria-describedby="basic-addon3" class="form-control"
                                    placeholder="Allegiant Air">
                         </div>
                         <div class="input-group input-group-sm account-inputs">
                             <input type="text" name="hawaiian_airlines"
+                                   value="{{ user.frequentflyer.hawaiian_airlines }}"
                                    aria-describedby="basic-addon3" class="form-control"
                                    placeholder="Hawaiian Airlines">
                         </div>

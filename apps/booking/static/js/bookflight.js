@@ -183,7 +183,7 @@ $(function () {
             error: function (jqxhr) {
                 if (jqxhr.status === 404) {
                     let data = JSON.parse(jqxhr.responseText);
-                    if (data.code === 'not-checked-yet') {
+                    if (data.code === 'not-checked-yet' || data.code === 'status-error') {
                         setTimeout(checkFlight, 2000)
                     }
                     $('#checkout-submit-button').attr("disabled", true);
