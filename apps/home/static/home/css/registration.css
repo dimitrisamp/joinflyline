@@ -293,3 +293,10 @@ p.label__plan-description {
     padding-left: 27px;
     color: #8d8d8d;
 }
+.please-wait {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    height: 100vh;
+}

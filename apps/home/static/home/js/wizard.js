@@ -1,5 +1,3 @@
-import { getCookie } from "./utils.js";
-
 Vue.component("wizard", {
   template: "#vue-wizard-template",
   data() {
@@ -22,23 +20,33 @@ Vue.component("wizard", {
     };
   },
   delimiters: ["{(", ")}"],
+  watch: {
+    step: function(val, oldVal) {
+      Vue.nextTick().then(() => {
+        if (val === 2) this.focusElement("first_name");
+      });
+    }
+  },
   methods: {
+    prevStep() {
+      this.step = 1;
+    },
     nextStep() {
-      if (this.emailVerified) {
+      if (this.emailVerified && this.isStep1Complete) {
         this.step = 2;
         return;
       }
       let that = this;
-      this.verifyEmail(()=>{
+      this.verifyEmail(() => {
         if (that.emailVerified) {
           that.step = 2;
         }
       });
     },
     verifyEmail(callback) {
-      let url = new URL('/auth/check-user/', window.location.href);
+      let url = new URL("/auth/check-user/", window.location.href);
       let searchParams = {
-          email: this.form.email
+        email: this.form.email
       };
       url.search = new URLSearchParams(searchParams);
       fetch(url)
@@ -53,27 +61,39 @@ Vue.component("wizard", {
       this.emailVerified = false;
       this.verifyEmail();
     },
+    focusElement(name) {
+      const el = document.querySelector(`input[name=${name}]`);
+      el.focus();
+      el.select();
+    },
     submit() {
-      let formData = new FormData();
-      formData.append("csrfmiddlewaretoken", csrfmiddlewaretoken);
-      for (let k in this.form) {
-        if (this.form[k]) {
-          formData.append(k, this.form[k]);
-        }
-      }
-      fetch(getStartedUrl, {
-        method: "POST",
-        body: formData
-      })
-        .then(response => response.json())
-        .then(data => {
-          if (data.success) {
-            this.$emit("success");
-          } else {
-            window.alert(JSON.stringify(data));
+      if (!this.isStep2Complete) return;
+      this.step = 3;
+      Vue.nextTick().then(() => {
+        let formData = new FormData();
+        formData.append("csrfmiddlewaretoken", csrfmiddlewaretoken);
+        for (let k in this.form) {
+          if (this.form[k]) {
+            formData.append(k, this.form[k]);
           }
-        });
+        }
+        fetch(getStartedUrl, {
+          method: "POST",
+          body: formData
+        })
+          .then(response => response.json())
+          .then(data => {
+            if (data.success) {
+              this.$emit("success");
+            } else {
+              window.alert(JSON.stringify(data));
+            }
+          });
+      });
     }
+  },
+  mounted() {
+    this.focusElement("home_airport");
   },
   computed: {
     isStep1Complete() {
