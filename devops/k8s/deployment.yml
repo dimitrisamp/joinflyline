@@ -53,6 +53,12 @@ spec:
                   name: api-keys
                   key: STRIPE_API_KEY
 
+            - name: MAINTENANCE_MODE
+              valueFrom:
+                secretKeyRef:
+                  name: api-keys
+                  key: MAINTENANCE_MODE
+
             - name: STRIPE_BASIC_PLAN_ID
               valueFrom:
                 secretKeyRef:
