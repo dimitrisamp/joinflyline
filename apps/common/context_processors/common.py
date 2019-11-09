@@ -1,5 +1,6 @@
+from django.conf import settings
 
-def user_processor(request):
+def common_processor(request):
     user = request.user
     django_user = {"anonymous": user.is_anonymous}
     if not user.is_anonymous:
@@ -12,4 +13,8 @@ def user_processor(request):
         )
         if user.profile:
             django_user["market"] = user.profile.market
-    return {"django_user": django_user}
+    return {
+        "django_user": django_user,
+        "SENTRY_DSN": settings.SENTRY_DSN,
+        "stage": settings.STAGE,
+    }

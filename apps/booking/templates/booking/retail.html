@@ -55,4 +55,6 @@
     {{ retail_info | json_script:"retail-info"}}
     <script src="{% static "js/passenger.js" %}"></script>
     <script src="{% static "js/bookflight.js" %}"></script>
+    {% include "_includes/google_analytics.html" %}
+    {% include "_includes/sentry.html" %}
 {% endblock %}

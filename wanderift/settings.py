@@ -20,7 +20,7 @@ from django.contrib.messages import constants as messages
 import sentry_sdk
 from sentry_sdk.integrations.django import DjangoIntegration
 
-STAGE = os.getenv("STAGE", "production")
+STAGE = os.getenv("STAGE", "local")
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -91,7 +91,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
-                "apps.common.context_processors.user.user_processor",
+                "apps.common.context_processors.common.common_processor",
             ],
             "libraries": {
                 "airlines": "apps.results.templatetags.airlines",
