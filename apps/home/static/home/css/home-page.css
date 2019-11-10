@@ -83,7 +83,7 @@ Container emulation
     padding: 20px 30px;
     flex: 1;
     background-size: cover;
-    padding-left:calc(95%/2 - 1000px/2 + 15px);
+    padding-left:calc(93%/2 - 1000px/2 + 15px);
 }
 
 .left-form-pane .bg-white-close-holes {
@@ -2103,7 +2103,7 @@ footer{
 @media(min-width: 1992px) and (max-width: 2561px){
 
 .left-form-pane{
-    padding-left: calc(80%/2 - 1000px/2 + 15px);
+    padding-left: calc(93%/2 - 1000px/2 + 15px);
     padding-top:20px;
 }
 .right-body-pane{
