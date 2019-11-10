@@ -565,6 +565,9 @@ header.sticky{
 .search-results .result-item{
     margin-top: 0;
 }
+.result-block {
+    padding: 0 !important;
+}
 .search-results .result-block {
     padding-top: 10px !important;
     padding-bottom: 10px !important;
@@ -933,7 +936,7 @@ header.sticky{
     background-color: white;
     border: 1px solid rgba(0,0,0,0.1);
     border-radius: 4px;
-    margin-top: 20px;
+    margin-top: 10px;
 }
 .result-item .result-block {
     cursor: pointer;
