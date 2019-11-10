@@ -47,6 +47,23 @@ body{
     margin: 79px auto;
     max-width: 400px;
     margin-bottom: 20px;
+    transform:translate(0%,35%);
+}
+.signIn-align{
+    transform: translate(0%,0%);   
+}
+.forgot-backtohome {
+    font-family: dona-black;
+    position: absolute;
+    left: 0;
+    right: 0;
+    transform: translate(0%,135px);
+}
+.forgot-backtohome a{
+    text-decoration: underline;
+}
+.forgot-backtohome a:hover{
+    color: #000;
 }
 .sign-bottom{
     max-width: 400px;
