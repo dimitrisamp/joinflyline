@@ -336,9 +336,12 @@ header.sticky{
     padding: 20px 0;
     border: 2px solid #ececec;
     border-left: none;
+    font-family: Dona-Bold;
+    color: #7d7d7d !important;  
 }
 .search-dropdown .form-control::placeholder{
-    color: #00b0f5 !important;
+    color: #7d7d7d;
+    font-family: Dona-Bold;
 }
 .search-dropdown .search-input:focus{
     border-color: #ececec;
@@ -878,7 +881,7 @@ header.sticky{
     text-align: center;
     border: 2px solid #ececec;
     font-weight: bold;
-    font-family: dona-bold;
+    font-family: Dona-Bold;
     background: transparent;
     color: #000000;
     padding: 7px 5px;
