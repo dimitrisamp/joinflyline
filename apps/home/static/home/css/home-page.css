@@ -1582,6 +1582,12 @@ footer .bottom-footer ul li:first-child:before {
     padding: 11px 0px;
     margin-top: 20px;
 }
+.search-button .btn:active{
+    background: #fff !important;
+    color: #00aeef !important;
+    border-color: #fff !important;
+}
+
 
 /*****************************
           Media Query
@@ -1781,6 +1787,10 @@ footer{
     margin-top: 0px;
 }
 .search-button .btn:hover{
+    background: #fff !important;
+    color: #00aeef !important;
+}
+.search-button .btn:active{
     background: #fff !important;
     color: #00aeef !important;
 }
