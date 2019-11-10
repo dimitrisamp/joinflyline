@@ -26,12 +26,6 @@ spec:
             - configMapRef:
                 name: env-config
           env:
-            - name: POSTGRES_USER
-              valueFrom:
-                secretKeyRef:
-                  name: api-keys
-                  key: POSTGRES_USER
-
             - name: POSTGRES_PASSWORD
               valueFrom:
                 secretKeyRef:
@@ -43,12 +37,6 @@ spec:
                 secretKeyRef:
                   name: api-keys
                   key: STRIPE_API_KEY
-
-            - name: STRIPE_BASIC_PLAN_ID
-              valueFrom:
-                secretKeyRef:
-                  name: api-keys
-                  key: STRIPE_BASIC_PLAN_ID
 
             - name: FOR_GODS_SAKE_PLEASE_REDEPLOY
               value: 'THIS_STRING_IS_REPLACED_DURING_BUILD'
@@ -67,12 +55,6 @@ spec:
             - configMapRef:
                 name: env-config
           env:
-            - name: POSTGRES_USER
-              valueFrom:
-                secretKeyRef:
-                  name: api-keys
-                  key: POSTGRES_USER
-
             - name: POSTGRES_PASSWORD
               valueFrom:
                 secretKeyRef:
@@ -84,18 +66,6 @@ spec:
                 secretKeyRef:
                   name: api-keys
                   key: STRIPE_API_KEY
-
-            - name: MAINTENANCE_MODE
-              valueFrom:
-                secretKeyRef:
-                  name: api-keys
-                  key: MAINTENANCE_MODE
-
-            - name: STRIPE_BASIC_PLAN_ID
-              valueFrom:
-                secretKeyRef:
-                  name: api-keys
-                  key: STRIPE_BASIC_PLAN_ID
 
             - name: FOR_GODS_SAKE_PLEASE_REDEPLOY
               value: 'THIS_STRING_IS_REPLACED_DURING_BUILD'
@@ -112,12 +82,6 @@ spec:
             - configMapRef:
                 name: env-config
           env:
-            - name: POSTGRES_USER
-              valueFrom:
-                secretKeyRef:
-                  name: api-keys
-                  key: POSTGRES_USER
-
             - name: POSTGRES_PASSWORD
               valueFrom:
                 secretKeyRef:
@@ -129,12 +93,6 @@ spec:
                 secretKeyRef:
                   name: api-keys
                   key: STRIPE_API_KEY
-
-            - name: STRIPE_BASIC_PLAN_ID
-              valueFrom:
-                secretKeyRef:
-                  name: api-keys
-                  key: STRIPE_BASIC_PLAN_ID
 
             - name: FOR_GODS_SAKE_PLEASE_REDEPLOY
               value: 'THIS_STRING_IS_REPLACED_DURING_BUILD'
@@ -149,12 +107,6 @@ spec:
             - configMapRef:
                 name: env-config
           env:
-            - name: POSTGRES_USER
-              valueFrom:
-                secretKeyRef:
-                  name: api-keys
-                  key: POSTGRES_USER
-
             - name: POSTGRES_PASSWORD
               valueFrom:
                 secretKeyRef:
@@ -166,12 +118,6 @@ spec:
                 secretKeyRef:
                   name: api-keys
                   key: STRIPE_API_KEY
-
-            - name: STRIPE_BASIC_PLAN_ID
-              valueFrom:
-                secretKeyRef:
-                  name: api-keys
-                  key: STRIPE_BASIC_PLAN_ID
 
             - name: FOR_GODS_SAKE_PLEASE_REDEPLOY
               value: 'THIS_STRING_IS_REPLACED_DURING_BUILD'
