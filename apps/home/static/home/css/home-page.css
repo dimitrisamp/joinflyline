@@ -743,7 +743,10 @@ header.sticky{
     border-radius: 0;
 }
 .content-img img{
-    margin-top: 20px;
+    margin-top: 12px;
+    width: 670px;
+    max-width: 670px;
+    margin-left: -20px;
 }
 .h-result-list{
     list-style: none;
@@ -884,7 +887,7 @@ header.sticky{
     font-family: Dona-Bold;
     background: transparent;
     color: #000000;
-    padding: 7px 5px;
+    padding: 9px 5px;
     font-size: 13px;
     border-radius: 0px;
     margin-bottom: 0px;
@@ -969,11 +972,15 @@ header.sticky{
     margin-bottom: 15px;
 }
 .s-result-dropdown_destination-type .search-f-dropdown {
-    min-width: 124px;
+    min-width: 170px;
 }
 .s-result-dropdown_seat-type .search-f-dropdown {
-    min-width: 111px;
+    min-width: 156px;
 }
+.left-form-pane .search-f-dropdown{
+    min-width: 123px;
+}
+
 .search-f-dropdown .s-dropdown-list{
     list-style: none;
     margin: 0;
@@ -985,7 +992,7 @@ header.sticky{
 }
 .search-f-dropdown .s-dropdown-list li{
     border-bottom: 1px solid #ccc;
-    padding: 4px 0;
+    padding: 7px 0;
     font-family: Dona-Bold;
 }
 .search-f-dropdown .s-dropdown-list li:hover{
@@ -1757,6 +1764,10 @@ footer{
 
 }
 @media(min-width:320px) and (max-width: 768px){
+.content-img img{
+    width: 100%;
+    max-width: 100%;
+}
 .nav-logo {
     margin:0px 18px;
 }
