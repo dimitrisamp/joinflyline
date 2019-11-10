@@ -21,3 +21,4 @@ gunicorn
 django-credit-cards
 
 celery[redis]
+django-maintenancemode
