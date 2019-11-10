@@ -990,10 +990,11 @@ header.sticky{
     color: #fff;
 }
 .search-f-dropdown .s-dropdown-list li a{
-    color: #000;
+    color: #00b0f5;
     font-weight: bold;
     font-size: 12px;
     text-decoration: none;
+    font-family: Dona-Bold;
 }
 .passengers-dropdown{
     background: #fff;

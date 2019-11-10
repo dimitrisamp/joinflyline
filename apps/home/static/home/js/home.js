@@ -50,7 +50,7 @@ const app = new Vue({
         seatTypeName: "Economy",
         cityFromInput: getCityInputData('From'),
         cityToInput: getCityInputData('To'),
-        destinationTypes: {"round": "Round Trip", "oneway": "Oneway"},
+        destinationTypes: {"round": "Round-trip", "oneway": "One-way"},
         destinationTypeSelectProgress: false,
         passengerSelectProgress: false,
         seatTypeSelectProgress: false,
