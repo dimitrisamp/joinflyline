@@ -1,5 +1,6 @@
 import ClickOutside from './v-click-outside.js';
-import {AIRLINE_ICONS, seatTypes} from './utils.js';
+import {seatTypes} from './utils.js';
+import {airlineCodes} from "./airlineCodes.js";
 
 
 function debounce(fn, delay, ...rest) {
@@ -427,7 +428,7 @@ const app = new Vue({
             if (this.searchResults.length === 0) {
                 this.form.airlines = data.airlines.map(a => ({
                     code: a,
-                    name: AIRLINE_ICONS[a] || a,
+                    name: airlineCodes[a] || a,
                     checked: false
                 }));
             }
