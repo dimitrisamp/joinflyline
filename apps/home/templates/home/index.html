@@ -90,18 +90,92 @@
                                      :class="{'container-pad-right': searchResults.length !== 0 || searchProgress}">
                                     <div v-if="searchResults.length === 0 && !searchProgress"
                                          class="h-contentarea">
-                                        <div class="search-results-rightcontent">
-                                            <h3>Welcome to FlyLine {( user.first_name
-                                                )}</h3>
-                                            <p>Search and Book Flights out of <i>{(
+                                         <div class="search-results-rightcontent design-revesion">
+                                        <!-- <h3>Welcome to FlyLine {( user.first_name
+                                                )}</h3> -->
+                                            <h3>Lets find your next <span class="f-clr">adventure</span></h3>    
+                                            <p>Don't know where to go? Take a look at these suggestions below</p>    
+
+                                            <div class="flight-deals-slider">
+                                              <h3>Trending Flights From Dallas</h3>   
+                                              <p>Best Deals and top Flights out of your home airports</p>
+                                            </div>
+                                        
+                                            <div class="row f-slider-itemrow">
+                                               <div class="col-md-4 col-12 right-space">
+                                                   <div class="flight-info-item">
+                                                        <img src="{% static "home/img/architecture-buildings-city-2190283.jpg" %}"/> 
+                                                        <ul class="f-item-list">
+                                                          <li><h3>Dallas Paris, RT <span>9/12/19 -9/16/19</span></h3></li>   
+                                                          <li><a href="#" class="btn btn-default">$485</a></li>
+                                                        </ul>
+                                                   </div> 
+                                               </div> 
+                                                <div class="col-md-4 col-12 right-space">
+                                                   <div class="flight-info-item">
+                                                        <img src="{% static "home/img/architecture-buildings-city-2190283.jpg" %}"/> 
+                                                        <ul class="f-item-list">
+                                                          <li><h3>Dallas Paris, RT <span>9/12/19 -9/16/19</span></h3></li>   
+                                                          <li><a href="#" class="btn btn-default">$485</a></li>
+                                                        </ul>
+                                                   </div> 
+                                               </div> 
+                                                <div class="col-md-4 col-12 right-space">
+                                                   <div class="flight-info-item">
+                                                        <img src="{% static "home/img/architecture-buildings-city-2190283.jpg" %}"/> 
+                                                        <ul class="f-item-list">
+                                                          <li><h3>Dallas Paris, RT <span>9/12/19 -9/16/19</span></h3></li>   
+                                                          <li><a href="#" class="btn btn-default">$485</a></li>
+                                                        </ul>
+                                                   </div> 
+                                               </div>  
+                                            </div>
+
+
+                                            <div class="flight-deals-slider second-f-slider">
+                                              <h3>Deep Discount Flights From Dallas</h3>   
+                                              <p>Best Deals and top Flights out of your home airports</p>
+                                            </div>
+                                        
+                                            <div class="row f-slider-itemrow">
+                                               <div class="col-md-4 col-12 right-space">
+                                                   <div class="flight-info-item">
+                                                        <img src="{% static "home/img/architecture-buildings-city-2190283.jpg" %}"/> 
+                                                        <ul class="f-item-list">
+                                                          <li><h3>Dallas Paris, RT <span>9/12/19 -9/16/19</span></h3></li>   
+                                                          <li><a href="#" class="btn btn-default">$485</a></li>
+                                                        </ul>
+                                                   </div> 
+                                               </div> 
+                                                <div class="col-md-4 col-12 right-space">
+                                                   <div class="flight-info-item">
+                                                        <img src="{% static "home/img/architecture-buildings-city-2190283.jpg" %}"/> 
+                                                        <ul class="f-item-list">
+                                                          <li><h3>Dallas Paris, RT <span>9/12/19 -9/16/19</span></h3></li>   
+                                                          <li><a href="#" class="btn btn-default">$485</a></li>
+                                                        </ul>
+                                                   </div> 
+                                               </div> 
+                                                <div class="col-md-4 col-12 right-space">
+                                                   <div class="flight-info-item">
+                                                        <img src="{% static "home/img/architecture-buildings-city-2190283.jpg" %}"/> 
+                                                        <ul class="f-item-list">
+                                                          <li><h3>Dallas Paris, RT <span>9/12/19 -9/16/19</span></h3></li>   
+                                                          <li><a href="#" class="btn btn-default">$485</a></li>
+                                                        </ul>
+                                                   </div> 
+                                               </div>  
+                                            </div>
+
+                                        <!-- <p>Search and Book Flights out of <i>{(
                                                 user.market
-                                                )}</i></p>
-                                            <div class="result-btn">
+                                                )}</i></p> -->
+                                           <!--  <div class="result-btn">
                                                 <a href="{% url "accounts" %}" class="btn btn-default">Add
                                                     Traveler Information</a>
                                                 <a href="{% url "accounts" %}" class="btn btn-default">Add
                                                     Deal Alert Destinations</a>
-                                            </div>
+                                            </div> -->
                                         </div>
                                     </div>
                                     <div v-else-if="searchProgress">
