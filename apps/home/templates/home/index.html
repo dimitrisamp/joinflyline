@@ -32,28 +32,31 @@
 
         <div id="main" v-cloak>
             <div id="fullpage">
-                <div class="section fp-table">
+                <div class="section fp-auto-height-responsive fp-table">
                     <div class="section-01 h-user-home">
                         <header class="fp-auto-height">
-                            <!-- <div class="h-topbar text-center" v-if="user.anonymous">
+                            <div class="h-topbar text-center" v-if="user.anonymous">
                                 <p>Join FlyLine to Experience Unmatched Flight Savings
                                     <a href="#" class="btn btn-default">Savings
                                         Explained</a>
                                 </p>
-                            </div> -->
-                            <nav class="navbar navbar-light nav-navbar-trip default-nav justify-content-between">
-                                <div class="container">
-                                    <a class="navbar-brand nav-logo flex-grow-1"> <img
-                                            src="{% static "home/img/flyline_logos-01-1.png" %}">
-                                    </a>
-                                    <div v-if="user.anonymous">
+                            </div>
+                            <nav class="navbar navbar-expand-lg navbar-light  nav-navbar-trip default-nav justify-content-between bg-light">
+                              <div class="container">
+                                  <a class="navbar-brand nav-logo flex-grow-1" href="#"><img src="{% static "home/img/flyline_logos-01-1.png" %}"></a>
+                                  <button class="navbar-toggler nav-home" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                                    <span class="navbar-toggler-icon"></span>
+                                  </button>
+                                  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                                    <div class="navbar-nav ml-auto">
+                                      <div class="nav-item"  v-if="user.anonymous">
                                         <a href="{% url "sign-in" %}"
                                            class="btn my-2 login-btn my-sm-0">Log In</a>
                                         <a href="{% url "wizard" %}"
                                            class="btn my-2 get-s-btn my-sm-0">Get
                                             Started</a>
-                                    </div>
-                                    <div v-else>
+                                      </div>
+                                      <div class="nav-item" v-else>
                                         <a href="{% url "manage-trips" %}"
                                            class="btn my-2 login-btn my-sm-0">Trips</a>
                                         <a href="{% url "accounts" %}"
@@ -61,12 +64,15 @@
                                             <a href="{% url "logout" %}"
                                                class="btn my-2 get-s-btn my-sm-0">Log
                                                 Out</a>
+                                      </div>
                                     </div>
+                                  </div>
                                 </div>
-                            </nav>
+                                </nav>
+
                         </header>
 
-                        <div class="d-flex fp-auto-height-responsive header-background first-page-body">
+                        <div class="d-flex fp-auto-height-responsive header-background homepage-background mobile-before first-page-body">
                             <div v-if="!user.anonymous || searchResults.length !== 0 || searchProgress"
                                  class="d-flex flex-row search-panel">
                                 <div class="left-form-pane container-pad-left">
@@ -172,7 +178,7 @@
                                 View Deals
                             </div>
                         </div><!-- header bg -->
-                        <div class="d-flex flex-column justify-content-around home-slider"
+                        <div class="d-flex flex-column mobile-before justify-content-around home-slider"
                              v-if="showWideForm">
                             <div>
                                 <h3 class="slider-title">Never miss
@@ -253,8 +259,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="clickdown"
-                             v-if="user.anonymous && searchResults.length === 0">
+                        <div class="clickdown" v-if="user.anonymous && searchResults.length === 0">
                             <a href="#Section02"
                                class="fliLine-Banner">
                                 <div class="h-flyline-bar">
@@ -263,12 +268,18 @@
                             </a>
                         </div>
                     </div>
-
-
                 </div>
 
-                <div v-if="user.anonymous && searchResults.length === 0" class="section"
-                     id="Section02">
+                <div class="fly-linesetion mobile-before">
+                    <h3>What is FlyLine</h3>
+                    <p>We flipped the script on air travel booking by eliminating booking fees with the creation of a more travel- friendly flight club model. in other words, website the Costco for flying so you can save and do more.</p>
+                    <a href="#" class="btn btn-default" id="home-Learnmore"> Learn More </a>
+                 <div href="" class="email-mobile-view">joinflyline.com | Mobile</div>
+                </div>
+
+
+
+                <div v-if="user.anonymous && searchResults.length === 0" class="section fp-auto-height-responsive hide-view" id="Section02">
                     <div class="container">
                         <div class="row">
                             <div class="col-md-12 col-12">
@@ -294,8 +305,7 @@
                     </div>
                 </div><!--  second section -->
 
-                <div v-if="user.anonymous && searchResults.length === 0" class="section"
-                     id="sec3-Bg">
+                <div v-if="user.anonymous && searchResults.length === 0" class="section fp-auto-height-responsive fp-section hide-view" id="sec3-Bg">
                     <div class="container">
                         <div class="row">
                             <div class="col-md-6 col-12">
@@ -360,8 +370,7 @@
                     </div>
                 </div><!--  Section Three  -->
 
-                <div v-if="user.anonymous && searchResults.length === 0" class="section"
-                     id="sec4-bg">
+                <div v-if="user.anonymous && searchResults.length === 0" class="section fp-auto-height-responsive fp-section hide-view" id="sec4-bg">
                     <div class="container">
                         <div class="row">
                             <div class="col-md-6 col-12 content-img">
@@ -382,8 +391,7 @@
                     </div>
                 </div><!--  Section four  -->
 
-                <div v-if="user.anonymous && searchResults.length === 0" class="section"
-                     id="section5-Bg">
+                <div v-if="user.anonymous && searchResults.length === 0" class="section fp-auto-height-responsive fp-section hide-view" id="section5-Bg">
                     <div class="section5-Bg">
                         <div class="text-center section5-content">
                             <h3>Your Easiest Travel
@@ -432,11 +440,9 @@
                             </div>
                         </div>
                     </div>
-
-
                 </div><!--  Section Five  -->
 
-                <div class="" id="footer-section">
+                <div  id="footer-section" class="section fp-section fp-auto-height-responsive">
                     {% include "_includes/footer.html" %}
                 </div>
 
