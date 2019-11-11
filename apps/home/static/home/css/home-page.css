@@ -1508,11 +1508,211 @@ This one is disabled until top blue line is back
     left: 17px !important;
 }
 */
+.fly-linesetion{
+    padding:0px 30px;
+    padding-top: 60px;
+}
+.fly-linesetion h3{
+    font-size: 33px;
+    line-height: 46px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #00b0f4;
+    font-family: Dona-Black;
+    margin-top: 0;
+}
+.fly-linesetion p{
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 38px;
+    text-align: center;
+    color: #00b0f4;
+}
+.fly-linesetion .btn{
+    background: #00b0f4;
+    color: #fff;  
+    font-family: Dona-Black;
+    width: 100%;
+    border-radius: 0px; 
+    padding: 10px 0px;
+}
+.email-mobile-view{
+    text-align: center;
+    color:#00b0f4;  
+    font-family: Dona-Black;
+    font-size: 14px;
+    display: block;
+    padding: 11px 0px;
+    margin-top: 20px;
+}
 
 /*****************************
           Media Query
 *****************************/
+@media(min-width:320px) and (max-width: 480px){
+footer{
+    display: none;
+}
+/*.div-hide{
+    display: none !important; 
+}*/
+.hideheadersec{
+    display: none !important;
+}
+.fp-auto-height-responsive,.fp-tableCell{
+   height: auto !important;
+}
+.section3-content {
+    margin: 10px 0;
+}
+.s-result-dropdown .btn {
+    width: auto;
+    float: left !important;
+    margin-left: 15px;
+    background: none !important;
+    border: none;
+    color: #fff;
+    margin-bottom: 0px; 
+}    
+.horizontal-form .s-result-dropdown .btn img{
+    display: none;
+}
+.s-result-dropdown {
+    margin-bottom: 10px;
+    float: left;
+    display: contents;
+}
+.homepage-background{
+    background: url(../img/pricing_background.png) !important;
+    width: 100%;
+    background-position: bottom;    
+}
+#sec3-Bg{
+    background: url('../img/wallpaper.png') !important;
+}
+.newhome-form span{
+    color: #fff;
+}
+.search-form-input{
+    color: #00aeef;
+}
+.horizontal-f-btn .btn-search {
+    background: transparent;
+    border-color: #fff !important;
+    padding: 7px 31px;
+    border: 2px solid #fff;
+}
+.section2-content p {
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 31px;
+    color: #b5b5b5;
+    text-align: left;
+    border-bottom: 2px solid #b5b5b5;
+    padding-bottom: 20px;
+}
+.section2-content h3 {
+    font-size: 40px;
+    line-height: 46px;
+    margin-bottom: 20px;
+    text-align: left;
+}
+.section2-content .btn{
+    display: none;
+}
+.horizontal-form .s-result-dropdown .btn:active{
+    background: transparent !important;
+    border: none !important;
+    color: #fff !important;
+} 
+.navbar-light .btn {
+    font-family: Dona-Bold;
+    color: #00AEEF;
+    width: 100%;
+    text-align: left;
+    font-family: Dona-Black;
+    font-size: 16px;
+    padding: 3px 25px;
+}
+.section3-content h3 {
+    font-size: 40px;
+    line-height: 46px;
+    margin-bottom: 20px;
+    text-align: left;
+    color: #000;
+}
+.section3-content p{
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 31px;
+    color: #b5b5b5;
+    text-align: left;
+    border-bottom: 2px solid #b5b5b5;
+    padding-bottom: 20px;
+}
+.section4-content p{
+    border-bottom: 2px solid #b5b5b5;
+    padding-bottom: 20px;   
+}
+.section4-content h3{
+    font-size: 40px;
+    line-height: 46px;
+    margin-bottom: 20px;
+    text-align: left;   
+}
+.section5-Bg{
+    background: url('../img/wallpaper.png') !important;    
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-top: 0;
+}
+.section5-content h3{
+    font-size: 40px;
+    line-height: 46px;
+    margin-bottom: 20px;
+    text-align: center;    
+    color: #000;
+    margin-top: 10px;
+}
+.section5-content p{
+    display: none;
+}
+.h-planbox{
+    background: #00b0f4;
+}
+.h-planbox h3{
+    color: #fff;
+}
+.h-planbox strong{
+    color: #fff;
+}
+.plan-list li{
+    color: #fff;
+}
+.h-planbox p{
+    color: #fff;
+}
+.h-planbox .btn{
+    color: #fff;
+    border-color: #fff;
+}
+.social-icon {
+    float: left;
+    margin-top: 10px;
+}
+.clickdown {
+    display: none;
+}
+
+
+}
 @media(min-width:320px) and (max-width: 768px){
+.nav-logo {
+    margin:0px 18px;
+}
+.nav-home{
+    margin-right: 15px;
+}
 .h-result-list{
     display: none;
 }
@@ -1550,9 +1750,6 @@ This one is disabled until top blue line is back
 .h-select-box,.h-ecenomylink{
     padding-right: 0px;
 }
-.s-result-dropdown .btn{
-    width: 100%;
-}
 .h-contentarea {
     margin: 0 5px;
 }
@@ -1570,28 +1767,16 @@ This one is disabled until top blue line is back
 .section3-content {
     margin-bottom: 0px;
 }
-.section3-content h3 {
-    font-size: 26px;
-    margin-bottom: 13px;
-}
-.section3-content p {
-    font-size: 15px;
-    line-height: 24px;
-}
 .section3-content .btn{
     width: 100%;
 }
-.section4-content h3 {
-    font-size: 34px;
-    text-align: center;
-}
 .section4-content p {
-    color: #000000;
+    color:#b5b5b5;
     font-weight: 600;
     font-size: 17px;
     margin: 19px 10px;
     line-height: 37px;
-    text-align: center;
+    text-align: left;
 }
 .section5-content p {
     color: #fff;
@@ -1600,26 +1785,8 @@ This one is disabled until top blue line is back
     margin: 10px 10px;
     line-height: 23px;
 }
-.section5-content h3 {
-    font-size: 29px;
-}
-.section5-Bg {
-    padding-top: 10px;
-    padding-bottom: 10px;
-}
-.section2-content h3{
-    font-size: 29px;
-    line-height: 30px;
-    margin-bottom: 9px;
-}
 .section2-content{
     margin-top: 50px;
-}
-.section2-content p {
-    font-size: 17px;
-    font-weight: 600;
-    line-height: 31px;
-    color: #000000;
 }
 .assets-section .img_asset {
     height: 18px;

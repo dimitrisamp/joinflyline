@@ -614,6 +614,17 @@ $(function () {
             $("#fp-nav").removeClass("dots-display");
         }
     });
+ $('.fly-linesetion').hide();
+    if($(window).width() < 767) {  
+         fullpage_api.destroy('all');
+      $('.hide-view').hide();
+      $('.fly-linesetion').show();    
+      $("#home-Learnmore").click(function(){
+
+        $('.mobile-before').addClass('hideheadersec');
+        $('.hide-view').show();   
+      });    
+    }   
 
 
 });
