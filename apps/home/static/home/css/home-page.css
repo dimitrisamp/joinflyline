@@ -96,6 +96,9 @@ Container emulation
     color: #00aeef !important;
     font-family: Dona-Bold;
 }
+.left-form-pane .search-dropdown input::placeholder{
+    color: #00aeef !important;
+}
 .right-body-pane {
     flex: 2;
     padding-left: 25px;
@@ -486,12 +489,17 @@ header.sticky{
 .horizontal-form .s-result-dropdown .btn{
     background: #fff;
 }
+.horizontal-form .s-result-dropdown .btn:hover{
+    border-color: #00b0f5;
+    cursor: pointer;
+}
 .horizontal-form .s-result-dropdown .btn img{
     height: 23px;
     width: 23px;
     margin-right: 9px;
     position: relative;
     top: 0px;
+    display: none;
 }
 .horizontal-form .s-result-dropdown .btn:active{
     background: #fff !important;
@@ -1399,6 +1407,7 @@ header.sticky{
     color: #fff;
     line-height: 44px;
     font-size: 21px;
+    display: none;
 }
 img.round-trip-icon {
     width: 26px !important;

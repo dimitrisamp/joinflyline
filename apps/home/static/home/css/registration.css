@@ -61,9 +61,10 @@ body{
 }
 .forgot-backtohome a{
     text-decoration: underline;
+    color: #3333339e;
 }
 .forgot-backtohome a:hover{
-    color: #000;
+    color: #06AEEF;
 }
 .sign-bottom{
     max-width: 400px;
@@ -254,12 +255,12 @@ section.step-2 {
 }
 .back-to-home a {
     text-decoration: none;
-    margin-top : 40px;
-    font-family:dona-black;
+    margin-top: 40px;
+    font-family: dona-black;
     text-align: center;
-    color: #000;
+    color: #3333339e;
     display: block;
-    font-size: 23px;
+    font-size: 18px;
 }
 /*End Get started Form css*/
 
