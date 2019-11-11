@@ -1361,13 +1361,12 @@ img.ecenomy-icon {
 /*****************************
            Footer
 *****************************/
-/*#footer-section{*/
-    /*height: 300px !important;*/
-/*}*/
-/*#footer-section .fp-tableCell{*/
-    /*height: 300px !important;*/
-/*}*/
-
+#footer-section{
+    height:85px !important;
+}
+#footer-section .fp-tableCell{
+    height:85px !important;
+}
 footer {
     background: #fff;
 }
@@ -1966,12 +1965,6 @@ footer{
 }
 .right-body-pane .search-top-result {
     display: inline !important;
-}
-#footer-section{
-    height:600px;
-}
-#footer-section .fp-tableCell{
-    height:600px;
 }
 
 }
