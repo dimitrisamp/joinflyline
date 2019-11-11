@@ -81,10 +81,9 @@ Container emulation
     background:url('../img/Wallpaper-Left.png');
     border-right: solid 1px rgb(204, 204, 204);
     padding: 20px 30px;
-    padding-left: calc(80%/2 - 1000px/2 + 15px);
     flex: 1;
     background-size: cover;
-    padding-left:calc(80%/2 - 1000px/2 + 15px);
+    padding-left:calc(93%/2 - 1000px/2 + 15px);
 }
 
 .left-form-pane .bg-white-close-holes {
@@ -95,10 +94,12 @@ Container emulation
 
 .left-form-pane .search-dropdown .form-control{
     color: #00aeef !important;
+    font-family: Dona-Bold;
 }
 .right-body-pane {
     flex: 2;
     padding-left: 25px;
+    padding-right: calc(100%/2 - 1140px/2 + 15px);
 }
 
 .search_btn {
@@ -133,6 +134,9 @@ header.sticky{
 .navbar-light .btn{
     font-family: Dona-Bold;
     color: #00AEEF;    
+}
+.navbar-light .btn:focus{
+    box-shadow: none !important; 
 }
 .nav-logo img {
     position: relative;
@@ -243,6 +247,10 @@ header.sticky{
     margin: 0;
     padding-bottom: 18px;
     color: #fff;
+    font-family: Dona-Bold;
+}
+.search-quick-filter .small {
+    font-family: Dona-Bold;
 }
 .search-flight-home p {
     font-family: Dona-Regular;
@@ -328,6 +336,12 @@ header.sticky{
     padding: 20px 0;
     border: 2px solid #ececec;
     border-left: none;
+    font-family: Dona-Bold;
+    color: #7d7d7d !important;  
+}
+.search-dropdown .form-control::placeholder{
+    color: #7d7d7d;
+    font-family: Dona-Bold;
 }
 .search-dropdown .search-input:focus{
     border-color: #ececec;
@@ -345,6 +359,7 @@ header.sticky{
     border: 2px solid #fff;
     color: #fff;
     opacity: 1;
+    font-family: Dona-Bold;
 }
 .search-button .btn:focus{
     box-shadow: none !important;
@@ -553,6 +568,9 @@ header.sticky{
 .search-results .result-item{
     margin-top: 0;
 }
+.result-block {
+    padding: 0 !important;
+}
 .search-results .result-block {
     padding-top: 10px !important;
     padding-bottom: 10px !important;
@@ -597,7 +615,7 @@ header.sticky{
 .search-results span {
     font-size: 12px;
     margin-top: -1px;
-    text-align: center !important;
+    text-align: center;
     display: flow-root;
     font-family:Dona-Bold;
 }
@@ -725,7 +743,10 @@ header.sticky{
     border-radius: 0;
 }
 .content-img img{
-    margin-top: 20px;
+    margin-top: 12px;
+    width: 670px;
+    max-width: 670px;
+    margin-left: -20px;
 }
 .h-result-list{
     list-style: none;
@@ -739,6 +760,13 @@ header.sticky{
 .h-result-list li img:hover{
     cursor: pointer;
 }
+.s-arrow {
+    margin-right: 18px !important;
+}
+.list-f {
+    text-align: left !important;
+}
+
 
 /*****************************
            Section 05
@@ -856,10 +884,10 @@ header.sticky{
     text-align: center;
     border: 2px solid #ececec;
     font-weight: bold;
-    font-family: dona-bold;
+    font-family: Dona-Bold;
     background: transparent;
     color: #000000;
-    padding: 7px 5px;
+    padding: 9px 5px;
     font-size: 13px;
     border-radius: 0px;
     margin-bottom: 0px;
@@ -914,7 +942,7 @@ header.sticky{
     background-color: white;
     border: 1px solid rgba(0,0,0,0.1);
     border-radius: 4px;
-    margin-top: 20px;
+    margin-top: 10px;
 }
 .result-item .result-block {
     cursor: pointer;
@@ -944,11 +972,15 @@ header.sticky{
     margin-bottom: 15px;
 }
 .s-result-dropdown_destination-type .search-f-dropdown {
-    min-width: 124px;
+    min-width: 170px;
 }
 .s-result-dropdown_seat-type .search-f-dropdown {
-    min-width: 111px;
+    min-width: 156px;
 }
+.left-form-pane .search-f-dropdown{
+    min-width: 123px;
+}
+
 .search-f-dropdown .s-dropdown-list{
     list-style: none;
     margin: 0;
@@ -960,20 +992,22 @@ header.sticky{
 }
 .search-f-dropdown .s-dropdown-list li{
     border-bottom: 1px solid #ccc;
-    padding: 4px 0;
+    padding: 7px 0;
+    font-family: Dona-Bold;
 }
 .search-f-dropdown .s-dropdown-list li:hover{
-    background: #000;
+    background: #00aeef;
     cursor: pointer;
 }
 .search-f-dropdown .s-dropdown-list li:hover a{
     color: #fff;
 }
 .search-f-dropdown .s-dropdown-list li a{
-    color: #000;
+    color: #00b0f5;
     font-weight: bold;
     font-size: 12px;
     text-decoration: none;
+    font-family: Dona-Bold;
 }
 .passengers-dropdown{
     background: #fff;
@@ -1246,7 +1280,7 @@ header.sticky{
 *****************************/
 
 .search-results-rightcontent h3{
-    font-size: 53px;
+    font-size: 48px;
     font-family: Dona-Black;
     color: #000;
     margin-bottom: 30px;
@@ -1263,6 +1297,27 @@ header.sticky{
     color: #00b0f5;
     font-family: Dona-Black;
 }
+.design-revesion h3{
+    margin-bottom: 10px;
+}
+.design-revesion p{
+    font-size: 23px;
+    font-weight: 600;
+    color: #000;    
+}
+.flight-deals-slider{
+    margin-top: 60px;
+}
+.flight-deals-slider h3 {
+    font-size: 29px;
+}
+.flight-deals-slider p{
+    font-size: 21px;
+}
+
+
+
+
 .result-btn{
     margin-top:37px;
 }
@@ -1306,13 +1361,12 @@ img.ecenomy-icon {
 /*****************************
            Footer
 *****************************/
-/*#footer-section{*/
-    /*height: 300px !important;*/
-/*}*/
-/*#footer-section .fp-tableCell{*/
-    /*height: 300px !important;*/
-/*}*/
-
+#footer-section{
+    height:85px !important;
+}
+#footer-section .fp-tableCell{
+    height:85px !important;
+}
 footer {
     background: #fff;
 }
@@ -1545,6 +1599,12 @@ This one is disabled until top blue line is back
     padding: 11px 0px;
     margin-top: 20px;
 }
+.search-button .btn:active{
+    background: #fff !important;
+    color: #00aeef !important;
+    border-color: #fff !important;
+}
+
 
 /*****************************
           Media Query
@@ -1707,6 +1767,10 @@ footer{
 
 }
 @media(min-width:320px) and (max-width: 768px){
+.content-img img{
+    width: 100%;
+    max-width: 100%;
+}
 .nav-logo {
     margin:0px 18px;
 }
@@ -1742,6 +1806,14 @@ footer{
 }
 .search-button .btn{
     margin-top: 0px;
+}
+.search-button .btn:hover{
+    background: #fff !important;
+    color: #00aeef !important;
+}
+.search-button .btn:active{
+    background: #fff !important;
+    color: #00aeef !important;
 }
 .h-dealform{
     padding-top: 15px;
@@ -1898,12 +1970,6 @@ footer{
 .right-body-pane .search-top-result {
     display: inline !important;
 }
-#footer-section{
-    height:600px;
-}
-#footer-section .fp-tableCell{
-    height:600px;
-}
 
 }
 @media(max-width:768px){
@@ -2052,7 +2118,7 @@ footer{
 @media(min-width: 1992px) and (max-width: 2561px){
 
 .left-form-pane{
-    padding-left: calc(80%/2 - 1000px/2 + 15px);
+    padding-left: calc(93%/2 - 1000px/2 + 15px);
     padding-top:20px;
 }
 .right-body-pane{

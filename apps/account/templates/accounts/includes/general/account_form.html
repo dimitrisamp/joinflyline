@@ -1,30 +1,30 @@
 <form class="row" action="{% url 'profile' %}"
       method="post">
     {% csrf_token %}
-    <div class="form-group col-sm-6">
+    <div class="form-group col-sm-6 col-12">
         <label class="pb-2">First Name</label>
         <input class="form-control" type="text"
                value="{{ user.first_name }}" name="first_name"
                placeholder="First Name">
     </div>
-    <div class="form-group col-sm-6">
+    <div class="form-group col-sm-6 col-12">
         <label class="pb-2">Last Name</label>
         <input class="form-control" type="text"
                value="{{ user.last_name }}" name="last_name"
                placeholder="Last Name">
     </div>
-    <div class="form-group col-sm-6">
+    <div class="form-group col-sm-6 col-12">
         <label class="pb-2">Email</label>
         <input class="form-control" type="email"
                value="{{ user.email }}" name="email"
                placeholder="Email">
     </div>
-    <div class="form-group col-sm-6">
+    <div class="form-group col-sm-6 col-12">
         <label class="pb-2">Date Of Birth</label>
         <input class="form-control" value="{{ user.profile.dob | date:"m/d/Y" }}"
                name="dob" type="text" id="dob" placeholder="Date of Birth">
     </div>
-    <div class="form-group col-sm-6">
+    <div class="form-group col-sm-6 col-12">
         <label class="pb-2">Gender</label>
         <select class="form-control" name="gender">
             <option value="0" {% if user.profile.gender == 0 %}selected{% endif %}>
@@ -35,7 +35,7 @@
             </option>
         </select>
     </div>
-    <div class="form-group col-sm-6">
+    <div class="form-group col-sm-6 col-12">
         <label class="pb-2">Market</label>
         <select class="form-control" name="market">
             <option value="">--</option>
@@ -45,7 +45,7 @@
             {% endfor %}
         </select>
     </div>
-    <div class="form-group col-sm-6">
+    <div class="form-group col-sm-6 col-12">
         <label class="pb-2">TSA precheck number</label>
         <input class="form-control" type="text"
                value="{{ user.profile.tsa_precheck_number | default_if_none:"" }}"
