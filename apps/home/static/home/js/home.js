@@ -1,5 +1,5 @@
 import ClickOutside from './v-click-outside.js';
-import {AIRLINE_ICONS} from './utils.js';
+import {AIRLINE_ICONS, seatTypes} from './utils.js';
 
 
 function debounce(fn, delay, ...rest) {
@@ -56,12 +56,7 @@ const app = new Vue({
         seatTypeSelectProgress: false,
         maxStopsSelectProgress: false,
         maxStopsText: '',
-        seatTypes: {
-            'M': 'Economy',
-            'W': 'Premium Economy',
-            'C': 'Business',
-            'F': 'First Class'
-        },
+        seatTypes,
         maxStopsFilterOptions: {
             0: "No Stops",
             1: "One Stop",

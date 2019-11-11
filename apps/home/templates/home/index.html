@@ -9,6 +9,8 @@
         <link rel="stylesheet" type="text/css"
               href="{% static "home/css/home-page.css" %}">
         <link rel="stylesheet" type="text/css"
+              href="{% static "home/css/resultpage-mobile-view.css" %}">
+        <link rel="stylesheet" type="text/css"
               href="{% static "home/css/dropdown.css" %}">
         <link rel="stylesheet" type="text/css"
               href="{% static "home/css/rotate-animation.css" %}">
@@ -91,9 +93,11 @@
                                                 user.market
                                                 )}</i></p>
                                             <div class="result-btn">
-                                                <a href="{% url "accounts" %}" class="btn btn-default">Add
+                                                <a href="{% url "accounts" %}"
+                                                   class="btn btn-default">Add
                                                     Traveler Information</a>
-                                                <a href="{% url "accounts" %}" class="btn btn-default">Add
+                                                <a href="{% url "accounts" %}"
+                                                   class="btn btn-default">Add
                                                     Deal Alert Destinations</a>
                                             </div>
                                         </div>
@@ -128,14 +132,21 @@
                                             <div class="divider-30"></div>
                                         </div>
                                     </div>
-                                    <search-results v-else
+                                    <search-results-mobile v-else
+                                                           :search-results="searchResults"
+                                                           :form="form"
+                                                           :city-to-input="cityToInput"
+                                                           :city-from-input="cityFromInput"
+                                                           :sort-results-by="sortResultsBy"
+                                                            />
+                                    <!--<search-results v-else
                                                     :search-results="searchResults"
                                                     :search-progress="searchProgress"
                                                     :load-more="loadMore"
                                                     :form="form"
                                                     :user="user"
                                                     :sort-results-by="sortResultsBy"
-                                                    :quick-filters-data="quickFiltersData"/>
+                                                    :quick-filters-data="quickFiltersData"/> -->
                                 </div>
                             </div>
                             <div v-else
@@ -242,7 +253,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="clickdown" v-if="user.anonymous && searchResults.length === 0">
+                        <div class="clickdown"
+                             v-if="user.anonymous && searchResults.length === 0">
                             <a href="#Section02"
                                class="fliLine-Banner">
                                 <div class="h-flyline-bar">
@@ -255,7 +267,8 @@
 
                 </div>
 
-                <div v-if="user.anonymous && searchResults.length === 0" class="section" id="Section02">
+                <div v-if="user.anonymous && searchResults.length === 0" class="section"
+                     id="Section02">
                     <div class="container">
                         <div class="row">
                             <div class="col-md-12 col-12">
@@ -281,7 +294,8 @@
                     </div>
                 </div><!--  second section -->
 
-                <div v-if="user.anonymous && searchResults.length === 0" class="section" id="sec3-Bg">
+                <div v-if="user.anonymous && searchResults.length === 0" class="section"
+                     id="sec3-Bg">
                     <div class="container">
                         <div class="row">
                             <div class="col-md-6 col-12">
@@ -346,7 +360,8 @@
                     </div>
                 </div><!--  Section Three  -->
 
-                <div v-if="user.anonymous && searchResults.length === 0" class="section" id="sec4-bg">
+                <div v-if="user.anonymous && searchResults.length === 0" class="section"
+                     id="sec4-bg">
                     <div class="container">
                         <div class="row">
                             <div class="col-md-6 col-12 content-img">
@@ -357,13 +372,18 @@
                                 <div class="section4-content">
                                     <h3>No More
                                         Redirects</h3>
-                                    <p>Our members don't get the runaround. Stop wasting time with deal sites and search engines that redirect you to "fee-heavy" online travel agencies and start booking directly with FlyLine</div>
+                                    <p>Our members don't get the runaround. Stop wasting
+                                        time with deal sites and search engines that
+                                        redirect you to "fee-heavy" online travel
+                                        agencies and start booking directly with FlyLine
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div><!--  Section four  -->
 
-                <div v-if="user.anonymous && searchResults.length === 0" class="section" id="section5-Bg">
+                <div v-if="user.anonymous && searchResults.length === 0" class="section"
+                     id="section5-Bg">
                     <div class="section5-Bg">
                         <div class="text-center section5-content">
                             <h3>Your Easiest Travel
@@ -430,33 +450,18 @@
         <script src="{% static "home/js/jquery-2.1.4.min.js" %}"></script>
         <script src="{% static "home/js/bootstrap.js" %}"></script>
         <script src="{% static "home/js/rotate-animationscript.js" %}"></script>
-        {% include "home/vue-flight-template.html" %}
-        {% include "home/vue-quicklinks-template.html" %}
-        {% include "home/vue-cd-intro-template.html" %}
-        {% include "home/vue-search-results-template.html" %}
-        {{ django_user | json_script:"django_user" }}
-        {{ get_static_prefix | json_script:"static-url" }}
-        <script type="text/javascript">
-            window.staticUrlValue = '{% static "/" %}';
-        </script>
-        <script type="module"
-                src="{% static "home/js/flight.js" %}"></script>
-        <script type="module"
-                src="{% static "home/js/quicklinks.js" %}"></script>
-        <script type="module"
-                src="{% static "home/js/cd-intro.js" %}"></script>
-        <script type="module"
-                src="{% static "home/js/search-results.js" %}"></script>
+        {% include "home/vue-templates.html" %}
+        {% include "home/py2js.html" %}
+        {% include "home/vue-js-components.html" %}
+
         <script src="{% static "home/fullPage.js-master/dist/fullpage.min.js" %}"></script>
-        <script type="text/javascript"
-                src="{% static "home/fullPage.js-master/dist/scrolloverflow.js" %}"></script>
         <script src="{% static "home/vue-slider-component/dist/vue-slider-component.umd.min.js" %}"></script>
         <script type="module"
                 src="{% static "home/js/home.js" %}"></script>
         <!-- <script type="module"
                 src="{% static "home/js/drift.js" %}"></script> -->
         <!-- Global site tag (gtag.js) - Google Analytics -->
-        <script type="text/javascript">window.csrfmiddlewaretoken = '{{ csrf_token }}';</script>
+
         {% include "_includes/google_analytics.html" %}
         {% include "_includes/sentry.html" %}
     </body>

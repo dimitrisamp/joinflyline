@@ -7,6 +7,7 @@ import {
     secs2hm,
     staticUrl,
     timeInterval,
+    proceedToBooking,
 } from './utils.js';
 
 
@@ -35,22 +36,7 @@ Vue.component('flight', {
                 this.proceedToBooking(flight);
             }
         },
-        proceedToBooking(flight) {
-            let form = document.createElement("form");
-            form.style.visibility = 'hidden';
-            form.method = 'POST';
-            form.action = '/retail/';
-            let input = document.createElement('input');
-            input.name = 'retail_info';
-            input.value = JSON.stringify(flight);
-            form.appendChild(input);
-            let token = document.createElement('input');
-            token.name = 'csrfmiddlewaretoken';
-            token.value = csrfmiddlewaretoken;
-            form.appendChild(token);
-            document.body.appendChild(form);
-            form.submit();
-        },
+        proceedToBooking,
         toggleCollapsed() {
             this.collapsed = !this.collapsed;
         },

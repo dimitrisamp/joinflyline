@@ -68,6 +68,36 @@ export const AIRLINE_ICONS = {
     "XW": 'NokScoot',
 };
 
+export const seatTypes = {
+    'M': 'Economy',
+    'W': 'Premium Economy',
+    'C': 'Business',
+    'F': 'First Class'
+};
+
+export const destinationTypes = {
+    "round": "Round Trip",
+    "oneway": "Oneway"
+};
+
+export function proceedToBooking(flight) {
+    let form = document.createElement("form");
+    form.style.visibility = 'hidden';
+    form.method = 'POST';
+    form.action = '/retail/';
+    let input = document.createElement('input');
+    input.name = 'retail_info';
+    input.value = JSON.stringify(flight);
+    form.appendChild(input);
+    let token = document.createElement('input');
+    token.name = 'csrfmiddlewaretoken';
+    token.value = csrfmiddlewaretoken;
+    form.appendChild(token);
+    document.body.appendChild(form);
+    form.submit();
+}
+
+
 export function secs2hm(value) {
     const total_minutes = Math.floor(value / 60);
     const minutes = total_minutes % 60;
