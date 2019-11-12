@@ -702,6 +702,12 @@ a {
 }
 
 @media(min-width: 320px) and (max-width: 480px){
+.account-info,.account-title,.bottom-line{
+    display: none;
+}
+.t-space{
+    margin-top: 10px;
+}
 .loading_animation{
     display: none;
 }

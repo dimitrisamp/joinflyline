@@ -316,10 +316,24 @@ header .mobile-menu {
 }
 
 /********** Footer *************/
+.p-mobile-footer{
+    display: none;
+    border-top: 1px solid #ccc;
+}
+
+.email-mobile-view{
+    text-align: center;
+    color:#00b0f4;  
+    font-family: Dona-Black;
+    font-size: 14px;
+    display: block;
+    padding: 11px 0px;
+    margin-top: 7px;
+}
 
 footer {
     background: #fff;
-    padding-top: 40px;
+    padding: 10px 0px;
 }
 .top-footer {
     padding-bottom: 80px;
@@ -328,6 +342,7 @@ footer .top-footer h3 {
     margin-top: 40px;
     font-size: 27px;
     font-weight: bold;
+    font-family: Dona-Black;
     line-height: 19px;
     color: #000;
     margin-bottom: 32px;
@@ -347,14 +362,15 @@ footer .top-footer ul li {
 
 footer .top-footer a {
     text-decoration: none;
-    color: #383838;
+    color: #ababab;
     font-size: 16px;
+    font-family: dona-bold;
     margin-bottom: 26px;
     display: block;
 }
 
 footer .bottom-footer {
-    background: #00b0f5;
+    background: white;
     padding: 10px 0;
 }
 
@@ -378,16 +394,41 @@ footer .bottom-footer  ul {
 }
 
 footer .bottom-footer a {
-    color: #fff;
+    color: #00b0f5;
     text-decoration: none;
     font-size: 15px;
     font-weight: 600;
+    font-family: dona-bold;
     letter-spacing: 1px;
 }
 
 footer .bottom-footer ul li {
     display: inline-block;
-    margin-right: 50px;
+    margin-right: 40px;
+}
+
+footer .bottom-footer ul li:last-child {
+    margin-right: 0px;
+}
+
+footer .bottom-footer p {
+    margin-bottom: 0px;
+    display: inline-block;
+    color: #00b0f5;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 600;
+    font-family: dona-bold;
+    letter-spacing: 1px;
+    padding-right: 15px;
+}
+
+footer .bottom-footer ul.content {
+    display: inline-block;
+}
+
+footer .bottom-footer ul.content li {
+    margin-right: 0px;
 }
 
 .logo h3 {
@@ -410,11 +451,13 @@ footer .bottom-footer ul li:first-child:before {
     margin-right: 0px !important;
     color: #fff;
     font-weight: 600;
+    font-family: dona-bold;
     letter-spacing: 1px;
 }
 .social-icon ul li a{
     margin-right: 20px;
 }
+
 
 
 @media (max-width: 990px) {
@@ -530,10 +573,13 @@ footer .bottom-footer ul li:first-child:before {
 
 
 @media(min-width: 320px) and (max-width: 480px){
-
+.p-mobile-footer{
+    display:block;
+}
 footer {
     background: #F7F9FF;
     padding: 3px 32px;
+    display: none;
 }
 footer .bottom-footer {
     border-top: 3px solid #F1F1F1;
