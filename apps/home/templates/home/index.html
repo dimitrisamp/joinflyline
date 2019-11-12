@@ -31,13 +31,14 @@
     <body>
 
         <div id="main" v-cloak>
-            <div v-if="searchResults.length !== 0 && $mq=='sm' && !searchProgress">
+            <div v-if="searchResults.length !== 0 && $mq=='sm' && !searchProgress && !backToForm">
                 <search-results-mobile
                         :search-results="searchResults"
                         :form="form"
                         :city-to-input="cityToInput"
                         :city-from-input="cityFromInput"
-                        :sort-results-by="sortResultsBy"/>
+                        :sort-results-by="sortResultsBy"
+                        @back-pressed="switchToForm" />
             </div>
             <div id="fullpage" v-else>
                 <div class="section fp-auto-height-responsive fp-table">
@@ -157,7 +158,7 @@
                                         </div>
                                     </div>
 
-                                    <search-results v-else
+                                    <search-results v-else-if="$mq !== 'sm'"
                                                     :search-results="searchResults"
                                                     :search-progress="searchProgress"
                                                     :load-more="loadMore"

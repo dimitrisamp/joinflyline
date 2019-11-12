@@ -14,7 +14,7 @@ Vue.component('search-info-mobile', {
     props: ['form', 'sortResultsBy', 'cityToInput', 'cityFromInput'],
     methods: {
         backPressed() {
-            this.$emit('backPressed');
+            this.$emit('back-pressed');
         }
     },
     delimiters: ['{(', ')}'],

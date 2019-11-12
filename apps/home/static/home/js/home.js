@@ -57,6 +57,7 @@ const app = new Vue({
         seatTypeSelectProgress: false,
         maxStopsSelectProgress: false,
         maxStopsText: '',
+        backToForm: false,
         seatTypes,
         maxStopsFilterOptions: {
             0: "No Stops",
@@ -409,6 +410,9 @@ const app = new Vue({
                 roundtrip,
                 return_departure,
             }
+        },
+        switchToForm() {
+            this.backToForm = true;
         },
         getQuickLinksData(flights) {
             const data = flights.map((f) => ({
