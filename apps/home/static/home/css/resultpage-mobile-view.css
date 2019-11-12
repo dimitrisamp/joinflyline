@@ -1,0 +1,225 @@
+@font-face {
+  font-family:Dona-Black;
+  src: url(../css/fonts/Dona-Black.ttf);
+}
+@font-face {
+  font-family:Dona-Bold;
+  src: url(../css/fonts/Dona-Bold.ttf);
+}
+@font-face {
+  font-family:Dona-Regular;
+  src: url(../css/fonts/Dona-Regular.ttf);
+}
+
+body{
+	font-family:Dona-Regular;
+	background: url('../images/b895dfb9d1a65fbea4bf389e72604a9da8cf29c3.png');
+}
+.m-view-filter{
+	padding:0px 10px;
+	background: #fff;
+}
+.m-view-filter ul{
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+.m-view-filter ul li a img{
+    height: 12px;
+}
+.m-view-filter ul li{
+	display: inline-block;
+}
+.m-view-filter ul li img{
+	height: 60px;
+}
+.m-view-filter ul li h3{
+	font-size: 18px;
+    font-family: Dona-Black;
+    color: #00b0f4;
+    position: relative;
+    top: 10px;
+}
+.m-view-filter ul li h3 span{
+    font-size: 14px;
+    font-family: Dona-Bold;
+    color: #00b0f4;
+    display: block;
+    margin-top: 4px;
+}
+.m-view-filter ul li b{
+    font-family: Dona-Bold;
+    color: #00b0f4;
+    text-align: right;
+    font-size: 17px;
+    padding-left: 13px;
+    position: relative;
+    top: -12px;
+}
+.s-result-tabs{
+   background: #00b0f4;
+   padding: 10px 0;
+}
+.s-result-tabs ul{
+   list-style: none;
+   margin: 0;
+   padding: 0;
+   margin: auto;
+   text-align: center;
+}  
+.s-result-tabs ul li{
+    display: inline-block;
+    padding: 5px 29px;
+}
+.s-result-tabs ul li.active{
+	border:2px solid #fff;
+}
+.s-result-tabs ul li a{
+	color: #fff;
+}
+.m-result-detailbox{
+	margin-top: 10px;
+	border:2px solid #ccc;
+	padding: 10px 10px;
+	background: #fff;
+}
+.m-result-detailbox .m-result-date{
+	color: #adadad;
+	font-size: 14px;
+}
+.m-result-citysection{
+	margin-top: 10px;
+	display: block;
+	border-left: 2px solid #adadad78;
+	padding-left: 20px;
+	margin-left: 7px;
+}
+.m-result-citysection ul{
+    list-style: none;
+    margin: 10px 0px;
+    padding: 0;
+    margin-bottom: 22px;
+}
+.m-result-citysection ul li{
+    display: inline-block;	
+}
+.m-result-citysection ul li span.info {
+    background: #ededed;
+    font-family: Dona-Bold;
+    color: #00b0f4;
+    font-size: 12px;
+    padding: 0px 12px;
+    line-height: 27px;
+    height: 24px;
+    margin-right: 8px;
+    display: block;
+}
+.m-result-citysection h3{
+	font-family:Dona-Black;
+	color: #000;
+	font-size: 14px;
+	margin-bottom: 0;
+}
+.m-result-citysection span{
+	 font-family:Dona-Bold;	
+	 color: #adadad;
+	 font-size: 12px;
+}
+.m-result-citysection li img{
+	width: 24px;
+	height: 24px;
+    margin-right: 8px;
+}
+.m-oof-nights{
+	text-align: center;
+	font-family:Dona-Bold;	
+	color: #000;
+	font-size: 12px;
+	margin-top: 20px;
+}
+.m-oof-nights:before {
+    position: absolute;
+    content: '';
+    background: #ccc;
+    height: 1px;
+    width: 25%;
+    left: 15px;
+    margin-top: 8px;
+}
+.m-oof-nights:after {
+    position: absolute;
+    content: '';
+    background: #ccc;
+    height: 1px;
+    width: 25%;
+    right: 15px;
+    margin-top: 8px;
+}
+.m-total-p-section ul{
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+.m-total-p-section ul li{
+	display: inline-block;
+}
+.m-total-p-section ul li b{
+	font-family: Dona-Black;
+    color: #000;
+    font-size: 15px;
+    margin-right: 40px;
+    margin-left: 8px;
+}
+.m-total-p-section ul li .btn{
+	background: #00b0f4;
+    color: #fff;
+    border-radius: 1px;
+    font-size: 16px;
+    letter-spacing: 1px;
+    padding: 7px 37px;
+    text-align: right;
+    margin-left: 20px;
+    font-family:Dona-Bold;
+}
+.m-total-p-section {
+    margin-top: 40px;
+}
+.m-total-p-section:before {
+    height: 1px;
+    position: absolute;
+    content: '';
+    background: #ccc;
+    width: 92%;
+    left: 15px;
+    margin-top: -8px;
+}
+.modal.fade:not(.in).right .modal-dialog {
+    -webkit-transform: translate3d(-67%, 0, 0);
+    transform: translate3d(-67%, 0, 0);
+}
+.modal .modal-dialog {
+    position:absolute;
+    top:0;
+    margin:0;
+    left: 58%;
+}
+.modal .right{
+    max-width:250px;
+}
+.modal-content, .modal.right .modal-content {
+    min-height:100vh;
+    border:0;
+    border-radius: 0px;
+}
+.modal-content{
+    width: 350px;
+}
+.close-btn-modal{
+    margin-left: 5px !important;
+    position: relative;
+}
+.m-modal-title{
+    position: absolute;
+    left: 22%;
+    margin-top: -4px;
+}

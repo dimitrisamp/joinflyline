@@ -1,0 +1,10 @@
+<script type="text/x-template" id="vue-search-results-mobile-template">
+    <div class="container">
+        <search-info-mobile :form="form"
+                            :city-to-input="cityToInput"
+                            :city-from-input="cityFromInput"
+                            :sort-results-by="sortResultsBy"
+                            v-on:back-pressed="backPressed" />
+        <search-result-mobile v-for="data in searchResults" :data="data"/>
+    </div>
+</script>

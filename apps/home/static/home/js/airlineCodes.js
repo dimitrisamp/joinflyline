@@ -1,11 +1,5 @@
-from django import template
-from django.contrib.staticfiles.templatetags.staticfiles import static
-
-register = template.Library()
-
-
-AIRLINE_ICONS = {
-      "DL": "Delta Airlines",
+export const airlineCodes = {
+  "DL": "Delta Airlines",
   "AS": "Alaska Airlines",
   "NK": "Spirit Airlines",
   "B6": "JetBlue Airways",
@@ -245,11 +239,4 @@ AIRLINE_ICONS = {
   "VS": "Virgin Atlantic Airways",
   "XP": "Xtra Airways",
   "IY": "Yemenia"
-}
-
-
-@register.filter(name="aircon")
-def aircon(value):
-    if isinstance(value, dict):
-        value = value["code"]
-    return static(f"images/airlines/{value}.png")
+};

@@ -15,6 +15,26 @@ body{
 }
 
 /*
+Hide if mobile
+*/
+@media (max-width: 768px) {
+    .hide-view {
+        display: none !important;
+    }
+}
+.hide-view {
+    height: 100vh;
+}
+/*
+Show if mobile
+ */
+@media (min-width: 768px) {
+    .fly-linesetion {
+        display: none;
+    }
+}
+
+/*
 Container emulation
  */
 

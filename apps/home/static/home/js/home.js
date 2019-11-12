@@ -1,5 +1,6 @@
 import ClickOutside from './v-click-outside.js';
-import {AIRLINE_ICONS} from './utils.js';
+import {seatTypes} from './utils.js';
+import {airlineCodes} from "./airlineCodes.js";
 
 
 function debounce(fn, delay, ...rest) {
@@ -56,12 +57,8 @@ const app = new Vue({
         seatTypeSelectProgress: false,
         maxStopsSelectProgress: false,
         maxStopsText: '',
-        seatTypes: {
-            'M': 'Economy',
-            'W': 'Premium Economy',
-            'C': 'Business',
-            'F': 'First Class'
-        },
+        backToForm: false,
+        seatTypes,
         maxStopsFilterOptions: {
             0: "No Stops",
             1: "One Stop",
@@ -98,7 +95,7 @@ const app = new Vue({
         }
     },
     watch: {
-        searchResults: function(val, oldVal) {
+        searchResults: function (val, oldVal) {
             setDatePick();
         }
     },
@@ -414,6 +411,9 @@ const app = new Vue({
                 return_departure,
             }
         },
+        switchToForm() {
+            this.backToForm = true;
+        },
         getQuickLinksData(flights) {
             const data = flights.map((f) => ({
                 price: f.conversion.USD,
@@ -422,17 +422,17 @@ const app = new Vue({
                 date: new Date(f.local_departure)
             }));
             return {
-                price: data.reduce((prev, curr) => prev.price < curr.price?prev:curr),
-                duration: data.reduce((prev, curr) => prev.duration < curr.duration?prev:curr),
-                quality: data.reduce((prev, curr) => prev.quality < curr.quality?prev:curr),
-                date: data.reduce((prev, curr) => prev.date < curr.date?prev:curr),
+                price: data.reduce((prev, curr) => prev.price < curr.price ? prev : curr),
+                duration: data.reduce((prev, curr) => prev.duration < curr.duration ? prev : curr),
+                quality: data.reduce((prev, curr) => prev.quality < curr.quality ? prev : curr),
+                date: data.reduce((prev, curr) => prev.date < curr.date ? prev : curr),
             }
         },
         displaySearchResults(data) {
             if (this.searchResults.length === 0) {
                 this.form.airlines = data.airlines.map(a => ({
                     code: a,
-                    name: AIRLINE_ICONS[a] || a,
+                    name: airlineCodes[a] || a,
                     checked: false
                 }));
             }
@@ -449,7 +449,10 @@ const app = new Vue({
                     let parent = {...data};
                     delete parent.data;
                     data.data = data.data.map(this.processFlight);
-                    data.data = data.data.map((o) => {o.parent = parent; return o});
+                    data.data = data.data.map((o) => {
+                        o.parent = parent;
+                        return o
+                    });
                     const airlines = this.getAirlines(data.data);
                     this.quickFiltersData = this.getQuickLinksData(data.data);
                     this.displaySearchResults({data, airlines});
@@ -578,7 +581,7 @@ const app = new Vue({
             return `${cityFrom} -> ${cityTo}`;
         },
         airlineNames() {
-            return this.form.airlines.map((e)=>e.name).join(', ');
+            return this.form.airlines.map((e) => e.name).join(', ');
         }
     }
 });
@@ -614,17 +617,14 @@ $(function () {
             $("#fp-nav").removeClass("dots-display");
         }
     });
- $('.fly-linesetion').hide();
-    if($(window).width() < 767) {  
-         fullpage_api.destroy('all');
-      $('.hide-view').hide();
-      $('.fly-linesetion').show();    
-      $("#home-Learnmore").click(function(){
+    if ($(window).width() < 767) {
+        fullpage_api.destroy('all');
+        $("#home-Learnmore").click(function () {
 
-        $('.mobile-before').addClass('hideheadersec');
-        $('.hide-view').show();   
-      });    
-    }   
+            $('.mobile-before').addClass('hideheadersec');
+            $('.hide-view').show();
+        });
+    }
 
 
 });

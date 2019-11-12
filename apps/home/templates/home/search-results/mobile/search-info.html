@@ -1,0 +1,22 @@
+{% load static %}
+<script type="text/x-template" id="vue-search-info-mobile-template">
+    <div>
+        <div class="m-view-filter">
+            <ul>
+                <li><img src="{% static "home/img/Flyline_logo_1030-02.png" %}"></li>
+                <li><h3>{( cityFrom )} -> {( cityTo )}{( roundTrip?' and Back':'' )} <a
+                        href="#" @click="backPressed"><img
+                        src="{% static "home/img/back-pencil.png" %}"></a>
+                    <span>{( dateFrom )} - {( dateTo )}</span></h3></li>
+                <li><b>Filter</b></li>
+            </ul>
+        </div>
+        <div class="s-result-tabs">
+            <ul>
+                <li v-for="(value, name) in sortOptions">
+                    <a href="#" @click="sortResultsBy(name)">{( value )}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</script>
