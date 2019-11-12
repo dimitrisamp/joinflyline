@@ -116,6 +116,9 @@ Container emulation
     color: #00aeef !important;
     font-family: Dona-Bold;
 }
+.left-form-pane .search-dropdown input::placeholder{
+    color: #00aeef !important;
+}
 .right-body-pane {
     flex: 2;
     padding-left: 25px;
@@ -428,7 +431,7 @@ header.sticky{
     letter-spacing: 1px;
 }
 .h-contentarea {
-    margin:150px 30px;
+    margin:10px 10px;
 }
 .h-contentarea .h-blackbg{
     background: #00b0f5;
@@ -506,12 +509,17 @@ header.sticky{
 .horizontal-form .s-result-dropdown .btn{
     background: #fff;
 }
+.horizontal-form .s-result-dropdown .btn:hover{
+    border-color: #00b0f5;
+    cursor: pointer;
+}
 .horizontal-form .s-result-dropdown .btn img{
     height: 23px;
     width: 23px;
     margin-right: 9px;
     position: relative;
     top: 0px;
+    display: none;
 }
 .horizontal-form .s-result-dropdown .btn:active{
     background: #fff !important;
@@ -1300,13 +1308,13 @@ header.sticky{
 *****************************/
 
 .search-results-rightcontent h3{
-    font-size: 48px;
+    font-size: 40px;
     font-family: Dona-Black;
     color: #000;
     margin-bottom: 30px;
 }
 .search-results-rightcontent p{
-    font-size: 30px !important;
+    font-size: 19px !important;
     font-weight: 600;
     color: #7d7d7d;
     margin-top: 14px !important;
@@ -1320,20 +1328,75 @@ header.sticky{
 .design-revesion h3{
     margin-bottom: 10px;
 }
+.f-clr{
+    color: #00b0f5;
+}
 .design-revesion p{
     font-size: 23px;
     font-weight: 600;
     color: #000;    
 }
 .flight-deals-slider{
-    margin-top: 60px;
+    margin-top: 50px;
 }
 .flight-deals-slider h3 {
-    font-size: 29px;
+    font-size: 26px;
 }
 .flight-deals-slider p{
-    font-size: 21px;
+    font-size: 19px !important;
+    margin: 0 !important;
 }
+.flight-info-item img{
+    height: 150px;
+    width:100%;
+}
+.flight-info-item .f-item-list{
+    list-style: none;
+    margin: 0;
+    padding: 8px 7px;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-top: transparent;
+    padding-bottom: 0;
+}
+.flight-info-item .f-item-list li{
+    display: inline-block;
+}
+.flight-info-item .f-item-list li h3{
+    font-size: 14px;
+    font-family: Dona-Black;
+    line-height: 22px;
+}
+.flight-info-item .f-item-list li h3 span{
+    display: block;
+    font-size: 12px;
+    font-family:Dona-Regular;
+}
+.flight-info-item .f-item-list li .btn{
+    padding: 3px 21px;
+    font-size: 12px;
+    font-family: Dona-Bold;
+    background: #00aeef;
+    color: #fff;
+    border-radius: 0px;
+    line-height: 24px;
+    height: 28px;
+    margin-top: -11px;
+    margin-left: 11px;
+}
+.f-slider-itemrow{
+    margin-top: 20px;
+}
+.f-slider-itemrow .right-space{
+    padding-right: 0px;
+}
+.second-f-slider{
+    margin-top: 15px;
+}
+
+
+
+
 
 
 
@@ -1364,6 +1427,7 @@ header.sticky{
     color: #fff;
     line-height: 44px;
     font-size: 21px;
+    display: none;
 }
 img.round-trip-icon {
     width: 26px !important;
@@ -2130,7 +2194,13 @@ footer{
     padding-top: 80px;
 }
 .h-contentarea {
-    margin: 200px 20px;
+    margin: 20px 10px;
+}
+.f-slider-itemrow{
+    margin-top: 30px;
+}
+.second-f-slider{
+    margin-top: 20px;
 }
 
 }

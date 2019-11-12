@@ -118,7 +118,9 @@ body{
     position: relative;
     cursor: pointer;
 }
-
+.search-quick-filter:hover{
+    border:1px solid #00b0f5 !important;
+}
 .search-quick-filter.applied .border-line {
     position: absolute;
     bottom: 0;
