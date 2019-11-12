@@ -606,9 +606,10 @@ $(function () {
         scrollBar: true,
         navigation: true,
         normalScrollElements: '.normal-scroll',
+        responsiveWidth: 768,
     });
 
-    var sticky = 400;
+    const sticky = 400;
     $(window).scroll(function () {
         if ($(window).scrollTop() > sticky) {
             $("header").addClass("sticky");
@@ -619,7 +620,6 @@ $(function () {
         }
     });
     if ($(window).width() < 767) {
-        fullpage_api.destroy('all');
         $("#home-Learnmore").click(function () {
 
             $('.mobile-before').addClass('hideheadersec');
