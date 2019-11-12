@@ -28,7 +28,7 @@ k8s-deploy:
     - /^rc-.*$/
   script:
   - kubectl config set-cluster ${KUBE_CLUSTER} --server=$KUBE_URL --insecure-skip-tls-verify=true
-  - kubectl config set-credentials admin --token=$KUBE_TOKEN
+  - kubectl config set-credentials admin  --token=$KUBE_TOKEN
   - kubectl config set-context ${KUBE_CONTEXT} --cluster=${KUBE_CLUSTER} --user=admin
   - kubectl config use-context ${KUBE_CONTEXT}
   - kubectl delete secret gitlab-registry --ignore-not-found -n ${KUBE_NAMESPACE} ${KUBE_NAMESPACE}
