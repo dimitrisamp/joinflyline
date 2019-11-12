@@ -18,7 +18,7 @@ spec:
             secretName: gce-service-account-key
       containers:
         - name: wanderift
-          image: registry.gitlab.com/zburau/wanderift-django
+          image: registry.gitlab.com/zburau/joinflyline
           imagePullPolicy: Always
           ports:
             - containerPort: 8000
@@ -47,7 +47,7 @@ spec:
               mountPath: /etc/secrets
         - name: worker
           command: ['inv', 'worker']
-          image: registry.gitlab.com/zburau/wanderift-django
+          image: registry.gitlab.com/zburau/joinflyline
           imagePullPolicy: Always
           ports:
             - containerPort: 8000
@@ -76,7 +76,7 @@ spec:
               mountPath: /etc/secrets
       initContainers:
         - name: migrate
-          image: registry.gitlab.com/zburau/wanderift-django
+          image: registry.gitlab.com/zburau/joinflyline
           command: ['python', 'manage.py', 'migrate']
           envFrom:
             - configMapRef:
@@ -101,7 +101,7 @@ spec:
               readOnly: true
               mountPath: /etc/secrets
         - name: collectstatic
-          image: registry.gitlab.com/zburau/wanderift-django
+          image: registry.gitlab.com/zburau/joinflyline
           command: ['python', 'manage.py', 'collectstatic', '--noinput',  '-v', '3']
           envFrom:
             - configMapRef:
