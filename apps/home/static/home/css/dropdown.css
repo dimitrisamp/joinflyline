@@ -118,6 +118,14 @@ button.search_btn{
     padding-bottom: 10px;
 }
 
+@media (max-width: 768px) {
+    .search-item.shadowsrch {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+    }
+}
+
 @media(min-width: 320px) and (max-width: 480px){
 .search-dropdown-outer{
     margin-bottom: 10px;
