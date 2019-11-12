@@ -659,6 +659,24 @@ input[type="radio"] {
     margin-right: 0px;
 }
 
+/*************** Booking Page ******************/
+.p-tripsummry {
+    font-family: Dona-Black;
+    font-size: 22px;
+}
+.p-tripsummry span {
+    font-size: 9px;
+}
+.box-title{
+    font-size: 17px;  
+}
+.detail-box {
+    top: 4px;
+    border-radius: 0px;
+    margin-bottom: 37px;
+}
+
+
 
 }
 @media(min-width:768px) and (max-width: 1024px){
@@ -680,6 +698,40 @@ input[type="radio"] {
 .colum-02 .col6:nth-child(1){
     margin-right: 0px;
 }
+
+/*************** Booking Page ******************/
+.p-tripsummry span {
+    font-size: 9px;
+}
+.box-title{
+    font-size: 17px;  
+}
+.price_detail h3{
+    font-size: 18px;   
+}
+.list-price-detail li{
+    font-size: 10px;   
+}
+.totalusd{
+    font-size: 13px;  
+}
+.list-price-detail li b{
+    font-size: 15px;   
+}
+.checkout-section h3{
+    font-size: 21px;    
+}
+.checkout-section{
+    padding: 14px 11px;    
+}
+b.passenger-kind {
+    font-size: 17px;
+}
+.alert-information {
+    font-size: 13px;
+    line-height: 19px;
+}
+
 
 
 }
