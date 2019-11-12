@@ -456,6 +456,7 @@ const app = new Vue({
                     const airlines = this.getAirlines(data.data);
                     this.quickFiltersData = this.getQuickLinksData(data.data);
                     this.displaySearchResults({data, airlines});
+                    this.backToForm = false;
                 }
             ).finally(
                 () => {

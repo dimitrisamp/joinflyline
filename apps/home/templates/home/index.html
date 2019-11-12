@@ -229,7 +229,7 @@
                                             <div class="divider-30"></div>
                                         </div>
                                     </div>
-                                    <search-results v-else
+                                    <search-results v-else-if="$mq !== 'sm'"
                                                     :search-results="searchResults"
                                                     :search-progress="searchProgress"
                                                     :load-more="loadMore"
