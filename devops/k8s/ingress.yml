@@ -9,18 +9,10 @@ metadata:
 spec:
   tls:
     - hosts:
-        - joinflyline.com
-        - www.joinflyline.com
+        - staging.joinflyline.com
       secretName: wanderift-secret
   rules:
-    - host: joinflyline.com
-      http:
-        paths:
-          - path: /
-            backend:
-              serviceName: wanderift-service
-              servicePort: 80
-    - host: www.joinflyline.com
+    - host: staging.joinflyline.com
       http:
         paths:
           - path: /
