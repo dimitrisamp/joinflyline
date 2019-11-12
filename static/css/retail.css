@@ -634,6 +634,9 @@ input[type="radio"] {
 
 
 @media(min-width:320px) and (max-width:480px){
+.checkout-section{
+    margin-bottom: 30px;
+}
 .form-group-sm {
     width: 100% !important;
 }

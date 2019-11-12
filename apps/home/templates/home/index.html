@@ -111,20 +111,92 @@
                                      :class="{'container-pad-right': searchResults.length !== 0 || searchProgress}">
                                     <div v-if="searchResults.length === 0 && !searchProgress"
                                          class="h-contentarea">
-                                        <div class="search-results-rightcontent">
-                                            <h3>Welcome to FlyLine {( user.first_name
-                                                )}</h3>
-                                            <p>Search and Book Flights out of <i>{(
-                                                user.market
-                                                )}</i></p>
-                                            <div class="result-btn">
-                                                <a href="{% url "accounts" %}"
-                                                   class="btn btn-default">Add
-                                                    Traveler Information</a>
-                                                <a href="{% url "accounts" %}"
-                                                   class="btn btn-default">Add
-                                                    Deal Alert Destinations</a>
+                                         <div class="search-results-rightcontent design-revesion">
+                                        <!-- <h3>Welcome to FlyLine {( user.first_name
+                                                )}</h3> -->
+                                            <h3>Lets find your next <span class="f-clr">adventure</span></h3>
+                                            <p>Don't know where to go? Take a look at these suggestions below</p>
+
+                                            <div class="flight-deals-slider">
+                                              <h3>Trending Flights From Dallas</h3>
+                                              <p>Best Deals and top Flights out of your home airports</p>
                                             </div>
+
+                                            <div class="row f-slider-itemrow">
+                                               <div class="col-md-4 col-12 right-space">
+                                                   <div class="flight-info-item">
+                                                        <img src="{% static "home/img/architecture-buildings-city-2190283.jpg" %}"/>
+                                                        <ul class="f-item-list">
+                                                          <li><h3>Dallas Paris, RT <span>9/12/19 -9/16/19</span></h3></li>
+                                                          <li><a href="#" class="btn btn-default">$485</a></li>
+                                                        </ul>
+                                                   </div>
+                                               </div>
+                                                <div class="col-md-4 col-12 right-space">
+                                                   <div class="flight-info-item">
+                                                        <img src="{% static "home/img/architecture-buildings-city-2190283.jpg" %}"/>
+                                                        <ul class="f-item-list">
+                                                          <li><h3>Dallas Paris, RT <span>9/12/19 -9/16/19</span></h3></li>
+                                                          <li><a href="#" class="btn btn-default">$485</a></li>
+                                                        </ul>
+                                                   </div>
+                                               </div>
+                                                <div class="col-md-4 col-12 right-space">
+                                                   <div class="flight-info-item">
+                                                        <img src="{% static "home/img/architecture-buildings-city-2190283.jpg" %}"/>
+                                                        <ul class="f-item-list">
+                                                          <li><h3>Dallas Paris, RT <span>9/12/19 -9/16/19</span></h3></li>
+                                                          <li><a href="#" class="btn btn-default">$485</a></li>
+                                                        </ul>
+                                                   </div>
+                                               </div>
+                                            </div>
+
+
+                                            <div class="flight-deals-slider second-f-slider">
+                                              <h3>Deep Discount Flights From Dallas</h3>
+                                              <p>Best Deals and top Flights out of your home airports</p>
+                                            </div>
+
+                                            <div class="row f-slider-itemrow">
+                                               <div class="col-md-4 col-12 right-space">
+                                                   <div class="flight-info-item">
+                                                        <img src="{% static "home/img/architecture-buildings-city-2190283.jpg" %}"/>
+                                                        <ul class="f-item-list">
+                                                          <li><h3>Dallas Paris, RT <span>9/12/19 -9/16/19</span></h3></li>
+                                                          <li><a href="#" class="btn btn-default">$485</a></li>
+                                                        </ul>
+                                                   </div>
+                                               </div>
+                                                <div class="col-md-4 col-12 right-space">
+                                                   <div class="flight-info-item">
+                                                        <img src="{% static "home/img/architecture-buildings-city-2190283.jpg" %}"/>
+                                                        <ul class="f-item-list">
+                                                          <li><h3>Dallas Paris, RT <span>9/12/19 -9/16/19</span></h3></li>
+                                                          <li><a href="#" class="btn btn-default">$485</a></li>
+                                                        </ul>
+                                                   </div>
+                                               </div>
+                                                <div class="col-md-4 col-12 right-space">
+                                                   <div class="flight-info-item">
+                                                        <img src="{% static "home/img/architecture-buildings-city-2190283.jpg" %}"/>
+                                                        <ul class="f-item-list">
+                                                          <li><h3>Dallas Paris, RT <span>9/12/19 -9/16/19</span></h3></li>
+                                                          <li><a href="#" class="btn btn-default">$485</a></li>
+                                                        </ul>
+                                                   </div>
+                                               </div>
+                                            </div>
+
+                                        <!-- <p>Search and Book Flights out of <i>{(
+                                                user.market
+                                                )}</i></p> -->
+                                           <!--  <div class="result-btn">
+                                                <a href="{% url "accounts" %}" class="btn btn-default">Add
+                                                    Traveler Information</a>
+                                                <a href="{% url "accounts" %}" class="btn btn-default">Add
+                                                    Deal Alert Destinations</a>
+                                            </div> -->
                                         </div>
                                     </div>
                                     <div v-else-if="searchProgress">
@@ -157,8 +229,7 @@
                                             <div class="divider-30"></div>
                                         </div>
                                     </div>
-
-                                    <search-results v-else-if="$mq !== 'sm'"
+                                    <search-results v-else
                                                     :search-results="searchResults"
                                                     :search-progress="searchProgress"
                                                     :load-more="loadMore"
@@ -272,8 +343,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="clickdown"
-                             v-if="user.anonymous && searchResults.length === 0">
+                        <div class="clickdown" v-if="user.anonymous && searchResults.length === 0">
                             <a href="#Section02"
                                class="fliLine-Banner">
                                 <div class="h-flyline-bar">
@@ -286,19 +356,14 @@
 
                 <div class="fly-linesetion mobile-before">
                     <h3>What is FlyLine</h3>
-                    <p>We flipped the script on air travel booking by eliminating
-                        booking fees with the creation of a more travel- friendly flight
-                        club model. in other words, website the Costco for flying so you
-                        can save and do more.</p>
-                    <a href="#" class="btn btn-default" id="home-Learnmore"> Learn
-                        More </a>
-                    <div href="" class="email-mobile-view">joinflyline.com | Mobile
-                    </div>
+                    <p>We flipped the script on air travel booking by eliminating booking fees with the creation of a more travel- friendly flight club model. in other words, website the Costco for flying so you can save and do more.</p>
+                    <a href="#" class="btn btn-default" id="home-Learnmore"> Learn More </a>
+                 <div href="" class="email-mobile-view">joinflyline.com | Mobile</div>   
                 </div>
 
 
-                <div v-if="user.anonymous && searchResults.length === 0"
-                     class="section fp-auto-height-responsive hide-view" id="Section02">
+
+                <div v-if="user.anonymous && searchResults.length === 0" class="section fp-auto-height-responsive hide-view" id="Section02">
                     <div class="container">
                         <div class="row">
                             <div class="col-md-12 col-12">
@@ -324,9 +389,7 @@
                     </div>
                 </div><!--  second section -->
 
-                <div v-if="user.anonymous && searchResults.length === 0"
-                     class="section fp-auto-height-responsive fp-section hide-view"
-                     id="sec3-Bg">
+                <div v-if="user.anonymous && searchResults.length === 0" class="section fp-auto-height-responsive fp-section hide-view" id="sec3-Bg">
                     <div class="container">
                         <div class="row">
                             <div class="col-md-6 col-12">
@@ -391,9 +454,7 @@
                     </div>
                 </div><!--  Section Three  -->
 
-                <div v-if="user.anonymous && searchResults.length === 0"
-                     class="section fp-auto-height-responsive fp-section hide-view"
-                     id="sec4-bg">
+                <div v-if="user.anonymous && searchResults.length === 0" class="section fp-auto-height-responsive fp-section hide-view" id="sec4-bg">
                     <div class="container">
                         <div class="row">
                             <div class="col-md-6 col-12 content-img">
@@ -404,19 +465,13 @@
                                 <div class="section4-content">
                                     <h3>No More
                                         Redirects</h3>
-                                    <p>Our members don't get the runaround. Stop wasting
-                                        time with deal sites and search engines that
-                                        redirect you to "fee-heavy" online travel
-                                        agencies and start booking directly with FlyLine
-                                </div>
+                                    <p>Our members don't get the runaround. Stop wasting time with deal sites and search engines that redirect you to "fee-heavy" online travel agencies and start booking directly with FlyLine</div>
                             </div>
                         </div>
                     </div>
                 </div><!--  Section four  -->
 
-                <div v-if="user.anonymous && searchResults.length === 0"
-                     class="section fp-auto-height-responsive fp-section hide-view"
-                     id="section5-Bg">
+                <div v-if="user.anonymous && searchResults.length === 0" class="section fp-auto-height-responsive fp-section hide-view" id="section5-Bg">
                     <div class="section5-Bg">
                         <div class="text-center section5-content">
                             <h3>Your Easiest Travel
@@ -467,14 +522,12 @@
                     </div>
                 </div><!--  Section Five  -->
 
-                <div id="footer-section"
-                     class="section fp-section fp-auto-height-responsive">
+                <div  id="footer-section" class="section fp-section fp-auto-height-responsive">
                     {% include "_includes/footer.html" %}
                 </div>
 
             </div>
         </div>
-
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
         <script src="{% static "js/lightpick.js" %}"></script>
@@ -495,5 +548,6 @@
 
         {% include "_includes/google_analytics.html" %}
         {% include "_includes/sentry.html" %}
+
     </body>
 </html>

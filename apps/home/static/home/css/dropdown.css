@@ -21,6 +21,12 @@ body{
     left: 0px;
     z-index: 50;
 }
+.search-item.shadowsrch .search-input{
+    border-color: #06AEEF !important;
+}
+.search-item.shadowsrch span{
+    border-color: #06AEEF !important;   
+}
 .shadowsrch .search-dropdown {
     padding-left: 15px;
     padding-top: 15px;
