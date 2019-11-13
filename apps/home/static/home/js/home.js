@@ -617,14 +617,32 @@ $(function () {
             $("#fp-nav").removeClass("dots-display");
         }
     });
-    if ($(window).width() < 767) {
-        fullpage_api.destroy('all');
-        $("#home-Learnmore").click(function () {
+});
 
-            $('.mobile-before').addClass('hideheadersec');
-            $('.hide-view').show();
+$(document).ready(function(){
+    
+    $('#homepage .mobile-v-header').hide();
+    $('.pricing-hide-view').hide();
+    $('#homepage .home-info-footer').hide();
+    if ($(window).width() <= 767) {
+        fullpage_api.destroy('all');
+        $('#homepage .navbar-light').hide();
+        $('#homepage .mobile-v-header').show();
+        $('.hide-view').hide();
+        $("#home-learnmore-mobilev").click(function () {
+            $('#homepage .navbar-light').show();
+            $('#homepage .mobile-v-header').hide();
+            $('#homepage .mobile-before').addClass('hideheadersec');
+            $('#homepage .hide-view').show();
+            $('.hide-web-pricing').hide();
+            $('.pricing-hide-view').show();
+            $('#homepage .home-info-footer').show();
+        });
+
+        $("#home-Learnmore").click(function () {
+            $('#homepage .mobile-before').addClass('hideheadersec');
+            $('#homepage .hide-view').show();
         });
     }
-
 
 });
