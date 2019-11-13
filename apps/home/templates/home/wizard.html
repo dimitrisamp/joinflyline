@@ -23,12 +23,14 @@
         <div id="main">
             <wizard @success="goHome"/>
         </div>
+        {% include "vue/dynamic-select.html" %}
         {% include "home/vue-wizard-template.html" %}
         <script type="text/javascript">
             window.csrfmiddlewaretoken = '{{ csrf_token }}';
             window.getStartedUrl = '{% url "wizard" %}';
         </script>
         <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script type="module" src="{% static "js/vue/dynamicSelect.js" %}"></script>
         <script type="module" src="{% static "home/js/wizard.js" %}"></script>
         {% include "_includes/google_analytics.html" %}
         {% include "_includes/sentry.html" %}

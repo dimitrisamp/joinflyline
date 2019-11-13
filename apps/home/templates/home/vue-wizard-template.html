@@ -1,10 +1,8 @@
 {% load static %}
 <script type="text/x-template" id="vue-wizard-template">
     <div>
-        <div v-if="step !== 3" class="back-to-home">
-            <a v-if="step === 1" href="{% url "index" %}">Back to Home</a>
-            <a v-if="step === 2" href="#" @click.prevent="prevStep">Back to Step 1</a>
-        </div>
+        <a v-if="step === 1" href="{% url "index" %}">Back to Home</a>
+        <a v-if="step === 2" href="#" @click.prevent="prevStep">Back to Step 1</a>
         <section v-if="step === 1" class="step-2">
             <div class="container">
                 <div class="row justify-content-center">
@@ -129,7 +127,7 @@
                                            placeholder="CCV Code" v-model="form.cvc">
                                 </div>
                             </div>
-
+                            <dynamic-select v-model="form.plan"/>
                             <p class="label__plan-description">Basic Plan $6.99mo</p>
 
                             <div class="input-group step-f-inputs">
@@ -142,9 +140,6 @@
                     </div>
                 </div>
             </div>
-        </section>
-        <section v-if="step === 3" class="please-wait">
-            <h3>Please wait...</h3>
         </section>
     </div>
 </script>

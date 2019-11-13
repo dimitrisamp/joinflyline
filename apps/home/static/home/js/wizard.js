@@ -15,7 +15,8 @@ Vue.component("wizard", {
         zip: "",
         card_number: "",
         expiry: "",
-        cvc: ""
+        cvc: "",
+        plan: null
       }
     };
   },
