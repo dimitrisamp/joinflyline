@@ -115,7 +115,11 @@ button.search_btn{
 }
 .dropdown-list p{
     padding: 0px 16px;
-    padding-bottom: 10px;
+    padding-bottom: 30px;
+}
+
+.dropdown-list .airport {
+    padding-left: 32px;
 }
 
 @media (max-width: 768px) {

@@ -112,13 +112,12 @@
                     <ul class="list-Sdown"
                         v-if="cityFromInput.searchResults.length > 0">
                         <li v-for="(place, index) of cityFromInput.searchResults"
-                            v-on:click="cityFromInputChoose(index)">
+                            @click="cityFromInputChoose(index)"
+                            :class="place.type">
                             <div class="dropdown-icon">
                                 <i class="fa fa-plane"></i>
                             </div>
-                            <div class="">{(
-                                formatPlace(place) )}
-                            </div>
+                            <div>{( formatPlace(place) )}</div>
                         </li>
                     </ul>
                     <p v-else-if="!cityFromInput.requestProgress">
@@ -151,13 +150,12 @@
                     <ul class="list-Sdown"
                         v-if="cityToInput.searchResults.length > 0">
                         <li v-for="(place, index) of cityToInput.searchResults"
-                            v-on:click="cityToInputChoose(index)">
+                            @click="cityToInputChoose(index)"
+                            :class="place.type">
                             <div class="dropdown-icon">
                                 <i class="fa fa-plane"></i>
                             </div>
-                            <div class="">{(
-                                formatPlace(place) )}
-                            </div>
+                            <div>{( formatPlace(place) )}</div>
                         </li>
                     </ul>
                     <p v-else-if="!cityToInput.requestProgress">
