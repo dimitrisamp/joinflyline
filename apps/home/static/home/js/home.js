@@ -601,6 +601,9 @@ const app = new Vue({
         },
         airlineNames() {
             return this.form.airlines.map((e) => e.name).join(', ');
+        },
+        isMobile() {
+            return this.$mq === 'sm';
         }
     }
 });
