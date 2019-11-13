@@ -1,19 +1,12 @@
 from django.contrib import admin
 from apps.subscriptions.models import Subscriptions
 from django.db.models import Sum, Count
-from apps.payments.models import Payments
 
 from . import models
 
 
-class InlineSubscription(admin.TabularInline):
-    model = Payments
-    extra = 1
-    max_num = 3
-
 
 class SubscriptionsAdmin(admin.ModelAdmin):
-    inlines = [InlineSubscription]
     list_display = ("user", "plan")
     list_display_links = ("plan", "user")
     search_fields = ["plan"]

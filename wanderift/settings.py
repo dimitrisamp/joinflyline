@@ -9,6 +9,8 @@ https://docs.djangoproject.com/en/2.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.2/ref/settings/
 """
+import json
+
 import dotenv
 
 dotenv.load_dotenv()
@@ -52,6 +54,7 @@ INSTALLED_APPS = [
     "spurl",
     "django_extensions",
     "maintenancemode",
+    "rest_framework",
     # My apps
     "apps.construction",
     "apps.subscriptions.apps.SubscriptionsConfig",
@@ -198,7 +201,11 @@ RECEIVE_EMAIL = "bookings@wanderift.com"
 RECEIVE_PHONE = "+18105131533"
 KIWI_API_KEY = "4TMnq4G90OPMYDAGVHzlP9LQo2hvzzdc"
 STRIPE_API_KEY = os.getenv('STRIPE_API_KEY')
-STRIPE_BASIC_PLAN_ID = os.getenv('STRIPE_BASIC_PLAN_ID')
+PLANS_CONFIG_FILE = os.getenv('PLANS_CONFIG_FILE', os.path.join(os.path.dirname(__file__), 'plans.json'))
+try:
+    SUBSCRIPTION_PLANS = json.load(open(PLANS_CONFIG_FILE))
+except:
+    SUBSCRIPTION_PLANS = {}
 SENTRY_DSN = "https://a875b98b313142d8afd40797b84f235e@sentry.io/1773547"
 
 if STAGE == "production":
