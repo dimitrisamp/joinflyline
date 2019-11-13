@@ -56,7 +56,6 @@ INSTALLED_APPS = [
     "maintenancemode",
     "rest_framework",
     # My apps
-    "apps.construction",
     "apps.subscriptions.apps.SubscriptionsConfig",
     "apps.payments",
     "apps.home",
@@ -65,7 +64,6 @@ INSTALLED_APPS = [
     "apps.account",
     "apps.booking",
     "apps.oauth",
-    "apps.info",
     "apps.emails",
     "apps.common",
     "anymail",

@@ -63,7 +63,6 @@ urlpatterns = [
     # Auth urls
     path("auth/", include("apps.oauth.urls")),
     # Information about Wanderift
-    path("info/", include("apps.info.urls")),
     # booking
     path("promo/", PromoLandingView.as_view(), name="promo-landing"),
     path("retail/", RetailBookingView.as_view(), name="retail"),
