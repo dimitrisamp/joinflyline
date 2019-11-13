@@ -15,8 +15,6 @@ Including another URLconf
 """
 
 from django.contrib import admin
-from django.contrib.staticfiles.urls import static
-from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.http import HttpResponse
 from django.urls import path, include
 from django.views import View
@@ -31,7 +29,6 @@ from apps.emails.views import booking_success
 from apps.home.views import index_view, home_view, SignInView, SignUpView, \
     PromoLandingView
 from apps.account.views import WizardView
-from apps.results.views import CityAutocomplete, ResultsView
 from django.conf import settings
 
 
@@ -54,15 +51,12 @@ urlpatterns = [
     # Home page links
     path("", index_view, name="index"),
     path("home/", home_view, name="home"),
-    # Results page urls
-    path("results", ResultsView.as_view(), name="results"),
     # Accounts page urls
     path("account/", include("apps.account.urls")),
     # Corporate urls
     path("corporates/", include("apps.corporate.urls")),
     # Auth urls
     path("auth/", include("apps.oauth.urls")),
-    # Information about Wanderift
     # booking
     path("promo/", PromoLandingView.as_view(), name="promo-landing"),
     path("retail/", RetailBookingView.as_view(), name="retail"),
@@ -77,7 +71,6 @@ urlpatterns = [
     path("sign-in/", SignInView.as_view(), name="sign-in"),
     path("sign-up/", SignUpView.as_view(), name="sign-up"),
     path("get-started/", WizardView.as_view(), name="wizard"),
-    path("city/query", CityAutocomplete.as_view(), name="city-query"),
     path("sitemap.xml", SiteMapView.as_view(), name="sitemap"),
     path("robots.txt", RobotsTxtView.as_view(), name="robots"),
     path("maintenance/", TemplateView.as_view(template_name="503.html"), name="maintenance")
