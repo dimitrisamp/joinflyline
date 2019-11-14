@@ -192,8 +192,11 @@ LOGIN_URL = "/sign-in"
 RECEIVE_EMAIL = "bookings@wanderift.com"
 RECEIVE_PHONE = "+18105131533"
 
-STRIPE_API_KEY = os.getenv('STRIPE_API_KEY')
-PLANS_CONFIG_FILE = os.getenv('PLANS_CONFIG_FILE', os.path.join(os.path.dirname(os.path.dirname(__file__)), 'plans.json'))
+STRIPE_API_KEY = os.getenv("STRIPE_API_KEY")
+PLANS_CONFIG_FILE = os.getenv(
+    "PLANS_CONFIG_FILE",
+    os.path.join(os.path.dirname(os.path.dirname(__file__)), "plans.json"),
+)
 try:
     SUBSCRIPTION_PLANS = json.load(open(PLANS_CONFIG_FILE))
 except:
@@ -231,9 +234,9 @@ SERVER_EMAIL = "noreply@joinflyline.com"
 
 SECRET_LINK_EXPIRATION_SECONDS = 3600
 
-CELERY_BROKER_URL = os.getenv("REDIS_URL"),
+CELERY_BROKER_URL = (os.getenv("REDIS_URL"),)
 CELERY_RESULT_BACKEND = os.getenv("REDIS_URL")
-CELERY_ACCEPT_CONTENT = ['application/json']
-CELERY_TASK_SERIALIZER = 'json'
-CELERY_RESULT_SERIALIZER = 'json'
+CELERY_ACCEPT_CONTENT = ["application/json"]
+CELERY_TASK_SERIALIZER = "json"
+CELERY_RESULT_SERIALIZER = "json"
 CELERY_TIMEZONE = TIME_ZONE
