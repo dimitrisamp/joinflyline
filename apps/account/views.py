@@ -33,7 +33,8 @@ class AccountView(FormView):
         return reverse("accounts")
 
     def get_context_data(self, **kwargs):
-        context = {"title": "Accounts"}
+        kwargs["title"] = "Account | FlyLine"
+        return super().get_context_data(**kwargs)
 
     def form_valid(self, form):
         user = self.request.user

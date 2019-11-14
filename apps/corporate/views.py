@@ -18,7 +18,7 @@ class ManageTripsView(TemplateView):
         upcoming_trips = user_bookings.filter(flights__departure_time__gt=Now()).distinct()
         past_trips = user_bookings.exclude(flights__departure_time__gt=Now()).distinct()
         context = {
-            "title": "Manage Corporates Trips",
+            "title": "Trip Activity | FlyLine",
             "upcoming_trips": [o.to_data() for o in upcoming_trips],
             "past_trips": [o.to_data() for o in past_trips],
         }
