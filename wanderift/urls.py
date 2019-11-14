@@ -24,10 +24,17 @@ from apps.booking.views import (
     CheckFlightsView,
     SaveBookingView,
     CheckPromoView,
-    RetailBookingView)
+    RetailBookingView,
+)
 from apps.emails.views import booking_success
-from apps.home.views import index_view, home_view, SignInView, SignUpView, \
-    PromoLandingView
+from apps.home.views import (
+    index_view,
+    home_view,
+    SignInView,
+    SignUpView,
+    PromoLandingView,
+    SavingsExplainedView,
+)
 from apps.account.views import WizardView
 from django.conf import settings
 
@@ -38,11 +45,11 @@ class SiteMapView(View):
             open(settings.SITEMAP_FILE).read(), content_type="application/xml"
         )
 
+
 class RobotsTxtView(View):
     def get(self, request, *args, **kwargs):
-        return HttpResponse(
-            open(settings.ROBOTS_TXT).read(), content_type="text/plain"
-        )
+        return HttpResponse(open(settings.ROBOTS_TXT).read(), content_type="text/plain")
+
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -73,5 +80,12 @@ urlpatterns = [
     path("get-started/", WizardView.as_view(), name="wizard"),
     path("sitemap.xml", SiteMapView.as_view(), name="sitemap"),
     path("robots.txt", RobotsTxtView.as_view(), name="robots"),
-    path("maintenance/", TemplateView.as_view(template_name="503.html"), name="maintenance")
+    path(
+        "maintenance/",
+        TemplateView.as_view(template_name="503.html"),
+        name="maintenance",
+    ),
+    path(
+        "savings-explained/", SavingsExplainedView.as_view(), name="savings-explained"
+    ),
 ]

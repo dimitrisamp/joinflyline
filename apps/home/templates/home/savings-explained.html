@@ -1,160 +1,91 @@
-
-<!DOCTYPE html>
-<html>
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
-<link rel="stylesheet" type="text/css" href="css/saving-explained.css">
-<title></title>
-<body>
-
-
-  <header>
-      <nav class="navbar navbar-light default-nav justify-content-between">
-     <div class="container">
-      <a class="navbar-brand b-nav-logo"><img src="img/Flyline_logo_1030-01.png"></a>
-      <div>
-        <a href="/sign-in/" class="btn my-2 login-btn my-sm-0">Log In</a> 
-        <a href="/get-started/" class="btn my-2 get-s-btn my-sm-0">Get Started</a>
-      </div>
-      </div>
-    </nav>
-   </header>
-
-
-
- <section class="savingexplained">
-  <div class="container">
-    <div class="row justify-content-center">
-     <div class="col-md-7 col-12">
-	     <h3 class="saving-title">With All the Savings, There Has <span class="saving-block"></span>to Be an Explanation</h3>
-       <p>Artical By : Austin Speer <span class="saving-block"></span> 5 Minute Read </p>
-
-  	 	 <div class="savings-horizontal"></div>
-
-       <p>We want you to be a savvy traveler, read below to learn about all <span class="saving-block"></span>the perks, and how we pass on the savings to you!</p>
-
-	 	 <h3>Private Discount Flights</h3>
-	 	 <p>Take advantage of the flights you want for less money! Our goal is to be the one-stop shop for all your flight needs. What makes these flights attractive to most of our passengers is the fact that you can go to more destinations for less money. </p>
-     <p>Now don’t get this confused with flying a private chartered jet. These Private Discount Flights are for those that subscribe with Flyline. Have you looked at the cost of a flight, and did not take it or booked the same flight on a budget airline? Flyline makes your next flight more affordable than ever with our Private Discount Flights. We have seen many great deals with flights when taking advantage of our Private Discount Flights!</p>
-
-	 	 <h3>Automatic Check-In</h3>
-	 	 <p>As frequent flyers, we get busy with our day to day events. Sometimes we are away from our phones/computers for long times. That is how you would check in prior to your flight. </p>
-     <p>With our Automatic Check In feature, you can rest assured that you don’t need to worry about missing your check-in when flying with Flyline. Just search, book, and save. Book your flight, show up to the airport, and fly! It is really that simple.</p>
-
-	 	 <h3>Virtual Interlining</h3>
-	 	 <p>Have you heard of Virtual Interlining? If so great, if not…great! We offer Virtual Interlining with Flyline, and how does that benefit you exactly you may ask? Let us explain it to you.</p>
-     <p>As a Flyline customer, you are able to connect flights between carriers. This may mean a Delta flight paired with an American Airlines flight (as one example). This benefits you as a consumer with the ability to access more flights and even optimize your savings on your airline flight you book through Flyline!</p>
-
-	 	 <h3>Flight Deal Notifications</h3>
-	 	 <p>We all love a great deal, now don’t we? With Flyline, you can do more with our Flight Deal Notifications that we offer to you, for no additional charge. Do you want to see when you can fly across the country for less? We packed this exciting new feature into the Flyline service.</p>
-     <p>Get notified on the next exciting flight deal that is available on Flyline. Sometimes you may want to travel somewhere but cannot think of where exactly. That is where Flight Deal Notifications can take the guesswork out of your next trip and provide to you some great travel destination ideas.</p>
-
-     </div>	
-    </div>
-  </div>	
-</section>
-
-
-
-
-<!-- Footer -->
-
-<footer>
-    <div class="top-footer">
-       <div class="container">
-         <div class="row">
-
-          <div class="col-md-4 col-12">
-            <div class="row">
-            
-              <div class="col-md-6 col-12">
-                 <h3>Company</h3>
-                  <ul class="content">
-                    <li><a href="{% url " about"="" %}"="">Our Story</a></li>
-                    <li><a href="{% url " plans"="" %}"="">The Team</a></li>
-                  </ul>
-              </div><!-- col/6 -->
-            
-              <div class="col-md-6 col-12">
-                 <h3>Contact</h3>
-                  <ul class="content">
-                      <li><a href="">Support</a></li>
-                      <li><a href="{% url " faq"="" %}"="">Help - FAQ's</a></li>
-                      <li><a href="{% url " news"="" %}"="">Press</a></li>
-                      <li><a href="{% url " partners"="" %}"="">Partners</a></li>
-                  </ul>
-              </div><!-- col/6 -->
-
-            </div><!--  inr row -->
-          </div>
-
-          <div class="col-md-8 col-12">
-            <div class="row">
-                <div class="col-md-4 col-12">
-                  <h3>Shortcuts</h3>
-                  <ul class="content">
-                      <li><a href="#">Basic Subscription</a></li>
-                      <li><a href="#">Savings Calculator</a></li>
-                      <li><a href="#">News and Press</a></li>
-                  </ul>
-              </div>
-
-              <div class="col-md-4 col-12">
-                <h3>Travel Tips</h3>
-                <ul class="content">
-                    <li><a href="#">Last Minute Booking</a></li>
-                    <li><a href="#">flyline Airline Rankings</a></li>
-                    <li><a href="#">Best Cities to Travel</a></li>
-                    <li><a href="#">How to Score a Deal</a></li>
-                </ul>
-              </div>
-
-              <div class="col-md-4 col-12">
-                <div class="text-center footer-app-image">
-                  <ul class="content">
-                    <li><a href=""><img src="img/app-store-icon.png"></a></li>
-                    <li><a href=""><img src="img/google_play_icon.png"></a></li>
-                  </ul>  
-                </div>   
-              </div>
-
-             </div> 
-           </div>
-         </div>
-       </div>   
-    </div>
-
-  <div class="bottom-footer">
+{% load static %}
+<script type="text/x-template" id="vue-savings-explained-template">
+<div>
+    {% include "home/navbar.html" %}
+  <section class="savingexplained">
     <div class="container">
-      <div class="row">
-        <div class="col-md-6 col-12">
-           <div class="sub-menus">
-              <ul>
-                  <li><a href="#">joinflyline.com</a></li>
-                  <li><a href="#">Terms &amp; Use</a></li>
-                  <li><a href="#">Privacy Policy</a></li>
-              </ul>
-          </div>
+      <div class="row justify-content-center">
+        <div class="col-md-7 col-12">
+          <h3 class="saving-title">
+            With All the Savings, There Has <span class="saving-block"></span>to
+            Be an Explanation
+          </h3>
+          <p>
+            Artical By : Austin Speer <span class="saving-block"></span> 5
+            Minute Read
+          </p>
+
+          <div class="savings-horizontal"></div>
+
+          <p>
+            We want you to be a savvy traveler, read below to learn about all
+            <span class="saving-block"></span>the perks, and how we pass on the
+            savings to you!
+          </p>
+
+          <h3>Private Discount Flights</h3>
+          <p>
+            Take advantage of the flights you want for less money! Our goal is
+            to be the one-stop shop for all your flight needs. What makes these
+            flights attractive to most of our passengers is the fact that you
+            can go to more destinations for less money.
+          </p>
+          <p>
+            Now don’t get this confused with flying a private chartered jet.
+            These Private Discount Flights are for those that subscribe with
+            Flyline. Have you looked at the cost of a flight, and did not take
+            it or booked the same flight on a budget airline? Flyline makes your
+            next flight more affordable than ever with our Private Discount
+            Flights. We have seen many great deals with flights when taking
+            advantage of our Private Discount Flights!
+          </p>
+
+          <h3>Automatic Check-In</h3>
+          <p>
+            As frequent flyers, we get busy with our day to day events.
+            Sometimes we are away from our phones/computers for long times. That
+            is how you would check in prior to your flight.
+          </p>
+          <p>
+            With our Automatic Check In feature, you can rest assured that you
+            don’t need to worry about missing your check-in when flying with
+            Flyline. Just search, book, and save. Book your flight, show up to
+            the airport, and fly! It is really that simple.
+          </p>
+
+          <h3>Virtual Interlining</h3>
+          <p>
+            Have you heard of Virtual Interlining? If so great, if not…great! We
+            offer Virtual Interlining with Flyline, and how does that benefit
+            you exactly you may ask? Let us explain it to you.
+          </p>
+          <p>
+            As a Flyline customer, you are able to connect flights between
+            carriers. This may mean a Delta flight paired with an American
+            Airlines flight (as one example). This benefits you as a consumer
+            with the ability to access more flights and even optimize your
+            savings on your airline flight you book through Flyline!
+          </p>
+
+          <h3>Flight Deal Notifications</h3>
+          <p>
+            We all love a great deal, now don’t we? With Flyline, you can do
+            more with our Flight Deal Notifications that we offer to you, for no
+            additional charge. Do you want to see when you can fly across the
+            country for less? We packed this exciting new feature into the
+            Flyline service.
+          </p>
+          <p>
+            Get notified on the next exciting flight deal that is available on
+            Flyline. Sometimes you may want to travel somewhere but cannot think
+            of where exactly. That is where Flight Deal Notifications can take
+            the guesswork out of your next trip and provide to you some great
+            travel destination ideas.
+          </p>
         </div>
-        <div class="col-md-6 col-12">
-          <div class="social-icon">
-            <ul>
-              <li><a href=""> <img src="img/instagram.png"> </a></li>
-              <li><a href=""> <img src="img/twitter.png"> </a></li>
-              <li><a href=""> <img src="img/facebook.png"> </a></li>
-              <li>Bulit in Dallas</li>
-            </ul>
-          </div>
-        </div>  
       </div>
     </div>
-  </div>  
-
-</footer>
-
-
-<script src="js/bootstrap.js"></script>	
-</body>
-</html>	
-  
+  </section>
+  {% include "_includes/footer.html" %}
+</div>
+</script>
