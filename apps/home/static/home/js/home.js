@@ -215,7 +215,23 @@ const app = new Vue({
             this.cityFromInput.searchProgress = false;
         },
         formatPlace(place) {
-            return `${place.name} ${place.subdivision ? place.subdivision.name : ""} ${place.country.code} (${place.code})`;
+            if (place.type === 'airport') {
+                return `${place.name} (${place.code})`;
+            }
+            return `${place.name} ${place.subdivision ? place.subdivision.name : ""} ${place.country.code}`;
+        },
+        processLocationSearch(data) {
+            const cities = data.locations.filter(o=>o.type==='city');
+            let airports = data.locations.filter(o=>o.type==='airport');
+            let result = [];
+            for (const city of cities) {
+                result.push(city);
+                const cityAirports = airports.filter(o=>o.city.id===city.id);
+                airports = airports.filter(o=>o.city.id!==city.id);
+                result.push(...cityAirports);
+            }
+            result.push(...airports);
+            return result;
         },
         locationSearch(term) {
             return new Promise((resolve) => {
@@ -225,7 +241,9 @@ const app = new Vue({
                     locale: 'en-US',
                     location_types: 'city',
                 };
-                url.search = new URLSearchParams(searchParams);
+                let urlSearchParams = new URLSearchParams(searchParams);
+                urlSearchParams.append('location_types', 'airport');
+                url.search = urlSearchParams;
                 fetch(url, {
                     method: 'GET',
                     headers: {
@@ -235,7 +253,7 @@ const app = new Vue({
                 }).then(
                     response => response.json()
                 ).then(
-                    data => resolve(data)
+                    data => resolve(this.processLocationSearch(data))
                 );
             });
         },
@@ -260,7 +278,7 @@ const app = new Vue({
                 that.cityFromInput.text
             ).then(
                 (data) => {
-                    that.cityFromInput.searchResults = data.locations;
+                    that.cityFromInput.searchResults = data;
                 }
             ).catch(
                 () => {
@@ -284,7 +302,7 @@ const app = new Vue({
                 that.cityToInput.text
             ).then(
                 (data) => {
-                    that.cityToInput.searchResults = data.locations;
+                    that.cityToInput.searchResults = data;
                 }
             ).catch(
                 () => {
@@ -347,8 +365,8 @@ const app = new Vue({
 
             const placeTo = this.cityToInput.searchResults[this.cityToInput.selectedIndex];
             const placeFrom = this.cityFromInput.searchResults[this.cityFromInput.selectedIndex];
-            formData.append("fly_from", placeFrom.code);
-            formData.append("fly_to", placeTo.code);
+            formData.append("fly_from", placeFrom.type==='city'?`city:${placeFrom.code}`:`airport:${placeFrom.code}`);
+            formData.append("fly_to", placeTo.type==='city'?`city:${placeTo.code}`:`airport:${placeTo.code}`);
             const dateFrom = this.form.departure_date_data.format('DD/MM/YYYY');
             formData.append("date_from", dateFrom);
             formData.append("date_to", dateFrom);
@@ -456,6 +474,7 @@ const app = new Vue({
                     const airlines = this.getAirlines(data.data);
                     this.quickFiltersData = this.getQuickLinksData(data.data);
                     this.displaySearchResults({data, airlines});
+                    this.backToForm = false;
                 }
             ).finally(
                 () => {
@@ -582,6 +601,9 @@ const app = new Vue({
         },
         airlineNames() {
             return this.form.airlines.map((e) => e.name).join(', ');
+        },
+        isMobile() {
+            return this.$mq === 'sm';
         }
     }
 });
@@ -605,9 +627,10 @@ $(function () {
         scrollBar: true,
         navigation: true,
         normalScrollElements: '.normal-scroll',
+        responsiveWidth: 768,
     });
 
-    var sticky = 400;
+    const sticky = 400;
     $(window).scroll(function () {
         if ($(window).scrollTop() > sticky) {
             $("header").addClass("sticky");
@@ -617,32 +640,14 @@ $(function () {
             $("#fp-nav").removeClass("dots-display");
         }
     });
-});
-
-$(document).ready(function(){
-    
-    $('#homepage .mobile-v-header').hide();
-    $('.pricing-hide-view').hide();
-    $('#homepage .home-info-footer').hide();
-    if ($(window).width() <= 767) {
+    if ($(window).width() < 767) {
         fullpage_api.destroy('all');
-        $('#homepage .navbar-light').hide();
-        $('#homepage .mobile-v-header').show();
-        $('.hide-view').hide();
-        $("#home-learnmore-mobilev").click(function () {
-            $('#homepage .navbar-light').show();
-            $('#homepage .mobile-v-header').hide();
-            $('#homepage .mobile-before').addClass('hideheadersec');
-            $('#homepage .hide-view').show();
-            $('.hide-web-pricing').hide();
-            $('.pricing-hide-view').show();
-            $('#homepage .home-info-footer').show();
-        });
-
         $("#home-Learnmore").click(function () {
-            $('#homepage .mobile-before').addClass('hideheadersec');
-            $('#homepage .hide-view').show();
+
+            $('.mobile-before').addClass('hideheadersec');
+            $('.hide-view').show();
         });
     }
+
 
 });

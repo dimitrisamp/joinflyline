@@ -5,6 +5,7 @@ Vue.component("wizard", {
       step: 1,
       emailExists: false,
       emailVerified: false,
+      requestSent: false,
       form: {
         home_airport: "",
         email: "",
@@ -15,7 +16,8 @@ Vue.component("wizard", {
         zip: "",
         card_number: "",
         expiry: "",
-        cvc: ""
+        cvc: "",
+        plan: null
       }
     };
   },
@@ -62,13 +64,16 @@ Vue.component("wizard", {
       this.verifyEmail();
     },
     focusElement(name) {
-      const el = document.querySelector(`input[name=${name}]`);
+      const el = document.querySelector(`[name=${name}]`);
       el.focus();
       el.select();
     },
+    updateSelectValue(value) {
+      this.form.plan = value;
+    },
     submit() {
       if (!this.isStep2Complete) return;
-      this.step = 3;
+      this.requestSent = true;
       Vue.nextTick().then(() => {
         let formData = new FormData();
         formData.append("csrfmiddlewaretoken", csrfmiddlewaretoken);
