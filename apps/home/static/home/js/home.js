@@ -2,20 +2,6 @@ import ClickOutside from "./v-click-outside.js";
 import { seatTypes } from "./utils.js";
 import { airlineCodes } from "./airlineCodes.js";
 
-function setDatePick() {
-  new Lightpick({
-    field: document.getElementById("departure_date"),
-    secondField: document.getElementById("return_date"),
-    singleDate: false,
-    onSelect(start, end) {
-      if (start) app.form.departure_date = start.format("MM/DD/YYYY");
-      if (end) app.form.return_date = end.format("MM/DD/YYYY");
-      app.form.departure_date_data = start;
-      app.form.return_date_data = end;
-    }
-  });
-}
-
 function debounce(fn, delay, ...rest) {
   let timeoutID = null;
   return function() {
@@ -109,11 +95,11 @@ export const Home = Vue.component("home", {
   },
   watch: {
     searchResults: function(val, oldVal) {
-      setDatePick();
+      this.setDatePick();
     },
     $mq(val, oldVal) {
       if (val === oldVal) return;
-      if (val === 'sm') {
+      if (val === "sm") {
         destroyFullPage();
       } else {
         applyFullPage();
@@ -606,11 +592,25 @@ export const Home = Vue.component("home", {
       } else {
         this.form.noOfPassengers = this.valPassengers + " Passengers";
       }
+    },
+    setDatePick() {
+      let that = this;
+      new Lightpick({
+        field: document.getElementById("departure_date"),
+        secondField: document.getElementById("return_date"),
+        singleDate: false,
+        onSelect(start, end) {
+          if (start) that.form.departure_date = start.format("MM/DD/YYYY");
+          if (end) that.form.return_date = end.format("MM/DD/YYYY");
+          that.form.departure_date_data = start;
+          that.form.return_date_data = end;
+        }
+      });
     }
   },
   mounted() {
     this.updatePriceText();
-    setDatePick();
+    this.setDatePick();
     onMounted();
   },
   beforeDestroy() {
