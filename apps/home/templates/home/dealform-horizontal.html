@@ -168,21 +168,24 @@
 
         </div>
 
-        <div class="input-group input-group-sm search-dropdown col-md-2 col-12">
-            <span class="input-group-text search-form-input">Dep</span>
+        <div class="input-group input-group-sm search-dropdown home-date-field-dep col-md-2 col-12">
+            <div class="dat-blue-border dep-date">
+              <span class="input-group-text search-form-input">Dep</span>
             <input type="text" id="departure_date"
                    aria-describedby="basic-addon3"
                    class="form-control search-input"
                    v-model="form.departure_date" />
-
+             </div>      
         </div>
 
-        <div class="input-group input-group-sm search-dropdown col-md-2 col-12">
+        <div class="input-group input-group-sm search-dropdown home-date-field-ret col-md-2 col-12">
+            <div class="dat-blue-border ret-date">
             <span class="input-group-text search-form-input">Ret</span>
             <input type="text" id="return_date"
                    aria-describedby="basic-addon3"
                    class="form-control search-input"
                    v-model="form.return_date" />
+           </div>        
         </div>
         <div v-if="!user.anonymous">
         <div class="filter-field">

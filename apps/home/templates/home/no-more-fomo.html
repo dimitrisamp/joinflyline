@@ -228,7 +228,7 @@
                                             <div class="divider-30"></div>
                                         </div>
                                     </div>
-                                    <search-results v-else-if="$mq !== 'sm'"
+                                    <search-results v-else
                                                     :search-results="searchResults"
                                                     :search-progress="searchProgress"
                                                     :load-more="loadMore"
@@ -389,68 +389,7 @@
                 </div><!--  second section -->
 
                 <div v-if="user.anonymous && searchResults.length === 0" class="section fp-auto-height-responsive fp-section hide-view" id="sec3-Bg">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-6 col-12">
-                                <div class="section3-content">
-                                    <h3>No More FOMO</h3>
-                                    <p>Our members never
-                                        miss out on <br>
-                                        massive savings and
-                                        once-in-a-lifetime
-                                        <br> trips through
-                                        personalized <br>
-                                        deal alerts based on
-                                        their specific
-                                        <br> travel
-                                        preferences.</p>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-12">
-                                <ul class="h-result-list">
-                                    <marquee
-                                            behavior="alternate"
-                                            direction="up"
-                                            height="500"
-                                            scrolldelay="1"
-                                            onmouseover="this.stop()"
-                                            onmouseout="this.start()">
-                                        <li><img
-                                                src="{% static "home/img/flight_option_one.png" %}">
-                                        </li>
-                                        <li><img
-                                                src="{% static "home/img/flight_option_two.png" %}">
-                                        </li>
-                                        <li><img
-                                                src="{% static "home/img/flight_option_three.png" %}">
-                                        </li>
-                                        <li><img
-                                                src="{% static "home/img/flight_option_four.png" %}">
-                                        </li>
-                                        <li><img
-                                                src="{% static "home/img/Sevem.png" %}">
-                                        </li>
-                                        <li><img
-                                                src="{% static "home/img/Three.png" %}">
-                                        </li>
-                                        <li><img
-                                                src="{% static "home/img/One.png" %}">
-                                        </li>
-                                        <li><img
-                                                src="{% static "home/img/Two.png" %}">
-                                        </li>
-                                        <li><img
-                                                src="{% static "home/img/Five.png" %}">
-                                        </li>
-                                        <li><img
-                                                src="{% static "home/img/Six.png" %}">
-                                        </li>
-                                    </marquee>
-                                </ul>
-                                <!-- <img src="{% static "home/img/iphone-white.png" %}" class="mobile-img"> -->
-                            </div>
-                        </div>
-                    </div>
+                  {% include "home/index/no-more-fomo.html" %}
                 </div><!--  Section Three  -->
 
                 <div v-if="user.anonymous && searchResults.length === 0" class="section fp-auto-height-responsive fp-section hide-view" id="sec4-bg">
