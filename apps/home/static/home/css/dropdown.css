@@ -120,8 +120,14 @@ button.search_btn{
     padding: 11.6px 40px !important;
     width: 100% !important;
     margin-bottom: 6px;
-    font-size: 21px;
-    font-family: Dona-Bold;
+    font-size: 18px;
+    font-family: Dona-Black;
+    color: #06AEEF;
+}
+.search-results .btn{
+    font-size: 18px;
+    font-family: Dona-Black !important;
+    color: #06AEEF;   
 }
 .dropdown-list p{
     padding: 0px 16px;
