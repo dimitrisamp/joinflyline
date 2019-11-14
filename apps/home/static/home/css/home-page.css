@@ -154,6 +154,12 @@ header.sticky{
     padding:10px 0;
     border-bottom: 1.2px solid #cfcfcf47;
 }
+.sticky .navbar-light{
+    background: #fff !important;
+    padding:10px 0;
+    border-bottom: none !important;
+    box-shadow: none !important;
+}
 .navbar-light .btn{
     font-family: Dona-Bold;
     color: #00AEEF;    
@@ -352,6 +358,19 @@ header.sticky{
 }
 .search-dropdown{
     margin-bottom: 10px;
+}
+.blueBorder span {
+    border-color: #00b0f5;
+}
+.blueBorder input{
+    border-color: #00b0f5 !important;    
+}
+.dat-blue-border{
+    display: flex;
+}
+.clicked .dat-blue-border{
+    background: #fff;
+    padding: 6px 8px;
 }
 .search-dropdown .form-control {
     border-radius: 0px;

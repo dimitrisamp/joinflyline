@@ -628,17 +628,26 @@ $(document).ready(function(){
         $('#homepage .mobile-v-header').show();
         $('.hide-view').hide();
         $("#home-Learnmore").click(function () {
-            
             $('#homepage .mobile-before').addClass('hideheadersec');
             $('#homepage .hide-view').show();
             $('#pricing-show').show();
             $('#homepage .home-info-footer').show();
         });
-
         $("#home-Learnmore").click(function () {
             $('#homepage .mobile-before').addClass('hideheadersec');
             $('#homepage .hide-view').show();
         });
     }
+
+
+    $('.home-date-field-dep').click(function(){
+        $('.dep-date').addClass('blueBorder');      
+        $('.ret-date').removeClass('blueBorder');      
+    });
+    $('.home-date-field-ret').click(function(){
+        $('.dep-date').removeClass('blueBorder');      
+        $('.ret-date').addClass('blueBorder');      
+    });
+
 
 });

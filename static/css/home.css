@@ -48,14 +48,12 @@ button.promo_btn {
     cursor: pointer;
 }
 button.custom_btn {
-    color: #000;
-    font-weight: 600;
+    color: #00B7FF;
     background: transparent;
-    border: 2.3px solid #00B7FF;
     box-sizing: border-box;
-    border-radius: px;
+    border-radius: 0px;
+    border:none;
     cursor: pointer;
-    padding: 0px 40px;
     height: 40px;
 }
 button.custom_btn_white {
@@ -79,8 +77,7 @@ a.custom_nav_link {
     font-size: 16px;
     line-height: 19px;
     text-align: center;
-    color: #151F3F;
-
+    color: #00aeef;
     display: block;
 }
 a.header_nav_link {

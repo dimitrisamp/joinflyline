@@ -16,8 +16,7 @@ body{
 }
 .background-colored {
     background-color: #fff;
-    border-bottom: 1px solid #ccc;
-    padding-bottom: 50px;
+    padding-bottom: 120px;
 }
 
 .content-holder {
@@ -506,7 +505,7 @@ body{
     font-size: 40px;
     color: #fff;
     font-weight: 600;
-    font-family:Dona-Bold;
+    font-family:Dona-Black;
     margin-top: 10px;
 }
 .title-sec-descrption{
@@ -514,6 +513,7 @@ body{
     font-size: 19px;
     margin-bottom: 0;
     padding-top: 10px;
+    font-family:Dona-Bold;
 }
 .txt-block{
     display: block;
@@ -568,6 +568,7 @@ body{
     font-size: 31px;
     color: #000;
     font-weight: 600;
+    font-family: Dona-Black;
 }
 .account-btn{
     float: right;
