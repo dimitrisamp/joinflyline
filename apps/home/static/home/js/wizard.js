@@ -5,6 +5,7 @@ Vue.component("wizard", {
       step: 1,
       emailExists: false,
       emailVerified: false,
+      requestSent: false,
       form: {
         home_airport: "",
         email: "",
@@ -72,6 +73,7 @@ Vue.component("wizard", {
     },
     submit() {
       if (!this.isStep2Complete) return;
+      this.requestSent = true;
       Vue.nextTick().then(() => {
         let formData = new FormData();
         formData.append("csrfmiddlewaretoken", csrfmiddlewaretoken);
