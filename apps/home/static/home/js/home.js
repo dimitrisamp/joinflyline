@@ -81,7 +81,6 @@ export const Home = Vue.component("home", {
       airlinesText: "",
       priceSelectProgress: false,
       priceText: "",
-      user: JSON.parse(document.getElementById("django_user").textContent),
       form: {
         limit: 20,
         sort: null,
@@ -111,6 +110,14 @@ export const Home = Vue.component("home", {
   watch: {
     searchResults: function(val, oldVal) {
       setDatePick();
+    },
+    $mq(val, oldVal) {
+      if (val === oldVal) return;
+      if (val === 'sm') {
+        destroyFullPage();
+      } else {
+        applyFullPage();
+      }
     }
   },
   directives: {
@@ -602,13 +609,15 @@ export const Home = Vue.component("home", {
     }
   },
   mounted() {
-    this.$nextTick(() => {
-      this.updatePriceText();
-      setDatePick();
-      onMounted();
-    });
+    this.updatePriceText();
+    setDatePick();
+    onMounted();
   },
-  computed: {
+  beforeDestroy() {
+    destroyFullPage();
+  },
+  computed: Vuex.mapState({
+    user: "user",
     isFormIncomplete() {
       if (this.form.destinationTypeId === "round") {
         if (!this.form.return_date) return true;
@@ -645,17 +654,23 @@ export const Home = Vue.component("home", {
     isMobile() {
       return this.$mq === "sm";
     }
-  }
+  })
 });
 
-function onMounted() {
+function applyFullPage() {
   $("#fullpage").fullpage({
     scrollBar: true,
     navigation: true,
     normalScrollElements: ".normal-scroll",
     responsiveWidth: 768
   });
+}
 
+function destroyFullPage() {
+  fullpage_api.destroy("all");
+}
+
+function onMounted() {
   const sticky = 400;
   $(window).scroll(function() {
     if ($(window).scrollTop() > sticky) {
@@ -671,7 +686,6 @@ function onMounted() {
   $(".pricing-hide-view").hide();
   $("#homepage .home-info-footer").hide();
   if ($(window).width() <= 767) {
-    fullpage_api.destroy("all");
     $("#homepage .navbar-light").hide();
     $("#homepage .mobile-v-header").show();
     $(".hide-view").hide();

@@ -19,9 +19,9 @@
                     <a href="{% url "sign-in" %}"
                        class="btn my-2 login-btn my-sm-0">Log
                         In</a>
-                    <a href="{% url "wizard" %}"
+                    <router-link to="/get-started/"
                        class="btn my-2 get-s-btn my-sm-0">Get
-                        Started</a>
+                        Started</router-link>
                 </div>
                 <div class="nav-item" v-else>
                     <a href="{% url "manage-trips" %}"

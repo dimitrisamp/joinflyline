@@ -5,7 +5,9 @@ from django.http import HttpResponse
 from django.shortcuts import redirect
 from django.template.loader import render_to_string
 from django.urls import reverse
+from django.views import View
 
+from apps.common.context_processors.common import get_user_info
 from apps.home.views import index_view
 
 from apps.emails.views import signup_success, forgot_password
@@ -85,3 +87,8 @@ def check_user_view(request):
         if User.objects.filter(email=email).exists():
             result = True
     return JsonResponse({'exists': result})
+
+
+class UserInfoView(View):
+    def get(self, request):
+        return JsonResponse(get_user_info(request.user))

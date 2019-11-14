@@ -1,8 +1,10 @@
-const store = new Vuex.Store({
+export const store = new Vuex.Store({
   state: {
-    count: 0
+    user: JSON.parse(document.getElementById("django_user").textContent),
   },
   mutations: {
-
+    updateUser(state, user) {
+      state.user = user;
+    }
   }
 });

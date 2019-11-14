@@ -1,4 +1,4 @@
-Vue.component("wizard", {
+export const Wizard = Vue.component("wizard", {
   template: "#vue-wizard-template",
   data() {
     return {
@@ -89,7 +89,12 @@ Vue.component("wizard", {
           .then(response => response.json())
           .then(data => {
             if (data.success) {
-              this.$emit("success");
+              fetch("/auth/user-info/")
+                .then(response => response.json())
+                .then(data => {
+                  this.$store.commit("updateUser", data);
+                  this.$router.push({ path: "/" });
+                });
             } else {
               window.alert(JSON.stringify(data));
             }
@@ -111,16 +116,6 @@ Vue.component("wizard", {
     },
     isStep2Complete() {
       return this.form.first_name !== "" && this.form.last_name !== "";
-    }
-  }
-});
-
-const wizardApp = new Vue({
-  el: "#main",
-  delimiters: ["{(", ")}"],
-  methods: {
-    goHome() {
-      window.location = "/";
     }
   }
 });
