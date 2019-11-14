@@ -228,6 +228,11 @@ body{
     color:#989595;
     font-weight: 600;
 }
+.step-f-inputs select.form-control {
+    height: 48px;
+    padding: 0 24px;
+    color: #989595;
+}
 .step-f-inputs .btn{
     border: 2px solid #fff;
     color: #fff;

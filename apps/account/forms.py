@@ -1,4 +1,5 @@
 from django import forms
+from django.conf import settings
 
 from apps.account.enums import Gender
 from creditcards.forms import CardNumberField, CardExpiryField, SecurityCodeField
@@ -26,3 +27,4 @@ class WizardForm(forms.Form):
     card_number = CardNumberField(required=False)
     expiry = CardExpiryField(required=False)
     cvc = SecurityCodeField(required=False)
+    plan = forms.ChoiceField(choices=tuple((o, o) for o in settings.SUBSCRIPTION_PLANS.keys()))

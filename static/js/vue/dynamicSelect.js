@@ -18,6 +18,7 @@ Vue.component('dynamic-select', {
                         result[name] = `${value.name} ($${value.price.value}/yr)`;
                     }
                     this.options = result;
+                    this.$emit('data-arrived', Object.keys(data)[0]);
                 }
             )
         },

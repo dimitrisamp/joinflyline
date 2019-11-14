@@ -1,8 +1,10 @@
 {% load static %}
 <script type="text/x-template" id="vue-wizard-template">
     <div>
-        <a v-if="step === 1" href="{% url "index" %}">Back to Home</a>
-        <a v-if="step === 2" href="#" @click.prevent="prevStep">Back to Step 1</a>
+        <div class="back-to-home">
+            <a v-if="step === 1" href="{% url "index" %}">Back to Home</a>
+            <a v-if="step === 2" href="#" @click.prevent="prevStep">Back to Step 1</a>
+        </div>
         <section v-if="step === 1" class="step-2">
             <div class="container">
                 <div class="row justify-content-center">
@@ -84,9 +86,16 @@
 
                             <div class="input-group input-group-sm step-f-inputs">
                                 <input type="text" class="form-control"
-                                       @keyup.enter="focusElement('promo_code')"
                                        name="last_name"
                                        placeholder="Last Name" v-model="form.last_name">
+                            </div>
+
+                            <div class="form-group form-group-sm step-f-inputs">
+                                <dynamic-select class="form-control"
+                                                name="plan"
+                                                v-model="form.plan"
+                                                @data-arrived="updateSelectValue"
+                                />
                             </div>
 
                             <div class="input-group input-group-sm step-f-inputs">
@@ -127,8 +136,7 @@
                                            placeholder="CCV Code" v-model="form.cvc">
                                 </div>
                             </div>
-                            <dynamic-select v-model="form.plan"/>
-                            <p class="label__plan-description">Basic Plan $6.99mo</p>
+
 
                             <div class="input-group step-f-inputs">
                                 <button type="submit" class="btn btn-default"

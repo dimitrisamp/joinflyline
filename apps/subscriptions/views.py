@@ -1,20 +1,11 @@
-from django.contrib import auth, messages
-from django.contrib.auth import authenticate
-from django.contrib.auth.models import User
-from django.http import Http404
-from django.shortcuts import render, redirect
+import stripe
 from django.conf import settings
-from django.urls import reverse
+from django.contrib.auth.models import User
 from django.utils.timezone import now
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from apps.account.models import Account
-import apps.payments.models as payments_models
-from apps.payments.plans import plan2group, GROUP_TO_PLAN, get_available_plans
-from apps.subscriptions.models import Subscriptions
-import stripe
-
 
 stripe.api_key = settings.STRIPE_API_KEY
 

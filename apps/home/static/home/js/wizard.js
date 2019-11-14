@@ -63,13 +63,15 @@ Vue.component("wizard", {
       this.verifyEmail();
     },
     focusElement(name) {
-      const el = document.querySelector(`input[name=${name}]`);
+      const el = document.querySelector(`[name=${name}]`);
       el.focus();
       el.select();
     },
+    updateSelectValue(value) {
+      this.form.plan = value;
+    },
     submit() {
       if (!this.isStep2Complete) return;
-      this.step = 3;
       Vue.nextTick().then(() => {
         let formData = new FormData();
         formData.append("csrfmiddlewaretoken", csrfmiddlewaretoken);
