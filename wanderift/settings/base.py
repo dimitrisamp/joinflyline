@@ -193,7 +193,7 @@ RECEIVE_EMAIL = "bookings@wanderift.com"
 RECEIVE_PHONE = "+18105131533"
 
 STRIPE_API_KEY = os.getenv('STRIPE_API_KEY')
-PLANS_CONFIG_FILE = os.getenv('PLANS_CONFIG_FILE', os.path.join(os.path.dirname(__file__), 'plans.json'))
+PLANS_CONFIG_FILE = os.getenv('PLANS_CONFIG_FILE', os.path.join(os.path.dirname(os.path.dirname(__file__)), 'plans.json'))
 try:
     SUBSCRIPTION_PLANS = json.load(open(PLANS_CONFIG_FILE))
 except:
