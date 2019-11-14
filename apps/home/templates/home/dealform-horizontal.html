@@ -109,7 +109,8 @@
                     <ul class="list-Sdown"
                         v-if="cityFromInput.searchResults.length > 0">
                         <li v-for="(place, index) of cityFromInput.searchResults"
-                            v-on:click="cityFromInputChoose(index)">
+                            v-on:click="cityFromInputChoose(index)"
+                            :class="place.type">
                             <div class="dropdown-icon">
                                 <i class="fa fa-plane"></i>
                             </div>
@@ -146,7 +147,8 @@
                     <ul class="list-Sdown"
                         v-if="cityToInput.searchResults.length > 0">
                         <li v-for="(place, index) of cityToInput.searchResults"
-                            v-on:click="cityToInputChoose(index)">
+                            v-on:click="cityToInputChoose(index)"
+                            :class="place.type">
                             <div class="dropdown-icon">
                                 <i class="fa fa-plane"></i>
                             </div>

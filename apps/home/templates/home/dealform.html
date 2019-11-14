@@ -98,13 +98,13 @@
                  v-bind:class="{shadowsrch: cityFromInput.focused}">
                 <div class="input-group input-group-sm search-dropdown">
                     <div class="bg-white-close-holes">
-                    <span class="input-group-text search-form-input">Departure City</span>
-                    <input type="text"
-                           class="form-control search-input"
-                           @focus="cityFromInputFocused"
-                           @blur="cityFromInputBlurred"
-                           v-model="cityFromInput.text"
-                           v-on:input="cityFromHandler">
+                        <span class="input-group-text search-form-input"><span class="close-popup">&times;</span>{( (cityFromInput.focused && isMobile)?"From where?":"Departure City" )}</span>
+                        <input type="text"
+                               class="form-control search-input"
+                               @focus="cityFromInputFocused"
+                               @blur="cityFromInputBlurred"
+                               v-model="cityFromInput.text"
+                               v-on:input="cityFromHandler">
                     </div>
                 </div>
                 <div class="dropdown-list"
@@ -112,13 +112,12 @@
                     <ul class="list-Sdown"
                         v-if="cityFromInput.searchResults.length > 0">
                         <li v-for="(place, index) of cityFromInput.searchResults"
-                            v-on:click="cityFromInputChoose(index)">
+                            @click="cityFromInputChoose(index)"
+                            :class="place.type">
                             <div class="dropdown-icon">
                                 <i class="fa fa-plane"></i>
                             </div>
-                            <div class="">{(
-                                formatPlace(place) )}
-                            </div>
+                            <div>{( formatPlace(place) )}</div>
                         </li>
                     </ul>
                     <p v-else-if="!cityFromInput.requestProgress">
@@ -137,13 +136,13 @@
                  v-bind:class="{shadowsrch: cityToInput.focused}">
                 <div class="input-group input-group-sm search-dropdown">
                     <div class="bg-white-close-holes">
-                    <span class="input-group-text search-form-input">Arrival City</span>
-                    <input type="text"
-                           class="form-control search-input"
-                           @focus="cityToInputFocused"
-                           @blur="cityToInputBlurred"
-                           v-model="cityToInput.text"
-                           v-on:input="cityToHandler">
+                        <span class="input-group-text search-form-input">{( (cityToInput.focused && isMobile)?"To where?":"Arrival City" )}</span>
+                        <input type="text"
+                               class="form-control search-input"
+                               @focus="cityToInputFocused"
+                               @blur="cityToInputBlurred"
+                               v-model="cityToInput.text"
+                               v-on:input="cityToHandler">
                     </div>
                 </div>
                 <div class="dropdown-list"
@@ -151,13 +150,12 @@
                     <ul class="list-Sdown"
                         v-if="cityToInput.searchResults.length > 0">
                         <li v-for="(place, index) of cityToInput.searchResults"
-                            v-on:click="cityToInputChoose(index)">
+                            @click="cityToInputChoose(index)"
+                            :class="place.type">
                             <div class="dropdown-icon">
                                 <i class="fa fa-plane"></i>
                             </div>
-                            <div class="">{(
-                                formatPlace(place) )}
-                            </div>
+                            <div>{( formatPlace(place) )}</div>
                         </li>
                     </ul>
                     <p v-else-if="!cityToInput.requestProgress">
@@ -173,66 +171,84 @@
 
         <div class="input-group input-group-sm search-dropdown col-md-6 col-12">
             <div class="bg-white-close-holes">
-            <span class="input-group-text search-form-input">Dep</span>
-            <input type="text" id="departure_date"
-                   aria-describedby="basic-addon3"
-                   class="form-control search-input"
-                   v-model="form.departure_date" />
-                </div>
+                <span class="input-group-text search-form-input">Dep</span>
+                <input type="text" id="departure_date"
+                       aria-describedby="basic-addon3"
+                       class="form-control search-input"
+                       v-model="form.departure_date"/>
+            </div>
         </div>
 
         <div class="input-group input-group-sm search-dropdown col-md-6 col-12">
             <div class="bg-white-close-holes">
-            <span class="input-group-text search-form-input">Ret</span>
-            <input type="text" id="return_date"
-                   aria-describedby="basic-addon3"
-                   class="form-control search-input"
-                   v-model="form.return_date" />
+                <span class="input-group-text search-form-input">Ret</span>
+                <input type="text" id="return_date"
+                       aria-describedby="basic-addon3"
+                       class="form-control search-input"
+                       v-model="form.return_date"/>
+            </div>
+        </div>
+        <div v-if="$mq !== 'sm'">
+            <div class="filter-field">
+                <b>Filters (Optional)</b>
+            </div>
+            <div class="filter-devider"></div>
+            <div class="input-group input-group-sm search-dropdown col-12">
+                <div class="bg-white-close-holes">
+                    <span class="input-group-text search-form-input">Airline filter</span>
+                    <input type="text" class="form-control search-input"
+                           @focus="openAirlinesSelect" v-model="airlinesText"
+                           placeholder="Ex, American Airlines, Delta">
                 </div>
-        </div>
-        <div class="filter-field">
-            <b>Filters (Optional)</b>
-        </div>
-        <div class="filter-devider"></div>
-        <div class="input-group input-group-sm search-dropdown col-12">
-            <div class="bg-white-close-holes">
-            <span class="input-group-text search-form-input">Airline filter</span>
-            <input type="text" class="form-control search-input" @focus="openAirlinesSelect" v-model="airlinesText" placeholder="Ex, American Airlines, Delta">
-            </div>
-            <div class="search-f-dropdown airline-f-dropdown" v-if="airlinesSelectProgress" v-click-outside="closeAirlinesSelect">
-                <ul class="s-dropdown-list">
-                    <li v-for="airlineData in form.airlines"><label><input type="checkbox" v-model="airlineData.checked" @change="updateAirlinesSelection">{( airlineData.name )}<span class="checkmark"></span></label></li>
-                </ul>
+                <div class="search-f-dropdown airline-f-dropdown"
+                     v-if="airlinesSelectProgress"
+                     v-click-outside="closeAirlinesSelect">
+                    <ul class="s-dropdown-list">
+                        <li v-for="airlineData in form.airlines"><label><input
+                                type="checkbox" v-model="airlineData.checked"
+                                @change="updateAirlinesSelection">{( airlineData.name )}<span
+                                class="checkmark"></span></label></li>
+                    </ul>
+                </div>
+
             </div>
 
-        </div>
+            <div class="input-group input-group-sm search-dropdown col-12">
+                <div class="bg-white-close-holes">
+                    <span class="input-group-text search-form-input">Stops Filter</span>
+                    <input type="text" class="form-control search-input"
+                           @focus="openMaxStopsSelect" v-model="maxStopsText"
+                           placeholder="Ex, Nonstop, One stop">
+                </div>
+                <div class="search-f-dropdown stop-filder-dropdown"
+                     v-if="maxStopsSelectProgress"
+                     v-click-outside="closeMaxStopsSelect">
+                    <ul class="s-dropdown-list">
+                        <li v-for="(value, maxStops) in maxStopsFilterOptions"
+                            @click="selectMaxStops(maxStops)"><a>{( value )}</a></li>
+                    </ul>
+                </div>
+            </div>
 
-        <div class="input-group input-group-sm search-dropdown col-12">
-            <div class="bg-white-close-holes">
-            <span class="input-group-text search-form-input">Stops Filter</span>
-            <input type="text" class="form-control search-input" @focus="openMaxStopsSelect" v-model="maxStopsText" placeholder="Ex, Nonstop, One stop">
-            </div>
-            <div class="search-f-dropdown stop-filder-dropdown" v-if="maxStopsSelectProgress" v-click-outside="closeMaxStopsSelect">
-                <ul class="s-dropdown-list">
-                    <li v-for="(value, maxStops) in maxStopsFilterOptions" @click="selectMaxStops(maxStops)"><a>{( value )}</a></li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="input-group input-group-sm search-dropdown col-12">
-            <div class="bg-white-close-holes">
-            <span class="input-group-text search-form-input">Price Filter</span>
-            <input type="text" class="form-control search-input" @focus="openPriceSelect" v-model="priceText">
-            </div>
-            <div class="search-f-dropdown price-dropdown" v-show="priceSelectProgress" v-click-outside="closePriceSelect">
-                <div class="price-slider-container">
-                <vue-slider v-model="form.priceRange" :enable-cross="false" :max="3000" @change="updatePriceText"></vue-slider>
+            <div class="input-group input-group-sm search-dropdown col-12">
+                <div class="bg-white-close-holes">
+                    <span class="input-group-text search-form-input">Price Filter</span>
+                    <input type="text" class="form-control search-input"
+                           @focus="openPriceSelect" v-model="priceText">
+                </div>
+                <div class="search-f-dropdown price-dropdown"
+                     v-show="priceSelectProgress" v-click-outside="closePriceSelect">
+                    <div class="price-slider-container">
+                        <vue-slider v-model="form.priceRange" :enable-cross="false"
+                                    :max="3000" @change="updatePriceText"></vue-slider>
+                    </div>
                 </div>
             </div>
         </div>
 
         <div class="search-button col-12">
-            <button type="submit" class="btn btn-info" @click="search" :disabled="isFormIncomplete">
+            <button type="submit" class="btn btn-info" @click="search"
+                    :disabled="isFormIncomplete">
                 View Flights
             </button>
         </div>

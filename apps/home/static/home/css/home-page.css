@@ -113,7 +113,7 @@ Container emulation
 }
 
 .left-form-pane .search-dropdown .form-control{
-    color: #00aeef !important;
+    color: #00aeef;
     font-family: Dona-Bold;
 }
 .left-form-pane .search-dropdown input::placeholder{
@@ -223,8 +223,14 @@ header.sticky{
     color: #7d7d7d !important;
 }
 .left-form-pane .search-form-input{
-    color: #00b0f5 !important;
+    color: #00b0f5;
     font-family: Dona-Bold;
+}
+@media(max-width: 768px) {
+    .left-form-pane .shadowsrch .search-form-input {
+        color: grey;
+    }
+
 }
 .airline-logo-holder.d-flex {
     width: 100px;
@@ -379,7 +385,7 @@ header.sticky{
     border: 2px solid #ececec;
     border-left: none;
     font-family: Dona-Bold;
-    color: #7d7d7d !important;  
+    color: #7d7d7d;
 }
 .search-dropdown .form-control::placeholder{
     color: #7d7d7d;

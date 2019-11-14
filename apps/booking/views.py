@@ -12,7 +12,6 @@ from django.conf import settings as S
 
 from apps.booking.models import BookingContact
 from apps.emails.views import booking_success
-from apps.results.models import BookingCache
 from apps.results.templatetags.comparison import comparison
 
 from wanderift.utils import parse_isodatetime
@@ -276,10 +275,6 @@ def confirm_payment_zooz(booking, payment, test=True):
     data = response.json()
     if data["status"] != 0:
         raise ClientException(data)
-
-
-def get_retail_info(booking_token):
-    return json.loads(BookingCache.objects.get(booking_token=booking_token).data)
 
 
 class RetailBookingView(View):
