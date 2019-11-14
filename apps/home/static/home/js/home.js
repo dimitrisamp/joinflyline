@@ -99,11 +99,13 @@ export const Home = Vue.component("home", {
     },
     $mq(val, oldVal) {
       if (val === oldVal) return;
-      if (val === "sm") {
-        destroyFullPage();
-      } else {
-        applyFullPage();
-      }
+      this.$nextTick(() => {
+        if (val === "sm") {
+          destroyFullPage();
+        } else {
+          applyFullPage();
+        }
+      });
     }
   },
   directives: {
