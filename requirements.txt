@@ -23,3 +23,5 @@ django-credit-cards
 celery[redis]
 
 django-maintenancemode
+
+django-rest-framework

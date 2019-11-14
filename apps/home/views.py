@@ -5,7 +5,6 @@ from django.views.generic import TemplateView, FormView, CreateView
 from django.conf import settings as S
 
 from apps.home.models import PromoInfo
-from apps.results.adjacency import CITY_STATE_COUNTRY_AIRPORT, ADJACENCY
 
 
 def index_view(request):
@@ -21,7 +20,6 @@ def home_view(request):
     context = {
         "title": S.SITE_TITLE,
         "demo": demo,
-        "city_airports": [o for o in CITY_STATE_COUNTRY_AIRPORT if o[0] in ADJACENCY]
     }
     return render(request, "home/home.html", context)
 

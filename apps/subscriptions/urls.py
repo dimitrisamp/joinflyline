@@ -1,8 +1,6 @@
 from django.urls import path
-
-from apps.subscriptions.views import retail_sub_view, plan_subscription
+from apps.subscriptions import views as subscriptions_views
 
 urlpatterns = [
-    path('subscription', retail_sub_view, name='subscription'),
-    path('plan/<str:plan>', plan_subscription, name="plan")
+    path('plan/', subscriptions_views.Plans.as_view(), name="plans")
 ]

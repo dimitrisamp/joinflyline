@@ -1,16 +1,8 @@
 from django.contrib import admin
 from apps.account.models import Account, Profile
-from apps.payments.models import Payments
-
-
-class InlineSubscription(admin.TabularInline):
-    model = Payments
-    extra = 1
-    max_num = 3
 
 
 class AccountAdmin(admin.ModelAdmin):
-    inlines = [InlineSubscription]
     list_display = ('user', 'card_number', 'cvc', 'expiry', 'country', 'zip', 'brand', 'last4', 'stripe_id', 'token',)
     list_display_links = ('user', 'card_number')
     search_fields = ('country', 'brand')
