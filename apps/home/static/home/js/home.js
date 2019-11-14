@@ -641,23 +641,20 @@ $(function () {
         }
     });
 });
-$(document).ready(function(){
 
-    $('#homepage .mobile-v-header').hide();
-    $('.pricing-hide-view').hide();
+$(document).ready(function(){
+    
+    $('.pricing-show-view').hide();
     $('#homepage .home-info-footer').hide();
     if ($(window).width() <= 767) {
         fullpage_api.destroy('all');
-        $('#homepage .navbar-light').hide();
         $('#homepage .mobile-v-header').show();
         $('.hide-view').hide();
-        $("#home-learnmore-mobilev").click(function () {
-            $('#homepage .navbar-light').show();
-            $('#homepage .mobile-v-header').hide();
+        $("#home-Learnmore").click(function () {
+
             $('#homepage .mobile-before').addClass('hideheadersec');
             $('#homepage .hide-view').show();
-            $('.hide-web-pricing').hide();
-            $('.pricing-hide-view').show();
+            $('#pricing-show').show();
             $('#homepage .home-info-footer').show();
         });
 
