@@ -17,14 +17,14 @@ body{
 /*
 Hide if mobile
 */
-@media (max-width: 768px) {
+/*@media (max-width: 768px) {
     .hide-view {
         display: none !important;
     }
 }
 .hide-view {
     height: 100vh;
-}
+}*/
 /*
 Show if mobile
  */
@@ -829,12 +829,13 @@ header.sticky{
     font-family: Dona-Bold;
     margin: 25px 220px;
     line-height: 31px;
-    margin-bottom: 0;
+    margin-bottom: 30px;
 }
 .h-planbox{
     background:#fff;
     padding: 20px 30px;
     margin-top: 20px;
+    height: 450px;
 }
 .h-planbox .mark-heading{
     background: #00b0f5;
@@ -846,22 +847,36 @@ header.sticky{
     display: inline-block;
 }
 .h-planbox h3{
-    color: #000;
+    color: #00aeef;
     font-weight: 600;
     font-size: 32px;
     font-family: Dona-Black;
+    margin-top: 10px;
+}
+.h-planbox h3 span{
+    font-family: Dona-Bold;
 }
 .h-planbox__header {
     margin-top: 20px;
 }
+.pricing-section-home{
+    margin: 0px 90px;
+}
+.pricing-section-home .spacing-price{
+    padding: 0;   
+}
+.pricing-section-home .pricing-border{
+    border-right: 1px solid #ccc;
+    border-height:10px;
+}
 .plan-list{
     list-style: none;
     margin: 0;
-    padding: 0 37px;
+    padding: 0 1px;
     text-align: left;
 }
 .h-planbox strong{
-    color: #000;
+    color:#00aeef;
     font-size: 24px;
     font-family: Dona-Bold;
     margin-bottom: 7px;
@@ -878,25 +893,52 @@ header.sticky{
 .plan-list li {
     font-size: 16px;
     font-family: Dona-Bold;
-    line-height: 33px;
-    color: #000;
+    line-height: 38px;
+    color:#00aeef;
 }
 .h-planbox .btn {
-    color: #000;
+    color: #00b0f5;
     border-radius: 0;
     font-size: 18px;
-    padding: 9px 21px;
+    padding: 7px 21px;
     font-weight: 600;
     font-family: Dona-Bold;
     margin-top: 19px;
-    width: 100%;
     margin-bottom: 10px;
-    border: 3px solid #00b0f5;
+    border: 2px solid #00b0f5;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    margin: 26px 20px;
+    width: -webkit-fill-available;
+    max-width: 100%;
 }
 .h-planbox .btn:hover{
     background: #00AEEF;
     color: #fff;
 }
+
+/******** Tabs *********/
+.pricing-tabs {
+    margin: 11px auto;
+    display: table;
+}
+.pricing-tabs .nav-tabs li a{
+    background: #fff;
+    border-radius: 0px;
+    padding: 16px 51px;
+    font-family: Dona-Bold;
+    font-size: 18px;
+    color: #a0a0a0;
+    border:none;
+}
+.pricing-tabs .nav-tabs li{
+    border-right: 1px solid #ccc;
+ }
+.pricing-tabs .nav-tabs li a.active{
+    color: #00aeef;
+}
+
 
 /*****************************
         Search Result
@@ -1447,7 +1489,6 @@ img.ecenomy-icon {
 }
 
 
-
 /*****************************
            Footer
 *****************************/
@@ -1652,10 +1693,68 @@ This one is disabled until top blue line is back
     left: 17px !important;
 }
 */
-.fly-linesetion{
-    padding:0px 30px;
-    padding-top: 60px;
+.mobile-view-footer .mobile-v-tabs{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
 }
+.mobile-view-footer .mobile-v-tabs li{
+    display: inline-block;
+}
+.mobile-view-footer .mobile-v-tabs li a{
+    color: #b0b0b0;
+}
+.mobile-view-footer .mobile-v-tabs li:nth-child(2){
+    margin: 0 90px;  
+}
+.mobile-view-footer .mobile-v-tabs li a span{
+    display: block;
+    font-family: Dona-Bold;
+    font-size: 12px;
+}
+.mobile-view-footer .mobile-v-tabs li a img{
+    margin-bottom: 5px;
+}
+.mobile-view-footer .mobile-v-tabs li.selected a span{
+    color: #007bff;  
+}
+.fly-linesetion{
+    padding: 5px 30px;
+    padding-top: 9px;
+    border-top: 2px solid #b0b0b085;
+}
+/******* Mobie View Header ***********/
+.mobile-v-header ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.mobile-v-header ul li{
+    display: inline-block;
+}
+.mobile-v-header ul li img{
+    height: 33px;
+}
+.mobile-v-header {
+    padding: 10px 17px;
+    background: url(../img/headerbackground.png);
+    padding-top: 30px;
+    background-position: center;
+}
+.mobile-v-header ul li a{
+    font-family: Dona-Bold;
+    font-size: 17px;
+    color: #00b0f5;
+    padding-top: 15px;
+    display: block;
+}
+.ml-auto-mobile{
+    text-align: right;
+    float: right;
+}
+
+
 .fly-linesetion h3{
     font-size: 33px;
     line-height: 46px;
@@ -1703,9 +1802,9 @@ This one is disabled until top blue line is back
 footer{
     display: none;
 }
-/*.div-hide{
-    display: none !important; 
-}*/
+#footer-section{
+    display: none;
+}
 .hideheadersec{
     display: none !important;
 }
@@ -1716,14 +1815,14 @@ footer{
     margin: 10px 0;
 }
 .s-result-dropdown .btn {
-    width: auto;
-    float: left !important;
+    max-width: 29%;
     margin-left: 15px;
-    background: none !important;
-    border: none;
-    color: #fff;
     margin-bottom: 0px; 
+    padding: 11px 5px;
 }    
+.horizontal-form .row {
+    margin-top: 9px;
+}
 .horizontal-form .s-result-dropdown .btn img{
     display: none;
 }
@@ -1732,25 +1831,22 @@ footer{
     float: left;
     display: contents;
 }
-.homepage-background{
-    background: url(../img/pricing_background.png) !important;
-    width: 100%;
-    background-position: bottom;    
-}
 #sec3-Bg{
     background: url('../img/wallpaper.png') !important;
 }
 .newhome-form span{
-    color: #fff;
+    color: #000;
 }
 .search-form-input{
-    color: #00aeef;
+    color: #7d7d7d;
 }
 .horizontal-f-btn .btn-search {
-    background: transparent;
-    border-color: #fff !important;
-    padding: 7px 31px;
+    padding: 11px 31px;
     border: 2px solid #fff;
+    margin-top: 20px;
+}
+.search-dropdown .form-control{
+     padding: 22px 0;   
 }
 .section2-content p {
     font-size: 17px;
@@ -1852,6 +1948,36 @@ footer{
 }
 .clickdown {
     display: none;
+}
+.pricing-tabs .nav-tabs li a {
+    background: #fff;
+    border-radius: 0px;
+    padding: 11px 20px;
+    font-family: Dona-Bold;
+    font-size: 16px;
+    color: #a0a0a0;
+    border: none;
+}
+.pricing-tabs .nav-tabs li {
+    border: 1px solid #ccc;
+}
+.pricing-section-home {
+    margin: 0px 0px;
+}
+.mobile-pricing-plan .pricing-section-home{
+    width: 384px;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+}
+.mobile-pricing-plan .pricing-section-home .spacing-price {
+    padding: 0;
+    display: table-cell;
+    width: 281px !important;
+    margin: auto;
+}
+.mobile-pricing-plan .h-planbox{
+    margin-left: 24px;
 }
 
 
@@ -2060,6 +2186,12 @@ footer{
 .right-body-pane .search-top-result {
     display: inline !important;
 }
+
+
+
+
+
+
 
 }
 @media(max-width:768px){
