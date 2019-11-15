@@ -67,6 +67,7 @@ export const Home = Vue.component("home", {
       airlinesText: "",
       priceSelectProgress: false,
       priceText: "",
+      fullPageApplied: false,
       form: {
         limit: 20,
         sort: null,
@@ -101,9 +102,9 @@ export const Home = Vue.component("home", {
       if (val === oldVal) return;
       this.$nextTick(() => {
         if (val === "sm") {
-          destroyFullPage();
+          this.destroyFullPage();
         } else {
-          applyFullPage();
+          this.applyFullPage();
         }
       });
     }
@@ -595,6 +596,23 @@ export const Home = Vue.component("home", {
         this.form.noOfPassengers = this.valPassengers + " Passengers";
       }
     },
+    applyFullPage() {
+      if (this.fullPageApplied) return;
+      this.fullPageApplied = true;
+      $("#fullpage").fullpage({
+        scrollBar: true,
+        navigation: true,
+        normalScrollElements: ".normal-scroll",
+        responsiveWidth: 768
+      });
+    },
+
+    destroyFullPage() {
+      if (this.fullPageApplied) {
+        fullpage_api.destroy("all");
+        this.fullPageApplied = false;
+      }
+    },
     setDatePick() {
       let that = this;
       new Lightpick({
@@ -611,12 +629,13 @@ export const Home = Vue.component("home", {
     }
   },
   mounted() {
+    this.applyFullPage();
     this.updatePriceText();
     this.setDatePick();
     onMounted();
   },
   beforeDestroy() {
-    destroyFullPage();
+    this.destroyFullPage();
   },
   computed: Vuex.mapState({
     user: "user",
@@ -658,19 +677,6 @@ export const Home = Vue.component("home", {
     }
   })
 });
-
-function applyFullPage() {
-  $("#fullpage").fullpage({
-    scrollBar: true,
-    navigation: true,
-    normalScrollElements: ".normal-scroll",
-    responsiveWidth: 768
-  });
-}
-
-function destroyFullPage() {
-  fullpage_api.destroy("all");
-}
 
 function onMounted() {
   const sticky = 400;
