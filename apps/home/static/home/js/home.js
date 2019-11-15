@@ -54,7 +54,6 @@ export const Home = Vue.component("home", {
       passengerSelectProgress: false,
       seatTypeSelectProgress: false,
       maxStopsSelectProgress: false,
-      maxStopsText: "",
       backToForm: false,
       seatTypes,
       maxStopsFilterOptions: {
@@ -63,9 +62,7 @@ export const Home = Vue.component("home", {
         2: "Two Stops"
       },
       airlinesSelectProgress: false,
-      airlinesText: "",
       priceSelectProgress: false,
-      priceText: "",
       fullPageApplied: false,
       form: {
         limit: 20,
@@ -115,11 +112,14 @@ export const Home = Vue.component("home", {
     VueSlider: window["vue-slider-component"]
   },
   methods: {
-    airlineIcon,
-    updatePriceText() {
-      const [a, b] = this.form.priceRange;
-      this.priceText = `$${a}-$${b}`;
+    clearFilters() {
+      for (let a of this.form.airlines) {
+        a.checked = false;
+      }
+      this.form.priceRange = [0, 3000];
+      this.form.maxStops = null;
     },
+    airlineIcon,
     openPriceSelect() {
       setTimeout(() => {
         this.priceSelectProgress = true;
@@ -127,12 +127,6 @@ export const Home = Vue.component("home", {
     },
     closePriceSelect() {
       this.priceSelectProgress = false;
-    },
-    updateAirlinesSelection() {
-      this.airlinesText = this.form.airlines
-        .filter(a => a.checked)
-        .map(a => a.name)
-        .join(", ");
     },
     openAirlinesSelect() {
       setTimeout(() => {
@@ -152,7 +146,6 @@ export const Home = Vue.component("home", {
     },
     selectMaxStops(maxStops) {
       this.form.maxStops = maxStops;
-      this.maxStopsText = this.maxStopsFilterOptions[this.form.maxStops];
       this.closeMaxStopsSelect();
     },
     openSeatTypeSelect() {
@@ -632,7 +625,6 @@ export const Home = Vue.component("home", {
     this.$nextTick(()=>{
       this.applyFullPage();
     });
-    this.updatePriceText();
     this.setDatePick();
     onMounted();
   },
@@ -677,6 +669,19 @@ export const Home = Vue.component("home", {
     },
     isMobile() {
       return this.$mq === "sm";
+    },
+    maxStopsText() {
+      return this.maxStopsFilterOptions[this.form.maxStops];
+    },
+    airlinesText() {
+      return this.form.airlines
+        .filter(a => a.checked)
+        .map(a => a.name)
+        .join(", ");
+    },
+    priceText() {
+      const [a, b] = this.form.priceRange;
+      return `$${a}-$${b}`;
     }
   })
 });

@@ -243,7 +243,6 @@ header.sticky{
 }
 .left-form-pane .filter-field b{
     margin-bottom: 9px !important;
-    display: block;
     font-family:Dona-Black;
     color: #fff !important;
     font-size: 26px;
@@ -492,13 +491,19 @@ header.sticky{
 }
 .filter-field {
     padding: 6px 15px;
+    display: flex;
 }
 .filter-field b{
     font-size: 18px;
     color: black;
     font-weight: bold;
+    flex-grow: 1;
     font-family:Dona-Regular;
-    color: #000;
+}
+.filter-field button.clear-filters{
+    color: black;
+    background-color: white;
+
 }
 .h-user-home {
     display: flex;

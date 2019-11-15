@@ -197,7 +197,7 @@
 
             <div class="search-f-dropdown airline-f-dropdown" v-if="airlinesSelectProgress" v-click-outside="closeAirlinesSelect">
                 <ul class="s-dropdown-list">
-                    <li v-for="airlineData in form.airlines"><label><input type="checkbox" v-model="airlineData.checked" @change="updateAirlinesSelection">{( airlineData.name )}<span class="checkmark"></span></label></li>
+                    <li v-for="airlineData in form.airlines"><label><input type="checkbox" v-model="airlineData.checked">{( airlineData.name )}<span class="checkmark"></span></label></li>
                 </ul>
             </div>
 
@@ -220,7 +220,7 @@
 
             <div class="search-f-dropdown price-dropdown" v-show="priceSelectProgress" v-click-outside="closePriceSelect">
                 <div class="price-slider-container">
-                <vue-slider v-model="form.priceRange" :enable-cross="false" :max="3000" @change="updatePriceText"></vue-slider>
+                <vue-slider v-model="form.priceRange" :enable-cross="false" :max="3000" />
                 </div>
             </div>
         </div>
