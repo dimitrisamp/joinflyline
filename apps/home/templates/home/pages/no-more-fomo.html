@@ -1,9 +1,6 @@
 {% load static %}
-<div
-  v-if="!isMobile && user.anonymous && searchResults.length === 0"
-  class="section fp-auto-height-responsive fp-section"
-  id="sec3-Bg"
->
+<script type="text/x-template" id="vue-no-more-fomo-template">
+<div class="section fp-auto-height-responsive fp-section" id="sec3-Bg">
   <div class="container">
     <div class="row">
       <div class="col-md-6 col-12">
@@ -46,4 +43,4 @@
     </div>
   </div>
 </div>
-<!--  Section Three  -->
+</script>

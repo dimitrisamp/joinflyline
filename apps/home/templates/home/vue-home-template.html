@@ -80,10 +80,10 @@
               </div>
           </div>
           {% include "home/pages/mobile-footer.html" %}
-          {% include "home/pages/no-more-bookings.html" %}
-          {% include "home/pages/no-more-fomo.html" %}
-          {% include "home/pages/no-more-redirects.html" %}
-          {% include "home/pages/subscription-plans.html" %}
+          <no-more-booking-fees v-if="!isMobile"></no-more-booking-fees>
+          <no-more-fomo v-if="!isMobile"></no-more-fomo>
+          <no-more-redirects v-if="!isMobile"></no-more-redirects>
+          <subscription-plans v-if="!isMobile"></subscription-plans>
           <div v-if="isMobile" class="email-mobile-view">joinflyline.com | Mobile</div>
           <div id="footer-section" class="section fp-section fp-auto-height-responsive">
               {% include "_includes/footer.html" %}

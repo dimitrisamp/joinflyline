@@ -1,9 +1,6 @@
 {% load static %}
-<div
-  v-if="!isMobile && user.anonymous && searchResults.length === 0"
-  class="section fp-auto-height-responsive fp-section"
-  id="section5-Bg"
->
+<script type="text/x-template" id="vue-subscription-plans-template">
+<div class="section fp-auto-height-responsive fp-section" id="section5-Bg">
   <div class="section5-Bg">
     <div class="text-center section5-content">
       <h3>Your Easiest Travel Decision</h3>
@@ -13,7 +10,7 @@
       </p>
     </div>
 
-    <div v-if= "!isMobile" class="container">
+    <div v-if= "$mq !== 'sm'" class="container">
       <div class="text-center pricing-tabs">
         <!-- Nav tabs -->
         <ul class="nav nav-tabs" role="tablist">
@@ -137,7 +134,7 @@
     </div>
 
     <!-- Mobile View Price Plan -->
-    <div class="mobile-pricing-plan" v-if="isMobile">
+    <div class="mobile-pricing-plan" v-if="$mq === 'sm'">
       <div class="text-center pricing-tabs">
         <!-- Nav tabs -->
         <ul class="nav nav-tabs" role="tablist">
@@ -259,4 +256,4 @@
     </div>
   </div>
 </div>
-<!--  Section Five  -->
+</script>

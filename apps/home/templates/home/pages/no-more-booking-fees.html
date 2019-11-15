@@ -1,9 +1,6 @@
 {% load static %}
-<div
-  v-if="!isMobile && user.anonymous && searchResults.length === 0"
-  class="section fp-auto-height-responsive"
-  id="Section02"
->
+<script type="text/x-template" id="vue-no-more-booking-fees-template">
+<div class="section fp-auto-height-responsive"  id="Section02">
   <div class="container">
     <div class="row">
       <div class="col-md-12 col-12">
@@ -17,10 +14,10 @@
             on domestic flights, and hundreds of dollars in savings on
             international trips compared to the other major travel sites
           </p>
-          <a href="" class="btn btn-default">Saving Explained</a>
+          <router-link to="/savings-explained/" class="btn btn-default">Saving Explained</router-link>
         </div>
       </div>
     </div>
   </div>
 </div>
-<!--  second section -->
+</script>
