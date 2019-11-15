@@ -10,6 +10,14 @@ footer {
     min-height: 85px;
 }
 
+#footer-section {
+    height: 87px !important;
+}
+
+#footer-section .fp-tableCell {
+    height: 87px !important;
+}
+
 @media (max-width: 768px) {
     .footer-line {
         flex-direction: column;

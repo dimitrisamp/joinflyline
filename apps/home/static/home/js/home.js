@@ -629,7 +629,9 @@ export const Home = Vue.component("home", {
     }
   },
   mounted() {
-    this.applyFullPage();
+    this.$nextTick(()=>{
+      this.applyFullPage();
+    });
     this.updatePriceText();
     this.setDatePick();
     onMounted();
