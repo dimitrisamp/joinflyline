@@ -123,8 +123,11 @@ Container emulation
     flex: 2;
     padding-left: 25px;
     padding-right: calc(100%/2 - 1140px/2 + 15px);
+    background: #fff;
 }
-
+.design-revesion {
+    margin-top: 22px;
+}
 .search_btn {
     border: 2px solid #00AEEF;
     background: #fff;
@@ -153,6 +156,12 @@ header.sticky{
     background: #fff !important;
     padding:10px 0;
     border-bottom: 1.2px solid #cfcfcf47;
+}
+.sticky .navbar-light{
+    background: #fff !important;
+    padding:10px 0;
+    border-bottom: none !important;
+    box-shadow: none !important;
 }
 .navbar-light .btn{
     font-family: Dona-Bold;
@@ -359,6 +368,19 @@ header.sticky{
 .search-dropdown{
     margin-bottom: 10px;
 }
+.blueBorder span {
+    border-color: #00b0f5;
+}
+.blueBorder input{
+    border-color: #00b0f5 !important;    
+}
+.dat-blue-border{
+    display: flex;
+}
+.clicked .dat-blue-border{
+    background: #fff;
+    padding: 6px 8px;
+}
 .search-dropdown .form-control {
     border-radius: 0px;
     border-left: 0;
@@ -500,7 +522,7 @@ header.sticky{
 }
 .horizontal-f-btn .btn-search {
     background: #00b0f5;
-    border-color: #00b0f5 !important;
+    border-color: #00b0f5;
     padding: 7px 31px;
     border: 1px solid #00b0f5;
 }
@@ -665,7 +687,7 @@ header.sticky{
 .filter-devider{
     background: #fff;
     height: 3px;
-    width: 100%;
+    width: 91%;
     margin: 0px 15px;
     margin-bottom: 20px;
 }
@@ -1439,7 +1461,7 @@ header.sticky{
     padding-right: 0px;
 }
 .second-f-slider{
-    margin-top: 15px;
+    margin-top: 30px;
 }
 
 
@@ -1721,7 +1743,7 @@ This one is disabled until top blue line is back
 }
 .fly-linesetion{
     padding: 5px 30px;
-    padding-top: 9px;
+    padding-top: 29px;
     border-top: 2px solid #b0b0b085;
 }
 /******* Mobie View Header ***********/
@@ -1781,12 +1803,11 @@ This one is disabled until top blue line is back
 }
 .email-mobile-view{
     text-align: center;
-    color:#00b0f4;  
+    color: #00b0f4;
     font-family: Dona-Black;
     font-size: 14px;
-    display: block;
-    padding: 11px 0px;
-    margin-top: 20px;
+    height: 80px;
+    padding: 34px 0;
 }
 .search-button .btn:active{
     background: #fff !important;
@@ -1799,6 +1820,9 @@ This one is disabled until top blue line is back
           Media Query
 *****************************/
 @media(min-width:320px) and (max-width: 480px){
+.header-background{
+    background:url(../img/pricing_background.png);
+}
 footer{
     display: none;
 }
@@ -1815,10 +1839,13 @@ footer{
     margin: 10px 0;
 }
 .s-result-dropdown .btn {
-    max-width: 29%;
+    width: auto;
     margin-left: 15px;
-    margin-bottom: 0px; 
+    margin-bottom: 0px;
     padding: 11px 5px;
+    background: transparent !important;
+    border: none;
+    color: #fff;
 }    
 .horizontal-form .row {
     margin-top: 9px;
@@ -1835,10 +1862,10 @@ footer{
     background: url('../img/wallpaper.png') !important;
 }
 .newhome-form span{
-    color: #000;
+    color: #fff;
 }
 .search-form-input{
-    color: #7d7d7d;
+    color: #00aeef;
 }
 .horizontal-f-btn .btn-search {
     padding: 11px 31px;
@@ -1978,6 +2005,9 @@ footer{
 }
 .mobile-pricing-plan .h-planbox{
     margin-left: 24px;
+}
+.showpricingsection{
+    display: block !important;
 }
 
 

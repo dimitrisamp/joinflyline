@@ -684,7 +684,6 @@ function onMounted() {
     }
   });
 
-  $("#homepage .mobile-v-header").hide();
   $(".pricing-hide-view").hide();
   $("#homepage .home-info-footer").hide();
   if ($(window).width() <= 767) {
@@ -706,4 +705,12 @@ function onMounted() {
       $("#homepage .hide-view").show();
     });
   }
+  $(".home-date-field-dep").click(function() {
+    $(".dep-date").addClass("blueBorder");
+    $(".ret-date").removeClass("blueBorder");
+  });
+  $(".home-date-field-ret").click(function() {
+    $(".dep-date").removeClass("blueBorder");
+    $(".ret-date").addClass("blueBorder");
+  });
 }

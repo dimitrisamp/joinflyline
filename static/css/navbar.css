@@ -7,9 +7,9 @@ a.custom_nav_link:hover {
 }
 
 .navbar-section nav {
-    padding: 3px 15px;
+    padding:0px 15px;
     background-color: white;
-    box-shadow: 0 2px 4px whitesmoke;
+    box-shadow: none;
     border-bottom: 1px solid whitesmoke;
 }
 

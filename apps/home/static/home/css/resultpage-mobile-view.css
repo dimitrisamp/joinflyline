@@ -194,28 +194,28 @@ body{
     left: 15px;
     margin-top: -8px;
 }
-.modal.fade:not(.in).right .modal-dialog {
+.flight-popup .modal.fade:not(.in).right .modal-dialog {
     -webkit-transform: translate3d(-67%, 0, 0);
     transform: translate3d(-67%, 0, 0);
 }
-.modal .modal-dialog {
+.flight-popup .modal .modal-dialog {
     position:absolute;
     top:0;
     margin:0;
     left: 58%;
 }
-.modal .right{
+.flight-popup .modal .right{
     max-width:250px;
 }
-.modal-content, .modal.right .modal-content {
+.flight-popup .modal-content, .modal.right .modal-content {
     min-height:100vh;
     border:0;
     border-radius: 0px;
 }
-.modal-content{
+.flight-popup .modal-content{
     width: 350px;
 }
-.close-btn-modal{
+.flight-popup .close-btn-modal{
     margin-left: 5px !important;
     position: relative;
 }
