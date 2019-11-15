@@ -46,7 +46,6 @@ class SavingsExplainedView(TemplateView):
 
 
 class PromoLandingView(CreateView):
-    template_name = "home/promotional_landing.html"
     model = PromoInfo
     fields = ['email', 'instagram']
 

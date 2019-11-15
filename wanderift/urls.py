@@ -16,6 +16,7 @@ Including another URLconf
 
 from django.contrib import admin
 from django.http import HttpResponse
+from django.shortcuts import redirect
 from django.urls import path, include
 from django.views import View
 from django.views.generic import TemplateView
@@ -65,7 +66,7 @@ urlpatterns = [
     # Auth urls
     path("auth/", include("apps.oauth.urls")),
     # booking
-    path("promo/", PromoLandingView.as_view(), name="promo-landing"),
+    path("promo/", lambda _: redirect('/#/promo/'), name="promo-landing"),
     path("retail/", RetailBookingView.as_view(), name="retail"),
     path("booking_flight/", SaveBookingView.as_view(), name="book"),
     path("check-flights/", CheckFlightsView.as_view(), name="check-flights"),
