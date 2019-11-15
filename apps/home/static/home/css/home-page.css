@@ -858,6 +858,8 @@ header.sticky{
     padding: 20px 30px;
     margin-top: 20px;
     height: 450px;
+    display: flex;
+    flex-direction: column;
 }
 .h-planbox .mark-heading{
     background: #00b0f5;
@@ -911,6 +913,7 @@ header.sticky{
 }
 .plan-list{
     margin-top: 30px;
+    flex-grow: 1;
 }
 .plan-list li {
     font-size: 16px;
@@ -925,13 +928,7 @@ header.sticky{
     padding: 7px 21px;
     font-weight: 600;
     font-family: Dona-Bold;
-    margin-top: 19px;
-    margin-bottom: 10px;
     border: 2px solid #00b0f5;
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    margin: 26px 20px;
     width: -webkit-fill-available;
     max-width: 100%;
 }
