@@ -69,7 +69,7 @@ export const Wizard = Vue.component("wizard", {
       el.select();
     },
     updateSelectValue(value) {
-      this.form.plan = value;
+      this.form.plan = this.$route.params.plan || value;
     },
     submit() {
       if (!this.isStep2Complete) return;

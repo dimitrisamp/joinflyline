@@ -7,7 +7,11 @@ import {PromoLanding} from "./promo-landing.js";
 const routes = [
     {path: '/', component: Home},
     {path: '/savings-explained/', component: SavingsExplained},
-    {path: '/get-started/', component: Wizard},
+    {
+        path: '/get-started/:plan?',
+        name: 'get-started',
+        component: Wizard
+    },
     {path: '/learn-more/', component: LearnMore},
     {path: '/promo/', component: PromoLanding},
 ];

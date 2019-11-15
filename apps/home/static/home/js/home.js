@@ -36,7 +36,6 @@ export const Home = Vue.component("home", {
       searchResultPlacesFrom: [],
       searchResultPlacesTo: [],
       searchProgress: false,
-      searchResults: [],
       quickFiltersData: null,
       searchLocation: "",
       noOfPassengers: "Passengers",
@@ -488,7 +487,7 @@ export const Home = Vue.component("home", {
           checked: false
         }));
       }
-      this.searchResults = data.data.data;
+      this.$store.commit('setSearchResults', data.data.data);
     },
     search() {
       this.searchProgress = true;
@@ -641,6 +640,7 @@ export const Home = Vue.component("home", {
   },
   computed: Vuex.mapState({
     user: "user",
+    searchResults: 'searchResults',
     isFormIncomplete() {
       if (this.form.destinationTypeId === "round") {
         if (!this.form.return_date) return true;
