@@ -741,7 +741,7 @@ header.sticky{
     margin-top: -60px;
 }
 .section3-content {
-    margin: 130px 0;
+    margin: 50px 0;
 }
 .section3-content h3{
     font-size: 50px;
@@ -773,6 +773,9 @@ header.sticky{
 #sec4-bg{
     background: url('../img/wallpaper.png');
     background-size: cover;
+}
+.section4-content {
+    margin: 50px 0;
 }
 .section4-content h3{
     font-size: 50px;
@@ -2088,20 +2091,20 @@ footer{
 .section4-content p {
     color:#b5b5b5;
     font-weight: 600;
-    font-size: 17px;
-    margin: 19px 10px;
+    font-size: 22px;
+    margin: 19px 0;
     line-height: 37px;
     text-align: left;
 }
 .section5-content p {
     color: #fff;
     font-weight: 600;
-    font-size: 11px;
+    font-size: 14px;
     margin: 10px 10px;
     line-height: 23px;
 }
 .section2-content{
-    margin-top: 50px;
+    margin: 50px 0;
 }
 .assets-section .img_asset {
     height: 18px;
