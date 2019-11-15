@@ -41,71 +41,8 @@
                   <div class="d-flex fp-auto-height-responsive header-background homepage-background mobile-before first-page-body">
                       <div v-if="!user.anonymous || searchResults.length !== 0 || searchProgress"
                            class="d-flex flex-row search-panel">
-                          <div class="left-form-pane container-pad-left">
-                              <div v-if="searchResults.length === 0">
-                                  <h3>Search our Deals</h3>
-                                  <p>Exclusive private flights for
-                                      members</p>
-                              </div>
-                              <div v-else class="search-flight-home">
-                                  <h3>{( cityFromTo )}</h3>
-                                  <p>Carriers: {( airlineNames )}</p>
-                                  <div class="search-flight-devider"></div>
-                              </div>
-                              {% include "home/dealform.html" %}
-                          </div>
-                          <div class="right-body-pane" :class="{'container-pad-right': searchResults.length !== 0 || searchProgress}">
-                              <div v-if="searchResults.length === 0 && !searchProgress"
-                                   class="h-contentarea">
-                                  <div class="search-results-rightcontent design-revesion">
-                                      <h3>Lets find your next <span class="f-clr">adventure</span>
-                                      </h3>
-                                      <p>Don't know where to go? Take a look at these
-                                          suggestions below</p>
-
-                                      {% include "home/pages/trending-deals-slider.html" %}
-                                      {% include "home/pages/deep-discount-flights.html" %}
-                                  </div>
-                              </div>
-                              <div v-else-if="searchProgress">
-                                  <div class="w-100" v-for="i in 5"
-                                       :key="i">
-                                      <div class="result-item mb-2 w-100"
-                                           style="width: 90%">
-                                          <div class="result-block result-toggler w-100 d-block d-md-flex justify-content-start p-2 pt-3 pb-3"
-                                               data-toggle="collapse"
-                                               data-target="#result-item27180">
-                                              <div class="loading_animation">
-                                                  <div class="col-md-12">
-                                                      <div class="row">
-                                                          <div class="col-md-2">
-                                                              <div class="animate-element animate-element-01"></div>
-                                                          </div>
-                                                          <div class="col-md-2">
-                                                              <div class="animate-element animate-element-02"></div>
-                                                              <div class="animate-element animate-element-03"></div>
-                                                          </div>
-                                                          <div class="col-md-8">
-                                                              <div class="animate-element animate-element-04"></div>
-                                                              <div class="animate-element animate-element-05"></div>
-                                                          </div>
-                                                      </div>
-                                                  </div>
-                                              </div>
-                                          </div>
-                                      </div>
-                                      <div class="divider-30"></div>
-                                  </div>
-                              </div>
-                              <search-results v-else-if="$mq !== 'sm'"
-                                              :search-results="searchResults"
-                                              :search-progress="searchProgress"
-                                              :load-more="loadMore"
-                                              :form="form"
-                                              :user="user"
-                                              :sort-results-by="sortResultsBy"
-                                              :quick-filters-data="quickFiltersData"/>
-                          </div>
+                          {% include "home/pages/left-pane.html" %}
+                          {% include "home/pages/right-pane.html" %}
                       </div>
                       <div v-else
                            class="container align-self-center">
@@ -142,19 +79,7 @@
                   </div>
               </div>
           </div>
-          <div v-if="isMobile" class="fly-linesetion">
-              <div class="mobile-view-footer">
-                  <ul class="mobile-v-tabs">
-                      <li class="selected"><a href="#"><img
-                              src="{% static "home/img/Home.png" %}">
-                          <span>Home </span></a></li>
-                      <li><a href="#"><img src="{% static "home/img/Trip.png" %}"> <span>Trip</span></a>
-                      </li>
-                      <li><a href="#"><img src="{% static "home/img/Account.png" %}">
-                          <span>Account </span></a></li>
-                  </ul>
-              </div>
-          </div>
+          {% include "home/pages/mobile-footer.html" %}
           {% include "home/pages/no-more-bookings.html" %}
           {% include "home/pages/no-more-fomo.html" %}
           {% include "home/pages/no-more-redirects.html" %}
