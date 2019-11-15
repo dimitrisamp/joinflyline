@@ -1,5 +1,5 @@
 import ClickOutside from "./v-click-outside.js";
-import { seatTypes } from "./utils.js";
+import { seatTypes, airlineIcon } from "./utils.js";
 import { airlineCodes } from "./airlineCodes.js";
 
 function debounce(fn, delay, ...rest) {
@@ -115,6 +115,7 @@ export const Home = Vue.component("home", {
     VueSlider: window["vue-slider-component"]
   },
   methods: {
+    airlineIcon,
     updatePriceText() {
       const [a, b] = this.form.priceRange;
       this.priceText = `$${a}-$${b}`;

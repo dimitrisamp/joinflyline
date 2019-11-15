@@ -206,7 +206,7 @@
                     <ul class="s-dropdown-list">
                         <li v-for="airlineData in form.airlines"><label><input
                                 type="checkbox" v-model="airlineData.checked"
-                                @change="updateAirlinesSelection">{( airlineData.name )}<span
+                                @change="updateAirlinesSelection"><img :src="airlineIcon(airlineData.code)"/> {( airlineData.name )}<span
                                 class="checkmark"></span></label></li>
                     </ul>
                 </div>

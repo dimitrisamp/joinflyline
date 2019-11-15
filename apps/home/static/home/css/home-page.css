@@ -1173,6 +1173,10 @@ header.sticky{
     width: 290px;
     box-shadow: 0px 2px 5px #ccc;
 }
+
+.airline-f-dropdown img {
+    width: 20px;
+}
 .airline-f-dropdown .s-dropdown-list li{
     padding: 6px 10px;
     text-align: left;
