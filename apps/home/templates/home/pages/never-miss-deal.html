@@ -1,0 +1,66 @@
+{% load static %}
+<div class="d-flex flex-column justify-content-around home-slider" v-if="showWideForm">
+    <div>
+        <h3 class="slider-title">Never miss out on a FlyLine deal</h3>
+        <p class="slider-title-second">
+            Save Hundreds on both International and Domestic Flights
+        </p>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 col-12">
+                <div class="slider-box">
+                    <img src="{% static "home/img/barcelona-buildings-city-1388030.jpg" %}"/>
+                    <div class="h-slider-caption">
+                        <strong style="font-size: 1.2rem;">Barcelona</strong>
+                        <p style="padding-bottom: 5px;">$750+ Round Trip | Typical
+                            Price</p>
+                        <b style="margin-bottom: 20px;">$432 Round Trip | Found on
+                            FlyLine</b>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3 col-12">
+                <div class="slider-box">
+                    <img src="{% static "home/img/architecture-building-capital-1850619.jpg" %}"/>
+                    <div class="h-slider-caption">
+                        <strong style="font-size: 1.2rem;">Paris</strong>
+                        <p style="padding-bottom: 5px;">$820+ Round Trip | Typical
+                            Price</p>
+                        <b style="margin-bottom: 20px;"
+                        >$475 Round Trip | Found on FlyLine</b
+                        >
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3 col-12">
+                <div class="slider-box">
+                    <img src="{% static "home/img/architecture-buildings-city-2190283.jpg" %}"/>
+                    <div class="h-slider-caption">
+                        <strong style="font-size: 1.2rem;">New York</strong>
+                        <p style="padding-bottom: 5px;">$375+ Round Trip | Typical
+                            Price</p>
+                        <b style="margin-bottom: 20px;"
+                        >$152 Round Trip | Found on FlyLine</b
+                        >
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3 col-12">
+                <div class="slider-box">
+                    <img src="{% static "home/img/ancient-architectural-design-architecture-2166553.jpg" %}"/>
+                    <div class="h-slider-caption">
+                        <strong style="font-size: 1.2rem;">Bali</strong>
+                        <p style="padding-bottom: 5px;">$850+ Round Trip | Typical
+                            Price</p>
+                        <b style="margin-bottom: 20px;">$534 Round Trip | Found on
+                            FlyLine</b>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
