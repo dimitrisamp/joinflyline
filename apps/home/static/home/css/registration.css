@@ -144,35 +144,6 @@ body{
     width: 100%;
     background-position: bottom;
 }
-.bottom-footer .sub-menus{
-    text-align: center;
-    padding-bottom: 30px;
-}
-.bottom-footer ul {
-    list-style: none;
-    margin: 0 auto;
-    padding: 0;
-    display: inline-block;
-}
-.bottom-footer ul li {
-    display: inline-block;
-}
-.bottom-footer a {
-    color: #000;
-    text-decoration: none;
-    font-size: 13px;
-    font-weight: bolder;
-}
-.bottom-footer ul li:before {
-    content: "|";
-    font-size: 16px;
-    font-weight: 400;
-    display: inline-block;
-    margin: 0 15px;
-}
-.bottom-footer ul li:first-child:before {
-    display: none;
-}
 
 .setep-2{
     margin:70px 0px;

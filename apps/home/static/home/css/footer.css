@@ -1,0 +1,36 @@
+footer {
+    min-height: 85px;
+}
+.footer-line {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    min-height: 85px;
+}
+
+@media (max-width: 768px) {
+    .footer-line {
+        flex-direction: column;
+    }
+    .footer-line div {
+        margin: 5px 0;
+    }
+}
+
+footer {
+    background: #fff;
+}
+
+footer span, footer a {
+    color: #00b0f5;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 600;
+    font-family: dona-bold;
+    letter-spacing: 1px;
+    padding-right: 15px;
+    text-align: center;
+}
+
