@@ -45,7 +45,7 @@ def login_user(request):
         auth.login(request, user)
         return redirect(index_view)
     else:
-        return redirect(index_view)
+        return redirect(reverse('sign-in'))
 
 
 class ForgotPasswordView(FormView):
