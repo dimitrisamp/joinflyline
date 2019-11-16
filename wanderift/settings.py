@@ -188,14 +188,12 @@ STATIC_URL = "/static/"
 STATICFILES_DIRS = (os.path.join("static"),)
 
 STATICFILES_FINDERS = [
-    'django.contrib.staticfiles.finders.FileSystemFinder',
-    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    'compressor.finders.CompressorFinder',
+    "django.contrib.staticfiles.finders.FileSystemFinder",
+    "django.contrib.staticfiles.finders.AppDirectoriesFinder",
+    "compressor.finders.CompressorFinder",
 ]
 
-COMPRESS_PRECOMPILERS = (
-    ('text/x-scss', 'django_libsass.SassCompiler'),
-)
+COMPRESS_PRECOMPILERS = (("text/x-scss", "django_libsass.SassCompiler"),)
 
 # graph_models --pydot -a -g -o my_project_visualized.png
 
@@ -209,8 +207,10 @@ LOGIN_URL = "/sign-in"
 RECEIVE_EMAIL = "bookings@wanderift.com"
 RECEIVE_PHONE = "+18105131533"
 KIWI_API_KEY = "4TMnq4G90OPMYDAGVHzlP9LQo2hvzzdc"
-STRIPE_API_KEY = os.getenv('STRIPE_API_KEY')
-PLANS_CONFIG_FILE = os.getenv('PLANS_CONFIG_FILE', os.path.join(os.path.dirname(__file__), 'plans.json'))
+STRIPE_API_KEY = os.getenv("STRIPE_API_KEY")
+PLANS_CONFIG_FILE = os.getenv(
+    "PLANS_CONFIG_FILE", os.path.join(os.path.dirname(__file__), "plans.json")
+)
 try:
     SUBSCRIPTION_PLANS = json.load(open(PLANS_CONFIG_FILE))
 except:
@@ -221,11 +221,23 @@ if STAGE == "production":
     sentry_sdk.init(dsn=SENTRY_DSN, integrations=[DjangoIntegration()])
     DEFAULT_FILE_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
     STATICFILES_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
+    COMPRESS_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
     GS_BUCKET_NAME = "joinflyline"
     GS_DEFAULT_ACL = "publicRead"
     GS_CACHE_CONTROL = "max-age=120"
     MEDIA_ROOT = "media"
     DEBUG = False
+    COMPRESS_OFFLINE = True
+    COMPRESS_FILTERS = {
+        "css": [
+            "compressor.filters.css_default.CssAbsoluteFilter",
+            "compressor.filters.cssmin.CSSCompressorFilter",
+        ],
+        "js": [
+            "compressor.filters.jsmin.JSMinFilter",
+            "compressor.filters.jsmin.SlimItFilter",
+        ],
+    }
 
 SITE_TITLE = "Wanderift | Airline Travel Subscription | Save on Retail Flights"
 SUBSCRIBER_AIRLINES = {
@@ -258,4 +270,4 @@ SERVER_EMAIL = "noreply@joinflyline.com"
 
 SECRET_LINK_EXPIRATION_SECONDS = 3600
 
-SITE_URL = os.getenv('SITE_URL', 'https://joinflyline.com')
+SITE_URL = os.getenv("SITE_URL", "https://joinflyline.com")
