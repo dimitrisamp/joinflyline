@@ -24,5 +24,9 @@ celery[redis]
 django-maintenancemode
 
 django-rest-framework
+
 django_compressor
 django-libsass
+lxml
+slimit
+csscompressor
