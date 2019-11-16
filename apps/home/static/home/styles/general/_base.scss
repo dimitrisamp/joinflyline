@@ -1,0 +1,19 @@
+// Transition for the application
+.app-enter-active, .app-leave-active {
+  transform: translateY(0);
+  transition: all .18s cubic-bezier(.13,.89,.58,1)
+}
+.app-enter, .app-leave-to {
+  transform: translateY(-2rem);
+  opacity: 0;
+}
+
+// Transition for slide
+.slide-enter-active, .slide-leave-active {
+  transform: translateY(0);
+  transition: all .38s cubic-bezier(.13,.89,.58,1)
+}
+.slide-enter, .slide-leave-to {
+  transform: translateX(-2rem);
+  opacity: 0;
+}

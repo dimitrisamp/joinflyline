@@ -9,7 +9,7 @@ sentry-sdk
 django-suit
 
 python-dotenv
-psycopg2
+psycopg2-binary
 invoke
 
 django-extensions

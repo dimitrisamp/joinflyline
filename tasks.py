@@ -45,7 +45,7 @@ HTML_TEMPLATE = """<script type="text/x-template" id="vue-{kebab_name}-template"
 </script>
 """
 INCLUDE_HTML = """{{% include "{path}" %}}\n"""
-INCLUDE_JS = """<script type="module" src="{{% static "{path}" %}}"></script> %}}\n"""
+INCLUDE_JS = """<script type="module" src="{{% static "{path}" %}}"></script>\n"""
 
 
 @task

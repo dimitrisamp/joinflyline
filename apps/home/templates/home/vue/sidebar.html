@@ -1,0 +1,21 @@
+<script type="text/x-template" id="vue-sidebar-template">
+  <aside class="sidebar">
+    <router-link to="/dashboard" class="sidebar__logo">Logo</router-link>
+    <nav class="sidebar__nav">
+      <ul class="sidebar__list">
+        <li class="sidebar__item">
+          <router-link v-bind:to="{name: 'dashboard'}" class="sidebar__link">FlyLine Dashboard</router-link>
+        </li>
+        <li class="sidebar__item">
+          <router-link v-bind:to="{name: 'trips'}" class="sidebar__link">Trip Activity</router-link>
+        </li>
+        <li class="sidebar__item">
+          <router-link v-bind:to="{name: 'account'}" class="sidebar__link">Account Information</router-link>
+        </li>
+        <li class="sidebar__item">
+          <router-link v-bind:to="{name: 'help'}" class="sidebar__link">Help</router-link>
+        </li>
+      </ul>
+    </nav>
+  </aside>
+</script>
