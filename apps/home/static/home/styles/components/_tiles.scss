@@ -53,6 +53,7 @@
     &-top,
     &-bottom {
       display: flex;
+      flex-wrap: wrap;
       p {
         margin: 0;
       }
@@ -79,7 +80,7 @@
       &:first-child {
         margin-right: 4rem;
         @include mq(lg) {
-          margin-right: 8rem;
+          //margin-right: 8rem;
         }
       }
       span {
