@@ -1,8 +1,12 @@
 .main-header {
-  margin-left: $sidebar-width;
-  padding: 1rem 2rem;
+  margin-left: 0;
+  padding: 1rem 0.95rem;
   border-bottom: 1px solid $header-border-color;
   margin-bottom: 2.375rem;
+  @include mq(lg) {
+    padding: 1rem 2rem;
+    margin-left: $sidebar-width;
+  }
   &__top {
     margin-bottom: 1rem;
     span {
@@ -19,6 +23,16 @@
   &__bottom {
     form {
       display: flex;
+      flex-direction: column;
+      input:not(:last-child) {
+        margin-bottom: 0.7rem;
+      }
+      @include mq(lg) {
+        flex-direction: row;
+        input {
+          margin: 0;
+        }
+      }
     }
     .btn-search {
       background-color: $primary;

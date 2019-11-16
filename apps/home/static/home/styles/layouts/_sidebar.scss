@@ -5,6 +5,10 @@
   top: 0;
   left: 0;
   background-color: $primary;
+  transform: translateX(-100%);
+  @include mq(lg) {
+    transform: translateX(0);
+  }
   &::after {
     position: absolute;
     top: 0;

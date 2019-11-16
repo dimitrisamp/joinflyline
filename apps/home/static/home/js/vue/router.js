@@ -6,6 +6,7 @@ import {PromoLanding} from "./components/promo-landing.js";
 import {Dashboard} from "./components/dashboard.js";
 import {Trips} from "./components/trips.js";
 import {DashboadOverview} from "./components/dashboad-overview.js";
+import {AccountInformation} from "./components/account-information.js";
 
 const routes = [
   {
@@ -26,6 +27,11 @@ const routes = [
         path: 'trips',
         name: 'trips',
         component: Trips
+      },
+      {
+        path: 'account',
+        name: 'account',
+        component: AccountInformation
       }
     ]
   },
