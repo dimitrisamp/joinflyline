@@ -1,4 +1,5 @@
 {% load static %}
+{% load compress %}
 <!DOCTYPE html>
 <html>
     <head>
@@ -33,6 +34,9 @@
         <link href="{% static "/home/vue-slider-component/theme/default.css" %}"
               rel="stylesheet"/>
         {% include "favicon.html" %}
+        {% compress css %}
+            <link type="text/x-scss" href="{% static 'home/styles/main.scss' %}" rel="stylesheet" media="screen">
+        {% endcompress %}
         <meta name="description"
               content="Find your next exciting adventure with FlyLine. Search our thousands of discount flights exclusive to FlyLine members, and travel without breaking the bank. Travel more and spend less with FlyLine."/>
     </head>
