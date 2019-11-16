@@ -2,8 +2,10 @@
   <div class="tile">
     <template v-if="multiTitle">
       <div class="tile__heading-container">
-        <h3 class="tile__heading" v-text="title"></h3>
-        <span class="title__heading-right" v-text="titleRight"></span>
+        <h3 class="tile__heading">
+          <span v-text="title"></span>
+          <span class="tile__heading-right" v-text="titleRight"></span>
+        </h3>
       </div>
     </template>
     <template v-else>
