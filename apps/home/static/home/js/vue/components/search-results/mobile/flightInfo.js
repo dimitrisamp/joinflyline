@@ -1,4 +1,4 @@
-import {airlineIcon, secs2hm, seatTypes} from "../../../utils.js";
+import {airlineIcon, secs2hm, seatTypes} from "../../../../utils.js";
 
 
 Vue.component('flight-info-mobile', {

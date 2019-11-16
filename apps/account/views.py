@@ -122,7 +122,6 @@ def add_to_stripe(user, plan):
 
 
 class WizardView(FormView):
-    template_name = "home/wizard.html"
     form_class = WizardForm
 
     def form_invalid(self, form):

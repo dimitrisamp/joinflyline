@@ -1,6 +1,6 @@
-import ClickOutside from "./v-click-outside.js";
-import { seatTypes, airlineIcon } from "./utils.js";
-import { airlineCodes } from "./airlineCodes.js";
+import ClickOutside from "../../v-click-outside.js";
+import { seatTypes, airlineIcon } from "../../utils.js";
+import { airlineCodes } from "../../airlineCodes.js";
 
 function debounce(fn, delay, ...rest) {
   let timeoutID = null;

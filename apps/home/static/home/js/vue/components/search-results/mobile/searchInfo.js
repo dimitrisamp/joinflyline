@@ -1,4 +1,4 @@
-import {formatDate} from "../../../utils.js";
+import {formatDate} from "../../../../utils.js";
 
 Vue.component('search-info-mobile', {
     template: '#vue-search-info-mobile-template',

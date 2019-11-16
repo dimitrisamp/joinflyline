@@ -1,4 +1,4 @@
-import {secs2hm, formatTime, formatDate} from "../../../utils.js";
+import {secs2hm, formatTime, formatDate} from "../../../../utils.js";
 
 Vue.component('summary-leg-mobile', {
     template: '#vue-summary-leg-mobile-template',

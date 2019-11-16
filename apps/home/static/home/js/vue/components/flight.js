@@ -8,7 +8,7 @@ import {
     staticUrl,
     timeInterval,
     proceedToBooking,
-} from './utils.js';
+} from '../../utils.js';
 
 
 

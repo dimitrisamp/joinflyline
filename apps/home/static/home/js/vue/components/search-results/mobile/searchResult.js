@@ -1,4 +1,4 @@
-import {proceedToBooking} from "../../../utils.js";
+import {proceedToBooking} from "../../../../utils.js";
 
 Vue.component('search-result-mobile', {
     template: '#vue-search-result-mobile-template',

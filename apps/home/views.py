@@ -42,7 +42,7 @@ class SignUpView(TemplateView):
 
 
 class SavingsExplainedView(TemplateView):
-    template_name = "home/savings-explained.html"
+    template_name = "home/vue/savings-explained.html"
 
 
 class PromoLandingView(CreateView):

@@ -1,9 +1,9 @@
-import {Home} from "../home.js";
-import {SavingsExplained} from "./savings-explained.js";
-import {Wizard} from "../wizard.js";
-import {LearnMore} from "./learn-more.js";
-import {PromoLanding} from "./promo-landing.js";
-import {Dashboard} from "./dashboard.js";
+import {Home} from "./components/home.js";
+import {SavingsExplained} from "./components/savings-explained.js";
+import {Wizard} from "./components/wizard.js";
+import {LearnMore} from "./components/learn-more.js";
+import {PromoLanding} from "./components/promo-landing.js";
+import {Dashboard} from "./components/dashboard.js";
 
 const routes = [
     {path: '/', component: Home},

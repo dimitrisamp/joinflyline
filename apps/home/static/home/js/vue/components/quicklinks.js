@@ -1,4 +1,4 @@
-import {secs2hm} from './utils.js';
+import {secs2hm} from '../../utils.js';
 
 Vue.component('quicklinks', {
     template: '#vue-quicklinks-template',
