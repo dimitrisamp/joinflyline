@@ -1,12 +1,10 @@
-<script type="text/x-template" id="vue-trips-template">
-  <div class="trips">
+<script type="text/x-template" id="vue-dashboad-overview-template">
+  <div class="overview">
 
     <div class="section-heading">
       <div class="section-heading__inner">
-        <h1 class="section-heading__title">Trip Activity</h1>
-        <p class="section-heading__text">
-          Get a “birds every view” off all your travel. On Trip Activity look at your upcoming trip, <br>
-          previous trip and flights you’ve recent searched for</p>
+        <h1 class="section-heading__title">Dashboard</h1>
+        <p class="section-heading__text">View Deal Alerts, Suggested Trips, Trip Stats and much much more.</p>
       </div>
     </div>
 
@@ -14,12 +12,22 @@
       <div class="row">
 
         <div class="col-12 col-xl-6">
-          <div class="tile">
-            <h3 class="tile__heading">Upcoming Trips</h3>
-            <div class="tile__body">
-              <p class="tile__body-no-result">No Upcoming Trips, Get Away Today!</p>
+          <tile-component title="Total Trips Taken : " >
+            <div class="tile__body-top">
+              <div>
+                <p>2</p>
+                <p>Domestic</p>
+              </div>
+              <div>
+                <p>0</p>
+                <p>International</p>
+              </div>
             </div>
-          </div>
+            <div class="tile__body-bottom">
+              <p>4 Bookings Remain</p>
+              <p>Upgrade Plan</p>
+            </div>
+          </tile-component>
         </div>
 
         <div class="col-12 col-xl-6">
@@ -42,5 +50,6 @@
 
       </div>
     </div>
+
   </div>
 </script>

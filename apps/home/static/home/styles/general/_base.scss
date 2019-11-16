@@ -1,11 +1,14 @@
-// Transition for the application
-.app-enter-active, .app-leave-active {
-  transform: translateY(0);
-  transition: all .18s cubic-bezier(.13,.89,.58,1)
+.content-wrapper {
+  margin-left: 0;
+  padding: 0;
+  transition: margin-left .3s ease-in-out;
+  @include mq(lg) {
+    margin-left: $sidebar-width;
+  }
 }
-.app-enter, .app-leave-to {
-  transform: translateY(-2rem);
-  opacity: 0;
+
+.main-padding {
+  padding: 0 2rem;
 }
 
 // Transition for slide

@@ -1,0 +1,19 @@
+<script type="text/x-template" id="vue-tile-component-template">
+  <div class="tile">
+    <template v-if="multiTitle">
+      <div class="tile__heading-container">
+        <h3 class="tile__heading" v-text="title"></h3>
+        <span class="title__heading-right" v-text="titleRight"></span>
+      </div>
+    </template>
+    <template v-else>
+      <h3 class="tile__heading" v-text="title"></h3>
+    </template>
+    <div class="tile__body">
+      <slot></slot>
+      <p class="tile__body-no-result" v-if="empty">
+        <slot name="empty"></slot>
+      </p>
+    </div>
+  </div>
+</script>

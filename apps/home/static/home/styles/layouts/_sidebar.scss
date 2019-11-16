@@ -1,0 +1,89 @@
+.sidebar {
+  width: $sidebar-width;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: $primary;
+  &::after {
+    position: absolute;
+    top: 0;
+    content: '';
+    background-image: url("/static/home/img/dashboard/logo-repeated.png");
+    background-repeat: repeat;
+    background-size: contain;
+    height: 100%;
+    width: 100%;
+    opacity: 0.23;
+    z-index: -1;
+  }
+  &__profile {
+    text-align: center;
+    margin: 3rem 0;
+    &-img {
+      width: 6.875rem;
+      height: 6.875rem;
+      border-radius: 50%;
+      background-color: $white;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+    }
+    &-info {
+      color: $white;
+    }
+    &-title {
+      font-family: $dona-black;
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+      margin-top: 1.02rem;
+    }
+    &-text {
+      font-family: $dona-bold;
+    }
+  }
+  &__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  &__item {
+    margin-bottom: 1.3rem;
+  }
+  &__link {
+    padding: 0.3rem 2rem;
+    color: transparentize($white, 0.5);
+    border-left: 0.6rem solid transparent;
+    display: block;
+    font-family: $dona-bold;
+    transition: color .2s ease-in-out;
+    will-change: color;
+    &:hover {
+      text-decoration: none;
+    }
+
+    &:hover,
+    &.exact-active{
+      border-color: $white;
+      color: $white;
+    }
+  }
+
+  &__logout {
+    position: absolute;
+    bottom: 0;
+    background-color: transparentize($white, 0.5);
+    width: 100%;
+    text-align: center;
+    font-size: 1.25rem;
+    font-family: $dona-bold;
+    color: $white;
+    padding: 0.5rem 0;
+    transition: all .2s ease-in-out;
+    &:hover {
+      color: $white;
+      background-color: transparentize($white, 0.8);
+      text-decoration: none;
+    }
+  }
+}

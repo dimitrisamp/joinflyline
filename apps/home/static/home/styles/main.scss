@@ -1,3 +1,6 @@
+// Mixins
+@import "mixins/mq";
+
 // General
 @import "general/variables";
 @import "general/base";
@@ -7,8 +10,11 @@
 @import "common/buttons";
 
 // Components
+@import "components/section-heading";
 @import "components/cards";
+@import "components/tiles";
 
 // Layout
 @import 'layouts/header';
+@import 'layouts/sidebar';
 @import 'layouts/footer';
