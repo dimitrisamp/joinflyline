@@ -18,5 +18,10 @@
         </button>
       </form>
     </div>
+    <button class="hamburger hamburger--slider" :class="{'is-active': toggleSidebar}" @click.prevent="$store.dispatch('toggleSidebar')">
+      <span class="hamburger-box">
+        <span class="hamburger-inner"></span>
+      </span>
+    </button>
   </header>
 </script>

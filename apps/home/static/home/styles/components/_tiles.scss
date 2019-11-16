@@ -20,14 +20,18 @@
 
   .tile__heading {
     color: $primary;
-    font-size: 1.125rem;
+    font-size: 1rem;
     font-family: $dona-bold;
-    padding: 1rem;
+    padding: 1rem 0.5rem;
     border-bottom: 1px solid $border-color;
     border-top: 1px solid $border-color;
     background-color: $white;
     display: flex;
     justify-content: space-between;
+    @include mq(lg) {
+      font-size: 1.125rem;
+      padding: 1rem;
+    }
     &-right {
       color: $gray;
     }
@@ -73,7 +77,10 @@
     &-top-numbers {
       color: $primary;
       &:first-child {
-        margin-right: 8rem;
+        margin-right: 4rem;
+        @include mq(lg) {
+          margin-right: 8rem;
+        }
       }
       span {
         display: block;
@@ -100,6 +107,7 @@
     font-size: 0.95rem;
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
     &:first-child {
       padding-top: 0;
     }
@@ -123,6 +131,10 @@
   }
   &__item-right {
     color: $gray;
+    margin-top: 0.7rem;
+    @include mq(lg) {
+      margin-top: 0;
+    }
   }
 
 

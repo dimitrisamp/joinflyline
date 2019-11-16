@@ -1,6 +1,11 @@
 {% load static %}
 <script type="text/x-template" id="vue-sidebar-template">
-  <aside class="sidebar">
+  <aside class="sidebar" :class="{'sidebar--active': toggleSidebar}">
+    <button class="hamburger hamburger--slider" :class="{'is-active': toggleSidebar}" @click.prevent="$store.dispatch('toggleSidebar')">
+      <span class="hamburger-box">
+        <span class="hamburger-inner"></span>
+      </span>
+    </button>
     <div class="sidebar__profile">
       <router-link to="/dashboard" class="sidebar__profile-img">
         <img src="{% static "home/img/dashboard/logo.svg" %}" alt="FlyLine Logo">

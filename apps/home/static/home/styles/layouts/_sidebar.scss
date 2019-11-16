@@ -1,12 +1,20 @@
 .sidebar {
-  width: $sidebar-width;
+  width: 100%;
   height: 100vh;
   position: fixed;
   top: 0;
   left: 0;
   background-color: $primary;
   transform: translateX(-100%);
+  transition: transform .4s $easeInOutQuad;
+  z-index: 150;
+  @include mq(md) {
+    width: $sidebar-width;
+  }
   @include mq(lg) {
+    transform: translateX(0);
+  }
+  &--active {
     transform: translateX(0);
   }
   &::after {
@@ -89,5 +97,24 @@
       background-color: transparentize($white, 0.8);
       text-decoration: none;
     }
+  }
+}
+
+
+// Overlay for UX
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0,0,0,0.22);
+  z-index: 14;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .2s ease-in-out, visibility .2s ease;
+  &--active {
+    opacity: 1;
+    visibility: visible;
   }
 }
