@@ -1,0 +1,47 @@
+<script type="text/x-template" id="vue-result-component-template">
+  <div class="result">
+
+    <div class="section-heading">
+      <div class="section-heading__inner">
+        <h1 class="section-heading__title">Dallas (DFW) - > Los Angeles (LAX) Round Trip</h1>
+        <p class="section-heading__text">American Airlines, Delta Airlines, Southwest, United.</p>
+      </div>
+    </div>
+
+    <div class="result__container main-padding">
+      <div class="row">
+        <div class="col-12 col-xl-9">
+          <search-results
+            :search-results="searchResults"
+            :search-progress="searchProgress"
+            :load-more="loadMore"
+            :form="form"
+            :user="user"
+            :sort-results-by="sortResultsBy"
+            :quick-filters-data="quickFiltersData"
+          />
+        </div>
+        <div class="col-12 col-xl-3">
+          <form action="" class="bg-white">
+            <div class="tile">
+                <div class="tile__heading-container">
+                  <h3 class="tile__heading">
+                    <span>Filters</span>
+                    <span class="tile__heading-right">Clear</span>
+                  </h3>
+                </div>
+              <div class="tile__body">
+                <input type="text" class="mb-3 form-control" placeholder="Filter By Airlines">
+                <input type="text" class="mb-3 form-control" placeholder="Filter By Stops">
+                <input type="text" class="mb-3 form-control" placeholder="Filter By Price">
+                <input type="text" class="mb-3 form-control" placeholder="Filter By Times (Coming Soon)">
+                <button type="submit" class="btn btn-primary w-100">Update Result</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</script>

@@ -7,6 +7,7 @@ import {Dashboard} from "./components/dashboard.js";
 import {Trips} from "./components/trips.js";
 import {DashboadOverview} from "./components/dashboad-overview.js";
 import {AccountInformation} from "./components/account-information.js";
+import {ResultComponent} from "./components/result-component.js";
 
 const routes = [
   {
@@ -27,6 +28,11 @@ const routes = [
         path: 'trips',
         name: 'trips',
         component: Trips
+      },
+      {
+        path: 'results',
+        name: 'results',
+        component: ResultComponent
       },
       {
         path: 'account',
