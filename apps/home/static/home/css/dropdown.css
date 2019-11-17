@@ -172,7 +172,7 @@ button.search_btn{
     padding: 0px 15px;
 }
 .search-item.shadowsrch{
-    min-width: 97%;
+    padding-right: 30px;
 }
 
 }

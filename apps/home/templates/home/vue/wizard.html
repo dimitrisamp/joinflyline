@@ -23,11 +23,10 @@
                             </div>
 
                             <div class="input-group input-group-sm step-f-inputs">
-                                <input type="text" class="form-control"
-                                       placeholder="Home Airport"
-                                       name="home_airport"
-                                       @keyup.enter="focusElement('email')"
-                                       v-model="form.home_airport">
+                                <location-input :prompt="'Home Airport'"
+                                                :prompt-mobile="'Home Airport'"
+                                                :search-type="city"
+                                                @place-selected="updatePlaceFrom"/>
                             </div>
 
                             <div class="form-group input-group-sm step-f-inputs">

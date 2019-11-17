@@ -1,6 +1,6 @@
 import { debounce, locationSearch, formatPlace } from "../../utils.js";
 
-const DEFAULT_PROMPT = "Enter city name";
+const DEFAULT_PROMPT = "Enter location";
 
 export const LocationInput = Vue.component("location-input", {
   props: {

@@ -221,8 +221,8 @@ export const Home = Vue.component("home", {
       if (document.getElementsByName("stop") != null) {
         document.getElementsByName("stop").forEach(this.getSelectedRadioValue);
       }
-      formData.append("fly_from", placeToRequestValue(this.placeFrom).fly_from);
-      formData.append("fly_to", placeToRequestValue(this.placeTo));
+      formData.append("fly_from", placeToRequestValue(this.form.placeFrom));
+      formData.append("fly_to", placeToRequestValue(this.form.placeTo));
       const dateFrom = this.form.departure_date_data.format("DD/MM/YYYY");
       formData.append("date_from", dateFrom);
       formData.append("date_to", dateFrom);
@@ -496,7 +496,7 @@ export const Home = Vue.component("home", {
       );
     },
     cityFromTo() {
-      return `${this.placeFrom.name} -> ${this.placeTo.name}`;
+      return `${this.form.placeFrom.name} -> ${this.form.placeTo.name}`;
     },
     airlineNames() {
       return this.form.airlines.map(e => e.name).join(", ");
