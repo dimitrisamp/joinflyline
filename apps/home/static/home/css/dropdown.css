@@ -16,17 +16,13 @@ body{
 
 .search-item.shadowsrch {
     position: absolute;
-    min-width: 300px;
+    padding: 15px;
     top: -15px;
     left: 0px;
     z-index: 50;
+    width: calc(100% + 15px);
 }
-.search-item.shadowsrch .search-input{
-    border-color: #06AEEF;
-}
-.search-item.shadowsrch span{
-    border-color: #06AEEF;
-}
+
 
 @media (max-width: 768px) {
     .search-item.shadowsrch .search-input{

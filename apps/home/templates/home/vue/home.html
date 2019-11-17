@@ -5,8 +5,8 @@
             <search-results-mobile
                     :search-results="searchResults"
                     :form="form"
-                    :city-to-input="cityToInput"
-                    :city-from-input="cityFromInput"
+                    :place-to="form.placeTo"
+                    :place-from="form.placeFrom"
                     :sort-results-by="sortResultsBy"
                     @back-pressed="switchToForm" />
         </div>
