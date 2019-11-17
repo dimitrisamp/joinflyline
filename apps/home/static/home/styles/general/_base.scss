@@ -27,3 +27,20 @@ hr + .main-padding {
   transform: translateX(-2rem);
   opacity: 0;
 }
+
+
+.result__container {
+  position: relative;
+  &::before {
+    position: absolute;
+    top: -2.6875rem;
+    content: '';
+    background-image: url("/static/home/img/dashboard/result-background.png");
+    background-repeat: repeat;
+    background-size: contain;
+    height: 100%;
+    width: 100%;
+    opacity: 0.3;
+    z-index: -1;
+  }
+}
