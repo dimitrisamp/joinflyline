@@ -9,7 +9,6 @@ https://docs.djangoproject.com/en/2.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.2/ref/settings/
 """
-import sentry_sdk
 import json
 
 import dotenv
@@ -215,32 +214,6 @@ SENTRY_DSN = "https://a875b98b313142d8afd40797b84f235e@sentry.io/1773547"
 SENDGRID_API_KEY = (
     "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"
 )
-
-if STAGE == "production":
-    sentry_sdk.init(dsn=SENTRY_DSN, integrations=[DjangoIntegration()])
-    DEFAULT_FILE_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
-    STATICFILES_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
-    COMPRESS_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
-    GS_BUCKET_NAME = "joinflyline"
-    GS_DEFAULT_ACL = "publicRead"
-    GS_CACHE_CONTROL = "max-age=120"
-    MEDIA_ROOT = "media"
-    DEBUG = False
-    COMPRESS_ENABLED = True
-    COMPRESS_OFFLINE = True
-    COMPRESS_FILTERS = {
-        "css": [
-            "compressor.filters.css_default.CssAbsoluteFilter",
-            "compressor.filters.cssmin.CSSCompressorFilter",
-        ],
-        "js": [
-            "compressor.filters.jsmin.JSMinFilter",
-            "compressor.filters.jsmin.SlimItFilter",
-        ],
-    }
-    COMPRESS_URL = os.getenv(
-        "COMPRESS_URL", "https://storage.cloud.google.com/joinflyline-staging/"
-    )
 
 SITE_TITLE = "Wanderift | Airline Travel Subscription | Save on Retail Flights"
 SUBSCRIBER_AIRLINES = {

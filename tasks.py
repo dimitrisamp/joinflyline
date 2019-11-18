@@ -85,4 +85,5 @@ def worker(c):
 
 @task
 def static(c):
-    c.run('python manage.py collectstatic --noinput -v 3 && python manage.py compress')
+    c.run('python manage.py collectstatic --noinput -v 3')
+    c.run('python manage.py compress')
