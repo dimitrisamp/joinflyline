@@ -92,12 +92,12 @@ urlpatterns = [
     ),
 ]
 
-if settings.STAGE == "dev":
+if settings.STAGE == "local":
     import debug_toolbar
 
     urlpatterns += [path("__debug__/", include(debug_toolbar.urls))]
 
-if settings.STAGE == "local":
+if settings.STAGE == "localprod":
     urlpatterns += [
         re_path(
             f'^{settings.MEDIA_URL.lstrip("/")}(?P<path>.*)$',
