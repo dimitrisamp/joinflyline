@@ -20,9 +20,13 @@ export const store = new Vuex.Store({
       placeTo: null,
     },
     searchResults: [],
+    quickFiltersData: null,
     toggleSidebar: false
   },
   mutations: {
+    setQuickFiltersData (state, value) {
+      state.quickFiltersData = value;
+    },
     updateUser(state, user) {
       state.user = user;
     },
@@ -64,7 +68,8 @@ export const store = new Vuex.Store({
       state.form.stopOverFrom = stopOverFrom + ":" + "00";
       state.form.stopOverTo = stopOverTo + ":" + "00";
     },
-    setDates(state, start, end) {
+    setDates(state, payload) {
+      const {start, end} = payload;
       if (start) state.form.departure_date = start.format("MM/DD/YYYY");
       if (end) state.form.return_date = end.format("MM/DD/YYYY");
       state.form.departure_date_data = start;

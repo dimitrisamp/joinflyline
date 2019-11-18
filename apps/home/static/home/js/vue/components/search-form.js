@@ -14,7 +14,6 @@ export const SearchForm = {
   data() {
     return {
       searchProgress: false,
-      quickFiltersData: null,
       noOfPassengers: "Passengers",
       valPassengers: 1,
       seatTypeName: "Economy",
@@ -208,7 +207,7 @@ export const SearchForm = {
             return o;
           });
           const airlines = getAirlines(data.data);
-          this.quickFiltersData = getQuickLinksData(data.data);
+          this.setQuickFiltersData(getQuickLinksData(data.data));
           this.displaySearchResults({ data, airlines });
           this.backToForm = false;
           this.$emit("search-complete");
@@ -230,7 +229,7 @@ export const SearchForm = {
         secondField: document.getElementById("return_date"),
         singleDate: false,
         onSelect(start, end) {
-          this.setDates(start, end);
+          that.setDates({start, end});
         }
       });
     },
@@ -247,6 +246,7 @@ export const SearchForm = {
       "setSearchResults",
       "setDates",
       "updatePassengers",
+      "setQuickFiltersData",
     ]),
   },
   mounted() {
