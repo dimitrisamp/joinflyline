@@ -13,4 +13,5 @@ venv/
 node_modules/
 package-lock.json
 
+collected_static/
 CACHE/

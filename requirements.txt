@@ -9,7 +9,7 @@ sentry-sdk
 django-suit
 
 python-dotenv
-psycopg2-binary
+psycopg2
 invoke
 
 django-extensions
@@ -21,6 +21,7 @@ gunicorn
 django-credit-cards
 
 celery[redis]
+
 django-maintenancemode
 
 django-rest-framework

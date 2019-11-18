@@ -32,3 +32,11 @@ services:
     ports:
       - 8000:8000
     env_file: .env.production
+  worker:
+    container_name: wanderift_worker
+    build:
+      context: .
+      dockerfile: devops/docker/django/Dockerfile
+    image: wanderift_django
+    command: ["inv", "worker"]
+    env_file: .env.production

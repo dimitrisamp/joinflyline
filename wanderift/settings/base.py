@@ -19,22 +19,16 @@ import os
 
 from django.contrib.messages import constants as messages
 
-import sentry_sdk
-from sentry_sdk.integrations.django import DjangoIntegration
-
-STAGE = os.getenv("STAGE", "local")
+STAGE = os.getenv("STAGE", "production")
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = "xoan3p&w(wt2(f5&97u4i$5qks@@vy%6mlu$a=qb4#ddy9l_-l"
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 
 ALLOWED_HOSTS = ["0.0.0.0", "127.0.0.1", "localhost", "*"]
 
@@ -209,35 +203,17 @@ RECEIVE_PHONE = "+18105131533"
 KIWI_API_KEY = "4TMnq4G90OPMYDAGVHzlP9LQo2hvzzdc"
 STRIPE_API_KEY = os.getenv("STRIPE_API_KEY")
 PLANS_CONFIG_FILE = os.getenv(
-    "PLANS_CONFIG_FILE", os.path.join(os.path.dirname(__file__), "plans.json")
+    "PLANS_CONFIG_FILE",
+    os.path.join(os.path.dirname(os.path.dirname(__file__)), "plans.json"),
 )
 try:
     SUBSCRIPTION_PLANS = json.load(open(PLANS_CONFIG_FILE))
 except:
     SUBSCRIPTION_PLANS = {}
 SENTRY_DSN = "https://a875b98b313142d8afd40797b84f235e@sentry.io/1773547"
-
-if STAGE == "production":
-    sentry_sdk.init(dsn=SENTRY_DSN, integrations=[DjangoIntegration()])
-    DEFAULT_FILE_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
-    STATICFILES_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
-    COMPRESS_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
-    GS_BUCKET_NAME = "joinflyline"
-    GS_DEFAULT_ACL = "publicRead"
-    GS_CACHE_CONTROL = "max-age=120"
-    MEDIA_ROOT = "media"
-    DEBUG = False
-    COMPRESS_OFFLINE = True
-    COMPRESS_FILTERS = {
-        "css": [
-            "compressor.filters.css_default.CssAbsoluteFilter",
-            "compressor.filters.cssmin.CSSCompressorFilter",
-        ],
-        "js": [
-            "compressor.filters.jsmin.JSMinFilter",
-            "compressor.filters.jsmin.SlimItFilter",
-        ],
-    }
+SENDGRID_API_KEY = (
+    "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"
+)
 
 SITE_TITLE = "Wanderift | Airline Travel Subscription | Save on Retail Flights"
 SUBSCRIBER_AIRLINES = {
@@ -248,9 +224,6 @@ SUBSCRIBER_AIRLINES = {
     "B6",  # jetBlue
     "SY",  # Sun Country
 }
-SENDGRID_API_KEY = (
-    "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"
-)
 PRICE_LIMIT_SUBSCRIBER = 350
 
 SITEMAP_FILE = os.path.join(BASE_DIR, "wanderift", "sitemap.xml")
@@ -270,4 +243,10 @@ SERVER_EMAIL = "noreply@joinflyline.com"
 
 SECRET_LINK_EXPIRATION_SECONDS = 3600
 
+CELERY_BROKER_URL = (os.getenv("REDIS_URL"),)
+CELERY_RESULT_BACKEND = os.getenv("REDIS_URL")
+CELERY_ACCEPT_CONTENT = ["application/json"]
+CELERY_TASK_SERIALIZER = "json"
+CELERY_RESULT_SERIALIZER = "json"
+CELERY_TIMEZONE = TIME_ZONE
 SITE_URL = os.getenv("SITE_URL", "https://joinflyline.com")

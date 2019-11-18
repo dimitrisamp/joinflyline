@@ -1,27 +1,36 @@
 <script type="text/x-template" id="vue-dashboard-header-template">
-  <header class="main-header">
-    <div class="main-header__top">
-      <span>Round Trip</span>
-      <span>1 Adult </span>
-      <span>Economy</span>
-    </div>
-    <div class="main-header__bottom">
-      <form action="">
-        <input type="text" class="form-control" placeholder="From: ">
-        <input type="text" class="form-control" placeholder="To: ">
-        <input type="text" class="form-control" placeholder="Dep: ">
-        <input type="text" class="form-control" placeholder="Return: ">
-        <button class="btn btn-search">
-          <svg class="icon icon--search" width="21" height="21">
-            <use xlink:href="#icon-search"></use>
-          </svg>
-        </button>
-      </form>
-    </div>
-    <button class="hamburger hamburger--slider" :class="{'is-active': toggleSidebar}" @click.prevent="$store.dispatch('toggleSidebar')">
+    <header class="main-header">
+        <div class="main-header__top">
+            <span>Round Trip</span>
+            <span>1 Adult </span>
+            <span>Economy</span>
+        </div>
+        <div class="main-header__bottom">
+            <form action="">
+                <div class="form-control">
+                    <location-input :prompt="'Departure City'"
+                                    :promptMobile="'From Where?'"
+                                    @place-selected="updatePlaceFrom"/>
+                </div>
+                <div class="form-control">
+                    <location-input :prompt="'Arrival City'" :promptMobile="'To Where?'"
+                                    @place-selected="updatePlaceTo"/>
+                </div>
+                <input type="text" class="form-control" id="departure_date" placeholder="Dep: ">
+                <input type="text" class="form-control" id="return_date" placeholder="Return: ">
+                <button class="btn btn-search" @click="search">
+                    <svg class="icon icon--search" width="21" height="21">
+                        <use xlink:href="#icon-search"></use>
+                    </svg>
+                </button>
+            </form>
+        </div>
+        <button class="hamburger hamburger--slider"
+                :class="{'is-active': toggleSidebar}"
+                @click.prevent="$store.dispatch('toggleSidebar')">
       <span class="hamburger-box">
         <span class="hamburger-inner"></span>
       </span>
-    </button>
-  </header>
+        </button>
+    </header>
 </script>

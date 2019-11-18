@@ -13,11 +13,12 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-
+from django.conf.urls.static import static
+from django.views.static import serve
 from django.contrib import admin
 from django.http import HttpResponse
 from django.shortcuts import redirect
-from django.urls import path, include
+from django.urls import path, include, re_path
 from django.views import View
 from django.views.generic import TemplateView
 
@@ -66,7 +67,7 @@ urlpatterns = [
     # Auth urls
     path("auth/", include("apps.oauth.urls")),
     # booking
-    path("promo/", lambda _: redirect('/#/promo/'), name="promo-landing"),
+    path("promo/", lambda _: redirect("/#/promo/"), name="promo-landing"),
     path("retail/", RetailBookingView.as_view(), name="retail"),
     path("booking_flight/", SaveBookingView.as_view(), name="book"),
     path("check-flights/", CheckFlightsView.as_view(), name="check-flights"),
@@ -90,3 +91,22 @@ urlpatterns = [
         "savings-explained/", SavingsExplainedView.as_view(), name="savings-explained"
     ),
 ]
+
+if settings.STAGE == "local":
+    import debug_toolbar
+
+    urlpatterns += [path("__debug__/", include(debug_toolbar.urls))]
+
+if settings.STAGE == "localprod":
+    urlpatterns += [
+        re_path(
+            f'^{settings.MEDIA_URL.lstrip("/")}(?P<path>.*)$',
+            serve,
+            {"document_root": settings.MEDIA_ROOT},
+        ),
+        re_path(
+            f'^{settings.STATIC_URL.lstrip("/")}(?P<path>.*)$',
+            serve,
+            {"document_root": settings.STATIC_ROOT},
+        ),
+    ]

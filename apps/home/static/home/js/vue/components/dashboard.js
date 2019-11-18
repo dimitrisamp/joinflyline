@@ -1,8 +1,11 @@
-export const Dashboard =  Vue.component("dashboard", {
+import {SearchForm} from "./search-form.js";
+
+export const Dashboard = Vue.component("dashboard", {
+  extends: SearchForm,
   template: "#vue-dashboard-template",
-  data() {
-    return {
-      test: 'Adel'
+  methods: {
+    proceedToSearchResults() {
+      this.$router.push({name: 'results'});
     }
-  },
+  }
 });

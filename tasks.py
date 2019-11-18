@@ -1,6 +1,7 @@
+import os
+
 import pathlib
 import dotenv
-
 dotenv.load_dotenv()
 
 from invoke import task
@@ -10,7 +11,6 @@ from wanderift.wait import wait_for_pg
 @task
 def up(c):
     c.run("docker-compose up -d")
-
 
 @task
 def stop(c):
@@ -25,10 +25,11 @@ def down(c):
 @task
 def reset(c):
     c.run("docker-compose down -v")
-    c.run("docker-compose up -d postgres")
+    c.run("docker-compose up -d postgres redis")
     wait_for_pg()
     c.run("python manage.py migrate")
     c.run("python manage.py create_example_data")
+    c.run("docker-compose up -d worker")
 
 
 @task
@@ -75,3 +76,14 @@ def mc(c, kebab_name):
     print('Created files:')
     print(html_file_name)
     print(js_file_name)
+
+
+@task
+def worker(c):
+    c.run("celery worker -A wanderift -l info", pty=True)
+
+
+@task
+def static(c):
+    c.run('python manage.py collectstatic --noinput -v 3')
+    c.run('python manage.py compress')
