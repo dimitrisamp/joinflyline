@@ -110,5 +110,3 @@ if settings.STAGE == "localprod":
             {"document_root": settings.STATIC_ROOT},
         ),
     ]
-
-print(urlpatterns)
