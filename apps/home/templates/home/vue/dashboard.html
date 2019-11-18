@@ -15,7 +15,7 @@
 </div>
 <script id="vue-dashboard-template" type="text/x-template">
    <div class="app">
-       <dashboard-header @search-complete="proceedToSearchResults" v-bind="$props" :updateTo="updateTo" :updateFrom="updateFrom"></dashboard-header>
+       <dashboard-header @search-complete="proceedToSearchResults"></dashboard-header>
        <sidebar></sidebar>
         <div class="overlay"></div>
        <main class="content-wrapper">

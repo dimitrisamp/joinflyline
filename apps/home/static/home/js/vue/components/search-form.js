@@ -5,10 +5,9 @@ import {
   placeToRequestValue,
   getAirlines,
   processFlight,
-  getQuickLinksData,
+  getQuickLinksData
 } from "../../utils.js";
-import {airlineCodes} from "../../airlineCodes.js";
-
+import { airlineCodes } from "../../airlineCodes.js";
 
 export const SearchForm = {
   delimiters: ["{(", ")}"],
@@ -19,7 +18,7 @@ export const SearchForm = {
       noOfPassengers: "Passengers",
       valPassengers: 1,
       seatTypeName: "Economy",
-      destinationTypes: {round: "Round-trip", oneway: "One-way"},
+      destinationTypes: { round: "Round-trip", oneway: "One-way" },
       destinationTypeSelectProgress: false,
       passengerSelectProgress: false,
       seatTypeSelectProgress: false,
@@ -33,27 +32,7 @@ export const SearchForm = {
       },
       airlinesSelectProgress: false,
       priceSelectProgress: false,
-      fullPageApplied: false,
-      form: {
-        limit: 20,
-        sort: null,
-        priceRange: [0, 3000],
-        airlines: [
-        ],
-        maxStops: null,
-        noOfPassengers: "Passengers",
-        destinationTypeId: "round",
-        seatType: "M",
-        valAdults: 1,
-        valChildren: 0,
-        valInfants: 0,
-        departure_date: "",
-        return_date: "",
-        departure_date_data: null,
-        return_date_data: null,
-        placeFrom: null,
-        placeTo: null,
-      }
+      fullPageApplied: false
     };
   },
   directives: {
@@ -63,19 +42,6 @@ export const SearchForm = {
     VueSlider: window["vue-slider-component"]
   },
   methods: {
-    updatePlaceFrom(value) {
-      this.form.placeFrom = value
-    },
-    updatePlaceTo(value) {
-      this.form.placeTo = value
-    },
-    clearFilters() {
-      for (let a of this.form.airlines) {
-        a.checked = false;
-      }
-      this.form.priceRange = [0, 3000];
-      this.form.maxStops = null;
-    },
     airlineIcon,
     openPriceSelect() {
       setTimeout(() => {
@@ -102,7 +68,7 @@ export const SearchForm = {
       }, 150);
     },
     selectMaxStops(maxStops) {
-      this.form.maxStops = maxStops;
+      this.setMaxStops(maxStops);
       this.closeMaxStopsSelect();
     },
     openSeatTypeSelect() {
@@ -114,7 +80,7 @@ export const SearchForm = {
       this.seatTypeSelectProgress = false;
     },
     selectSeatType(type) {
-      this.form.seatType = type;
+      this.setSeatType(type);
       this.closeSeatTypeSelect();
     },
     openPassengersForm() {
@@ -136,20 +102,16 @@ export const SearchForm = {
       this.destinationTypeSelectProgress = false;
     },
     selectDestinationType(dtypeId) {
-      this.form.destinationTypeId = dtypeId;
+      this.setDestinationType(dtypeId);
       this.closeDestinationType();
     },
     loadMore() {
-      this.form.limit = this.form.limit + 10;
+      this.increaseLimit(10);
       this.search();
     },
     sortResultsBy(sort) {
-      this.form.sort = sort;
+      this.setSort(sort);
       this.search();
-    },
-    setStopOverValue(stopOverTo, stopOverFrom) {
-      this.form.stopOverFrom = stopOverFrom + ":" + "00";
-      this.form.stopOverTo = stopOverTo + ":" + "00";
     },
     getSearchURL() {
       let formData = new FormData();
@@ -229,16 +191,16 @@ export const SearchForm = {
           checked: false
         }));
       }
-      this.$store.commit('setSearchResults', data.data.data);
+      this.setSearchResults(data.data.data);
     },
     search() {
       this.searchProgress = true;
       fetch(this.getSearchURL(), {
-        headers: {apikey: "xklKtpJ5fxZnk4rsDepqOzLUaYYAO9dI"}
+        headers: { apikey: "xklKtpJ5fxZnk4rsDepqOzLUaYYAO9dI" }
       })
         .then(response => response.json())
         .then(data => {
-          let parent = {...data};
+          let parent = { ...data };
           delete parent.data;
           data.data = data.data.map(processFlight);
           data.data = data.data.map(o => {
@@ -247,88 +209,19 @@ export const SearchForm = {
           });
           const airlines = getAirlines(data.data);
           this.quickFiltersData = getQuickLinksData(data.data);
-          this.displaySearchResults({data, airlines});
+          this.displaySearchResults({ data, airlines });
           this.backToForm = false;
-          this.$emit('search-complete');
+          this.$emit("search-complete");
         })
         .finally(() => {
           this.searchProgress = false;
         });
     },
     increment(index) {
-      this.valPassengers =
-        this.form.valAdults + this.form.valChildren + this.form.valInfants;
-
-      if (this.valPassengers !== 9) {
-        switch (index) {
-          case 1:
-            if (this.form.valAdults !== 9) {
-              this.form.valAdults++;
-              this.valPassengers++;
-            } else {
-              document.getElementById("valAdultsIncrement").disable = true;
-            }
-            return;
-          case 2:
-            if (this.form.valChildren !== 8) {
-              this.form.valChildren++;
-              this.valPassengers++;
-            } else {
-              document.getElementById("valChildrenIncrement").disable = true;
-            }
-            return;
-          case 3:
-            if (this.form.valInfants !== this.form.valAdults) {
-              this.form.valInfants++;
-              this.valPassengers++;
-            }
-            return;
-        }
-      }
+      this.updatePassengers({index, by: 1});
     },
     decrement(index) {
-      this.valPassengers =
-        this.form.valAdults + this.form.valChildren + this.form.valInfants;
-
-      if (this.valPassengers !== 1) {
-        switch (index) {
-          case 1:
-            if (this.form.valAdults !== 1) {
-              this.form.valAdults--;
-              this.valPassengers--;
-              if (this.form.valInfants > this.form.valAdults) {
-                this.valPassengers--;
-                this.form.valInfants--;
-              }
-            } else {
-              document.getElementById("valAdultsIncrement").disable = true;
-            }
-            return;
-          case 2:
-            if (this.form.valChildren !== 0) {
-              this.form.valChildren--;
-              this.valPassengers--;
-            } else {
-              document.getElementById("valChildrenIncrement").disable = true;
-            }
-            return;
-          case 3:
-            if (this.form.valInfants !== 0) {
-              this.form.valInfants--;
-              this.valPassengers--;
-            } else {
-              document.getElementById("valInfantsIncrement").disable = true;
-            }
-            return;
-        }
-      }
-    },
-    sumTotalsPassenger() {
-      if (this.valPassengers === 1) {
-        this.form.noOfPassengers = "Passengers";
-      } else {
-        this.form.noOfPassengers = this.valPassengers + " Passengers";
-      }
+      this.updatePassengers({index, by: -1});
     },
     setDatePick() {
       let that = this;
@@ -337,13 +230,24 @@ export const SearchForm = {
         secondField: document.getElementById("return_date"),
         singleDate: false,
         onSelect(start, end) {
-          if (start) that.form.departure_date = start.format("MM/DD/YYYY");
-          if (end) that.form.return_date = end.format("MM/DD/YYYY");
-          that.form.departure_date_data = start;
-          that.form.return_date_data = end;
+          this.setDates(start, end);
         }
       });
-    }
+    },
+    ...Vuex.mapMutations([
+      "updatePlaceFrom",
+      "updatePlaceTo",
+      "clearFilters",
+      "setMaxStops",
+      "setSeatType",
+      "setDestinationType",
+      "increaseLimit",
+      "setSort",
+      "setStopOverValue",
+      "setSearchResults",
+      "setDates",
+      "updatePassengers",
+    ]),
   },
   mounted() {
     this.setDatePick();
@@ -351,15 +255,18 @@ export const SearchForm = {
   computed: {
     ...Vuex.mapState({
       user: "user",
-      searchResults: 'searchResults',
+      searchResults: "searchResults",
+      form: "form",
     }),
+    passengersText() {
+      return `${this.passengers} Passenger${this.passengers>1?'s':''}`;
+    },
     isFormIncomplete() {
       if (this.form.destinationTypeId === "round") {
         if (!this.form.return_date) return true;
       }
       if (!this.form.departure_date) return true;
       return this.placeFrom === null || !this.placeTo === null;
-
     },
     showWideForm() {
       return (
@@ -389,6 +296,9 @@ export const SearchForm = {
     priceText() {
       const [a, b] = this.form.priceRange;
       return `$${a}-$${b}`;
+    },
+    passengers() {
+      return this.form.valAdults + this.form.valChildren + this.form.valInfants;
     }
   }
 };
