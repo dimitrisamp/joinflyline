@@ -7,5 +7,5 @@ elif STAGE == "local":
    from .local import *
 elif STAGE == "staging":
    from .staging import *
-elif STAGE == "dev":
-   from .dev import *
+elif STAGE == "localprod":
+   from .localprod import *
