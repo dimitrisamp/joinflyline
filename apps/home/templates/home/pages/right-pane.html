@@ -17,12 +17,8 @@
   {% include "home/pages/search-progress-animation.html" %}
   <search-results
     v-else-if="$mq !== 'sm'"
-    :search-results="searchResults"
     :search-progress="searchProgress"
     :load-more="loadMore"
-    :form="form"
-    :user="user"
     :sort-results-by="sortResultsBy"
-    :quick-filters-data="quickFiltersData"
   />
 </div>

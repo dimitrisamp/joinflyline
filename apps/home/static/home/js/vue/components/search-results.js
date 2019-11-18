@@ -12,6 +12,9 @@ Vue.component('search-results', {
             $('#search-results-popup').modal();
         },
     },
-    props: ['searchProgress', 'searchResults', 'loadMore', 'form', 'sortResultsBy', 'quickFiltersData', 'user'],
-    delimiters: ['{(', ')}']
+    props: ['searchProgress', 'loadMore', 'sortResultsBy'],
+    delimiters: ['{(', ')}'],
+    computed: {
+        ...Vuex.mapState(['quickFiltersData', 'searchResults', 'form', 'user'])
+    }
 });
