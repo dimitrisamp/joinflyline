@@ -1,21 +1,36 @@
+{% load static %}
 <script type="text/x-template" id="vue-sidebar-template">
-  <aside class="sidebar">
-    <router-link to="/dashboard" class="sidebar__logo">Logo</router-link>
+  <aside class="sidebar" :class="{'sidebar--active': toggleSidebar}">
+    <button class="hamburger hamburger--slider" :class="{'is-active': toggleSidebar}" @click.prevent="$store.dispatch('toggleSidebar')">
+      <span class="hamburger-box">
+        <span class="hamburger-inner"></span>
+      </span>
+    </button>
+    <div class="sidebar__profile">
+      <router-link to="/dashboard" class="sidebar__profile-img">
+        <img src="{% static "home/img/dashboard/logo.svg" %}" alt="FlyLine Logo">
+      </router-link>
+      <div class="sidebar__profile-info">
+        <h4 class="sidebar__profile-title">Zachary Burau</h4>
+        <p class="sidebar__profile-text">Basic Plan - $39.99/yr</p>
+      </div>
+    </div>
     <nav class="sidebar__nav">
       <ul class="sidebar__list">
         <li class="sidebar__item">
-          <router-link v-bind:to="{name: 'dashboard'}" class="sidebar__link">FlyLine Dashboard</router-link>
+          <router-link :to="{name: 'overview'}" class="sidebar__link">FlyLine Dashboard</router-link>
         </li>
         <li class="sidebar__item">
-          <router-link v-bind:to="{name: 'trips'}" class="sidebar__link">Trip Activity</router-link>
+          <router-link :to="{name: 'trips'}" class="sidebar__link">Trip Activity</router-link>
         </li>
         <li class="sidebar__item">
-          <router-link v-bind:to="{name: 'account'}" class="sidebar__link">Account Information</router-link>
+          <router-link :to="{name: 'account'}" class="sidebar__link">Account Information</router-link>
         </li>
         <li class="sidebar__item">
-          <router-link v-bind:to="{name: 'help'}" class="sidebar__link">Help</router-link>
+          <router-link :to="{name: 'help'}" class="sidebar__link">Help</router-link>
         </li>
       </ul>
     </nav>
+    <a href="/logout" class="sidebar__logout">Log out</a>
   </aside>
 </script>

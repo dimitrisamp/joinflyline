@@ -1,17 +1,14 @@
 import ClickOutside from "../../v-click-outside.js";
-import { seatTypes, airlineIcon } from "../../utils.js";
-import { airlineCodes } from "../../airlineCodes.js";
+import {
+  seatTypes,
+  airlineIcon,
+  locationSearch,
+  debounce,
+  formatPlace,
+  placeToRequestValue,
+} from "../../utils.js";
+import {airlineCodes} from "../../airlineCodes.js";
 
-function debounce(fn, delay, ...rest) {
-  let timeoutID = null;
-  return function() {
-    clearTimeout(timeoutID);
-    let that = this;
-    timeoutID = setTimeout(function() {
-      fn.apply(that, rest);
-    }, delay);
-  };
-}
 
 function getCityInputData(k) {
   const jsonData = sessionStorage.getItem(`city${k}Input`);
@@ -32,24 +29,12 @@ export const Home = Vue.component("home", {
   delimiters: ["{(", ")}"],
   data() {
     return {
-      searchResultPlaces: [],
-      searchResultPlacesFrom: [],
-      searchResultPlacesTo: [],
       searchProgress: false,
       quickFiltersData: null,
-      searchLocation: "",
       noOfPassengers: "Passengers",
-      cityFromRequestProgress: false,
-      cityFromSearchProgress: false,
-      cityToRequestProgress: false,
-      cityToSearchProgress: false,
       valPassengers: 1,
-      searchParameter: "",
-      searchQuery: {},
       seatTypeName: "Economy",
-      cityFromInput: getCityInputData("From"),
-      cityToInput: getCityInputData("To"),
-      destinationTypes: { round: "Round-trip", oneway: "One-way" },
+      destinationTypes: {round: "Round-trip", oneway: "One-way"},
       destinationTypeSelectProgress: false,
       passengerSelectProgress: false,
       seatTypeSelectProgress: false,
@@ -69,8 +54,6 @@ export const Home = Vue.component("home", {
         sort: null,
         priceRange: [0, 3000],
         airlines: [
-          { name: "American Airlines", checked: false, code: "AA" },
-          { name: "United Airlines", checked: false, code: "UA" }
         ],
         maxStops: null,
         noOfPassengers: "Passengers",
@@ -81,17 +64,15 @@ export const Home = Vue.component("home", {
         valInfants: 0,
         departure_date: "",
         return_date: "",
-        depareture_date_data: null,
+        departure_date_data: null,
         return_date_data: null,
-        city_from: "",
-        city_to: "",
-        placeFrom: "",
-        placeTo: ""
+        placeFrom: null,
+        placeTo: null,
       }
     };
   },
   watch: {
-    searchResults: function(val, oldVal) {
+    searchResults: function (val, oldVal) {
       this.setDatePick();
     },
     $mq(val, oldVal) {
@@ -111,7 +92,21 @@ export const Home = Vue.component("home", {
   components: {
     VueSlider: window["vue-slider-component"]
   },
+
   methods: {
+    calcHeightOfHeader() {
+       const headerEl = document.querySelector('.header').offsetHeight;
+       const searchContainer = document.querySelector('.search-container');
+       if (headerEl) {
+        searchContainer.style.paddingTop = headerEl + 'px';
+       } 
+    },
+    updatePlaceFrom(value) {
+      this.form.placeFrom = value
+    },
+    updatePlaceTo(value) {
+      this.form.placeTo = value
+    },
     clearFilters() {
       for (let a of this.form.airlines) {
         a.checked = false;
@@ -182,83 +177,6 @@ export const Home = Vue.component("home", {
       this.form.destinationTypeId = dtypeId;
       this.closeDestinationType();
     },
-    cityFromInputFocused() {
-      this.cityFromInput.focused = true;
-    },
-    cityFromInputBlurred() {
-      const that = this;
-      setTimeout(() => {
-        that.cityFromInput.focused = false;
-      }, 150);
-      this.cityFromInput.searchProgress = false;
-    },
-    cityToInputFocused() {
-      this.cityToInput.focused = true;
-    },
-    cityToInputBlurred() {
-      const that = this;
-      setTimeout(() => {
-        that.cityToInput.focused = false;
-      }, 150);
-      this.cityToInput.searchProgress = false;
-    },
-    cityToInputChoose(i) {
-      this.cityToInput.selectedIndex = i;
-      this.cityToInput.text = this.formatPlace(
-        this.cityToInput.searchResults[i]
-      );
-      this.cityToInput.searchProgress = false;
-    },
-    cityFromInputChoose(i) {
-      this.cityFromInput.selectedIndex = i;
-      this.cityFromInput.text = this.formatPlace(
-        this.cityFromInput.searchResults[i]
-      );
-      this.cityFromInput.searchProgress = false;
-    },
-    formatPlace(place) {
-      if (place.type === "airport") {
-        return `${place.name} (${place.code})`;
-      }
-      return `${place.name} ${
-        place.subdivision ? place.subdivision.name : ""
-      } ${place.country.code}`;
-    },
-    processLocationSearch(data) {
-      const cities = data.locations.filter(o => o.type === "city");
-      let airports = data.locations.filter(o => o.type === "airport");
-      let result = [];
-      for (const city of cities) {
-        result.push(city);
-        const cityAirports = airports.filter(o => o.city.id === city.id);
-        airports = airports.filter(o => o.city.id !== city.id);
-        result.push(...cityAirports);
-      }
-      result.push(...airports);
-      return result;
-    },
-    locationSearch(term) {
-      return new Promise(resolve => {
-        let url = new URL("https://kiwicom-prod.apigee.net/locations/query");
-        let searchParams = {
-          term,
-          locale: "en-US",
-          location_types: "city"
-        };
-        let urlSearchParams = new URLSearchParams(searchParams);
-        urlSearchParams.append("location_types", "airport");
-        url.search = urlSearchParams;
-        fetch(url, {
-          method: "GET",
-          headers: {
-            apikey: "xklKtpJ5fxZnk4rsDepqOzLUaYYAO9dI"
-          },
-          credentials: "same-origin"
-        })
-          .then(response => response.json())
-          .then(data => resolve(this.processLocationSearch(data)));
-      });
-    },
     loadMore() {
       this.form.limit = this.form.limit + 10;
       this.search();
@@ -267,53 +185,6 @@ export const Home = Vue.component("home", {
       this.form.sort = sort;
       this.search();
     },
-    cityFromHandler: debounce(function() {
-      if (
-        this.cityFromInput.text === null ||
-        this.cityFromInput.text === "" ||
-        this.cityFromInput.text.length < 3
-      ) {
-        this.cityFromInput.searchProgress = false;
-        return;
-      }
-      this.cityFromInput.searchProgress = true;
-      this.cityFromInput.requestProgress = true;
-
-      const that = this;
-      this.locationSearch(that.cityFromInput.text)
-        .then(data => {
-          that.cityFromInput.searchResults = data;
-        })
-        .catch(() => {
-          console.log("Error");
-        })
-        .finally(() => {
-          that.cityFromInput.requestProgress = false;
-        });
-    }, 500),
-    cityToHandler: debounce(function() {
-      if (
-        this.cityToInput.text === null ||
-        this.cityToInput.text === "" ||
-        this.cityToInput.text.length < 3
-      ) {
-        this.cityToInput.searchProgress = false;
-        return;
-      }
-      this.cityToInput.searchProgress = true;
-      this.cityToInput.requestProgress = true;
-      const that = this;
-      this.locationSearch(that.cityToInput.text)
-        .then(data => {
-          that.cityToInput.searchResults = data;
-        })
-        .catch(() => {
-          console.log("Error");
-        })
-        .finally(() => {
-          that.cityToInput.requestProgress = false;
-        });
-    }, 500),
     clearList() {
       document.getElementById("mySelectedPlace").style.display = "block";
     },
@@ -358,25 +229,8 @@ export const Home = Vue.component("home", {
       if (document.getElementsByName("stop") != null) {
         document.getElementsByName("stop").forEach(this.getSelectedRadioValue);
       }
-
-      const placeTo = this.cityToInput.searchResults[
-        this.cityToInput.selectedIndex
-      ];
-      const placeFrom = this.cityFromInput.searchResults[
-        this.cityFromInput.selectedIndex
-      ];
-      formData.append(
-        "fly_from",
-        placeFrom.type === "city"
-          ? `city:${placeFrom.code}`
-          : `airport:${placeFrom.code}`
-      );
-      formData.append(
-        "fly_to",
-        placeTo.type === "city"
-          ? `city:${placeTo.code}`
-          : `airport:${placeTo.code}`
-      );
+      formData.append("fly_from", placeToRequestValue(this.form.placeFrom));
+      formData.append("fly_to", placeToRequestValue(this.form.placeTo));
       const dateFrom = this.form.departure_date_data.format("DD/MM/YYYY");
       formData.append("date_from", dateFrom);
       formData.append("date_to", dateFrom);
@@ -486,11 +340,11 @@ export const Home = Vue.component("home", {
     search() {
       this.searchProgress = true;
       fetch(this.getSearchURL(), {
-        headers: { apikey: "xklKtpJ5fxZnk4rsDepqOzLUaYYAO9dI" }
+        headers: {apikey: "xklKtpJ5fxZnk4rsDepqOzLUaYYAO9dI"}
       })
         .then(response => response.json())
         .then(data => {
-          let parent = { ...data };
+          let parent = {...data};
           delete parent.data;
           data.data = data.data.map(this.processFlight);
           data.data = data.data.map(o => {
@@ -499,7 +353,7 @@ export const Home = Vue.component("home", {
           });
           const airlines = this.getAirlines(data.data);
           this.quickFiltersData = this.getQuickLinksData(data.data);
-          this.displaySearchResults({ data, airlines });
+          this.displaySearchResults({data, airlines});
           this.backToForm = false;
         })
         .finally(() => {
@@ -590,14 +444,16 @@ export const Home = Vue.component("home", {
       }
     },
     applyFullPage() {
-      if (this.fullPageApplied) return;
-      this.fullPageApplied = true;
-      $("#fullpage").fullpage({
-        scrollBar: true,
-        navigation: true,
-        normalScrollElements: ".normal-scroll",
-        responsiveWidth: 768
-      });
+      if ( this.$mq !== 'sm' ) {
+        if (this.fullPageApplied) return;
+        this.fullPageApplied = true;
+        $("#fullpage").fullpage({
+          scrollBar: true,
+          navigation: true,
+          normalScrollElements: ".normal-scroll",
+          responsiveWidth: 768
+        });
+      }
     },
 
     destroyFullPage() {
@@ -622,31 +478,29 @@ export const Home = Vue.component("home", {
     }
   },
   mounted() {
-    this.$nextTick(()=>{
+    this.$nextTick(() => {
       this.applyFullPage();
     });
     this.setDatePick();
-    onMounted();
+    
+    this.calcHeightOfHeader();
+    window.addEventListener('resize', this.calcHeightOfHeader);
   },
   beforeDestroy() {
     this.destroyFullPage();
   },
-  computed: Vuex.mapState({
-    user: "user",
-    searchResults: 'searchResults',
+  computed: {
+    ...Vuex.mapState({
+      user: "user",
+      searchResults: 'searchResults',
+    }),
     isFormIncomplete() {
       if (this.form.destinationTypeId === "round") {
         if (!this.form.return_date) return true;
       }
       if (!this.form.departure_date) return true;
-      const placeTo = this.cityToInput.searchResults[
-        this.cityToInput.selectedIndex
-      ];
-      const placeFrom = this.cityFromInput.searchResults[
-        this.cityFromInput.selectedIndex
-      ];
-      if (!placeTo || !placeFrom) return true;
-      return false;
+      return this.placeFrom === null || !this.placeTo === null;
+
     },
     showWideForm() {
       return (
@@ -656,13 +510,7 @@ export const Home = Vue.component("home", {
       );
     },
     cityFromTo() {
-      const cityFrom = this.cityFromInput.searchResults[
-        this.cityFromInput.selectedIndex
-      ].name;
-      const cityTo = this.cityToInput.searchResults[
-        this.cityToInput.selectedIndex
-      ].name;
-      return `${cityFrom} -> ${cityTo}`;
+      return `${this.form.placeFrom.name} -> ${this.form.placeTo.name}`;
     },
     airlineNames() {
       return this.form.airlines.map(e => e.name).join(", ");
@@ -683,18 +531,5 @@ export const Home = Vue.component("home", {
       const [a, b] = this.form.priceRange;
       return `$${a}-$${b}`;
     }
-  })
+  }
 });
-
-function onMounted() {
-  const sticky = 400;
-  $(window).scroll(function() {
-    if ($(window).scrollTop() > sticky) {
-      $("header").addClass("sticky");
-      $("#fp-nav").addClass("dots-display");
-    } else {
-      $("header").removeClass("sticky");
-      $("#fp-nav").removeClass("dots-display");
-    }
-  });
-}

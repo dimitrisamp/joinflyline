@@ -1,0 +1,174 @@
+<script type="text/x-template" id="vue-dashboad-overview-template">
+  <div class="overview">
+
+    <div class="section-heading">
+      <div class="section-heading__inner">
+        <h1 class="section-heading__title">Dashboard</h1>
+        <p class="section-heading__text">View Deal Alerts, Suggested Trips, Trip Stats and much much more.</p>
+      </div>
+    </div>
+
+    <div class="main-padding">
+      <div class="row">
+
+        <div class="col-12 col-md-6 col-xl-4">
+          <tile-component title="Total Trips Taken : " >
+            <div class="tile__body-top">
+              <div class="tile__body-top-numbers"> <span>2</span> <span>Domestic</span> </div>
+              <div class="tile__body-top-numbers"> <span>0</span> <span>International</span> </div>
+            </div>
+            <div class="tile__body-bottom"> <p class="booking">4 Bookings Remain</p> <p class="upgrade">Upgrade Plan</p> </div>
+          </tile-component>
+        </div>
+
+        <div class="col-12 col-md-6 col-xl-4">
+          <tile-component title="Estimated Savings : " >
+            <div class="tile__body-top">
+              <div class="tile__body-top-numbers"> <span>$67.00</span> <span>Domestic</span> </div>
+              <div class="tile__body-top-numbers"> <span>$0.00</span> <span>International</span> </div>
+            </div>
+            <div class="tile__body-bottom">*Based on Average Savings from FlyLine members</div>
+          </tile-component>
+        </div>
+
+        <div class="col-12 col-md-6 col-xl-4">
+          <tile-component title="Estimated Savings : " titleRight="View All" :multiTitle="true">
+            <div class="tile__list">
+              <div class="tile__item">Why are flights cheaper on than other booking sites?</div>
+              <div class="tile__item">How do I check in for my flight?</div>
+              <div class="tile__item">Flight Booking Limits?</div>
+            </div>
+          </tile-component>
+        </div>
+
+        <div class="col-12 col-md-6 col-xl-4">
+          <tile-component class="tile--flights" title="Trending on FlyLine">
+            <div class="tile__list">
+              <div class="tile__item">
+                <div class="tile__item-left">
+                  <p class="tile__item-left-top">Dallas (DFW) -> New York (JFK) | 8/12 - 8/16</p>
+                  <p class="tile__item-left-bottom">American Airlines , $182 Round Trip</p>
+                </div>
+                <router-link :to="{name: 'result'}" href="" class="tile__item-right">View Flight</router-link>
+              </div>
+              <div class="tile__item">
+                <div class="tile__item-left">
+                  <p class="tile__item-left-top">Dallas (DFW) -> New York (JFK) | 8/12 - 8/16</p>
+                  <p class="tile__item-left-bottom">American Airlines , $182 Round Trip</p>
+                </div>
+                <a href="" class="tile__item-right">View Flight</a>
+              </div>
+              <div class="tile__item">
+                <div class="tile__item-left">
+                  <p class="tile__item-left-top">Dallas (DFW) -> New York (JFK) | 8/12 - 8/16</p>
+                  <p class="tile__item-left-bottom">American Airlines , $182 Round Trip</p>
+                </div>
+                <a href="" class="tile__item-right">View Flight</a>
+              </div>
+              <div class="tile__item">
+                <div class="tile__item-left">
+                  <p class="tile__item-left-top">Dallas (DFW) -> New York (JFK) | 8/12 - 8/16</p>
+                  <p class="tile__item-left-bottom">American Airlines , $182 Round Trip</p>
+                </div>
+                <a href="" class="tile__item-right">View Flight</a>
+              </div>
+              <div class="tile__item">
+                <div class="tile__item-left">
+                  <p class="tile__item-left-top">Dallas (DFW) -> New York (JFK) | 8/12 - 8/16</p>
+                  <p class="tile__item-left-bottom">American Airlines , $182 Round Trip</p>
+                </div>
+                <a href="" class="tile__item-right">View Flight</a>
+              </div>
+            </div>
+          </tile-component>
+        </div>
+
+        <div class="col-12 col-md-6 col-xl-4">
+          <tile-component class="tile--flights" title="Suggested Trips From Dallas">
+            <div class="tile__list">
+              <div class="tile__item">
+                <div class="tile__item-left">
+                  <p class="tile__item-left-top">Dallas (DFW) -> New York (JFK) | 8/12 - 8/16</p>
+                  <p class="tile__item-left-bottom">American Airlines , $182 Round Trip</p>
+                </div>
+                <a href="" class="tile__item-right">View Flight</a>
+              </div>
+              <div class="tile__item">
+                <div class="tile__item-left">
+                  <p class="tile__item-left-top">Dallas (DFW) -> New York (JFK) | 8/12 - 8/16</p>
+                  <p class="tile__item-left-bottom">American Airlines , $182 Round Trip</p>
+                </div>
+                <a href="" class="tile__item-right">View Flight</a>
+              </div>
+              <div class="tile__item">
+                <div class="tile__item-left">
+                  <p class="tile__item-left-top">Dallas (DFW) -> New York (JFK) | 8/12 - 8/16</p>
+                  <p class="tile__item-left-bottom">American Airlines , $182 Round Trip</p>
+                </div>
+                <a href="" class="tile__item-right">View Flight</a>
+              </div>
+              <div class="tile__item">
+                <div class="tile__item-left">
+                  <p class="tile__item-left-top">Dallas (DFW) -> New York (JFK) | 8/12 - 8/16</p>
+                  <p class="tile__item-left-bottom">American Airlines , $182 Round Trip</p>
+                </div>
+                <a href="" class="tile__item-right">View Flight</a>
+              </div>
+              <div class="tile__item">
+                <div class="tile__item-left">
+                  <p class="tile__item-left-top">Dallas (DFW) -> New York (JFK) | 8/12 - 8/16</p>
+                  <p class="tile__item-left-bottom">American Airlines , $182 Round Trip</p>
+                </div>
+                <a href="" class="tile__item-right">View Flight</a>
+              </div>
+            </div>
+          </tile-component>
+        </div>
+
+        <div class="col-12 col-md-6 col-xl-4">
+          <tile-component class="tile--flights" title="Deals From Dallas" titleRight="Filter by Preferences" :multiTitle="true">
+            <div class="tile__list">
+              <div class="tile__item">
+                <div class="tile__item-left">
+                  <p class="tile__item-left-top">Dallas (DFW) -> New York (JFK) | 8/12 - 8/16</p>
+                  <p class="tile__item-left-bottom">American Airlines , $182 Round Trip</p>
+                </div>
+                <a href="" class="tile__item-right">View Flight</a>
+              </div>
+              <div class="tile__item">
+                <div class="tile__item-left">
+                  <p class="tile__item-left-top">Dallas (DFW) -> New York (JFK) | 8/12 - 8/16</p>
+                  <p class="tile__item-left-bottom">American Airlines , $182 Round Trip</p>
+                </div>
+                <a href="" class="tile__item-right">View Flight</a>
+              </div>
+              <div class="tile__item">
+                <div class="tile__item-left">
+                  <p class="tile__item-left-top">Dallas (DFW) -> New York (JFK) | 8/12 - 8/16</p>
+                  <p class="tile__item-left-bottom">American Airlines , $182 Round Trip</p>
+                </div>
+                <a href="" class="tile__item-right">View Flight</a>
+              </div>
+              <div class="tile__item">
+                <div class="tile__item-left">
+                  <p class="tile__item-left-top">Dallas (DFW) -> New York (JFK) | 8/12 - 8/16</p>
+                  <p class="tile__item-left-bottom">American Airlines , $182 Round Trip</p>
+                </div>
+                <a href="" class="tile__item-right">View Flight</a>
+              </div>
+              <div class="tile__item">
+                <div class="tile__item-left">
+                  <p class="tile__item-left-top">Dallas (DFW) -> New York (JFK) | 8/12 - 8/16</p>
+                  <p class="tile__item-left-bottom">American Airlines , $182 Round Trip</p>
+                </div>
+                <a href="" class="tile__item-right">View Flight</a>
+              </div>
+            </div>
+          </tile-component>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</script>

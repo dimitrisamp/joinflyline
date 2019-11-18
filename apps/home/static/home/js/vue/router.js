@@ -5,6 +5,9 @@ import {LearnMore} from "./components/learn-more.js";
 import {PromoLanding} from "./components/promo-landing.js";
 import {Dashboard} from "./components/dashboard.js";
 import {Trips} from "./components/trips.js";
+import {DashboadOverview} from "./components/dashboad-overview.js";
+import {AccountInformation} from "./components/account-information.js";
+import {ResultComponent} from "./components/result-component.js";
 
 const routes = [
   {
@@ -14,11 +17,27 @@ const routes = [
   {
     path: '/dashboard',
     component: Dashboard,
+    name: 'dashboard',
     children: [
+      {
+        path: '/',
+        name: 'overview',
+        component: DashboadOverview
+      },
       {
         path: 'trips',
         name: 'trips',
         component: Trips
+      },
+      {
+        path: 'results',
+        name: 'results',
+        component: ResultComponent
+      },
+      {
+        path: 'account',
+        name: 'account',
+        component: AccountInformation
       }
     ]
   },
@@ -43,5 +62,6 @@ const routes = [
 
 export const router = new VueRouter({
   routes,
-  linkActiveClass: 'sidebar__link-active',
+  linkActiveClass: 'active',
+  linkExactActiveClass: 'exact-active'
 });

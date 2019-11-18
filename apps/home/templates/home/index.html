@@ -5,6 +5,9 @@
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
         <title>Subscription Flight Search, Deal Alerts, Direct Booking | FlyLine</title>
+         {% compress css %}
+            <link type="text/x-scss" href="{% static 'home/styles/main.scss' %}" rel="stylesheet" media="screen">
+
         <link rel="stylesheet" type="text/css"
               href="{% static "home/css/bootstrap.css" %}">
         <link rel="stylesheet" type="text/css"
@@ -26,17 +29,16 @@
         <link rel="stylesheet" type="text/css"
               href="{% static "css/progress-animation-blue.css" %}">
         <link rel="stylesheet" type="text/css"
-              href="{% static "css/../../static/home/css/font-awesome.css" %}">
+              href="{% static "home/css/font-awesome.css" %}">
         <link rel="stylesheet" type="text/css"
               href="{% static "home/css/loading-animation.css" %}"/>
-        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600&display=swap"
-              rel="stylesheet">
         <link href="{% static "/home/vue-slider-component/theme/default.css" %}"
               rel="stylesheet"/>
-        {% include "favicon.html" %}
-        {% compress css %}
-            <link type="text/x-scss" href="{% static 'home/styles/main.scss' %}" rel="stylesheet" media="screen">
         {% endcompress %}
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600&display=swap"
+              rel="stylesheet">
+        {% include "favicon.html" %}
+
         <meta name="description"
               content="Find your next exciting adventure with FlyLine. Search our thousands of discount flights exclusive to FlyLine members, and travel without breaking the bank. Travel more and spend less with FlyLine."/>
     </head>

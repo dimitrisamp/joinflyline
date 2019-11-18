@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/2.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.2/ref/settings/
 """
+import sentry_sdk
 import json
 
 import dotenv
@@ -182,14 +183,12 @@ STATIC_URL = "/static/"
 STATICFILES_DIRS = (os.path.join("static"),)
 
 STATICFILES_FINDERS = [
-    'django.contrib.staticfiles.finders.FileSystemFinder',
-    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    'compressor.finders.CompressorFinder',
+    "django.contrib.staticfiles.finders.FileSystemFinder",
+    "django.contrib.staticfiles.finders.AppDirectoriesFinder",
+    "compressor.finders.CompressorFinder",
 ]
 
-COMPRESS_PRECOMPILERS = (
-    ('text/x-scss', 'django_libsass.SassCompiler'),
-)
+COMPRESS_PRECOMPILERS = (("text/x-scss", "django_libsass.SassCompiler"),)
 
 # graph_models --pydot -a -g -o my_project_visualized.png
 
@@ -202,7 +201,7 @@ LOGIN_REDIRECT_URL = "accounts"
 LOGIN_URL = "/sign-in"
 RECEIVE_EMAIL = "bookings@wanderift.com"
 RECEIVE_PHONE = "+18105131533"
-
+KIWI_API_KEY = "4TMnq4G90OPMYDAGVHzlP9LQo2hvzzdc"
 STRIPE_API_KEY = os.getenv("STRIPE_API_KEY")
 PLANS_CONFIG_FILE = os.getenv(
     "PLANS_CONFIG_FILE",
@@ -216,6 +215,29 @@ SENTRY_DSN = "https://a875b98b313142d8afd40797b84f235e@sentry.io/1773547"
 SENDGRID_API_KEY = (
     "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"
 )
+
+if STAGE == "production":
+    sentry_sdk.init(dsn=SENTRY_DSN, integrations=[DjangoIntegration()])
+    DEFAULT_FILE_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
+    STATICFILES_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
+    COMPRESS_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
+    GS_BUCKET_NAME = "joinflyline"
+    GS_DEFAULT_ACL = "publicRead"
+    GS_CACHE_CONTROL = "max-age=120"
+    MEDIA_ROOT = "media"
+    DEBUG = False
+    COMPRESS_ENABLED = True
+    COMPRESS_OFFLINE = True
+    COMPRESS_FILTERS = {
+        "css": [
+            "compressor.filters.css_default.CssAbsoluteFilter",
+            "compressor.filters.cssmin.CSSCompressorFilter",
+        ],
+        "js": [
+            "compressor.filters.jsmin.JSMinFilter",
+            "compressor.filters.jsmin.SlimItFilter",
+        ],
+    }
 
 SITE_TITLE = "Wanderift | Airline Travel Subscription | Save on Retail Flights"
 SUBSCRIBER_AIRLINES = {
@@ -251,3 +273,4 @@ CELERY_ACCEPT_CONTENT = ["application/json"]
 CELERY_TASK_SERIALIZER = "json"
 CELERY_RESULT_SERIALIZER = "json"
 CELERY_TIMEZONE = TIME_ZONE
+SITE_URL = os.getenv("SITE_URL", "https://joinflyline.com")

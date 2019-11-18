@@ -1,0 +1,20 @@
+.section-heading {
+  border-bottom: 1px solid $border-color;
+  margin-bottom: 2.6875rem;
+  &__inner {
+    padding: 0 0.95rem;
+    @include mq(lg) {
+      padding: 0 2rem;
+    }
+  }
+  &__title {
+    font-family: $dona-black;
+    font-weight: 600;
+    font-size: 2.125rem;
+    color: $primary
+  }
+  &__text {
+    color: $gray;
+    font-size: 1.125rem;
+  }
+}

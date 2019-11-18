@@ -71,6 +71,9 @@ export const Wizard = Vue.component("wizard", {
     updateSelectValue(value) {
       this.form.plan = this.$route.params.plan || value;
     },
+    updatePlaceFrom(value) {
+      this.form.home_airport = value.name;
+    },
     submit() {
       if (!this.isStep2Complete) return;
       this.requestSent = true;
@@ -101,9 +104,6 @@ export const Wizard = Vue.component("wizard", {
           });
       });
     }
-  },
-  mounted() {
-    this.focusElement("home_airport");
   },
   computed: {
     isStep1Complete() {

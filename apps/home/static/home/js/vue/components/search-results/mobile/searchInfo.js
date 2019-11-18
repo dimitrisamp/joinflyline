@@ -11,7 +11,7 @@ Vue.component('search-info-mobile', {
             }
         }
     },
-    props: ['form', 'sortResultsBy', 'cityToInput', 'cityFromInput'],
+    props: ['form', 'sortResultsBy', 'placeTo', 'placeFrom'],
     methods: {
         backPressed() {
             this.$emit('back-pressed');
@@ -20,12 +20,10 @@ Vue.component('search-info-mobile', {
     delimiters: ['{(', ')}'],
     computed: {
         cityFrom() {
-            const ci = this.cityFromInput;
-            return ci.searchResults[ci.selectedIndex].code;
+            return this.placeFrom.code;
         },
         cityTo() {
-            const ci = this.cityToInput;
-            return ci.searchResults[ci.selectedIndex].code;
+            return this.placeTo.code;
         },
         roundTrip() {
             return this.form.destinationTypeId === 'round';
