@@ -36,9 +36,11 @@ export const LocationInput = Vue.component("location-input", {
     onFocused(e) {
       this.focused = true;
       this.$nextTick(() => {
-        e.target.focus()
-        e.target.parentElement.scrollIntoView() 
-        e.target.setAttribute('autofocus', 'autofocus');
+        e.target.focus();
+        if (this.$mq === 'sm') {
+          e.target.parentElement.scrollIntoView();
+          e.target.setAttribute('autofocus', 'autofocus');
+        }
       })
     },
     onBlurred() {
