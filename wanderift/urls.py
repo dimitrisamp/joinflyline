@@ -16,6 +16,7 @@ Including another URLconf
 
 from django.contrib import admin
 from django.http import HttpResponse
+from django.shortcuts import redirect
 from django.urls import path, include
 from django.views import View
 from django.views.generic import TemplateView
@@ -24,10 +25,17 @@ from apps.booking.views import (
     CheckFlightsView,
     SaveBookingView,
     CheckPromoView,
-    RetailBookingView)
+    RetailBookingView,
+)
 from apps.emails.views import booking_success
-from apps.home.views import index_view, home_view, SignInView, SignUpView, \
-    PromoLandingView
+from apps.home.views import (
+    index_view,
+    home_view,
+    SignInView,
+    SignUpView,
+    PromoLandingView,
+    SavingsExplainedView,
+)
 from apps.account.views import WizardView
 from django.conf import settings
 
@@ -38,11 +46,11 @@ class SiteMapView(View):
             open(settings.SITEMAP_FILE).read(), content_type="application/xml"
         )
 
+
 class RobotsTxtView(View):
     def get(self, request, *args, **kwargs):
-        return HttpResponse(
-            open(settings.ROBOTS_TXT).read(), content_type="text/plain"
-        )
+        return HttpResponse(open(settings.ROBOTS_TXT).read(), content_type="text/plain")
+
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -58,7 +66,7 @@ urlpatterns = [
     # Auth urls
     path("auth/", include("apps.oauth.urls")),
     # booking
-    path("promo/", PromoLandingView.as_view(), name="promo-landing"),
+    path("promo/", lambda _: redirect('/#/promo/'), name="promo-landing"),
     path("retail/", RetailBookingView.as_view(), name="retail"),
     path("booking_flight/", SaveBookingView.as_view(), name="book"),
     path("check-flights/", CheckFlightsView.as_view(), name="check-flights"),
@@ -73,7 +81,14 @@ urlpatterns = [
     path("get-started/", WizardView.as_view(), name="wizard"),
     path("sitemap.xml", SiteMapView.as_view(), name="sitemap"),
     path("robots.txt", RobotsTxtView.as_view(), name="robots"),
-    path("maintenance/", TemplateView.as_view(template_name="503.html"), name="maintenance")
+    path(
+        "maintenance/",
+        TemplateView.as_view(template_name="503.html"),
+        name="maintenance",
+    ),
+    path(
+        "savings-explained/", SavingsExplainedView.as_view(), name="savings-explained"
+    ),
 ]
 
 if settings.DEBUG:

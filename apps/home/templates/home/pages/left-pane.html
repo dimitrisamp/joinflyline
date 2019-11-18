@@ -1,0 +1,12 @@
+<div class="left-form-pane container-pad-left">
+  <div v-if="searchResults.length === 0">
+    <h3>Search our Deals</h3>
+    <p>Exclusive private flights for members</p>
+  </div>
+  <div v-else class="search-flight-home">
+    <h3>{( cityFromTo )}</h3>
+    <p>Carriers: {( airlineNames )}</p>
+    <div class="search-flight-devider"></div>
+  </div>
+  {% include "home/vue/dealform.html" %}
+</div>

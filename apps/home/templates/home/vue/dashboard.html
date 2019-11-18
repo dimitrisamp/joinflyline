@@ -1,0 +1,9 @@
+<script id="vue-dashboard-template" type="text/x-template">
+    <div class="container">
+        <dashboard-header></dashboard-header>
+        <sidebar></sidebar>
+        <transition name="slide" mode="out-in" appear>
+            <router-view></router-view>
+        </transition>
+    </div>
+</script>

@@ -1,0 +1,40 @@
+{% load static %}
+<script type="text/x-template" id="vue-nav-bar-template">
+<nav class="navbar navbar-expand-lg navbar-light  nav-navbar-trip default-nav justify-content-between bg-light">
+    <div class="container">
+        <router-link class="navbar-brand nav-logo flex-grow-1"
+           to="/"><img
+                src="{% static "home/img/flyline_logos-01-1.png" %}"></router-link>
+        <button class="navbar-toggler nav-home"
+                type="button" data-toggle="collapse"
+                data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent"
+                aria-expanded="false"
+                aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse"
+             id="navbarSupportedContent">
+            <div class="navbar-nav ml-auto">
+                <div class="nav-item" v-if="user.anonymous">
+                    <a href="{% url "sign-in" %}"
+                       class="btn my-2 login-btn my-sm-0">Log
+                        In</a>
+                    <router-link to="/get-started/"
+                       class="btn my-2 get-s-btn my-sm-0">Get
+                        Started</router-link>
+                </div>
+                <div class="nav-item" v-else>
+                    <a href="{% url "manage-trips" %}"
+                       class="btn my-2 login-btn my-sm-0">Trips</a>
+                    <a href="{% url "accounts" %}"
+                       class="btn my-2 get-s-btn my-sm-0">Account</a>
+                        <a href="{% url "logout" %}"
+                           class="btn my-2 get-s-btn my-sm-0">Log
+                            Out</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+</script>

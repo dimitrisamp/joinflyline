@@ -1,0 +1,28 @@
+<div
+  class="right-body-pane"
+  :class="{'container-pad-right': searchResults.length !== 0 || searchProgress}"
+>
+  <div
+    v-if="searchResults.length === 0 && !searchProgress"
+    class="h-contentarea"
+  >
+    <div class="search-results-rightcontent design-revesion">
+      <h3>Lets find your next <span class="f-clr">adventure</span></h3>
+      <p>Don't know where to go? Take a look at these suggestions below</p>
+
+      {% include "home/pages/trending-deals-slider.html" %}
+      {% include "home/pages/deep-discount-flights.html" %}
+    </div>
+  </div>
+  {% include "home/pages/search-progress-animation.html" %}
+  <search-results
+    v-else-if="$mq !== 'sm'"
+    :search-results="searchResults"
+    :search-progress="searchProgress"
+    :load-more="loadMore"
+    :form="form"
+    :user="user"
+    :sort-results-by="sortResultsBy"
+    :quick-filters-data="quickFiltersData"
+  />
+</div>

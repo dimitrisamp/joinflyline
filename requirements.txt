@@ -9,7 +9,7 @@ sentry-sdk
 django-suit
 
 python-dotenv
-psycopg2
+psycopg2-binary
 invoke
 
 django-extensions
@@ -25,3 +25,5 @@ celery[redis]
 django-maintenancemode
 
 django-rest-framework
+django_compressor
+django-libsass

@@ -1,0 +1,14 @@
+// General
+@import "general/variables";
+@import "general/base";
+
+// Common
+@import "common/forms";
+@import "common/buttons";
+
+// Components
+@import "components/cards";
+
+// Layout
+@import 'layouts/header';
+@import 'layouts/footer';

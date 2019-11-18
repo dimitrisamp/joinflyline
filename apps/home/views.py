@@ -41,8 +41,11 @@ class SignUpView(TemplateView):
         }
 
 
+class SavingsExplainedView(TemplateView):
+    template_name = "home/vue/savings-explained.html"
+
+
 class PromoLandingView(CreateView):
-    template_name = "home/promotional_landing.html"
     model = PromoInfo
     fields = ['email', 'instagram']
 
