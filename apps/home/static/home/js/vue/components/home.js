@@ -92,7 +92,15 @@ export const Home = Vue.component("home", {
   components: {
     VueSlider: window["vue-slider-component"]
   },
+
   methods: {
+    calcHeightOfHeader() {
+       const headerEl = document.querySelector('.header').offsetHeight;
+       const searchContainer = document.querySelector('.search-container');
+       if (headerEl) {
+        searchContainer.style.paddingTop = headerEl + 'px';
+       } 
+    },
     updatePlaceFrom(value) {
       this.form.placeFrom = value
     },
@@ -436,14 +444,16 @@ export const Home = Vue.component("home", {
       }
     },
     applyFullPage() {
-      if (this.fullPageApplied) return;
-      this.fullPageApplied = true;
-      $("#fullpage").fullpage({
-        scrollBar: true,
-        navigation: true,
-        normalScrollElements: ".normal-scroll",
-        responsiveWidth: 768
-      });
+      if ( this.$mq !== 'sm' ) {
+        if (this.fullPageApplied) return;
+        this.fullPageApplied = true;
+        $("#fullpage").fullpage({
+          scrollBar: true,
+          navigation: true,
+          normalScrollElements: ".normal-scroll",
+          responsiveWidth: 768
+        });
+      }
     },
 
     destroyFullPage() {
@@ -472,14 +482,18 @@ export const Home = Vue.component("home", {
       this.applyFullPage();
     });
     this.setDatePick();
-    onMounted();
+    
+    this.calcHeightOfHeader();
+    window.addEventListener('resize', this.calcHeightOfHeader);
   },
   beforeDestroy() {
     this.destroyFullPage();
   },
-  computed: Vuex.mapState({
-    user: "user",
-    searchResults: 'searchResults',
+  computed: {
+    ...Vuex.mapState({
+      user: "user",
+      searchResults: 'searchResults',
+    }),
     isFormIncomplete() {
       if (this.form.destinationTypeId === "round") {
         if (!this.form.return_date) return true;
@@ -517,18 +531,5 @@ export const Home = Vue.component("home", {
       const [a, b] = this.form.priceRange;
       return `$${a}-$${b}`;
     }
-  })
+  }
 });
-
-function onMounted() {
-  const sticky = 400;
-  $(window).scroll(function () {
-    if ($(window).scrollTop() > sticky) {
-      $("header").addClass("sticky");
-      $("#fp-nav").addClass("dots-display");
-    } else {
-      $("header").removeClass("sticky");
-      $("#fp-nav").removeClass("dots-display");
-    }
-  });
-}

@@ -33,8 +33,13 @@ export const LocationInput = Vue.component("location-input", {
   },
   methods: {
     formatPlace,
-    onFocused() {
+    onFocused(e) {
+      const parentEl = e.target.parentElement;
       this.focused = true;
+      if ( parentEl ) {
+        document.body.style.overflow = 'hidden';
+        this.$mq === 'sm' ? parentEl.scrollIntoView() : null ;
+      }
     },
     onBlurred() {
       const that = this;
@@ -42,6 +47,9 @@ export const LocationInput = Vue.component("location-input", {
         that.focused = false;
       }, 150);
       this.searchProgress = false;
+      this.$mq === 'sm' ? document.body.scrollIntoView() : null;
+      document.body.style.overflow = 'auto';
+     
     },
     choose(i) {
       this.selectedIndex = i;

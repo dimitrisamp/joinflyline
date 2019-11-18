@@ -14,7 +14,7 @@
             <div class="section fp-auto-height-responsive fp-table">
 
                 <div class="section-01 h-user-home">
-                    <header class="fp-auto-height">
+                    <header class="header fp-auto-height">
                         <div class="h-topbar text-center" v-if="user.anonymous">
                             <p>Join FlyLine to Experience Unmatched Flight Savings
                                 <router-link to="/savings-explained/"
@@ -26,7 +26,7 @@
                         <nav-bar/>
                     </header>
 
-                    <div class="d-flex fp-auto-height-responsive header-background homepage-background mobile-before first-page-body">
+                    <div class="search-container d-flex fp-auto-height-responsive header-background homepage-background mobile-before first-page-body">
                         <div v-if="!user.anonymous || searchResults.length !== 0 || searchProgress"
                              class="d-flex flex-row search-panel">
                             {% include "home/pages/left-pane.html" %}

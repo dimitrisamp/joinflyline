@@ -143,6 +143,9 @@ button.search_btn{
         position: fixed;
         top: 0;
         bottom: 0;
+        z-index: 140;
+        height: 50vh;
+        transform: translate3d(0,0,0);
     }
 
     .search-item.shadowsrch .close-popup {
