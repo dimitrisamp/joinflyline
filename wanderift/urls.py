@@ -13,6 +13,8 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+import os
+
 from django.conf.urls.static import static
 from django.views.static import serve
 from django.contrib import admin
@@ -92,9 +94,12 @@ urlpatterns = [
     ),
 ]
 
-if settings.STAGE == "local":
+if settings.STAGE == "local" and os.getenv("DEBUG_TOOLBAR", "false").lower() in (
+    "true",
+    "1",
+    "on",
+):
     import debug_toolbar
-
     urlpatterns += [path("__debug__/", include(debug_toolbar.urls))]
 
 if settings.STAGE == "localprod":
