@@ -181,7 +181,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
-STATIC_ROOT = ""
+STATIC_ROOT = os.path.join(BASE_DIR, 'collected_static')
 
 STATIC_URL = "/static/"
 
@@ -227,6 +227,7 @@ if STAGE == "production":
     GS_CACHE_CONTROL = "max-age=120"
     MEDIA_ROOT = "media"
     DEBUG = False
+    COMPRESS_ENABLED = True
     COMPRESS_OFFLINE = True
     COMPRESS_FILTERS = {
         "css": [
