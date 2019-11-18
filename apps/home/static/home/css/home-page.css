@@ -375,6 +375,7 @@ header.sticky{
 }
 .dat-blue-border{
     display: flex;
+    width: 100%;
 }
 .clicked .dat-blue-border{
     background: #fff;

@@ -38,8 +38,7 @@ export const LocationInput = Vue.component("location-input", {
       this.$nextTick(() => e.target.focus())
     },
     onBlurred() {
-      const that = this;
-      this.$nextTick(() => that.focused = false)
+      setTimeout(_ => this.focused = false, 150)
       this.searchProgress = false;
     },
     choose(i) {

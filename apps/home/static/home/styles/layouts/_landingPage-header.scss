@@ -16,3 +16,25 @@
     }
   }
 }
+
+.search-item__container {
+  position: relative;
+}
+.search-btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 3rem;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  &--active {
+    display: flex;
+  }
+}
+.search-close {
+  width: 1rem;
+  height: 1rem;
+  cursor: pointer;
+}
