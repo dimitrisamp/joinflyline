@@ -27,7 +27,7 @@ COMPRESS_FILTERS = {
     ],
 }
 COMPRESS_URL = os.getenv(
-    "COMPRESS_URL", "https://storage.cloud.google.com/joinflyline-staging/"
+    "COMPRESS_URL", 'https://storage.googleapis.com/joinflyline-staging/'
 )
 
 
