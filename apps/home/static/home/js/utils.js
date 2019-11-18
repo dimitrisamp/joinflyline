@@ -167,3 +167,63 @@ export function debounce(fn, delay, ...rest) {
     }, delay);
   };
 }
+
+
+export function calculateLayovers(routes) {
+  for (let i = 0; i < routes.length - 1; i++) {
+    let [prev, next] = [routes[i], routes[i + 1]];
+    prev.layover =
+      (new Date(next.utc_departure).getTime() -
+        new Date(prev.utc_arrival).getTime()) /
+      1000;
+  }
+}
+
+
+export function getAirlines(flights) {
+  let airlines = new Set();
+  for (const flight of flights) {
+    for (const airline of flight.airlines) {
+      airlines.add(airline);
+    }
+  }
+  return [...airlines].sort();
+}
+
+
+export function processFlight(sr) {
+  const to_routes = sr.route.filter(r => r.return === 0);
+  const return_routes = sr.route.filter(r => r.return === 1);
+  calculateLayovers(to_routes);
+  calculateLayovers(return_routes);
+  const roundtrip = return_routes.length > 0;
+  const return_departure = roundtrip
+    ? return_routes[0].local_departure
+    : null;
+  return {
+    ...sr,
+    roundtrip,
+    return_departure
+  };
+}
+
+export function getQuickLinksData(flights) {
+  const data = flights.map(f => ({
+    price: f.conversion.USD,
+    duration: f.duration.total,
+    quality: f.quality,
+    date: new Date(f.local_departure)
+  }));
+  return {
+    price: data.reduce((prev, curr) =>
+      prev.price < curr.price ? prev : curr
+    ),
+    duration: data.reduce((prev, curr) =>
+      prev.duration < curr.duration ? prev : curr
+    ),
+    quality: data.reduce((prev, curr) =>
+      prev.quality < curr.quality ? prev : curr
+    ),
+    date: data.reduce((prev, curr) => (prev.date < curr.date ? prev : curr))
+  };
+}
