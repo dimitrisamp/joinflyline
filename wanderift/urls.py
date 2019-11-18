@@ -13,7 +13,7 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.http import HttpResponse
 from django.shortcuts import redirect
@@ -91,8 +91,13 @@ urlpatterns = [
     ),
 ]
 
-if settings.DEBUG:
+if settings.STAGE == 'dev':
     import debug_toolbar
-    urlpatterns = [
-        path('__debug__/', include(debug_toolbar.urls))
-    ] + urlpatterns
+    urlpatterns += [
+        path('__debug__/', include(debug_toolbar.urls)),
+    ]
+
+if settings.STAGE == 'local':
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+print(urlpatterns)

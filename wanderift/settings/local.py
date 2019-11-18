@@ -1,21 +1,19 @@
 from .base import *
 
-INSTALLED_APPS += [
-    'debug_toolbar'
-]
-
-MIDDLEWARE = [
-    "debug_toolbar.middleware.DebugToolbarMiddleware",
-    *MIDDLEWARE
-]
-
-INTERNAL_IPS = [
-    '127.0.0.1'
-]
-
-# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-CELERY_TASK_ALWAYS_EAGER = True
-
-SITE_URL = os.getenv("SITE_URL", "http://127.0.0.1:8000")
+STATIC_ROOT = os.path.join(BASE_DIR, "collected_static")
+STATIC_URL = '/static/'
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+COMPRESS_ENABLED = True
+COMPRESS_OFFLINE = True
+COMPRESS_FILTERS = {
+    "css": [
+        "compressor.filters.css_default.CssAbsoluteFilter",
+        #"compressor.filters.cssmin.CSSCompressorFilter",
+    ],
+    "js": [
+        "compressor.filters.jsmin.JSMinFilter",
+        "compressor.filters.jsmin.SlimItFilter",
+    ],
+}

@@ -1,7 +1,7 @@
 import {SearchForm} from "./search-form.js";
 
 
-export const Home = Vue.component("home", {
+export const Home = {
   template: "#vue-home-template",
   extends: SearchForm,
   delimiters: ["{(", ")}"],
@@ -46,17 +46,15 @@ export const Home = Vue.component("home", {
         this.fullPageApplied = false;
       }
     },
-    mounted() {
-      this.$nextTick(() => {
-        this.applyFullPage();
-      });
-      this.setDatePick();
-
-      this.calcHeightOfHeader();
-      window.addEventListener('resize', this.calcHeightOfHeader);
-    },
-    beforeDestroy() {
-      this.destroyFullPage();
-    },
-  }
-});
+  },
+  mounted() {
+    this.$nextTick(() => {
+      this.applyFullPage();
+    });
+    this.calcHeightOfHeader();
+    window.addEventListener('resize', this.calcHeightOfHeader);
+  },
+  beforeDestroy() {
+    this.destroyFullPage();
+  },
+};

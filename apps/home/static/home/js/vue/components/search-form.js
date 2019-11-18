@@ -10,7 +10,7 @@ import {
 import {airlineCodes} from "../../airlineCodes.js";
 
 
-export const SearchForm = Vue.extend({
+export const SearchForm = {
   delimiters: ["{(", ")}"],
   data() {
     return {
@@ -249,6 +249,7 @@ export const SearchForm = Vue.extend({
           this.quickFiltersData = getQuickLinksData(data.data);
           this.displaySearchResults({data, airlines});
           this.backToForm = false;
+          this.$emit('search-complete');
         })
         .finally(() => {
           this.searchProgress = false;
@@ -390,4 +391,4 @@ export const SearchForm = Vue.extend({
       return `$${a}-$${b}`;
     }
   }
-});
+};
