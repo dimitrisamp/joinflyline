@@ -81,3 +81,8 @@ def mc(c, kebab_name):
 @task
 def worker(c):
     c.run("celery worker -A wanderift -l info", pty=True)
+
+
+@task
+def static(c):
+    c.run('python manage.py collectstatic --noinput -v 3 && python manage.py compress')

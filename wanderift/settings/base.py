@@ -238,6 +238,9 @@ if STAGE == "production":
             "compressor.filters.jsmin.SlimItFilter",
         ],
     }
+    COMPRESS_URL = os.getenv(
+        "COMPRESS_URL", "https://storage.cloud.google.com/joinflyline-staging/"
+    )
 
 SITE_TITLE = "Wanderift | Airline Travel Subscription | Save on Retail Flights"
 SUBSCRIBER_AIRLINES = {
