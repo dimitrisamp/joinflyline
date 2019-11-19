@@ -1,0 +1,13 @@
+.result__container {
+  .result__filters {
+    .tile__body {
+      .input-group-text {
+        border: none;
+        padding: 0;
+      }
+      input {
+        border: 2px solid #ececec;
+      }
+    }
+  }
+}

@@ -67,7 +67,7 @@ Container emulation
 
 @media (min-width: 1200px) {
     .container-pad-left {
-        padding-left:calc(80%/2 - 1000px/2 + 15px);
+        padding-left:calc(100%/2 - 1140px/2 + 15px);
     }
     .container-pad-right {
         padding-right: calc(100%/2 - 1140px/2 + 15px);
@@ -101,9 +101,8 @@ Container emulation
     background:url('../img/Wallpaper-Left.png');
     border-right: solid 1px rgb(204, 204, 204);
     padding: 20px 30px;
-    flex: 1;
+    flex: 1.2;
     background-size: cover;
-    padding-left:calc(93%/2 - 1000px/2 + 15px);
 }
 
 .left-form-pane .bg-white-close-holes {
