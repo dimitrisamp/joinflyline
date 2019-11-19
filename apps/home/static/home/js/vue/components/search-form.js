@@ -21,7 +21,7 @@ export const SearchForm = {
         }
       });
     },
-    ...Vuex.mapActions(['search']),
+    ...Vuex.mapActions(['search', 'loadMore', 'sortResultsBy']),
     ...Vuex.mapMutations([
       "updatePlaceFrom",
       "updatePlaceTo",

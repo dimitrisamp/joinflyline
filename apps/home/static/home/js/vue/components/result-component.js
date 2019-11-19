@@ -10,8 +10,7 @@ export const ResultComponent = Vue.component("result-component", {
       user: {
         anonymous: true
       },
-      sortResultsBy: () => {},
-      loadMore: null
+      ...Vuex.mapActions(["sortResultsBy", "loadMore"])
     };
   },
   computed: {

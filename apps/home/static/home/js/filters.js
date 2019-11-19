@@ -392,29 +392,6 @@ function timeFormatter(val) {
     }
 }
 
-function loadMore() {
-    window.document.getElementById('load-more-button').setAttribute('disabled', 'disabled');
-    let searchQuery = Object.fromEntries(new URLSearchParams(window.location.search));
-    searchQuery.limit = parseInt(searchQuery.limit || 20) + 10;
-    let url = new URL(window.location);
-    url.search = new URLSearchParams(searchQuery);
-    setBusyState(true);
-    fetch(url, {'headers': {'X-Requested-With': 'XMLHttpRequest'}}).then(
-        response => response.text()
-    ).then(
-        text => {
-            window.document.getElementById('result-list').innerHTML = text;
-        }
-    ).finally(
-        () => {
-            window.document.getElementById('load-more-button').removeAttribute('disabled');
-            window.document.getElementById('filters-sidebar').innerHTML = window.document.getElementById('filters-sidebar-hidden').innerHTML;
-            window.document.getElementById('filters-sidebar-hidden').remove();
-            setBusyState(false);
-            bindFiltersEvents();
-        }
-    );
-}
 
 let tripButton = document.querySelector(".btn-group");
 let picker = new Lightpick({

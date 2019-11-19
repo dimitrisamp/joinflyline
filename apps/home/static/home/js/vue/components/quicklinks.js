@@ -6,8 +6,6 @@ Vue.component('quicklinks', {
     delimiters: ['{(', ')}'],
     methods: {
         secs2hm,
-        sortResultsBy(sort) {
-            this.$emit('sort-by', sort);
-        }
+        ...Vuex.mapActions(['sortResultsBy'])
     }
 });
