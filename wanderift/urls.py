@@ -23,6 +23,7 @@ from django.shortcuts import redirect
 from django.urls import path, include, re_path
 from django.views import View
 from django.views.generic import TemplateView
+from rest_framework import routers
 
 from apps.booking.views import (
     CheckFlightsView,
@@ -40,7 +41,12 @@ from apps.home.views import (
     SavingsExplainedView,
 )
 from apps.account.views import WizardView
+from apps.account.api_views import UserViewSet
 from django.conf import settings
+
+
+router = routers.DefaultRouter()
+router.register(r'users', UserViewSet)
 
 
 class SiteMapView(View):
@@ -92,6 +98,7 @@ urlpatterns = [
     path(
         "savings-explained/", SavingsExplainedView.as_view(), name="savings-explained"
     ),
+    re_path("^api/", include(router.urls)),
 ]
 
 if settings.STAGE == "local" and os.getenv("DEBUG_TOOLBAR", "false").lower() in (

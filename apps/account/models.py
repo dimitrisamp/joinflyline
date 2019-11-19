@@ -2,6 +2,7 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from django.utils.translation import gettext_lazy as _
 from django_enumfield import enum
 from creditcards.models import CardExpiryField, CardNumberField, SecurityCodeField
 
@@ -9,7 +10,7 @@ from apps.account import enums
 
 
 class Account(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     card_number = CardNumberField(null=True)
     cvc = SecurityCodeField(null=True)
     expiry = CardExpiryField(null=True)
@@ -21,7 +22,7 @@ class Account(models.Model):
     token = models.CharField(max_length=100, blank=True)
 
     def __str__(self):
-        return self.card_number + self.cvc + self.expiry + self.country + self.zip
+        return f"{self.user} {self.zip}"
 
 
 class Profile(models.Model):
@@ -50,6 +51,20 @@ class FrequentFlyer(models.Model):
     spirit_airlines = models.CharField(max_length=30, blank=True)
     allegiant_air = models.CharField(max_length=30, blank=True)
     hawaiian_airlines = models.CharField(max_length=30, blank=True)
+
+
+class DealWatch(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    fly_from = models.CharField(max_length=50)
+    fly_to = models.CharField(max_length=50)
+    dt_added = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = "Deal watch"
+        verbose_name_plural = "Deal watches"
+
+    def __str__(self):
+        return f"{self.user} {self.fly_from} {self.fly_to} {self.dt_added}"
 
 
 @receiver(post_save, sender=User)
