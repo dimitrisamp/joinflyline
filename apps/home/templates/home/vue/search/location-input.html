@@ -1,0 +1,29 @@
+<script type="text/x-template" id="vue-airport-input-template">
+    <div class="search-outer" :class="{shadowsrch: focused}">
+        <div class="spacer"/>
+        <div class="search-item">
+            <input type="text" autocomplete="disabled"
+                   class="form-control search-input"
+                   :placeholder="$mq === 'sm'?promptMobile:prompt"
+                   @focus="onFocused"
+                   @blur="onBlurred"
+                   v-model="text"
+                   @input="onInput"/>
+
+            <div class="dropdown-list" :class="{hidden: !focused && !searchProgress}">
+                <ul v-if="searchResults.length > 0" class="list-Sdown">
+                    <li v-for="(place, index) of searchResults"
+                        @click="choose(index)"
+                        :class="place.type">
+                        <div class="dropdown-icon">
+                            <i class="fa fa-plane"></i>
+                        </div>
+                        <div v-text="formatPlace(place)"/>
+                    </li>
+                </ul>
+                <p v-else-if="!requestProgress">Start typing city name...</p>
+                <p v-else-if="requestProgress">Loading...</p>
+            </div>
+        </div>
+    </div>
+</script>
