@@ -71,7 +71,7 @@ export const store = new Vuex.Store({
       state.form.airlines[index].checked = !state.form.airlines[index].checked;
     },
     setDestinationType(state, value) {
-      state.form.destinationType = value;
+      state.form.destinationTypeId = value;
     },
     increaseLimit(state, by) {
       state.form.limit += by;

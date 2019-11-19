@@ -8,5 +8,9 @@ export const DashboardHeader = Vue.component('dashboard-header', {
         ...Vuex.mapGetters(['toggleSidebar']),
     },
     methods: {
+        doSearch() {
+            this.search();
+            this.$router.push({'name': 'results'})
+        }
     }
 });
