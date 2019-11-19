@@ -96,7 +96,7 @@ export const Wizard = Vue.component("wizard", {
                 .then(response => response.json())
                 .then(data => {
                   this.$store.commit("updateUser", data);
-                  this.$router.push({ path: "/" });
+                  this.$router.push({ name: "account" });
                 });
             } else {
               window.alert(JSON.stringify(data));
