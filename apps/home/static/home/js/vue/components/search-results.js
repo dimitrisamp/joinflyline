@@ -15,6 +15,12 @@ Vue.component("search-results", {
   },
   delimiters: ["{(", ")}"],
   computed: {
-    ...Vuex.mapState(["quickFiltersData", "searchResults", "form", "user", "searchProgress"])
+    ...Vuex.mapState([
+      "quickFiltersData",
+      "searchResults",
+      "form",
+      "user",
+      "searchProgress"
+    ])
   }
 });
