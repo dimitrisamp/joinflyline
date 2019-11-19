@@ -55,5 +55,14 @@ export const SearchForm = {
     isMobile() {
       return this.$mq === "sm";
     },
+    airlineNames() {
+      const airlines = this.form.airlines.map(o=>o.name);
+      const others = airlines.length - 3;
+      const airlinesText = airlines.slice(0, 3).join(', ');
+      if (others > 0) {
+        return `${airlinesText} and ${others} more`;
+      }
+      return airlinesText;
+    }
   }
 };
