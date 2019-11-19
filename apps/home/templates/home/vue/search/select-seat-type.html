@@ -1,14 +1,12 @@
 <script type="text/x-template" id="vue-select-seat-type-template">
-    <div class="col-md-4 col-12 s-result-dropdown s-result-dropdown_seat-type">
-        <p @click="open" class="btn btn-info" v-text="text" />
+    <div class="s-result-dropdown">
+        <span @click="open" v-text="text" />
         <div class="search-f-dropdown"
              v-if="selectProgress"
              v-click-outside="close">
             <ul class="s-dropdown-list">
                 <li v-for="(name, type) in seatTypes"
-                    @click="select(type)">
-                    <p v-text="name" />
-                </li>
+                    @click="select(type)" v-text="name" />
             </ul>
         </div>
     </div>

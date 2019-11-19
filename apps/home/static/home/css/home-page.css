@@ -984,21 +984,7 @@ header.sticky{
 .s-result-dropdown{
     margin-bottom: 0px;
 }
-.s-result-dropdown .btn {
-    text-align: center;
-    border: 2px solid #ececec;
-    font-weight: bold;
-    font-family: Dona-Bold;
-    background: transparent;
-    color: #000000;
-    padding: 9px 5px;
-    font-size: 13px;
-    border-radius: 0px;
-    margin-bottom: 0px;
-    width: 100%;
-    overflow: hidden;
-    color: #7d7d7d;
-}
+
 /*.s-result-dropdown_destination-type .btn {
     min-width: 132px;
 }
@@ -1096,7 +1082,7 @@ header.sticky{
 }
 .search-f-dropdown .s-dropdown-list li{
     border-bottom: 1px solid #ccc;
-    padding: 7px 0;
+    padding: 0.5rem 1rem;
     font-family: Dona-Bold;
 }
 .search-f-dropdown .s-dropdown-list li:hover{

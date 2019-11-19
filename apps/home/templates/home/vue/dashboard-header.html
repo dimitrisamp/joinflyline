@@ -1,10 +1,12 @@
 <script type="text/x-template" id="vue-dashboard-header-template">
     <header class="main-header">
         <div class="main-header__top">
-            <select-destination :value="form.destinationTypeId"
-                                @select="setDestinationType"/>
-            <select-passenger-count/>
-            <select-seat-type :value="form.seatType" @select="setSeatType"/>
+            <div class="row">
+                <select-destination :value="form.destinationTypeId"
+                                    @select="setDestinationType"/>
+                <select-passenger-count/>
+                <select-seat-type :value="form.seatType" @select="setSeatType"/>
+            </div>
         </div>
         <div class="main-header__bottom">
             <form action="">

@@ -1,13 +1,12 @@
 <script type="text/x-template" id="vue-select-destination-template">
-    <div class="col-md-4 col-12 s-result-dropdown s-result-dropdown_destination-type">
-        <p class="btn btn-info" @click="open" v-text="text"/>
+    <div class="s-result-dropdown">
+        <span @click="open" v-text="text"/>
         <div class="search-f-dropdown"
              v-if="selectProgress"
              v-click-outside="close">
             <ul class="s-dropdown-list">
                 <li v-for="(dtype, dtypeId) in destinationTypes"
-                    @click="select(dtypeId)">
-                    <p>[[ dtype ]]</p></li>
+                    @click="select(dtypeId)" v-text="dtype" />
             </ul>
         </div>
     </div>

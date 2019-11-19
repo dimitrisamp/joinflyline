@@ -1,17 +1,26 @@
 {% load static %}
 <div id="dealform" class="h-dealform horizontal-form">
     <div class="row">
-        <select-destination :value="form.destinationTypeId" @select="setDestinationType" />
-        <select-passenger-count />
-        <select-seat-type :value="form.seatType" @select="setSeatType"/>
+        <div class="col-md-2 col-12">
+            <select-destination :value="form.destinationTypeId"
+                                @select="setDestinationType"/>
+        </div>
+        <div class="col-md-2 col-12">
+            <select-passenger-count/>
+        </div>
+        <div class="col-md-2 col-12">
+            <select-seat-type :value="form.seatType" @select="setSeatType"/>
+        </div>
     </div>
     <div class="row">
         <!-- TODO: insert controls -->
         <div class="input-group input-group-sm search-dropdown col-md-3 col-12">
-            <location-input :prompt="'Departure City'" :promptMobile="'From Where?'" @place-selected="updatePlaceFrom"/>
+            <location-input :prompt="'Departure City'" :promptMobile="'From Where?'"
+                            @place-selected="updatePlaceFrom"/>
         </div>
         <div class="input-group input-group-sm search-dropdown col-md-3 col-12">
-            <location-input :prompt="'Arrival City'" :promptMobile="'To Where?'" @place-selected="updatePlaceTo"/>
+            <location-input :prompt="'Arrival City'" :promptMobile="'To Where?'"
+                            @place-selected="updatePlaceTo"/>
         </div>
 
 
@@ -25,7 +34,8 @@
             </div>
         </div>
 
-        <div v-if="form.destinationTypeId === 'round'" class="input-group input-group-sm search-dropdown home-date-field-ret col-md-2 col-12">
+        <div v-if="form.destinationTypeId === 'round'"
+             class="input-group input-group-sm search-dropdown home-date-field-ret col-md-2 col-12">
             <div class="dat-blue-border ret-date">
                 <span class="input-group-text search-form-input">Ret</span>
                 <input type="text" id="return_date"
