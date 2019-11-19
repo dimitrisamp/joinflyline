@@ -7,14 +7,11 @@ export const FilterForm = {
   },
   methods: {
     ...Vuex.mapMutations([
-      "clearFilters",
       "setMaxStops",
       "setPriceRange",
       "toggleAirline",
     ]),
-    runSearch() {
-      this.$emit('search');
-    },
+    ...Vuex.mapActions(['search', 'clearFiltersAndUpdate'])
   },
   computed: {
     ...Vuex.mapState(['form']),

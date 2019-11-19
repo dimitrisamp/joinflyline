@@ -16,7 +16,6 @@ export const SearchForm = {
   data() {
     return {
       backToForm: false,
-      searchProgress: false,
       passengerSelectProgress: false,
       seatTypeSelectProgress: false,
       destinationTypeSelectProgress: false,
@@ -63,94 +62,8 @@ export const SearchForm = {
       this.setDestinationType(dtypeId);
       this.closeDestinationType();
     },
-    loadMore() {
-      this.increaseLimit(10);
-      this.search();
-    },
-    sortResultsBy(sort) {
-      this.setSort(sort);
-      this.search();
-    },
-    getSearchURL() {
-      let formData = new FormData();
-      formData.append("fly_from", placeToRequestValue(this.form.placeFrom));
-      formData.append("fly_to", placeToRequestValue(this.form.placeTo));
-      const dateFrom = this.form.departure_date_data.format("DD/MM/YYYY");
-      formData.append("date_from", dateFrom);
-      formData.append("date_to", dateFrom);
-      formData.append("type", this.form.destinationTypeId);
-      if (this.form.destinationTypeId === "round") {
-        const dateTo = this.form.return_date_data.format("DD/MM/YYYY");
-        formData.append("return_from", dateTo);
-        formData.append("return_to", dateTo);
-      }
-      formData.append("adults", this.form.valAdults);
-      formData.append("infants", this.form.valInfants);
-      formData.append("children", this.form.valChildren);
-      formData.append("selected_cabins", this.form.seatType);
-      if (this.form.priceRange !== [0, 3000]) {
-        const [price_from, price_to] = this.form.priceRange;
-        formData.append("price_from", price_from);
-        formData.append("price_to", price_to);
-      }
-      const selectedAirlines = this.form.airlines.filter(a => a.checked);
-      if (selectedAirlines) {
-        formData.append(
-          "select_airlines",
-          selectedAirlines.map(a => a.code).join(",")
-        );
-      }
-      if (this.form.maxStops !== null) {
-        formData.append("max_stopovers", this.form.maxStops);
-      }
-      if (this.form.sort !== null) {
-        formData.append("sort", this.form.sort);
-      }
-      formData.append("limit", this.form.limit);
-      formData.append("curr", "USD");
-      let url = new URL(
-        "https://kiwicom-prod.apigee.net/v2/search",
-        window.location
-      );
-      url.search = new URLSearchParams(formData);
-      return url;
-    },
     switchToForm() {
       this.backToForm = true;
-    },
-    displaySearchResults(data) {
-      if (this.searchResults.length === 0) {
-        this.form.airlines = data.airlines.map(a => ({
-          code: a,
-          name: airlineCodes[a] || a,
-          checked: false
-        }));
-      }
-      this.setSearchResults(data.data.data);
-    },
-    search() {
-      this.searchProgress = true;
-      fetch(this.getSearchURL(), {
-        headers: { apikey: "xklKtpJ5fxZnk4rsDepqOzLUaYYAO9dI" }
-      })
-        .then(response => response.json())
-        .then(data => {
-          let parent = { ...data };
-          delete parent.data;
-          data.data = data.data.map(processFlight);
-          data.data = data.data.map(o => {
-            o.parent = parent;
-            return o;
-          });
-          const airlines = getAirlines(data.data);
-          this.setQuickFiltersData(getQuickLinksData(data.data));
-          this.displaySearchResults({ data, airlines });
-          this.backToForm = false;
-          this.$emit("search-complete");
-        })
-        .finally(() => {
-          this.searchProgress = false;
-        });
     },
     increment(index) {
       this.updatePassengers({index, by: 1});
@@ -169,6 +82,7 @@ export const SearchForm = {
         }
       });
     },
+    ...Vuex.mapActions(['search']),
     ...Vuex.mapMutations([
       "updatePlaceFrom",
       "updatePlaceTo",
@@ -190,6 +104,7 @@ export const SearchForm = {
       user: "user",
       searchResults: "searchResults",
       form: "form",
+      searchProgress: "searchProgress",
     }),
     passengersText() {
       return `${this.passengers} Passenger${this.passengers>1?'s':''}`;

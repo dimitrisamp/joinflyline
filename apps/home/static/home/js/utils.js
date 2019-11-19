@@ -233,3 +233,49 @@ export function getQuickLinksData(flights) {
     date: data.reduce((prev, curr) => (prev.date < curr.date ? prev : curr))
   };
 }
+
+export function getSearchURL(form) {
+  let formData = new FormData();
+  formData.append("fly_from", placeToRequestValue(form.placeFrom));
+  formData.append("fly_to", placeToRequestValue(form.placeTo));
+  const dateFrom = form.departure_date_data.format("DD/MM/YYYY");
+  formData.append("date_from", dateFrom);
+  formData.append("date_to", dateFrom);
+  formData.append("type", form.destinationTypeId);
+  if (form.destinationTypeId === "round") {
+    const dateTo = form.return_date_data.format("DD/MM/YYYY");
+    formData.append("return_from", dateTo);
+    formData.append("return_to", dateTo);
+  }
+  formData.append("adults", form.valAdults);
+  formData.append("infants", form.valInfants);
+  formData.append("children", form.valChildren);
+  formData.append("selected_cabins", form.seatType);
+  if (form.priceRange !== [0, 3000]) {
+    const [price_from, price_to] = form.priceRange;
+    formData.append("price_from", price_from);
+    formData.append("price_to", price_to);
+  }
+  const selectedAirlines = form.airlines.filter(a => a.checked);
+  if (selectedAirlines) {
+    formData.append(
+      "select_airlines",
+      selectedAirlines.map(a => a.code).join(",")
+    );
+  }
+  if (form.maxStops !== null) {
+    formData.append("max_stopovers", form.maxStops);
+  }
+  if (form.sort !== null) {
+    formData.append("sort", form.sort);
+  }
+  formData.append("limit", form.limit);
+  formData.append("curr", "USD");
+  let url = new URL(
+    "https://kiwicom-prod.apigee.net/v2/search",
+    window.location
+  );
+  url.search = new URLSearchParams(formData);
+  return url;
+}
+

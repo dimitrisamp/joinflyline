@@ -8,10 +8,7 @@ export const Home = {
   mixins: [SearchForm, FilterForm],
   delimiters: ["{(", ")}"],
   watch: {
-    searchResults: function (val, oldVal) {
-      this.setDatePick();
-    },
-    $mq(val, oldVal) {
+     $mq(val, oldVal) {
       if (val === oldVal) return;
       this.$nextTick(() => {
         if (val === "sm") {
