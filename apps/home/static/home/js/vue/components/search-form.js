@@ -5,7 +5,9 @@ import {
   placeToRequestValue,
   getAirlines,
   processFlight,
-  getQuickLinksData
+  getQuickLinksData,
+  destinationTypes,
+  maxStopsFilterOptions,
 } from "../../utils.js";
 import { airlineCodes } from "../../airlineCodes.js";
 
@@ -13,63 +15,20 @@ export const SearchForm = {
   delimiters: ["{(", ")}"],
   data() {
     return {
+      backToForm: false,
       searchProgress: false,
-      noOfPassengers: "Passengers",
-      valPassengers: 1,
-      seatTypeName: "Economy",
-      destinationTypes: { round: "Round-trip", oneway: "One-way" },
-      destinationTypeSelectProgress: false,
       passengerSelectProgress: false,
       seatTypeSelectProgress: false,
-      maxStopsSelectProgress: false,
-      backToForm: false,
+      destinationTypeSelectProgress: false,
+      destinationTypes,
+      maxStopsFilterOptions,
       seatTypes,
-      maxStopsFilterOptions: {
-        0: "No Stops",
-        1: "One Stop",
-        2: "Two Stops"
-      },
-      airlinesSelectProgress: false,
-      priceSelectProgress: false,
       fullPageApplied: false
     };
   },
-  directives: {
-    ClickOutside
-  },
-  components: {
-    VueSlider: window["vue-slider-component"]
-  },
+
   methods: {
     airlineIcon,
-    openPriceSelect() {
-      setTimeout(() => {
-        this.priceSelectProgress = true;
-      }, 150);
-    },
-    closePriceSelect() {
-      this.priceSelectProgress = false;
-    },
-    openAirlinesSelect() {
-      setTimeout(() => {
-        this.airlinesSelectProgress = true;
-      }, 150);
-    },
-    closeAirlinesSelect() {
-      this.airlinesSelectProgress = false;
-    },
-    closeMaxStopsSelect() {
-      this.maxStopsSelectProgress = false;
-    },
-    openMaxStopsSelect() {
-      setTimeout(() => {
-        this.maxStopsSelectProgress = true;
-      }, 150);
-    },
-    selectMaxStops(maxStops) {
-      this.setMaxStops(maxStops);
-      this.closeMaxStopsSelect();
-    },
     openSeatTypeSelect() {
       setTimeout(() => {
         this.seatTypeSelectProgress = true;
@@ -114,29 +73,6 @@ export const SearchForm = {
     },
     getSearchURL() {
       let formData = new FormData();
-
-      if (document.getElementById("stopover") != null) {
-        let stopSelected = document.getElementById("stopover").value;
-        let chars = stopSelected.split(",");
-
-        let stopOverTo;
-        let stopOverFrom;
-
-        if (chars[0].length === 1) {
-          stopOverFrom = "0" + chars[0];
-        } else {
-          stopOverFrom = chars[0];
-        }
-
-        if (chars[1].length === 1) {
-          stopOverTo = "0" + chars[1];
-        } else {
-          stopOverTo = chars[1];
-        }
-
-        this.setStopOverValue(stopOverTo, stopOverFrom);
-      }
-
       formData.append("fly_from", placeToRequestValue(this.form.placeFrom));
       formData.append("fly_to", placeToRequestValue(this.form.placeTo));
       const dateFrom = this.form.departure_date_data.format("DD/MM/YYYY");
@@ -236,13 +172,10 @@ export const SearchForm = {
     ...Vuex.mapMutations([
       "updatePlaceFrom",
       "updatePlaceTo",
-      "clearFilters",
-      "setMaxStops",
       "setSeatType",
       "setDestinationType",
       "increaseLimit",
       "setSort",
-      "setStopOverValue",
       "setSearchResults",
       "setDates",
       "updatePassengers",
@@ -292,10 +225,6 @@ export const SearchForm = {
         .filter(a => a.checked)
         .map(a => a.name)
         .join(", ");
-    },
-    priceText() {
-      const [a, b] = this.form.priceRange;
-      return `$${a}-$${b}`;
     },
     passengers() {
       return this.form.valAdults + this.form.valChildren + this.form.valInfants;

@@ -1,9 +1,11 @@
 import {SearchForm} from "./search-form.js";
+import {FilterForm} from "./filter-form.js";
 
 
 export const Home = {
   template: "#vue-home-template",
-  extends: SearchForm,
+  name: "search-form",
+  mixins: [SearchForm, FilterForm],
   delimiters: ["{(", ")}"],
   watch: {
     searchResults: function (val, oldVal) {

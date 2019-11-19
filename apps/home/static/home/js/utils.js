@@ -7,6 +7,12 @@ export const seatTypes = {
   F: "First Class"
 };
 
+export const maxStopsFilterOptions = {
+  0: "No Stops",
+  1: "One Stop",
+  2: "Two Stops"
+};
+
 export const destinationTypes = {
   round: "Round Trip",
   oneway: "Oneway"

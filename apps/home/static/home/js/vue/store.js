@@ -55,6 +55,12 @@ export const store = new Vuex.Store({
     setSeatType(state, value) {
       state.form.seatType = value;
     },
+    setPriceRange(state, value) {
+      state.form.priceRange = value;
+    },
+    toggleAirline(state, index) {
+      state.form.airlines[index].checked = !state.form.airlines[index].checked;
+    },
     setDestinationType(state, value) {
       state.form.destinationType = value;
     },
@@ -63,10 +69,6 @@ export const store = new Vuex.Store({
     },
     setSort(state, value) {
       state.form.sort = value;
-    },
-    setStopOverValue(state, stopOverTo, stopOverFrom) {
-      state.form.stopOverFrom = stopOverFrom + ":" + "00";
-      state.form.stopOverTo = stopOverTo + ":" + "00";
     },
     setDates(state, payload) {
       const {start, end} = payload;
