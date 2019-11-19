@@ -72,8 +72,9 @@
 
 
   .spacer {
-    height: calc(1.5em + 0.75rem + 2px);
+    min-height: calc(1.5em + 0.75rem + 2px);
     width: 100%;
+    display: block;
   }
 }
 
