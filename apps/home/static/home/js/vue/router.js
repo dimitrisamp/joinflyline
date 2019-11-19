@@ -12,6 +12,7 @@ import {ResultComponent} from "./components/result-component.js";
 const routes = [
   {
     path: '/',
+    name: 'index',
     component: Home
   },
   {

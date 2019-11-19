@@ -1,6 +1,5 @@
 {% load static %}
 {{ django_user | json_script:"django_user" }}
-{{ get_static_prefix | json_script:"static-url" }}
 <script type="text/javascript">
     window.staticUrlValue = '{% static "/" %}';
 </script>
@@ -8,5 +7,4 @@
     window.csrfmiddlewaretoken = '{{ csrf_token }}';
     window.getStartedUrl = '{% url "wizard" %}';
 </script>
-<script type="application/json" src="{% static "home/js/airlineCodes.js" %}"
-        id="airline-codes"></script>
+<script type="application/json" src="{% static "home/js/airlineCodes.js" %}" id="airline-codes"></script>

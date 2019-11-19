@@ -115,7 +115,13 @@ export const Wizard = Vue.component("wizard", {
       );
     },
     isStep2Complete() {
-      return this.form.first_name !== "" && this.form.last_name !== "" && this.form.card_number !== "" && this.form.expiry !== "" && this.form.cvc !== "";
+      return (
+        this.form.first_name !== "" &&
+        this.form.last_name !== "" &&
+        this.form.card_number !== "" &&
+        this.form.expiry !== "" &&
+        this.form.cvc !== ""
+      );
     }
   }
 });

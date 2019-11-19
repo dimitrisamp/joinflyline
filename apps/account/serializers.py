@@ -1,7 +1,7 @@
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
 from . import models
-
+from ..subscriptions.serializers import Subscription
 
 UserModel = get_user_model()
 
@@ -49,7 +49,7 @@ class FrequentFlyer(serializers.ModelSerializer):
 class User(serializers.ModelSerializer):
     profile = Profile()
     account = Account()
-    frequentflyer = FrequentFlyer()
+    subscriptions = Subscription()
 
     class Meta:
         model = UserModel
@@ -64,5 +64,5 @@ class User(serializers.ModelSerializer):
             "date_joined",
             "profile",
             "account",
-            "frequentflyer"
+            "subscriptions",
         ]
