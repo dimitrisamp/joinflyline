@@ -10,7 +10,7 @@
            v-if="selectProgress"
            v-click-outside="close">
           <ul class="s-dropdown-list">
-              <li v-for="(value, maxStops) in data"
+              <li v-for="(value, maxStops) in maxStopsFilterOptions"
                   @click="select(maxStops)"><a>[[ value ]]</a></li>
           </ul>
       </div>

@@ -5,17 +5,16 @@ export const AirlineFilter = Vue.component("airline-filter", {
   extends: PopupSelect,
   template: "#vue-airline-filter-template",
   props: ['data'],
-  data() {
-    return {
-      text: "",
-    }
-  },
   methods: {
     airlineIcon,
     select(value) {
-      this.$emit('select', value)
+      this.$emit('select', value);
     }
-
+  },
+  computed: {
+    text() {
+      return this.data.filter(a=>a.checked).map(a=>a.name).join(', ');
+    }
   },
   delimiters: ["[[", "]]"]
 });

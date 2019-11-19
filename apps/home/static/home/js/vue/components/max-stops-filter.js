@@ -3,17 +3,21 @@ import { maxStopsFilterOptions } from "../../utils.js";
 
 export const MaxStopsFilter = Vue.component("max-stops-filter", {
   extends: PopupSelect,
+  props: ['data'],
   data() {
     return {
-      text: "",
-      data: maxStopsFilterOptions
+      maxStopsFilterOptions
     };
   },
   methods: {
     select(data) {
-      this.text = this.data[data];
       this.$emit('select', data);
       this.close();
+    }
+  },
+  computed: {
+    text() {
+      return this.maxStopsFilterOptions[this.data];
     }
   },
   template: "#vue-max-stops-filter-template",

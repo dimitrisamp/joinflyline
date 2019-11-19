@@ -125,7 +125,7 @@
             </div>
             <div class="filter-devider"></div>
             <airline-filter :data="form.airlines" @select="toggleAirline" />
-            <max-stops-filter @select="setMaxStops" />
+            <max-stops-filter :data="form.maxStops" @select="setMaxStops" />
             <price-filter :data="form.priceRange" @select="setPriceRange" />
         </div>
 

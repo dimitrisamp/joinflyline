@@ -12,6 +12,9 @@ export const FilterForm = {
       "setPriceRange",
       "toggleAirline",
     ]),
+    runSearch() {
+      this.$emit('search');
+    },
   },
   computed: {
     ...Vuex.mapState(['form']),
