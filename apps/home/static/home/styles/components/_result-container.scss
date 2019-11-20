@@ -1,6 +1,17 @@
 .result__container {
   .result__filters {
     .tile__body {
+      .airline-f-dropdown {
+        left: 0;
+        width: 100%;
+        right: auto;
+      }
+      .search-f-dropdown {
+        width: 100%;
+        &.price-dropdown {
+          margin: 0.75rem 0;
+        }
+      }
       .input-group-text {
         border: none;
         padding: 0;
@@ -10,6 +21,7 @@
       }
       input {
         border: 2px solid #ececec;
+        padding-left: 1rem;
       }
     }
   }
