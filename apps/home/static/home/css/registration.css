@@ -92,21 +92,27 @@ body{
 	font-size: 11px;
 }
 .formBg .form-group input{
-    padding: 20px 15px;
+    padding: 24px 15px;
     font-family: dona-bold;
     border-color: #ccc;
     border-radius: 0;
-    border: 2px solid #00aeef;
+    border: 2px solid #e6e6e6d1;
+    font-size: 0.875rem;
+    transition: border-color .2s ease-in-out;
+    text-align: center;
+}
+.formBg .form-group input:focus {
+    border-color: #00AEEF;
+    box-shadow: none;
 }
 .formBg .form-group input::placeholder{
     font-weight: bold;
     color: #8d8d8d;
-    font-size: 12px;
 }
 .formBg .submit-btn{
     background: #00b7ff;
     width: 100%;
-    color: #eaeaea;
+    color: #fff;
     padding: 0px 0;
     border-color: #00b7ff;
     border-radius: 0;
@@ -116,6 +122,9 @@ body{
     letter-spacing: 1px;
     margin-top: 10px;
     margin-bottom: 20px;
+}
+.formBg .submit-btn:focus {
+    box-shadow: none;
 }
 .already-txt{
     text-align: center;
@@ -227,7 +236,7 @@ body{
     padding-bottom: 0px;
 }
 section.step-2 {
-    margin: 50px 0px;
+    padding: 0 0 50px 0;
 }
 .back-to-home a {
     text-decoration: none;
