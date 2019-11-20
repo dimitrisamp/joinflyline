@@ -9,15 +9,15 @@ Vue.component('dashboard-header', DashboardHeader);
 const app = new Vue({
   router,
   store,
-  watch: {
-    user(val, oldValue) {
-      if (val.anonymous) {
-        this.$router.push({'name': 'index'}, ()=>{});
-      } else {
-        this.$router.push({'name': 'overview'});
-      }
-    },
-  },
+  // watch: {
+  //   user(val, oldValue) {
+  //     if (val.anonymous) {
+  //       this.$router.push({'name': 'index'}, ()=>{});
+  //     } else {
+  //       this.$router.push({'name': 'overview'});
+  //     }
+  //   },
+  // },
   created() {
     this.$store.dispatch('initialize');
   },
