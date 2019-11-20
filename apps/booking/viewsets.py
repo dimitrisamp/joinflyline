@@ -12,6 +12,8 @@ class FlightViewSet(RetrieveModelMixin, GenericViewSet):
 
 
 class BookingViewSet(ReadOnlyModelViewSet):
-    queryset = booking_models.BookingContact.objects.all()
     serializer_class = Booking
     filterset_class = BookingFilter
+
+    def get_queryset(self):
+        return booking_models.BookingContact.objects.filter(user=self.request.user)

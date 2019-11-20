@@ -48,7 +48,7 @@ from django.conf import settings
 
 router = routers.DefaultRouter()
 router.register(r'users', UserViewSet)
-router.register(r'bookings', BookingViewSet)
+router.register(r'bookings', BookingViewSet, basename='bookings')
 router.register(r'flight', FlightViewSet)
 
 
