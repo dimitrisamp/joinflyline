@@ -1,36 +1,35 @@
 {% load static %}
 <script type="text/x-template" id="vue-subscription-plans-template">
-<div class="section fp-auto-height-responsive fp-section" id="section5-Bg">
-  <div class="section5-Bg">
-    <div class="text-center section5-content">
-      <h3>Your Easiest Travel Decision</h3>
-      <p style="margin-top: 16px;">
-        Tap into More Savings, More Benefits, and More <br />
-        Travel with a FlyLine membership
-      </p>
-    </div>
-
-    <div v-if= "$mq !== 'sm'" class="container">
-      <div class="text-center pricing-tabs">
-        <!-- Nav tabs -->
-        <ul class="nav nav-tabs" role="tablist">
-          <li class="nav-item">
-            <a class="nav-link active" data-toggle="tab" href="#basicplan"
-              >FlyLine Basic</a
-            >
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#proplan"
-              >FlyLine Pro</a
-            >
-          </li>
-        </ul>
+  <div class="section fp-auto-height-responsive fp-section" id="section5-Bg">
+    <div class="section5-Bg">
+      <div class="text-center section5-content">
+        <h3>Your Easiest Travel Decision</h3>
+        <p style="margin-top: 16px;">
+          Tap into More Savings, More Benefits, and More <br />
+          Travel with a FlyLine membership
+        </p>
       </div>
-      <!-- Tab panes -->
-      <div class="tab-content">
-        <div id="basicplan" class="container tab-pane active">
-          <div class="row justify-content-center pricing-section-home">
-            <div class="col-md-4 col-12 spacing-price">
+
+      <div v-if= "$mq !== 'sm'" class="container">
+        <div class="text-center pricing-tabs">
+          <!-- Nav tabs -->
+          <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" data-toggle="tab" href="#basicplan"
+                >FlyLine Basic</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="tab" href="#proplan"
+                >FlyLine Pro</a
+              >
+            </li>
+          </ul>
+        </div>
+        <!-- Tab panes -->
+        <div class="tab-content">
+          <div id="basicplan" class="container tab-pane active">
+            <div class="d-flex justify-content-center pricing-section-home">
               <div class="h-planbox text-center pricing-border">
                 <strong>Basic</strong>
                 <h3 class="h-planbox__header">$39.99/<span>yr</span></h3>
@@ -47,9 +46,7 @@
                 </ul>
                 <router-link :to="{name: 'get-started', params: {plan: 'basic'}}" class="btn btn-default">Get Started</router-link>
               </div>
-            </div>
-            <!-- col 4 -->
-            <div class="col-md-4 col-12 spacing-price">
+
               <div class="h-planbox text-center">
                 <strong>Basic Plus</strong>
                 <h3 class="h-planbox__header">$69.99/<span>yr</span></h3>
@@ -73,13 +70,10 @@
                 <router-link :to="{name: 'get-started', params: {plan: 'basic-plus'}}" class="btn btn-default">Get Started</router-link>
               </div>
             </div>
-            <!-- col 4 -->
           </div>
-        </div>
-        <!-- plane 1 -->
-        <div id="proplan" class="container tab-pane fade">
-          <div class="row justify-content-center pricing-section-home">
-            <div class="col-md-4 col-12 spacing-price">
+          <!-- plane 1 -->
+          <div id="proplan" class="container tab-pane fade">
+            <div class="d-flex justify-content-center pricing-section-home">
               <div class="h-planbox text-center pricing-border">
                 <strong>Pro</strong>
                 <h3 class="h-planbox__header">$139.99/<span>yr</span></h3>
@@ -98,9 +92,7 @@
                 </ul>
                 <router-link :to="{name: 'get-started', params: {plan: 'pro'}}" class="btn btn-default">Get Started</router-link>
               </div>
-            </div>
-            <!-- col 4 -->
-            <div class="col-md-4 col-12 spacing-price">
+
               <div class="h-planbox text-center">
                 <strong>Pro Plus</strong>
                 <h3 class="h-planbox__header">$199.99/<span>yr</span></h3>
@@ -125,135 +117,133 @@
                 <router-link :to="{name: 'get-started', params: {plan: 'pro-plus'}}" class="btn btn-default">Get Started</router-link>
               </div>
             </div>
-            <!-- col 4 -->
           </div>
+          <!-- plane 2 -->
         </div>
-        <!-- plane 2 -->
+        <!-- tab content -->
       </div>
-      <!-- tab content -->
-    </div>
 
-    <!-- Mobile View Price Plan -->
-    <div class="mobile-pricing-plan" v-if="$mq === 'sm'">
-      <div class="text-center pricing-tabs">
-        <!-- Nav tabs -->
-        <ul class="nav nav-tabs" role="tablist">
-          <li class="nav-item">
-            <a class="nav-link active" data-toggle="tab" href="#basicplan-mobie"
-              >Basic</a
-            >
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#proplan-mobie">Pro</a>
-          </li>
-        </ul>
-      </div>
-      <!-- Tab panes -->
-      <div class="tab-content">
-        <div id="basicplan-mobie" class="tab-pane active">
-          <div class="pricing-section-home">
-            <div class="spacing-price">
-              <div class="h-planbox text-center pricing-border">
-                <strong>Basic</strong>
-                <h3 class="h-planbox__header">$39.99/<span>yr</span></h3>
-                <ul class="plan-list" style="margin-bottom: 30px;">
-                  <li>
-                    - Flights Search & Booking
-                  </li>
-                  <li>
-                    - Auto Check-in
-                  </li>
-                  <li>
-                    - Max of 6 bookings
-                  </li>
-                </ul>
-                <router-link :to="{name: 'get-started', params: {plan: 'basic'}}" class="btn btn-default">Get Started</router-link>
-              </div>
-            </div>
-            <!-- col 4 -->
-            <div class="spacing-price">
-              <div class="h-planbox text-center">
-                <strong>Basic Plus</strong>
-                <h3 class="h-planbox__header">$69.99/<span>yr</span></h3>
-                <ul class="plan-list" style="margin-bottom: 30px;">
-                  <li>
-                    - Flights Search & Booking
-                  </li>
-                  <li>
-                    - Auto Check-in
-                  </li>
-                  <li>
-                    - Deal Alerts
-                  </li>
-                  <li>
-                    - Companion Account
-                  </li>
-                  <li>
-                    - Max of 12 Bookings
-                  </li>
-                </ul>
-                <router-link :to="{name: 'get-started', params: {plan: 'basic-plus'}}" class="btn btn-default">Get Started</router-link>
-              </div>
-            </div>
-            <!-- col 4 -->
-          </div>
+      <!-- Mobile View Price Plan -->
+      <div class="mobile-pricing-plan" v-if="$mq === 'sm'">
+        <div class="text-center pricing-tabs">
+          <!-- Nav tabs -->
+          <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" data-toggle="tab" href="#basicplan-mobie"
+                >Basic</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="tab" href="#proplan-mobie">Pro</a>
+            </li>
+          </ul>
         </div>
-        <!-- plane 1 -->
-        <div id="proplan-mobie" class="tab-pane fade">
-          <div class="pricing-section-home">
-            <div class="spacing-price">
-              <div class="h-planbox text-center pricing-border">
-                <strong>Pro</strong>
-                <h3 class="h-planbox__header">$139.99/<span>yr</span></h3>
-                <ul class="plan-list" style="margin-bottom: 30px;">
-                  <li>
-                    - Flights Search & Booking
-                  </li>
-                  <li>
-                    - Auto Check-in
-                  </li>
-                  <li>
-                    - Deal Alerts
-                  </li>
-                  <li>- Two Companion Accounts</li>
-                  <li>- Unlimited Bookings</li>
-                </ul>
-                <router-link :to="{name: 'get-started', params: {plan: 'pro'}}" class="btn btn-default">Get Started</router-link>
+        <!-- Tab panes -->
+        <div class="tab-content">
+          <div id="basicplan-mobie" class="tab-pane active">
+            <div class="pricing-section-home">
+              <div class="spacing-price">
+                <div class="h-planbox text-center pricing-border">
+                  <strong>Basic</strong>
+                  <h3 class="h-planbox__header">$39.99/<span>yr</span></h3>
+                  <ul class="plan-list" style="margin-bottom: 30px;">
+                    <li>
+                      - Flights Search & Booking
+                    </li>
+                    <li>
+                      - Auto Check-in
+                    </li>
+                    <li>
+                      - Max of 6 bookings
+                    </li>
+                  </ul>
+                  <router-link :to="{name: 'get-started', params: {plan: 'basic'}}" class="btn btn-default">Get Started</router-link>
+                </div>
               </div>
-            </div>
-            <!-- col 4 -->
-            <div class="spacing-price">
-              <div class="h-planbox text-center">
-                <strong>Pro Plus</strong>
-                <h3 class="h-planbox__header">$199.99/<span>yr</span></h3>
-                <ul class="plan-list" style="margin-bottom: 30px;">
-                  <li>
-                    - Flights Search & Booking
-                  </li>
-                  <li>
-                    - Auto Check-in
-                  </li>
-                  <li>
-                    - Deal Alerts
-                  </li>
-                  <li>
-                    - Cash Back Booking
-                  </li>
-                  <li>
-                    - Three Companion Accounts
-                  </li>
-                  <li>- Unlimited Bookings</li>
-                </ul>
-                <router-link :to="{name: 'get-started', params: {plan: 'pro-plus'}}" class="btn btn-default">Get Started</router-link>
+              <!-- col 4 -->
+              <div class="spacing-price">
+                <div class="h-planbox text-center">
+                  <strong>Basic Plus</strong>
+                  <h3 class="h-planbox__header">$69.99/<span>yr</span></h3>
+                  <ul class="plan-list" style="margin-bottom: 30px;">
+                    <li>
+                      - Flights Search & Booking
+                    </li>
+                    <li>
+                      - Auto Check-in
+                    </li>
+                    <li>
+                      - Deal Alerts
+                    </li>
+                    <li>
+                      - Companion Account
+                    </li>
+                    <li>
+                      - Max of 12 Bookings
+                    </li>
+                  </ul>
+                  <router-link :to="{name: 'get-started', params: {plan: 'basic-plus'}}" class="btn btn-default">Get Started</router-link>
+                </div>
               </div>
+              <!-- col 4 -->
             </div>
-            <!-- col 4 -->
           </div>
+          <!-- plane 1 -->
+          <div id="proplan-mobie" class="tab-pane fade">
+            <div class="pricing-section-home">
+              <div class="spacing-price">
+                <div class="h-planbox text-center pricing-border">
+                  <strong>Pro</strong>
+                  <h3 class="h-planbox__header">$139.99/<span>yr</span></h3>
+                  <ul class="plan-list" style="margin-bottom: 30px;">
+                    <li>
+                      - Flights Search & Booking
+                    </li>
+                    <li>
+                      - Auto Check-in
+                    </li>
+                    <li>
+                      - Deal Alerts
+                    </li>
+                    <li>- Two Companion Accounts</li>
+                    <li>- Unlimited Bookings</li>
+                  </ul>
+                  <router-link :to="{name: 'get-started', params: {plan: 'pro'}}" class="btn btn-default">Get Started</router-link>
+                </div>
+              </div>
+              <!-- col 4 -->
+              <div class="spacing-price">
+                <div class="h-planbox text-center">
+                  <strong>Pro Plus</strong>
+                  <h3 class="h-planbox__header">$199.99/<span>yr</span></h3>
+                  <ul class="plan-list" style="margin-bottom: 30px;">
+                    <li>
+                      - Flights Search & Booking
+                    </li>
+                    <li>
+                      - Auto Check-in
+                    </li>
+                    <li>
+                      - Deal Alerts
+                    </li>
+                    <li>
+                      - Cash Back Booking
+                    </li>
+                    <li>
+                      - Three Companion Accounts
+                    </li>
+                    <li>- Unlimited Bookings</li>
+                  </ul>
+                  <router-link :to="{name: 'get-started', params: {plan: 'pro-plus'}}" class="btn btn-default">Get Started</router-link>
+                </div>
+              </div>
+              <!-- col 4 -->
+            </div>
+          </div>
+          <!-- plane 2 -->
         </div>
-        <!-- plane 2 -->
+        <!-- tab content -->
       </div>
-      <!-- tab content -->
     </div>
   </div>
-</div>
 </script>
