@@ -9,7 +9,7 @@ Vue.component('dashboard-header', DashboardHeader);
 const app = new Vue({
   router,
   store,
-/*  watch: {
+  watch: {
     user(val, oldValue) {
       if (val.anonymous) {
         this.$router.push({'name': 'index'}, ()=>{});
@@ -18,8 +18,6 @@ const app = new Vue({
       }
     },
   },
-
- */
   created() {
     this.$store.dispatch('initialize');
   },
