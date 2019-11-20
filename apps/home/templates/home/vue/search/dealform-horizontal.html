@@ -1,109 +1,167 @@
 {% load static %}
 <div id="dealform" class="h-dealform horizontal-form">
-    <div class="row">
-        <div class="col-md-2 col-12">
-            <select-destination :value="form.destinationTypeId"
-                                @select="setDestinationType"/>
-        </div>
-        <div class="col-md-2 col-12">
-            <select-passenger-count/>
-        </div>
-        <div class="col-md-2 col-12">
-            <select-seat-type :value="form.seatType" @select="setSeatType"/>
-        </div>
+  <div class="row">
+    <div class="col">
+      <div class="d-flex">
+        <select-destination
+          :value="form.destinationTypeId"
+          @select="setDestinationType"
+        />
+        <select-passenger-count />
+        <select-seat-type :value="form.seatType" @select="setSeatType" />
+      </div>
     </div>
-    <div class="row">
-        <!-- TODO: insert controls -->
-        <div class="input-group input-group-sm search-dropdown col-md-3 col-12">
-            <location-input :prompt="'Departure City'" :promptMobile="'From Where?'"
-                            @place-selected="updatePlaceFrom"/>
+  </div>
+  <div class="row">
+    <!-- TODO: insert controls -->
+    <div class="col">
+      <div class="hero-search">
+        <div class="hero-search__item is-wide">
+          <div class="input-group input-group-sm search-dropdown">
+            <location-input
+              :prompt="'Departure City'"
+              :promptMobile="'From Where?'"
+              @place-selected="updatePlaceFrom"
+            />
+          </div>
         </div>
-        <div class="input-group input-group-sm search-dropdown col-md-3 col-12">
-            <location-input :prompt="'Arrival City'" :promptMobile="'To Where?'"
-                            @place-selected="updatePlaceTo"/>
+        <div class="hero-search__item is-wide">
+          <div class="input-group input-group-sm search-dropdown">
+            <location-input
+              :prompt="'Arrival City'"
+              :promptMobile="'To Where?'"
+              @place-selected="updatePlaceTo"
+            />
+          </div>
         </div>
-
-
-        <div class="input-group input-group-sm search-dropdown home-date-field-dep col-md-2 col-12">
+        <div class="hero-search__item">
+          <div
+            class="input-group input-group-sm search-dropdown home-date-field-dep"
+          >
             <div class="dat-blue-border dep-date">
-                <span class="input-group-text search-form-input">Dep</span>
-                <input type="text" id="departure_date"
-                       aria-describedby="basic-addon3"
-                       class="form-control search-input"
-                       v-model="form.departure_date"/>
+              <span class="input-group-text search-form-input">Dep</span>
+              <input
+                type="text"
+                id="departure_date"
+                aria-describedby="basic-addon3"
+                class="form-control search-input"
+                v-model="form.departure_date"
+              />
             </div>
+          </div>
         </div>
 
-        <div v-if="form.destinationTypeId === 'round'"
-             class="input-group input-group-sm search-dropdown home-date-field-ret col-md-2 col-12">
-            <div class="dat-blue-border ret-date">
+        <div v-if="form.destinationTypeId === 'round'">
+          <div class="hero-search__item">
+            <div
+              class="input-group input-group-sm search-dropdown home-date-field-ret"
+            >
+              <div class="dat-blue-border ret-date">
                 <span class="input-group-text search-form-input">Ret</span>
-                <input type="text" id="return_date"
-                       aria-describedby="basic-addon3"
-                       class="form-control search-input"
-                       v-model="form.return_date"/>
+                <input
+                  type="text"
+                  id="return_date"
+                  aria-describedby="basic-addon3"
+                  class="form-control search-input"
+                  v-model="form.return_date"
+                />
+              </div>
             </div>
+          </div>
         </div>
         <div v-if="!user.anonymous">
+          <div class="hero-search__item">
             <div class="filter-field">
-                <b>Filters (Optional)</b>
+              <b>Filters (Optional)</b>
             </div>
             <div class="input-group input-group-sm search-dropdown  col-12">
-                <span class="input-group-text search-form-input">Airline</span>
-                <input type="text" class="form-control search-input"
-                       @focus="openAirlinesSelect" v-model="airlinesText">
+              <span class="input-group-text search-form-input">Airline</span>
+              <input
+                type="text"
+                class="form-control search-input"
+                @focus="openAirlinesSelect"
+                v-model="airlinesText"
+              />
 
-                <div class="search-f-dropdown airline-f-dropdown"
-                     v-if="airlinesSelectProgress"
-                     v-click-outside="closeAirlinesSelect">
-                    <ul class="s-dropdown-list">
-                        <li v-for="airlineData in form.airlines"><label><input
-                                type="checkbox" v-model="airlineData.checked">{(
-                            airlineData.name )}<span class="checkmark"></span></label>
-                        </li>
-                    </ul>
-                </div>
-
+              <div
+                class="search-f-dropdown airline-f-dropdown"
+                v-if="airlinesSelectProgress"
+                v-click-outside="closeAirlinesSelect"
+              >
+                <ul class="s-dropdown-list">
+                  <li v-for="airlineData in form.airlines">
+                    <label
+                      ><input type="checkbox" v-model="airlineData.checked"/>{(
+                      airlineData.name )}<span class="checkmark"></span
+                    ></label>
+                  </li>
+                </ul>
+              </div>
             </div>
 
             <div class="input-group input-group-sm search-dropdown col-12">
-                <span class="input-group-text search-form-input">Stops</span>
-                <input type="text" class="form-control search-input"
-                       @focus="openMaxStopsSelect" v-model="maxStopsText">
+              <span class="input-group-text search-form-input">Stops</span>
+              <input
+                type="text"
+                class="form-control search-input"
+                @focus="openMaxStopsSelect"
+                v-model="maxStopsText"
+              />
 
-                <div class="search-f-dropdown stop-filder-dropdown"
-                     v-if="maxStopsSelectProgress"
-                     v-click-outside="closeMaxStopsSelect">
-                    <ul class="s-dropdown-list">
-                        <li v-for="(value, maxStops) in maxStopsFilterOptions"
-                            @click="selectMaxStops(maxStops)"><a>{( value )}</a></li>
-                    </ul>
-                </div>
+              <div
+                class="search-f-dropdown stop-filder-dropdown"
+                v-if="maxStopsSelectProgress"
+                v-click-outside="closeMaxStopsSelect"
+              >
+                <ul class="s-dropdown-list">
+                  <li
+                    v-for="(value, maxStops) in maxStopsFilterOptions"
+                    @click="selectMaxStops(maxStops)"
+                  >
+                    <a>{( value )}</a>
+                  </li>
+                </ul>
+              </div>
             </div>
 
             <div class="input-group input-group-sm search-dropdown col-12">
-                <span class="input-group-text search-form-input">Pricing</span>
-                <input type="text" class="form-control search-input"
-                       @focus="openPriceSelect" v-model="priceText">
+              <span class="input-group-text search-form-input">Pricing</span>
+              <input
+                type="text"
+                class="form-control search-input"
+                @focus="openPriceSelect"
+                v-model="priceText"
+              />
 
-                <div class="search-f-dropdown price-dropdown"
-                     v-show="priceSelectProgress" v-click-outside="closePriceSelect">
-                    <div class="price-slider-container">
-                        <vue-slider v-model="form.priceRange" :enable-cross="false"
-                                    :max="3000"/>
-                    </div>
+              <div
+                class="search-f-dropdown price-dropdown"
+                v-show="priceSelectProgress"
+                v-click-outside="closePriceSelect"
+              >
+                <div class="price-slider-container">
+                  <vue-slider
+                    v-model="form.priceRange"
+                    :enable-cross="false"
+                    :max="3000"
+                  />
                 </div>
+              </div>
             </div>
+          </div>
         </div>
-
-        <div class="search-button horizontal-f-btn col-md-2 col-12">
-            <button type="submit" class="btn-search" @click="search"
-                    :disabled="isFormIncomplete">
-                <img src="{% static "home/img/search.png" %}">
+        <div class="hero-search__item is-last">
+          <div class="search-button horizontal-f-btn">
+            <button
+              type="submit"
+              class="btn-search"
+              @click="search"
+              :disabled="isFormIncomplete"
+            >
+              <img src="{% static "home/img/search.png" %}">
             </button>
+          </div>
         </div>
-
+      </div>
     </div>
-
-
+  </div>
 </div>
