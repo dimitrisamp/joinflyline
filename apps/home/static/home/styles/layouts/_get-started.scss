@@ -1,0 +1,25 @@
+.get-started {
+  min-height: 100vh;
+  .container {
+    .form-control {
+        padding: 24px 15px;
+        text-align: center;
+        transition: border-color .2s ease-out;
+        &:focus {
+          box-shadow: none;
+          border-color: $primary;
+        }
+    }
+    select.form-control {
+      text-align-last: center;
+      border-radius: 0;
+      border: 0;
+      outline: 2px solid #e6e6e6d1;
+      outline-offset: -1px;
+      transition: outline-color .2s ease-out;
+      &:focus {
+        outline-color: $primary;
+      }
+    }
+  }
+}
