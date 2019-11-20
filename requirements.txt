@@ -19,6 +19,8 @@ django-anymail
 django-storages[google]
 gunicorn
 django-credit-cards
+django-filter
+django-rest-knox
 
 celery[redis]
 

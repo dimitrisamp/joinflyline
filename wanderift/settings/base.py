@@ -49,6 +49,8 @@ INSTALLED_APPS = [
     "django_extensions",
     "maintenancemode",
     "rest_framework",
+    "django_filters",
+    "knox",
     # My apps
     "apps.subscriptions.apps.SubscriptionsConfig",
     "apps.payments",
@@ -250,3 +252,14 @@ CELERY_TASK_SERIALIZER = "json"
 CELERY_RESULT_SERIALIZER = "json"
 CELERY_TIMEZONE = TIME_ZONE
 SITE_URL = os.getenv("SITE_URL", "https://joinflyline.com")
+
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "knox.auth.TokenAuthentication",
+        "rest_framework.authentication.BasicAuthentication",
+        "rest_framework.authentication.SessionAuthentication",
+    ),
+    "DEFAULT_FILTER_BACKENDS": (
+        'django_filters.rest_framework.DjangoFilterBackend',
+    ),
+}

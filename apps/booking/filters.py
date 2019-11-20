@@ -1,0 +1,26 @@
+import django_filters
+from django.db.models import Max
+from django.db.models.functions import Now
+
+from apps.booking.models import BookingContact
+
+BOOKING_KIND_FILTER_CHOICES = (("upcoming", "Upcoming"), ("past", "Past"))
+
+
+class BookingFilter(django_filters.FilterSet):
+    kind = django_filters.ChoiceFilter(
+        choices=BOOKING_KIND_FILTER_CHOICES, method="filter_kind"
+    )
+
+    class Meta:
+        model = BookingContact
+        fields = ["kind"]
+
+    def filter_kind(self, queryset, name, value):
+        qs = BookingContact.objects.annotate(
+            last_flight_date=Max("flights__arrival_time")
+        )
+        if value == "upcoming":
+            return qs.filter(last_flight_date__gte=Now())
+        elif value == "past":
+            return qs.filter(last_flight_date__lt=Now())
