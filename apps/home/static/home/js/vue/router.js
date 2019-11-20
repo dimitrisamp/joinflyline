@@ -8,12 +8,18 @@ import {Trips} from "./components/trips.js";
 import {DashboadOverview} from "./components/dashboad-overview.js";
 import {AccountInformation} from "./components/account-information.js";
 import {ResultComponent} from "./components/result-component.js";
+import {SearchResultsPage} from "./components/search-results-page.js";
 
 const routes = [
   {
     path: '/',
     name: 'index',
     component: Home
+  },
+  {
+    path: '/search-results',
+    name: 'search-results',
+    component: SearchResultsPage
   },
   {
     path: '/dashboard',
