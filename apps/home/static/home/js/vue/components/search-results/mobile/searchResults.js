@@ -8,5 +8,6 @@ Vue.component('search-results-mobile', {
     },
     delimiters: ['{(', ')}'],
     computed: {
+        ...Vuex.mapState(['searchProgress', 'searchResults']),
     }
 });

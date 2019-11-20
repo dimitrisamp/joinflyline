@@ -27,6 +27,10 @@ export const Home = {
         searchContainer.style.paddingTop = headerEl + 'px';
       }
     },
+    searchFromHome() {
+      this.search();
+      this.$router.push({'name': 'search-results'});
+    },
     applyFullPage() {
       if (this.$mq !== 'sm') {
         if (this.fullPageApplied) return;

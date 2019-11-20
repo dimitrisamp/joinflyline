@@ -1,4 +1,9 @@
+import {initializeAnimation} from "../../rotate-animationscript.js";
+
 Vue.component('cd-intro', {
     template: '#vue-cd-intro-template',
-    delimiters: ['{(', ')}']
+    delimiters: ['{(', ')}'],
+    mounted() {
+        initializeAnimation();
+    }
 });

@@ -12,14 +12,16 @@ export const SearchForm = {
     },
     setDatePick() {
       let that = this;
-      new Lightpick({
+      setTimeout(()=>{
+        new Lightpick({
         field: document.getElementById("departure_date"),
         secondField: document.getElementById("return_date"),
         singleDate: false,
         onSelect(start, end) {
           that.setDates({start, end});
-        }
-      });
+          }
+        });
+      }, 500);
     },
     ...Vuex.mapActions(['search', 'loadMore', 'sortResultsBy']),
     ...Vuex.mapMutations([
