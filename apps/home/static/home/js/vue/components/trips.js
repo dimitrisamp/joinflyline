@@ -1,9 +1,11 @@
 export const Trips = Vue.component("trips", {
   data() {
     return {
-      upcoming_trips: [],
-      past_trips: [],
-      search_history: []
+      upcomingLoading: true,
+      upcomingTrips: [],
+      pastLoading: true,
+      pastTrips: [],
+      searchHistory: []
     };
   },
   template: "#vue-trips-template",
@@ -11,9 +13,11 @@ export const Trips = Vue.component("trips", {
   created() {
     fetch("/api/bookings/?kind=upcoming")
       .then(response => response.json())
-      .then(data => (this.upcoming_trips = data));
+      .then(data => (this.upcomingTrips = data))
+      .finally(()=>this.upcomingLoading = false);
     fetch("/api/bookings/?kind=past")
       .then(response => response.json())
-      .then(data => (this.past_trips = data));
+      .then(data => (this.pastTrips = data))
+      .finally(()=>this.pastLoading = false);
   }
 });
