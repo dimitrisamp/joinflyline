@@ -31,6 +31,7 @@ from apps.booking.views import (
     CheckPromoView,
     RetailBookingView,
 )
+from apps.booking.viewsets import BookingViewSet, FlightViewSet
 from apps.emails.views import booking_success
 from apps.home.views import (
     index_view,
@@ -47,6 +48,8 @@ from django.conf import settings
 
 router = routers.DefaultRouter()
 router.register(r'users', UserViewSet)
+router.register(r'bookings', BookingViewSet)
+router.register(r'flight', FlightViewSet)
 
 
 class SiteMapView(View):

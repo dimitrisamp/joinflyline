@@ -12,7 +12,7 @@ const app = new Vue({
   watch: {
     user(val, oldValue) {
       if (val.anonymous) {
-        this.$router.push({'name': 'index'});
+        this.$router.push({'name': 'index'}, ()=>{});
       } else {
         this.$router.push({'name': 'overview'});
       }
