@@ -1,0 +1,56 @@
+<script type="text/x-template" id="vue-search-results-page-template">
+  <div id="main" v-cloak>
+      <div v-if="searchResults.length !== 0 && isMobile && !searchProgress && !backToForm">
+          <search-results-mobile/>
+      </div>
+      <div id="fullpage" v-else>
+          <div class="section fp-auto-height-responsive fp-table">
+
+              <div class="section-01 h-user-home">
+                  <header class="header fp-auto-height">
+                      <div class="h-topbar text-center" v-if="user.anonymous">
+                          <p>Join FlyLine to Experience Unmatched Flight Savings
+                              <router-link to="/savings-explained/"
+                                           class="btn btn-default">Savings
+                                  Explained
+                              </router-link>
+                          </p>
+                      </div>
+                      <nav-bar/>
+                  </header>
+
+                  <div class="search-container d-flex fp-auto-height-responsive header-background homepage-background mobile-before first-page-body">
+                      <div class="search-panel">
+                          <div class="left-form-pane container-pad-left">
+                              <div class="search-flight-home">
+                                  <h3>{( cityFromTo )}</h3>
+                                  <p>Carriers: {( airlineNames )}</p>
+                                  <div class="search-flight-divider"></div>
+                              </div>
+                              {% include "home/vue/search/dealform.html" %}
+                          </div>
+                          <div class="right-body-pane">
+                              <search-results />
+                          </div>
+                      </div>
+                  </div><!-- header bg -->
+              </div>
+          </div>
+          <div v-if="isMobile" class="fly-linesetion">
+              <h3>What is FlyLine</h3>
+              <p>We flipped the script on air travel booking by eliminating booking
+                  fees with the creation of a more travel- friendly flight club model.
+                  in other words, the Costco for flying so you can save and do
+                  more.</p>
+              <router-link to="/learn-more/" class="btn btn-default">Learn More
+              </router-link>
+              <div class="email-mobile-view">joinflyline.com | Mobile</div>
+          </div>
+
+          <div id="footer-section"
+               class="section">
+              <page-footer/>
+          </div>
+      </div>
+  </div>
+</script>
