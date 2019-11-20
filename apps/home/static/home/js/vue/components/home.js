@@ -21,10 +21,10 @@ export const Home = {
   },
   methods: {
     calcHeightOfHeader() {
-      const headerEl = document.querySelector('.header').offsetHeight;
+      const headerEl = document.querySelector('.header');
       const searchContainer = document.querySelector('.search-container');
       if (headerEl) {
-        searchContainer.style.paddingTop = headerEl + 'px';
+        searchContainer.style.paddingTop = headerEl.offsetHeight + 'px';
       }
     },
     searchFromHome() {

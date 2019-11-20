@@ -2115,6 +2115,10 @@ This one is disabled until top blue line is back
 
   .nav-home {
     margin-right: 15px;
+    border: 0;
+  }
+  .nav-home:focus {
+    outline: none;
   }
 
   .h-result-list {
