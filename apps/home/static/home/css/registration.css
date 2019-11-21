@@ -152,6 +152,9 @@ body{
     background: url(../img/headerbackground.png);
     width: 100%;
     background-position: bottom;
+    overflow: hidden;
+    min-height: 100vh;
+    min-width: 100vw;
 }
 
 .setep-2{

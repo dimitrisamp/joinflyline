@@ -5,6 +5,7 @@ import {
   processFlight
 } from "../utils.js";
 import { airlineCodes } from "../airlineCodes.js";
+import api from "./http.js";
 
 export const store = new Vuex.Store({
   state: {
@@ -139,22 +140,29 @@ export const store = new Vuex.Store({
     },
     initialize(context) {
       this.dispatch("initializeUser");
-      this.dispatch("initializePlans");
+      //this.dispatch("initializePlans");
     },
     initializeUser(context) {
-      fetch("/api/users/me/")
+      api
+        .get("/users/me/")
         .then(response => {
-          if (response.status === 404) {
-            return { anonymous: true };
-          }
-          return response.json();
+          context.commit("setUser", response.data);
         })
-        .then(data => context.commit("setUser", data));
+        .catch(err => {
+          if (err.response.status === 404) {
+            context.commit("setUser", { anonymous: true });
+          }
+        });
+    },
+    logOut(context, router) {
+      localStorage.removeItem('authToken');
+      context.commit("setUser", { anonymous: true });
+      router.push({name: 'index'});
     },
     initializePlans(context) {
-      fetch("/subscriptions/plan/")
-        .then(response => response.json())
-        .then(data => context.commit("setPlans", data));
+      api.get("/subscriptions/plan/").then(response => {
+        context.commit("setPlans", response.data);
+      });
     },
     toggleSidebar(context) {
       context.commit("TOGGLE_SIDEBAR");
