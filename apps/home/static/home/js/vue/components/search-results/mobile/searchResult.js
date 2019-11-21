@@ -1,11 +1,18 @@
-import {proceedToBooking} from "../../../../utils.js";
+import {proceedToBooking, showPopup} from "../../../../utils.js";
 
 Vue.component('search-result-mobile', {
     template: '#vue-search-result-mobile-template',
     props: ['data'],
     delimiters: ['{(', ')}'],
     methods: {
-        proceedToBooking,
+        showPopup,
+        bookFlight(flight) {
+            if (this.user.anonymous) {
+                this.$emit('showPopup');
+            } else {
+                proceedToBooking(flight);
+            }
+        }
     },
     computed: {
         flightsTo() {
@@ -22,6 +29,7 @@ Vue.component('search-result-mobile', {
         },
         price() {
             return this.data.conversion.USD;
-        }
+        },
+        ...Vuex.mapState(['user']),
     }
 });

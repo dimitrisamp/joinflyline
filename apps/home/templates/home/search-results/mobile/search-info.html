@@ -4,9 +4,10 @@
         <div class="m-view-filter">
             <ul>
                 <li><img src="{% static "home/img/Flyline_logo_1030-02.png" %}"></li>
-                <li><h3>{( cityFrom )} -> {( cityTo )}{( roundTrip?' and Back':'' )} <a
-                        href="#" @click="backPressed"><img
-                        src="{% static "home/img/back-pencil.png" %}"></a>
+                <li>
+                    <h3>{( form.cityFromTo )}{( roundTrip?' and Back':'' )}
+                    <router-link to="{name: 'index'}"><img
+                        src="{% static "home/img/back-pencil.png" %}"></router-link>
                     <span>{( dateFrom )} - {( dateTo )}</span></h3></li>
                 <li><b>Filter</b></li>
             </ul>

@@ -1,16 +1,9 @@
-import { secs2hm } from "../../utils.js";
+import { showPopup } from "../../utils.js";
 
 Vue.component("search-results", {
   template: "#vue-search-results-template",
-  data() {
-    return {
-      popupVisible: false
-    };
-  },
   methods: {
-    showPopup() {
-      $("#search-results-popup").modal();
-    },
+    showPopup,
     ...Vuex.mapActions(["loadMore", "sortResultsBy"])
   },
   delimiters: ["{(", ")}"],
