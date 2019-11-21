@@ -1,0 +1,49 @@
+.search-quick-filter {
+  padding: 0.5rem 0;
+  margin-bottom: 0;
+  text-align: center;
+  flex-grow: 1;
+  border-right: none;
+  background: white;
+  border-left: 1px solid #ccc;
+  position: relative;
+  cursor: pointer;
+
+  &:last-child {
+    border-right: none;
+  }
+
+  &:hover {
+    border: 1px solid #00b0f5;
+  }
+
+  &.applied {
+    border: 1px solid #00b0f5;
+
+    .border-line {
+      position: absolute;
+      bottom: 0;
+      left: 12%;
+    }
+  }
+}
+
+.search-top-result {
+  display: flex;
+  margin-bottom: 1rem;
+  border: 1px solid #dee2e6;
+  background: white;
+  width: 100%;
+}
+
+.search-quick-filter-filter-name {
+  margin-left: auto;
+  margin-right: auto;
+
+  strong {
+    font-family: dona-black;
+  }
+  .small {
+    color: #000;
+  }
+}

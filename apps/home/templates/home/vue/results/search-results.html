@@ -1,8 +1,8 @@
 <script type="text/x-template" id="vue-search-results-template">
     <div>
-        <quicklinks v-if="searchResults.length !== 0"
-                    :sort="form.sort"
+        <quicklinks :sort="form.sort"
                     :data="quickFiltersData"
+                    :airlinesFilter="form.airlinesFilter"
                     @sort-by="sortResultsBy"></quicklinks>
         <div class="search-results" :class="{anonymous: user.anonymous}" v-if="searchProgress"
              v-cloak>
@@ -59,7 +59,7 @@
                     <p>Our exclusive deals and feesless flights are for flyline members,
                         have an account, sign in, Not a member start today</p>
                     <a href="{% url "sign-in" %}" class="btn btn-default">Log In</a>
-                    <a href="{% url "wizard" %}" class="btn btn-default">Get Started</a>
+                    <router-link to="{name: 'get-started}" class="btn btn-default">Get Started</router-link>
                 </div>
             </div>
         </div>

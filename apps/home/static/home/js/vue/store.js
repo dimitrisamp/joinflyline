@@ -11,7 +11,9 @@ export const store = new Vuex.Store({
     user: {},
     plans: {},
     form: {
+      airlinesFilter: null,
       limit: 20,
+      limitIncrement: 0,
       sort: null,
       priceRange: [0, 3000],
       airlines: [],
@@ -58,6 +60,7 @@ export const store = new Vuex.Store({
       }
       state.form.priceRange = [0, 3000];
       state.form.maxStops = null;
+      state.form.limitIncrement = 0;
     },
     setMaxStops(state, value) {
       state.form.maxStops = value;
@@ -75,10 +78,14 @@ export const store = new Vuex.Store({
       state.form.destinationTypeId = value;
     },
     increaseLimit(state, by) {
-      state.form.limit += by;
+      state.form.limitIncrement += by;
     },
-    setSort(state, value) {
-      state.form.sort = value;
+    toggleSort(state, value) {
+      if (state.form.sort === value) {
+        state.form.sort = null;
+      } else {
+        state.form.sort = value;
+      }
     },
     setDates(state, payload) {
       const { start, end } = payload;
@@ -117,11 +124,22 @@ export const store = new Vuex.Store({
     setPlans(state, value) {
       state.plans = value;
     },
+    toggleAirlinesFilter(state, value) {
+      if (state.form.airlinesFilter === value) {
+        state.form.airlinesFilter = null;
+      } else {
+        state.form.airlinesFilter = value;
+      }
+    }
   },
   actions: {
+    applyAirlinesFilter(context, kind) {
+      context.commit("toggleAirlinesFilter", kind);
+      this.dispatch("search");
+    },
     initialize(context) {
-      this.dispatch('initializeUser');
-      this.dispatch('initializePlans');
+      this.dispatch("initializeUser");
+      this.dispatch("initializePlans");
     },
     initializeUser(context) {
       fetch("/api/users/me/")
@@ -146,14 +164,17 @@ export const store = new Vuex.Store({
       this.dispatch("search");
     },
     sortResultsBy(context, sort) {
-      context.commit("setSort", sort);
+      context.commit("toggleSort", sort);
       this.dispatch("search");
     },
     clearFiltersAndUpdate(context) {
       context.commit("clearFilters");
       this.dispatch("search");
     },
-    search(context) {
+    search(context, clearFilters = false) {
+      if (clearFilters) {
+        context.commit("clearFilters");
+      }
       context.commit("setSearchProgress", true);
       fetch(getSearchURL(context.state.form), {
         headers: { apikey: "xklKtpJ5fxZnk4rsDepqOzLUaYYAO9dI" }

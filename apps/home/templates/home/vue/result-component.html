@@ -3,7 +3,7 @@
     <div class="result__container main-padding">
       <div class="row">
         <div class="col-12 col-xl-9">
-          <search-results/>
+          <search-results />
         </div>
         <div class="col-12 col-xl-3 result__filters">
           <form action="" class="bg-white">
@@ -19,7 +19,7 @@
                 <max-stops-filter @select="setMaxStops" />
                 <price-filter :data="form.priceRange" @select="setPriceRange" />
                 <input type="text" class="mb-3 form-control" placeholder="Filter By Times (Coming Soon)">
-                <button type="submit" class="btn btn-primary w-100" @click="search">Update Result</button>
+                <button type="submit" class="btn btn-primary w-100" @click="search(true)">Update Result</button>
               </div>
             </div>
           </form>

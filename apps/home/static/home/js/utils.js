@@ -1,4 +1,8 @@
-import {airlineCodes} from "./airlineCodes.js";
+import {
+  airlineCodes,
+  legacyAirlines,
+  lowcostAirlines
+} from "./airlineCodes.js";
 
 export const seatTypes = {
   M: "Economy",
@@ -124,13 +128,13 @@ export function formatPlace(place) {
   if (place.type === "airport") {
     return `${place.name} (${place.code})`;
   }
-  return `${place.name} ${
-    place.subdivision ? place.subdivision.name : ""
-  } ${place.country.code}`;
+  return `${place.name} ${place.subdivision ? place.subdivision.name : ""} ${
+    place.country.code
+  }`;
 }
 
 export function placeToRequestValue(p) {
-  return `${p.type}:${p.code}`
+  return `${p.type}:${p.code}`;
 }
 
 export function locationSearch(term, locationTypes) {
@@ -138,7 +142,7 @@ export function locationSearch(term, locationTypes) {
     city: ["city"],
     airport: ["airport"],
     both: ["city", "airport"]
-  }[locationTypes || 'both'];
+  }[locationTypes || "both"];
   return new Promise(resolve => {
     let url = new URL("https://kiwicom-prod.apigee.net/locations/query");
     let searchParams = {
@@ -148,7 +152,7 @@ export function locationSearch(term, locationTypes) {
     };
     let urlSearchParams = new URLSearchParams(searchParams);
     for (const lt of searchLocationTypes) {
-      urlSearchParams.append('location_types', lt);
+      urlSearchParams.append("location_types", lt);
     }
     url.search = urlSearchParams;
     fetch(url, {
@@ -165,15 +169,14 @@ export function locationSearch(term, locationTypes) {
 
 export function debounce(fn, delay, ...rest) {
   let timeoutID = null;
-  return function () {
+  return function() {
     clearTimeout(timeoutID);
     let that = this;
-    timeoutID = setTimeout(function () {
+    timeoutID = setTimeout(function() {
       fn.apply(that, rest);
     }, delay);
   };
 }
-
 
 export function calculateLayovers(routes) {
   for (let i = 0; i < routes.length - 1; i++) {
@@ -185,7 +188,6 @@ export function calculateLayovers(routes) {
   }
 }
 
-
 export function getAirlines(flights) {
   let airlines = new Set();
   for (const flight of flights) {
@@ -196,16 +198,13 @@ export function getAirlines(flights) {
   return [...airlines].sort();
 }
 
-
 export function processFlight(sr) {
   const to_routes = sr.route.filter(r => r.return === 0);
   const return_routes = sr.route.filter(r => r.return === 1);
   calculateLayovers(to_routes);
   calculateLayovers(return_routes);
   const roundtrip = return_routes.length > 0;
-  const return_departure = roundtrip
-    ? return_routes[0].local_departure
-    : null;
+  const return_departure = roundtrip ? return_routes[0].local_departure : null;
   return {
     ...sr,
     roundtrip,
@@ -214,6 +213,14 @@ export function processFlight(sr) {
 }
 
 export function getQuickLinksData(flights) {
+  if (flights.length === 0) {
+    return {
+      price: null,
+      duration: null,
+      quality: null,
+      date: null
+    };
+  }
   const data = flights.map(f => ({
     price: f.conversion.USD,
     duration: f.duration.total,
@@ -221,9 +228,7 @@ export function getQuickLinksData(flights) {
     date: new Date(f.local_departure)
   }));
   return {
-    price: data.reduce((prev, curr) =>
-      prev.price < curr.price ? prev : curr
-    ),
+    price: data.reduce((prev, curr) => (prev.price < curr.price ? prev : curr)),
     duration: data.reduce((prev, curr) =>
       prev.duration < curr.duration ? prev : curr
     ),
@@ -256,12 +261,23 @@ export function getSearchURL(form) {
     formData.append("price_from", price_from);
     formData.append("price_to", price_to);
   }
-  const selectedAirlines = form.airlines.filter(a => a.checked);
-  if (selectedAirlines) {
-    formData.append(
-      "select_airlines",
-      selectedAirlines.map(a => a.code).join(",")
-    );
+  let selectedAirlines = form.airlines.filter(a => a.checked).map(a => a.code);
+  let airlineFilter = form.airlinesFilter
+    ? new Set(
+        { legacy: legacyAirlines, lowcost: lowcostAirlines }[
+          form.airlinesFilter
+        ]
+      )
+    : new Set([]);
+  if (airlineFilter.size > 0) {
+    if (selectedAirlines.length > 0) {
+      selectedAirlines = selectedAirlines.filter(o => airlineFilter.has(o));
+    } else {
+      selectedAirlines = [...airlineFilter];
+    }
+  }
+  if (selectedAirlines.length !== 0) {
+    formData.append("select_airlines", selectedAirlines.join(","));
   }
   if (form.maxStops !== null) {
     formData.append("max_stopovers", form.maxStops);
@@ -269,7 +285,7 @@ export function getSearchURL(form) {
   if (form.sort !== null) {
     formData.append("sort", form.sort);
   }
-  formData.append("limit", form.limit);
+  formData.append("limit", form.limit + form.limitIncrement);
   formData.append("curr", "USD");
   let url = new URL(
     "https://kiwicom-prod.apigee.net/v2/search",
@@ -278,4 +294,3 @@ export function getSearchURL(form) {
   url.search = new URLSearchParams(formData);
   return url;
 }
-

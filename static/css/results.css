@@ -110,43 +110,11 @@ body{
     }
 }
 
-.search-quick-filter {
-    background: white;
-    border-left: 1px solid #ccc;
-    padding: 0;
-    /*border-right: 1px solid rgba(0,0,0,0.1);*/
-    position: relative;
-    cursor: pointer;
-}
-.search-quick-filter:hover{
-    border:1px solid #00b0f5 !important;
-}
-.search-quick-filter.applied .border-line {
-    position: absolute;
-    bottom: 0;
-    left: 12%;
-}
-.applied{
-    border:1px solid #00b0f5 !important;
-}
+
 .result-details{
     border:1px solid #00b0f5 !important;   
 }
 
-.search-quick-filter:last-child {
-    border-right: none;
-}
-
-.search-quick-filter-filter-name {
-    margin-left: auto;
-    margin-right: auto;
-}
-.search-quick-filter-filter-name strong{
-    font-family:dona-black;
-}
-.search-quick-filter-filter-name .small{
-    color: #000;
-}
 .loading-animation-topsearch {
     background: #fff;
     height: 63px;
