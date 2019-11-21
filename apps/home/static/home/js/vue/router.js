@@ -9,6 +9,7 @@ import {DashboadOverview} from "./components/dashboad-overview.js";
 import {AccountInformation} from "./components/account-information.js";
 import {ResultComponent} from "./components/result-component.js";
 import {SearchResultsPage} from "./components/search-results-page.js";
+import {SignIn} from "./components/sign-in.js"
 
 const routes = [
   {
@@ -20,6 +21,11 @@ const routes = [
     path: '/search-results',
     name: 'search-results',
     component: SearchResultsPage
+  },
+  {
+    path: '/sign-in',
+    name: 'sign-in',
+    component: SignIn
   },
   {
     path: '/dashboard',

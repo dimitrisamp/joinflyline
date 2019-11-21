@@ -7,6 +7,9 @@ export const Sidebar = {
             this.$store.dispatch('toggleSidebar')
         }
     },
+    methods: {
+        ...Vuex.mapActions(['logOut']),
+    },
     computed: {
         toggleSidebar() {
             return this.$store.getters.toggleSidebar;
