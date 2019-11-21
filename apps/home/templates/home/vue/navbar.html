@@ -17,22 +17,13 @@
         <div class="collapse navbar-collapse"
              id="navbarSupportedContent">
             <div class="navbar-nav ml-auto">
-                <div class="nav-item" v-if="user.anonymous">
-                    <a href="{% url "sign-in" %}"
-                       class="btn my-2 login-btn my-sm-0">Log
-                        In</a>
-                    <router-link to="/get-started/"
+                <div class="nav-item">
+                    <router-link :to="{ name: 'sign-in'}"
+                       class="btn my-2 get-s-btn my-sm-0">Log In
+                    </router-link>
+                    <router-link :to="{ name: 'get-started'}"
                        class="btn my-2 get-s-btn my-sm-0">Get
                         Started</router-link>
-                </div>
-                <div class="nav-item" v-else>
-                    <a href="{% url "manage-trips" %}"
-                       class="btn my-2 login-btn my-sm-0">Trips</a>
-                    <a href="{% url "accounts" %}"
-                       class="btn my-2 get-s-btn my-sm-0">Account</a>
-                        <a href="{% url "logout" %}"
-                           class="btn my-2 get-s-btn my-sm-0">Log
-                            Out</a>
                 </div>
             </div>
         </div>

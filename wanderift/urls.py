@@ -77,6 +77,7 @@ urlpatterns = [
     path("corporates/", include("apps.corporate.urls")),
     # Auth urls
     path("auth/", include("apps.oauth.urls")),
+    path(r'api/auth/', include('knox.urls')),
     # booking
     path("promo/", lambda _: redirect("/#/promo/"), name="promo-landing"),
     path("retail/", RetailBookingView.as_view(), name="retail"),
@@ -88,8 +89,6 @@ urlpatterns = [
     path("subscriptions/", include("apps.subscriptions.urls")),
     # payments
     path("pay/", include("apps.payments.urls")),
-    path("sign-in/", SignInView.as_view(), name="sign-in"),
-    path("sign-up/", SignUpView.as_view(), name="sign-up"),
     path("get-started/", WizardView.as_view(), name="wizard"),
     path("sitemap.xml", SiteMapView.as_view(), name="sitemap"),
     path("robots.txt", RobotsTxtView.as_view(), name="robots"),
