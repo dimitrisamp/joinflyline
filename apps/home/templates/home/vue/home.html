@@ -1,21 +1,12 @@
 {% load static %}
 <script type="text/x-template" id="vue-home-template">
     <div id="main" v-cloak>
-        <div v-if="searchResults.length !== 0 && isMobile && !searchProgress && !backToForm">
-            <search-results-mobile
-                    :search-results="searchResults"
-                    :form="form"
-                    :place-to="form.placeTo"
-                    :place-from="form.placeFrom"
-                    :sort-results-by="sortResultsBy"
-                    @back-pressed="switchToForm" />
-        </div>
-        <div id="fullpage" v-else>
+        <div id="fullpage">
             <div class="section fp-auto-height-responsive fp-table">
 
                 <div class="section-01 h-user-home">
                     <header class="header fp-auto-height">
-                        <div class="h-topbar text-center" v-if="user.anonymous">
+                        <div class="h-topbar text-center">
                             <p>Join FlyLine to Experience Unmatched Flight Savings
                                 <router-link to="/savings-explained/"
                                              class="btn btn-default">Savings
@@ -27,12 +18,7 @@
                     </header>
 
                     <div class="search-container d-flex fp-auto-height-responsive header-background homepage-background mobile-before first-page-body">
-                        <div v-if="!user.anonymous || searchResults.length !== 0 || searchProgress"
-                             class="search-panel">
-                            {% include "home/pages/left-pane.html" %}
-                            {% include "home/pages/right-pane.html" %}
-                        </div>
-                        <div v-else
+                        <div
                              class="container align-self-center">
                             <div class="h-headermain">
                                 <div class="row">
@@ -49,15 +35,9 @@
                                 </div>
                             </div><!-- h-headermain -->
                         </div>
-                        <div v-if="!user.anonymous && searchResults.length === 0"
-                             class="viewdeal-bottom text-center">
-                            Enter Your Deal Alert Destinations to
-                            View Deals
-                        </div>
                     </div><!-- header bg -->
                     {% include "home/pages/never-miss-deal.html" %}
-                    <div class="clickdown"
-                         v-if="user.anonymous && searchResults.length === 0">
+                    <div class="clickdown">
                         <a href="#Section02"
                            class="fliLine-Banner">
                             <div class="h-flyline-bar">
