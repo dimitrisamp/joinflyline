@@ -32,6 +32,7 @@ from apps.booking.views import (
     CheckPromoView,
     RetailBookingView,
 )
+from apps.subscriptions import views as subscriptions_views
 from apps.booking.viewsets import BookingViewSet, FlightViewSet
 from apps.common.user_router import UserRouter
 from apps.emails.views import booking_success
@@ -90,8 +91,6 @@ urlpatterns = [
     path("check-flights/", CheckFlightsView.as_view(), name="check-flights"),
     path("check-promo/", CheckPromoView.as_view(), name="check-promo"),
     path("emails/<str:booking_id>", booking_success, name="email"),
-    # subscriptions
-    path("subscriptions/", include("apps.subscriptions.urls")),
     # payments
     path("pay/", include("apps.payments.urls")),
     path("get-started/", WizardView.as_view(), name="wizard"),
@@ -107,6 +106,7 @@ urlpatterns = [
     ),
     re_path("^api/", include(router.urls)),
     re_path("^api/users/me/", include(user_router.urls)),
+    path('api/subscriptions/plan/', subscriptions_views.Plans.as_view(), name="plans")
 ]
 
 if settings.STAGE == "local" and os.getenv("DEBUG_TOOLBAR", "false").lower() in (

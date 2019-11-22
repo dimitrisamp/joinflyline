@@ -1,3 +1,4 @@
+import json
 from datetime import datetime
 from django.contrib.auth import login
 from django.conf import settings
@@ -25,7 +26,7 @@ def stripe_customer(user):
     return stripe.Customer.create(
         email=user.email,
         name="%s %s" % (user.first_name, user.last_name),
-        source=user.account_set.all()[0].token,  # obtained with Stripe.js
+        source=user.account.token,  # obtained with Stripe.js
     )
 
 
@@ -54,7 +55,7 @@ def add_subscription(user_id, plan):
 
 
 def add_to_stripe(user, plan):
-    account = user.account_set.all()[0]
+    account = user.account
     stripe_card_token = card_token(account.card_number, account.expiry, account.cvc)
     account.token = stripe_card_token.id
     account.save()
@@ -96,5 +97,4 @@ class WizardView(FormView):
         new_user.profile.save()
         if account.card_number and account.expiry and account.cvc:
             add_to_stripe(new_user, cd["plan"])
-        login(self.request, new_user)
         return JsonResponse({"success": True})

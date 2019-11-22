@@ -8,39 +8,26 @@ export const SignIn = Vue.component("SignInFormComponent", {
     return {
       email: "",
       password: "",
-      hasError: false,
-      errorText: ""
+      hasError: false
     };
   },
   methods: {
+    ...Vuex.mapActions(["authenticate"]),
     handleSubmit(event) {
       const ctx = this;
-
       if (this.email && this.password) {
-        axios.post("/api/auth/login/", {}, {
-          headers: {
-            "Authorization": "Basic " + btoa(`${this.email}:${this.password}`)
-          }
-        })
-          .then(response => {
-            if (response.status < 400) {
-              localStorage.setItem('authToken', response.data.token);
-              ctx.$store.dispatch("initialize").then(() => {
-                this.$router.push({ name: "dashboard" });
-              });
-            } else if (response.status === 401) {
-              ctx.errorText = "Failed to login";
-            } else {
-              ctx.errorText = "Something went wrong";
-            }
-            return response.json()
-          })
-          .catch(error => {
-            ctx.errorText = "Something went wrong";
-          });
+        this.authenticate({
+          email: this.email,
+          password: this.password,
+          router: this.$router,
+          name: 'overview',
+        });
       } else {
         this.hasError = true;
       }
     }
+  },
+  computed: {
+    ...Vuex.mapState(["authErrorText"])
   }
 });
