@@ -1,7 +1,7 @@
 <script type="text/x-template" id="vue-quicklinks-template">
   <div class="search-top-result">
 
-      <div v-for="(label, sortBy) in {price: 'Cheapest', quality: 'Recommended', duration: 'Quickest'}"
+      <div v-for="(label, sortBy) in columns"
            class="search-quick-filter" :class="{applied: sort === sortBy}"
            @click="sortResultsBy(sortBy)">
 
@@ -17,19 +17,21 @@
               <div class="animate-element-topresult"></div>
           </div>
       </div>
-      <div v-for="(label, kind) in {'legacy': 'Legacy', 'lowcost': 'Lowcost'}"
-           class="search-quick-filter"
-           :class="{applied: airlinesFilter === kind}"
-           @click="applyAirlinesFilter(kind)">
-
-          <div class="search-quick-filter-filter-name">
-              <strong>{( label )} airlines</strong>
+      <template v-if="!user.anonymous">
+          <div v-for="(label, kind) in {'legacy': 'Legacy', 'lowcost': 'Lowcost'}"
+               class="search-quick-filter"
+               :class="{applied: airlinesFilter === kind}"
+               @click="applyAirlinesFilter(kind)">
+    
+              <div class="search-quick-filter-filter-name">
+                  <strong>{( label )} airlines</strong>
+              </div>
+    
+              <div class="border-line w-75 mx-auto"></div>
+              <div class="loading-animation-topsearch">
+                  <div class="animate-element-topresult"></div>
+              </div>
           </div>
-
-          <div class="border-line w-75 mx-auto"></div>
-          <div class="loading-animation-topsearch">
-              <div class="animate-element-topresult"></div>
-          </div>
-      </div>
+      </template>
   </div>
 </script>
