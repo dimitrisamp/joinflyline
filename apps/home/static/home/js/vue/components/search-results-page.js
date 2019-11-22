@@ -11,5 +11,21 @@ export const SearchResultsPage = Vue.component('search-results-page', {
       isMobile() {
         return this.$mq === 'sm';
       }
+  },
+  mounted() {
+    this.calcHeightOfHeader();
+    window.addEventListener('resize', this.calcHeightOfHeader);
+  },
+  methods: {
+    calcHeightOfHeader() {
+      const headerEl = document.querySelector('.header');
+      const searchContainer = document.querySelector('.search-result__container');
+      const searchForm = document.querySelector('.search-result__container__left');
+      searchForm ? searchForm.style.top = headerEl.offsetHeight + 'px' : 0;
+      if (headerEl) {
+        const headerHeight = headerEl.offsetHeight;
+        searchContainer.style.paddingTop = (headerHeight) + 'px';
+      }
+    },
   }
 });
