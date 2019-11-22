@@ -35,7 +35,7 @@ k8s-deploy:
   - kubectl delete secret gce-service-account-key --ignore-not-found -n ${KUBE_NAMESPACE}
   - kubectl delete secret api-keys --ignore-not-found -n ${KUBE_NAMESPACE}
   - kubectl create secret docker-registry gitlab-registry --docker-server=${CI_REGISTRY} --docker-username=${CI_REGISTRY_USER} --docker-password=${CI_REGISTRY_PASSWORD} --docker-email=${CI_REGISTRY_EMAIL} -n ${KUBE_NAMESPACE}
-  - kubectl create secret generic gce-service-account-key --from-file=${GCE_SERVICE_ACCOUNT_KEY} -n ${KUBE_NAMESPACE}
+  - kubectl create secret generic gce-service-account-key --from-file=${GCE_SERVICE_ACCOUNT_KEY} --from-file=${STRIPE_PLANS} -n ${KUBE_NAMESPACE}
   - kubectl create secret generic api-keys --from-literal=STRIPE_API_KEY=${STRIPE_API_KEY} --from-literal=POSTGRES_PASSWORD=${POSTGRES_PASSWORD} -n ${KUBE_NAMESPACE}
   - kubectl apply -f devops/k8s/env.yml -n ${KUBE_NAMESPACE}
   - sed -ie "s/THIS_STRING_IS_REPLACED_DURING_BUILD/$(date)/g" devops/k8s/deployment.yml
