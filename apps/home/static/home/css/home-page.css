@@ -1063,6 +1063,7 @@ header.sticky {
 
 .s-result-dropdown {
   margin-bottom: 0px;
+  position: relative;
 }
 .search-result-btn .btn {
   margin-top: 10px;
@@ -1134,9 +1135,10 @@ header.sticky {
 .search-f-dropdown {
   background: #fff;
   border: 1px solid #ccc;
-  margin-top: 5px;
+  margin-top: 0;
   position: absolute;
   z-index: 2;
+  width: 100%;
 }
 
 .route-box strong {
@@ -1173,11 +1175,13 @@ header.sticky {
   padding: 0.5rem 1rem;
   font-family: Dona-Bold;
   font-size: .875rem;
+  color: #7d7d7d;
 }
 
 .search-f-dropdown .s-dropdown-list li:hover {
   background: #00aeef;
   cursor: pointer;
+  color: #fff;
 }
 
 .search-f-dropdown .s-dropdown-list li:hover a {

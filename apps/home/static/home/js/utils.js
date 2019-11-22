@@ -54,6 +54,10 @@ export function formatDate(value) {
   return moment.utc(value).format("D MMM");
 }
 
+export function formatDateFull(value) {
+  return moment.utc(value).format("MM/DD/YYYY");
+}
+
 export function timeInterval(route) {
   const utc_departure = new Date(route.utc_departure);
   const utc_arrival = new Date(route.utc_arrival);
@@ -169,10 +173,10 @@ export function locationSearch(term, locationTypes) {
 
 export function debounce(fn, delay, ...rest) {
   let timeoutID = null;
-  return function () {
+  return function() {
     clearTimeout(timeoutID);
     let that = this;
-    timeoutID = setTimeout(function () {
+    timeoutID = setTimeout(function() {
       fn.apply(that, rest);
     }, delay);
   };
@@ -264,10 +268,10 @@ export function getSearchURL(form) {
   let selectedAirlines = form.airlines.filter(a => a.checked).map(a => a.code);
   let airlineFilter = form.airlinesFilter
     ? new Set(
-      {legacy: legacyAirlines, lowcost: lowcostAirlines}[
-        form.airlinesFilter
+        { legacy: legacyAirlines, lowcost: lowcostAirlines }[
+          form.airlinesFilter
         ]
-    )
+      )
     : new Set([]);
   if (airlineFilter.size > 0) {
     if (selectedAirlines.length > 0) {

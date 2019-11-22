@@ -9,6 +9,7 @@ import api from "./http.js";
 
 export const store = new Vuex.Store({
   state: {
+    authErrorText: "",
     user: {},
     plans: {},
     form: {
@@ -131,6 +132,9 @@ export const store = new Vuex.Store({
       } else {
         state.form.airlinesFilter = value;
       }
+    },
+    setAuthError(state, value) {
+      state.authErrorText = value;
     }
   },
   actions: {
@@ -140,7 +144,7 @@ export const store = new Vuex.Store({
     },
     initialize(context) {
       this.dispatch("initializeUser");
-      //this.dispatch("initializePlans");
+      this.dispatch("initializePlans");
     },
     initializeUser(context) {
       api
@@ -155,14 +159,42 @@ export const store = new Vuex.Store({
         });
     },
     logOut(context, router) {
-      localStorage.removeItem('authToken');
+      localStorage.removeItem("authToken");
       context.commit("setUser", { anonymous: true });
-      router.push({name: 'index'});
+      router.push({ name: "index" });
     },
     initializePlans(context) {
       api.get("/subscriptions/plan/").then(response => {
         context.commit("setPlans", response.data);
       });
+    },
+    authenticate(ctx, params) {
+      const {email, password, router, name} = params;
+      axios
+        .post(
+          "/api/auth/login/",
+          {},
+          {
+            headers: {
+              Authorization: "Basic " + btoa(`${email}:${password}`)
+            }
+          }
+        )
+        .then(response => {
+          if (response.status < 400) {
+            localStorage.setItem("authToken", response.data.token);
+            this.dispatch("initialize").then(() => {
+              router.push({ name });
+            });
+          } else if (response.status === 401) {
+            ctx.commit('setAuthError', "Failed to login");
+          } else {
+            ctx.commit('setAuthError', "Something went wrong");
+          }
+        })
+        .catch(error => {
+          ctx.commit('setAuthError', "Something went wrong");
+        });
     },
     toggleSidebar(context) {
       context.commit("TOGGLE_SIDEBAR");

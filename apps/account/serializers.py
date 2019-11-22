@@ -46,6 +46,12 @@ class FrequentFlyer(serializers.ModelSerializer):
         ]
 
 
+class EditUser(serializers.ModelSerializer):
+    class Meta:
+        model = UserModel
+        fields = ['first_name', 'last_name']
+
+
 class User(serializers.ModelSerializer):
     profile = Profile()
     account = Account()

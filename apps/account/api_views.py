@@ -8,7 +8,11 @@ from apps.account.models import FrequentFlyer, Account
 UserModel = get_user_model()
 
 
-class UserViewSet(mixins.UpdateModelMixin, mixins.RetrieveModelMixin, GenericViewSet):
+class UserViewSet(
+    mixins.UpdateModelMixin,
+    mixins.RetrieveModelMixin,
+    GenericViewSet,
+):
     queryset = UserModel.objects.all()
     serializer_class = serializers.User
 
@@ -19,3 +23,8 @@ class UserViewSet(mixins.UpdateModelMixin, mixins.RetrieveModelMixin, GenericVie
         FrequentFlyer.objects.get_or_create(user=user)
         Account.objects.get_or_create(user=user)
         return user
+
+    def get_serializer_class(self):
+        if self.action in ('update', 'partial_update'):
+            return serializers.EditUser
+        return serializers.User

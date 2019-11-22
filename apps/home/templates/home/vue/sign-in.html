@@ -11,8 +11,8 @@
 
         <div class="container">
             <div class="formBg signIn-align mx-auto">
-                <div v-if="errorText" class="alert alert-danger text-center">
-                    [[ errorText ]]
+                <div v-if="authErrorText" class="alert alert-danger text-center">
+                    [[ authErrorText ]]
                 </div>
                 <div class="center-logo text-center">
                     <a href="{% url "index" %}"> <img
