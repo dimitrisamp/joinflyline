@@ -78,8 +78,6 @@ urlpatterns = [
     # Home page links
     path("", index_view, name="index"),
     path("home/", home_view, name="home"),
-    # Accounts page urls
-    path("account/", include("apps.account.urls")),
     # Corporate urls
     path("corporates/", include("apps.corporate.urls")),
     # Auth urls

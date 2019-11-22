@@ -21,63 +21,6 @@ from apps.subscriptions.models import Subscriptions
 stripe.api_key = settings.STRIPE_API_KEY
 
 
-class AccountView(FormView):
-    form_class = ProfileForm
-    template_name = "accounts/accounts.html"
-
-    @method_decorator(login_required)
-    def dispatch(self, *args, **kwargs):
-        return super().dispatch(*args, **kwargs)
-
-    def get_success_url(self):
-        return reverse("accounts")
-
-    def get_context_data(self, **kwargs):
-        kwargs["title"] = "Account | FlyLine"
-        return super().get_context_data(**kwargs)
-
-    def form_valid(self, form):
-        user = self.request.user
-        cd = form.cleaned_data
-        user.first_name = cd["first_name"]
-        user.last_name = cd["last_name"]
-        user.email = cd["email"]
-        user.profile.dob = cd["dob"]
-        user.profile.gender = cd["gender"]
-        user.profile.market = cd["market"]
-        user.profile.tsa_precheck_number = cd["tsa_precheck_number"]
-        user.profile.phone_number = cd["phone_number"]
-        user.profile.save()
-        if cd["password"]:
-            user.set_password(cd["password"])
-        user.save()
-        return super().form_valid(form)
-
-
-class FrequentFlyerEdit(LoginRequiredMixin, UpdateView):
-    model = FrequentFlyer
-    fields = [
-        "american_airlines",
-        "united_airlines",
-        "southwest_airlines",
-        "sun_country_airlines",
-        "frontier_airlines",
-        "delta_airlines",
-        "alaska_airlines",
-        "jetBlue",
-        "spirit_airlines",
-        "allegiant_air",
-        "hawaiian_airlines",
-    ]
-    template_name = "accounts/accounts.html"
-
-    def get_object(self, queryset=None):
-        return self.model.objects.get_or_create(user=self.request.user)[0]
-
-    def get_success_url(self):
-        return reverse("accounts")
-
-
 def stripe_customer(user):
     return stripe.Customer.create(
         email=user.email,

@@ -31,8 +31,14 @@ export const LocationInput = Vue.component("location-input", {
       searchResults: [],
       requestProgress: false,
       searchProgress: false,
-      selectedIndex: 0
+      selectedIndex: 0,
+      text: "",
     };
+  },
+  watch: {
+    initialValue(value) {
+      this.text = formatPlace(this.initialValue);
+    }
   },
   methods: {
     formatPlace,
@@ -54,6 +60,7 @@ export const LocationInput = Vue.component("location-input", {
     choose(i) {
       this.selectedIndex = i;
       this.searchProgress = false;
+      this.text = formatPlace(this.place);
       this.$emit("place-selected", this.place);
     },
     processLocation(loc) {
@@ -66,7 +73,7 @@ export const LocationInput = Vue.component("location-input", {
       }
       return value;
     },
-    onInput: debounce(function() {
+    onInput: debounce(function(e) {
       if (this.text === null || this.text.length < 3) {
         this.searchProgress = false;
         return;
@@ -74,7 +81,7 @@ export const LocationInput = Vue.component("location-input", {
       this.requestProgress = true;
       this.searchProgress = true;
       const that = this;
-      locationSearch(that.text)
+      locationSearch(this.text)
         .then(data => {
           that.searchResults = data.map(this.processLocation);
         })
@@ -97,8 +104,5 @@ export const LocationInput = Vue.component("location-input", {
       }
       return null;
     },
-    text() {
-      return formatPlace(this.place);
-    }
-  }
+  },
 });
