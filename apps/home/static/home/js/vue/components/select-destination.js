@@ -1,7 +1,7 @@
-import {PopupSelect} from "./popup-select.js";
-import {destinationTypes} from "../../utils.js";
+import { PopupSelect } from "./popup-select.js";
+import { destinationTypes } from "../../utils.js";
 
-export const SelectDestination = Vue.component('select-destination', {
+export const SelectDestination = Vue.component("select-destination", {
   extends: PopupSelect,
   props: ['value'],
   data() {
@@ -10,13 +10,13 @@ export const SelectDestination = Vue.component('select-destination', {
     }
   },
   methods: {
-      select(value) {
-          this.$emit('select', value);
-          this.close();
-      }
+    select(value) {
+      this.$emit("select", value);
+      this.close();
+    }
   },
-  template: '#vue-select-destination-template',
-  delimiters: ['[[', ']]'],
+  template: "#vue-select-destination-template",
+  delimiters: ["[[", "]]"],
   computed: {
     text() {
       return this.destinationTypes[this.value];

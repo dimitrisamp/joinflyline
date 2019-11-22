@@ -74,8 +74,13 @@
         left: 0;
         width: 100%;
         margin: 0;
-        .s-dropdown-list li:hover {
-          color: $white;
+        .s-dropdown-list {
+          max-height: 13rem;
+          overflow-y: auto;
+          overflow-x: hidden;
+          li:hover {
+            color: $white;
+          }
         }
       }
 
