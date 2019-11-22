@@ -1,3 +1,4 @@
+{% load static %}
 <script type="text/x-template" id="vue-airport-input-template">
     <div class="search-outer" :class="{shadowsrch: focused}">
         <div class="spacer"/>
@@ -16,7 +17,8 @@
                         @click="choose(index)"
                         :class="place.type">
                         <div class="dropdown-icon">
-                            <i class="fa fa-plane"></i>
+                            <i v-if="place.type === 'city'" class="fa fa-plane"></i>
+                            <img class="airport__icon" v-else src="{% static "home/img/skyline.png" %}" alt="airport "> 
                         </div>
                         <div v-text="formatPlace(place)"/>
                     </li>
