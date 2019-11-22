@@ -1,5 +1,8 @@
 export const Wizard = Vue.component("wizard", {
   template: "#vue-wizard-template",
+  metaInfo: {
+    title: "Get Started | FlyLine"
+  },
   data() {
     return {
       step: 1,
@@ -30,6 +33,7 @@ export const Wizard = Vue.component("wizard", {
     }
   },
   methods: {
+    ...Vuex.mapActions(["authenticate"]),
     prevStep() {
       this.step = 1;
     },
@@ -46,6 +50,7 @@ export const Wizard = Vue.component("wizard", {
       });
     },
     verifyEmail(callback) {
+      if (this.emailInvalid) return;
       let url = new URL("/auth/check-user/", window.location.href);
       let searchParams = {
         email: this.form.email
@@ -72,7 +77,7 @@ export const Wizard = Vue.component("wizard", {
       this.form.plan = this.$route.params.plan || value;
     },
     updatePlaceFrom(value) {
-      this.form.home_airport = value.name;
+      this.form.home_airport = value;
     },
     submit() {
       if (!this.isStep2Complete) return;
@@ -82,7 +87,11 @@ export const Wizard = Vue.component("wizard", {
         formData.append("csrfmiddlewaretoken", csrfmiddlewaretoken);
         for (let k in this.form) {
           if (this.form[k]) {
-            formData.append(k, this.form[k]);
+            if (k === "home_airport") {
+              formData.append(k, JSON.stringify(this.form[k]));
+            } else {
+              formData.append(k, this.form[k]);
+            }
           }
         }
         fetch(getStartedUrl, {
@@ -95,8 +104,12 @@ export const Wizard = Vue.component("wizard", {
               fetch("/auth/user-info/")
                 .then(response => response.json())
                 .then(data => {
-                  this.$store.commit("updateUser", data);
-                  this.$router.push({ name: "account" });
+                  this.authenticate({
+                    email: this.form.email,
+                    password: this.form.password,
+                    router: this.$router,
+                    name: 'account'
+                  });
                 });
             } else {
               window.alert(JSON.stringify(data));
@@ -106,6 +119,9 @@ export const Wizard = Vue.component("wizard", {
     }
   },
   computed: {
+    emailInvalid() {
+      return this.form.email.length > 0 && !this.form.email.includes("@");
+    },
     isStep1Complete() {
       return (
         this.form.home_airport !== "" &&

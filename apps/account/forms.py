@@ -1,5 +1,6 @@
 from django import forms
 from django.conf import settings
+from django.contrib.postgres.forms import JSONField
 
 from apps.account.enums import Gender
 from creditcards.forms import CardNumberField, CardExpiryField, SecurityCodeField
@@ -17,7 +18,7 @@ class ProfileForm(forms.Form):
 
 
 class WizardForm(forms.Form):
-    home_airport = forms.CharField()
+    home_airport = JSONField()
     email = forms.EmailField()
     password = forms.CharField(widget=forms.PasswordInput)
     first_name = forms.CharField()
