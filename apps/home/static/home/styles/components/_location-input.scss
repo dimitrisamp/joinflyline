@@ -59,6 +59,7 @@
     background: white;
     width: calc(100% + 1.5rem);
     box-shadow: 1px 1px 17px #ccc;
+    border: 2px solid $primary;
     z-index: 120;
     @include mqr(md) {
       position: fixed;
@@ -70,7 +71,10 @@
       width: 100%;
     }
   }
-
+  
+  .list-Sdown li.airport {
+    padding-left: 2rem;
+  }
 
   .spacer {
     min-height: calc(1.5em + 0.75rem + 2px);
@@ -108,5 +112,14 @@
       border-radius: 0;
       padding: 20px 1em;
     }
+  }
+}
+
+
+// icons
+.airport {
+  &__icon {
+    width: auto;
+    height: 1.4rem;
   }
 }

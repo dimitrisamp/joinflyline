@@ -39,15 +39,18 @@
                 <input type="text" id="return_date"
                        aria-describedby="basic-addon3"
                        class="form-control search-input"
+                       data-return="Ret"
                        v-model="form.return_date"/>
             </div>
         </div>
     </div>
     <div v-if="$mq !== 'sm'" class="dealform__filters">
         <div class="filter-field">
-            <b>Filters (Optional)</b>
-            <button class="clear-filters" @click="clearFiltersAndUpdate"><i
-                    class="fa fa-close"></i></button>
+            <span>Filters (Optional)</span>
+            <button class="clear-filters" @click="clearFiltersAndUpdate">
+                <!-- <i class="fa fa-close"></i> -->
+                clear
+            </button>
         </div>
         <div class="filter-devider"></div>
         <airline-filter :data="form.airlines" @select="toggleAirline"/>
