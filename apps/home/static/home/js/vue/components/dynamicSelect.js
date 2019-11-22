@@ -9,7 +9,7 @@ Vue.component('dynamic-select', {
     delimiters: ['{(', ')}'],
     methods: {
         loadData() {
-            fetch('/subscriptions/plan/').then(
+            fetch('/api/subscriptions/plan/').then(
                 response=>response.json()
             ).then(
                 data=>{
