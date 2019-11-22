@@ -25,6 +25,7 @@ from django.views import View
 from django.views.generic import TemplateView
 from rest_framework import routers
 
+from apps.account.viewsets import AccountViewSet, FrequentFlyerViewSet, ProfileViewSet
 from apps.booking.views import (
     CheckFlightsView,
     SaveBookingView,
@@ -32,6 +33,7 @@ from apps.booking.views import (
     RetailBookingView,
 )
 from apps.booking.viewsets import BookingViewSet, FlightViewSet
+from apps.common.user_router import UserRouter
 from apps.emails.views import booking_success
 from apps.home.views import (
     index_view,
@@ -50,6 +52,11 @@ router = routers.DefaultRouter()
 router.register(r'users', UserViewSet)
 router.register(r'bookings', BookingViewSet, basename='bookings')
 router.register(r'flight', FlightViewSet)
+
+user_router = UserRouter()
+user_router.register(r'account', AccountViewSet, basename='account')
+user_router.register(r'frequentflyer', FrequentFlyerViewSet, basename='frequentflyer')
+user_router.register(r'profile', ProfileViewSet, basename='profile')
 
 
 class SiteMapView(View):
@@ -71,8 +78,6 @@ urlpatterns = [
     # Home page links
     path("", index_view, name="index"),
     path("home/", home_view, name="home"),
-    # Accounts page urls
-    path("account/", include("apps.account.urls")),
     # Corporate urls
     path("corporates/", include("apps.corporate.urls")),
     # Auth urls
@@ -101,6 +106,7 @@ urlpatterns = [
         "savings-explained/", SavingsExplainedView.as_view(), name="savings-explained"
     ),
     re_path("^api/", include(router.urls)),
+    re_path("^api/users/me/", include(user_router.urls)),
 ]
 
 if settings.STAGE == "local" and os.getenv("DEBUG_TOOLBAR", "false").lower() in (

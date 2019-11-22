@@ -54,6 +54,10 @@ export function formatDate(value) {
   return moment.utc(value).format("D MMM");
 }
 
+export function formatDateFull(value) {
+  return moment.utc(value).format("MM/DD/YYYY");
+}
+
 export function timeInterval(route) {
   const utc_departure = new Date(route.utc_departure);
   const utc_arrival = new Date(route.utc_arrival);
