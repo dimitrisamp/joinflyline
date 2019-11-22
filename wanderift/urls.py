@@ -108,7 +108,7 @@ urlpatterns = [
         "savings-explained/", SavingsExplainedView.as_view(), name="savings-explained"
     ),
     re_path("^api/", include(router.urls)),
-    re_path("^api/", include(user_router.urls)),
+    re_path("^api/users/me/", include(user_router.urls)),
 ]
 
 if settings.STAGE == "local" and os.getenv("DEBUG_TOOLBAR", "false").lower() in (

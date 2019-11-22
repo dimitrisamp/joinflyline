@@ -20,35 +20,38 @@
           <div class="col-12 col-xl-7">
             <form action="">
               <div class="row">
+                  <!--
                 <div class="col-12 col-lg-6">
                   <input type="text" class="form-control" placeholder="Email Address" />
                 </div>
                 <div class="col-12 col-lg-6">
-                  <input type="password" class="form-control" placeholder="Password" />
+                </div>
+                -->
+                <div class="col-12 col-lg-6">
+                  <input type="text" class="form-control" placeholder="First Name" v-model="user.first_name" />
                 </div>
                 <div class="col-12 col-lg-6">
-                  <input type="text" class="form-control" placeholder="First Name" />
+                  <input type="text" class="form-control" placeholder="Last Name"  v-model="user.last_name"/>
                 </div>
                 <div class="col-12 col-lg-6">
-                  <input type="text" class="form-control" placeholder="Last Name" />
+                  <input type="date" class="form-control" id="#dob" placeholder="Date of Birth" v-model="profile.dob" />
                 </div>
                 <div class="col-12 col-lg-6">
-                  <input type="text" class="form-control" placeholder="Date of Birth" />
+                    <select v-model="profile.gender">
+                        <option value="0">Male</option>
+                        <option value="1">Female</option>
+                    </select>
                 </div>
                 <div class="col-12 col-lg-6">
-                  <input type="text" class="form-control" placeholder="Gender" />
+                    <location-input :prompt="''" @place-selected="updateHomeAirport" />
                 </div>
                 <div class="col-12 col-lg-6">
-                  <input type="text" class="form-control" placeholder="Home City" />
+                  <input type="phone" class="form-control" placeholder="Phone Number" v-model="profile.phone_number" />
                 </div>
                 <div class="col-12 col-lg-6">
-                  <input type="number" class="form-control" placeholder="Phone Number" />
                 </div>
                 <div class="col-12 col-lg-6">
-                  <input type="text" class="form-control mb-4" placeholder="Basic Plan - $6.99/mo " />
-                </div>
-                <div class="col-12 col-lg-6">
-                  <input type="text" class="form-control mb-4" placeholder="TSA Precheck Number" />
+                  <input type="text" class="form-control mb-4" placeholder="TSA Precheck Number" v-model="profile.tsa_precheck_number"/>
                 </div>
                 <div class="col-12 col-lg-6 ml-auto text-right mb-4">
                   <button type="submit" class="btn btn-primary">Save Traveler Information</button>
@@ -70,43 +73,13 @@
           </div>
           <div class="col-12 col-xl-7">
             <form action="">
-              <div class="row">
-                <div class="col-12 col-lg-6">
-                  <input type="text" class="form-control" placeholder="American Airlines" />
-                </div>
-                <div class="col-12 col-lg-6">
-                  <input type="text" class="form-control" placeholder="Delta Airlines" />
-                </div>
-                <div class="col-12 col-lg-6">
-                  <input type="text" class="form-control" placeholder="United Airlines" />
-                </div>
-                <div class="col-12 col-lg-6">
-                  <input type="text" class="form-control" placeholder="Alaska Airlines" />
-                </div>
-                <div class="col-12 col-lg-6">
-                  <input type="text" class="form-control" placeholder="Southwest Airlines" />
-                </div>
-                <div class="col-12 col-lg-6">
-                  <input type="text" class="form-control" placeholder="JetBlue" />
-                </div>
-                <div class="col-12 col-lg-6">
-                  <input type="text" class="form-control" placeholder="Sun Country Airlines" />
-                </div>
-                <div class="col-12 col-lg-6">
-                  <input type="text" class="form-control" placeholder="Spirit Airlines" />
-                </div>
-                <div class="col-12 col-lg-6">
-                  <input type="text" class="form-control mb-4" placeholder="Frontier Airlines" />
-                </div>
-                <div class="col-12 col-lg-6">
-                  <input type="text" class="form-control mb-4" placeholder="Allegiant Airlines" />
-                </div>
-                <div class="col-12 col-lg-6  ml-auto text-right">
-                  <input type="text" class="form-control mb-4" placeholder="Hawaiian Airlines" />
+              <div class="row" v-if="frequentflyer_ready">
+                <div v-for="(label, value) in frequentFlyerNames" class="col-12 col-lg-6">
+                  <input type="text" class="form-control" :placeholder="label" v-model="frequentflyer[value]"/>
                 </div>
                 <div class="w-100"></div>
                 <div class="col-12 col-lg-6 ml-auto text-right mb-4">
-                  <button type="submit" class="btn btn-primary">Save Frequent Flyer Information</button>
+                  <button type="submit" class="btn btn-primary" @click.prevent="saveFrequentFlyer">Save Frequent Flyer Information</button>
                 </div>
               </div>
             </form>

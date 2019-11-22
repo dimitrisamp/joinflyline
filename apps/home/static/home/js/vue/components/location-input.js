@@ -4,6 +4,10 @@ const DEFAULT_PROMPT = "Enter location";
 
 export const LocationInput = Vue.component("location-input", {
   props: {
+    initialValue: {
+      type: Object,
+      required: false,
+    },
     prompt: {
       type: String,
       required: false,
