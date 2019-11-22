@@ -227,7 +227,11 @@ export function getQuickLinksData(flights) {
   }
   const data = flights.map(f => ({
     price: f.conversion.USD,
-    duration: f.duration.total,
+    duration: Math.min(
+      ...[f.duration.departure, f.duration.return].filter(v => {
+        return typeof v === "number";
+      })
+    ),
     quality: f.quality,
     date: new Date(f.local_departure)
   }));
