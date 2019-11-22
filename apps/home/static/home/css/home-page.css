@@ -130,7 +130,7 @@ header.sticky {
 }
 
 .navbar-light .btn {
-  font-family: Dona-Bold;
+  font-family: Dona-Black;
   color: #00aeef;
 }
 
@@ -711,7 +711,7 @@ header.sticky {
 }
 
 .airlines-labels label span {
-  font-size: 15px;
+  font-size: 13px;
   margin: 6px 0;
 }
 
@@ -1974,7 +1974,6 @@ This one is disabled until top blue line is back
   }
 
   .navbar-light .btn {
-    font-family: Dona-Bold;
     color: #00aeef;
     width: 100%;
     text-align: left;
@@ -2560,10 +2559,11 @@ This one is disabled until top blue line is back
   border: 2px solid #00b7ff;
   color: #000;
   margin-bottom: 10px;
+  font-family: Dona-Black;
 }
 
 .flight-modal {
-  max-width: 350px;
+  max-width: 400px;
 }
 
 .close-btn-popup {

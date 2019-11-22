@@ -1,3 +1,10 @@
+.overview,
+.trips {
+  .col-12 {
+    margin-bottom: 1.875rem;
+  }
+}
+
 .tile {
   border-color: $gray;
   border-style: solid;
@@ -5,6 +12,7 @@
   min-height: 14rem;
   margin-bottom: 1.875rem;
   position: relative;
+  height: 100%;
   &::before {
     position: absolute;
     top: 0;
@@ -142,6 +150,13 @@
   &--flights {
     .tile__body {
       background-color: $white;
+    }
+  }
+
+  &--estimated {
+    .tile__body-bottom {
+      color: $savings-explained-text;
+      font-size: 0.75rem;
     }
   }
 }
