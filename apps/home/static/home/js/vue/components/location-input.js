@@ -6,7 +6,7 @@ export const LocationInput = Vue.component("location-input", {
   props: {
     initialValue: {
       type: Object,
-      required: false,
+      required: false
     },
     prompt: {
       type: String,
@@ -31,8 +31,7 @@ export const LocationInput = Vue.component("location-input", {
       searchResults: [],
       requestProgress: false,
       searchProgress: false,
-      selectedIndex: 0,
-      text: "",
+      selectedIndex: 0
     };
   },
   methods: {
@@ -41,21 +40,31 @@ export const LocationInput = Vue.component("location-input", {
       this.focused = true;
       this.$nextTick(() => {
         e.target.focus();
-        if (this.$mq === 'sm') {
+        e.target.select();
+        if (this.$mq === "sm") {
           e.target.parentElement.scrollIntoView();
-          e.target.setAttribute('autofocus', 'autofocus');
+          e.target.setAttribute("autofocus", "autofocus");
         }
-      })
+      });
     },
     onBlurred() {
-      setTimeout(_ => this.focused = false, 150)
+      setTimeout(_ => (this.focused = false), 150);
       this.searchProgress = false;
     },
     choose(i) {
       this.selectedIndex = i;
       this.searchProgress = false;
-      this.text = formatPlace(this.place);
-      this.$emit('place-selected', this.place);
+      this.$emit("place-selected", this.place);
+    },
+    processLocation(loc) {
+      let value = { type: loc.type, code: loc.code, name: loc.name };
+      if (loc.type === "city") {
+        value.subdivision = {
+          name: loc.subdivision ? loc.subdivision.name : null
+        };
+        value.country = { code: loc.country.code };
+      }
+      return value;
     },
     onInput: debounce(function() {
       if (this.text === null || this.text.length < 3) {
@@ -67,7 +76,7 @@ export const LocationInput = Vue.component("location-input", {
       const that = this;
       locationSearch(that.text)
         .then(data => {
-          that.searchResults = data;
+          that.searchResults = data.map(this.processLocation);
         })
         .finally(() => {
           that.requestProgress = false;
@@ -78,6 +87,18 @@ export const LocationInput = Vue.component("location-input", {
   template: "#vue-airport-input-template",
   delimiters: ["[[", "]]"],
   computed: {
-    place() { return this.searchResults.length>0?this.searchResults[this.selectedIndex]:null },
+    place() {
+      if (this.searchResults.length > 0) {
+        return this.searchResults[this.selectedIndex];
+      } else {
+        if (this.initialValue) {
+          return this.initialValue;
+        }
+      }
+      return null;
+    },
+    text() {
+      return formatPlace(this.place);
+    }
   }
 });

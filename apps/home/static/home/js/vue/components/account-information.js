@@ -1,4 +1,5 @@
 import api from "../http.js";
+import { formatDateFull } from "../../utils.js";
 
 const frequentFlyerNames = {
   american_airlines: "American Airlines",
@@ -26,7 +27,8 @@ export const AccountInformation = Vue.component("account-information", {
       account: {},
       profile: {},
       frequentflyer: {},
-      user: {}
+      user: {},
+      dobText: ""
     };
   },
   delimiters: ["[[", "]]"],
@@ -37,6 +39,9 @@ export const AccountInformation = Vue.component("account-information", {
     });
     api.get("/users/me/profile/").then(response => {
       this.profile = response.data;
+      this.dobText = response.data.dob
+        ? formatDateFull(new Date(response.data.dob))
+        : "";
       this.profile_ready = true;
     });
     api.get("/users/me/frequentflyer/").then(response => {
@@ -50,17 +55,45 @@ export const AccountInformation = Vue.component("account-information", {
   },
   methods: {
     updateHomeAirport(value) {
-      this.account.market = value;
+      this.profile.market = value;
+    },
+    setDOB(value) {
+      this.profile.dob = value.format().slice(0, 10);
     },
     saveFrequentFlyer() {
       api
         .patch("/users/me/frequentflyer/", this.frequentflyer)
-        .then(response => (this.frequentflyer = response.data));
+        .then(response => {
+          this.frequentflyer = response.data;
+        });
+    },
+    saveAccount() {
+      api.patch("/users/me/profile/", this.profile).then(response => {
+        this.profile = response.data;
+        this.dobText = response.data.dob
+          ? formatDateFull(new Date(response.data.dob))
+          : "";
+      });
+      api.patch("/users/me/account/", this.account).then(response => {
+        this.account = response.data;
+      });
+      api.patch("/users/me/", this.user).then(response => {
+        this.user = response.data;
+      });
     }
   },
   computed: {
     frequentFlyerNames() {
       return frequentFlyerNames;
     }
+  },
+  mounted() {
+    const that = this;
+    new Lightpick({
+      field: this.$refs.dob,
+      onSelect(value) {
+        that.setDOB(value);
+      }
+    });
   }
 });

@@ -1,4 +1,5 @@
 from django.contrib.auth.models import User
+from django.contrib.postgres.fields import JSONField
 from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
@@ -28,7 +29,7 @@ class Account(models.Model):
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=5, blank=True)
-    market = models.CharField(max_length=30, blank=True)
+    market = JSONField(null=True)
     gender = enum.EnumField(enums.Gender)
     phone_number = models.CharField(max_length=20, blank=True)
     secret = models.CharField(max_length=16, blank=True)

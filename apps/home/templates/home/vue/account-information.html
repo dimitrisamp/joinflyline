@@ -34,7 +34,7 @@
                   <input type="text" class="form-control" placeholder="Last Name"  v-model="user.last_name"/>
                 </div>
                 <div class="col-12 col-lg-6">
-                  <input type="date" class="form-control" id="#dob" placeholder="Date of Birth" v-model="profile.dob" />
+                  <input type="text" class="form-control" ref="dob" placeholder="Date of Birth" v-model="dobText" />
                 </div>
                 <div class="col-12 col-lg-6">
                     <select v-model="profile.gender">
@@ -43,7 +43,7 @@
                     </select>
                 </div>
                 <div class="col-12 col-lg-6">
-                    <location-input :prompt="''" @place-selected="updateHomeAirport" />
+                    <location-input :prompt="''" @place-selected="updateHomeAirport" :initial-value="profile.market" />
                 </div>
                 <div class="col-12 col-lg-6">
                   <input type="phone" class="form-control" placeholder="Phone Number" v-model="profile.phone_number" />
@@ -54,7 +54,7 @@
                   <input type="text" class="form-control mb-4" placeholder="TSA Precheck Number" v-model="profile.tsa_precheck_number"/>
                 </div>
                 <div class="col-12 col-lg-6 ml-auto text-right mb-4">
-                  <button type="submit" class="btn btn-primary">Save Traveler Information</button>
+                  <button type="submit" class="btn btn-primary" @click="saveAccount">Save Traveler Information</button>
                 </div>
               </div>
             </form>
