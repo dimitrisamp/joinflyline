@@ -34,5 +34,6 @@ Vue.component('search-info-mobile', {
         dateTo() {
             return formatDate(this.form.return_date_data);
         },
+        ...Vuex.mapGetters(['cityFromTo']),
     }
 });
