@@ -2,6 +2,7 @@ import stripe
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.utils.timezone import now
+from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
@@ -88,5 +89,6 @@ def card_token(card_number, expiry, cvc):
 
 
 class Plans(APIView):
+    permission_classes = [AllowAny]
     def get(self, request):
         return Response(settings.SUBSCRIPTION_PLANS)

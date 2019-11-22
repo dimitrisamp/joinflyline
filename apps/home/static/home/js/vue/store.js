@@ -153,7 +153,7 @@ export const store = new Vuex.Store({
           context.commit("setUser", response.data);
         })
         .catch(err => {
-          if (err.response.status === 404) {
+          if (err.response.status === 401) {
             context.commit("setUser", { anonymous: true });
           }
         });
