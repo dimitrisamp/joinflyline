@@ -5,3 +5,21 @@
     border-color: $primary
   }
 }
+
+
+.btn {
+  &.btn-outline {
+    color: $primary;
+    border-radius: 0;
+    font-size: 18px;
+    padding: 9px 2rem 7px 2rem;
+    font-weight: 600;
+    font-family: $dona-black;
+    border: 2px solid $primary;
+    max-width: 100%;
+    &:hover {
+      background-color: $primary;
+      color: $white;
+    }
+  }
+}

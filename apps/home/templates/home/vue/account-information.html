@@ -1,3 +1,4 @@
+{% load static %}
 <script type="text/x-template" id="vue-account-information-template">
   <div class="account-information">
 
@@ -37,10 +38,15 @@
                   <input type="text" class="form-control" ref="dob" placeholder="Date of Birth" v-model="dobText" />
                 </div>
                 <div class="col-12 col-lg-6">
-                    <select v-model="profile.gender">
+                  <div class="account__select">
+                    <select class="form-control account__select-input" v-model="profile.gender">
                         <option value="0">Male</option>
                         <option value="1">Female</option>
                     </select>
+                    <div class="account__arrow">
+                      <img src="{% static "images/icons/down-arrow.png" %}" alt="Pull down" width="17" >
+                    </div>
+                  </div>
                 </div>
                 <div class="col-12 col-lg-6">
                     <location-input :prompt="''" @place-selected="updateHomeAirport" :initial-value="profile.market" />
