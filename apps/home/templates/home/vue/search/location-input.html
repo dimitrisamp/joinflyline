@@ -18,7 +18,7 @@
                         :class="place.type">
                         <div class="dropdown-icon">
                             <i v-if="place.type === 'airport'" class="fa fa-plane"></i>
-                            <img class="airport__icon" v-else src="{% static "home/img/skyline.png" %}" alt="airport "> 
+                            <img class="airport__icon" v-else src="{% static "home/img/building.png" %}" alt="airport ">
                         </div>
                         <div v-text="formatPlace(place)"/>
                     </li>
