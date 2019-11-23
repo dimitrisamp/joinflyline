@@ -2,11 +2,6 @@ export const Sidebar = {
     template: '#vue-sidebar-template',
     delimiters: ['[[', ']]'],
     name: 'sidebar',
-    watch: {
-        '$route' () {
-            this.$store.dispatch('toggleSidebar')
-        }
-    },
     methods: {
         ...Vuex.mapActions(['logOut']),
     },
@@ -28,5 +23,10 @@ export const Sidebar = {
             }
         },
         ...Vuex.mapState(['user', 'plans']),
+    },
+    methods: {
+        handleSidebarLinkClick() {
+            this.$store.dispatch('toggleSidebar')
+        }
     }
 };
