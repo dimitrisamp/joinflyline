@@ -303,18 +303,23 @@ export function getSearchURL(form) {
   return url;
 }
 
-
 export function showPopup() {
   $("#search-results-popup").modal();
 }
-
 
 export function pick(a) {
   if (a.length === 0) return null;
   return a[Math.floor(Math.random() * a.length)];
 }
 
-
 export function stripAirlines(name) {
   return name.split(' ').filter(o=>o.toLowerCase() !== 'airlines').join(' ')
+}
+
+/**
+ * Manually remove boostrap modal overlay
+ */
+export function removeBModalOverlay() {
+  document.body.classList.remove('modal-open');
+  document.querySelector('.modal-backdrop').remove();
 }
