@@ -38,9 +38,9 @@
              v-cloak
              v-if="!searchProgress && searchResults.length !== 0">
 
-            <flight v-for="flight in searchResults"
+            <flight v-for="(flight, i) in searchResults"
                     :flight="flight" :form="form" :user="user"
-                    :key="flight.id" @showPopup="showPopup"></flight>
+                    :key="flight.id" @showPopup="showPopup" @proceed-to-booking="bookFlight(i)"></flight>
 
             <div class="h-btngroups">
                 <a class="btn btn-default" href="#"

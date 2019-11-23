@@ -7,7 +7,6 @@ import {
     secs2hm,
     staticUrl,
     timeInterval,
-    proceedToBooking,
 } from '../../utils.js';
 
 
@@ -29,14 +28,13 @@ Vue.component('flight', {
             const infantsText = valInfants === 0 ? '' : `${valInfants} Infant${valInfants > 1 ? 's' : ''}`;
             return [adultsText, childrenText, infantsText].filter((v) => v.length > 0).join(', ');
         },
-        bookFlight(flight) {
+        bookFlight(index) {
             if (this.user.anonymous) {
                 this.$emit('showPopup');
             } else {
-                this.proceedToBooking(flight);
+                this.$emit('proceed-to-booking');
             }
         },
-        proceedToBooking,
         toggleCollapsed() {
             this.collapsed = !this.collapsed;
         },

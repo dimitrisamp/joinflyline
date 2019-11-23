@@ -35,7 +35,8 @@ export const store = new Vuex.Store({
     searchResults: [],
     quickFiltersData: null,
     toggleSidebar: false,
-    searchProgress: false
+    searchProgress: false,
+    searchResultIndex: null,
   },
   mutations: {
     setQuickFiltersData(state, value) {
@@ -119,6 +120,9 @@ export const store = new Vuex.Store({
     },
     setSearchProgress(state, value) {
       state.searchProgress = value;
+    },
+    setSearchResultIndex(state, value) {
+      state.searchResultIndex = value;
     },
     setAirlines(state, value) {
       state.form.airlines = value;
@@ -215,6 +219,7 @@ export const store = new Vuex.Store({
       if (clearFilters) {
         context.commit("clearFilters");
       }
+      context.commit('setSearchResultIndex', null);
       context.commit("setSearchProgress", true);
       fetch(getSearchURL(context.state.form), {
         headers: { apikey: "xklKtpJ5fxZnk4rsDepqOzLUaYYAO9dI" }
@@ -265,6 +270,10 @@ export const store = new Vuex.Store({
         return `${airlinesText} and ${others} more`;
       }
       return airlinesText;
+    },
+    flightToBook(state) {
+      if (state.searchResultIndex === null) return null;
+      return state.searchResults[state.searchResultIndex];
     }
   }
 });

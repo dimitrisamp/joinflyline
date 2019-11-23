@@ -10,6 +10,7 @@ import {AccountInformation} from "./components/account-information.js";
 import {ResultComponent} from "./components/result-component.js";
 import {SearchResultsPage} from "./components/search-results-page.js";
 import {SignIn} from "./components/sign-in.js"
+import {BookingPage} from "./components/booking-page.js";
 
 const routes = [
   {
@@ -50,7 +51,12 @@ const routes = [
         path: 'account',
         name: 'account',
         component: AccountInformation
-      }
+      },
+      {
+        path: 'booking',
+        name: 'booking',
+        component: BookingPage,
+      },
     ]
   },
   {
