@@ -1,5 +1,9 @@
 <script type="text/x-template" id="vue-search-results-page-template">
   <div class="search-result" id="main" v-cloak>
+      <!-- Search progress -->
+      <search-progress :is-visible="searchProgress">
+        Give us a few moments while we load your search results
+      </search-progress>
       <!-- Mobile View Start   -->
       <div class="search-result__mobile" v-if="searchResults.length !== 0 && isMobile && !searchProgress && !backToForm">
         <search-results-mobile/>
