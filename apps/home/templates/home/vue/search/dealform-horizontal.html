@@ -19,7 +19,7 @@
         <div class="hero-search__item is-wide">
           <div class="input-group input-group-sm search-dropdown">
             <location-input
-              :prompt="'Departure City'"
+              :prompt="'From:'"
               :promptMobile="'From Where?'"
               @place-selected="updatePlaceFrom"
             />
@@ -28,7 +28,7 @@
         <div class="hero-search__item is-wide">
           <div class="input-group input-group-sm search-dropdown">
             <location-input
-              :prompt="'Arrival City'"
+              :prompt="'To:'"
               :promptMobile="'To Where?'"
               @place-selected="updatePlaceTo"
             />
@@ -39,7 +39,7 @@
             class="input-group input-group-sm search-dropdown home-date-field-dep"
           >
             <div class="dat-blue-border dep-date">
-              <span class="input-group-text search-form-input">Dep</span>
+              <span class="input-group-text search-form-input">Dep:</span>
               <input
                 type="text"
                 id="departure_date"
@@ -57,7 +57,7 @@
               class="input-group input-group-sm search-dropdown home-date-field-ret"
             >
               <div class="dat-blue-border ret-date">
-                <span class="input-group-text search-form-input">Ret</span>
+                <span class="input-group-text search-form-input">Ret:</span>
                 <input
                   type="text"
                   id="return_date"

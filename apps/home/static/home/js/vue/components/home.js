@@ -19,6 +19,7 @@ export const Home = {
       });
     }
   },
+
   methods: {
     calcHeightOfHeader() {
       const headerEl = document.querySelector('.header');
