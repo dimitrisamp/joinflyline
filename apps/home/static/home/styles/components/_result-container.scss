@@ -1,5 +1,15 @@
 .result__container {
-  background-image: url(../img/headerbackground.png);
+  position: relative;
+  &::before {
+    position: absolute;
+    top: -2.3875rem;
+    content: '';
+    background-image: url(../img/headerbackground.png);
+    width: calc(100% + 2rem);
+    left: -2rem;
+    background-position: bottom;
+    height: calc(100% + 2.3875rem);
+  }
   .result__filters {
     .tile__body {
       .airline-f-dropdown {

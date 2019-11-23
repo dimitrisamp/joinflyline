@@ -13,18 +13,18 @@
     </div>
 
     <div class="input-group input-group-sm search-dropdown-outer">
-        <location-input :prompt="'Departure City'" :promptMobile="'From Where?'"
+        <location-input :prompt="'From:'" :promptMobile="'From Where?'"
                         @place-selected="updatePlaceFrom"/>
     </div>
     <div class="input-group input-group-sm search-dropdown-outer">
-        <location-input :prompt="'Arrival City'" :promptMobile="'To Where?'"
+        <location-input :prompt="'To:'" :promptMobile="'To Where?'"
                         @place-selected="updatePlaceTo"/>
     </div>
 
     <div class="h-dealform__dates">
         <div class="input-group input-group-sm search-dropdown">
             <div class="bg-white-close-holes">
-                <span class="input-group-text search-form-input">Dep</span>
+                <span class="input-group-text search-form-input">Dep:</span>
                 <input type="text" id="departure_date"
                        aria-describedby="basic-addon3"
                        class="form-control search-input"
@@ -35,7 +35,7 @@
         <div v-if="form.destinationTypeId === 'round'"
              class="input-group input-group-sm search-dropdown">
             <div class="bg-white-close-holes">
-                <span class="input-group-text search-form-input">Ret</span>
+                <span class="input-group-text search-form-input">Ret:</span>
                 <input type="text" id="return_date"
                        aria-describedby="basic-addon3"
                        class="form-control search-input"
