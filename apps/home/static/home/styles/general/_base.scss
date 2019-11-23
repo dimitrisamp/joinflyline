@@ -27,17 +27,3 @@ hr + .main-padding {
   transform: translateX(-2rem);
   opacity: 0;
 }
-
-
-.result__container {
-  position: relative;
-  &::before {
-    position: absolute;
-    top: -2.3875rem;
-    content: '';
-    background-image: url(../img/headerbackground.png);
-    width: calc(100% + 2rem);
-    left: -2rem;
-    background-position: bottom;
-  }
-}

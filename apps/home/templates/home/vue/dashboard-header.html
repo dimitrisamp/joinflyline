@@ -1,22 +1,20 @@
 <script type="text/x-template" id="vue-dashboard-header-template">
     <header class="main-header">
         <div class="main-header__top">
-            <div class="row">
-                <select-destination :value="form.destinationTypeId"
-                                    @select="setDestinationType"/>
-                <select-passenger-count/>
-                <select-seat-type :value="form.seatType" @select="setSeatType"/>
-            </div>
+            <select-destination :value="form.destinationTypeId"
+                                @select="setDestinationType"/>
+            <select-passenger-count/>
+            <select-seat-type :value="form.seatType" @select="setSeatType"/>
         </div>
         <div class="main-header__bottom">
             <form action="">
                 <div class="search-form-field__container">
-                    <location-input :prompt="'Departure City'"
+                    <location-input :prompt="'From:'"
                                     :promptMobile="'From Where?'"
                                     @place-selected="updatePlaceFrom"/>
                 </div>
                 <div class="search-form-field__container">
-                    <location-input :prompt="'Arrival City'" :promptMobile="'To Where?'"
+                    <location-input :prompt="'To:'" :promptMobile="'To Where?'"
                                     @place-selected="updatePlaceTo"/>
                 </div>
                 <div class="search-form-field__container">

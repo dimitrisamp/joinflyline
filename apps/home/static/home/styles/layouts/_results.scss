@@ -32,7 +32,7 @@
       padding-left: 1rem;
       padding-right: 1rem;
       @include mq(xl) {
-        flex: 0 0 45%;
+        flex: 0 0 40%;
         padding-left: calc(100% / 2 - 1140px / 2 + 15px);
         height: 100vh;
         position: sticky;
@@ -125,7 +125,7 @@
 
       .search-flight-home h3 {
         font-family: $dona-black;
-        font-size: 2rem;
+        font-size: 1.5rem;
       }
     }
 
@@ -136,7 +136,7 @@
       padding-left: 1rem;
       padding-right: 1rem;
       @include mq(xl) {
-        flex: 0 0 55%;
+        flex: 0 0 60%;
         padding-right: calc(100% / 2 - 1140px / 2 + 15px);
       }
     }
