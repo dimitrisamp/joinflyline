@@ -12,6 +12,7 @@
               <router-link :to="{name: 'sign-in'}" class="btn btn-default">Log In</router-link>
               <router-link
                 data-dismiss="modal"
+                v-on:click.native="handleGetStarted"
                :to="{name: 'get-started'}" class="btn btn-default">Get
                   Started
               </router-link>
