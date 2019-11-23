@@ -36,8 +36,11 @@ export const LocationInput = Vue.component("location-input", {
     };
   },
   watch: {
-    initialValue(value) {
-      this.text = formatPlace(this.initialValue);
+    initialValue: {
+      immediate: true,
+      handler (value) {
+        this.text = formatPlace(this.initialValue);
+      }
     }
   },
   methods: {

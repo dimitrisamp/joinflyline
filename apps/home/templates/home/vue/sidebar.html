@@ -2,7 +2,7 @@
 {% load static %}
 <script type="text/x-template" id="vue-sidebar-template">
   <aside class="sidebar" :class="{'sidebar--active': toggleSidebar}">
-    <button class="hamburger hamburger--slider" :class="{'is-active': toggleSidebar}" @click.prevent="$store.dispatch('toggleSidebar')">
+    <button class="hamburger hamburger--slider" :class="{'is-active': toggleSidebar}" @click.prevent="handleSidebarLinkClick">
       <span class="hamburger-box">
         <span class="hamburger-inner"></span>
       </span>
@@ -19,13 +19,13 @@
     <nav class="sidebar__nav">
       <ul class="sidebar__list">
         <li class="sidebar__item">
-          <router-link :to="{name: 'overview'}" class="sidebar__link">FlyLine Dashboard</router-link>
+          <router-link @click.native="handleSidebarLinkClick" :to="{name: 'overview'}" class="sidebar__link">FlyLine Dashboard</router-link>
         </li>
         <li class="sidebar__item">
-          <router-link :to="{name: 'trips'}" class="sidebar__link">Trip Activity</router-link>
+          <router-link @click.native="handleSidebarLinkClick" :to="{name: 'trips'}" class="sidebar__link">Trip Activity</router-link>
         </li>
         <li class="sidebar__item">
-          <router-link :to="{name: 'account'}" class="sidebar__link">Account Information</router-link>
+          <router-link @click.native="handleSidebarLinkClick" :to="{name: 'account'}" class="sidebar__link">Account Information</router-link>
         </li>
         <li class="sidebar__item">
           <a href="#" class="sidebar__link">Help, Coming Soon</a>
