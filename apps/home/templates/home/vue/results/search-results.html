@@ -1,5 +1,9 @@
 <script type="text/x-template" id="vue-search-results-template">
     <div>
+        <!-- Search progress -->
+        <search-progress :is-visible="searchProgress">
+            Give us a few moments while we load your search results
+        </search-progress>
         <quicklinks :sort="form.sort"
                     :data="quickFiltersData"
                     :airlinesFilter="form.airlinesFilter"
