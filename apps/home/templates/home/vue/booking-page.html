@@ -1,2 +1,36 @@
 <script type="text/x-template" id="vue-booking-page-template">
+    <div class="booking-page">
+        <div class="header">
+            <h3 class="header__title">[[ flightToBook.cityFrom ]] <span
+                    class="fa fa-long-arrow-right"></span> [[ flightToBook.cityTo ]]
+                <span v-if="flightToBook.roundtrip">and back</span></h3>
+            <p class="header__description">Confirm your trip details, enter your
+                traveler information, and enter your payment detail and you'll be
+                ready for
+                take off</p>
+        </div>
+        <div class="summary">
+            <h3 class="summary__heading">Trip Summary
+                <span>[[ flightToBook.nightsInDest ]] Night[[ flightToBook.nightsInDest > 1?'s':'' ]] Stay in [[ flightToBook.cityTo ]]</span>
+            </h3>
+            <!-- Flights -->
+            <div class="summary__flights">
+                <div class="summary__departure">
+                    <booking-flight-details v-for="flight in flightToBook.route"
+                                            v-if="!flight.return" :flight="flight"/>
+                </div>
+                <div class="summary__return">
+                    <booking-flight-details v-for="flight in flightToBook.route"
+                                            v-if="flight.return" :flight="flight"/>
+                </div>
+            </div>
+            <!-- End flights -->
+        </div>
+
+        <booking-totals :passenger_count="passenger_count"
+                        :passenger_price="flightToBook.conversion.USD"
+                        :baggage_price="baggage_price"
+                        :total_price="total_price"/>
+        <checkout-form :form="form" :total_price="total_price"/>
+    </div>
 </script>

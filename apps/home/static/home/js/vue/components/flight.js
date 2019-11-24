@@ -9,11 +9,9 @@ import {
     timeInterval,
 } from '../../utils.js';
 
-
-
 Vue.component('flight', {
     template: '#vue-flight-template',
-    props: ['flight', 'form', 'user'],
+    props: ['flight', 'form', 'user',],
     delimiters: ['{(', ')}'],
     data() {
         return {

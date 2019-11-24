@@ -1,0 +1,21 @@
+<script type="text/x-template" id="vue-booking-totals-template">
+    <div class="totals">
+        <h3 class="totals__heading">Trip Summary</h3>
+        <div class="totals__item">
+            <span class="totals__name">[[ passenger_count ]] Passenger[[ passenger_count > 1?'s':'' ]]</span>
+            <span class="totals__value">$[[ passenger_price ]]</span>
+        </div>
+        <div class="totals__item">
+            <span class="totals__name">Baggage</span>
+            <span class="totals__value">[[ baggage_price ]]</span>
+        </div>
+        <div class="totals__item">
+            <span class="totals__name">Automatic flight check-in</span>
+            <span class="totals__value--free">Free</span>
+        </div>
+        <div class="totals__grandtotal">
+            <span class="totals__name">Trip Total</span>
+            <span class="totals__value">$[[ total_price ]]</span>
+        </div>
+    </div>
+</script>

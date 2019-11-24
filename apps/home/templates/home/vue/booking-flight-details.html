@@ -1,0 +1,21 @@
+<script type="text/x-template" id="vue-booking-flight-details-template">
+  <div class="flight__details">
+      <h3 class="box-title">[[ flight.return?"Return":"Departure"]]</h3>
+      <ul class="clander-list">
+          <li>[[ formatDate(flight.date) ]]</li>
+          <li>Economy</li>
+          {# TODO: find way to display right fare class #}
+      </ul>
+
+      <div class="detail-box">
+          <p>[[ formatTime(flight.dep_time) ]]
+              <span>[[ flight.cityFrom ]] [[ flight.flyFrom ]]</span>
+          </p>
+          <p>[[ formatTime(flight.arr_time) ]]
+              <span>[[ flight.cityTo ]] [[ flight.flyTo ]]</span></p>
+          <img :src="airlineIcon(flight.airline)"
+               :alt="flight.airline">
+          <sub class="col-sub">[[ timeInterval(flight) ]]</sub>
+      </div>
+  </div>
+</script>
