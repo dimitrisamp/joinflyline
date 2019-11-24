@@ -17,9 +17,17 @@
     font-family: $dona-black;
     border: 2px solid $primary;
     max-width: 100%;
+    .nav-item & {
+      font-size: 12px;
+      padding: 9px 1.3rem 7px 1.3rem;
+    }
     &:hover {
       background-color: $primary;
       color: $white;
+    }
+    &--blue {
+      background-color: $primary;
+      color: $white !important;
     }
   }
 }
