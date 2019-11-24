@@ -11,11 +11,17 @@ import {ResultComponent} from "./components/result-component.js";
 import {SearchResultsPage} from "./components/search-results-page.js";
 import {SignIn} from "./components/sign-in.js"
 
+import { store } from './store.js';
+
 const routes = [
   {
     path: '/',
     name: 'index',
-    component: Home
+    component: Home,
+    beforeEnter(to, from, next) {
+      if(!store.getters.user.anonymous) next({ name: 'dashboard' })
+      else next()
+    }
   },
   {
     path: '/search-results',
@@ -29,12 +35,17 @@ const routes = [
   },
   {
     path: '/dashboard',
+    name: 'dashboard',
     component: Dashboard,
+    beforeEnter(to, from, next) {
+      if(store.getters.user.anonymous) next({ name: 'index' })
+      else next()
+    },
     children: [
       {
         path: '',
         name: 'overview',
-        component: DashboadOverview
+        component: DashboadOverview,
       },
       {
         path: 'trips',
@@ -72,8 +83,20 @@ const routes = [
   },
 ];
 
-export const router = new VueRouter({
+const router = new VueRouter({
   routes,
   linkActiveClass: 'active',
   linkExactActiveClass: 'exact-active'
 });
+
+router.beforeEach((to, from, next) => {
+  store.dispatch("initializeUser").then(() => {
+    next();
+  }).catch(error => {
+    console.error(error);
+    next();
+  });
+  store.dispatch("initializePlans");
+})
+
+export { router }
