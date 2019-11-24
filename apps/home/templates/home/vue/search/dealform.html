@@ -14,11 +14,11 @@
 
     <div class="input-group input-group-sm search-dropdown-outer">
         <location-input :prompt="'From:'" :promptMobile="'From Where?'"
-                        @place-selected="updatePlaceFrom"/>
+                        @place-selected="updatePlaceFrom" :initial-value="form.placeFrom"/>
     </div>
     <div class="input-group input-group-sm search-dropdown-outer">
         <location-input :prompt="'To:'" :promptMobile="'To Where?'"
-                        @place-selected="updatePlaceTo"/>
+                        @place-selected="updatePlaceTo" :initial-value="form.placeTo"/>
     </div>
 
     <div class="h-dealform__dates">
