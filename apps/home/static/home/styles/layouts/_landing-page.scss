@@ -59,12 +59,27 @@
 // Hero
 .hero {
   .horizontal-form {
-    .s-result-dropdown {
-      margin-right: 13px;
-      min-width: 140px;
-      span {
-        font-size: 0.8125rem;
-        padding: 9px 5px 5px 5px;
+    .main-filters {
+      display: flex;
+      justify-content: space-between;
+      @include mq(md) {
+        justify-content: start;
+      }
+      .s-result-dropdown {
+        &:not(:last-child) {
+          margin-right: 13px;
+        }
+
+        span {
+          font-size: 0.8125rem;
+          padding: 9px 5px 5px 5px;
+        }
+        .search-f-dropdown {
+          min-width: 100px;
+        }
+        @include mq(md) {
+          min-width: 140px;
+        }
       }
     }
   }
@@ -74,10 +89,14 @@
   }
 
   .trending-flights {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    margin-top: 1rem;
+    display: none;
+
+    @include mq(md) {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      margin-top: 1rem;
+    }
     @include mq(lg) {
       flex-direction: row;
       margin-top: 0;
@@ -98,6 +117,15 @@
       @include mq(lg) {
         margin-bottom: 0;
       }
+    }
+  }
+}
+
+.hero-search {
+  &__item {
+    span {
+      font-family: $dona-black;
+      color: white;
     }
   }
 }

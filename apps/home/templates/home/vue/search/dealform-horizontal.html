@@ -2,13 +2,13 @@
 <div id="dealform" class="h-dealform horizontal-form">
   <div class="row">
     <div class="col">
-      <div class="d-flex">
+      <div class="main-filters">
         <select-destination
           :value="form.destinationTypeId"
           @select="setDestinationType"
         />
-        <select-passenger-count />
         <select-seat-type :value="form.seatType" @select="setSeatType" />
+        <select-passenger-count />
       </div>
     </div>
   </div>
@@ -77,7 +77,8 @@
               @click="searchFromHome"
               :disabled="isFormIncomplete"
             >
-              <img src="{% static "home/img/search.png" %}">
+              <img v-if="$mq!=='sm'" src="{% static "home/img/search.png" %}">
+                <span v-else>Search Flights</span>
             </button>
           </div>
         </div>

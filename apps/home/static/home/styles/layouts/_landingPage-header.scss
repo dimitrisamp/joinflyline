@@ -41,7 +41,9 @@
 
 .search-container {
   .s-result-dropdown {
-    margin-right: .85rem;
+    &:not(:last-child) {
+      margin-right: .85rem;
+    }
     @include mq(md) {
       margin-right: 30px;
       min-width: 160px;
