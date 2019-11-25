@@ -1,3 +1,7 @@
 from django.db import models
 
-# Create your models here.
+
+class PromoInfo(models.Model):
+    dt_entered = models.DateTimeField(auto_now_add=True)
+    email = models.EmailField(null=True, blank=True)
+    instagram = models.CharField(max_length=256, null=True, blank=True)

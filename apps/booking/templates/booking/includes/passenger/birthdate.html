@@ -58,7 +58,7 @@
         </div>
         <div class="col-md-4 form-group form-group-sm">
             <select type="text" class="form-control js-affecting-price"
-                    id="yearofbirth" name="yearofbirth" placeholder="YYYY" value="{{ user.profile.dob.year }}">
+                    id="yearofbirth" name="yearofbirth" placeholder="YYYY" value="{% if user.profile.dob.year %}{{ user.profile.dob.year }}{% else %}2000{% endif %}">
             </select>
         </div>
     </div>

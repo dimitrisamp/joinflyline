@@ -5,6 +5,7 @@ from datetime import timedelta
 from django.contrib.auth.models import User
 from django.db import models
 from django.db.transaction import atomic
+from django.utils.dateparse import parse_date
 from django.utils.timezone import now
 
 from wanderift.utils import parse_isodatetime

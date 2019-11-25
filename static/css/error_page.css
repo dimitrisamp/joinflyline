@@ -1,3 +1,15 @@
+@font-face {
+  font-family:dona-black;
+  src: url(fonts/Dona/DonaAlt-Black.ttf);
+}
+@font-face {
+  font-family:Dona-Regular;
+  src: url(fonts/Dona/Dona-Regular.ttf);
+}
+@font-face {
+    font-family: Dona-Bold;
+    src: url(fonts/Dona/Dona-Bold.ttf);
+}
 body {
 	background-color: #f7f9ff;
 	color: #131f3f;
@@ -39,7 +51,7 @@ body {
 
 .error_txt {
 	color: #131f3f;
-  	font-family: Karla;
+  	font-family: Dona-Black;
   	font-size: 30px;
   	font-weight: 400;
   	line-height: 64px;

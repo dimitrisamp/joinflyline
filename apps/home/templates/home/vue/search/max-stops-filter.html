@@ -1,0 +1,18 @@
+<script type="text/x-template" id="vue-max-stops-filter-template">
+  <div class="input-group search-dropdown">
+      <div class="bg-white-close-holes">
+          <span class="input-group-text search-form-input">Stops Filter</span>
+          <input type="text" class="form-control search-input"
+                 @focus="open" v-model="text"
+                 placeholder="Ex, Nonstop, One stop">
+      </div>
+      <div class="search-f-dropdown stop-filder-dropdown"
+           v-if="selectProgress"
+           v-click-outside="close">
+          <ul class="s-dropdown-list">
+              <li v-for="(value, maxStops) in maxStopsFilterOptions"
+                  @click="select(maxStops)"><a>[[ value ]]</a></li>
+          </ul>
+      </div>
+  </div>
+</script>

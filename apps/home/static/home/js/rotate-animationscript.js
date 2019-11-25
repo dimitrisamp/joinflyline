@@ -1,4 +1,4 @@
-jQuery(document).ready(function($){
+export function initializeAnimation() {
 	//set animation timing
 	var animationDelay = 2500,
 		//loading bar effect
@@ -88,4 +88,4 @@ jQuery(document).ready(function($){
 		$oldWord.removeClass('is-visible').addClass('is-hidden');
 		$newWord.removeClass('is-hidden').addClass('is-visible');
 	}
-});
+}

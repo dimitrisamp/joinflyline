@@ -1,3 +1,19 @@
+@font-face {
+  font-family:dona-black;
+  src: url(fonts/Dona/DonaAlt-Black.ttf);
+}
+@font-face {
+  font-family:Dona-Regular;
+  src: url(fonts/Dona/Dona-Regular.ttf);
+}
+@font-face {
+    font-family: Dona-Bold;
+    src: url(fonts/Dona/Dona-Bold.ttf);
+}
+body{
+      font-family:Dona-Regular;
+      box-sizing: border-box;
+}
 body, html {
     margin: 0;
     padding: 0;
@@ -5,14 +21,6 @@ body, html {
     box-sizing: border-box;
 }
 
-body * {
-    box-sizing: border-box;
-}
-
-body {
-    font-size: 16px;
-    font-family: "Karla", sans-serif;
-}
 
 .index-header {
     position: fixed;
@@ -44,7 +52,7 @@ body {
     list-style: none;
     display: block;
     margin: 0;
-    padding: 0;    
+    padding: 0;
     display: flex;
     flex-wrap: wrap;
 }
@@ -141,7 +149,7 @@ a {
     position: relative;
     display: flex;
     align-items: center;
-    
+
 }
 
 .main .col .content {
@@ -166,7 +174,7 @@ a {
     font-size: 20px;
     line-height: 60px;
     padding: 0 50px;
-    
+
 }
 
 .main .col.left-bg .content {
@@ -175,7 +183,7 @@ a {
 
 .main .col.left-color {
     background: rgb(19, 31, 63);
-    
+
 }
 
 .main .col.left-color h2 {
@@ -189,7 +197,11 @@ a {
 .right-bg {
     background-color: rgba(247, 249, 255, 1);
 }
-
+.nav-logo img {
+    position: relative;
+    top: 9px;
+    height: 33px;
+}
 
 .left-bg:before {
     content: "";
@@ -201,7 +213,7 @@ a {
     left: 0;
     background: url("../img/left-bg.png") no-repeat;
     background-size: cover;
-    background-position: 0 0;    
+    background-position: 0 0;
     z-index: -1;
 }
 
@@ -249,7 +261,7 @@ a {
   background: #fff;
 }
 .panel-heading  a:before {
-   content: "\f054";    
+   content: "\f054";
    font-family: 'FontAwesome';
    float: right;
    transition: all 0.5s;
@@ -278,12 +290,12 @@ header .mobile-menu {
 
 .index-header .mobile-menu ul li a {
     font-size: 16px;
-    line-height: 24px;    
+    line-height: 24px;
 }
 
 .index-header .mobile-menu ul li {
     margin-top: 10px;
-    
+
 }
 
 .index-header .mobile-menu #links {
@@ -303,36 +315,37 @@ header .mobile-menu {
     margin-right: 15px;
 }
 
+/********** Footer *************/
+.p-mobile-footer{
+    display: none;
+    border-top: 1px solid #ccc;
+}
+
+.email-mobile-view{
+    text-align: center;
+    color:#00b0f4;  
+    font-family: Dona-Black;
+    font-size: 14px;
+    display: block;
+    padding: 11px 0px;
+    margin-top: 7px;
+}
+
 footer {
     background: #fff;
-    padding: 50px 100px;
+    padding: 10px 0px;
 }
-
-footer .top-footer {
-    display: flex;
-    flex-wrap: wrap;
-    margin-bottom: 100px;
-    max-width: 1200px;
-    margin: 0 auto;
-    justify-content: space-between;
+.top-footer {
+    padding-bottom: 80px;
 }
-.centeralign-footer {
-    padding: 0 60px;
-}
-
-footer .top-footer .col2 {
-    flex:  0 0 200px;    
-}
-
-footer .top-footer .col2:nth-child(3) {
-    flex: 0 0 250px;
-}
-
-footer .top-footer h3 { 
+footer .top-footer h3 {
     margin-top: 40px;
-    font-size: 20px;
-    font-weight: 700;
-    line-height: 36px;
+    font-size: 27px;
+    font-weight: bold;
+    font-family: Dona-Black;
+    line-height: 19px;
+    color: #000;
+    margin-bottom: 32px;
 }
 
 footer .top-footer ul {
@@ -342,17 +355,23 @@ footer .top-footer ul {
 }
 
 footer .top-footer ul li {
-    font-size: 14px;
-    line-height: 20px;
+    font-size: 13px;
+    line-height: 13px;
     margin-bottom: 15px;
 }
 
 footer .top-footer a {
-    text-decoration: none;    
+    text-decoration: none;
+    color: #ababab;
+    font-size: 16px;
+    font-family: dona-bold;
+    margin-bottom: 26px;
+    display: block;
 }
 
 footer .bottom-footer {
-    padding-top: 40px;    
+    background: white;
+    padding: 10px 0;
 }
 
 footer .bottom-footer .logo {
@@ -368,38 +387,77 @@ footer .bottom-footer .logo > img {
 
 footer .bottom-footer  ul {
     list-style: none;
-    margin: 0 auto;
+    margin: 0;
     padding: 0;
-    display: inline-block;
+    position: relative;
+    top: 4px;
 }
 
 footer .bottom-footer a {
-    color: #000;
+    color: #00b0f5;
     text-decoration: none;
-    font-size: 16px;
-    font-weight: 400;
+    font-size: 15px;
+    font-weight: 600;
+    font-family: dona-bold;
+    letter-spacing: 1px;
 }
 
 footer .bottom-footer ul li {
-    display: inline-block;    
-}
-
-footer .bottom-footer .sub-menus {
-    text-align: center;
-}
-
-footer .bottom-footer ul li:before{
-    content: "|";
-    font-size: 16px;
-    font-weight: 400;
     display: inline-block;
-    margin: 0 15px;
+    margin-right: 40px;
 }
 
+footer .bottom-footer ul li:last-child {
+    margin-right: 0px;
+}
 
+footer .bottom-footer p {
+    margin-bottom: 0px;
+    display: inline-block;
+    color: #00b0f5;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 600;
+    font-family: dona-bold;
+    letter-spacing: 1px;
+    padding-right: 15px;
+}
+
+footer .bottom-footer ul.content {
+    display: inline-block;
+}
+
+footer .bottom-footer ul.content li {
+    margin-right: 0px;
+}
+
+.logo h3 {
+    color: #000;
+    font-size: 47px;
+    font-weight: 600;
+}
 footer .bottom-footer ul li:first-child:before {
     display: none;
 }
+.footer-app-image{
+    margin-top: 40px;
+}
+.social-icon ul{
+    float: right;
+    position: relative !important;
+    top: 0 !important;
+}
+.social-icon ul li{
+    margin-right: 0px !important;
+    color: #fff;
+    font-weight: 600;
+    font-family: dona-bold;
+    letter-spacing: 1px;
+}
+.social-icon ul li a{
+    margin-right: 20px;
+}
+
 
 
 @media (max-width: 990px) {
@@ -432,7 +490,7 @@ footer .bottom-footer ul li:first-child:before {
 
     .index-header.sticky {
         padding: 0 10px;
-        height: 80px;    
+        height: 80px;
     }
 
     .index-header .right-menu {
@@ -463,9 +521,9 @@ footer .bottom-footer ul li:first-child:before {
 
 }
 
-@media (max-width: 768px) { 
+@media (max-width: 768px) {
     .main .col .content {
-        color: #000;        
+        color: #000;
         margin: 0 auto;
         padding: 0 15px;
     }
@@ -499,7 +557,7 @@ footer .bottom-footer ul li:first-child:before {
         margin-bottom: 0;
     }
 
-    .main .col .content p { 
+    .main .col .content p {
         font-size: 16px;
         margin-bottom: 30px;
     }
@@ -515,10 +573,13 @@ footer .bottom-footer ul li:first-child:before {
 
 
 @media(min-width: 320px) and (max-width: 480px){
-
+.p-mobile-footer{
+    display:block;
+}
 footer {
     background: #F7F9FF;
     padding: 3px 32px;
+    display: none;
 }
 footer .bottom-footer {
     border-top: 3px solid #F1F1F1;
@@ -534,7 +595,7 @@ footer .bottom-footer {
     padding: 0 14px;
 }
 .main .col .content h2{
-    font-size: 32px;  
+    font-size: 32px;
 }
 .main .col .btn {
     font-size: 16px;

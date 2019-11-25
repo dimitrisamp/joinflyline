@@ -1,0 +1,141 @@
+{% load static %}
+<script type="text/x-template" id="vue-account-information-template">
+  <div class="account-information">
+
+    <div class="section-heading">
+      <div class="section-heading__inner">
+        <h1 class="section-heading__title">Account Information</h1>
+        <p class="section-heading__text">
+          Add your traveler information to speed up the booking process, <br>
+          and enter your Deal Alert Prefrances so we can notify you of our best deals that fit your paratmers.
+        </p>
+      </div>
+    </div>
+
+    <div class="main-padding">
+      <div class="account__form">
+        <div class="row">
+          <div class="col-12 col-xl-3">
+            <h3>Traveler Information</h3>
+          </div>
+          <div class="col-12 col-xl-7">
+            <form action="">
+              <div class="row">
+                  <!--
+                <div class="col-12 col-lg-6">
+                  <input type="text" class="form-control" placeholder="Email Address" />
+                </div>
+                <div class="col-12 col-lg-6">
+                </div>
+                -->
+                <div class="col-12 col-lg-6">
+                  <input type="text" class="form-control" placeholder="First Name" v-model="user.first_name" />
+                </div>
+                <div class="col-12 col-lg-6">
+                  <input type="text" class="form-control" placeholder="Last Name"  v-model="user.last_name"/>
+                </div>
+                <div class="col-12 col-lg-6">
+                  <input type="text" class="form-control" ref="dob" placeholder="Date of Birth" v-model="dobText" />
+                </div>
+                <div class="col-12 col-lg-6">
+                  <div class="account__select">
+                    <select class="form-control account__select-input" v-model="profile.gender">
+                        <option value="0">Male</option>
+                        <option value="1">Female</option>
+                    </select>
+                    <div class="account__arrow">
+                      <img src="{% static "images/icons/down-arrow.png" %}" alt="Pull down" width="17" >
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-lg-6">
+                    <location-input :prompt="''" @place-selected="updateHomeAirport" :initial-value="profile.market" />
+                </div>
+                <div class="col-12 col-lg-6">
+                  <input type="phone" class="form-control" placeholder="Phone Number" v-model="profile.phone_number" />
+                </div>
+                <div class="col-12 col-lg-6">
+                </div>
+                <div class="col-12 col-lg-6">
+                  <input type="text" class="form-control mb-4" placeholder="TSA Precheck Number" v-model="profile.tsa_precheck_number"/>
+                </div>
+                <div class="col-12 col-lg-6 ml-auto text-right mb-4">
+                  <button type="submit" class="btn btn-primary" @click="saveAccount">Save Traveler Information</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr>
+
+    <div class="main-padding">
+      <div class="account__form">
+        <div class="row">
+          <div class="col-12 col-xl-3">
+            <h3>Frequent Flyer Infomation</h3>
+          </div>
+          <div class="col-12 col-xl-7">
+            <form action="">
+              <div class="row" v-if="frequentflyer_ready">
+                <div v-for="(label, value) in frequentFlyerNames" class="col-12 col-lg-6">
+                  <input type="text" class="form-control" :placeholder="label" v-model="frequentflyer[value]"/>
+                </div>
+                <div class="w-100"></div>
+                <div class="col-12 col-lg-6 ml-auto text-right mb-4">
+                  <button type="submit" class="btn btn-primary" @click.prevent="saveFrequentFlyer">Save Frequent Flyer Information</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr>
+
+    <div class="main-padding">
+      <div class="account__form">
+        <h3>Deal Alert Notifications</h3>
+        <p>Enter your notifiction parameters and your good to go</p>
+        <div class="row">
+          <div class="col-12 col-xl-10">
+            <form action="">
+              <h6>Destination One</h6>
+              <div class="row">
+                <div class="col-12 col-lg-4">
+                  <input type="text" class="form-control" placeholder="Destination" />
+                </div>
+                <div class="col-12 col-lg-3">
+                  <input type="number" class="form-control" placeholder="Max Price" />
+                </div>
+                <div class="col-12 col-lg-5">
+                  <input type="text" class="form-control" placeholder="Specific Airlines" />
+                </div>
+              </div>
+              <h6>Destination Two</h6>
+              <div class="row">
+                <div class="col-12 col-lg-4">
+                  <input type="text" class="form-control" placeholder="Destination" />
+                </div>
+                <div class="col-12 col-lg-3">
+                  <input type="number" class="form-control" placeholder="Max Price" />
+                </div>
+                <div class="col-12 col-lg-5">
+                  <input type="text" class="form-control" placeholder="Specific Airlines" />
+                </div>
+                <div class="col-12 col-lg-6 ml-auto text-right mb-4">
+                  <button type="submit" class="btn btn-primary">Save Deal Alert</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</script>

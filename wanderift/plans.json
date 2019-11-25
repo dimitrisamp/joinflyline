@@ -1,0 +1,34 @@
+{
+  "basic": {
+    "name": "FlyLine Basic",
+    "stripe_plan_id": "plan_GAmll5GXUYXoeQ",
+    "price": {
+      "period": "annual",
+      "value": 39.99
+    }
+  },
+  "basic-plus": {
+    "name": "FlyLine Basic Plus",
+    "stripe_plan_id": "plan_GAmlxrJ6alkDBa",
+    "price": {
+      "period": "annual",
+      "value": 69.99
+    }
+  },
+  "pro": {
+    "name": "FlyLine Pro",
+    "stripe_plan_id": "plan_GAmm9u3tQ4HF8Z",
+    "price": {
+      "period": "annual",
+      "value": 139.99
+    }
+  },
+  "pro-plus": {
+    "name": "FlyLine Pro Plus",
+    "stripe_plan_id": "plan_GAmnF8Fk3uPaY0",
+    "price": {
+      "period": "annual",
+      "value": 199.99
+    }
+  }
+}

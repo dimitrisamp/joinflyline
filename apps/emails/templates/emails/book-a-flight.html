@@ -1,0 +1,254 @@
+<!DOCTYPE>
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700&display=swap" rel="stylesheet">
+      <title>Book a Flight</title>
+      
+      <style type="text/css">
+         body{
+            width:100% !important; 
+            -webkit-text-size-adjust:100%; 
+            -ms-text-size-adjust:100%; 
+            margin:0; 
+            padding:0;
+            background: #F5F5F4; 
+            font-family: 'Roboto Condensed', sans-serif !important;
+         }
+         #backgroundTable{
+            margin:0; 
+            padding:0; 
+            width:100% !important; 
+            line-height: 100% !important;
+            background: #F5F5F4;
+         }
+         a{
+            text-decoration: none;
+         }
+         @media only screen and (max-width: 640px) {
+
+            table[class=devicewidth] {width: 440px!important;text-align:center!important;}
+            table[class=devicewidthinner] {width: 420px!important;text-align:center!important;}
+            img[class=banner] {width: 440px!important;height:220px!important;}
+            img[class=colimg2] {width: 440px!important;height:220px!important;}
+         
+        }
+         /*IPHONE STYLES*/
+         @media only screen and (max-width: 480px) {
+        
+
+            table[class=devicewidth] {width: 280px!important;text-align:center!important;}
+            table[class=devicewidthinner] {width: 260px!important;text-align:center!important;}
+            img[class=banner] {width: 280px!important;height:140px!important;}
+            img[class=colimg2] {width: 280px!important;height:140px!important;}
+            td[class=mobile-hide]{display:none!important;}
+            td[class="padding-bottom25"]{padding-bottom:25px!important;}
+        
+         }
+      </style>
+   </head>
+   <body bgcolor="#f5f7f9" style="background: #f5f7f9 !important;"><br /><br />
+     
+<!-- Start of header -->
+<table width="100%" bgcolor="#ffffff" cellpadding="0" cellspacing="0" border="0" id="backgroundTable" st-sortable="header">
+   <tbody>
+      <tr>
+         <td>
+            <table width="600" cellpadding="0" cellspacing="0" border="0" align="center" class="devicewidth" style="background: #fff;">
+               <tbody>
+                  <tr>
+                     <td width="100%">
+                        <table width="600" cellpadding="20" cellspacing="0" border="0" align="center" class="devicewidth" style="background: #fff;">
+                           <tbody>
+                           
+                              <tr>
+                                 <td>
+                                    <!-- logo -->
+                                    <table width="100" align="center" border="0" cellpadding="0" cellspacing="0" class="devicewidth">
+                                       <tbody>
+                                          <tr>
+                                             <td width="100" height="30" align="center">
+                                                <div class="imgpop">
+                                                   <a target="_blank" href="#">
+                                                   <img src="data:image/png;base64,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" alt="" border="0" width="100" height="30" style="display:block; border:none; outline:none; text-decoration:none;">
+                                                   </a>
+                                                </div>
+                                             </td>
+                                          </tr>
+                                       </tbody>
+                                    </table>
+                                    <!-- end of logo -->
+                                 </td>
+                              </tr>
+                              <!-- Spacing -->
+                              <tr>
+                                 <td></td>
+                              </tr> 
+                              <!-- Spacing -->
+                           </tbody>
+                        </table>
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
+         </td>
+      </tr>
+   </tbody>
+</table>
+<!-- End of Header -->
+
+<!-- Start Full Text -->
+<table width="100%" bgcolor="#ffffff" cellpadding="0" cellspacing="0" border="0" id="backgroundTable" st-sortable="full-text">
+   <tbody>
+      <tr>
+         <td>
+            <table width="600" cellpadding="0" cellspacing="0" border="0" align="center" class="devicewidth">
+               <tbody>
+                  <tr>
+                     <td width="100%">
+                        <table width="600" cellpadding="20" cellspacing="0" border="0" align="center" class="devicewidth" style="background: #fff;">
+                           <tbody>
+                              
+                              <tr>
+                                 <td>
+                                    <table width="560" align="left" cellpadding="0" cellspacing="0" border="0" class="devicewidthinner" style="background: #fff;">
+                                       <tbody>
+                                          <!-- Title -->
+                                          <tr>
+                                             <td style="font-size: 25px;color: #000;text-align:center;line-height: 25px;font-weight: bold;margin-bottom: 22px;display: block;" st-title="fulltext-heading">
+                                                Spend Less, Travel More
+                                             </td>
+                                          </tr>
+                                          <!-- End of Title -->
+                                         
+                                          <!-- content -->
+                                          <tr>
+                                             <td style="font-size: 16px;color: gray;text-align:center;line-height: 28px;margin-bottom: 4px;display: block;" st-content="fulltext-content">
+                                                Let's find your next travel excursion! Search our thousands of <br> discount flights exclusive to FlyLine membres and travel away <br> without breaking the bank!
+                                             </td>
+                                          </tr>
+                                          <!-- End of content -->
+                                       </tbody>
+                                    </table>
+                                 </td>
+                              </tr>
+                             
+                           </tbody>
+                        </table>
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
+         </td>
+      </tr>
+   </tbody>
+</table>
+<!-- end of full text -->
+<!-- Start of seperator -->
+
+<!-- End of seperator -->   
+<!-- 3 Start of Columns -->
+<table width="100%" bgcolor="#ffffff" cellpadding="0" cellspacing="0" border="0" id="backgroundTable">
+   <tbody>
+      <tr>
+         <td>
+           
+         </td>
+      </tr>
+   </tbody>
+</table>
+<!-- end of 3 Columns -->
+<!-- Start of seperator -->
+
+<!-- End of seperator --> 
+<!-- 2columns -->
+<table width="100%" bgcolor="#ffffff" cellpadding="0" cellspacing="0" border="0" id="backgroundTable" st-sortable="2columns">
+   <tbody>
+      <tr>
+         <td>
+           
+         </td>
+      </tr>
+   </tbody>
+</table>
+<!-- end of 2 columns -->
+ 
+<!-- Start Full Text -->
+<table width="100%" bgcolor="#ffffff" cellpadding="0" cellspacing="0" border="0" id="backgroundTable" st-sortable="full-text">
+   <tbody>
+      <tr>
+         <td>
+            <table width="600" cellpadding="0" cellspacing="0" border="0" align="center" class="devicewidth">
+               <tbody>
+                  <tr>
+                     <td width="100%">
+                        <table width="600" cellpadding="20" cellspacing="0" border="0" align="center" class="devicewidth" style="background: #fff;">
+                           <tbody>
+                             
+                              <tr>
+                                 <td>
+                                    <table width="560" align="center" cellpadding="0" cellspacing="0" border="0" class="devicewidthinner" style="background: #fff;">
+                                       <tbody>
+                                          <!-- Title -->
+                                          <tr>
+                                             <td style="font-family: Helvetica, arial, sans-serif; font-size: 16px; color: #fff; text-align:center; line-height: 10px;" st-title="fulltext-title">
+                                                <a href="" style="padding: 13px 50px;background:#fff;border-radius: 0px;font-weight:600;border: 2px solid #47c5fe;color: #000 !important;font-size: 14px;margin-top: 1px;">Book a Flight</a>
+                                             </td>
+                                          </tr>
+                                          <!-- End of Title -->
+                                          
+                                          <!-- content -->
+                                          <tr>
+                                             <td style="font-size: 16px; color: #666666; text-align:center; line-height: 30px;" st-content="fulltext-content">
+                                                
+                                             </td>
+                                          </tr>
+                                          <!-- End of content -->
+                                       </tbody>
+                                    </table>
+                                 </td>
+                              </tr>
+                              <!-- Spacing -->
+                              <tr>
+                                 <td></td>
+                              </tr>
+                              <tr>
+                                 <td></td>
+                              </tr>                              
+                              <!-- Spacing -->
+                           </tbody>
+                        </table>
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
+         </td>
+      </tr>
+   </tbody>
+</table>
+<!-- end of full text -->
+<!-- Start of seperator -->
+<table width="100%" bgcolor="#ffffff" cellpadding="0" cellspacing="0" border="0" id="backgroundTable" st-sortable="seperator">
+   <tbody>
+      <tr>
+         <td>
+            <table width="600" align="center" cellspacing="0" cellpadding="0" border="0" class="devicewidth" style="background: #fff;">
+               <tbody>
+                  
+                  <tr>
+                     <td width="550" align="center" height="1" bgcolor="#d1d1d1" style="font-size:1px; line-height:1px;">&nbsp;</td>
+                  </tr>
+              <!--     <tr>
+                     <td align="center" height="30" style="font-size:1px; line-height:1px;">&nbsp;</td>
+                  </tr> -->
+               </tbody>
+            </table>
+         </td>
+      </tr>
+   </tbody>
+</table>
+<!-- End of seperator -->  
+ 
+</body>
+</html>

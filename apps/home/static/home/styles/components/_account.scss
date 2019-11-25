@@ -1,0 +1,22 @@
+.account {
+  &__form {
+    h3 {
+        font-family: $dona-black;;
+    }
+  }
+
+  &__select {
+    position: relative;
+    &-input {
+      -webkit-appearance: none;
+      border-radius: 0;
+    }
+  }
+  &__arrow {
+    position: absolute;
+    right: 1rem;
+    z-index: 11;
+    top: calc(50% + 1px);
+    transform: translateY(-50%);
+  }
+}

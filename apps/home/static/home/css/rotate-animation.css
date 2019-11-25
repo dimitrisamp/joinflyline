@@ -8,7 +8,7 @@
   text-align: center;
 }
 .full-web-form h6{
-    font-size: 40px !important;
+    font-size: 43px !important;
     font-family: dona-blackItalic;
     color: #00b0f5;
     margin-top: -8px !important;
@@ -36,10 +36,18 @@
     font-size: 4.4rem;
     font-weight: 300;
   }
+  .h-contentarea h6 {
+    font-size: 32px !important;
+  }
 }
 @media only screen and (min-width: 1170px) {
   .cd-headline {
     font-size: 6rem;
+  }
+}
+@media(min-width:320px) and (max-width: 480px) {
+  .full-web-form {
+    display: none;
   }
 }
 .cd-words-wrapper {
@@ -94,14 +102,8 @@
 .cd-headline.loading-bar b {
   top: .2em;
   opacity: 0;
-  -webkit-transition: opacity 0.3s;
-  -moz-transition: opacity 0.3s;
-  transition: opacity 0.3s;
 }
-.cd-headline.loading-bar b.is-visible {
-  opacity: 1;
-  top: 0;
-}
+
 .cd-headline.slide span {
   display: inline-block;
   padding: .2em 0;

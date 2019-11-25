@@ -12,36 +12,118 @@ spec:
       labels:
         app: wanderift
     spec:
+      volumes:
+        - name: gce-service-account-key
+          secret:
+            secretName: gce-service-account-key
       containers:
         - name: wanderift
-          image: registry.gitlab.com/zburau/wanderift-django
+          image: registry.gitlab.com/zburau/joinflyline
           imagePullPolicy: Always
           ports:
             - containerPort: 8000
+          envFrom:
+            - configMapRef:
+                name: env-config
           env:
-            - name: STAGE
-              value: production
-
-            - name: POSTGRES_USER
-              valueFrom:
-                secretKeyRef:
-                  name: postgres-credentials
-                  key: user
-
             - name: POSTGRES_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: postgres-credentials
-                  key: password
+                  name: api-keys
+                  key: POSTGRES_PASSWORD
 
-            - name: POSTGRES_HOST
-              value: 10.51.112.4
-
-            - name: POSTGRES_DB
-              value: postgres
+            - name: STRIPE_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: api-keys
+                  key: STRIPE_API_KEY
 
             - name: FOR_GODS_SAKE_PLEASE_REDEPLOY
               value: 'THIS_STRING_IS_REPLACED_DURING_BUILD'
 
+          volumeMounts:
+            - name: gce-service-account-key
+              readOnly: true
+              mountPath: /etc/secrets
+        - name: worker
+          command: ['inv', 'worker']
+          image: registry.gitlab.com/zburau/joinflyline
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8000
+          envFrom:
+            - configMapRef:
+                name: env-config
+          env:
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: api-keys
+                  key: POSTGRES_PASSWORD
+
+            - name: STRIPE_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: api-keys
+                  key: STRIPE_API_KEY
+
+            - name: FOR_GODS_SAKE_PLEASE_REDEPLOY
+              value: 'THIS_STRING_IS_REPLACED_DURING_BUILD'
+
+          volumeMounts:
+            - name: gce-service-account-key
+              readOnly: true
+              mountPath: /etc/secrets
+      initContainers:
+        - name: migrate
+          image: registry.gitlab.com/zburau/joinflyline
+          command: ['python', 'manage.py', 'migrate']
+          envFrom:
+            - configMapRef:
+                name: env-config
+          env:
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: api-keys
+                  key: POSTGRES_PASSWORD
+
+            - name: STRIPE_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: api-keys
+                  key: STRIPE_API_KEY
+
+            - name: FOR_GODS_SAKE_PLEASE_REDEPLOY
+              value: 'THIS_STRING_IS_REPLACED_DURING_BUILD'
+          volumeMounts:
+            - name: gce-service-account-key
+              readOnly: true
+              mountPath: /etc/secrets
+        - name: collectstatic
+          image: registry.gitlab.com/zburau/joinflyline
+          command: ['inv', 'static']
+          envFrom:
+            - configMapRef:
+                name: env-config
+          env:
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: api-keys
+                  key: POSTGRES_PASSWORD
+
+            - name: STRIPE_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: api-keys
+                  key: STRIPE_API_KEY
+
+            - name: FOR_GODS_SAKE_PLEASE_REDEPLOY
+              value: 'THIS_STRING_IS_REPLACED_DURING_BUILD'
+          volumeMounts:
+            - name: gce-service-account-key
+              readOnly: true
+              mountPath: /etc/secrets
       imagePullSecrets:
         - name: gitlab-registry

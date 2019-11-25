@@ -13,24 +13,51 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+import os
 
+from django.conf.urls.static import static
+from django.views.static import serve
 from django.contrib import admin
-from django.contrib.staticfiles.urls import static
-from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.http import HttpResponse
-from django.urls import path, include
+from django.shortcuts import redirect
+from django.urls import path, include, re_path
 from django.views import View
+from django.views.generic import TemplateView
+from rest_framework import routers
 
+from apps.account.viewsets import AccountViewSet, FrequentFlyerViewSet, ProfileViewSet
 from apps.booking.views import (
-    retail_booking_view,
     CheckFlightsView,
     SaveBookingView,
     CheckPromoView,
+    RetailBookingView,
 )
+from apps.subscriptions import views as subscriptions_views
+from apps.booking.viewsets import BookingViewSet, FlightViewSet
+from apps.common.user_router import UserRouter
 from apps.emails.views import booking_success
-from apps.home.views import index_view, home_view, SignInView, SignUpView
-from apps.results.views import CityAutocomplete, ResultsView
+from apps.home.views import (
+    index_view,
+    home_view,
+    SignInView,
+    SignUpView,
+    PromoLandingView,
+    SavingsExplainedView,
+)
+from apps.account.views import WizardView
+from apps.account.api_views import UserViewSet
 from django.conf import settings
+
+
+router = routers.DefaultRouter()
+router.register(r'users', UserViewSet)
+router.register(r'bookings', BookingViewSet, basename='bookings')
+router.register(r'flight', FlightViewSet)
+
+user_router = UserRouter()
+user_router.register(r'account', AccountViewSet, basename='account')
+user_router.register(r'frequentflyer', FrequentFlyerViewSet, basename='frequentflyer')
+user_router.register(r'profile', ProfileViewSet, basename='profile')
 
 
 class SiteMapView(View):
@@ -40,6 +67,11 @@ class SiteMapView(View):
         )
 
 
+class RobotsTxtView(View):
+    def get(self, request, *args, **kwargs):
+        return HttpResponse(open(settings.ROBOTS_TXT).read(), content_type="text/plain")
+
+
 urlpatterns = [
     path("admin/", admin.site.urls),
     # site under construction
@@ -47,31 +79,54 @@ urlpatterns = [
     # Home page links
     path("", index_view, name="index"),
     path("home/", home_view, name="home"),
-    # Results page urls
-    path("results", ResultsView.as_view(), name="results"),
-    # Accounts page urls
-    path("account/", include("apps.account.urls")),
     # Corporate urls
     path("corporates/", include("apps.corporate.urls")),
     # Auth urls
     path("auth/", include("apps.oauth.urls")),
-    # Information about Wanderift
-    path("info/", include("apps.info.urls")),
+    path(r'api/auth/', include('knox.urls')),
     # booking
-    path("retail/", retail_booking_view, name="retail"),
+    path("promo/", lambda _: redirect("/#/promo/"), name="promo-landing"),
+    path("retail/", RetailBookingView.as_view(), name="retail"),
     path("booking_flight/", SaveBookingView.as_view(), name="book"),
     path("check-flights/", CheckFlightsView.as_view(), name="check-flights"),
     path("check-promo/", CheckPromoView.as_view(), name="check-promo"),
     path("emails/<str:booking_id>", booking_success, name="email"),
-    # subscriptions
-    path("subscriptions/", include("apps.subscriptions.urls")),
     # payments
     path("pay/", include("apps.payments.urls")),
-    path("sign-in/", SignInView.as_view(), name="sign-in"),
-    path("sign-up/", SignUpView.as_view(), name="sign-up"),
-    path("city/query", CityAutocomplete.as_view(), name="city-query"),
+    path("get-started/", WizardView.as_view(), name="wizard"),
     path("sitemap.xml", SiteMapView.as_view(), name="sitemap"),
+    path("robots.txt", RobotsTxtView.as_view(), name="robots"),
+    path(
+        "maintenance/",
+        TemplateView.as_view(template_name="503.html"),
+        name="maintenance",
+    ),
+    path(
+        "savings-explained/", SavingsExplainedView.as_view(), name="savings-explained"
+    ),
+    re_path("^api/", include(router.urls)),
+    re_path("^api/users/me/", include(user_router.urls)),
+    path('api/subscriptions/plan/', subscriptions_views.Plans.as_view(), name="plans")
 ]
 
-urlpatterns += staticfiles_urlpatterns()
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+if settings.STAGE == "local" and os.getenv("DEBUG_TOOLBAR", "false").lower() in (
+    "true",
+    "1",
+    "on",
+):
+    import debug_toolbar
+    urlpatterns += [path("__debug__/", include(debug_toolbar.urls))]
+
+if settings.STAGE == "localprod":
+    urlpatterns += [
+        re_path(
+            f'^{settings.MEDIA_URL.lstrip("/")}(?P<path>.*)$',
+            serve,
+            {"document_root": settings.MEDIA_ROOT},
+        ),
+        re_path(
+            f'^{settings.STATIC_URL.lstrip("/")}(?P<path>.*)$',
+            serve,
+            {"document_root": settings.STATIC_ROOT},
+        ),
+    ]

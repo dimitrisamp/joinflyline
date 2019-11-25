@@ -1,0 +1,50 @@
+{% load static %}
+<script type="text/x-template" id="vue-sign-in-form-template">
+  <div class="full-bg-image">
+
+    <div class="back-to-home">
+        <router-link :to="{ name: 'index'}">Back to Home</router-link>
+    </div>
+
+    <!-- Form -->
+    <section class="white-block">
+
+        <div class="container">
+            <div class="formBg signIn-align mx-auto">
+                <div v-if="authErrorText" class="alert alert-danger text-center">
+                    [[ authErrorText ]]
+                </div>
+                <div class="center-logo text-center">
+                    <a href="{% url "index" %}"> <img
+                            src="{% static "home/img/flyline_logos-01-1.png" %}"
+                            class="r-logo" alt="Logo"></a>
+                </div>
+                <form v-on:submit.prevent="handleSubmit">
+                    <div class="form-group">
+                        <input type="text" v-model="email" class="form-control" name="email"
+                               placeholder="Email Address">
+                    </div>
+
+                    <div class="form-group">
+                        <input type="password" v-model="password" class="form-control" name="password"
+                               placeholder="Password">
+                    </div>
+
+                    <button type="submit" class="btn btn-default submit-btn">Log In
+                    </button>
+
+                    <a href="{% url "forgot-password" %}" class="forgot-link">Forgot Password?</a>
+                </form>
+            </div>
+
+            <div class="sign-bottom">
+                <p class="already-txt">Don't have an account?
+                    <router-link :to="{name: 'get-started'}">Sign Up</router-link>
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+  </div>
+</script>

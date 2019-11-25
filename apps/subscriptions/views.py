@@ -1,80 +1,14 @@
-from django.contrib import auth, messages
-from django.contrib.auth import authenticate
-from django.contrib.auth.models import User
-from django.http import Http404
-from django.shortcuts import render, redirect
+import stripe
 from django.conf import settings
+from django.contrib.auth.models import User
 from django.utils.timezone import now
+from rest_framework.permissions import AllowAny
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
 from apps.account.models import Account
-from apps.account.views import account_view
-from apps.payments.models import Plans
-from apps.payments.plans import plan2group, GROUP_TO_PLAN, get_available_plans
-from apps.payments.views import sub_payment
-from apps.subscriptions.models import Subscriptions
-import stripe
-
 
 stripe.api_key = settings.STRIPE_API_KEY
-
-
-def retail_sub_view(request):
-    if request.method == "POST":
-
-        username = request.POST["email"]
-        email = username
-        password = request.POST["password"]
-
-        user = save_user_info(request)
-
-        if request.POST["subscription"] == "pro":
-            subscription = Subscriptions.objects.create(
-                plan="pro", tokens=4, price=459, user=user
-            )
-            subscription.save()
-            messages.success(request, "You subscribed to pro plan successfully")
-        elif request.POST["subscription"] == "lite":
-            subscription = Subscriptions.objects.create(
-                plan="lite", tokens=3, price=369, user=user
-            )
-            subscription.save()
-            messages.success(request, "You subscribed to lite plan successfully")
-
-        user = authenticate(request, username=username, password=password)
-        if user is not None:
-            auth.login(request, user)
-            messages.success(request, "Login Successful")
-            return redirect(sub_payment, plan=request.POST["subscription"])
-        else:
-            messages.danger(request, "Failed to create account. Please contact support")
-            context = {"users": user}
-            return render(request, "subscriptions/subscription.html", context)
-    else:
-        available_plans = get_available_plans()
-        code = request.GET.get('code')
-        select_annual = request.GET.get('annual')
-        if select_annual:
-            select_annual = select_annual.lower() in ['true', '1']
-        if not code:
-            raise Http404('`code` is required')
-        group_name = plan2group[code]
-        annual, group_codes = GROUP_TO_PLAN[group_name]
-        if annual:
-            group_plans = [available_plans[group_codes]] * 2
-            checked_index = 1 if select_annual else 0
-        else:
-            group_plans = [available_plans[group_code] for group_code in group_codes]
-            checked_index = 0 if group_codes[0] == code else 1
-        context = {
-            'select_annual': select_annual,
-            'code': code,
-            'checked_index': checked_index,
-            'annual_group': annual,
-            'group_plans': group_plans,
-            'selected_plan': group_plans[checked_index],
-            'title': settings.SITE_TITLE,
-        }
-        return render(request, "subscriptions/subscription.html", context)
 
 
 def save_user_info(request):
@@ -154,31 +88,7 @@ def card_token(card_number, expiry, cvc):
     )
 
 
-def plan_subscription(request, plan):
-    if request.user.profile.customer_id:
-        user = request.user
-        if plan == "pro":
-            plan = Plans.objects.filter(name=plan).get()
-            stripe.Subscription.create(
-                customer=request.user.profile.customer_id,
-                items=[{"plan": plan.plan_id}],
-            )
-            subscription = Subscriptions.objects.update_or_create(
-                plan="pro", tokens=4, price=459, defaults={"user": user}
-            )
-            messages.success(request, "You subscribed to pro plan successfully")
-        elif plan == "lite":
-            plan = Plans.objects.filter(name=plan).get()
-            stripe.Subscription.create(
-                customer=request.user.profile.customer_id,
-                items=[{"plan": plan.plan_id}],
-            )
-            subscription = Subscriptions.objects.get_or_create(
-                plan="lite", tokens=3, price=369, defaults={"user": user}
-            )
-            messages.success(request, "You subscribed to lite plan successfully")
-
-        return redirect(account_view)
-    else:
-        messages.error(request, "Please update your profile and card details")
-        return redirect(account_view)
+class Plans(APIView):
+    permission_classes = [AllowAny]
+    def get(self, request):
+        return Response(settings.SUBSCRIPTION_PLANS)

@@ -1,0 +1,159 @@
+{% load static %}
+<div class="home-slider" v-if="showWideForm">
+    <div class="container py-4">
+        <h3 class="slider-title">Find your next adventure</h3>
+        <p class="slider-title-second">
+            Save on both domestic and international flights
+        </p>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-lg-3">
+                <div class="slider-box">
+                    <div class="slider-box__img">
+                        <img
+                        sizes="(max-width: 1334px) 100vw, 1334px"
+                        srcset="
+                            {% static "home/img/Mykonos/Mykonos_qadjue_c_scale,w_200.jpg"%} 200w,
+                            {% static "home/img/Mykonos/Mykonos_qadjue_c_scale,w_378.jpg"%} 378w,
+                            {% static "home/img/Mykonos/Mykonos_qadjue_c_scale,w_509.jpg"%} 509w,
+                            {% static "home/img/Mykonos/Mykonos_qadjue_c_scale,w_623.jpg"%} 623w,
+                            {% static "home/img/Mykonos/Mykonos_qadjue_c_scale,w_728.jpg"%} 728w,
+                            {% static "home/img/Mykonos/Mykonos_qadjue_c_scale,w_821.jpg"%} 821w,
+                            {% static "home/img/Mykonos/Mykonos_qadjue_c_scale,w_918.jpg"%} 918w,
+                            {% static "home/img/Mykonos/Mykonos_qadjue_c_scale,w_991.jpg"%} 991w,
+                            {% static "home/img/Mykonos/Mykonos_qadjue_c_scale,w_1068.jpg"%} 1068w,
+                            {% static "home/img/Mykonos/Mykonos_qadjue_c_scale,w_1145.jpg"%} 1145w,
+                            {% static "home/img/Mykonos/Mykonos_qadjue_c_scale,w_1229.jpg"%} 1229w,
+                            {% static "home/img/Mykonos/Mykonos_qadjue_c_scale,w_1310.jpg"%} 1310w,
+                            {% static "home/img/Mykonos/Mykonos_qadjue_c_scale,w_1334.jpg"%} 1334w"
+                        src="{% static "home/img/Mykonos/Mykonos_qadjue_c_scale,w_1334.jpg"%}
+                        alt="">
+                      </div>
+                      <div class="slider-box__text">
+                          <h3>Chicago -> Mykonos</h3>
+                          <p>DFW -> JFK</p>
+                          <h4>Average Cost: $800</h4>
+                      </div>
+                </div>
+            </div>
+         
+            <div class="col-12 col-lg-3">
+                <div class="slider-box">
+                    <div class="slider-box__img">
+                        <img
+                            sizes="(max-width: 1400px) 100vw, 1400px"
+                            srcset="
+                            {% static "home/img/chicago/chicago_nmtmjb_c_scale,w_200.jpg"%} 200w,
+                            {% static "home/img/chicago/chicago_nmtmjb_c_scale,w_348.jpg"%} 341w,
+                            {% static "home/img/chicago/chicago_nmtmjb_c_scale,w_459.jpg"%} 451w,
+                            {% static "home/img/chicago/chicago_nmtmjb_c_scale,w_553.jpg"%} 549w,
+                            {% static "home/img/chicago/chicago_nmtmjb_c_scale,w_631.jpg"%} 631w,
+                            {% static "home/img/chicago/chicago_nmtmjb_c_scale,w_713.jpg"%} 702w,
+                            {% static "home/img/chicago/chicago_nmtmjb_c_scale,w_783.jpg"%} 774w,
+                            {% static "home/img/chicago/chicago_nmtmjb_c_scale,w_850.jpg"%} 842w,
+                            {% static "home/img/chicago/chicago_nmtmjb_c_scale,w_915.jpg"%} 904w,
+                            {% static "home/img/chicago/chicago_nmtmjb_c_scale,w_972.jpg"%} 970w,
+                            {% static "home/img/chicago/chicago_nmtmjb_c_scale,w_1040.jpg"%} 1034w,
+                            {% static "home/img/chicago/chicago_nmtmjb_c_scale,w_1095.jpg"%} 1090w,
+                            {% static "home/img/chicago/chicago_nmtmjb_c_scale,w_1260.jpg"%} 1143w"
+                            src="{% static "home/img/chicago/chicago_nmtmjb_c_scale,w_1400.jpg"%}"
+                            alt="">
+                      </div>
+                      <div class="slider-box__text">
+                          <h3>Chicago -> New York</h3>
+                          <p>DFW -> JFK</p>
+                          <h4>Average Cost: $250</h4>
+                      </div>
+                </div>
+            </div>
+            <div class="col-12 col-lg-3">
+                <div class="slider-box">
+                    <!-- <img src="{% static "home/img/architecture-buildings-city-2190283.jpg" %}"/> -->
+                    <div class="slider-box__img">
+                      <img
+                          sizes="(max-width: 1400px) 100vw, 1400px"
+                          srcset="
+                          {% static "home/img/new_york/new_york_e6j4di_c_scale,w_200.jpg"%} 200w,
+                          {% static "home/img/new_york/new_york_e6j4di_c_scale,w_341.jpg"%} 341w,
+                          {% static "home/img/new_york/new_york_e6j4di_c_scale,w_451.jpg"%} 451w,
+                          {% static "home/img/new_york/new_york_e6j4di_c_scale,w_549.jpg"%} 549w,
+                          {% static "home/img/new_york/new_york_e6j4di_c_scale,w_631.jpg"%} 631w,
+                          {% static "home/img/new_york/new_york_e6j4di_c_scale,w_702.jpg"%} 702w,
+                          {% static "home/img/new_york/new_york_e6j4di_c_scale,w_774.jpg"%} 774w,
+                          {% static "home/img/new_york/new_york_e6j4di_c_scale,w_842.jpg"%} 842w,
+                          {% static "home/img/new_york/new_york_e6j4di_c_scale,w_904.jpg"%} 904w,
+                          {% static "home/img/new_york/new_york_e6j4di_c_scale,w_970.jpg"%} 970w,
+                          {% static "home/img/new_york/new_york_e6j4di_c_scale,w_1034.jpg"%} 1034w,
+                          {% static "home/img/new_york/new_york_e6j4di_c_scale,w_1090.jpg"%} 1090w,
+                          {% static "home/img/new_york/new_york_e6j4di_c_scale,w_1143.jpg"%} 1143w,
+                          {% static "home/img/new_york/new_york_e6j4di_c_scale,w_1199.jpg"%} 1199w,
+                          {% static "home/img/new_york/new_york_e6j4di_c_scale,w_1258.jpg"%} 1258w,
+                          {% static "home/img/new_york/new_york_e6j4di_c_scale,w_1309.jpg"%} 1309w,
+                          {% static "home/img/new_york/new_york_e6j4di_c_scale,w_1366.jpg"%} 1366w,
+                          {% static "home/img/new_york/new_york_e6j4di_c_scale,w_1396.jpg"%} 1396w,
+                          {% static "home/img/new_york/new_york_e6j4di_c_scale,w_1400.jpg"%} 1400w"
+                          src="{% static "home/img/new_york/new_york_e6j4di_c_scale,w_1400.jpg"%}"
+                          alt="">
+                    </div>
+                    <div class="slider-box__text">
+                        <h3>Dallas -> New York</h3>
+                        <p>DFW -> JFK</p>
+                        <h4>Average Cost: $184</h4>
+                    </div>
+                    <!-- <div class="h-slider-caption">
+                        <strong style="font-size: 1.2rem;">New York</strong>
+                        <p style="padding-bottom: 5px;">$375+ Round Trip | Typical
+                            Price</p>
+                        <b style="margin-bottom: 20px;"
+                        >$152 Round Trip | Found on FlyLine</b
+                        >
+                    </div> -->
+                </div>
+            </div>
+
+            <div class="col-12 col-lg-3">
+                <div class="slider-box">
+                    <div class="slider-box__img">
+                        <img
+                            sizes="(max-width: 1400px) 100vw, 1400px"
+                            srcset="
+                            {% static "home/img/Bali/Bali_nnxbsr_c_scale,w_200.jpg"%} 200w,
+                            {% static "home/img/Bali/Bali_nnxbsr_c_scale,w_341.jpg"%} 341w,
+                            {% static "home/img/Bali/Bali_nnxbsr_c_scale,w_451.jpg"%} 451w,
+                            {% static "home/img/Bali/Bali_nnxbsr_c_scale,w_549.jpg"%} 549w,
+                            {% static "home/img/Bali/Bali_nnxbsr_c_scale,w_631.jpg"%} 631w,
+                            {% static "home/img/Bali/Bali_nnxbsr_c_scale,w_702.jpg"%} 702w,
+                            {% static "home/img/Bali/Bali_nnxbsr_c_scale,w_774.jpg"%} 774w,
+                            {% static "home/img/Bali/Bali_nnxbsr_c_scale,w_842.jpg"%} 842w,
+                            {% static "home/img/Bali/Bali_nnxbsr_c_scale,w_904.jpg"%} 904w,
+                            {% static "home/img/Bali/Bali_nnxbsr_c_scale,w_970.jpg"%} 970w,
+                            {% static "home/img/Bali/Bali_nnxbsr_c_scale,w_1034.jpg"%} 1034w,
+                            {% static "home/img/Bali/Bali_nnxbsr_c_scale,w_1090.jpg"%} 1090w,
+                            {% static "home/img/Bali/Bali_nnxbsr_c_scale,w_1143.jpg"%} 1143w,
+                            {% static "home/img/Bali/Bali_nnxbsr_c_scale,w_1199.jpg"%} 1199w,
+                            {% static "home/img/Bali/Bali_nnxbsr_c_scale,w_1258.jpg"%} 1258w,
+                            {% static "home/img/Bali/Bali_nnxbsr_c_scale,w_1309.jpg"%} 1309w,
+                            {% static "home/img/Bali/Bali_nnxbsr_c_scale,w_1366.jpg"%} 1366w,
+                            {% static "home/img/Bali/Bali_nnxbsr_c_scale,w_1396.jpg"%} 1396w,
+                            {% static "home/img/Bali/Bali_nnxbsr_c_scale,w_1400.jpg"%} 1400w"
+                            src="{% static "home/img/Bali/Bali_nnxbsr_c_scale,w_1400.jpg"%}"
+                            alt="">
+                      </div>
+                      <div class="slider-box__text">
+                        <h3>Dallas -> New York</h3>
+                        <p>DFW -> JFK</p>
+                        <h4>Average Cost: $184</h4>
+                    </div>
+                    <!-- <div class="h-slider-caption">
+                        <strong style="font-size: 1.2rem;">Bali</strong>
+                        <p style="padding-bottom: 5px;">$850+ Round Trip | Typical
+                            Price</p>
+                        <b style="margin-bottom: 20px;">$534 Round Trip | Found on
+                            FlyLine</b>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

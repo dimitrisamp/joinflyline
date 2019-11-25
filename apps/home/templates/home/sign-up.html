@@ -15,7 +15,7 @@
     <link rel="stylesheet" type="text/css" href="{% static "home/css/style.css" %}">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,700i,900&display=swap"
           rel="stylesheet">
-    <link rel="icon" href="{% static "logo/favicon.png" %}">
+    {% include "favicon.html" %}
     <script src="https://cdn.useproof.com/proof.js?acc=ZaTK6We7bUMEbNI7wlB7YcTOWB72"
             async></script>
     <title>{{ title }}</title>
@@ -64,6 +64,7 @@
 <!-- script -->
 <script type="text/javascript" src="{% static "js/jquery.min.js" %}"></script>
 <script type="text/javascript" src="{% static "js/bootstrap.min.js" %}"></script>
-
+{% include "_includes/google_analytics.html" %}
+{% include "_includes/sentry.html" %}
 </body>
 </html>

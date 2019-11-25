@@ -5,7 +5,7 @@ django
 requests
 django-spurl
 sendgrid
-sentry-sdk==0.12.3
+sentry-sdk
 django-suit
 
 python-dotenv
@@ -15,5 +15,23 @@ invoke
 django-extensions
 factory-boy
 django-enumfield
+django-anymail
+django-storages[google]
+gunicorn
+django-credit-cards
+django-filter
+django-rest-knox
+
+celery[redis]
+
+django-maintenancemode
+
+django-rest-framework
+
+django_compressor
+django-libsass
+lxml
+slimit
+csscompressor
 
 aiohttp[speedups]

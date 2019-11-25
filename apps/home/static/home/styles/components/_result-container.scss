@@ -1,0 +1,39 @@
+.result__container {
+  position: relative;
+  &::before {
+    position: absolute;
+    top: -2.3875rem;
+    content: '';
+    background-image: url(../img/headerbackground.png);
+    width: calc(100% + 2rem);
+    left: -2rem;
+    background-position: bottom;
+    height: calc(100% + 2.3875rem);
+  }
+  .result__filters {
+    .tile__body {
+      .airline-f-dropdown {
+        left: 0;
+        width: 100%;
+        right: auto;
+      }
+      .search-f-dropdown {
+        width: 100%;
+        &.price-dropdown {
+          margin: 0.75rem 0;
+        }
+      }
+      .input-group-text {
+        border: none;
+        padding: 0;
+      }
+      .bg-white-close-holes {
+        width: 100%;
+      }
+      input {
+        border: 2px solid #ececec;
+        padding-left: 1rem;
+      }
+    }
+  }
+}

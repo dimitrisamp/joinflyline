@@ -1,0 +1,8 @@
+<script type="text/x-template" id="vue-flight-info-mobile-template">
+<ul>
+    <li><span class="info">{( duration )}</span></li>
+    <li v-for="airline in airlines"><img :src="airlineIcon(airline)" /></li>
+    <li><span class="info">{( stopOversText )}</span></li>
+    <li><span class="info">{( seatTypeText )}</span></li>
+</ul>
+</script>

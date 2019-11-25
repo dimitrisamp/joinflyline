@@ -1,0 +1,45 @@
+.h-dealform {
+  .dealform__filters {
+    width: 100%;
+  }
+
+  .search-dropdown {
+
+  }
+
+  .search-dropdown-outer {
+    margin-bottom: 15px;
+  }
+
+  .search-form__filters {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__dates {
+    display: flex;
+
+  }
+
+  .filter-field {
+    padding: 6px 0;
+    display: flex;
+  }
+
+
+  .filter-devider {
+    background: #fff;
+    height: 3px;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .filters__container {
+    flex-grow: 1;
+  }
+
+  .filters__container + .filters__container {
+    margin-left: 1em;
+  }
+
+}

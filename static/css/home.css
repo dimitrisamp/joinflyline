@@ -1,3 +1,19 @@
+@font-face {
+  font-family:Dona-Black;
+  src: url(fonts/Dona/DonaAlt-Black.ttf);
+}
+@font-face {
+  font-family:Dona-Regular;
+  src: url(fonts/Dona/Dona-Regular.ttf);
+}
+@font-face {
+    font-family: Dona-Bold;
+    src: url(fonts/Dona/Dona-Bold.ttf);
+}
+body{
+    font-family:Dona-Regular !important;
+}
+
 a{
 text-decoration:none !important;
 }
@@ -12,7 +28,6 @@ select.city-selector {
     text-align:center;
 }
 .promo_banner_text{
-    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
     font-style: normal;
     font-weight: 600;
     font-size: 16px;
@@ -21,7 +36,6 @@ select.city-selector {
     color:#fff;
 }
 button.promo_btn {
-    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
     font-weight: bold;
     background: #FFFFFF;
     border-radius: 4px;
@@ -34,19 +48,16 @@ button.promo_btn {
     cursor: pointer;
 }
 button.custom_btn {
-    color: #fff;
-    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
-    font-weight: 600;
-    background: #00B7FF;
-    border: 2.3px solid #00B7FF;
+    color: #00B7FF;
+    background: transparent;
     box-sizing: border-box;
-    border-radius: px;
+    border-radius: 0px;
+    border:none;
     cursor: pointer;
-    padding: 5px 30px;
+    height: 40px;
 }
 button.custom_btn_white {
     color: #00B7FF;
-    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
     font-weight: 600;
     background: #ffffff;
     border: 2.3px solid #00B7FF;
@@ -60,14 +71,13 @@ button.custom_btn_white {
     align-items: center;
 }
 a.custom_nav_link {
-    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+    font-family: Dona-Bold;
     font-style: normal;
     font-weight: 600;
     font-size: 16px;
     line-height: 19px;
     text-align: center;
-    color: #151F3F;
-
+    color: #00aeef;
     display: block;
 }
 a.header_nav_link {

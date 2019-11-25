@@ -23,16 +23,3 @@ class SearchDetails(models.Model):
 
     def __str__(self):
         return SearchDetails.fly_from
-
-
-class BookingCache(models.Model):
-    created = models.DateTimeField(auto_now_add=True)
-    booking_token = models.TextField(db_index=True)
-    user = models.ForeignKey(User, null=True, blank=True, on_delete=models.CASCADE)
-    search_result = models.ForeignKey(
-        SearchDetails, on_delete=models.CASCADE, blank=True, null=True
-    )
-    data = models.TextField()
-
-    def __str__(self):
-        return self.booking_token

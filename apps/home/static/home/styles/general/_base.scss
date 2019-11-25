@@ -1,0 +1,29 @@
+.content-wrapper {
+  margin-left: 0;
+  padding: 0;
+  transition: margin-left .3s ease-in-out;
+  @include mq(lg) {
+    margin-left: $sidebar-width;
+  }
+}
+
+.main-padding {
+  padding: 0 0.95rem;
+  @include mq(lg) {
+    padding: 0 2rem;
+  }
+}
+
+hr + .main-padding {
+  margin-top: 2.6875rem;
+}
+
+// Transition for slide
+.slide-enter-active, .slide-leave-active {
+  transform: translateY(0);
+  transition: all .38s cubic-bezier(.13,.89,.58,1)
+}
+.slide-enter, .slide-leave-to {
+  transform: translateX(-2rem);
+  opacity: 0;
+}

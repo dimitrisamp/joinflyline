@@ -1,3 +1,19 @@
+@font-face {
+  font-family:dona-black;
+  src: url(fonts/Dona/DonaAlt-Black.ttf);
+}
+@font-face {
+  font-family:Dona-Regular;
+  src: url(fonts/Dona/Dona-Regular.ttf);
+}
+@font-face {
+    font-family: Dona-Bold;
+    src: url(fonts/Dona/Dona-Bold.ttf);
+}
+body{
+      font-family:Dona-Regular;
+}
+
 .container.results-container {
     max-width: 1400px;
 }
@@ -94,27 +110,30 @@
     }
 }
 
-.search-quick-filter {
-    background: white;
-    padding: 0;
-    /*border-right: 1px solid rgba(0,0,0,0.1);*/
-    position: relative;
-    cursor: pointer;
+
+.result-details{
+    border:1px solid #00b0f5 !important;   
 }
 
-.search-quick-filter.applied .border-line {
-    border-bottom: 2px solid #00B7FF;
+.loading-animation-topsearch {
+    background: #fff;
+    height: 63px;
     position: absolute;
-    bottom: 0;
-    left: 12%;
+    top: 0;
+    width: 100%;
+    display: none;
 }
-
-
-.search-quick-filter:last-child {
-    border-right: none;
-}
-
-.search-quick-filter-filter-name {
-    margin-left: auto;
-    margin-right: auto;
+.animate-element-topresult{
+    margin: 13px 16px;
+    position: relative;
+    background-color: #CCC;
+    height: 35px;
+    animation-name: animate;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    background: -webkit-gradient(linear, left top, right top, color-stop(8%, #eeeeee), color-stop(18%, #dddddd), color-stop(33%, #eeeeee));
+    background: -webkit-linear-gradient(left, #eeeeee 8%, #dddddd 18%, #eeeeee 33%);
+    background: linear-gradient(to right, #eeeeee 8%, #dddddd 18%, #eeeeee 33%);
+    -webkit-background-size: 800px 104px;
 }

@@ -1,19 +1,17 @@
 from django.shortcuts import render
-from django.views.generic import TemplateView
+from django.urls import reverse
+from django.views.generic import TemplateView, FormView, CreateView
 
 from django.conf import settings as S
 
-from apps.results.adjacency import CITY_STATE_COUNTRY_AIRPORT, ADJACENCY
+from apps.home.models import PromoInfo
 
 
 def index_view(request):
     context = {
-        "title": S.SITE_TITLE
+        "title": S.SITE_TITLE,
     }
-    if request.user.is_authenticated:
-        return render(request, "home/home.html", context)
-    else:
-        return render(request, "home/index.html", context)
+    return render(request, "home/index.html", context)
 
 
 def home_view(request):
@@ -22,7 +20,6 @@ def home_view(request):
     context = {
         "title": S.SITE_TITLE,
         "demo": demo,
-        "city_airports": [o for o in CITY_STATE_COUNTRY_AIRPORT if o[0] in ADJACENCY]
     }
     return render(request, "home/home.html", context)
 
@@ -35,7 +32,6 @@ class SignInView(TemplateView):
             "title": S.SITE_TITLE
         }
 
-
 class SignUpView(TemplateView):
     template_name = "home/sign-up.html"
 
@@ -43,3 +39,16 @@ class SignUpView(TemplateView):
         return {
             "title": S.SITE_TITLE
         }
+
+
+class SavingsExplainedView(TemplateView):
+    template_name = "home/vue/savings-explained.html"
+
+
+class PromoLandingView(CreateView):
+    model = PromoInfo
+    fields = ['email', 'instagram']
+
+    def get_success_url(self):
+        return reverse('index')
+
