@@ -1950,7 +1950,6 @@ This one is disabled until top blue line is back
   .horizontal-f-btn .btn-search {
     padding: 11px 31px;
     border: 2px solid #fff;
-    margin-top: 20px;
   }
 
   .search-dropdown .form-control {
@@ -2277,7 +2276,7 @@ This one is disabled until top blue line is back
   }
 
   .newhome-form h3 {
-    display: none;
+    color: white;
   }
 
   .newhome-form p {

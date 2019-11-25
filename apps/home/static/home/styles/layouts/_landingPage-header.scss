@@ -10,10 +10,7 @@
   .form-control {
     border: 2px solid #ececec;
     padding: 20px 10px;
-    margin-bottom: 0.625rem;
-    @include mq(lg) {
-      margin-bottom: 0;
-    }
+    margin-bottom: 0;
   }
 }
 
