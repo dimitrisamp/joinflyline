@@ -19,8 +19,9 @@
         <div class="hero-search__item is-wide">
           <div class="input-group input-group-sm search-dropdown">
             <location-input
-              :prompt="'From:'"
-              :promptMobile="'From Where?'"
+              :prompt="'Departure City'"
+              :promptMobile="'Departure City'"
+              :promptMobileFocus="'From Where?'"
               @place-selected="updatePlaceFrom"
             />
           </div>
@@ -28,8 +29,9 @@
         <div class="hero-search__item is-wide">
           <div class="input-group input-group-sm search-dropdown">
             <location-input
-              :prompt="'To:'"
-              :promptMobile="'To Where?'"
+              :prompt="'Arrival City'"
+              :promptMobile="'Arrival City'"
+              :promptMobileFocus="'To where?'"
               @place-selected="updatePlaceTo"
             />
           </div>

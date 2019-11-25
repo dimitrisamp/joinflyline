@@ -376,6 +376,18 @@ header.sticky {
 }
 .dat-blue-border .search-form-input {
   padding: 0.5rem;
+  padding-left: 1rem;
+  color: #00b0f5;
+}
+
+.shadowsrch .dat-blue-border .search-form-input::placeholder {
+    color: #7d7d7d;
+}
+
+@media (min-width: 768px) {
+  .dat-blue-border .search-form-input {
+    color: #7d7d7d;
+  }
 }
 
 .clicked .dat-blue-border {
