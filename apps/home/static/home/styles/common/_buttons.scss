@@ -6,6 +6,34 @@
   }
 }
 
+.button {
+  border: 2px solid $primary;
+  padding: 0.3rem 1.8rem;
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+  user-select: none;
+  background-color: transparent;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: $primary;
+  font-size: 0.8125rem;
+  font-family: $dona-bold;
+  transition: color 0.15s ease-in-out, 
+              background-color 0.15s ease-in-out, 
+              border-color 0.15s ease-in-out, 
+              box-shadow 0.15s ease-in-out;
+  &:hover {
+    text-decoration: none;
+    background-color: $primary;
+    color: $white;
+  }
+  &--blue {
+    border-color: $primary;
+    color: $primary;
+  }
+}
+
 
 .btn {
   &.btn-outline {
