@@ -1,0 +1,30 @@
+@mixin steps-lines($pos) {
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      @if $pos == left {
+          left: 0;
+      } @else if $pos == right {
+          right: 0;
+      }
+      height: 200%;
+      width: 3.5rem;
+      background-color: $primary;
+    }
+
+    &:before {
+        @if $pos == left {
+            transform: rotate(-45deg) translate(200px, -120px);
+        } @else if $pos == right {
+            transform: rotate(45deg) translate(-220px, -120px);        
+        }
+    }
+    &:after {
+        @if $pos == left {
+            transform: rotate(-45deg) translate(324px, -120px)
+        } @else if $pos == right {
+            transform: rotate(45deg) translate(-324px, -120px)
+        }
+    }
+}

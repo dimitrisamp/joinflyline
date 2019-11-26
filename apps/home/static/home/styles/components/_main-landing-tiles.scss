@@ -60,6 +60,9 @@
         font-size: 0.75rem;
         color: $main-landing-gray;
         padding-top: 4px;
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
       }
       
       &--blue {

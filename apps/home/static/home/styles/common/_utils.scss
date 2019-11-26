@@ -8,7 +8,20 @@
   &--black {
     @include create-title($dona-black, $black, 2.125rem);
   }
-  &--black-big {
-    @include create-title($dona-black, $black, 3.75rem);
+  &--blue-big {
+    @include create-title($dona-black, $primary, 3.75rem);
   }
+  &--white {
+    @include create-title($dona-black, $white, 2.5rem);
+  }
+  &--black-big {
+    @include create-title($dona-black, $black, 2.5rem);
+  }
+}
+
+.text {
+  &--black {
+    font-family: $dona-black;
+  }
+
 }

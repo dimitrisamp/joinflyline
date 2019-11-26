@@ -28,7 +28,18 @@
     background-color: $primary;
     color: $white;
   }
+  &--big {
+    font-size: 1.5rem;
+  }
   &--blue {
+    background-color: $primary;
+    color: $white;
+    font-size: 1.25rem;
+    min-width: 13rem;
+    max-width: 100%;
+    padding-top: 8px;
+  }
+  &--outline-blue {
     border-color: $primary;
     color: $primary;
   }

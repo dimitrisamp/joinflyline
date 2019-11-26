@@ -1,6 +1,7 @@
 // Mixins
 @import "mixins/mq";
 @import "mixins/create-title";
+@import "mixins/steps-lines";
 
 // General
 @import "general/variables";
@@ -23,6 +24,9 @@
 @import "components/account";
 @import "components/search-result";
 @import "components/main-landing-tiles";
+@import "components/main-landing-steps";
+@import "components/main-landing-stats";
+@import "components/main-landing-logos";
 
 // Layout
 @import 'layouts/header';
