@@ -33,7 +33,7 @@ from apps.booking.views import (
     RetailBookingView,
 )
 from apps.subscriptions import views as subscriptions_views
-from apps.booking.viewsets import BookingViewSet, FlightViewSet, DealViewSet
+from apps.booking.viewsets import BookingViewSet, FlightViewSet, DealViewSet, TripSummary
 from apps.common.user_router import UserRouter
 from apps.emails.views import booking_success
 from apps.home.views import index_view
@@ -89,9 +89,10 @@ urlpatterns = [
         TemplateView.as_view(template_name="503.html"),
         name="maintenance",
     ),
+    path('api/bookings/summary/', TripSummary.as_view(), name="booking-summary"),
     re_path("^api/", include(router.urls)),
     re_path("^api/users/me/", include(user_router.urls)),
-    path('api/subscriptions/plan/', subscriptions_views.Plans.as_view(), name="plans")
+    path('api/subscriptions/plan/', subscriptions_views.Plans.as_view(), name="plans"),
 ]
 
 if settings.STAGE == "local" and os.getenv("DEBUG_TOOLBAR", "false").lower() in (

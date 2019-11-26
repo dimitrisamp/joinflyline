@@ -12,27 +12,27 @@
         <div class="main-padding">
             <div class="row">
 
-                <div class="col-12 col-md-6 col-xl-4">
+                <div class="col-12 col-md-6 col-xl-4" v-if="trip_summary">
                     <tile-component title="Total Trips Taken : ">
                         <div class="tile__body-top">
-                            <div class="tile__body-top-numbers"><span>2</span> <span>Domestic</span>
+                            <div class="tile__body-top-numbers"><span>[[ trip_summary.count.domestic ]]</span> <span>Domestic</span>
                             </div>
-                            <div class="tile__body-top-numbers"><span>0</span> <span>International</span>
+                            <div class="tile__body-top-numbers"><span>[[ trip_summary.count.international ]]</span> <span>International</span>
                             </div>
                         </div>
-                        <div class="tile__body-bottom"><p class="booking">4 Bookings
+                        <div class="tile__body-bottom"><p class="booking">[[ trip_summary.remaining ]] Booking[[ trip_summary.remaining > 1?'s':'' ]]
                             Remain</p>
                             <p class="upgrade">Upgrade Plan</p></div>
                     </tile-component>
                 </div>
 
-                <div class="col-12 col-md-6 col-xl-4">
+                <div class="col-12 col-md-6 col-xl-4" v-if="trip_summary">
                     <tile-component title="Estimated Savings : "
                                     class="tile--estimated">
                         <div class="tile__body-top">
-                            <div class="tile__body-top-numbers"><span>$67.00</span>
+                            <div class="tile__body-top-numbers"><span>$[[ trip_summary.savings.domestic ]]</span>
                                 <span>Domestic</span></div>
-                            <div class="tile__body-top-numbers"><span>$0.00</span>
+                            <div class="tile__body-top-numbers"><span>$[[ trip_summary.savings.international ]]</span>
                                 <span>International</span></div>
                         </div>
                         <div class="tile__body-bottom">*Based on Average Savings from

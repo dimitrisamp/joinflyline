@@ -3,7 +3,7 @@ from collections import Counter
 from datetime import timedelta
 
 from django.contrib.auth.models import User
-from django.contrib.postgres.fields import ArrayField
+from django.contrib.postgres.fields import ArrayField, JSONField
 from django.contrib.postgres.indexes import BTreeIndex
 from django.db import models
 from django.db.transaction import atomic
@@ -16,28 +16,14 @@ class BookingContact(models.Model):
     booking_id = models.CharField(max_length=20, db_index=True)
     email = models.EmailField()
     phone = models.CharField(max_length=20)
-    data = models.TextField(null=True, blank=True)
+    data = JSONField(null=True, blank=True)
     user = models.ForeignKey(User, null=True, blank=True, on_delete=models.CASCADE)
 
     def __str__(self):
         return f"{self.booking_id} <-> {self.email} {self.phone}"
 
-    def to_data(self):
-        obj = json.loads(self.data)
-        obj["route"] = [
-            flight.to_data() for flight in self.flights.order_by("departure_time")
-        ]
-        obj["booking_id"] = self.booking_id
-        obj["price"] = obj["payment_info"][obj["payment_gateway"]]["amount"]
-        obj["passenger_summary"] = dict(
-            Counter([o["category"] for o in obj["passengers"]]).items()
-        )
-        current_time = now() + timedelta(days=2)
-        has_past_routes = any(r["utc_departure"] <= current_time for r in obj["route"])
-        has_future_routes = any(r["utc_departure"] > current_time for r in obj["route"])
-        obj["in_progress"] = has_past_routes and has_future_routes
-
-        return obj
+    def is_domestic(self):
+        return all(f.is_domestic() for f in self.flights.all())
 
     @classmethod
     def from_data(cls, booking_data, user, email, phone, retail_info):
@@ -50,7 +36,7 @@ class BookingContact(models.Model):
         booking_id = bd.pop("booking_id")
         with atomic():
             booking = BookingContact.objects.create(
-                data=json.dumps({**retail_info, **bd}),
+                data={**retail_info, **bd},
                 email=email,
                 phone=phone,
                 user=user,
@@ -68,7 +54,7 @@ class BookingContact(models.Model):
                     "airport_to": fd.pop("dst"),
                     "is_return": bool(fd.pop("return")),
                 }
-                data["data"] = json.dumps({**retail_flights[flight_id], **fd})
+                data["data"] = {**retail_flights[flight_id], **fd}
                 Flight.objects.create(**data)
             return booking
 
@@ -84,13 +70,16 @@ class Flight(models.Model):
     airport_from = models.CharField(max_length=3)
     airport_to = models.CharField(max_length=3)
     is_return = models.BooleanField(default=False)
-    data = models.TextField()
+    data = JSONField()
 
     def __str__(self):
         return f"{self.city_from} -> {self.city_to}"
 
+    def is_domestic(self):
+        return self.data['src_country'] == 'US' and self.data['dst_country'] == 'US'
+
     def to_data(self):
-        data = json.loads(self.data)
+        data = self.data
         data["utc_departure"] = self.departure_time
         data["utc_arrival"] = self.arrival_time
         data["src_name"] = self.city_from
