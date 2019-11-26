@@ -14,14 +14,9 @@ import {MainLanding} from "./components/main-landing.js"
 
 const routes = [
   {
-    path: '/main-landing',
-    name: '',
-    component: MainLanding
-  },
-  {
     path: '/',
     name: 'index',
-    component: Home
+    component: MainLanding
   },
   {
     path: '/search-results',
