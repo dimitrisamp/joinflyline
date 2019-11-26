@@ -87,3 +87,8 @@ def worker(c):
 def static(c):
     c.run('python manage.py collectstatic --noinput -v 3')
     c.run('python manage.py compress')
+
+
+@task
+def deals(c):
+    c.run('python manage.py fill_deals')

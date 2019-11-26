@@ -3,6 +3,8 @@ from collections import Counter
 from datetime import timedelta
 
 from django.contrib.auth.models import User
+from django.contrib.postgres.fields import ArrayField
+from django.contrib.postgres.indexes import BTreeIndex
 from django.db import models
 from django.db.transaction import atomic
 from django.utils.dateparse import parse_date
@@ -101,17 +103,31 @@ class Flight(models.Model):
 
 
 class Deal(models.Model):
-    departure_city = models.CharField(max_length=50)
-    arrival_city = models.CharField(max_length=50)
-    departure_date = models.DateTimeField()
-    return_date = models.DateTimeField()
+    city_from = models.CharField(max_length=50)
+    city_to = models.CharField(max_length=50)
+    city_from_name = models.CharField(max_length=50)
+    city_to_name = models.CharField(max_length=50)
+    fly_from = models.CharField(max_length=50)
+    fly_to = models.CharField(max_length=50)
+    dt_departure = models.DateTimeField()
+    dt_return = models.DateTimeField()
+    departure_date = models.DateField()
+    departure_time = models.TimeField()
+    return_date = models.DateField()
+    return_time = models.TimeField()
+    airlines = ArrayField(models.CharField(max_length=50))
     price = models.DecimalField(max_digits=10, decimal_places=2)
-    booking_token = models.TextField()
+    trip_id = models.TextField()
     updated = models.DateTimeField(auto_now_add=True)
-    is_past = models.BooleanField(default=False)
 
     def __str__(self):
         return (
-            f"{self.departure_city} -> {self.arrival_city} "
+            f"{self.city_from}({self.fly_from}) -> {self.city_to}({self.fly_to}) "
             f"${self.price} {self.updated.isoformat()}"
+        )
+
+    class Meta:
+        indexes = (
+            BTreeIndex(fields=('city_from', 'city_to')),
+            BTreeIndex(fields=('fly_from', 'fly_to'))
         )

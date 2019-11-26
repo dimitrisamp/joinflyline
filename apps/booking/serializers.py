@@ -43,3 +43,18 @@ class Booking(serializers.ModelSerializer):
 
     def get_data(self, obj):
         return json.loads(obj.data)
+
+
+class Deal(serializers.ModelSerializer):
+    class Meta:
+        model = booking_models.Deal
+        fields = (
+            "city_from_name",
+            "city_to_name",
+            "fly_from",
+            "fly_to",
+            "departure_date",
+            "return_date",
+            "airlines",
+            "price",
+        )

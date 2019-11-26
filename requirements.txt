@@ -35,3 +35,4 @@ slimit
 csscompressor
 
 aiohttp[speedups]
+asgiref

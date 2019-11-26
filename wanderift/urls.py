@@ -33,7 +33,7 @@ from apps.booking.views import (
     RetailBookingView,
 )
 from apps.subscriptions import views as subscriptions_views
-from apps.booking.viewsets import BookingViewSet, FlightViewSet
+from apps.booking.viewsets import BookingViewSet, FlightViewSet, DealViewSet
 from apps.common.user_router import UserRouter
 from apps.emails.views import booking_success
 from apps.home.views import (
@@ -53,6 +53,7 @@ router = routers.DefaultRouter()
 router.register(r'users', UserViewSet)
 router.register(r'bookings', BookingViewSet, basename='bookings')
 router.register(r'flight', FlightViewSet)
+router.register(r'deals', DealViewSet, basename="deals")
 
 user_router = UserRouter()
 user_router.register(r'account', AccountViewSet, basename='account')

@@ -3,7 +3,7 @@ from rest_framework.mixins import RetrieveModelMixin
 
 import apps.booking.models as booking_models
 from apps.booking.filters import BookingFilter
-from apps.booking.serializers import FlightFull, Booking
+from apps.booking.serializers import FlightFull, Booking, Deal
 
 
 class FlightViewSet(RetrieveModelMixin, GenericViewSet):
@@ -17,3 +17,10 @@ class BookingViewSet(ReadOnlyModelViewSet):
 
     def get_queryset(self):
         return booking_models.BookingContact.objects.filter(user=self.request.user)
+
+
+class DealViewSet(ReadOnlyModelViewSet):
+    serializer_class = Deal
+
+    def get_queryset(self):
+        return booking_models.Deal.objects.order_by("?")[:5]
