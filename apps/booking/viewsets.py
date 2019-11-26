@@ -2,7 +2,7 @@ from rest_framework.viewsets import GenericViewSet, ReadOnlyModelViewSet
 from rest_framework.mixins import RetrieveModelMixin
 
 import apps.booking.models as booking_models
-from apps.booking.filters import BookingFilter
+from apps.booking.filters import BookingFilter, DealFilterSet, DealPagination
 from apps.booking.serializers import FlightFull, Booking, Deal
 
 
@@ -21,6 +21,8 @@ class BookingViewSet(ReadOnlyModelViewSet):
 
 class DealViewSet(ReadOnlyModelViewSet):
     serializer_class = Deal
+    pagination_class = DealPagination
+    filterset_class = DealFilterSet
 
     def get_queryset(self):
-        return booking_models.Deal.objects.order_by("?")[:5]
+        return booking_models.Deal.objects.order_by("?")

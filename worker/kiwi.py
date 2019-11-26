@@ -70,6 +70,8 @@ async def get_trips(
             t = Trip(
                 city_from=city_from,
                 city_to=city_to,
+                city_from_name=departure_routes[0]["cityFrom"],
+                city_to_name=departure_routes[-1]["cityTo"],
                 price=trip["conversion"]["USD"],
                 trip_id=trip["id"],
                 dt_departure=parse_datetime(departure_routes[0]["utc_departure"]),

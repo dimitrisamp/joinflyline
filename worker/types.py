@@ -15,6 +15,8 @@ class FlightStatus(enum.IntEnum):
 class Trip:
     city_from: str
     city_to: str
+    city_from_name: str
+    city_to_name: str
     fly_from: str
     fly_to: str
     price: float
