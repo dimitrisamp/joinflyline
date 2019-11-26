@@ -5,6 +5,7 @@ from django.contrib.postgres.forms import JSONField
 from apps.account.enums import Gender
 from creditcards.forms import CardNumberField, CardExpiryField, SecurityCodeField
 
+
 class ProfileForm(forms.Form):
     first_name = forms.CharField(required=False)
     last_name = forms.CharField(required=False)

@@ -36,14 +36,7 @@ from apps.subscriptions import views as subscriptions_views
 from apps.booking.viewsets import BookingViewSet, FlightViewSet, DealViewSet
 from apps.common.user_router import UserRouter
 from apps.emails.views import booking_success
-from apps.home.views import (
-    index_view,
-    home_view,
-    SignInView,
-    SignUpView,
-    PromoLandingView,
-    SavingsExplainedView,
-)
+from apps.home.views import index_view
 from apps.account.views import WizardView
 from apps.account.api_views import UserViewSet
 from django.conf import settings
@@ -75,13 +68,7 @@ class RobotsTxtView(View):
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    # site under construction
-    # path('', under_construction, name="construction"),
-    # Home page links
     path("", index_view, name="index"),
-    path("home/", home_view, name="home"),
-    # Corporate urls
-    path("corporates/", include("apps.corporate.urls")),
     # Auth urls
     path("auth/", include("apps.oauth.urls")),
     path(r'api/auth/', include('knox.urls')),
@@ -101,9 +88,6 @@ urlpatterns = [
         "maintenance/",
         TemplateView.as_view(template_name="503.html"),
         name="maintenance",
-    ),
-    path(
-        "savings-explained/", SavingsExplainedView.as_view(), name="savings-explained"
     ),
     re_path("^api/", include(router.urls)),
     re_path("^api/users/me/", include(user_router.urls)),

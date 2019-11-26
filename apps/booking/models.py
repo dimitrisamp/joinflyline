@@ -7,7 +7,6 @@ from django.contrib.postgres.fields import ArrayField
 from django.contrib.postgres.indexes import BTreeIndex
 from django.db import models
 from django.db.transaction import atomic
-from django.utils.dateparse import parse_date
 from django.utils.timezone import now
 
 from wanderift.utils import parse_isodatetime

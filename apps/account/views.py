@@ -1,21 +1,13 @@
-import json
-from datetime import datetime
-from django.contrib.auth import login
 from django.conf import settings
-from django.contrib import messages
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.http import HttpResponseRedirect, JsonResponse
-from django.shortcuts import render, redirect
 import stripe
 import stripe.error
-from django.urls import reverse
-from django.utils.decorators import method_decorator
-from django.views.generic import FormView, UpdateView
+from django.conf import settings
+from django.contrib.auth.models import User
+from django.http import JsonResponse
+from django.views.generic import FormView
 
-from apps.account.forms import ProfileForm, WizardForm
-from apps.account.models import Account, FrequentFlyer
+from apps.account.forms import WizardForm
+from apps.account.models import Account
 from apps.emails.views import signup_success
 from apps.subscriptions.models import Subscriptions
 
