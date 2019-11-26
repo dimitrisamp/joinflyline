@@ -10,7 +10,7 @@ import api from "./http.js";
 export const store = new Vuex.Store({
   state: {
     authErrorText: "",
-    user: {},
+    user: {anonymous: true},
     plans: {},
     form: {
       airlinesFilter: null,
