@@ -2128,6 +2128,11 @@ This one is disabled until top blue line is back
     display: block !important;
   }
 }
+@media (min-width: 320px) and (max-width: 480px) {
+  .newhome-form h3 {
+    color: white;
+  }
+}
 
 @media (min-width: 320px) and (max-width: 768px) {
   .content-img img {
@@ -2287,9 +2292,6 @@ This one is disabled until top blue line is back
     font-size: 12px;
   }
 
-  .newhome-form h3 {
-    color: white;
-  }
 
   .newhome-form p {
     display: none;

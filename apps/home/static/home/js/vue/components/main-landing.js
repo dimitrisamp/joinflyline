@@ -13,5 +13,10 @@ export const MainLanding = Vue.component('main-landing', {
           searchContainer.style.paddingTop = headerEl.offsetHeight + 'px';
         }
       }
+    },
+    computed: {
+      isMobile() {
+        return this.$mq === 'sm';
+      }
     }
 });
