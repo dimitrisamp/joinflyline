@@ -13,6 +13,11 @@ export const LocationInput = Vue.component("location-input", {
       required: false,
       default: DEFAULT_PROMPT
     },
+    promptMobileFocus: {
+      type: String,
+      required: false,
+      default: DEFAULT_PROMPT
+    },
     promptMobile: {
       type: String,
       required: false,

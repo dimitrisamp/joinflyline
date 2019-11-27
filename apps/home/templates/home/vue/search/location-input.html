@@ -5,7 +5,7 @@
         <div class="search-item">
             <input type="text" autocomplete="disabled"
                    class="form-control search-input"
-                   :placeholder="$mq === 'sm'?promptMobile:prompt"
+                   :placeholder="$mq === 'sm'?(focused?promptMobileFocus:promptMobile):prompt"
                    @focus="onFocused"
                    @blur="onBlurred"
                    v-model="text"

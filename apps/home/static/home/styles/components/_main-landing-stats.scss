@@ -1,0 +1,26 @@
+.stats {
+  background-color: $main-landing-stats-bg;
+  color: $white;
+  padding: 5rem 0 8rem 0;
+  &__item {
+    text-align: center;
+  }
+  &__title {
+    @extend .title--white;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  &__number {
+    font-size: 3.125rem;
+    color: $primary;
+    font-family: $dona-black;
+    line-height: 1;
+    min-height: 10rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  &__text {
+    color: transparentize($color: $white, $amount: 0.5)
+  }
+}

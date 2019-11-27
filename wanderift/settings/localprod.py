@@ -17,3 +17,4 @@ COMPRESS_FILTERS = {
         "compressor.filters.jsmin.SlimItFilter",
     ],
 }
+DEALS_CITIES = ['DFW', 'NYC', 'LAX']

@@ -1,22 +1,22 @@
 .section {
   .first-page-body {
-    flex: inherit
+    flex: inherit;
   }
   .home-slider {
     // padding: 3rem 0;
     .h-slider-caption {
-        padding: 1rem;
+      padding: 1rem;
     }
 
     .slider-box {
       border-color: #f6f6f6;
       border-radius: 2px;
-      transition: box-shadow .3s ease-in-out;
+      transition: box-shadow 0.3s ease-in-out;
       border-radius: 2px;
       position: relative;
       height: 18rem;
       &:hover {
-        box-shadow: 0 3px 39px rgba(0,0,0,0.12);
+        box-shadow: 0 3px 39px rgba(0, 0, 0, 0.12);
       }
       &__img {
         height: 100%;
@@ -33,7 +33,11 @@
         bottom: 0;
         color: white;
         width: 100%;
-        background-image: linear-gradient(to top, rgba(0, 0, 0, 0.9215686274509803), transparent);
+        background-image: linear-gradient(
+          to top,
+          rgba(0, 0, 0, 0.9215686274509803),
+          transparent
+        );
         padding-bottom: 1rem;
         h3 {
           font-family: $dona-black;
@@ -55,16 +59,26 @@
   }
 }
 
-
 // Hero
 .hero {
   .horizontal-form {
-    .s-result-dropdown {
-      margin-right: 13px;
-      min-width: 140px;
-      span {
-        font-size: 0.8125rem;
-        padding: 9px 5px 5px 5px;
+    .main-filters {
+      display: flex;
+      .s-result-dropdown {
+        &:not(:last-child) {
+          margin-right: 2rem;
+        }
+
+        span {
+          font-size: 0.8125rem;
+          padding: 9px 5px 5px 5px;
+        }
+        .search-f-dropdown {
+          min-width: 100px;
+        }
+        @include mq(md) {
+          min-width: 140px;
+        }
       }
     }
   }
@@ -74,10 +88,14 @@
   }
 
   .trending-flights {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    margin-top: 1rem;
+    display: none;
+
+    @include mq(md) {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      margin-top: 1rem;
+    }
     @include mq(lg) {
       flex-direction: row;
       margin-top: 0;
@@ -97,6 +115,35 @@
       margin-bottom: 0.5rem;
       @include mq(lg) {
         margin-bottom: 0;
+      }
+    }
+  }
+}
+
+.hero-search {
+  .shadowsrch {
+    .search-item {
+      .form-control::placeholder {
+        @include mq(md) {
+          color: #7d7d7d;
+        }
+        color: #7d7d7d;
+      }
+    }
+  }
+  .search-dropdown {
+    .form-control::placeholder {
+      @include mq(md) {
+        color: #7d7d7d;
+      }
+      color: #00b0f5;
+    }
+  }
+  &__item {
+    .search-button {
+      span {
+        font-family: $dona-black;
+        color: white;
       }
     }
   }

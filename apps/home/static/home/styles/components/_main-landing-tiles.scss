@@ -1,0 +1,76 @@
+.tiles {
+  padding: 2rem 0;
+  &__card {
+    display: flex;
+    border: 2px solid $main-landing-border-color;
+    margin-bottom: 1.5rem;
+
+    &-img {
+      flex: 0 0 40%;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    &-content {
+      width: 100%;
+      padding: 0.85rem;
+    }
+
+    &-title {
+      font-family: $dona-black;
+      font-size: 0.95rem;
+    }
+
+    &-icons {
+      img {
+        width: 1.3rem;
+        height: 1.3rem;
+      }
+    }
+
+    &-details {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    &-airports {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-bottom: 0.5rem;
+      margin-top: 0.8rem;
+    }
+    
+    &-icons {
+      margin-right: 1rem;
+    }
+    
+    &-text {
+      font-family: $dona-bold;
+      font-size: 0.75rem;
+      margin-bottom: 0.5rem;
+      color: $main-landing-gray;
+      
+      &--small {
+        font-family: $dona-bold;
+        font-size: 0.75rem;
+        color: $main-landing-gray;
+        padding-top: 4px;
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+      }
+      
+      &--blue {
+        font-family: $dona-bold;
+        color: $primary;
+        font-size: 0.95rem;
+        margin-bottom: 0;
+      }
+    }
+  }
+}

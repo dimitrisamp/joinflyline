@@ -33,3 +33,11 @@ django-libsass
 lxml
 slimit
 csscompressor
+
+aiohttp[speedups]
+asgiref
+
+pytest
+pytest-django
+pytest-xdist
+

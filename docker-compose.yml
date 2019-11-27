@@ -19,7 +19,7 @@ services:
     build:
       context: .
       dockerfile: devops/docker/redis/Dockerfile
-    image: wanderift_postgres
+    image: wanderift_redis
     ports:
       - ${REDIS_PORT}:6379
     env_file: .env

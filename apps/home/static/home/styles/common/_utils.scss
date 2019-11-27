@@ -1,0 +1,27 @@
+/*
+  @mixin create-title(font, color, size)
+*/
+.title{
+  &--black-small {
+    @include create-title($dona-black, $black, 1.25rem);
+  }
+  &--black {
+    @include create-title($dona-black, $black, 2.125rem);
+  }
+  &--blue-big {
+    @include create-title($dona-black, $primary, 3.75rem);
+  }
+  &--white {
+    @include create-title($dona-black, $white, 2.5rem);
+  }
+  &--black-big {
+    @include create-title($dona-black, $black, 2.5rem);
+  }
+}
+
+.text {
+  &--black {
+    font-family: $dona-black;
+  }
+
+}

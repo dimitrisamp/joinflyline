@@ -4,6 +4,9 @@ export const Sidebar = {
     name: 'sidebar',
     methods: {
         ...Vuex.mapActions(['logOut']),
+        handleSidebarLinkClick() {
+            this.$store.dispatch('toggleSidebar')
+        }
     },
     computed: {
         toggleSidebar() {
@@ -24,9 +27,4 @@ export const Sidebar = {
         },
         ...Vuex.mapState(['user', 'plans']),
     },
-    methods: {
-        handleSidebarLinkClick() {
-            this.$store.dispatch('toggleSidebar')
-        }
-    }
 };

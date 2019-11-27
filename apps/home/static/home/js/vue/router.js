@@ -10,13 +10,14 @@ import {AccountInformation} from "./components/account-information.js";
 import {ResultComponent} from "./components/result-component.js";
 import {SearchResultsPage} from "./components/search-results-page.js";
 import {SignIn} from "./components/sign-in.js"
+import {MainLanding} from "./components/main-landing.js"
 import {BookingPage} from "./components/booking-page.js";
 
 const routes = [
   {
     path: '/',
     name: 'index',
-    component: Home
+    component: MainLanding
   },
   {
     path: '/search-results',

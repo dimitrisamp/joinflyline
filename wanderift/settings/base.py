@@ -56,7 +56,6 @@ INSTALLED_APPS = [
     "apps.payments",
     "apps.home",
     "apps.results",
-    "apps.corporate",
     "apps.account",
     "apps.booking",
     "apps.oauth",
@@ -217,7 +216,6 @@ SENDGRID_API_KEY = (
     "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"
 )
 
-SITE_TITLE = "Wanderift | Airline Travel Subscription | Save on Retail Flights"
 SUBSCRIBER_AIRLINES = {
     "AA",  # American
     "DL",  # Delta
@@ -261,4 +259,5 @@ REST_FRAMEWORK = {
     ),
     "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
     "DEFAULT_FILTER_BACKENDS": ("django_filters.rest_framework.DjangoFilterBackend",),
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
 }
