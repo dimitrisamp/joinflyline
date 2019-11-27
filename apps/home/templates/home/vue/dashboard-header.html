@@ -8,7 +8,7 @@
               </router-link>
           </div>
           <div class="main-header__mobile-right">
-            <a href="#" class="main-header__mobile-search">
+            <a href="#" class="main-header__mobile-search" :class="{'active': isOpen}" @click.prevent="isOpen = !isOpen">
                 <svg width="25px" height="25px" viewBox="0 0 25 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                   <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                       <g id="Mobile" transform="translate(-242.000000, -18.000000)" fill="#222222" fill-rule="nonzero">
@@ -26,40 +26,41 @@
             </button>
           </div>
       </div>
-
-      <header class="main-header">
-          <div class="main-header__top">
-              <select-destination :value="form.destinationTypeId"
-                                  @select="setDestinationType"/>
-              <select-passenger-count/>
-              <select-seat-type :value="form.seatType" @select="setSeatType"/>
-          </div>
-          <div class="main-header__bottom">
-              <form action="">
-                  <div class="search-form-field__container">
-                      <location-input :prompt="'From:'"
-                                      :promptMobile="'From Where?'"
-                                      @place-selected="updatePlaceFrom"/>
-                  </div>
-                  <div class="search-form-field__container">
-                      <location-input :prompt="'To:'" :promptMobile="'To Where?'"
-                                      @place-selected="updatePlaceTo"/>
-                  </div>
-                  <div class="search-form-field__container">
-                      <input type="text" class="form-control" id="departure_date"
-                             placeholder="Dep: ">
-                  </div>
-                  <div class="search-form-field__container">
-                      <input type="text" class="form-control" id="return_date"
-                             placeholder="Return: ">
-                  </div>
-                  <button class="btn btn-search" @click.prevent="doSearch">
-                      <svg class="icon icon--search" width="21" height="21">
-                          <use xlink:href="#icon-search"></use>
-                      </svg>
-                  </button>
-              </form>
-          </div>
-      </header>
+      <transition name="slide-up" mode="out-in" appear>
+          <header class="main-header" v-show="isOpen">
+              <div class="main-header__top">
+                  <select-destination :value="form.destinationTypeId"
+                                      @select="setDestinationType"/>
+                  <select-passenger-count/>
+                  <select-seat-type :value="form.seatType" @select="setSeatType"/>
+              </div>
+              <div class="main-header__bottom">
+                  <form action="">
+                      <div class="search-form-field__container">
+                          <location-input :prompt="'From:'"
+                                          :promptMobile="'From Where?'"
+                                          @place-selected="updatePlaceFrom"/>
+                      </div>
+                      <div class="search-form-field__container">
+                          <location-input :prompt="'To:'" :promptMobile="'To Where?'"
+                                          @place-selected="updatePlaceTo"/>
+                      </div>
+                      <div class="search-form-field__container">
+                          <input type="text" class="form-control" id="departure_date"
+                                 placeholder="Dep: ">
+                      </div>
+                      <div class="search-form-field__container">
+                          <input type="text" class="form-control" id="return_date"
+                                 placeholder="Return: ">
+                      </div>
+                      <button class="btn btn-search" @click.prevent="doSearch">
+                          <svg class="icon icon--search" width="21" height="21">
+                              <use xlink:href="#icon-search"></use>
+                          </svg>
+                      </button>
+                  </form>
+              </div>
+          </header>
+      </transition>
   </div>
 </script>
