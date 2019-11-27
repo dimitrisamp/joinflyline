@@ -23,5 +23,12 @@
   &--black {
     font-family: $dona-black;
   }
-
 }
+
+.hide-element-on-mobile {
+  display: none;
+  @include mq(lg) {
+    display: block;
+  }
+}
+

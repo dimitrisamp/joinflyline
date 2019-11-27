@@ -1,3 +1,4 @@
+{% load static %}
 <script type="text/x-template" id="vue-main-landing-footer-template">
     <div class="main-footer">
         <div class="container">
@@ -40,8 +41,16 @@
                 <div class="col">
                     <h4 class="main-footer__title">App Coming Soon</h4>
                     <ul class="main-footer__list">
-                        <li class="main-footer__item"><a class="main-footer__link" href="/"></a></li>
-                        <li class="main-footer__item"><a class="main-footer__link" href="/"></a></li>
+                        <li class="main-footer__item">
+                          <a class="main-footer__link" href="/">
+                            <img class="main-footer__social" src="{% static "home/img/main-landing/apple-logo.svg" %}" alt="App Store Download">
+                          </a>
+                        </li>   
+                        <li class="main-footer__item">
+                            <a class="main-footer__link" href="/">
+                              <img class="main-footer__social" src="{% static "home/img/main-landing/googlePlay-logo.svg" %}" alt="Google Play Download">
+                            </a>
+                          </li> 
                     </ul>
                 </div>
             </div>

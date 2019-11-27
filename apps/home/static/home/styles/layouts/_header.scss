@@ -2,7 +2,6 @@
   margin-left: 0;
   padding: 1rem 0.95rem;
   border-bottom: 1px solid $header-border-color;
-  margin-bottom: 2.375rem;
   @include mq(lg) {
     padding: 1rem 2rem;
     margin-left: $sidebar-width;
@@ -73,6 +72,45 @@
 
       &:hover {
         background-color: darken($primary, 4%);
+      }
+    }
+  }
+
+
+  // Mobile - Dashboard view
+  &__container {
+    margin-bottom: 2.375rem;
+  }
+  &__mobile {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.95rem;
+    border-bottom: 2px solid $gray;
+
+    &-logo {
+      width: 3rem;
+    }
+    
+    &-search {
+      width: 3rem;
+      display: inline-block;
+      text-align: right;
+      padding: 15px 15px;
+    }
+
+    &-left {
+    }
+    &-right {
+      .hamburger {
+        padding-right: 0;
+        position: relative;
+      }
+      .icon--search {
+        #Trips {
+          fill: $black;
+          stroke: $black;
+        }
       }
     }
   }

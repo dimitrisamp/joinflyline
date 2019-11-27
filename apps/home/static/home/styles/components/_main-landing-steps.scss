@@ -2,20 +2,35 @@
   padding: 7rem 0;
   position: relative;
   overflow: hidden;
-    &--background {
-      background-image: url(../img/main-landing/white-background.jpg);
-      background-position: center;
-      background-size: cover;
-      @include steps-lines(left);
+  text-align: center;
+  @include mq(lg) {
+    text-align: left;
+  }
+    &--background {  
+      &-blue {
+        background-image: url(../img/pricing_background.png);
+        background-position: center;
+        background-size: cover;
+        height: 100%;
+        color: $white;
+
+        .button--blue {
+          background-color: $white;
+          color: $primary;
+        }
+      }
     }
 
+    &--lines-left {
+      @include steps-lines(left);
+    }
+    
     &--lines-right {
       @include steps-lines(right);
     }
 
     &--noLines {
-      &::before,
-      &::after {
+      &::before {
         display: none;
       }
     }
@@ -23,7 +38,17 @@
     &__text {
       font-size: 1.25rem;
       color: $main-landing-gray;
-      margin-bottom: 1.8rem;
+      margin: 1.8rem 0;
+      .steps--background-blue & {
+        color: $white;
+      }
+    }
+
+    &__title,
+    &__subtitle {
+      .steps--background-blue & {
+        color: $white;
+      }
     }
 
     &__image {
@@ -42,9 +67,10 @@
     }
 
     &__right {
-      text-align: right;
+      text-align: center;
       padding-right: 0rem;
       @include mq(lg) {
+        text-align: right;
         padding-right: 6rem;
       }
     }
@@ -64,10 +90,11 @@
       background-color: $white;
       box-shadow: 0 2px 2px 0 transparentize($color: #000000, $amount: 0.5);
       padding: 13px;
-      width: 15rem;
+      width: 17rem;
       position: absolute;
       top: -15%;
       left: 15%;
+      color: $black;
       &-logo {
         width: 2rem;
       }
@@ -104,6 +131,14 @@
       &-bottom {
         p {
           color: $main-landing-gray;
+          font-size: 0.9rem;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          span {
+            color: $black;
+            font-family: $dona-bold;
+          }
           &:last-child {
             margin-bottom: 0;
           }
@@ -111,3 +146,17 @@
       }
     }
 }
+
+
+
+// .steps .steps__inner {
+//   .container {
+//     .steps__title {
+//       color: $primary;
+//     }
+//     .steps__subtitle {
+//       color: $black;
+//       margin: 1rem 0;
+//     }
+//   }
+// }
