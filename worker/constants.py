@@ -1,0 +1,10 @@
+DEALS_DAYS = 30
+CHECK_FLIGHT_TRY_COUNT = 20
+SEARCH_MAX_TRIES = 10
+SEARCH_DELAY = 1
+CHECKER_SLEEP_INTERVAL = 1
+MAX_CHECK_FLIGHT_DELAY = 8
+SEARCH_API_URL = "https://kiwicom-prod.apigee.net/v2/search"
+CHECK_FLIGHTS_API_URL = "https://kiwicom-prod.apigee.net/v2/booking/check_flights"
+MIN_NIGHTS_IN_DEST = 1
+MAX_NIGHTS_IN_DEST = 7

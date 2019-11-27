@@ -10,10 +10,7 @@
   .form-control {
     border: 2px solid #ececec;
     padding: 20px 10px;
-    margin-bottom: 0.625rem;
-    @include mq(lg) {
-      margin-bottom: 0;
-    }
+    margin-bottom: 0;
   }
 }
 
@@ -41,7 +38,9 @@
 
 .search-container {
   .s-result-dropdown {
-    margin-right: .85rem;
+    &:not(:last-child) {
+      margin-right: .85rem;
+    }
     @include mq(md) {
       margin-right: 30px;
       min-width: 160px;

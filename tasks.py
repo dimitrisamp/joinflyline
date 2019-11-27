@@ -70,7 +70,6 @@ def mc(c, kebab_name):
         f.write(HTML_TEMPLATE.format(kebab_name=kebab_name))
     with open(js_components_template, 'a+') as f:
         f.write(INCLUDE_JS.format(path=f'home/js/vue/components/{kebab_name}.js'))
-    c.run(f'sort -o {js_components_template} {js_components_template}')
     with open(html_components_template, 'a+') as f:
         f.write(INCLUDE_HTML.format(path=f'home/vue/{kebab_name}.html'))
     print('Created files:')
@@ -87,3 +86,8 @@ def worker(c):
 def static(c):
     c.run('python manage.py collectstatic --noinput -v 3')
     c.run('python manage.py compress')
+
+
+@task
+def deals(c):
+    c.run('python manage.py fill_deals')

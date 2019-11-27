@@ -56,7 +56,6 @@ INSTALLED_APPS = [
     "apps.payments",
     "apps.home",
     "apps.results",
-    "apps.corporate",
     "apps.account",
     "apps.booking",
     "apps.oauth",
@@ -200,7 +199,7 @@ MEDIA_URL = "/images/"
 
 LOGIN_REDIRECT_URL = "accounts"
 LOGIN_URL = "/sign-in"
-RECEIVE_EMAIL = "bookings@wanderift.com"
+RECEIVE_EMAIL = "bookings@joinflyline.com"
 RECEIVE_PHONE = "+18105131533"
 KIWI_API_KEY = "4TMnq4G90OPMYDAGVHzlP9LQo2hvzzdc"
 STRIPE_API_KEY = os.getenv("STRIPE_API_KEY")
@@ -217,7 +216,6 @@ SENDGRID_API_KEY = (
     "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"
 )
 
-SITE_TITLE = "Wanderift | Airline Travel Subscription | Save on Retail Flights"
 SUBSCRIBER_AIRLINES = {
     "AA",  # American
     "DL",  # Delta
@@ -261,4 +259,5 @@ REST_FRAMEWORK = {
     ),
     "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
     "DEFAULT_FILTER_BACKENDS": ("django_filters.rest_framework.DjangoFilterBackend",),
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
 }

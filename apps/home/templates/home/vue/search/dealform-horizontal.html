@@ -2,13 +2,13 @@
 <div id="dealform" class="h-dealform horizontal-form">
   <div class="row">
     <div class="col">
-      <div class="d-flex">
+      <div class="main-filters">
         <select-destination
           :value="form.destinationTypeId"
           @select="setDestinationType"
         />
-        <select-passenger-count />
         <select-seat-type :value="form.seatType" @select="setSeatType" />
+        <select-passenger-count />
       </div>
     </div>
   </div>
@@ -19,8 +19,9 @@
         <div class="hero-search__item is-wide">
           <div class="input-group input-group-sm search-dropdown">
             <location-input
-              :prompt="'From:'"
-              :promptMobile="'From Where?'"
+              :prompt="'Departure City'"
+              :promptMobile="'Departure City'"
+              :promptMobileFocus="'From Where?'"
               @place-selected="updatePlaceFrom"
             />
           </div>
@@ -28,8 +29,9 @@
         <div class="hero-search__item is-wide">
           <div class="input-group input-group-sm search-dropdown">
             <location-input
-              :prompt="'To:'"
-              :promptMobile="'To Where?'"
+              :prompt="'Arrival City'"
+              :promptMobile="'Arrival City'"
+              :promptMobileFocus="'To where?'"
               @place-selected="updatePlaceTo"
             />
           </div>
@@ -77,10 +79,22 @@
               @click="searchFromHome"
               :disabled="isFormIncomplete"
             >
-              <img src="{% static "home/img/search.png" %}">
+              <img v-if="$mq!=='sm'" src="{% static "home/img/search.png" %}">
+                <span v-else>Search Flights</span>
             </button>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-0">
+    <div class="col-12">
+      <!-- Trending Flights -->
+      <div class="trending-flights">
+        <span>Trending Flights</span>
+        <div class="trending-flights__item">Dallas -> New York</div>
+        <div class="trending-flights__item">New York -> San Francisco</div>
+        <div class="trending-flights__item">Miami -> Los Angeles</div>
       </div>
     </div>
   </div>

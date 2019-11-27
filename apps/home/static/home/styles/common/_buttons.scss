@@ -6,6 +6,45 @@
   }
 }
 
+.button {
+  border: 2px solid $primary;
+  padding: 0.3rem 1.8rem;
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+  user-select: none;
+  background-color: transparent;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: $primary;
+  font-size: 0.8125rem;
+  font-family: $dona-bold;
+  transition: color 0.15s ease-in-out, 
+              background-color 0.15s ease-in-out, 
+              border-color 0.15s ease-in-out, 
+              box-shadow 0.15s ease-in-out;
+  &:hover {
+    text-decoration: none;
+    background-color: $primary;
+    color: $white;
+  }
+  &--big {
+    font-size: 1.5rem;
+  }
+  &--blue {
+    background-color: $primary;
+    color: $white;
+    font-size: 1.25rem;
+    min-width: 13rem;
+    max-width: 100%;
+    padding-top: 8px;
+  }
+  &--outline-blue {
+    border-color: $primary;
+    color: $primary;
+  }
+}
+
 
 .btn {
   &.btn-outline {
@@ -17,9 +56,17 @@
     font-family: $dona-black;
     border: 2px solid $primary;
     max-width: 100%;
+    .nav-item & {
+      font-size: 12px;
+      padding: 9px 1.3rem 7px 1.3rem;
+    }
     &:hover {
       background-color: $primary;
       color: $white;
+    }
+    &--blue {
+      background-color: $primary;
+      color: $white !important;
     }
   }
 }

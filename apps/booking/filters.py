@@ -1,10 +1,21 @@
 import django_filters
 from django.db.models import Max
 from django.db.models.functions import Now
+from rest_framework.pagination import PageNumberPagination
 
-from apps.booking.models import BookingContact
+from apps.booking.models import BookingContact, Deal
 
 BOOKING_KIND_FILTER_CHOICES = (("upcoming", "Upcoming"), ("past", "Past"))
+
+
+class DealPagination(PageNumberPagination):
+    page_size = 5
+
+
+class DealFilterSet(django_filters.FilterSet):
+    class Meta:
+        model = Deal
+        fields = ['city_from']
 
 
 class BookingFilter(django_filters.FilterSet):
@@ -17,7 +28,7 @@ class BookingFilter(django_filters.FilterSet):
         fields = ["kind"]
 
     def filter_kind(self, queryset, name, value):
-        qs = BookingContact.objects.annotate(
+        qs = queryset.annotate(
             last_flight_date=Max("flights__arrival_time")
         )
         if value == "upcoming":

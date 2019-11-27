@@ -18,17 +18,36 @@ MEDIA_ROOT = "media"
 COMPRESS_ENABLED = True
 COMPRESS_OFFLINE = True
 COMPRESS_FILTERS = {
-    "css": [
-        "compressor.filters.css_default.CssAbsoluteFilter",
-    ],
+    "css": ["compressor.filters.css_default.CssAbsoluteFilter"],
     "js": [
         "compressor.filters.jsmin.JSMinFilter",
         "compressor.filters.jsmin.SlimItFilter",
     ],
 }
 COMPRESS_URL = os.getenv(
-    "COMPRESS_URL", 'https://storage.googleapis.com/joinflyline-staging/'
+    "COMPRESS_URL", "https://storage.googleapis.com/joinflyline-staging/"
 )
 
 
 SITE_URL = os.getenv("SITE_URL", "https://stating.joinflyline.com")
+DEALS_CITIES = [
+    "ATL",
+    "AUS",
+    "MTN",
+    "BOS",
+    "CLT",
+    "CHI",
+    "DFW",
+    "DEN",
+    "DTT",
+    "LAS",
+    "LAX",
+    "MIA",
+    "NYC",
+    "ORL",
+    "PHL",
+    "SLC",
+    "SFO",
+    "SEA",
+    "WAS",
+]

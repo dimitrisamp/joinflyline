@@ -33,17 +33,10 @@ from apps.booking.views import (
     RetailBookingView,
 )
 from apps.subscriptions import views as subscriptions_views
-from apps.booking.viewsets import BookingViewSet, FlightViewSet
+from apps.booking.viewsets import BookingViewSet, FlightViewSet, DealViewSet, TripSummary
 from apps.common.user_router import UserRouter
 from apps.emails.views import booking_success
-from apps.home.views import (
-    index_view,
-    home_view,
-    SignInView,
-    SignUpView,
-    PromoLandingView,
-    SavingsExplainedView,
-)
+from apps.home.views import index_view
 from apps.account.views import WizardView
 from apps.account.api_views import UserViewSet
 from django.conf import settings
@@ -53,6 +46,7 @@ router = routers.DefaultRouter()
 router.register(r'users', UserViewSet)
 router.register(r'bookings', BookingViewSet, basename='bookings')
 router.register(r'flight', FlightViewSet)
+router.register(r'deals', DealViewSet, basename="deals")
 
 user_router = UserRouter()
 user_router.register(r'account', AccountViewSet, basename='account')
@@ -74,13 +68,7 @@ class RobotsTxtView(View):
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    # site under construction
-    # path('', under_construction, name="construction"),
-    # Home page links
     path("", index_view, name="index"),
-    path("home/", home_view, name="home"),
-    # Corporate urls
-    path("corporates/", include("apps.corporate.urls")),
     # Auth urls
     path("auth/", include("apps.oauth.urls")),
     path(r'api/auth/', include('knox.urls')),
@@ -101,12 +89,10 @@ urlpatterns = [
         TemplateView.as_view(template_name="503.html"),
         name="maintenance",
     ),
-    path(
-        "savings-explained/", SavingsExplainedView.as_view(), name="savings-explained"
-    ),
-    re_path("^api/", include(router.urls)),
+    path('api/bookings/summary/', TripSummary.as_view(), name="booking-summary"),
+    path('api/subscriptions/plan/', subscriptions_views.Plans.as_view(), name="plans"),
     re_path("^api/users/me/", include(user_router.urls)),
-    path('api/subscriptions/plan/', subscriptions_views.Plans.as_view(), name="plans")
+    re_path("^api/", include(router.urls)),
 ]
 
 if settings.STAGE == "local" and os.getenv("DEBUG_TOOLBAR", "false").lower() in (

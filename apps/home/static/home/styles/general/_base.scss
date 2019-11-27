@@ -27,3 +27,20 @@ hr + .main-padding {
   transform: translateX(-2rem);
   opacity: 0;
 }
+
+.slide-up-enter-active, .slide-up-leave-active {
+  transform: translateY(0);
+  transition: all .38s cubic-bezier(.13,.89,.58,1)
+}
+
+.slide-up-enter, .slide-up-leave-to {
+  transform: translateY(-2rem);
+  opacity: 0;
+}
+
+
+// Main Landing
+.main-landing .section5-Bg {
+  margin-top: 0;
+  padding-bottom: 4.5rem;
+}

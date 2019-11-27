@@ -7,10 +7,30 @@ export const DashboardHeader = Vue.component('dashboard-header', {
     computed: {
         ...Vuex.mapGetters(['toggleSidebar']),
     },
+    data() {
+      return {
+        isOpen: false,
+      }
+    },
+    watch: {
+      $mq: {
+        handler: 'showSearchFormHandler',
+      }
+    },
+    mounted() {
+      this.showSearchFormHandler();
+    },
     methods: {
         doSearch() {
             this.search();
             this.$router.push({'name': 'results'})
+        },
+        showSearchFormHandler() {
+          if(this.$mq == 'sm') {
+            this.isOpen = false
+          } else {
+            this.isOpen = true
+          }
         }
     }
 });

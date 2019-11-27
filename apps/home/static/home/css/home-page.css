@@ -141,7 +141,7 @@ header.sticky {
 .nav-logo img {
   position: relative;
   top: -3px;
-  height: 33px;
+  height: 28px;
 }
 
 .nav-logo {
@@ -374,6 +374,21 @@ header.sticky {
   display: flex;
   width: 100%;
 }
+.dat-blue-border .search-form-input {
+  padding: 0.5rem;
+  padding-left: 1rem;
+  color: #00b0f5;
+}
+
+.shadowsrch .dat-blue-border .search-form-input::placeholder {
+    color: #7d7d7d;
+}
+
+@media (min-width: 768px) {
+  .dat-blue-border .search-form-input {
+    color: #7d7d7d;
+  }
+}
 
 .clicked .dat-blue-border {
   background: #fff;
@@ -558,9 +573,18 @@ header.sticky {
 }
 
 .header-background {
-  background: url("../img/headerbackground.png");
+  /* background: url("../img/headerbackground.png"); */
+}
+.hero {
+  background-image: url("../img/hero-header.svg");
   width: 100%;
-  background-position: bottom;
+  background-repeat: repeat;
+  background-position: center;
+  position: relative;
+}
+.hero .h-headermain {
+  position: relative;
+  /* z-index: 111; */ /* @Adel, what was this rule for? */
 }
 
 .horizontal-form .s-result-dropdown .btn {
@@ -611,14 +635,12 @@ header.sticky {
   color: black;
   font-weight: bold;
   font-family: Dona-Black;
-  text-align: center;
 }
 
 .home-slider .slider-title-second {
   font-size: 16px;
   color: grey;
   font-family: Dona-bold;
-  text-align: center;
   margin-bottom: 0;
 }
 
@@ -1205,6 +1227,7 @@ header.sticky {
   box-shadow: 0px 2px 5px #ccc;
   position: absolute;
   z-index: 999;
+  right: 0;
 }
 
 .passengers-dropdown .passengers-dropdown-list {
@@ -1939,7 +1962,6 @@ This one is disabled until top blue line is back
   .horizontal-f-btn .btn-search {
     padding: 11px 31px;
     border: 2px solid #fff;
-    margin-top: 20px;
   }
 
   .search-dropdown .form-control {
@@ -2106,6 +2128,11 @@ This one is disabled until top blue line is back
     display: block !important;
   }
 }
+@media (min-width: 320px) and (max-width: 480px) {
+  .newhome-form h3 {
+    color: white;
+  }
+}
 
 @media (min-width: 320px) and (max-width: 768px) {
   .content-img img {
@@ -2265,9 +2292,6 @@ This one is disabled until top blue line is back
     font-size: 12px;
   }
 
-  .newhome-form h3 {
-    display: none;
-  }
 
   .newhome-form p {
     display: none;
@@ -2586,8 +2610,7 @@ This one is disabled until top blue line is back
   flex-direction: column;
 }
 
-.hero-search__item {
-}
+
 
 @media screen and (min-width: 768px) {
   .hero-search {
@@ -2598,6 +2621,6 @@ This one is disabled until top blue line is back
     flex-grow: 1;
   }
   .hero-search__item.is-wide {
-      flex-basis: 35%;
+      flex-basis: 45%;
   }
 }

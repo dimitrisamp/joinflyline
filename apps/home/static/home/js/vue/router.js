@@ -10,6 +10,7 @@ import {AccountInformation} from "./components/account-information.js";
 import {ResultComponent} from "./components/result-component.js";
 import {SearchResultsPage} from "./components/search-results-page.js";
 import {SignIn} from "./components/sign-in.js"
+import {MainLanding} from "./components/main-landing.js"
 
 import { store } from './store.js';
 
@@ -17,7 +18,7 @@ const routes = [
   {
     path: '/',
     name: 'index',
-    component: Home,
+    component: MainLanding
     beforeEnter(to, from, next) {
       if(!store.getters.user.anonymous) next({ name: 'dashboard' })
       else next()

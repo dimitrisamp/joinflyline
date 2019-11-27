@@ -1,5 +1,6 @@
 from django.conf import settings
 
+
 def get_user_info(user):
     django_user = {"anonymous": user.is_anonymous}
     if not user.is_anonymous:
