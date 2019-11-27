@@ -5,7 +5,8 @@
     "price": {
       "period": "annual",
       "value": 39.99
-    }
+    },
+    "limit": 6
   },
   "basic-plus": {
     "name": "FlyLine Basic Plus",
@@ -13,7 +14,8 @@
     "price": {
       "period": "annual",
       "value": 69.99
-    }
+    },
+    "limit": 9
   },
   "pro": {
     "name": "FlyLine Pro",
@@ -21,7 +23,8 @@
     "price": {
       "period": "annual",
       "value": 139.99
-    }
+    },
+    "limit": null
   },
   "pro-plus": {
     "name": "FlyLine Pro Plus",
@@ -29,6 +32,7 @@
     "price": {
       "period": "annual",
       "value": 199.99
-    }
+    },
+    "limit": null
   }
 }

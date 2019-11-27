@@ -1,3 +1,5 @@
+import datetime
+
 from django.conf import settings
 import stripe
 import stripe.error
@@ -5,6 +7,7 @@ from django.conf import settings
 from django.contrib.auth.models import User
 from django.http import JsonResponse
 from django.views.generic import FormView
+from psycopg2.extras import DateTimeTZRange
 
 from apps.account.forms import WizardForm
 from apps.account.models import Account
@@ -43,7 +46,11 @@ def add_subscription(user_id, plan):
             customer=user.profile.customer_id,
             items=[{"plan": settings.SUBSCRIPTION_PLANS[plan]["stripe_plan_id"]}],
         )
-        Subscriptions.objects.create(user=user, plan=plan)
+        start = datetime.datetime.fromtimestamp(subscription["current_period_start"])
+        end = datetime.datetime.fromtimestamp(subscription["current_period_end"])
+        Subscriptions.objects.create(
+            user=user, plan=plan, period=DateTimeTZRange(start, end)
+        )
 
 
 def add_to_stripe(user, plan):

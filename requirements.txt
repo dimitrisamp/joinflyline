@@ -36,3 +36,8 @@ csscompressor
 
 aiohttp[speedups]
 asgiref
+
+pytest
+pytest-django
+pytest-xdist
+
