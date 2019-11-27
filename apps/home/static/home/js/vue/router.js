@@ -1,4 +1,3 @@
-import {Home} from "./components/home.js";
 import {SavingsExplained} from "./components/savings-explained.js";
 import {Wizard} from "./components/wizard.js";
 import {LearnMore} from "./components/learn-more.js";
@@ -18,10 +17,13 @@ const routes = [
   {
     path: '/',
     name: 'index',
-    component: MainLanding
+    component: MainLanding,
     beforeEnter(to, from, next) {
-      if(!store.getters.user.anonymous) next({ name: 'dashboard' })
-      else next()
+      if(!store.getters.user.anonymous) {
+        next({ name: 'overview' });
+      } else {
+        next();
+      }
     }
   },
   {
@@ -39,8 +41,11 @@ const routes = [
     name: 'dashboard',
     component: Dashboard,
     beforeEnter(to, from, next) {
-      if(store.getters.user.anonymous) next({ name: 'index' })
-      else next()
+      if(store.getters.user.anonymous) {
+        next({ name: 'index' });
+      } else {
+        next();
+      }
     },
     children: [
       {
@@ -98,6 +103,6 @@ router.beforeEach((to, from, next) => {
     next();
   });
   store.dispatch("initializePlans");
-})
+});
 
 export { router }
