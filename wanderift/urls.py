@@ -90,9 +90,9 @@ urlpatterns = [
         name="maintenance",
     ),
     path('api/bookings/summary/', TripSummary.as_view(), name="booking-summary"),
-    re_path("^api/", include(router.urls)),
-    re_path("^api/users/me/", include(user_router.urls)),
     path('api/subscriptions/plan/', subscriptions_views.Plans.as_view(), name="plans"),
+    re_path("^api/users/me/", include(user_router.urls)),
+    re_path("^api/", include(router.urls)),
 ]
 
 if settings.STAGE == "local" and os.getenv("DEBUG_TOOLBAR", "false").lower() in (
