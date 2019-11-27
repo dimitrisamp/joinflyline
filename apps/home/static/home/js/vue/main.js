@@ -12,9 +12,6 @@ Vue.use(VueMeta);
 const app = new Vue({
   router,
   store,
-  created() {
-    this.$store.dispatch('initialize');
-  },
   computed: {
     ...Vuex.mapState(['user']),
   }
