@@ -28,7 +28,7 @@ class BookingFilter(django_filters.FilterSet):
         fields = ["kind"]
 
     def filter_kind(self, queryset, name, value):
-        qs = BookingContact.objects.annotate(
+        qs = queryset.annotate(
             last_flight_date=Max("flights__arrival_time")
         )
         if value == "upcoming":

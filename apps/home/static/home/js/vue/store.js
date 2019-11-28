@@ -6,6 +6,7 @@ import {
 } from "../utils.js";
 import { airlineCodes } from "../airlineCodes.js";
 import api from "./http.js";
+import { userStorage } from "../utils.js";
 
 export const store = new Vuex.Store({
   state: {
@@ -147,10 +148,12 @@ export const store = new Vuex.Store({
       this.dispatch("initializePlans");
     },
     initializeUser(context) {
-      api
+      return api
         .get("/users/me/")
         .then(response => {
-          context.commit("setUser", response.data);
+          context.commit("setUser", Object.assign(
+            {}, {anonymous: false}, response.data)
+          );
         })
         .catch(err => {
           if (err.response.status === 401) {
@@ -182,7 +185,7 @@ export const store = new Vuex.Store({
         )
         .then(response => {
           if (response.status < 400) {
-            localStorage.setItem("authToken", response.data.token);
+            userStorage.setSession(response.data.token, response.data.expiry);
             this.dispatch("initialize").then(() => {
               router.push({ name });
             });
@@ -265,6 +268,9 @@ export const store = new Vuex.Store({
         return `${airlinesText} and ${others} more`;
       }
       return airlinesText;
+    },
+    user(state) {
+      return state.user
     }
   }
 });

@@ -4,7 +4,8 @@ export const DashboadOverview = Vue.component("dashboad-overview", {
   data() {
     return {
       deals: [],
-      suggested_deals: []
+      suggested_deals: [],
+      trip_summary: null,
     };
   },
   template: "#vue-dashboad-overview-template",
@@ -29,6 +30,7 @@ export const DashboadOverview = Vue.component("dashboad-overview", {
   },
   created() {
     api.get("/deals/").then(response => (this.deals = response.data.results));
+    api.get("/bookings/summary/").then(response => (this.trip_summary = response.data));
     this.updateDeals();
   },
   computed: {

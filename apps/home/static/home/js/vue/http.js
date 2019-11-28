@@ -1,11 +1,12 @@
+import { userStorage } from '../utils.js';
+
 export default axios.create({
   baseURL: '/api/',
   headers: {
     Authorization: {
       toString () {
-        const token = localStorage.getItem('authToken');
-        if(!token) return null;
-        return `Token ${token}`;
+        if(!userStorage.token) return null;
+        return `Token ${userStorage.token}`;
       }
     }
   }
