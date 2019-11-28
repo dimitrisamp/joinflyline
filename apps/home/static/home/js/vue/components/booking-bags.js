@@ -52,9 +52,23 @@ export const BookingBags = Vue.component("booking-bags", {
   props: ["baggage"],
   data() {
     return {
-      handIndex: 0,
-      holdIndex: 0,
+      selectedCombinations: {
+        hand_bag: 0,
+        hold_bag: 0
+      },
       categoryLabels,
+    }
+  },
+  watch: {
+    selectedCombinations: {
+      handler(val) {
+        let result = {};
+        for (let [categoryName, value] of Object.entries(val)) {
+          result[categoryName] = this.data[categoryName][value];
+        }
+        this.$emit('baggage-updated', result);
+      },
+      deep: true,
     }
   },
   template: "#vue-booking-bags-template",

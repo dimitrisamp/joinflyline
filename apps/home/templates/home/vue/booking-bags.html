@@ -5,7 +5,7 @@
                 [[ categoryLabels[categoryName] ]]<span>Select one option</span></h3>
             <div class="booking-bags__combination-list">
                 <div v-for="(combination, combinationIndex) in combinations" class="booking-bags__combination">
-                    <input type="radio" :name="categoryName" :value="combinationIndex"/>
+                    <input type="radio" :name="categoryName" :value="combinationIndex" v-model="selectedCombinations[categoryName]"/>
                     <div v-for="option in combination.items">
                         <i :class="`booking-bags__${option.iconClass}`" />
                         <p class="booking-bags__bag-label">[[ option.label ]]</p>

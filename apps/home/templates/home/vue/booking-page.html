@@ -25,9 +25,10 @@
                 </div>
             </div>
             <!-- End flights -->
-            <div v-for="passenger in passengers">
-                <booking-passenger-form :checked-flight="checkedFlight"
-                                        :passenger="passenger"/>
+            <div v-for="passenger, i in passengers">
+                <booking-passenger-form :check-flight-data="checkFlightData"
+                                        :passenger="passenger"
+                                        @passenger-updated="updatePassenger(i, ...arguments)"/>
             </div>
             <div class="pform__field--button">
                 <button class="pform__add" @click="addPassenger">Add another passenger
