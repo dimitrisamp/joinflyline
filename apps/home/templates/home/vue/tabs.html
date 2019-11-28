@@ -1,0 +1,18 @@
+<script type="text/x-template" id="vue-tabs-template">
+    <div class="tabs" :class="tabsWrapperClass">
+      <ul class="tabs__list">
+        <li
+          class="tabs__item"
+          v-for="tab in tabs"
+          :key="tab.title.toLowerCase().replace(/ /g, '-')"
+          :class="{'is-active': tab.isActive}"
+          @click="selectTab(tab)"
+        >
+          <a href="javascript:;" class="tabs__link">[[ tab.title ]]</a>
+        </li>
+      </ul>
+      <div :class="tabsContentClass">
+        <slot></slot>
+      </div>
+    </div>
+</script>

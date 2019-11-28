@@ -81,7 +81,10 @@
             <form action="">
               <div class="row" v-if="frequentflyer_ready">
                 <div v-for="(label, value) in frequentFlyerNames" class="col-12 col-lg-6">
-                  <input type="text" class="form-control" :placeholder="label" v-model="frequentflyer[value]"/>
+                  <div class="form-group">
+                    <input type="text" class="form-control" :placeholder="airlineCodes[label]" v-model="frequentflyer[value]"/>
+                    <img class="account__form-icon" :src="airlineIcon(label)" alt="">
+                  </div>
                 </div>
                 <div class="w-100"></div>
                 <div class="col-12 col-lg-6 ml-auto text-right mb-4">
@@ -136,6 +139,34 @@
       </div>
     </div>
 
+    
+    <hr>
+    <hr>
+    <div class="main-padding">
+        <div class="account__form">
+          <div class="row">
+            <div class="col-12 col-xl-3">
+              <h3>Subscription Management</h3>
+            </div>
+            <div class="col-12 col-xl-7">
+              <form action="">
+                <div class="row" v-if="frequentflyer_ready">
+                  <div v-for="(label, value) in frequentFlyerNames" class="col-12 col-lg-6">
+                    <div class="form-group">
+                      <input type="text" class="form-control" :placeholder="airlineCodes[label]" v-model="frequentflyer[value]"/>
+                      <img class="account__form-icon" :src="airlineIcon(label)" alt="">
+                    </div>
+                  </div>
+                  <div class="w-100"></div>
+                  <div class="col-12 col-lg-6 ml-auto text-right mb-4">
+                    <button type="submit" class="btn btn-primary" @click.prevent="saveFrequentFlyer">Save Frequent Flyer Information</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
 
   </div>
 </script>

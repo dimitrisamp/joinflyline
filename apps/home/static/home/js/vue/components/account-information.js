@@ -1,18 +1,19 @@
 import api from "../http.js";
-import { formatDateFull } from "../../utils.js";
+import { formatDateFull, airlineIcon } from "../../utils.js";
+import { airlineCodes } from '../../airlineCodes.js';
 
 const frequentFlyerNames = {
-  american_airlines: "American Airlines",
-  united_airlines: "United Airlines",
-  southwest_airlines: "Southwest Airlines",
-  sun_country_airlines: "Sun Country Airlines",
-  frontier_airlines: "Frontier Airlines",
-  delta_airlines: "Delta Airlines",
-  alaska_airlines: "Alaska Airlines",
-  jetBlue: "JetBlue",
-  spirit_airlines: "Spirit Airlines",
-  allegiant_air: "Allegiant Air",
-  hawaiian_airlines: "Hawaiian Airlines"
+  american_airlines: "AA",
+  united_airlines: "UA",
+  southwest_airlines: "WN",
+  sun_country_airlines: "SY",
+  frontier_airlines: "F9",
+  delta_airlines: "DL",
+  alaska_airlines: "AS",
+  jetBlue: "B6",
+  spirit_airlines: "NK",
+  allegiant_air: "G4",
+  hawaiian_airlines: "HA"
 };
 
 export const AccountInformation = Vue.component("account-information", {
@@ -28,7 +29,7 @@ export const AccountInformation = Vue.component("account-information", {
       profile: {},
       frequentflyer: {},
       user: {},
-      dobText: ""
+      dobText: ''
     };
   },
   delimiters: ["[[", "]]"],
@@ -80,12 +81,16 @@ export const AccountInformation = Vue.component("account-information", {
       api.patch("/users/me/", this.user).then(response => {
         this.user = response.data;
       });
-    }
+    },
+    airlineIcon
   },
   computed: {
     frequentFlyerNames() {
       return frequentFlyerNames;
-    }
+    },
+    airlineCodes() {
+      return airlineCodes
+    },
   },
   mounted() {
     const that = this;
