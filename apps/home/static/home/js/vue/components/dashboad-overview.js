@@ -8,6 +8,9 @@ export const DashboadOverview = Vue.component("dashboad-overview", {
       trip_summary: null,
     };
   },
+  metaInfo: {
+    title: "Travel Portal | FlyLine"
+  },
   template: "#vue-dashboad-overview-template",
   delimiters: ["[[", "]]"],
   methods: {
