@@ -12,7 +12,7 @@ import {SignIn} from "./components/sign-in.js"
 import {MainLanding} from "./components/main-landing.js"
 import {MainLandingAbout} from "./components/main-landing-about.js"
 
-import { store } from './store.js';
+import {store} from './store.js';
 
 const routes = [
   {
@@ -20,8 +20,8 @@ const routes = [
     name: 'index',
     component: MainLanding,
     beforeEnter(to, from, next) {
-      if(!store.getters.user.anonymous) {
-        next({ name: 'overview' });
+      if (!store.getters.user.anonymous) {
+        next({name: 'overview'});
       } else {
         next();
       }
@@ -47,8 +47,8 @@ const routes = [
     name: 'dashboard',
     component: Dashboard,
     beforeEnter(to, from, next) {
-      if(store.getters.user.anonymous) {
-        next({ name: 'index' });
+      if (store.getters.user.anonymous) {
+        next({name: 'index'});
       } else {
         next();
       }
@@ -98,7 +98,14 @@ const routes = [
 const router = new VueRouter({
   routes,
   linkActiveClass: 'active',
-  linkExactActiveClass: 'exact-active'
+  linkExactActiveClass: 'exact-active',
+  scrollBehavior: function (to) {
+    if (to.hash) {
+      return {
+        selector: to.hash
+      }
+    }
+  },
 });
 
 router.beforeEach((to, from, next) => {
@@ -111,4 +118,4 @@ router.beforeEach((to, from, next) => {
   store.dispatch("initializePlans");
 });
 
-export { router }
+export {router}

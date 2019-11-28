@@ -11,10 +11,10 @@
                       <h2 class="steps__title title--blue-big">Step 1</h2>
                       <h3 class="steps__subtitle title--black">Choose Your Subscription</h3>
                       <p class="steps__text">Choose between FlyLine Basic <br> or Pro for great savings!</p>
-                      <a class="button button--big button--blue" href="">View Plans</a>
+                      <a class="button button--big button--blue" href="#section5-Bg">View Plans</a>
                   </div>
                   <div class="col-12 col-lg-6 hide-element-on-mobile">
-                      <img class="steps__logo" src="{% static "home/img/main-landing/flyline-logo.png" %}" alt="Logo">
+                      <img class="steps__logo" src="{% static "home/img/main-landing/Flyline_Logo_Blk_Whi.svg" %}" alt="Logo">
                       <div class="steps__image">
                           <img class="w-100" src="{% static "home/img/main-landing/flight-1.png" %}" alt="Flight 1">
                       </div>
@@ -45,7 +45,7 @@
                           <h2 class="steps__title title--blue-big">Step 2</h2>
                           <h3 class="steps__subtitle title--black">Search for Savings</h3>
                           <p class="steps__text">Search our flight inventory to find savings on <br> both domestic and international flights</p>
-                          <a class="button button--big button--blue" href="">Search Flights</a>
+                          <a class="button button--big button--blue" href="#search-hero">Search Flights</a>
                       </div>
                   </div>
                   
@@ -66,7 +66,7 @@
                     <h3 class="steps__subtitle title--black">Save Instantly</h3>
                     <p class="steps__text">Our average member recoups their subscription fee in 3 <br>
                       domestic bookings or 1 international booking.</p>
-                      <a class="button button--big button--blue" href="">Join Flyline</a>
+                      <router-link :to="{name: 'get-started'}" class="button button--big button--blue" href="">Join Flyline</router-link>
                     </div>
                   </div>
                   <!-- Left Ends -->

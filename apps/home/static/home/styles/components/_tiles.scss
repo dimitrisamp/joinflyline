@@ -42,6 +42,10 @@
     }
     &-right {
       color: $gray;
+      &:hover {
+        color: #00AEEF;
+        cursor: pointer;
+      }
     }
   }
 

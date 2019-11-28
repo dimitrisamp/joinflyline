@@ -189,14 +189,14 @@ export const store = new Vuex.Store({
             this.dispatch("initialize").then(() => {
               router.push({ name });
             });
-          } else if (response.status === 401) {
-            ctx.commit('setAuthError', "Failed to login");
-          } else {
-            ctx.commit('setAuthError', "Something went wrong");
           }
         })
         .catch(error => {
-          ctx.commit('setAuthError', "Something went wrong");
+          if (error.response.status === 401) {
+            ctx.commit('setAuthError', "Incorrect Email or Password");
+          } else {
+            ctx.commit('setAuthError', "Something went wrong");
+          }
         });
     },
     toggleSidebar(context) {
