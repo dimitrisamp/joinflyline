@@ -1,0 +1,35 @@
+.about {
+  &__container {
+    text-align: center;
+  }
+  &__title {
+    font-family: $dona-black;
+    margin: 3.875rem 0;
+  }
+  &__subtitle {
+    font-family: $dona-bold;
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  &__text {
+    font-size: 1.125rem;
+    color: $main-landing-gray;
+    margin-bottom: 3.875rem;
+  }
+  &__stats {
+    padding: 3.75rem 0;
+    background-color: $main-landing-stats-bg;
+    color: $main-landing-about-stats;
+    text-align: center;
+    &-number {
+      color: $primary;
+      font-size: 1.875rem;
+      font-family: $dona-black;
+      margin-bottom: 0;
+    }
+    &-text {
+      margin-bottom: 0.2rem;
+      font-family: $dona-bold;
+    }
+  }
+}

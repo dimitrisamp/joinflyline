@@ -10,6 +10,7 @@ import {ResultComponent} from "./components/result-component.js";
 import {SearchResultsPage} from "./components/search-results-page.js";
 import {SignIn} from "./components/sign-in.js"
 import {MainLanding} from "./components/main-landing.js"
+import {MainLandingAbout} from "./components/main-landing-about.js"
 
 import { store } from './store.js';
 
@@ -25,6 +26,11 @@ const routes = [
         next();
       }
     }
+  },
+  {
+    path: '/about',
+    name: 'about',
+    component: MainLandingAbout
   },
   {
     path: '/search-results',

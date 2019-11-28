@@ -1,0 +1,7 @@
+<script type="text/x-template" id="vue-tab-template">
+    <transition name="slide-up" mode="out-in">
+      <div v-show="isActive">
+          <slot></slot>
+      </div>
+    </transition>
+</script>

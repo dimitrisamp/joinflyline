@@ -29,15 +29,17 @@ hr + .main-padding {
 }
 
 .slide-up-enter-active, .slide-up-leave-active {
-  transform: translateY(0);
-  transition: all .38s cubic-bezier(.13,.89,.58,1)
+  transition: all .3s cubic-bezier(.13,.89,.58,1)
 }
 
 .slide-up-enter, .slide-up-leave-to {
-  transform: translateY(-2rem);
   opacity: 0;
+  transform: translateY(-2rem);
 }
 
+.slide-up-leave-active {
+  position: absolute;
+}
 
 // Main Landing
 .main-landing .section5-Bg {

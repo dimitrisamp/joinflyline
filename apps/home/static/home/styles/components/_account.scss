@@ -3,6 +3,19 @@
     h3 {
         font-family: $dona-black;;
     }
+
+    .form-group {
+      position: relative;
+    }
+
+    &-icon {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+      border: 2px solid $primary;
+      padding: 5px;
+    }
   }
 
   &__select {
