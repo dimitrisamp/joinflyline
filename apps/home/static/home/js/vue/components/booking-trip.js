@@ -18,9 +18,9 @@ export const BookingTrip = Vue.component('booking-trip', {
     methods: {
         formatPassengerCountByCategory() {
             const passengers = this.flight.passengers;
-            const valAdults = passengers.filter(o=>o.category='adults').length;
-            const valChildren = passengers.filter(o=>o.category='children').length;
-            const valInfants = passengers.filter(o=>o.category='infants').length;
+            const valAdults = passengers.filter(o=>o.category==='adults').length;
+            const valChildren = passengers.filter(o=>o.category==='children').length;
+            const valInfants = passengers.filter(o=>o.category==='infants').length;
             const adultsText = valAdults === 0 ? '' : `${valAdults} Adult${valAdults > 1 ? 's' : ''}`;
             const childrenText = valChildren === 0 ? '' : `${valChildren} Child${valChildren > 1 ? 'ren' : ''}`;
             const infantsText = valInfants === 0 ? '' : `${valInfants} Infant${valInfants > 1 ? 's' : ''}`;

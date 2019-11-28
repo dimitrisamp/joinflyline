@@ -22,7 +22,7 @@
         </div>
         <div class="pform__field">
             <label>Nationality</label>
-            <select class="form-control" name="nationality">
+            <select class="form-control" name="nationality" v-model="p.nationality">
                 <option v-for="(label, countryCode) in isoCountries" :value="countryCode">[[ label ]]</option>
             </select>
         </div>
@@ -35,7 +35,7 @@
                 <option v-for="i in 31" :value="i">[[ i ]]</option>
             </select>
             <select v-model="p.year">
-                <option v-for="i in 100" value="2019 - i">[[ 2019 - i ]]</option>
+                <option v-for="i in 100" :value="2019 - i">[[ 2019 - i ]]</option>
             </select>
         </div>
         <div class="pform__field">

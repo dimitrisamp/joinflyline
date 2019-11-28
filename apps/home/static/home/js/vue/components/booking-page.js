@@ -9,9 +9,9 @@ const sampleAge = {
   infants: 1
 };
 
-function makePassenger(primary = true, category = "adult") {
+function makePassenger(primary = true, category = "adults") {
   let today = new Date();
-  let birthDate = new Date(today);
+  let birthDate = new Date(today.getTime());
   birthDate.setFullYear(
     today.getFullYear() - sampleAge[category]
   );
@@ -96,7 +96,7 @@ export const BookingPage = Vue.component("booking-page", {
       this.passengers.push(makePassenger(false));
     },
     updatePassenger(i, data) {
-      this.passengers[i] = {...data};
+      this.$set(this.passengers, i, data);
     },
     checkFlight() {
       if (this.checkFlightRequired && !this.checkFlightProgress) {
