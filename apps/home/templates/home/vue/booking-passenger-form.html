@@ -1,54 +1,51 @@
 <script type="text/x-template" id="vue-booking-passenger-form-template">
     <div class="pform">
-        <b class="pform__header">[[ isPrimary:'Primary passenger':'Secondary passenger' ]]</b>
+        <b class="pform__header">[[ passenger.isPrimary?'Primary passenger':'Secondary passenger' ]]</b>
         <div class="pform__alert">
             Use all First names and Last Names exactly as they appear in your
             passport ID to avoid boarding complications
         </div>
         <div class="pform__field">
             <label>Title</label>
-            <select v-model="model.title">
+            <select v-model="passenger.title">
                 <option value="mr">mr</option>
                 <option value="ms">ms</option>
             </select>
         </div>
         <div class="pform__field">
             <label>Given names</label>
-            <input type="text" v-model="model.name" placeholder="e.g Johnny Apple" />
+            <input type="text" v-model="passenger.name" placeholder="e.g Johnny Apple" />
         </div>
         <div class="pform__field">
             <label>Surname(s)</label>
-            <input type="text" name="surname" placeholder="e.g. Seed" />
+            <input type="text" v-model="passenger.surname" name="surname" placeholder="e.g. Seed" />
         </div>
         <div class="pform__field">
             <label>Nationality</label>
             <select class="form-control" name="nationality">
-                <option v-for="(label, name) in isoCountries" :value="name">[[ label ]]</option>
+                <option v-for="(label, countryCode) in isoCountries" :value="countryCode">[[ label ]]</option>
             </select>
         </div>
         <div class="pform__field">
             <label>Birthdate</label>
-            <select v-model="model.month">
-                <option v-for="(label, value) in months" :value="value">[[ label ]]</option>
+            <select v-model="passenger.month">
+                <option v-for="(label, index) in months" :value="index + 1">[[ label ]]</option>
             </select>
-            <select v-model="model.day">
+            <select v-model="passenger.day">
                 <option v-for="i in 31" :value="i">[[ i ]]</option>
             </select>
-            <select v-model="model.year">
+            <select v-model="passenger.year">
                 <option v-for="i in 100" value="2019 - i">[[ 2019 - i ]]</option>
             </select>
         </div>
         <div class="pform__field">
             <label>Passport/ID number</label>
-            <input type="text" v-model="model.cardno">
+            <input type="text" v-model="passenger.cardno">
         </div>
         <div class="pform__field">
             <label>Expiration</label>
-            <input type="text" v-model="model.expiration" placeholder="2020-12-28">
+            <input type="text" v-model="passenger.expiration" placeholder="2020-12-28">
         </div>
-        {% include "booking/includes/passenger/bags.html" %}
-    </div>
-    <div class="pform__field--button">
-        <button class="pform__add" @click="addPassenger">Add another passenger</button>
+        <booking-bags :baggage="!!checkedFlight?checkedFlight.baggage:null" />
     </div>
 </script>
