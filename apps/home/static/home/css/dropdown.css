@@ -75,6 +75,10 @@ button.search_btn{
     padding-left: 32px;
 }
 
+.dropdown-list {
+    color: black;
+}
+
 .close-popup {
     display: none;
 }
