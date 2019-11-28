@@ -6,7 +6,7 @@
                 <li><img src="{% static "home/img/Flyline_logo_1030-02.png" %}"></li>
                 <li>
                     <h3>{( cityFromTo )}{( roundTrip?' and Back':'' )}
-                    <router-link to="{name: 'index'}"><img
+                    <router-link :to="{name: 'index'}"><img
                         src="{% static "home/img/back-pencil.png" %}"></router-link>
                     <span>{( dateFrom )} - {( dateTo )}</span></h3></li>
                 <!-- <li><b>Filter</b></li> -->

@@ -1,0 +1,83 @@
+.tabs {
+  &__heading {
+    font-family: $dona-black;
+    margin-top: 3.875rem;
+    text-align: center;
+  }
+  &__subtitle {
+    text-align: center;
+    font-size: 1.125rem;
+    color: $main-landing-gray;
+    margin-bottom: 2.8125rem;
+  }
+  &__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    @include mq(lg) {
+      flex-direction: row;
+    }
+  }
+  &__item {
+    border-bottom: 4px solid $border-color;
+    padding: 0.9rem;
+    display: flex;
+    flex-grow: 1;
+    justify-content: center;
+    align-items: center;
+    transition: border-color .3s cubic-bezier(0.19, 1, 0.22, 1);
+    @include mq(lg) {
+      padding: 0 2rem 0.7rem 2rem;
+    }
+    &.is-active {
+      border-color: $primary;
+      .tabs__link {
+        font-family: $dona-black;
+        color: $black;
+      }
+    }
+  }
+  &__link {
+    font-family: $dona-bold;
+    color: $main-landing-about-stats;
+    transition: color .3s cubic-bezier(0.19, 1, 0.22, 1);
+    &:hover {
+      text-decoration: none;
+      color: $black;
+    }
+  }
+
+  &__content {
+    padding: 2rem 0;
+    text-align: center;
+    @include mq(lg) {
+      text-align: left;
+      min-height: 21rem;
+    }
+    &-title {
+      font-family: $dona-black;
+      font-size: 1.375rem;
+      color: $black;
+      margin: 1.4rem 0;
+      span {
+        margin-left: 2.5rem;
+        display: inline-block;
+        img {
+          width: 1.7rem;
+        }
+      }
+    }
+    &-text {
+      font-family: $dona-bold;
+      font-size: 1.125rem;
+      color: $main-landing-about-stats;
+      line-height: 1.9;
+    }
+    &-image-screen {
+      width: 100%;
+      max-width: 100%;
+    }
+  }
+}

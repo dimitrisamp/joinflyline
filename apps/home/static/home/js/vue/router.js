@@ -11,6 +11,7 @@ import {SearchResultsPage} from "./components/search-results-page.js";
 import {SignIn} from "./components/sign-in.js"
 import {MainLanding} from "./components/main-landing.js"
 import {BookingPage} from "./components/booking-page.js";
+import {MainLandingAbout} from "./components/main-landing-about.js"
 
 import { store } from './store.js';
 
@@ -20,12 +21,17 @@ const routes = [
     name: 'index',
     component: MainLanding,
     beforeEnter(to, from, next) {
-      if(!store.getters.user.anonymous) {
-        next({ name: 'overview' });
+      if (!store.getters.user.anonymous) {
+        next({name: 'overview'});
       } else {
         next();
       }
     }
+  },
+  {
+    path: '/about',
+    name: 'about',
+    component: MainLandingAbout
   },
   {
     path: '/search-results',
@@ -42,8 +48,8 @@ const routes = [
     name: 'dashboard',
     component: Dashboard,
     beforeEnter(to, from, next) {
-      if(store.getters.user.anonymous) {
-        next({ name: 'index' });
+      if (store.getters.user.anonymous) {
+        next({name: 'index'});
       } else {
         next();
       }
@@ -98,7 +104,14 @@ const routes = [
 const router = new VueRouter({
   routes,
   linkActiveClass: 'active',
-  linkExactActiveClass: 'exact-active'
+  linkExactActiveClass: 'exact-active',
+  scrollBehavior: function (to) {
+    if (to.hash) {
+      return {
+        selector: to.hash
+      }
+    }
+  },
 });
 
 router.beforeEach((to, from, next) => {

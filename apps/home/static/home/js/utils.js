@@ -136,7 +136,7 @@ export function formatPlace(place) {
   if (place.type === "airport") {
     return `${place.name} (${place.code})`;
   }
-  return `${place.name} ${place.subdivision ? place.subdivision.name : ""} ${
+  return `${place.name} ${place.subdivision ? (place.subdivision.name ? place.subdivision.name : "") : ""} ${
     place.country.code
   }`;
 }
