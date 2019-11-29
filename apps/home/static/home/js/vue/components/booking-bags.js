@@ -1,3 +1,5 @@
+import { getAgeCategory } from "../../utils.js";
+
 const noneLabels = {
   hand_bag: "No hand baggage",
   hold_bag: "No checked baggage"
@@ -46,7 +48,9 @@ function transformBaggage(baggage) {
       categoryCombinations.push(combinationOptions);
     }
     categoryCombinations.sort((cca, ccb) => {
-      return (cca.items ? cca.items.length : 0) - (ccb.items ? ccb.items.length : 0);
+      return (
+        (cca.items ? cca.items.length : 0) - (ccb.items ? ccb.items.length : 0)
+      );
     });
     result[bagCategory] = categoryCombinations;
   }
@@ -54,15 +58,39 @@ function transformBaggage(baggage) {
 }
 
 export const BookingBags = Vue.component("booking-bags", {
-  props: ["baggage"],
+  props: ["baggage", "passenger"],
   data() {
     return {
       selectedCombinations: {
         hand_bag: 0,
         hold_bag: 0
       },
-      categoryLabels
+      categoryLabels,
     };
+  },
+  methods: {
+    definitions(combination) {
+      const indices = combination.indices;
+      const definitions = this.baggage.definitions[combination.category];
+      let result = [];
+      for (const i of indices) {
+        result.push(definitions[i]);
+      }
+      return result;
+    },
+    isValidCombination(combination) {
+      return combination.conditions.passenger_groups.includes(this.passengerCategory);
+    },
+    dimensions(definition) {
+      const r = definition.restrictions;
+      return `${r.length}x${r.width}x${r.height}, ${r.weight} kg`
+    },
+    bagLabel(definition) {
+      return bagLabels[definition.category];
+    },
+    iconClass(definition) {
+      return `booking-bags__icon-${definition.category}`
+    }
   },
   watch: {
     selectedCombinations: {
@@ -79,9 +107,24 @@ export const BookingBags = Vue.component("booking-bags", {
   template: "#vue-booking-bags-template",
   delimiters: ["[[", "]]"],
   computed: {
-    data() {
-      if (!this.baggage) return null;
-      return transformBaggage(this.baggage);
-    }
+    passengerCategory() {
+      return getAgeCategory(this.passenger, true);
+    },
+    combinations() {
+      let passengerCategory = getAgeCategory(this.passenger);
+      let result = {};
+      for (let [bagCategory, data] of Object.entries(
+        this.baggage.combinations
+      )) {
+        result[bagCategory] = data.filter(o =>
+          o.conditions.passenger_groups.includes(passengerCategory)
+        );
+      }
+      return result;
+    },
+    // data() {
+    //   if (!this.baggage) return null;
+    //   return transformBaggage(this.baggage);
+    // }
   }
 });

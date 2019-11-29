@@ -86,6 +86,6 @@
         </div>
       </div>
     </div>
-    <booking-bags :baggage="!!checkFlightData?checkFlightData.baggage:null" @baggage-updated="updateBaggage" />
+    <booking-bags :baggage="!!checkFlightData?checkFlightData.baggage:null" :passenger="p" @baggage-updated="updateBaggage" />
   </div>
 </script>
