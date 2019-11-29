@@ -5,7 +5,7 @@ export const Dashboard = Vue.component("dashboard", {
   template: "#vue-dashboard-template",
   watch: {
     $route() {
-      if(this.$route.path === '/dashboard/booking') {
+      if(this.$route.name === 'booking') {
        this.$store.commit('hideDashboardNav')
       } else {
         this.$store.commit('showDashboardNav')
