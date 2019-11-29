@@ -98,6 +98,14 @@ export const BookingPage = Vue.component("booking-page", {
     updatePassenger(i, data) {
       this.$set(this.passengers, i, data);
     },
+    checkFlightRequired() {
+      if (!this.checkFlightData) return true;
+      if (this.flightInvalid) return false;
+      if (this.flightChecked) {
+        return new Date() - this.lastCheck > checkInterval;
+      }
+      return true;
+    },
     checkFlight() {
       if (this.checkFlightRequired && !this.checkFlightProgress) {
         this.checkFlightProgress = true;
@@ -128,14 +136,6 @@ export const BookingPage = Vue.component("booking-page", {
   },
   computed: {
     ...Vuex.mapGetters(["flightToBook"]),
-    checkFlightRequired() {
-      if (!this.checkFlightData) return true;
-      if (this.flightInvalid) return false;
-      if (this.flightChecked) {
-        return new Date() - this.lastCheck > checkInterval;
-      }
-      return true;
-    },
     passengerCount() {
       if (!this.passengers) return {adults: 0, children: 0, infants: 0, pnum: 0};
       const categories = this.passengers.map(getAgeCategory);
