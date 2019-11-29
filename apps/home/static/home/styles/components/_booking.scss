@@ -14,7 +14,7 @@
 
   .summary {
     &__flights {
-      margin: 2rem 0;
+      margin-top: 2rem;
     }
     &__container {
       display: flex;
@@ -44,7 +44,7 @@
       padding-right: 0.9375rem;
       @include mq(lg) {
         flex: 0 0 33.333333%;
-        max-width: 33.333333%;  
+        max-width: 33.333333%;
       }
 
       .summary__inner {
@@ -71,7 +71,7 @@
   }
 
 
-  // Flight Details 
+  // Flight Details
   .flight__details {
     padding: 2.5rem 0;
     .box-title {
@@ -90,7 +90,7 @@
         font-family: $dona-bold;
         font-size: 0.875rem;
         color: $black;
-        
+
         span {
           color: $booking-gray;
           font-size: 0.8125rem;
@@ -171,7 +171,7 @@
       font-size: 1.875rem;
     }
   }
-  
+
   // Checkout
   .checkout {
     &__heading {
@@ -179,6 +179,64 @@
       font-size: 1.875rem;
       margin-bottom: 1.5rem;
       margin: 2rem 0;
+    }
+
+    &__row {
+      margin-bottom: 1rem;
+      label {
+        font-family: $dona-bold;
+        margin-bottom: 0.2rem;
+        font-size: 0.875rem;
+      }
+      input {
+        display: block;
+      }
+
+      &--container {
+        display: flex;
+      }
+
+      &--submit {
+        padding-top: 1.5rem;
+        .button {
+          padding-top: 0.5625rem;
+          width: 100%;
+        }
+      }
+    }
+
+    &__column {
+      &:first-child {
+        padding-right: 1.5rem;
+      }
+    }
+  }
+
+  // Passenger
+  .passenger {
+    padding: 1.5rem;
+    border: 2.5px solid $border-color;
+    margin: 1.5rem 0;
+
+    .pform {
+
+      &__header {
+        font-family: $dona-black;
+        font-size: 1.875rem;
+      }
+      &__alert {
+        color: $primary;
+        font-family: $dona-bold;
+        margin-bottom: 1.20rem;
+      }
+      &__field {
+        margin-bottom: 2rem;
+        label {
+          font-family: $dona-bold;
+          margin-bottom: 0.2rem;
+          font-size: 0.875rem;
+        }
+      }
     }
   }
 }

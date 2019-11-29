@@ -1,22 +1,22 @@
 <script type="text/x-template" id="vue-booking-bags-template">
-    <div v-if="data" class="booking-bags">
-        <div v-for="(combinations, categoryName) in data">
-            <h3 class="booking-bags__heading">
-                [[ categoryLabels[categoryName] ]]<span>Select one option</span></h3>
-            <div class="booking-bags__combination-list">
-                <div v-for="(combination, combinationIndex) in combinations" class="booking-bags__combination">
-                    <input type="radio" :name="categoryName" :value="combinationIndex" v-model="selectedCombinations[categoryName]"/>
-                    <div v-for="option in combination.items">
-                        <i :class="`booking-bags__${option.iconClass}`" />
-                        <p class="booking-bags__bag-label">[[ option.label ]]</p>
-                        <p class="booking-bags__dimensions">[[ option.dimensions ]]</p>
-                    </div>
-                    <p class="booking-bags__combination-price">$[[ combination.price ]]</p>
-                </div>
-            </div>
+  <div v-if="data" class="booking-bags">
+    <div v-for="(combinations, categoryName) in data">
+      <h3 class="booking-bags__heading">
+        [[ categoryLabels[categoryName] ]]<span>Select one option</span></h3>
+      <div class="booking-bags__combination-list">
+        <div v-for="(combination, combinationIndex) in combinations" class="booking-bags__combination">
+          <input type="radio" :name="categoryName" :value="combinationIndex" v-model="selectedCombinations[categoryName]"/>
+          <div v-for="option in combination.items">
+            <i :class="`booking-bags__${option.iconClass}`" />
+            <p class="booking-bags__bag-label">[[ option.label ]]</p>
+            <p class="booking-bags__dimensions">[[ option.dimensions ]]</p>
+          </div>
+          <p class="booking-bags__combination-price">$[[ combination.price ]]</p>
         </div>
+      </div>
     </div>
-    <div v-else class="booking-bags__loading">
-        <p>Loading...</p>
-    </div>
+  </div>
+  <div v-else class="booking-bags__loading">
+    <p>Loading...</p>
+  </div>
 </script>

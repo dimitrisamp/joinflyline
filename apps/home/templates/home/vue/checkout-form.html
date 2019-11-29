@@ -3,43 +3,43 @@
       <h3 class="checkout__heading">Check out</h3>
       <div class="checkout__row">
           <label>Promo Code</label>
-          <input type="text" v-model="form.promocode"/>
+          <input class="form-control" type="text" v-model="form.promocode"/>
       </div>
 
       <div class="checkout__row">
           <label>Name on Card</label>
-          <input type="text" v-model="form.holder_name"/>
+          <input class="form-control" type="text" v-model="form.holder_name"/>
       </div>
 
       <div class="checkout__row">
           <label>Credit Card Number</label>
-          <input type="text" v-model="form.card_number"/>
+          <input class="form-control" type="text" v-model="form.card_number"/>
       </div>
 
-      <div class="checkout__row">
+      <div class="checkout__row checkout__row--container">
           <div class="checkout__column">
               <label>Exp Date</label>
-              <input type="text" v-model="form.expiry"/>
+              <input class="form-control" type="text" v-model="form.expiry"/>
           </div>
 
           <div class="checkout__column">
               <label>CCV</label>
-              <input type="text" v-model="form.credit_card_cvv"/>
+              <input class="form-control" type="text" v-model="form.credit_card_cvv"/>
           </div>
       </div>
 
       <div class="checkout__row">
           <label>E-Mail</label>
-          <input type="text" v-model="form.email"/>
+          <input class="form-control" type="text" v-model="form.email"/>
       </div>
 
       <div class="checkout__row">
           <label>Phone</label>
-          <input type="text" v-model="form.phone"/>
+          <input class="form-control" type="text" v-model="form.phone"/>
       </div>
 
       <div class="checkout__row--submit">
-          <button>Book Flight For <b>$[[ total_price ]]</b></button>
+          <button class="button button--big button--outline-blue">Book Flight For <b>$[[ total_price ]]</button>
       </div>
   </div>
 </script>
