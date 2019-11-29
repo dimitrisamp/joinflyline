@@ -38,6 +38,7 @@ export const store = new Vuex.Store({
     toggleSidebar: false,
     searchProgress: false,
     searchResultIndex: null,
+    showDashboardNavigation: true
   },
   mutations: {
     setQuickFiltersData(state, value) {
@@ -140,6 +141,12 @@ export const store = new Vuex.Store({
     },
     setAuthError(state, value) {
       state.authErrorText = value;
+    },
+    showDashboardNav(state) {
+      state.showDashboardNavigation = true
+    },
+    hideDashboardNav(state) {
+      state.showDashboardNavigation = false
     }
   },
   actions: {

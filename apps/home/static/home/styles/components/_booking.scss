@@ -1,5 +1,184 @@
 .booking-page {
-  .summary__flights {
+  &__header {
+    background-color: $primary;
+    padding: 2rem;
+    color: $white;
+    .header__title {
+      font-family: $dona-black;
+      font-size: 2.375rem;
+    }
+    .header__description {
+      padding-bottom: 0;
+    }
+  }
 
+  .summary {
+    &__flights {
+      margin: 2rem 0;
+    }
+    &__container {
+      display: flex;
+      flex-wrap: wrap;
+      margin-left: -0.9375em;
+      margin-right: -0.9375em;
+    }
+    &__left {
+      padding-left: 0.9375rem;
+      padding-right: 0.9375rem;
+      position: relative;
+      width: 100%;
+      @include mq(lg) {
+        flex: 0 0 66.666667%;
+        max-width: 66.666667%;
+      }
+    }
+    &__inner {
+      padding: 1.5rem;
+      border: 2.5px solid $border-color;
+      margin: 1.5rem 0;
+    }
+    &__right {
+      position: relative;
+      width: 100%;
+      padding-left: 0.9375rem;
+      padding-right: 0.9375rem;
+      @include mq(lg) {
+        flex: 0 0 33.333333%;
+        max-width: 33.333333%;  
+      }
+
+      .summary__inner {
+        position: sticky;
+        top: 1rem;
+        border: 0;
+        padding: 0;
+      }
+    }
+
+    &__heading {
+      font-size: 1.875rem;
+      font-family: $dona-black;
+      span {
+        font-family: $dona-bold;
+        font-size: 1.125rem;
+        padding-left: 2.2rem;
+      }
+    }
+
+    &__border {
+      box-shadow: -1px 0 0 0 rgba(216, 216, 216, 0.49);
+    }
+  }
+
+
+  // Flight Details 
+  .flight__details {
+    padding: 2.5rem 0;
+    .box-title {
+      font-family: $dona-bold;
+      font-size: 1.75rem;
+      color: $black;
+      margin-bottom: 1rem;
+    }
+    .detail-box {
+      position: relative;
+      border: 1px solid $border-color;
+      padding: 0.3125rem;
+
+      p {
+        margin-bottom: 0;
+        font-family: $dona-bold;
+        font-size: 0.875rem;
+        color: $black;
+        
+        span {
+          color: $booking-gray;
+          font-size: 0.8125rem;
+        }
+      }
+      img {
+        position: absolute;
+        right: 7px;
+        max-width: 1.90rem;
+        top: 7px;
+        width: 2rem;
+      }
+
+      sub {
+        position: absolute;
+        right: 0.25rem;
+        bottom: -0.5rem;
+        background-color: $white;
+        line-height: 1.4;
+        font-size: 0.6875rem;
+        padding: 0 0.25rem;
+      }
+    }
+
+    .clander-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      justify-content: space-between;
+      li {
+        &:nth-child(1) {
+          font-family: $dona-bold;
+          font-size: 1.125rem;
+        }
+        &:nth-child(2) {
+          margin-top: 0.7rem;
+          margin-bottom: 0.3rem;
+          color: $primary;
+        }
+      }
+    }
+  }
+
+  .totals,
+  .checkout {
+    border: 2.5px solid #D8D8D8;
+    padding: 0 1.5rem 1.5rem;
+  }
+
+  // Total
+  .totals {
+    margin-bottom: 2.5rem;
+    &__heading {
+      font-family: $dona-black;
+      font-size: 1.875rem;
+      margin-bottom: 1.5rem;
+      margin: 2rem 0;
+    }
+    &__item {
+      display: flex;
+      justify-content: space-between;
+      font-family: $dona-bold;
+      margin-bottom: 1rem;
+      font-size: 1.25rem;
+      &:nth-child(4) {
+        padding-bottom: 2rem;
+        border-bottom: 2px solid $border-color;
+      }
+    }
+
+    &__grandtotal {
+      font-family: $dona-black;
+      text-align: center;
+      padding-top: 1rem;
+      display: flex;
+      justify-content: space-between;
+      font-size: 1.875rem;
+    }
+  }
+  
+  // Checkout
+  .checkout {
+    &__heading {
+      font-family: $dona-black;
+      font-size: 1.875rem;
+      margin-bottom: 1.5rem;
+      margin: 2rem 0;
+    }
   }
 }

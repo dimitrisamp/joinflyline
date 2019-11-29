@@ -4,39 +4,57 @@
             <h3 class="header__title">[[ flightToBook.cityFrom ]] <span
                     class="fa fa-long-arrow-right"></span> [[ flightToBook.cityTo ]]
                 <span v-if="flightToBook.roundtrip">and back</span></h3>
-            <p class="header__description">Confirm your trip details, enter your
+            <p class="header__description">
+                Confirm your trip details, enter your
                 traveler information, and enter your payment detail and you'll be
                 ready for
                 take off</p>
-        </div>
-        <div class="summary">
-            <h3 class="summary__heading">Trip Summary
-                <span>[[ flightToBook.nightsInDest ]] Night[[ flightToBook.nightsInDest > 1?'s':'' ]] Stay in [[ flightToBook.cityTo ]]</span>
-            </h3>
-            <!-- Flights -->
-            <div class="summary__flights">
-                <div class="summary__departure">
-                    <booking-flight-details v-for="flight in flightToBook.route"
-                                            v-if="!flight.return" :flight="flight"/>
+          </div>
+          <div class="main-padding">
+            <div class="summary__container">
+                <div class="summary__left">
+                    <div class="summary__inner">
+                        <h3 class="summary__heading">Trip Summary
+                            <span>[[ flightToBook.nightsInDest ]] Night[[ flightToBook.nightsInDest > 1?'s':'' ]] Stay in [[ flightToBook.cityTo ]]</span>
+                        </h3>
+                        <!-- Flights -->
+                        <div class="summary__flights">
+                          <div class="row">
+                            <div class="col-12 col-md-6">
+                              <div class="summary__departure">
+                                  <booking-flight-details v-for="flight in flightToBook.route"
+                                                          v-if="!flight.return" :flight="flight"/>
+                              </div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                              <div class="summary__return">
+                                  <booking-flight-details v-for="flight in flightToBook.route"
+                                                          v-if="flight.return" :flight="flight"/>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- End flights -->
+                        <div class="passenger" v-for="passenger, i in passengers">
+                            <booking-passenger-form :check-flight-data="checkFlightData"
+                                                    :passenger="passenger"
+                                                    @passenger-updated="updatePassenger(i, ...arguments)"/>
+                        </div>
+                        <div class="pform__field--button">
+                            <button class="pform__add" @click="addPassenger">Add another passenger
+                            </button>
+                        </div>
+                    </div>
                 </div>
-                <div class="summary__return">
-                    <booking-flight-details v-for="flight in flightToBook.route"
-                                            v-if="flight.return" :flight="flight"/>
+        
+                <div class="summary__right">
+                  <div class="summary__inner">
+                    <booking-totals :prices="prices" :count="passengerCount"/>
+                    <checkout-form :form="form" :total_price="prices.total"/>
+                  </div>
                 </div>
             </div>
-            <!-- End flights -->
-            <div v-for="passenger, i in passengers">
-                <booking-passenger-form :check-flight-data="checkFlightData"
-                                        :passenger="passenger"
-                                        @passenger-updated="updatePassenger(i, ...arguments)"/>
-            </div>
-            <div class="pform__field--button">
-                <button class="pform__add" @click="addPassenger">Add another passenger
-                </button>
-            </div>
-        </div>
+          </div>
 
-        <booking-totals :prices="prices" :count="passengerCount"/>
-        <checkout-form :form="form" :total_price="prices.total"/>
     </div>
 </script>
