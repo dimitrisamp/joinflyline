@@ -37,8 +37,8 @@ export const BookingPassengerForm = Vue.component("booking-passenger-form", {
     updateBaggage(data) {
       this.p = {
         ...this.p,
-        cabin_bags: data.hand_bag.items?data.hand_bag.items.length:0,
-        checked_bags: data.hold_bag.items?data.hold_bag.items.length:0,
+        cabin_bags: data.hand_bag.indices.length,
+        checked_bags: data.hold_bag.indices.length,
       };
     }
   },

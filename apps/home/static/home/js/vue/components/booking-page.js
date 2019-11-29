@@ -136,7 +136,7 @@ export const BookingPage = Vue.component("booking-page", {
     bagsCount() {
       if (!this.passengers) return 0;
       return this.passengers
-        .map(p => p.cabin_bags + p.checked_bags)
+        .map(p => p.checked_bags)
         .reduce((a, b) => a + b);
     },
     prices() {
