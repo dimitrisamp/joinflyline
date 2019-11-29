@@ -136,9 +136,13 @@ export function formatPlace(place) {
   if (place.type === "airport") {
     return `${place.name} (${place.code})`;
   }
-  return `${place.name} ${place.subdivision ? (place.subdivision.name ? place.subdivision.name : "") : ""} ${
-    place.country.code
-  }`;
+  return `${place.name} ${
+    place.subdivision
+      ? place.subdivision.name
+        ? place.subdivision.name
+        : ""
+      : ""
+  } ${place.country.code}`;
 }
 
 export function placeToRequestValue(p) {
@@ -317,15 +321,18 @@ export function pick(a) {
 }
 
 export function stripAirlines(name) {
-  return name.split(' ').filter(o=>o.toLowerCase() !== 'airlines').join(' ')
+  return name
+    .split(" ")
+    .filter(o => o.toLowerCase() !== "airlines")
+    .join(" ");
 }
 
 /**
  * Manually remove boostrap modal overlay
  */
 export function removeBModalOverlay() {
-  document.body.classList.remove('modal-open');
-  document.querySelector('.modal-backdrop').remove();
+  document.body.classList.remove("modal-open");
+  document.querySelector(".modal-backdrop").remove();
 }
 
 /**
@@ -334,32 +341,32 @@ export function removeBModalOverlay() {
 
 export const userStorage = {
   keys: {
-    token: 'authToken',
-    tokenExpiry: 'authTokenExpiry'
+    token: "authToken",
+    tokenExpiry: "authTokenExpiry"
   },
 
   /**
    * Stores user sesstion to localstorage
-   * @param {string} token 
-   * @param {string} expiry 
+   * @param {string} token
+   * @param {string} expiry
    */
   setSession(token, expiry) {
-    localStorage.setItem(this.keys.token, token)
-    localStorage.setItem(this.keys.tokenExpiry, expiry)
+    localStorage.setItem(this.keys.token, token);
+    localStorage.setItem(this.keys.tokenExpiry, expiry);
   },
 
   /**
-   * @returns {(string|null)} 
+   * @returns {(string|null)}
    */
   get token() {
-    return localStorage.getItem(this.keys.token)
+    return localStorage.getItem(this.keys.token);
   },
 
   /**
    * @returns {string}
    */
   get tokenExpiry() {
-    return localStorage.getItem(this.keys.tokenExpiry)
+    return localStorage.getItem(this.keys.tokenExpiry);
   },
 
   /**
@@ -375,4 +382,21 @@ export const userStorage = {
   get isSessionValid() {
     return this.isExpired || this.token === null ? false : true;
   }
+};
+
+export function getAgeCategory(p, singular = false) {
+  const birthDate = new Date(p.year, p.month, p.day);
+  const today = new Date();
+  let age = today.getFullYear() - birthDate.getFullYear();
+  let m = today.getMonth() - birthDate.getMonth();
+  if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+    age--;
+  }
+  if (age < 3) {
+    return singular ? "infant" : "infants";
+  }
+  if (age < 13) {
+    return singular ? "child" : "children";
+  }
+  return singular ? "adult" : "adults";
 }

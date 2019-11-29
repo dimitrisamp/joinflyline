@@ -1,3 +1,5 @@
+import {getAgeCategory} from '../../utils.js';
+
 const checkInterval = 15000;
 
 const checkFlightsApiUrl =
@@ -31,22 +33,6 @@ function makePassenger(primary = true, category = "adults") {
   };
 }
 
-function getAgeCategory(p) {
-  const birthDate = new Date(p.year, p.month, p.day);
-  const today = new Date();
-  let age = today.getFullYear() - birthDate.getFullYear();
-  let m = today.getMonth() - birthDate.getMonth();
-  if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-    age--;
-  }
-  if (age < 3) {
-    return "infants";
-  }
-  if (age < 13) {
-    return "children";
-  }
-  return "adults";
-}
 
 export const BookingPage = Vue.component("booking-page", {
   template: "#vue-booking-page-template",
