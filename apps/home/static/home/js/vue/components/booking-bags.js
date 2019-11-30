@@ -18,13 +18,10 @@ const categoryLabels = {
 
 
 export const BookingBags = Vue.component("booking-bags", {
-  props: ["baggage", "passenger"],
+  props: ["baggage", "passenger", "convertToUsd"],
   data() {
     return {
-      selectedCombinations: {
-        hand_bag: 0,
-        hold_bag: 0
-      },
+      selectedCombinations: {...this.passenger.combinations},
       categoryLabels,
     };
   },
@@ -55,11 +52,7 @@ export const BookingBags = Vue.component("booking-bags", {
   watch: {
     selectedCombinations: {
       handler(val) {
-        let result = {};
-        for (let [categoryName, value] of Object.entries(val)) {
-          result[categoryName] = this.baggage.combinations[categoryName][value];
-        }
-        this.$emit("baggage-updated", result);
+        this.$emit("baggage-updated", val);
       },
       deep: true
     }

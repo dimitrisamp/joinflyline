@@ -11,7 +11,7 @@
                         <p class="booking-bags__bag-label">[[ bagLabel(definition) ]]</p>
                         <p class="booking-bags__dimensions">[[ dimensions(definition) ]]</p>
                     </div>
-                    <p class="booking-bags__combination-price">$[[ combination.price.amount ]]</p>
+                    <p class="booking-bags__combination-price">$[[ convertToUsd(combination.price.amount) ]]</p>
                 </div>
             </div>
         </div>
