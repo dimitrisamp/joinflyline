@@ -16,7 +16,7 @@ const months = [
 ];
 
 export const BookingPassengerForm = Vue.component("booking-passenger-form", {
-  props: ["checkFlightData", "passenger", "convertToUsd"],
+  props: ["checkFlightData", "passenger", "convertToUsd", "passengerIndex"],
   data() {
     let passengerData = { ...this.$props.passenger };
     return {

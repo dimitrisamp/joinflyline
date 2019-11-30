@@ -41,6 +41,7 @@
                     <div class="passenger" v-for="passenger, i in passengers">
                         <booking-passenger-form :check-flight-data="checkFlightData"
                                                 :passenger="passenger"
+                                                :passenger-index="i"
                                                 :convert-to-usd="convertToUsd"
                                                 @passenger-updated="updatePassenger(i, ...arguments)"/>
                     </div>

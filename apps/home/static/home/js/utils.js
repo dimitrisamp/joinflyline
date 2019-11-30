@@ -170,7 +170,7 @@ export function locationSearch(term, locationTypes) {
     fetch(url, {
       method: "GET",
       headers: {
-        apikey: "xklKtpJ5fxZnk4rsDepqOzLUaYYAO9dI"
+        apikey: "4TMnq4G90OPMYDAGVHzlP9LQo2hvzzdc"
       },
       credentials: "same-origin"
     })

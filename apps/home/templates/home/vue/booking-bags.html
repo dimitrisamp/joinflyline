@@ -5,8 +5,9 @@
         [[ categoryLabels[categoryName] ]]<span>Select one option</span></h3>
       <div class="booking-bags__combination-list">
         <div v-for="(combination, combinationIndex) in combinationList" v-if="isValidCombination(combination)" class="booking-bags__combination">
-          <input type="radio" :id="combinationIndex" :name="categoryName" :value="combinationIndex" v-model="selectedCombinations[categoryName]"/>
-          <label :for="combinationIndex">
+          <input type="radio" :id="`${passengerIndex}-${categoryName}-${combinationIndex}`" :name="`${passengerIndex}-${categoryName}`" :value="combinationIndex" v-model="selectedCombinations[categoryName]"/>
+          <template v-if="combination.indices.length > 0">
+          <label :for="`${passengerIndex}-${categoryName}-${combinationIndex}`">
             <div class="booking-bags__bag-container">
               <div class="booking-bags__bag-inner" v-for="definition in definitions(combination)">
                 <div class="booking-bags__bag-label">
@@ -21,6 +22,23 @@
             </div>
             <div class="booking-bags__combination-price">$[[ convertToUsd(combination.price.amount) ]]</div>
           </label>
+          </template>
+          <template v-else>
+            <label :for="`${passengerIndex}-${categoryName}-${combinationIndex}`">
+            <div class="booking-bags__bag-container">
+              <div class="booking-bags__bag-inner">
+                <div class="booking-bags__bag-label">
+                  <span class="booking-bags__bag-radio"></span>
+                  <svg class="icon icon--no-bag" width="24" height="24">
+                    <use xlink:href="#icon-no-bag"></use>
+                  </svg>
+                  <p class="booking-bags__bag-text">[[ noneLabels[categoryName] ]]</p>
+                </div>
+              </div>
+            </div>
+            <div class="booking-bags__combination-price">$[[ convertToUsd(combination.price.amount) ]]</div>
+          </label>
+          </template>
         </div>
       </div>
     </div>

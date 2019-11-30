@@ -1,9 +1,12 @@
-import {getAgeCategory} from '../../utils.js';
+import { getAgeCategory } from "../../utils.js";
+import api from "../http.js";
 
 const checkInterval = 15000;
 
 const checkFlightsApiUrl =
   "https://kiwicom-prod.apigee.net/v2/booking/check_flights";
+
+const saveBookingApiUrl = "/book/";
 
 const sampleAge = {
   adults: 20,
@@ -14,9 +17,7 @@ const sampleAge = {
 function makePassenger(primary = true, category = "adults") {
   let today = new Date();
   let birthDate = new Date(today.getTime());
-  birthDate.setFullYear(
-    today.getFullYear() - sampleAge[category]
-  );
+  birthDate.setFullYear(today.getFullYear() - sampleAge[category]);
   return {
     isPrimary: primary,
     name: "",
@@ -25,7 +26,7 @@ function makePassenger(primary = true, category = "adults") {
     month: birthDate.getMonth(),
     day: birthDate.getDay(),
     year: birthDate.getFullYear(),
-    title: null,
+    title: "mr",
     cardno: "",
     expiration: "",
     combinations: {
@@ -35,12 +36,13 @@ function makePassenger(primary = true, category = "adults") {
   };
 }
 
-
 export const BookingPage = Vue.component("booking-page", {
   template: "#vue-booking-page-template",
   delimiters: ["[[", "]]"],
   data() {
-    let seats = { ...this.$store.getters.flightToBook.parent.search_params.seats };
+    let seats = {
+      ...this.$store.getters.flightToBook.parent.search_params.seats
+    };
     delete seats.passengers;
     let initialPassengers = [];
     if (seats.adults > 0) {
@@ -76,7 +78,7 @@ export const BookingPage = Vue.component("booking-page", {
       handler() {
         this.checkFlight();
       },
-      deep: true,
+      deep: true
     }
   },
   methods: {
@@ -97,22 +99,68 @@ export const BookingPage = Vue.component("booking-page", {
     baggageParameter() {
       let combinationPassengers = {};
       for (let [passengerIndex, passenger] of this.passengers.entries()) {
-        for (let [category, combinationIndex] of Object.entries(passenger.combinations)) {
-          combinationPassengers[category] = combinationPassengers[category] || new Map();
-          if (!combinationPassengers[category].has(combinationIndex)) combinationPassengers[category].set(combinationIndex, []);
-          combinationPassengers[category].get(combinationIndex).push(passengerIndex);
+        for (let [category, combinationIndex] of Object.entries(
+          passenger.combinations
+        )) {
+          combinationPassengers[category] =
+            combinationPassengers[category] || new Map();
+          if (!combinationPassengers[category].has(combinationIndex))
+            combinationPassengers[category].set(combinationIndex, []);
+          combinationPassengers[category]
+            .get(combinationIndex)
+            .push(passengerIndex);
         }
         let result = [];
         for (let [category, ci] of Object.entries(combinationPassengers)) {
           for (let [combinationIndex, passengers] of ci.entries()) {
-            result.push({
-              combination: {...this.checkFlightData.baggage.combinations[category][combinationIndex]},
-              passengers: [...passengers]
-            })
+            const combination = this.checkFlightData.baggage.combinations[
+              category
+            ][combinationIndex];
+            if (combination.indices.length > 0) {
+              result.push({
+                combination: { ...combination },
+                passengers: [...passengers]
+              });
+            }
           }
         }
         return result;
       }
+    },
+    passengersParameter() {
+      return this.passengers.map(p => {
+        return {
+          birthday: new Date(p.year, p.month, p.day),
+          name: p.name,
+          surname: p.surname,
+          nationality: p.nationality,
+          title: p.title,
+          cardno: p.cardno,
+          expiration: p.expiration,
+          category: getAgeCategory(p, true),
+        };
+      });
+    },
+    saveBooking() {
+      return api({
+        url: saveBookingApiUrl,
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+          apikey: "4TMnq4G90OPMYDAGVHzlP9LQo2hvzzdc"
+        },
+        data: {
+          booking_token: this.flightToBook.booking_token,
+          baggage: this.baggageParameter(),
+          lang: "en",
+          locale: "en",
+          currency: "usd",
+          passengers: this.passengersParameter(),
+          payment_gateway: "payu",
+          payment: this.form,
+          retail_info: this.flightToBook,
+        }
+      })
     },
     checkFlight() {
       if (this.checkFlightRequired && !this.checkFlightProgress) {
@@ -126,7 +174,7 @@ export const BookingPage = Vue.component("booking-page", {
               ...this.formState
             },
             headers: {
-              apikey: "xklKtpJ5fxZnk4rsDepqOzLUaYYAO9dI"
+              apikey: "4TMnq4G90OPMYDAGVHzlP9LQo2hvzzdc"
             }
           })
           .then(response => {
@@ -144,8 +192,12 @@ export const BookingPage = Vue.component("booking-page", {
     bagsPrices() {
       let totalPrice = 0;
       for (const p of this.passengers) {
-        for (let [categoryName, combinationIndex] of Object.entries(p.combinations)) {
-          totalPrice += this.checkFlightData.baggage.combinations[categoryName][combinationIndex].price.amount;
+        for (let [categoryName, combinationIndex] of Object.entries(
+          p.combinations
+        )) {
+          totalPrice += this.checkFlightData.baggage.combinations[categoryName][
+            combinationIndex
+          ].price.amount;
         }
       }
       return totalPrice;
@@ -155,19 +207,24 @@ export const BookingPage = Vue.component("booking-page", {
         const c = this.flightToBook.conversion;
         return c.USD / c.EUR;
       }
-      return this.checkFlightData.conversion.amount / this.checkFlightData.total;
+      return (
+        this.checkFlightData.conversion.amount / this.checkFlightData.total
+      );
     },
     convertToUsd(price) {
       return Math.round(price * this.factor() * 100) / 100;
     },
     book() {
-      console.log(this.baggageParameter());
+      this.saveBooking().then({
+
+      });
     }
   },
   computed: {
     ...Vuex.mapGetters(["flightToBook"]),
     passengerCount() {
-      if (!this.passengers) return {adults: 0, children: 0, infants: 0, pnum: 0};
+      if (!this.passengers)
+        return { adults: 0, children: 0, infants: 0, pnum: 0 };
       const categories = this.passengers.map(getAgeCategory);
       const counter = categories.reduce(
         (c, val) => c.set(val, 1 + (c.get(val) || 0)),
@@ -198,8 +255,10 @@ export const BookingPage = Vue.component("booking-page", {
         passengers,
         baggage: bagsPrice,
         total: passengers + bagsPrice,
-        exact: this.checkFlightData?this.checkFlightData.flightsChecked:false,
-      }
+        exact: this.checkFlightData
+          ? this.checkFlightData.flightsChecked
+          : false
+      };
     },
     formState() {
       return {

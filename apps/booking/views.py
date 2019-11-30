@@ -9,6 +9,8 @@ from django.http import JsonResponse
 from django.shortcuts import render
 from django.views import View
 from django.conf import settings as S
+from django.views.decorators.csrf import csrf_exempt
+from rest_framework.views import APIView
 
 from apps.booking.models import BookingContact
 from apps.emails.views import booking_success
@@ -120,34 +122,20 @@ def make_hold_bags(flight_ids, bags):
     return result
 
 
-def save_booking(request, retail_info, passengers, payment, zooz=True, test=False):
-    flight_ids = [o["id"] for o in retail_info["route"]]
-    total_bags = 0
-    for p in passengers:
-        p["category"] = get_category(p)
-        bags = p.pop("bags")
-        total_bags += bags
-        p["hold_bags"] = make_hold_bags(flight_ids, bags)
-        p["cardno"] = p.get("cardno", "00000000")
-        p["expiration"] = p.get("expiration", "2025-01-01")
-        p["email"] = S.RECEIVE_EMAIL
-        p["phone"] = payment.get("phone", S.RECEIVE_PHONE)
-    body = {
-        "booking_token": retail_info['booking_token'],
-        "currency": "USD",
-        "lang": "en",
-        "locale": "en",
-        "bags": total_bags,
-        "passengers": passengers,
-    }
-    if zooz:
-        body["payment_gateway"] = "payu"
-    headers = {"apikey": S.KIWI_API_KEY}
+def save_booking(request, data, zooz=True, test=False):
+    body = data.copy()
+    payment = body.pop('payment')
+    promo = payment.pop('promocode')
+    retail_info = body.pop('retail_info')
+    p = body['passengers'][0]
+    p["email"] = S.RECEIVE_EMAIL
+    p["phone"] = payment.get("phone", S.RECEIVE_PHONE)
+    headers = {"content-type": "application/json", "apikey": S.KIWI_API_KEY}
     try:
         response = requests.post(
             SAVE_BOOKING_API_URL,
             json=body,
-            headers={"content-type": "application/json", **headers},
+            headers=headers,
         )
     except requests.RequestException as e:
         raise ClientException({"code": "requests-exception"}) from e
@@ -187,19 +175,17 @@ class CheckPromoView(View):
             return JsonResponse({"discount": 0})
 
 
-class SaveBookingView(View):
+class SaveBookingView(APIView):
     def is_test_request(self, data):
         fp = data["passengers"][0]
         return (fp["name"].lower(), fp["surname"].lower()) == ("test", "test")
 
     def post(self, request):
-        data = json.loads(request.body)
+        data = request.data
         try:
             save_booking(
                 request,
-                data["retail_info"],
-                data["passengers"],
-                data["payment"],
+                data,
                 zooz=True,
                 test=self.is_test_request(data),
             )
@@ -234,7 +220,7 @@ def zooz_tokenize(public_key, card_data, test=True):
     body = {
         "token_type": "credit_card",
         "holder_name": card_data["holder_name"],
-        "expiration_date": card_data["expiration_date"],
+        "expiration_date": card_data["expiry"],
         "card_number": card_data["card_number"],
         "credit_card_cvv": card_data["credit_card_cvv"],
     }
