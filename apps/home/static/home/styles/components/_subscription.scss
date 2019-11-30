@@ -1,0 +1,48 @@
+.subscription {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 2px solid $border-color;
+  padding: 2rem 2.5rem 1rem;
+  height: auto;
+  margin-bottom: 1rem;
+  @include mq(lg) {
+    height: 100%;
+    margin-bottom: 0;
+  }
+  &__title {
+    text-align: center;
+    color: $primary;
+    margin-bottom: 2rem;
+  }
+  &__heading {
+    color: $primary;
+    font-family: $dona-black;
+    &--type {
+      font-size: 1.625rem;
+      margin-bottom: 1.6rem;
+    }
+    &--price {
+      font-size: 1.875rem;
+    }
+  }
+  &__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  &__item {
+    font-family: $dona-bold;
+    font-size: 1.125rem;
+    margin-bottom: 1rem;
+    color: $primary;
+  }
+
+  &__bottom {
+    .button {
+      width: 100%;
+      font-size: 1.125rem;
+      margin-top: 1.5rem;
+    }
+  }
+}

@@ -139,8 +139,6 @@
       </div>
     </div>
 
-    
-    <hr>
     <hr>
     <div class="main-padding">
         <div class="account__form">
@@ -149,20 +147,95 @@
               <h3>Subscription Management</h3>
             </div>
             <div class="col-12 col-xl-7">
-              <form action="">
-                <div class="row" v-if="frequentflyer_ready">
-                  <div v-for="(label, value) in frequentFlyerNames" class="col-12 col-lg-6">
-                    <div class="form-group">
-                      <input type="text" class="form-control" :placeholder="airlineCodes[label]" v-model="frequentflyer[value]"/>
-                      <img class="account__form-icon" :src="airlineIcon(label)" alt="">
+              <tabs>
+                <tab title="Basic" :selected="true">
+                  <div class="row">
+                    <div class="col-12 col-lg-6">
+                      <div class="subscription">
+                        <div class="subscription__top">
+                          <div class="subscription__title">
+                            <h4 class="subscription__heading subscription__heading--type">Basic</h4>
+                            <h3 class="subscription__heading subscription__heading--price">$39.99/yr</h3>
+                          </div>
+                          <ul class="subscription__list">
+                            <li class="subscription__item">- Flight Search and Book</li>
+                            <li class="subscription__item">- Auto Check-in</li>
+                            <li class="subscription__item">- Max of 6 Bookings</li>
+                          </ul>
+                        </div>
+                        <div class="subscription__bottom">
+                          <button class="button button--outline-blue">Current Plan</button>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-12 col-lg-6">
+                      <div class="subscription">
+                        <div class="subscription__top">
+                          <div class="subscription__title">
+                            <h4 class="subscription__heading subscription__heading--type">Basic Plus</h4>
+                            <h3 class="subscription__heading subscription__heading--price">$69.99/yr</h3>
+                          </div>
+                          <ul class="subscription__list">
+                            <li class="subscription__item">- Flight Search and Book</li>
+                            <li class="subscription__item">- Auto Check-in</li>
+                            <li class="subscription__item">- Max of 12 Bookings</li>
+                            <li class="subscription__item">- Deal Alerts</li>
+                            <li class="subscription__item">- Companion Account</li>
+                          </ul>
+                        </div>
+                        <div class="subscription__bottom">
+                          <button class="button button--outline-blue">Upgrade Plan</button>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                  <div class="w-100"></div>
-                  <div class="col-12 col-lg-6 ml-auto text-right mb-4">
-                    <button type="submit" class="btn btn-primary" @click.prevent="saveFrequentFlyer">Save Frequent Flyer Information</button>
+                </tab>
+                <tab title="Pro">
+                  <div class="row">
+                    <div class="col-12 col-lg-6">
+                      <div class="subscription">
+                        <div class="subscription__top">
+                          <div class="subscription__title">
+                            <h4 class="subscription__heading subscription__heading--type">Pro</h4>
+                            <h3 class="subscription__heading subscription__heading--price">$139.99/yr</h3>
+                          </div>
+                          <ul class="subscription__list">
+                            <li class="subscription__item">- Flight Search and Book</li>
+                            <li class="subscription__item">- Auto Check-in</li>
+                            <li class="subscription__item">- Deal Alerts</li>
+                            <li class="subscription__item">- Two Companion Accounts</li>
+                            <li class="subscription__item">- Unlimited Bookings</li>
+                          </ul>
+                        </div>
+                        <div class="subscription__bottom">
+                          <button class="button button--outline-blue">Get Started</button>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-12 col-lg-6">
+                      <div class="subscription">
+                        <div class="subscription__top">
+                          <div class="subscription__title">
+                            <h4 class="subscription__heading subscription__heading--type">Pro Plus</h4>
+                            <h3 class="subscription__heading subscription__heading--price">$199.99/yr</h3>
+                          </div>
+                          <ul class="subscription__list">
+                            <li class="subscription__item">- Flight Search and Book</li>
+                            <li class="subscription__item">- Auto Check-in</li>
+                            <li class="subscription__item">- Deal Alerts</li>
+                            <li class="subscription__item">- Cash Back Booking</li>
+                            <li class="subscription__item">- Three Companion Accounts</li>
+                            <li class="subscription__item">- Unlimited Bookings</li>
+                          </ul>
+                        </div>
+                        <div class="subscription__bottom">
+                          <button class="button button--outline-blue">Upgrade Plan</button>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </form>
+                </tab>
+              </tabs>
             </div>
           </div>
         </div>
