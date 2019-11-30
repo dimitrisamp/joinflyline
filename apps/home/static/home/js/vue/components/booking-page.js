@@ -28,8 +28,10 @@ function makePassenger(primary = true, category = "adults") {
     title: null,
     cardno: "",
     expiration: "",
-    cabin_bags: 0,
-    checked_bags: 0
+    combinations: {
+      hand_bag: 0,
+      hold_bag: 0
+    }
   };
 }
 
@@ -92,6 +94,18 @@ export const BookingPage = Vue.component("booking-page", {
       }
       return true;
     },
+    // baggageParameter() {
+    //   let result = [];
+    //   for (let [bagCategory, combinationList] of Object.values(this.checkFlightData.combinations)){
+    //     for (let combination of combinationList) {
+    //       result.push({
+    //         ...combination,
+    //         passengers: self.passengers.map((p, i)=>{p})
+    //       })
+    //     }
+    //   }
+    //   return result;
+    // },
     checkFlight() {
       if (this.checkFlightRequired && !this.checkFlightProgress) {
         this.checkFlightProgress = true;
@@ -118,6 +132,25 @@ export const BookingPage = Vue.component("booking-page", {
             this.checkFlightProgress = false;
           });
       }
+    },
+    bagsPrices() {
+      let totalPrice = 0;
+      for (const p of this.passengers) {
+        for (let [categoryName, combinationIndex] of Object.entries(p.combinations)) {
+          totalPrice += this.checkFlightData.baggage.combinations[categoryName][combinationIndex].price.amount;
+        }
+      }
+      return totalPrice;
+    },
+    factor() {
+      if (!this.checkFlightData) {
+        const c = this.flightToBook.conversion;
+        return c.USD / c.EUR;
+      }
+      return this.checkFlightData.conversion.amount / this.checkFlightData.total;
+    },
+    convertToUsd(price) {
+      return Math.round(price * this.factor() * 100) / 100;
     }
   },
   computed: {
@@ -132,12 +165,6 @@ export const BookingPage = Vue.component("booking-page", {
       const result = Object.fromEntries(counter.entries());
       const pnum = Object.values(result).reduce((a, b) => a + b);
       return { ...result, pnum };
-    },
-    bagsCount() {
-      if (!this.passengers) return 0;
-      return this.passengers
-        .map(p => p.cabin_bags + p.checked_bags)
-        .reduce((a, b) => a + b);
     },
     prices() {
       if (!this.checkFlightData) {
@@ -154,17 +181,18 @@ export const BookingPage = Vue.component("booking-page", {
         infants: prices.infants_price
       };
       const passengers = Object.values(result).reduce((a, b) => a + b);
+      const bagsPrice = this.convertToUsd(this.bagsPrices());
       return {
         ...result,
         passengers,
-        bags: prices.amount - passengers,
-        total: prices.amount,
-        exact: this.checkFlightData.flightsChecked
-      };
+        baggage: bagsPrice,
+        total: passengers + bagsPrice,
+        exact: this.checkFlightData?this.checkFlightData.flightsChecked:false,
+      }
     },
     formState() {
       return {
-        bnum: this.bagsCount,
+        bnum: 0,
         ...this.passengerCount
       };
     }

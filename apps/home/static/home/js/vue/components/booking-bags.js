@@ -16,55 +16,12 @@ const categoryLabels = {
   hold_bag: "Checked Baggage"
 };
 
-function transformBaggage(baggage) {
-  let result = {};
-  for (const [bagCategory, combinations] of Object.entries(
-    baggage.combinations
-  )) {
-    let definitions = baggage.definitions[bagCategory];
-    let categoryCombinations = [];
-    for (const combination of combinations) {
-      let combinationOptions = {};
-      let optionItems = [];
-      if (combination.indices.length === 0) {
-        optionItems.push({
-          iconClass: "icon-none",
-          label: noneLabels[bagCategory],
-          dimensions: ""
-        });
-      } else {
-        for (const definitionIndex of combination.indices) {
-          const definition = definitions[definitionIndex];
-          const r = definition.restrictions;
-          optionItems.push({
-            iconClass: `icon-${definition.category}`,
-            label: bagLabels[definition.category],
-            dimensions: `${r.length}x${r.width}x${r.height}, ${r.weight} kg`
-          });
-        }
-        combinationOptions.items = optionItems;
-        combinationOptions.price = combination.price.amount;
-      }
-      categoryCombinations.push(combinationOptions);
-    }
-    categoryCombinations.sort((cca, ccb) => {
-      return (
-        (cca.items ? cca.items.length : 0) - (ccb.items ? ccb.items.length : 0)
-      );
-    });
-    result[bagCategory] = categoryCombinations;
-  }
-  return result;
-}
 
 export const BookingBags = Vue.component("booking-bags", {
-  props: ["baggage", "passenger"],
+  props: ["baggage", "passenger", "convertToUsd"],
   data() {
     return {
-      selectedCombinations: {
-        hand_bag: 0,
-        hold_bag: 0
-      },
+      selectedCombinations: {...this.passenger.combinations},
       categoryLabels,
     };
   },
@@ -95,11 +52,7 @@ export const BookingBags = Vue.component("booking-bags", {
   watch: {
     selectedCombinations: {
       handler(val) {
-        let result = {};
-        for (let [categoryName, value] of Object.entries(val)) {
-          result[categoryName] = this.data[categoryName][value];
-        }
-        this.$emit("baggage-updated", result);
+        this.$emit("baggage-updated", val);
       },
       deep: true
     }
@@ -122,9 +75,5 @@ export const BookingBags = Vue.component("booking-bags", {
       }
       return result;
     },
-    // data() {
-    //   if (!this.baggage) return null;
-    //   return transformBaggage(this.baggage);
-    // }
   }
 });

@@ -16,7 +16,7 @@ const months = [
 ];
 
 export const BookingPassengerForm = Vue.component("booking-passenger-form", {
-  props: ["checkFlightData", "passenger"],
+  props: ["checkFlightData", "passenger", "convertToUsd"],
   data() {
     let passengerData = { ...this.$props.passenger };
     return {
@@ -35,11 +35,7 @@ export const BookingPassengerForm = Vue.component("booking-passenger-form", {
   },
   methods: {
     updateBaggage(data) {
-      this.p = {
-        ...this.p,
-        cabin_bags: data.hand_bag.items?data.hand_bag.items.length:0,
-        checked_bags: data.hold_bag.items?data.hold_bag.items.length:0,
-      };
+      this.$set(this.p, 'combinations', data);
     }
   },
   template: "#vue-booking-passenger-form-template",

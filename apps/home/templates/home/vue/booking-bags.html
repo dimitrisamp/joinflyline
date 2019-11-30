@@ -19,7 +19,7 @@
                 <p class="booking-bags__dimensions">[[ dimensions(definition) ]]</p>
               </div>
             </div>
-            <p class="booking-bags__combination-price">$[[ combination.price.amount ]]</p>
+            <div class="booking-bags__combination-price">$[[ convertToUsd(combination.price.amount) ]]</div>
           </label>
         </div>
       </div>
