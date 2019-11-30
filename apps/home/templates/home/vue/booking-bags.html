@@ -1,22 +1,31 @@
 <script type="text/x-template" id="vue-booking-bags-template">
-    <div v-if="baggage" class="booking-bags">
-        <div v-for="(combinationList, categoryName) in baggage.combinations">
-            <h3 class="booking-bags__heading">
-                [[ categoryLabels[categoryName] ]]<span>Select one option</span></h3>
-            <div class="booking-bags__combination-list">
-                <div v-for="(combination, combinationIndex) in combinationList" v-if="isValidCombination(combination)" class="booking-bags__combination">
-                    <input type="radio" :name="categoryName" :value="combinationIndex" v-model="selectedCombinations[categoryName]"/>
-                    <div v-for="definition in definitions(combination)">
-                        <i :class="iconClass(definition)" />
-                        <p class="booking-bags__bag-label">[[ bagLabel(definition) ]]</p>
-                        <p class="booking-bags__dimensions">[[ dimensions(definition) ]]</p>
-                    </div>
-                    <p class="booking-bags__combination-price">$[[ combination.price.amount ]]</p>
+  <div v-if="baggage" class="booking-bags">
+    <div class="booking-bags__item" v-for="(combinationList, categoryName) in baggage.combinations">
+      <h3 class="booking-bags__heading">
+        [[ categoryLabels[categoryName] ]]<span>Select one option</span></h3>
+      <div class="booking-bags__combination-list">
+        <div v-for="(combination, combinationIndex) in combinationList" v-if="isValidCombination(combination)" class="booking-bags__combination">
+          <input type="radio" :id="combinationIndex" :name="categoryName" :value="combinationIndex" v-model="selectedCombinations[categoryName]"/>
+          <label :for="combinationIndex">
+            <div class="booking-bags__bag-container">
+              <div class="booking-bags__bag-inner" v-for="definition in definitions(combination)">
+                <div class="booking-bags__bag-label">
+                  <span class="booking-bags__bag-radio"></span>
+                  <svg class="icon" :class="'icon--'+iconClass(definition)" width="24" height="24">
+                    <use :xlink:href="`#${iconClass(definition)}`"></use>
+                  </svg>
+                  <p class="booking-bags__bag-text">[[ bagLabel(definition) ]]</p>
                 </div>
+                <p class="booking-bags__dimensions">[[ dimensions(definition) ]]</p>
+              </div>
             </div>
+            <p class="booking-bags__combination-price">$[[ combination.price.amount ]]</p>
+          </label>
         </div>
+      </div>
     </div>
-    <div v-else class="booking-bags__loading">
-        <p>Loading...</p>
-    </div>
+  </div>
+  <div v-else class="booking-bags__loading">
+    <p>Loading...</p>
+  </div>
 </script>

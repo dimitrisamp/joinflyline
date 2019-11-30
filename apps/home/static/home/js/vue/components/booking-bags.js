@@ -89,7 +89,7 @@ export const BookingBags = Vue.component("booking-bags", {
       return bagLabels[definition.category];
     },
     iconClass(definition) {
-      return `booking-bags__icon-${definition.category}`
+      return `${definition.category}`
     }
   },
   watch: {
