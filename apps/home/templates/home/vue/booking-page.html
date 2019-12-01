@@ -1,59 +1,106 @@
 <script type="text/x-template" id="vue-booking-page-template">
-    <div class="booking-page">
-        <div class="booking-page__header">
-            <h3 class="header__title">[[ flightToBook.cityFrom ]] <span
-                    class="fa fa-long-arrow-right"></span> [[ flightToBook.cityTo ]]
-                <span v-if="flightToBook.roundtrip">and back</span></h3>
-            <p class="header__description">Confirm your trip details, enter your traveler information, and input your payment details to complete your booking.</p>
-          </div>
-          <div class="main-padding">
-            <div class="summary__container">
-                <div class="summary__left">
-                    <div class="summary__inner">
-                        <h3 class="summary__heading">Trip Summary
-                            <span>[[ flightToBook.nightsInDest ]] Night[[ flightToBook.nightsInDest > 1?'s':'' ]] Stay in [[ flightToBook.cityTo ]]</span>
-                        </h3>
-                        <!-- Flights -->
-                        <div class="summary__flights">
-                          <div class="row">
-                            <div class="col-12 col-md-6">
-                              <div class="summary__departure">
-                                  <h3 class="box-title">Departure</h3>
-                                  <booking-flight-details v-for="flight in flightToBook.route"
-                                                          v-if="!flight.return" :flight="flight"/>
-                              </div>
-                            </div>
-                            <div class="col-12 col-md-6">
-                              <div class="summary__return">
-                                  <h3 class="box-title">Return</h3>
-                                  <booking-flight-details v-for="flight in flightToBook.route"
-                                                          v-if="flight.return" :flight="flight"/>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <!-- End flights -->
-                    </div>
-                    <div class="passenger" v-for="passenger, i in passengers">
-                        <booking-passenger-form :check-flight-data="checkFlightData"
-                                                :passenger="passenger"
-                                                :passenger-index="i"
-                                                :convert-to-usd="convertToUsd"
-                                                @passenger-updated="updatePassenger(i, ...arguments)"/>
-                    </div>
-                    <div class="pform__field--button">
-                        <button class="pform__add button button--big button--outline-blue" @click="addPassenger">Add another passenger</button>
-                    </div>
-                </div>
-
-                <div class="summary__right">
-                  <div class="summary__inner">
-                    <booking-totals :prices="prices" :count="passengerCount"/>
-                    <checkout-form :form="form" :total_price="prices.total" @book="book"/>
+  <div class="booking-page">
+    <div class="booking-page__header">
+      <h3 class="header__title">[[ flightToBook.cityFrom ]] <span
+          class="fa fa-long-arrow-right"></span> [[ flightToBook.cityTo ]]
+        <span v-if="flightToBook.roundtrip">and back</span></h3>
+      <p class="header__description">Confirm your trip details, enter your traveler information, and input your payment
+        details to complete your booking.</p>
+    </div>
+    <div class="main-padding">
+      <div class="summary__container">
+        <div class="summary__left">
+          <div class="summary__inner">
+            <h3 class="summary__heading">Trip Summary
+              <span>[[ flightToBook.nightsInDest ]] Night[[ flightToBook.nightsInDest > 1?'s':'' ]] Stay in [[ flightToBook.cityTo ]]</span>
+            </h3>
+            <!-- Flights -->
+            <div class="summary__flights">
+              <div class="row">
+                <div class="col-12 col-md-6">
+                  <div class="summary__departure">
+                    <h3 class="box-title">Departure</h3>
+                    <booking-flight-details v-for="flight in flightToBook.route"
+                                            v-if="!flight.return" :flight="flight"/>
                   </div>
                 </div>
+                <div class="col-12 col-md-6">
+                  <div class="summary__return">
+                    <h3 class="box-title">Return</h3>
+                    <booking-flight-details v-for="flight in flightToBook.route"
+                                            v-if="flight.return" :flight="flight"/>
+                  </div>
+                </div>
+              </div>
             </div>
+            <!-- End flights -->
           </div>
+          <div class="passenger" v-for="passenger, i in passengers">
+            <booking-passenger-form :check-flight-data="checkFlightData"
+                                    :passenger="passenger"
+                                    :passenger-index="i"
+                                    :convert-to-usd="convertToUsd"
+                                    @passenger-updated="updatePassenger(i, ...arguments)"/>
+          </div>
+          <div class="pform__field--button">
+            <button class="pform__add button button--big button--outline-blue" @click="addPassenger">Add another
+              passenger
+            </button>
+          </div>
+        </div>
 
+        <div class="summary__right">
+          <div class="summary__inner">
+            <booking-totals :prices="prices" :count="passengerCount"/>
+            <checkout-form :form="form" :total_price="prices.total" @book="book"/>
+          </div>
+        </div>
+      </div>
     </div>
+    <div class="modal fade" id="booking-success-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content" style="top: 60px;">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Booking Confirmed</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <h1 style="font-size: 16px;line-height: 1.8;">Congrats! Your flight is booked, we'll send an email
+              confirmation shortly.</h1>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" style="background-color: #00B7FF;" @click="goHome">
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="booking-failure-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content" style="top: 60px;">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Booking Error</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <h1 style="font-size: 16px;line-height: 1.8;">There seemed to be an error when booking your flight, try
+              again or contact Wanderift support, support@wanderift.com</h1>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" style="background-color: #00B7FF;">
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
 </script>

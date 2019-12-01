@@ -211,9 +211,16 @@ export const BookingPage = Vue.component("booking-page", {
       return Math.round(price * this.factor() * 100) / 100;
     },
     book() {
-      this.saveBooking().then({
-
+      this.saveBooking().then((response)=>{
+        if (response.status === 200) {
+          $('#booking-success-modal').modal()
+        } else {
+          $('#booking-failure-modal').modal()
+        }
       });
+    },
+    goHome() {
+      this.$router.push({'name': 'overview'});
     }
   },
   computed: {
