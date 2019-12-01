@@ -75,11 +75,12 @@ export function staticUrl(path) {
 }
 
 export function airlineIcon(name) {
-  if (airlineCodes.hasOwnProperty(name)) {
-    return `${staticUrlValue}images/airlines/${name}.png`;
-  } else {
-    return `${staticUrlValue}images/airlines/FlyLine_Icon.png`;
-  }
+  return `${staticUrlValue}images/airlines/${name}.png`;
+  // if (airlineCodes.hasOwnProperty(name)) {
+  //   return `${staticUrlValue}images/airlines/${name}.png`;
+  // } else {
+  //   return `${staticUrlValue}images/airlines/FlyLine_Icon.png`;
+  // }
 }
 
 export function formatTime(value) {
