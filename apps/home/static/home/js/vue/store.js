@@ -231,11 +231,9 @@ export const store = new Vuex.Store({
       }
       context.commit('setSearchResultIndex', null);
       context.commit("setSearchProgress", true);
-      fetch(getSearchURL(context.state.form), {
-        headers: { apikey: "4TMnq4G90OPMYDAGVHzlP9LQo2hvzzdc" }
-      })
-        .then(response => response.json())
-        .then(data => {
+      api.get(getSearchURL(context.state.form))
+        .then(response => {
+          const data = response.data;
           let parent = { ...data };
           delete parent.data;
           data.data = data.data.map(processFlight);

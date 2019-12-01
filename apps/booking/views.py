@@ -53,6 +53,11 @@ class LocationQueryView(ProxyView):
     source = 'locations/query'
 
 
+class FlightSearchView(ProxyView):
+    permission_classes = [AllowAny]
+    source = 'v2/search'
+
+
 def get_category(passenger):
     born = datetime.strptime(passenger["birthday"], "%Y-%m-%d")
     today = date.today()

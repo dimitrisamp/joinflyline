@@ -293,7 +293,7 @@ export function getSearchURL(form) {
   formData.append("limit", form.limit + form.limitIncrement);
   formData.append("curr", "USD");
   let url = new URL(
-    "https://kiwicom-prod.apigee.net/v2/search",
+    "/api/search",
     window.location
   );
   url.search = new URLSearchParams(formData);
