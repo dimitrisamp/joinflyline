@@ -10,6 +10,7 @@ from django.shortcuts import render
 from django.views import View
 from django.conf import settings as S
 from django.views.decorators.csrf import csrf_exempt
+from rest_framework.permissions import AllowAny
 from rest_framework.views import APIView
 from rest_framework_proxy.views import ProxyView
 
@@ -48,6 +49,7 @@ class CheckFlightsView(ProxyView):
 
 
 class LocationQueryView(ProxyView):
+    permission_classes = [AllowAny]
     source = 'locations/query'
 
 
