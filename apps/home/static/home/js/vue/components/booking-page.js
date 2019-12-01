@@ -69,7 +69,8 @@ export const BookingPage = Vue.component("booking-page", {
       flightChecked: false,
       flightInvalid: false,
       checkFlightProgress: false,
-      interval: null
+      interval: null,
+      bookingProgress: false
     };
   },
   watch: {
@@ -136,7 +137,7 @@ export const BookingPage = Vue.component("booking-page", {
           title: p.title,
           cardno: p.cardno,
           expiration: p.expiration,
-          category: getAgeCategory(p, true),
+          category: getAgeCategory(p, true)
         };
       });
     },
@@ -145,8 +146,7 @@ export const BookingPage = Vue.component("booking-page", {
         url: saveBookingApiUrl,
         method: "POST",
         headers: {
-          "content-type": "application/json",
-          apikey: "4TMnq4G90OPMYDAGVHzlP9LQo2hvzzdc"
+          "content-type": "application/json"
         },
         data: {
           booking_token: this.flightToBook.booking_token,
@@ -157,9 +157,9 @@ export const BookingPage = Vue.component("booking-page", {
           passengers: this.passengersParameter(),
           payment_gateway: "payu",
           payment: this.form,
-          retail_info: this.flightToBook,
+          retail_info: this.flightToBook
         }
-      })
+      });
     },
     checkFlight() {
       if (this.checkFlightRequired && !this.checkFlightProgress) {
@@ -171,7 +171,7 @@ export const BookingPage = Vue.component("booking-page", {
               currency: "USD",
               booking_token: this.flightToBook.booking_token,
               ...this.formState
-            },
+            }
           })
           .then(response => {
             const cf = response.data;
@@ -211,16 +211,22 @@ export const BookingPage = Vue.component("booking-page", {
       return Math.round(price * this.factor() * 100) / 100;
     },
     book() {
-      this.saveBooking().then((response)=>{
-        if (response.status === 200) {
-          $('#booking-success-modal').modal()
-        } else {
-          $('#booking-failure-modal').modal()
-        }
-      });
+      if (this.bookingProgress) return;
+      this.bookingProgress = true;
+      this.saveBooking()
+        .then(response => {
+          if (response.status === 200) {
+            $("#booking-success-modal").modal();
+          } else {
+            $("#booking-failure-modal").modal();
+          }
+        })
+        .finally(() => {
+          this.bookingProgress = false;
+        });
     },
     goHome() {
-      this.$router.push({'name': 'overview'});
+      this.$router.push({ name: "overview" });
     }
   },
   computed: {
