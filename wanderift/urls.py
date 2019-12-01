@@ -74,8 +74,6 @@ urlpatterns = [
     path(r'api/auth/', include('knox.urls')),
     # booking
     path("promo/", lambda _: redirect("/#/promo/"), name="promo-landing"),
-    path("retail/", RetailBookingView.as_view(), name="retail"),
-    path("check-flights/", CheckFlightsView.as_view(), name="check-flights"),
     path("check-promo/", CheckPromoView.as_view(), name="check-promo"),
     path("emails/<str:booking_id>", booking_success, name="email"),
     # payments
@@ -91,6 +89,7 @@ urlpatterns = [
     path("api/book/", SaveBookingView.as_view(), name="book"),
     path('api/bookings/summary/', TripSummary.as_view(), name="booking-summary"),
     path('api/subscriptions/plan/', subscriptions_views.Plans.as_view(), name="plans"),
+    path("api/booking/check_flights/", CheckFlightsView.as_view(), name="check-flights"),
     re_path("^api/users/me/", include(user_router.urls)),
     re_path("^api/", include(router.urls)),
 ]

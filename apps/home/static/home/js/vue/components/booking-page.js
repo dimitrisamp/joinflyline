@@ -3,8 +3,7 @@ import api from "../http.js";
 
 const checkInterval = 15000;
 
-const checkFlightsApiUrl =
-  "https://kiwicom-prod.apigee.net/v2/booking/check_flights";
+const checkFlightsApiUrl = "/booking/check_flights/";
 
 const saveBookingApiUrl = "/book/";
 
@@ -165,7 +164,7 @@ export const BookingPage = Vue.component("booking-page", {
     checkFlight() {
       if (this.checkFlightRequired && !this.checkFlightProgress) {
         this.checkFlightProgress = true;
-        axios
+        api
           .get(checkFlightsApiUrl, {
             params: {
               v: 2,
@@ -173,9 +172,6 @@ export const BookingPage = Vue.component("booking-page", {
               booking_token: this.flightToBook.booking_token,
               ...this.formState
             },
-            headers: {
-              apikey: "4TMnq4G90OPMYDAGVHzlP9LQo2hvzzdc"
-            }
           })
           .then(response => {
             const cf = response.data;

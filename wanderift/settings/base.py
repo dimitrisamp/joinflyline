@@ -261,3 +261,12 @@ REST_FRAMEWORK = {
     "DEFAULT_FILTER_BACKENDS": ("django_filters.rest_framework.DjangoFilterBackend",),
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
 }
+
+REST_PROXY = {
+    'HOST': 'https://kiwicom-prod.apigee.net/v2/',
+    'AUTH': {
+        'user': None,
+        'password': None,
+        'apikey': KIWI_API_KEY,
+    },
+}

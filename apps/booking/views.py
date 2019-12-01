@@ -11,6 +11,7 @@ from django.views import View
 from django.conf import settings as S
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.views import APIView
+from rest_framework_proxy.views import ProxyView
 
 from apps.booking.models import BookingContact
 from apps.emails.views import booking_success
@@ -42,62 +43,8 @@ class FlightsNotCheckedYetException(ClientException):
     pass
 
 
-def check_flights(booking_token, bnum, adults, children, infants):
-    query = {
-        "booking_token": booking_token,
-        "v": 2,
-        "bnum": bnum,
-        "adults": adults,
-        "children": children,
-        "infants": infants,
-        "pnum": adults + children + infants,
-        "currency": "USD",
-    }
-    try:
-        response = requests.get(
-            CHECK_FLIGHTS_API_URL, query, headers={"apikey": S.KIWI_API_KEY}
-        )
-    except requests.RequestException as e:
-        raise ClientException() from e
-    if response.status_code != 200:
-        raise ClientException()
-    data = response.json()
-    if 'status' in data and data["status"] == "error":
-        raise StatusErrorException()
-    if data.get("flights_invalid"):
-        raise FlightsInvalidException()
-    if not data["flights_checked"]:
-        raise FlightsNotCheckedYetException()
-    prices = data["conversion"]
-    passenger_price = (
-        prices["adults_price"] + prices["children_price"] + prices["infants_price"]
-    )
-    bags_fee = prices["amount"] - passenger_price
-    return {"passengers": passenger_price, "bags": bags_fee, "total": prices["amount"]}
-
-
-class CheckFlightsView(View):
-    def get(self, request):
-        keys = (
-            ("booking_token", lambda x: x),
-            ("bnum", int),
-            ("adults", int),
-            ("children", int),
-            ("infants", int),
-        )
-        try:
-            kwargs = {k: f(request.GET[k]) for k, f in keys}
-        except KeyError:
-            return JsonResponse({"code": "missing-arguments"})
-        try:
-            result = check_flights(**kwargs)
-        except FlightsInvalidException:
-            return JsonResponse({"code": "flights-invalid"}, status=404)
-        except FlightsNotCheckedYetException:
-            return JsonResponse({"code": "not-checked-yet"}, status=404)
-        except StatusErrorException:
-            return JsonResponse({"code": "status-error"}, status=404)
-        return JsonResponse(result)
+class CheckFlightsView(ProxyView):
+    source = '/booking/check_flights'
 
 
 def get_category(passenger):
@@ -261,42 +208,3 @@ def confirm_payment_zooz(booking, payment, test=True):
     data = response.json()
     if data["status"] != 0:
         raise ClientException(data)
-
-
-class RetailBookingView(View):
-    def post(self, request):
-        retail_info = json.loads(request.POST.get('retail_info'))
-        one_way = not bool(o for o in retail_info["route"] if o["return"] == 1)
-        for flight in retail_info["route"]:
-            dep_time = parse_isodatetime(flight["local_departure"])
-            arr_time = parse_isodatetime(flight["local_arrival"])
-            flight["date"] = dep_time.strftime("%a %b %d")
-            flight["arr_time"] = arr_time.strftime("%I:%M %p")
-            flight["dep_time"] = dep_time.strftime("%I:%M %p")
-            duration = int(
-                (
-                    parse_isodatetime(flight["utc_arrival"])
-                    - parse_isodatetime(flight["utc_departure"])
-                ).total_seconds()
-            )
-            hours = duration // 3600
-            minutes = (duration // 60) % 60
-            flight["duration"] = f"{hours}h {minutes:02d}m"
-        if not one_way:
-            last_flight_to_destination = list(
-                takewhile(lambda o: o["return"] == 0, retail_info["route"])
-            )[-1]
-            last_flight_to_destination["nightsInDest"] = retail_info["nightsInDest"]
-
-        context = {
-            "retail_info": retail_info,
-            "one_way": one_way,
-            "total_credits": 1 if one_way else 2,
-            "subscription_benefits": comparison(retail_info),
-            "passenger_count": retail_info["parent"]["search_params"]["seats"][
-                "passengers"
-            ],
-            "total_price": retail_info["conversion"]["USD"],
-            "title": "Confirm Booking | FlyLine",
-        }
-        return render(request, "booking/retail.html", context)
