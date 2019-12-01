@@ -102,11 +102,22 @@
   }
 
   .trending-flights-container {
+    display: none;
+    @include mq(md) {
+      display: flex;
+      flex-direction: column;
+    }
+
     span {
       margin-right: 1rem;
       font-family: $dona-black;
       color: #7d7d7d;
       padding-top: 10px;
+      padding-bottom: 10px;
+      align-self: center;
+      @include mq(lg) {
+        align-self: start;
+      }
     }
 
     .trending-flights {
