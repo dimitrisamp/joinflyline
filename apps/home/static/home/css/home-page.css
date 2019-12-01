@@ -350,7 +350,7 @@ header.sticky {
   background: #fff;
   border-radius: 0px;
   border-right: none;
-  /* font-size: 13px; */
+  font-size: 0.8em;
   font-weight: 600;
   font-family: Dona-Bold;
   color: #7d7d7d;

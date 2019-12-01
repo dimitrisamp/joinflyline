@@ -71,7 +71,7 @@
         }
 
         span {
-          font-size: 0.8125rem;
+          font-size: 0.8rem;
           padding: 9px 5px 5px 5px;
         }
         .search-f-dropdown {
@@ -141,6 +141,9 @@
     }
   }
   &__item {
+    .form-control {
+      font-size: 0.8em;
+    }
     .search-button {
       span {
         font-family: $dona-black;
