@@ -30,8 +30,7 @@ from apps.booking.views import (
     CheckFlightsView,
     SaveBookingView,
     CheckPromoView,
-    RetailBookingView,
-)
+    LocationQueryView)
 from apps.subscriptions import views as subscriptions_views
 from apps.booking.viewsets import BookingViewSet, FlightViewSet, DealViewSet, TripSummary
 from apps.common.user_router import UserRouter
@@ -90,6 +89,7 @@ urlpatterns = [
     path('api/bookings/summary/', TripSummary.as_view(), name="booking-summary"),
     path('api/subscriptions/plan/', subscriptions_views.Plans.as_view(), name="plans"),
     path("api/booking/check_flights/", CheckFlightsView.as_view(), name="check-flights"),
+    path("api/locations/query/", LocationQueryView.as_view(), name="location-query"),
     re_path("^api/users/me/", include(user_router.urls)),
     re_path("^api/", include(router.urls)),
 ]

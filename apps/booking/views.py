@@ -44,7 +44,11 @@ class FlightsNotCheckedYetException(ClientException):
 
 
 class CheckFlightsView(ProxyView):
-    source = '/booking/check_flights'
+    source = 'v2/booking/check_flights'
+
+
+class LocationQueryView(ProxyView):
+    source = 'locations/query'
 
 
 def get_category(passenger):

@@ -3,6 +3,7 @@ import {
   legacyAirlines,
   lowcostAirlines
 } from "./airlineCodes.js";
+import api from './vue/http.js';
 
 export const seatTypes = {
   M: "Economy",
@@ -156,26 +157,14 @@ export function locationSearch(term, locationTypes) {
     both: ["city", "airport"]
   }[locationTypes || "both"];
   return new Promise(resolve => {
-    let url = new URL("https://kiwicom-prod.apigee.net/locations/query");
+    let url = "/locations/query/";
     let searchParams = {
       term,
       locale: "en-US",
-      location_types: "city"
+      location_types: searchLocationTypes,
     };
-    let urlSearchParams = new URLSearchParams(searchParams);
-    for (const lt of searchLocationTypes) {
-      urlSearchParams.append("location_types", lt);
-    }
-    url.search = urlSearchParams;
-    fetch(url, {
-      method: "GET",
-      headers: {
-        apikey: "4TMnq4G90OPMYDAGVHzlP9LQo2hvzzdc"
-      },
-      credentials: "same-origin"
-    })
-      .then(response => response.json())
-      .then(data => resolve(processLocationSearch(data)));
+    api.get(url, {params: searchParams})
+      .then(response => resolve(processLocationSearch(response.data)));
   });
 }
 

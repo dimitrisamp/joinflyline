@@ -263,7 +263,7 @@ REST_FRAMEWORK = {
 }
 
 REST_PROXY = {
-    'HOST': 'https://kiwicom-prod.apigee.net/v2/',
+    'HOST': 'https://kiwicom-prod.apigee.net',
     'AUTH': {
         'user': None,
         'password': None,
