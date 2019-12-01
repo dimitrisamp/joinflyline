@@ -5,6 +5,10 @@
     @include mq(lg) {
       background-color: $white;
     }
+    .title--black-small {
+      font-size: 1.5em;
+      margin-bottom: 20px;
+    }
   }
   &__card {
     display: flex;
