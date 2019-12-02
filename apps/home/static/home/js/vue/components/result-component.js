@@ -13,7 +13,8 @@ export const ResultComponent = Vue.component("result-component", {
     };
   },
   methods: {
-    ...Vuex.mapActions(["sortResultsBy", "loadMore"]),
+    ...Vuex.mapActions(["sortResultsBy", "loadMore", "search"]),
+    ...Vuex.mapMutations(["setMaxStops"])
   },
   computed: {
     ...Vuex.mapState(["searchResults", "quickFiltersData", "form"]),

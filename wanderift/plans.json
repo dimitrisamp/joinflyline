@@ -8,7 +8,7 @@
     },
     "limit": 6,
     "deal_alerts": false,
-    "companion": 0,
+    "companion": 0
   },
   "basic-plus": {
     "name": "Basic Plus",
@@ -19,7 +19,7 @@
     },
     "limit": 9,
     "deal_alerts": false,
-    "companion": 1,
+    "companion": 1
   },
   "pro": {
     "name": "Pro",
@@ -30,7 +30,7 @@
     },
     "limit": null,
     "deal_alerts": true,
-    "companion": 2,
+    "companion": 2
   },
   "pro-plus": {
     "name": "Pro Plus",
@@ -41,6 +41,6 @@
     },
     "limit": null,
     "deal_alerts": true,
-    "companion": 3,
+    "companion": 3
   }
 }
