@@ -291,7 +291,7 @@ export function getSearchURL(form) {
   if (form.sort !== null) {
     formData.append("sort", form.sort);
   }
-  formData.append("limit", form.limit + form.limitIncrement);
+  //formData.append("limit", form.limit + form.limitIncrement);
   formData.append("curr", "USD");
   let url = new URL(
     "/api/search",
