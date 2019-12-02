@@ -1,4 +1,5 @@
 export const airlineCodes = {
+  DY: "Norwegian Air Shuttle",
   DL: "Delta Airlines",
   AS: "Alaska Airlines",
   NK: "Spirit Airlines",

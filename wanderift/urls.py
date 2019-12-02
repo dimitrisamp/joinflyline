@@ -30,8 +30,7 @@ from apps.booking.views import (
     CheckFlightsView,
     SaveBookingView,
     CheckPromoView,
-    RetailBookingView,
-)
+    LocationQueryView, FlightSearchView)
 from apps.subscriptions import views as subscriptions_views
 from apps.booking.viewsets import BookingViewSet, FlightViewSet, DealViewSet, TripSummary
 from apps.common.user_router import UserRouter
@@ -74,9 +73,6 @@ urlpatterns = [
     path(r'api/auth/', include('knox.urls')),
     # booking
     path("promo/", lambda _: redirect("/#/promo/"), name="promo-landing"),
-    path("retail/", RetailBookingView.as_view(), name="retail"),
-    path("booking_flight/", SaveBookingView.as_view(), name="book"),
-    path("check-flights/", CheckFlightsView.as_view(), name="check-flights"),
     path("check-promo/", CheckPromoView.as_view(), name="check-promo"),
     path("emails/<str:booking_id>", booking_success, name="email"),
     # payments
@@ -89,8 +85,12 @@ urlpatterns = [
         TemplateView.as_view(template_name="503.html"),
         name="maintenance",
     ),
+    path("api/book/", SaveBookingView.as_view(), name="book"),
     path('api/bookings/summary/', TripSummary.as_view(), name="booking-summary"),
     path('api/subscriptions/plan/', subscriptions_views.Plans.as_view(), name="plans"),
+    path("api/booking/check_flights/", CheckFlightsView.as_view(), name="check-flights"),
+    path("api/locations/query/", LocationQueryView.as_view(), name="location-query"),
+    path("api/search/", FlightSearchView.as_view(), name="flight-search"),
     re_path("^api/users/me/", include(user_router.urls)),
     re_path("^api/", include(router.urls)),
 ]

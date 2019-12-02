@@ -39,7 +39,7 @@
       </div>
 
       <div class="checkout__row--submit">
-          <button class="button button--big button--outline-blue" @click="book">Book Flight For $[[ total_price ]]</button>
+          <button class="button button--big button--outline-blue" :disabled="bookingProgress" @click="book">Book Flight For $[[ total_price ]]</button>
       </div>
   </div>
 </script>

@@ -3,6 +3,7 @@ import {
   legacyAirlines,
   lowcostAirlines
 } from "./airlineCodes.js";
+import api from './vue/http.js';
 
 export const seatTypes = {
   M: "Economy",
@@ -74,11 +75,12 @@ export function staticUrl(path) {
 }
 
 export function airlineIcon(name) {
-  if (airlineCodes.hasOwnProperty(name)) {
-    return `${staticUrlValue}images/airlines/${name}.png`;
-  } else {
-    return `${staticUrlValue}images/airlines/FlyLine_Icon.png`;
-  }
+  return `${staticUrlValue}images/airlines/${name}.png`;
+  // if (airlineCodes.hasOwnProperty(name)) {
+  //   return `${staticUrlValue}images/airlines/${name}.png`;
+  // } else {
+  //   return `${staticUrlValue}images/airlines/FlyLine_Icon.png`;
+  // }
 }
 
 export function formatTime(value) {
@@ -156,26 +158,14 @@ export function locationSearch(term, locationTypes) {
     both: ["city", "airport"]
   }[locationTypes || "both"];
   return new Promise(resolve => {
-    let url = new URL("https://kiwicom-prod.apigee.net/locations/query");
+    let url = "/locations/query/";
     let searchParams = {
       term,
       locale: "en-US",
-      location_types: "city"
+      location_types: searchLocationTypes,
     };
-    let urlSearchParams = new URLSearchParams(searchParams);
-    for (const lt of searchLocationTypes) {
-      urlSearchParams.append("location_types", lt);
-    }
-    url.search = urlSearchParams;
-    fetch(url, {
-      method: "GET",
-      headers: {
-        apikey: "xklKtpJ5fxZnk4rsDepqOzLUaYYAO9dI"
-      },
-      credentials: "same-origin"
-    })
-      .then(response => response.json())
-      .then(data => resolve(processLocationSearch(data)));
+    api.get(url, {params: searchParams})
+      .then(response => resolve(processLocationSearch(response.data)));
   });
 }
 
@@ -301,10 +291,10 @@ export function getSearchURL(form) {
   if (form.sort !== null) {
     formData.append("sort", form.sort);
   }
-  formData.append("limit", form.limit + form.limitIncrement);
+  //formData.append("limit", form.limit + form.limitIncrement);
   formData.append("curr", "USD");
   let url = new URL(
-    "https://kiwicom-prod.apigee.net/v2/search",
+    "/api/search",
     window.location
   );
   url.search = new URLSearchParams(formData);

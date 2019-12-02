@@ -18,11 +18,12 @@ const categoryLabels = {
 
 
 export const BookingBags = Vue.component("booking-bags", {
-  props: ["baggage", "passenger", "convertToUsd"],
+  props: ["baggage", "passenger", "convertToUsd", "passengerIndex"],
   data() {
     return {
       selectedCombinations: {...this.passenger.combinations},
       categoryLabels,
+      noneLabels,
     };
   },
   methods: {

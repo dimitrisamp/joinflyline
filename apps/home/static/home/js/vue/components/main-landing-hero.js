@@ -6,7 +6,7 @@ export const MainLandingHero = Vue.component('main-landing-hero', {
     mixins: [SearchForm, FilterForm],
     methods: {
       searchFromHome() {
-        this.search();
+        this.search(true);
         this.$router.push({'name': 'search-results'});
       },
     }

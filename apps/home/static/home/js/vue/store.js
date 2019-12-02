@@ -132,6 +132,9 @@ export const store = new Vuex.Store({
     setPlans(state, value) {
       state.plans = value;
     },
+    resetAirlinesFilter(state, value) {
+      state.form.airlinesFilter = null;
+    },
     toggleAirlinesFilter(state, value) {
       if (state.form.airlinesFilter === value) {
         state.form.airlinesFilter = null;
@@ -223,19 +226,19 @@ export const store = new Vuex.Store({
     },
     clearFiltersAndUpdate(context) {
       context.commit("clearFilters");
+      context.commit("resetAirlinesFilter");
       this.dispatch("search");
     },
     search(context, clearFilters = false) {
       if (clearFilters) {
         context.commit("clearFilters");
+        context.commit("resetAirlinesFilter");
       }
       context.commit('setSearchResultIndex', null);
       context.commit("setSearchProgress", true);
-      fetch(getSearchURL(context.state.form), {
-        headers: { apikey: "xklKtpJ5fxZnk4rsDepqOzLUaYYAO9dI" }
-      })
-        .then(response => response.json())
-        .then(data => {
+      api.get(getSearchURL(context.state.form))
+        .then(response => {
+          const data = response.data;
           let parent = { ...data };
           delete parent.data;
           data.data = data.data.map(processFlight);
@@ -245,7 +248,7 @@ export const store = new Vuex.Store({
           });
 
           context.commit("setQuickFiltersData", getQuickLinksData(data.data));
-          if (context.state.searchResults.length === 0) {
+          if (clearFilters) {
             const airlines = getAirlines(data.data);
             context.commit(
               "setAirlines",
@@ -255,6 +258,7 @@ export const store = new Vuex.Store({
                 checked: false
               }))
             );
+            context.commit("resetAirlinesFilter");
           }
           context.commit("setSearchResults", data.data);
         })

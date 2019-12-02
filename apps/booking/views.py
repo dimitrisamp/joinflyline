@@ -9,6 +9,10 @@ from django.http import JsonResponse
 from django.shortcuts import render
 from django.views import View
 from django.conf import settings as S
+from django.views.decorators.csrf import csrf_exempt
+from rest_framework.permissions import AllowAny
+from rest_framework.views import APIView
+from rest_framework_proxy.views import ProxyView
 
 from apps.booking.models import BookingContact
 from apps.emails.views import booking_success
@@ -40,62 +44,18 @@ class FlightsNotCheckedYetException(ClientException):
     pass
 
 
-def check_flights(booking_token, bnum, adults, children, infants):
-    query = {
-        "booking_token": booking_token,
-        "v": 2,
-        "bnum": bnum,
-        "adults": adults,
-        "children": children,
-        "infants": infants,
-        "pnum": adults + children + infants,
-        "currency": "USD",
-    }
-    try:
-        response = requests.get(
-            CHECK_FLIGHTS_API_URL, query, headers={"apikey": S.KIWI_API_KEY}
-        )
-    except requests.RequestException as e:
-        raise ClientException() from e
-    if response.status_code != 200:
-        raise ClientException()
-    data = response.json()
-    if 'status' in data and data["status"] == "error":
-        raise StatusErrorException()
-    if data.get("flights_invalid"):
-        raise FlightsInvalidException()
-    if not data["flights_checked"]:
-        raise FlightsNotCheckedYetException()
-    prices = data["conversion"]
-    passenger_price = (
-        prices["adults_price"] + prices["children_price"] + prices["infants_price"]
-    )
-    bags_fee = prices["amount"] - passenger_price
-    return {"passengers": passenger_price, "bags": bags_fee, "total": prices["amount"]}
+class CheckFlightsView(ProxyView):
+    source = 'v2/booking/check_flights'
 
 
-class CheckFlightsView(View):
-    def get(self, request):
-        keys = (
-            ("booking_token", lambda x: x),
-            ("bnum", int),
-            ("adults", int),
-            ("children", int),
-            ("infants", int),
-        )
-        try:
-            kwargs = {k: f(request.GET[k]) for k, f in keys}
-        except KeyError:
-            return JsonResponse({"code": "missing-arguments"})
-        try:
-            result = check_flights(**kwargs)
-        except FlightsInvalidException:
-            return JsonResponse({"code": "flights-invalid"}, status=404)
-        except FlightsNotCheckedYetException:
-            return JsonResponse({"code": "not-checked-yet"}, status=404)
-        except StatusErrorException:
-            return JsonResponse({"code": "status-error"}, status=404)
-        return JsonResponse(result)
+class LocationQueryView(ProxyView):
+    permission_classes = [AllowAny]
+    source = 'locations/query'
+
+
+class FlightSearchView(ProxyView):
+    permission_classes = [AllowAny]
+    source = 'v2/search'
 
 
 def get_category(passenger):
@@ -120,34 +80,20 @@ def make_hold_bags(flight_ids, bags):
     return result
 
 
-def save_booking(request, retail_info, passengers, payment, zooz=True, test=False):
-    flight_ids = [o["id"] for o in retail_info["route"]]
-    total_bags = 0
-    for p in passengers:
-        p["category"] = get_category(p)
-        bags = p.pop("bags")
-        total_bags += bags
-        p["hold_bags"] = make_hold_bags(flight_ids, bags)
-        p["cardno"] = p.get("cardno", "00000000")
-        p["expiration"] = p.get("expiration", "2025-01-01")
-        p["email"] = S.RECEIVE_EMAIL
-        p["phone"] = payment.get("phone", S.RECEIVE_PHONE)
-    body = {
-        "booking_token": retail_info['booking_token'],
-        "currency": "USD",
-        "lang": "en",
-        "locale": "en",
-        "bags": total_bags,
-        "passengers": passengers,
-    }
-    if zooz:
-        body["payment_gateway"] = "payu"
-    headers = {"apikey": S.KIWI_API_KEY}
+def save_booking(request, data, zooz=True, test=False):
+    body = data.copy()
+    payment = body.pop('payment')
+    promo = payment.pop('promocode')
+    retail_info = body.pop('retail_info')
+    p = body['passengers'][0]
+    p["email"] = S.RECEIVE_EMAIL
+    p["phone"] = payment.get("phone", S.RECEIVE_PHONE)
+    headers = {"content-type": "application/json", "apikey": S.KIWI_API_KEY}
     try:
         response = requests.post(
             SAVE_BOOKING_API_URL,
             json=body,
-            headers={"content-type": "application/json", **headers},
+            headers=headers,
         )
     except requests.RequestException as e:
         raise ClientException({"code": "requests-exception"}) from e
@@ -187,19 +133,17 @@ class CheckPromoView(View):
             return JsonResponse({"discount": 0})
 
 
-class SaveBookingView(View):
+class SaveBookingView(APIView):
     def is_test_request(self, data):
         fp = data["passengers"][0]
         return (fp["name"].lower(), fp["surname"].lower()) == ("test", "test")
 
     def post(self, request):
-        data = json.loads(request.body)
+        data = request.data
         try:
             save_booking(
                 request,
-                data["retail_info"],
-                data["passengers"],
-                data["payment"],
+                data,
                 zooz=True,
                 test=self.is_test_request(data),
             )
@@ -234,7 +178,7 @@ def zooz_tokenize(public_key, card_data, test=True):
     body = {
         "token_type": "credit_card",
         "holder_name": card_data["holder_name"],
-        "expiration_date": card_data["expiration_date"],
+        "expiration_date": card_data["expiry"],
         "card_number": card_data["card_number"],
         "credit_card_cvv": card_data["credit_card_cvv"],
     }
@@ -275,42 +219,3 @@ def confirm_payment_zooz(booking, payment, test=True):
     data = response.json()
     if data["status"] != 0:
         raise ClientException(data)
-
-
-class RetailBookingView(View):
-    def post(self, request):
-        retail_info = json.loads(request.POST.get('retail_info'))
-        one_way = not bool(o for o in retail_info["route"] if o["return"] == 1)
-        for flight in retail_info["route"]:
-            dep_time = parse_isodatetime(flight["local_departure"])
-            arr_time = parse_isodatetime(flight["local_arrival"])
-            flight["date"] = dep_time.strftime("%a %b %d")
-            flight["arr_time"] = arr_time.strftime("%I:%M %p")
-            flight["dep_time"] = dep_time.strftime("%I:%M %p")
-            duration = int(
-                (
-                    parse_isodatetime(flight["utc_arrival"])
-                    - parse_isodatetime(flight["utc_departure"])
-                ).total_seconds()
-            )
-            hours = duration // 3600
-            minutes = (duration // 60) % 60
-            flight["duration"] = f"{hours}h {minutes:02d}m"
-        if not one_way:
-            last_flight_to_destination = list(
-                takewhile(lambda o: o["return"] == 0, retail_info["route"])
-            )[-1]
-            last_flight_to_destination["nightsInDest"] = retail_info["nightsInDest"]
-
-        context = {
-            "retail_info": retail_info,
-            "one_way": one_way,
-            "total_credits": 1 if one_way else 2,
-            "subscription_benefits": comparison(retail_info),
-            "passenger_count": retail_info["parent"]["search_params"]["seats"][
-                "passengers"
-            ],
-            "total_price": retail_info["conversion"]["USD"],
-            "title": "Confirm Booking | FlyLine",
-        }
-        return render(request, "booking/retail.html", context)

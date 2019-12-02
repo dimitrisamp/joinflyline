@@ -9,8 +9,31 @@
 
 .main-padding {
   padding: 0 0.95rem;
+}
+
+.main-padding--dashboard {
+  padding: 0 0.95rem;
+  @include mq(md) {
+    display: grid;
+    grid-gap: 1em;
+    grid-template-columns: 1fr 1fr;
+  }
   @include mq(lg) {
+    display: grid;
+    grid-gap: 1em;
+    grid-template-columns: 1fr 1fr 1fr;
     padding: 0 2rem;
+  }
+
+  .tile--recent-search {
+    @include mq(md) {
+      grid-column: 2;
+      grid-row: 2 / span 2;
+    }
+    @include mq(lg) {
+      grid-column: 3;
+      grid-row: 1 / span 2;
+    }
   }
 }
 
