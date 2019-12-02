@@ -34,6 +34,15 @@
   border: 1px solid #dee2e6;
   background: white;
   width: 100%;
+  flex-wrap: wrap;
+
+  .search-quick-filter {
+    @include mqr(sm) {
+      &:nth-child(n+4) {
+        border-top: 1px solid $border-color;
+      }
+    }
+  }
 }
 
 .search-quick-filter-filter-name {

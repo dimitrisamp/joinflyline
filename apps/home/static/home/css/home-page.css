@@ -692,12 +692,11 @@ header.sticky {
 }
 
 .result-block {
-  padding: 0 !important;
+  padding: 0;
 }
 
 .search-results .result-block {
-  padding-top: 10px !important;
-  padding-bottom: 10px !important;
+  padding: 10px;
   border: 0.5px solid #ececec;
 }
 
