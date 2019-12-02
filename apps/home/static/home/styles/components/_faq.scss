@@ -1,0 +1,25 @@
+.faq {
+  &__heading {
+    text-align: center;
+    padding: 4rem 0;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 5rem;
+  }
+  &__text {
+    font-size: 1.5rem;
+    color: transparentize($black, 0.5%)
+  }
+  &__title {
+    font-size: 3.75rem;
+    font-family: $dona-black;
+  }
+  &__list {
+    + .faq__list {
+      margin: 5rem 0;
+    }
+    &-title {
+      font-size: 1.75rem;
+      font-family: $dona-black;
+    }
+  }
+}

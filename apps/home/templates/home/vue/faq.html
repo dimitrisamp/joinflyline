@@ -1,0 +1,30 @@
+<script type="text/x-template" id="vue-faq-template">
+  <div class="faq">
+    <header> <nav-bar /></header>
+    <main>
+      <div class="faq__heading">
+          <div class="container">
+            <h1 class="faq__title">Frequently Asked Questions.</h1>
+            <p class="faq__text">
+              Honey is a free browser extentions that save you moneyon Amazon, <br> We compare every seller to show the best price
+            </p>
+        </div>
+      </div>
+
+      <div class="faq__content">
+        <div class="container">
+          <div class="faq__list">
+            <h3 class="faq__list-title">How to Check for Your Flight</h3>
+            <accordion id="list" :content="faqList"></accordion>
+          </div>
+
+          <div class="faq__list">
+            <h3 class="faq__list-title">How do i cancel my reservation</h3>
+            <accordion id="list" :content="faqList2"></accordion>
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer><main-landing-footer></main-landing-footer></footer>
+  </div>
+</script>

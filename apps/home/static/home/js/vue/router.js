@@ -12,8 +12,8 @@ import {SignIn} from "./components/sign-in.js"
 import {MainLanding} from "./components/main-landing.js"
 import {BookingPage} from "./components/booking-page.js";
 import {MainLandingAbout} from "./components/main-landing-about.js"
-
 import { store } from './store.js';
+import {Faq} from "./components/faq.js";
 
 const routes = [
   {
@@ -98,6 +98,10 @@ const routes = [
   {
     path: '/promo/',
     component: PromoLanding
+  },
+  {
+    path: '/faq/',
+    component: Faq
   },
 ];
 

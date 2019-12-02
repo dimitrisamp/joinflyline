@@ -64,6 +64,16 @@ hr + .main-padding {
   position: absolute;
 }
 
+
+
+.accordion-item-enter-active, .accordion-item-leave-active {
+  will-change: height;
+  transition: height 0.2s ease;
+}
+.accordion-item-enter, .accordion-item-leave-to {
+  height: 0 !important;
+}
+
 // Main Landing
 .main-landing .section5-Bg {
   margin-top: 0;
