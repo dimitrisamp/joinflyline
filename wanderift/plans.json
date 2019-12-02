@@ -1,6 +1,6 @@
 {
   "basic": {
-    "name": "FlyLine Basic",
+    "name": "Basic",
     "stripe_plan_id": "plan_GAmll5GXUYXoeQ",
     "price": {
       "period": "annual",
@@ -12,7 +12,7 @@
     "cashback": false
   },
   "basic-plus": {
-    "name": "FlyLine Basic Plus",
+    "name": "Basic Plus",
     "stripe_plan_id": "plan_GAmlxrJ6alkDBa",
     "price": {
       "period": "annual",
@@ -24,7 +24,7 @@
     "cashback": false
   },
   "pro": {
-    "name": "FlyLine Pro",
+    "name": "Pro",
     "stripe_plan_id": "plan_GAmm9u3tQ4HF8Z",
     "price": {
       "period": "annual",
@@ -36,7 +36,7 @@
     "cashback": false
   },
   "pro-plus": {
-    "name": "FlyLine Pro Plus",
+    "name": "Pro Plus",
     "stripe_plan_id": "plan_GAmnF8Fk3uPaY0",
     "price": {
       "period": "annual",
