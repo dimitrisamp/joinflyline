@@ -71,7 +71,7 @@
       width: 100%;
     }
   }
-  
+
   .list-Sdown li.airport {
     padding-left: 2rem;
   }
@@ -85,12 +85,9 @@
 
 
 .search-form-field__container {
-  margin-right: 1.875rem;
+  margin-right: 0.5rem;
   margin-bottom: 0.7rem;
   width: 100%;
-  &:first-child {
-    margin-right: 0.5rem;
-  }
   &:nth-child(n + 3) {
     flex-basis: 50%
   }
