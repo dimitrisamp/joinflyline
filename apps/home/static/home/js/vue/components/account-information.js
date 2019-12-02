@@ -1,6 +1,6 @@
 import api from "../http.js";
 import { formatDateFull, airlineIcon } from "../../utils.js";
-import { airlineCodes } from '../../airlineCodes.js';
+import { airlineCodes } from "../../airlineCodes.js";
 
 const frequentFlyerNames = {
   american_airlines: "AA",
@@ -29,7 +29,20 @@ export const AccountInformation = Vue.component("account-information", {
       profile: {},
       frequentflyer: {},
       user: {},
-      dobText: ''
+      dobText: "",
+      planTabs: [
+        {
+          group: "basic",
+          label: "Basic",
+          plans: ["basic", "basic-plus"]
+        },
+        {
+          group: "pro",
+          label: "Pro",
+          plans: ["pro", "pro-plus"]
+        }
+      ],
+      selectedIndex: 0
     };
   },
   delimiters: ["[[", "]]"],
@@ -85,12 +98,13 @@ export const AccountInformation = Vue.component("account-information", {
     airlineIcon
   },
   computed: {
+    ...Vuex.mapState(['plans']),
     frequentFlyerNames() {
       return frequentFlyerNames;
     },
     airlineCodes() {
-      return airlineCodes
-    },
+      return airlineCodes;
+    }
   },
   mounted() {
     const that = this;
