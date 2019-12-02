@@ -9,7 +9,6 @@
     "limit": 6,
     "deal_alerts": false,
     "companion": 0,
-    "cashback": false
   },
   "basic-plus": {
     "name": "Basic Plus",
@@ -21,7 +20,6 @@
     "limit": 9,
     "deal_alerts": false,
     "companion": 1,
-    "cashback": false
   },
   "pro": {
     "name": "Pro",
@@ -33,7 +31,6 @@
     "limit": null,
     "deal_alerts": true,
     "companion": 2,
-    "cashback": false
   },
   "pro-plus": {
     "name": "Pro Plus",
@@ -45,6 +42,5 @@
     "limit": null,
     "deal_alerts": true,
     "companion": 3,
-    "cashback": true
   }
 }

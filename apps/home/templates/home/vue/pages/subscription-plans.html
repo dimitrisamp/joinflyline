@@ -49,9 +49,6 @@
                   <li v-if="plans[pk].companion">
                     - [[ plans[pk].companion ]] companion account[[ plans[pk].companion>1?"s":"" ]]
                   </li>
-                  <li v-if="plans[pk].cashback">
-                    - Cash back booking
-                  </li>
                 </ul>
                 <router-link :to="{name: 'get-started', params: {plan: pk}}" class="btn btn-default">Get Started
                 </router-link>
@@ -98,9 +95,6 @@
                     </li>
                     <li v-if="plans[pk].deal_alerts">
                       - Deal alerts
-                    </li>
-                    <li v-if="plans[pk].cashback">
-                      - Cash back booking
                     </li>
                     <li v-if="plans[pk].companion">
                       - [[ plans[pk].companion ]] companion account[[ plans[pk].companion>1?"s":"" ]]
