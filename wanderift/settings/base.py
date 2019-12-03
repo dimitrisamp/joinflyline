@@ -196,7 +196,7 @@ RECEIVE_EMAIL = "bookings@joinflyline.com"
 RECEIVE_PHONE = "+18105131533"
 KIWI_API_KEY = "4TMnq4G90OPMYDAGVHzlP9LQo2hvzzdc"
 STRIPE_API_KEY = os.getenv("STRIPE_API_KEY")
-PLANS_DEFINITION_FILE = os.path.join(os.path.dirname(os.path.dirname(__file__)), "plans.json"),
+PLANS_DEFINITION_FILE = os.path.join(os.path.dirname(os.path.dirname(__file__)), "plans.json")
 PLANS_CONFIG_FILE = os.getenv(
     "PLANS_CONFIG_FILE",
     os.path.join(os.path.dirname(os.path.dirname(__file__)), "plan-stipe.json"),
