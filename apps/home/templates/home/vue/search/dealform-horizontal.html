@@ -22,6 +22,7 @@
               :prompt="'Departure City'"
               :promptMobile="'Departure City'"
               :promptMobileFocus="'From Where?'"
+              :initialValue="form.placeFrom"
               @place-selected="updatePlaceFrom"
             />
           </div>
@@ -32,6 +33,7 @@
               :prompt="'Arrival City'"
               :promptMobile="'Arrival City'"
               :promptMobileFocus="'To where?'"
+              :initialValue="form.placeTo"
               @place-selected="updatePlaceTo"
             />
           </div>
@@ -92,12 +94,7 @@
       <!-- Trending Flights -->
       <span>Trending Flights</span>
       <div class="trending-flights">
-
-        <div class="trending-flights__item">Dallas -> New York</div>
-        <div class="trending-flights__item">New York -> San Francisco</div>
-        <div class="trending-flights__item">Miami -> Los Angeles</div>
-        <div class="trending-flights__item">New York -> Barcelona</div>
-        <div class="trending-flights__item">Los Angeles - > Hong Kong</div>
+        <div class="trending-flights__item" v-for="(o, i) in trending" :key="`trending-${i}`" @click="setFormFromTo(i)">[[ o.from.name ]] -> [[ o.to.name ]]</div>
       </div>
     </div>
   </div>
