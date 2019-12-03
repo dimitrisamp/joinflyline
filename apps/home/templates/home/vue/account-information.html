@@ -153,7 +153,7 @@
           <div class="col-12 col-xl-7">
             <tabs v-if="plans && user.subscriptions">
               <tab v-for="(o, paneIndex) in planTabs" :title="o.label" :selected="selectedIndex === paneIndex">
-                <div class="row">
+                <div class="row justify-content-center">
                   <div class="col-12 col-lg-6" v-for="pk in o.plans">
                     <div class="subscription">
                       <div class="subscription__top">

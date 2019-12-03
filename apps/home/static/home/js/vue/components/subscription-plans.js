@@ -5,7 +5,7 @@ export const SubscriptionPlans = Vue.component("subscription-plans", {
     return {
       planTabs: [
         {group: "basic", label: "FlyLine Basic", label_mobile: "Basic", plans: ["basic", "basic-plus"]},
-        {group: "pro", label: "FlyLine Pro", label_mobile: "Pro", plans: ["pro", "pro-plus"]}
+        {group: "pro", label: "FlyLine Pro", label_mobile: "Pro", plans: ["pro"]}
       ],
       selectedIndex: 0
     };

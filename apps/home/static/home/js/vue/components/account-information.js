@@ -39,7 +39,7 @@ export const AccountInformation = Vue.component("account-information", {
         {
           group: "pro",
           label: "Pro",
-          plans: ["pro", "pro-plus"]
+          plans: ["pro"]
         }
       ],
       selectedIndex: 0
