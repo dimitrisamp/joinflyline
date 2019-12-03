@@ -98,13 +98,6 @@ TEMPLATES = [
                 "django.contrib.messages.context_processors.messages",
                 "apps.common.context_processors.common.common_processor",
             ],
-            "libraries": {
-                "airlines": "apps.results.templatetags.airlines",
-                "aircons": "apps.results.templatetags.airline_icons",
-                "comparison": "apps.results.templatetags.comparison",
-                "return_flight": "apps.results.templatetags.return_flight",
-                "departure_flight": "apps.results.templatetags.departure_flight",
-            },
         },
     }
 ]
