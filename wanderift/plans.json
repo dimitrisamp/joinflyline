@@ -1,7 +1,6 @@
 {
   "basic": {
     "name": "Basic",
-    "stripe_plan_id": "plan_GAmll5GXUYXoeQ",
     "price": {
       "period": "annual",
       "value": 39.99
@@ -12,7 +11,6 @@
   },
   "basic-plus": {
     "name": "Basic Plus",
-    "stripe_plan_id": "plan_GAmlxrJ6alkDBa",
     "price": {
       "period": "annual",
       "value": 69.99
@@ -21,9 +19,8 @@
     "deal_alerts": false,
     "companion": 1
   },
-  "pro-plus": {
+  "pro": {
     "name": "Pro",
-    "stripe_plan_id": "plan_GAmnF8Fk3uPaY0",
     "price": {
       "period": "annual",
       "value": 199.99

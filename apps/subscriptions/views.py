@@ -91,4 +91,4 @@ def card_token(card_number, expiry, cvc):
 class Plans(APIView):
     permission_classes = [AllowAny]
     def get(self, request):
-        return Response(settings.SUBSCRIPTION_PLANS)
+        return Response(settings.PLAN_DEFINITIONS)

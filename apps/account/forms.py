@@ -29,4 +29,4 @@ class WizardForm(forms.Form):
     card_number = CardNumberField()
     expiry = CardExpiryField()
     cvc = SecurityCodeField()
-    plan = forms.ChoiceField(choices=tuple((o, o) for o in settings.SUBSCRIPTION_PLANS.keys()))
+    plan = forms.ChoiceField(choices=tuple((o, o) for o in settings.PLAN_DEFINITIONS.keys()))

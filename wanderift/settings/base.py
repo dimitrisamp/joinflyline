@@ -196,14 +196,21 @@ RECEIVE_EMAIL = "bookings@joinflyline.com"
 RECEIVE_PHONE = "+18105131533"
 KIWI_API_KEY = "4TMnq4G90OPMYDAGVHzlP9LQo2hvzzdc"
 STRIPE_API_KEY = os.getenv("STRIPE_API_KEY")
+PLANS_DEFINITION_FILE = os.path.join(os.path.dirname(os.path.dirname(__file__)), "plans.json"),
 PLANS_CONFIG_FILE = os.getenv(
     "PLANS_CONFIG_FILE",
-    os.path.join(os.path.dirname(os.path.dirname(__file__)), "plans.json"),
+    os.path.join(os.path.dirname(os.path.dirname(__file__)), "plan-stipe.json"),
 )
 try:
     SUBSCRIPTION_PLANS = json.load(open(PLANS_CONFIG_FILE))
 except:
     SUBSCRIPTION_PLANS = {}
+
+try:
+    PLAN_DEFINITIONS = json.load(open(PLANS_DEFINITION_FILE))
+except:
+    PLAN_DEFINITIONS = {}
+
 SENTRY_DSN = "https://a875b98b313142d8afd40797b84f235e@sentry.io/1773547"
 SENDGRID_API_KEY = (
     "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"
