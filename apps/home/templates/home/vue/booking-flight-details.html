@@ -1,16 +1,16 @@
 <script type="text/x-template" id="vue-booking-flight-details-template">
   <div class="flight__details">
       <ul class="clander-list">
-          <li>[[ formatDate(flight.date) ]]</li>
-          <li>Economy</li>
+          <li>[[ formatDate(flight.local_departure) ]]</li>
+          <li>[[ seatTypes[flight.fare_category ] ]]</li>
           {# TODO: find way to display right fare class #}
       </ul>
 
       <div class="detail-box">
-          <p>[[ formatTime(flight.dep_time) ]]
+          <p>[[ formatTime(flight.local_departure) ]]
               <span>[[ flight.cityFrom ]] [[ flight.flyFrom ]]</span>
           </p>
-          <p>[[ formatTime(flight.arr_time) ]]
+          <p>[[ formatTime(flight.local_arrival) ]]
               <span>[[ flight.cityTo ]] [[ flight.flyTo ]]</span></p>
           <img :src="airlineIcon(flight.airline)"
                :alt="flight.airline">
