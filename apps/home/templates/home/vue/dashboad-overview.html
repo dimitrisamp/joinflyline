@@ -35,8 +35,12 @@
         <div class="tile tile--recent-search">
           <h3 class="tile__heading">Recently Searched</h3>
           <div class="tile__body">
-            <p class="tile__body-no-result">No Recent Searches, Lets
-              Find a Deal</p>
+            <p class="tile__body-no-result" v-if="searchHistory.length === 0">No Recent Searches, Lets Find a Deal</p>
+            <div v-for="(hi, i) in searchHistory" @click="performSearch(i)" class="tile__body--result">
+              <p>[[ hi.place_from.name ]] ([[ hi.place_from.code ]]) -> [[ hi.place_to.name ]] ([[ hi.place_to.code ]]) |
+              [[ formatDateDeals(hi.departure_date) ]] [[ hi.return_date?` - ${formatDateDeals(hi.return_date)}`:'' ]]
+              </p>
+            </div>
           </div>
         </div>
         <tile-component class="tile--flights" title="Trending on FlyLine">

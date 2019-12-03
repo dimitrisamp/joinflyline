@@ -32,7 +32,7 @@ from apps.booking.views import (
     CheckPromoView,
     LocationQueryView, FlightSearchView)
 from apps.subscriptions import views as subscriptions_views
-from apps.booking.viewsets import BookingViewSet, FlightViewSet, DealViewSet, TripSummary
+from apps.booking.viewsets import BookingViewSet, FlightViewSet, DealViewSet, TripSummary, SearchHistoryViewSet
 from apps.common.user_router import UserRouter
 from apps.emails.views import booking_success
 from apps.home.views import index_view
@@ -46,11 +46,13 @@ router.register(r'users', UserViewSet)
 router.register(r'bookings', BookingViewSet, basename='bookings')
 router.register(r'flight', FlightViewSet)
 router.register(r'deals', DealViewSet, basename="deals")
+router.register(r'search-history', SearchHistoryViewSet, basename='search-history')
 
 user_router = UserRouter()
 user_router.register(r'account', AccountViewSet, basename='account')
 user_router.register(r'frequentflyer', FrequentFlyerViewSet, basename='frequentflyer')
 user_router.register(r'profile', ProfileViewSet, basename='profile')
+
 
 
 class SiteMapView(View):

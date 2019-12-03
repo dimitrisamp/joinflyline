@@ -1,15 +1,12 @@
-import json
-from collections import Counter
-from datetime import timedelta
-
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 from django.contrib.postgres.fields import ArrayField, JSONField
 from django.contrib.postgres.indexes import BTreeIndex
 from django.db import models
 from django.db.transaction import atomic
-from django.utils.timezone import now
 
 from wanderift.utils import parse_isodatetime
+
+User = get_user_model()
 
 
 class BookingContact(models.Model):
@@ -76,7 +73,7 @@ class Flight(models.Model):
         return f"{self.city_from} -> {self.city_to}"
 
     def is_domestic(self):
-        return self.data['src_country'] == 'US' and self.data['dst_country'] == 'US'
+        return self.data["src_country"] == "US" and self.data["dst_country"] == "US"
 
     def to_data(self):
         data = self.data
@@ -116,6 +113,28 @@ class Deal(models.Model):
 
     class Meta:
         indexes = (
-            BTreeIndex(fields=('city_from', 'city_to')),
-            BTreeIndex(fields=('fly_from', 'fly_to'))
+            BTreeIndex(fields=("city_from", "city_to")),
+            BTreeIndex(fields=("fly_from", "fly_to")),
+        )
+
+
+DESTINATION_TYPE_CHOICES = (("round", "Round Trip"), ("oneway", "Oneway"))
+
+
+class SearchHistory(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    timestamp = models.DateTimeField(auto_now_add=True)
+    place_from = JSONField()
+    place_to = JSONField()
+    departure_date = models.DateField()
+    return_date = models.DateField(null=True, blank=True)
+    adults = models.IntegerField(default=0)
+    children = models.IntegerField(default=0)
+    infants = models.IntegerField(default=0)
+    seat_type = models.CharField(max_length=10)
+    destination_type = models.CharField(max_length=10, choices=DESTINATION_TYPE_CHOICES)
+
+    class Meta:
+        indexes = (
+            BTreeIndex(fields=('timestamp', )),
         )

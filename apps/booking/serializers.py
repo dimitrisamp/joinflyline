@@ -20,7 +20,6 @@ class FlightLite(serializers.ModelSerializer):
 
 
 class FlightFull(FlightLite):
-
     class Meta:
         model = booking_models.Flight
         fields = [*FlightLite.Meta.fields, "data"]
@@ -46,4 +45,20 @@ class Deal(serializers.ModelSerializer):
             "return_date",
             "airlines",
             "price",
+        )
+
+
+class SearchHistory(serializers.ModelSerializer):
+    class Meta:
+        model = booking_models.SearchHistory
+        fields = (
+            "place_from",
+            "place_to",
+            "departure_date",
+            "return_date",
+            "adults",
+            "children",
+            "infants",
+            "seat_type",
+            "destination_type",
         )

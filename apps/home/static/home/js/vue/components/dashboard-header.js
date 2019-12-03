@@ -22,7 +22,7 @@ export const DashboardHeader = Vue.component('dashboard-header', {
     },
     methods: {
         doSearch() {
-            this.search(true);
+            this.search({clearFilters: true, saveSearch: true});
             this.$router.push({'name': 'results'})
         },
         showSearchFormHandler() {

@@ -29,7 +29,7 @@ export const Home = {
       }
     },
     searchFromHome() {
-      this.search(true);
+      this.search({clearFilters: true, saveSearch: true});
       this.$router.push({'name': 'search-results'});
     },
     applyFullPage() {

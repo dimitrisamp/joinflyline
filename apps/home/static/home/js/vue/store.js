@@ -150,12 +150,28 @@ export const store = new Vuex.Store({
     },
     hideDashboardNav(state) {
       state.showDashboardNavigation = false
-    }
+    },
+    setForm(state, data) {
+      const departureDate = new Date(data.departure_date);
+      const returnDate = data.return_date?new Date(data.return_date):null;
+      state.form.placeFrom = data.place_from;
+      state.form.placeTo = data.place_to;
+      this.commit('setDates', {start: moment(departureDate), end: moment(returnDate)});
+      state.form.valAdults = data.adults;
+      state.form.valChildren = data.children;
+      state.form.valInfants = data.infants;
+      state.form.seatType = data.seat_type;
+      state.form.destinationTypeId = data.destination_type;
+    },
   },
   actions: {
+    setFormAndSearch(context, data) {
+      context.commit("setForm", data);
+      this.dispatch("search", {clearFilters: true, saveSearch: false})
+    },
     applyAirlinesFilter(context, kind) {
       context.commit("toggleAirlinesFilter", kind);
-      this.dispatch("search");
+      this.dispatch("search", {clearFilters: false, saveSearch: false});
     },
     initialize(context) {
       this.dispatch("initializeUser");
@@ -218,18 +234,19 @@ export const store = new Vuex.Store({
     },
     loadMore(context) {
       context.commit("increaseLimit", 10);
-      this.dispatch("search");
+      this.dispatch("search", {clearFilters: false, saveSearch: false});
     },
     sortResultsBy(context, sort) {
       context.commit("toggleSort", sort);
-      this.dispatch("search");
+      this.dispatch("search", {clearFilters: false, saveSearch: false});
     },
     clearFiltersAndUpdate(context) {
       context.commit("clearFilters");
       context.commit("resetAirlinesFilter");
-      this.dispatch("search");
+      this.dispatch("search", {clearFilters: true, saveSearch: false});
     },
-    search(context, clearFilters = false) {
+    search(context, payload) {
+      const { clearFilters, saveSearch } = payload;
       if (clearFilters) {
         context.commit("clearFilters");
         context.commit("resetAirlinesFilter");
@@ -265,6 +282,19 @@ export const store = new Vuex.Store({
         .finally(() => {
           context.commit("setSearchProgress", false);
         });
+      if (saveSearch) {
+        api.post('/search-history/', {
+          place_from: context.state.form.placeFrom,
+          place_to: context.state.form.placeTo,
+          departure_date: context.state.form.departure_date_data.toJSON().slice(0, 10),
+          return_date: context.state.form.return_date_data.toJSON().slice(0, 10),
+          adults: context.state.form.valAdults,
+          children: context.state.form.valChildren,
+          infants: context.state.form.valInfants,
+          seat_type: context.state.form.seatType,
+          destination_type: context.state.form.destinationTypeId
+        });
+      }
     }
   },
   getters: {
