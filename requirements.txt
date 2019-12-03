@@ -1,7 +1,7 @@
 beautifulsoup4
 django-sendgrid-webhook
 stripe
-django
+django>=2.2,<3.0
 requests
 django-spurl
 sendgrid
