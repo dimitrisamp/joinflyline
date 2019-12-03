@@ -44,7 +44,7 @@ AVERAGE_PRICES = {"domestic": 350, "international": 850}
 class TripSummary(APIView):
     def get(self, request):
         user = request.user
-        plans = json.load(open(settings.PLANS_CONFIG_FILE))
+        plans = settings.PLAN_DEFINITIONS
         try:
             current_plan = Subscriptions.objects.get(
                 user=user, period__contains=Now()

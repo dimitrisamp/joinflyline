@@ -24,6 +24,7 @@
       </tile-component>
       <tile-component title="Estimated Savings : "
                       class="tile--estimated">
+        <template v-if="trip_summary">
         <div class="tile__body-top">
           <div class="tile__body-top-numbers"><span>$[[ trip_summary.savings.domestic ]]</span>
             <span>Domestic</span></div>
@@ -33,6 +34,7 @@
         <div class="tile__body-bottom">*Based on Average Savings from
           FlyLine members
         </div>
+        </template>
       </tile-component>
       <div class="tile tile--recent-search">
         <h3 class="tile__heading">Recently Searched</h3>
@@ -52,14 +54,14 @@
       </div>
       <tile-component class="tile--flights" title="Trending on FlyLine">
         <div class="tile__list">
-          <deal v-for="deal in deals" :deal="deal"/>
+          <deal v-for="(deal, index) in deals" :deal="deal" :key="`treding-deal-${index}`"/>
         </div>
       </tile-component>
       <tile-component class="tile--flights"
                       :title="`Suggested Trips From ${user.profile.market.name}`"
                       v-if="user && user.profile && user.profile.market">
         <div class="tile__list">
-          <deal v-for="deal in suggested_deals" :deal="deal"/>
+          <deal v-for="(deal, index) in suggested_deals" :deal="deal" :key="`upcoming-deal-${index}`"/>
         </div>
       </tile-component>
     </div>

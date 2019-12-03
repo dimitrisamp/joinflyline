@@ -45,7 +45,6 @@ const routes = [
   },
   {
     path: '/dashboard',
-    name: 'dashboard',
     component: Dashboard,
     beforeEnter(to, from, next) {
       if (store.getters.user.anonymous) {
