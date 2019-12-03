@@ -12,7 +12,7 @@ export const store = new Vuex.Store({
   state: {
     authErrorText: "",
     user: {anonymous: true},
-    plans: {},
+    plans: null,
     form: {
       airlinesFilter: null,
       limit: 20,
