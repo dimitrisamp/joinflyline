@@ -1,60 +1,67 @@
 <script type="text/x-template" id="vue-dashboad-overview-template">
   <div class="overview">
 
-      <div class="section-heading">
-          <div class="section-heading__inner">
-              <h1 class="section-heading__title">Dashboard</h1>
-              <p class="section-heading__text">View Deal Alerts, Suggested Trips, Trip
-                  Stats and much much more.</p>
-          </div>
+    <div class="section-heading">
+      <div class="section-heading__inner">
+        <h1 class="section-heading__title">Dashboard</h1>
+        <p class="section-heading__text">View Deal Alerts, Suggested Trips, Trip
+          Stats and much much more.</p>
       </div>
-      <div class="main-padding--dashboard">
-        <tile-component class="tile--trip-summary" title="Total Trips Taken : " v-if="trip_summary">
-          <div class="tile__body-top">
-            <div class="tile__body-top-numbers"><span>[[ trip_summary.count.domestic ]]</span> <span>Domestic</span>
-            </div>
-            <div class="tile__body-top-numbers"><span>[[ trip_summary.count.international ]]</span> <span>International</span>
-            </div>
+    </div>
+    <div class="main-padding--dashboard">
+      <tile-component class="tile--trip-summary" title="Total Trips Taken : " v-if="trip_summary">
+        <div class="tile__body-top">
+          <div class="tile__body-top-numbers"><span>[[ trip_summary.count.domestic ]]</span> <span>Domestic</span>
           </div>
-          <div class="tile__body-bottom"><p class="booking">[[ trip_summary.remaining ]] Booking[[ trip_summary.remaining > 1?'s':'' ]]
-            Remain</p>
-            <p class="upgrade">Upgrade Plan</p></div>
-        </tile-component>
-        <tile-component title="Estimated Savings : "
-                        class="tile--estimated">
-          <div class="tile__body-top">
-            <div class="tile__body-top-numbers"><span>$[[ trip_summary.savings.domestic ]]</span>
-              <span>Domestic</span></div>
-            <div class="tile__body-top-numbers"><span>$[[ trip_summary.savings.international ]]</span>
-              <span>International</span></div>
+          <div class="tile__body-top-numbers"><span>[[ trip_summary.count.international ]]</span>
+            <span>International</span>
           </div>
-          <div class="tile__body-bottom">*Based on Average Savings from
-            FlyLine members
-          </div>
-        </tile-component>
-        <div class="tile tile--recent-search">
-          <h3 class="tile__heading">Recently Searched</h3>
-          <div class="tile__body">
-            <p class="tile__body-no-result" v-if="searchHistory.length === 0">No Recent Searches, Lets Find a Deal</p>
-            <div v-for="(hi, i) in searchHistory" @click="performSearch(i)" class="tile__body--result">
-              <p>[[ hi.place_from.name ]] ([[ hi.place_from.code ]]) -> [[ hi.place_to.name ]] ([[ hi.place_to.code ]]) |
-              [[ formatDateDeals(hi.departure_date) ]] [[ hi.return_date?` - ${formatDateDeals(hi.return_date)}`:'' ]]
-              </p>
+        </div>
+        <div class="tile__body-bottom"><p class="booking">[[ trip_summary.remaining ]] Booking[[ trip_summary.remaining
+          > 1?'s':'' ]]
+          Remain</p>
+          <p class="upgrade">Upgrade Plan</p></div>
+      </tile-component>
+      <tile-component title="Estimated Savings : "
+                      class="tile--estimated">
+        <div class="tile__body-top">
+          <div class="tile__body-top-numbers"><span>$[[ trip_summary.savings.domestic ]]</span>
+            <span>Domestic</span></div>
+          <div class="tile__body-top-numbers"><span>$[[ trip_summary.savings.international ]]</span>
+            <span>International</span></div>
+        </div>
+        <div class="tile__body-bottom">*Based on Average Savings from
+          FlyLine members
+        </div>
+      </tile-component>
+      <div class="tile tile--recent-search">
+        <h3 class="tile__heading">Recently Searched</h3>
+        <div class="tile__body">
+          <p class="tile__body-no-result" v-if="searchHistory.length === 0">No Recent Searches, Lets Find a Deal</p>
+          <div class="tile__list">
+            <div v-for="(hi, i) in searchHistory" @click="performSearch(i)" class="tile__item">
+              <div class="tile__item-left">
+                <p class="tile__item-left-top--clickable">
+                  [[ hi.place_from.name ]] ([[ hi.place_from.code ]]) -> [[ hi.place_to.name ]] ([[ hi.place_to.code ]])
+                  | [[ formatDateDeals(hi.departure_date) ]] [[ hi.return_date?` - ${formatDateDeals(hi.return_date)}`:'']]
+                </p>
+              </div>
             </div>
           </div>
         </div>
-        <tile-component class="tile--flights" title="Trending on FlyLine">
-          <div class="tile__list">
-            <deal v-for="deal in deals" :deal="deal"/>
-          </div>
-        </tile-component>
-        <tile-component class="tile--flights"
-                        :title="`Suggested Trips From ${user.profile.market.name}`"
-                        v-if="user && user.profile && user.profile.market">
-          <div class="tile__list">
-            <deal v-for="deal in suggested_deals" :deal="deal"/>
-          </div>
-        </tile-component>
       </div>
+      <tile-component class="tile--flights" title="Trending on FlyLine">
+        <div class="tile__list">
+          <deal v-for="deal in deals" :deal="deal"/>
+        </div>
+      </tile-component>
+      <tile-component class="tile--flights"
+                      :title="`Suggested Trips From ${user.profile.market.name}`"
+                      v-if="user && user.profile && user.profile.market">
+        <div class="tile__list">
+          <deal v-for="deal in suggested_deals" :deal="deal"/>
+        </div>
+      </tile-component>
+    </div>
   </div>
 </script>

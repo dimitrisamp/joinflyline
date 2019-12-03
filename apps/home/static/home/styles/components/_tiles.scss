@@ -62,16 +62,6 @@
       left: 50%;
       transform: translate(-50%, -50%);
     }
-    &--result {
-      font-family: $dona-black;
-      font-weight: 200;
-      p {
-        cursor: pointer;
-        &:hover {
-          color: #00aeef;
-        }
-      }
-    }
     &-top,
     &-bottom {
       display: flex;
@@ -155,6 +145,12 @@
     &-top {
       font-size: 0.9rem;
       margin-bottom: 0.3rem;
+      &--clickable {
+        &:hover {
+          color: #00aeef;
+        }
+        cursor: pointer;
+      }
     }
     &-bottom {
       font-size: 0.75rem;
