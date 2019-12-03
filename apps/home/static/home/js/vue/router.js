@@ -106,13 +106,14 @@ const routes = [
 ];
 
 const router = new VueRouter({
+  // mode: 'history',
   routes,
   linkActiveClass: 'active',
   linkExactActiveClass: 'exact-active',
   scrollBehavior: function (to) {
     if (to.hash) {
       return {
-        selector: to.hash
+        selector: VueScrollTo.scrollTo(to.hash, 700)
       }
     } else {
       return {x: 0, y: 0}

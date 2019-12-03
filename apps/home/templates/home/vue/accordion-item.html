@@ -20,7 +20,7 @@
       @after-leave="transitionEnd">
       <div v-if="item.active" class="accordion__item-content">
         <div class="accordion__item-inner">
-          [[ item.details ]]
+          <div v-html="item.details"></div>
         </div>
       </div>
     </transition>

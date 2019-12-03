@@ -1,6 +1,7 @@
 <script type="text/x-template" id="vue-cd-intro-template">
     <div class="newhome-form" id="newhome-form">
-        <h3>Book your favorite airlines at wholesale prices</h3>
+        <h3 v-if="$mq == 'sm'">Spend Less, Travel More</h3>
+        <h3 v-else>Book your favorite airlines at wholesale prices</h3>
         <!-- <h3>Spend Less,<br/> Travel More -->
             <!-- <div class="cd-intro full-web-form">
                 <h6 class="cd-headline slide loading-bar">

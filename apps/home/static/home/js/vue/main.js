@@ -8,7 +8,7 @@ axios.defaults.headers.common['Authorization'] = `Token ${localStorage.getItem('
 Vue.component('sidebar', Sidebar);
 Vue.component('dashboard-header', DashboardHeader);
 Vue.use(VueMeta);
-
+Vue.use(VueScrollTo)
 const app = new Vue({
   router,
   store,
