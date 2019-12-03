@@ -4,7 +4,13 @@ import {FilterForm} from "./filter-form.js";
 export const SearchResultsPage = Vue.component('search-results-page', {
   template: '#vue-search-results-page-template',
   delimiters: ['[[', ']]'],
-    mixins: [SearchForm, FilterForm],
+  mixins: [SearchForm, FilterForm],
+  metaInfo() {
+    let cityFromToTitle = this.cityFromTo ? this.cityFromTo : '';
+    return {
+      title: `FlyLine | Search Results | ${cityFromToTitle}`
+    }
+  },
   computed: {
     ...Vuex.mapState(['searchProgress', 'searchResults', 'user', 'form']),
       ...Vuex.mapGetters(['airlineNames', 'cityFromTo']),

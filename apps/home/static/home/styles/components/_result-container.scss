@@ -33,6 +33,11 @@
       input {
         border: 2px solid #ececec;
         padding-left: 1rem;
+        &::placeholder,
+        &.form-control::placeholder{
+          font-family: $dona-regular;
+          font-size: 0.9rem;
+        }
       }
     }
   }
