@@ -390,3 +390,8 @@ export function getAgeCategory(p, singular = false) {
   }
   return singular ? "adult" : "adults";
 }
+
+
+export function cityThumbnail(city) {
+  return `${staticUrlValue}images/cities/${city}.png`
+}

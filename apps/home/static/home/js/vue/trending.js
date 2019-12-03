@@ -80,3 +80,90 @@ export const trending = [
     }
   }
 ];
+
+export const durationLabels = {
+  nonstop: "Non Stop",
+  multi: "Multiple Stops"
+};
+
+export const recentDeals = [
+  {
+    from: {
+      type: "airport",
+      code: "DFW",
+      name: "Dallas/Fort Worth International",
+      city: "Dallas"
+    },
+    to: { type: "airport", code: "LGA", name: "LaGuardia", city: "New York" },
+    duration: {
+      nonstop: "3h 20m",
+      multi: null
+    },
+    savings: 26,
+    average: 180,
+    airlines: ["AA", "B6", "WN", "NK", "UA"]
+  },
+  {
+    from: {
+      type: "airport",
+      code: "IAD",
+      name: "Washington Dulles International",
+      city: "Washington"
+    },
+    to: {
+      type: "airport",
+      code: "CDG",
+      name: "Charles de Gaulle Airport",
+      city: "Paris"
+    },
+    duration: {
+      nonstop: "7h 20m",
+      multi: "14h+"
+    },
+    savings: 211,
+    average: 1200,
+    airlines: ["AA", "B6", "WN", "NK", "UA", "AF", "DI"]
+  },
+  {
+    from: {
+      type: "airport",
+      code: "LAX",
+      name: "Los Angeles International",
+      city: "Los Angeles"
+    },
+    to: {
+      type: "airport",
+      code: "HKG",
+      name: "Hong Kong International",
+      city: "Hong Kong"
+    },
+    duration: {
+      nonstop: "12h+",
+      multi: "1d+"
+    },
+    savings: 150,
+    average: 1134,
+    airlines: ["AA", "CX", "D7", "9C", "DL", "UA"]
+  },
+  {
+    from: {
+      type: "airport",
+      code: "DEN",
+      name: "Denver International",
+      city: "Denver"
+    },
+    to: {
+      type: "airport",
+      code: "ORD",
+      name: "O Hare International",
+      city: "Chicago"
+    },
+    duration: {
+      nonstop: null,
+      multi: null
+    },
+    savings: 43,
+    average: 256,
+    airlines: ["AA", "SY", "WN", "F9"]
+  }
+];
