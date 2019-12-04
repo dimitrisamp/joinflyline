@@ -72,3 +72,14 @@ class User(serializers.ModelSerializer):
             "account",
             "subscriptions",
         ]
+
+
+class DealWatch(serializers.ModelSerializer):
+    class Meta:
+        model = models.DealWatch
+        fields = (
+            "id",
+            "destination",
+            "max_price",
+            "airlines"
+        )

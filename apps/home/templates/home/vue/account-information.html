@@ -103,55 +103,17 @@
 
     <hr>
 
-    <div class="main-padding">
-      <div class="account__form">
-        <h3>Deal Alert Notifications</h3>
-        <p>Enter your notifiction parameters and your good to go</p>
-        <div class="row">
-          <div class="col-12 col-xl-10">
-            <form action="">
-              <h6>Destination One</h6>
-              <div class="row">
-                <div class="col-12 col-lg-4">
-                  <input type="text" class="form-control" placeholder="Destination"/>
-                </div>
-                <div class="col-12 col-lg-3">
-                  <input type="number" class="form-control" placeholder="Max Price"/>
-                </div>
-                <div class="col-12 col-lg-5">
-                  <input type="text" class="form-control" placeholder="Specific Airlines"/>
-                </div>
-              </div>
-              <h6>Destination Two</h6>
-              <div class="row">
-                <div class="col-12 col-lg-4">
-                  <input type="text" class="form-control" placeholder="Destination"/>
-                </div>
-                <div class="col-12 col-lg-3">
-                  <input type="number" class="form-control" placeholder="Max Price"/>
-                </div>
-                <div class="col-12 col-lg-5">
-                  <input type="text" class="form-control" placeholder="Specific Airlines"/>
-                </div>
-                <div class="col-12 col-lg-6 ml-auto text-right mb-4">
-                  <button type="button" class="btn btn-primary">Save Deal Alert</button>
-                </div>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
+    <account-deals />
 
     <hr>
-    <div class="main-padding">
+    <div class="main-padding" v-if="plans && user.subscriptions">
       <div class="account__form">
         <div class="row">
           <div class="col-12 col-xl-3">
             <h3>Subscription Management</h3>
           </div>
           <div class="col-12 col-xl-7">
-            <tabs v-if="plans && user.subscriptions">
+            <tabs>
               <tab v-for="(o, paneIndex) in planTabs" :title="o.label" :selected="selectedIndex === paneIndex">
                 <div class="row justify-content-center">
                   <div class="col-12 col-lg-6" v-for="pk in o.plans">

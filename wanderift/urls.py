@@ -25,14 +25,15 @@ from django.views import View
 from django.views.generic import TemplateView
 from rest_framework import routers
 
-from apps.account.viewsets import AccountViewSet, FrequentFlyerViewSet, ProfileViewSet
+from apps.account.viewsets import AccountViewSet, FrequentFlyerViewSet, ProfileViewSet, DealWatchViewSet
 from apps.booking.views import (
     CheckFlightsView,
     SaveBookingView,
     CheckPromoView,
     LocationQueryView, FlightSearchView)
 from apps.subscriptions import views as subscriptions_views
-from apps.booking.viewsets import BookingViewSet, FlightViewSet, DealViewSet, TripSummary, SearchHistoryViewSet
+from apps.booking.viewsets import (
+    BookingViewSet, FlightViewSet, DealViewSet, TripSummary, SearchHistoryViewSet)
 from apps.common.user_router import UserRouter
 from apps.emails.views import booking_success
 from apps.home.views import index_view
@@ -47,6 +48,7 @@ router.register(r'bookings', BookingViewSet, basename='bookings')
 router.register(r'flight', FlightViewSet)
 router.register(r'deals', DealViewSet, basename="deals")
 router.register(r'search-history', SearchHistoryViewSet, basename='search-history')
+router.register(r'deal-watch', DealWatchViewSet, basename='deal-watch')
 
 user_router = UserRouter()
 user_router.register(r'account', AccountViewSet, basename='account')

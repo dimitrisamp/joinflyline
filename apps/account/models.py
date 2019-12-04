@@ -1,9 +1,8 @@
 from django.contrib.auth.models import User
-from django.contrib.postgres.fields import JSONField
+from django.contrib.postgres.fields import JSONField, ArrayField
 from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from django.utils.translation import gettext_lazy as _
 from django_enumfield import enum
 from creditcards.models import CardExpiryField, CardNumberField, SecurityCodeField
 
@@ -56,16 +55,12 @@ class FrequentFlyer(models.Model):
 
 class DealWatch(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    fly_from = models.CharField(max_length=50)
-    fly_to = models.CharField(max_length=50)
-    dt_added = models.DateTimeField(auto_now_add=True)
-
-    class Meta:
-        verbose_name = "Deal watch"
-        verbose_name_plural = "Deal watches"
+    destination = JSONField()
+    max_price = models.DecimalField(max_digits=10, decimal_places=2)
+    airlines = ArrayField(models.CharField(max_length=10))
 
     def __str__(self):
-        return f"{self.user} {self.fly_from} {self.fly_to} {self.dt_added}"
+        return f'{self.user} {self.destination} {self.max_price} {self.airlines}'
 
 
 @receiver(post_save, sender=User)

@@ -1,6 +1,3 @@
-import json
-from collections import Counter
-
 from django.db.models.functions import Now
 from rest_framework import status
 from rest_framework.response import Response

@@ -6,3 +6,4 @@ Vue.use(vueMq, {
     },
     defaultBreakpoint: 'sm' // customize this for SSR
 });
+Vue.component('multiselect', window.VueMultiselect.default);
