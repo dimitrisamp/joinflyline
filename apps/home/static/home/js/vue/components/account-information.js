@@ -68,6 +68,17 @@ export const AccountInformation = Vue.component("account-information", {
     });
   },
   methods: {
+    planStatus(plan) {
+      if (!(this.user && this.user.subscriptions && this.user.subscriptions.plan)) {
+        return null;
+      }
+      const planOrder = ['basic', 'basic-plus', 'pro'];
+      const currentPlanIndex = planOrder.indexOf(this.user.subscriptions.plan)
+      const planIndex = planOrder.indexOf(plan);
+      if (planIndex < currentPlanIndex) return 'downgrade';
+      if (planIndex === currentPlanIndex) return 'current';
+      if (planIndex > currentPlanIndex) return 'upgrade';
+    },
     updateHomeAirport(value) {
       this.profile.market = value;
     },

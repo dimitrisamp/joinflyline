@@ -178,8 +178,9 @@
                         </ul>
                       </div>
                       <div class="subscription__bottom">
-                        <button v-if="pk === user.subscriptions.plan" class="button button--outline-blue">Current Plan</button>
-                        <button v-else class="button button--outline-blue">Upgrade plan</button>
+                        <button v-if="planStatus(pk) === 'current'" class="button button--outline-blue">Current Plan</button>
+                        <button v-else-if="planStatus(pk) === 'upgrade'" class="button button--outline-blue">Upgrade plan</button>
+                        <button v-else class="button button--outline-blue">Downgrade plan</button>
                       </div>
                     </div>
                   </div>
