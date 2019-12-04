@@ -1,11 +1,22 @@
 from .base import *
 import sentry_sdk
 from sentry_sdk.integrations.django import DjangoIntegration
+from sentry_sdk.integrations.celery import CeleryIntegration
+from sentry_sdk.integrations.aiohttp import AioHttpIntegration
+from sentry_sdk.integrations.redis import RedisIntegration
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-sentry_sdk.init(dsn=SENTRY_DSN, integrations=[DjangoIntegration()])
+sentry_sdk.init(
+    dsn=SENTRY_DSN,
+    integrations=[
+        DjangoIntegration(),
+        CeleryIntegration(),
+        AioHttpIntegration(),
+        RedisIntegration(),
+    ],
+)
 DEFAULT_FILE_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
 STATICFILES_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
 COMPRESS_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
