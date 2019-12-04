@@ -77,8 +77,6 @@ urlpatterns = [
     path("promo/", lambda _: redirect("/#/promo/"), name="promo-landing"),
     path("check-promo/", CheckPromoView.as_view(), name="check-promo"),
     path("emails/<str:booking_id>", booking_success, name="email"),
-    # payments
-    path("pay/", include("apps.payments.urls")),
     path("get-started/", WizardView.as_view(), name="wizard"),
     path("sitemap.xml", SiteMapView.as_view(), name="sitemap"),
     path("robots.txt", RobotsTxtView.as_view(), name="robots"),

@@ -53,7 +53,6 @@ INSTALLED_APPS = [
     "knox",
     # My apps
     "apps.subscriptions.apps.SubscriptionsConfig",
-    "apps.payments",
     "apps.home",
     "apps.account",
     "apps.booking",
