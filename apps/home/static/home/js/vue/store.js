@@ -152,11 +152,11 @@ export const store = new Vuex.Store({
       state.showDashboardNavigation = false
     },
     setForm(state, data) {
-      const departureDate = new Date(data.departure_date);
-      const returnDate = data.return_date?new Date(data.return_date):null;
+      const departureDate = moment(data.departure_date);
+      const returnDate = data.return_date?moment(data.return_date):null;
       state.form.placeFrom = data.place_from;
       state.form.placeTo = data.place_to;
-      this.commit('setDates', {start: moment(departureDate), end: moment(returnDate)});
+      this.commit('setDates', {start: departureDate, end: returnDate});
       state.form.valAdults = data.adults;
       state.form.valChildren = data.children;
       state.form.valInfants = data.infants;

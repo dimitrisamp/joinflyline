@@ -38,19 +38,23 @@
                   <form action="">
                       <div class="search-form-field__container">
                           <location-input :prompt="'From:'"
+                                          :initial-value="form.placeFrom"
                                           :promptMobile="'From Where?'"
                                           @place-selected="updatePlaceFrom"/>
                       </div>
                       <div class="search-form-field__container">
                           <location-input :prompt="'To:'" :promptMobile="'To Where?'"
+                                          :initial-value="form.placeTo"
                                           @place-selected="updatePlaceTo"/>
                       </div>
                       <div class="search-form-field__container">
                           <input type="text" class="form-control" id="departure_date"
+                                 v-model="form.departure_date"
                                  placeholder="Dep: ">
                       </div>
                       <div class="search-form-field__container">
                           <input type="text" class="form-control" id="return_date"
+                                 v-model="form.return_date"
                                  placeholder="Ret: ">
                       </div>
                       <button class="btn btn-search" @click.prevent="doSearch">
