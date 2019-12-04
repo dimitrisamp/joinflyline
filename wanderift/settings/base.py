@@ -55,7 +55,6 @@ INSTALLED_APPS = [
     "apps.subscriptions.apps.SubscriptionsConfig",
     "apps.payments",
     "apps.home",
-    "apps.results",
     "apps.account",
     "apps.booking",
     "apps.oauth",

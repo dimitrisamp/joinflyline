@@ -9,16 +9,13 @@ from django.http import JsonResponse
 from django.shortcuts import render
 from django.views import View
 from django.conf import settings as S
-from django.views.decorators.csrf import csrf_exempt
 from rest_framework.permissions import AllowAny
 from rest_framework.views import APIView
 from rest_framework_proxy.views import ProxyView
 
 from apps.booking.models import BookingContact
 from apps.emails.views import booking_success
-from apps.results.templatetags.comparison import comparison
 
-from wanderift.utils import parse_isodatetime
 
 CHECK_FLIGHTS_API_URL = "https://kiwicom-prod.apigee.net/v2/booking/check_flights"
 SAVE_BOOKING_API_URL = "https://kiwicom-prod.apigee.net/v2/booking/save_booking"
