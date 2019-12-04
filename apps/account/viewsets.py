@@ -1,7 +1,8 @@
 from rest_framework import viewsets, status
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet, ModelViewSet
-from rest_framework.mixins import RetrieveModelMixin, UpdateModelMixin, CreateModelMixin, DestroyModelMixin
+from rest_framework.mixins import RetrieveModelMixin, UpdateModelMixin, CreateModelMixin, DestroyModelMixin, \
+    ListModelMixin
 
 from . import models as accounts_models
 from . import serializers
@@ -29,7 +30,7 @@ class ProfileViewSet(RetrieveModelMixin, UpdateModelMixin, GenericViewSet):
         return accounts_models.Profile.objects.get_or_create(user=self.request.user)[0]
 
 
-class DealWatchViewSet(ModelViewSet):
+class DealWatchViewSet(CreateModelMixin, ListModelMixin, DestroyModelMixin, GenericViewSet):
     serializer_class = DealWatch
 
     def get_queryset(self):
