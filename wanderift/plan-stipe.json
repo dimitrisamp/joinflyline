@@ -1,11 +1,11 @@
 {
   "basic": {
-    "stripe_plan_id": "plan_GAmll5GXUYXoeQ",
+    "stripe_plan_id": "plan_GAmll5GXUYXoeQ"
   },
   "basic-plus": {
-    "stripe_plan_id": "plan_GAmlxrJ6alkDBa",
+    "stripe_plan_id": "plan_GAmlxrJ6alkDBa"
   },
   "pro": {
-    "stripe_plan_id": "plan_GAmnF8Fk3uPaY0",
+    "stripe_plan_id": "plan_GAmnF8Fk3uPaY0"
   }
 }
