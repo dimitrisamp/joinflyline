@@ -142,6 +142,7 @@
         font-family: $dona-black;
         font-size: 13px;
         margin-bottom: 0.5rem;
+        cursor: pointer;
         @include mq(lg) {
           margin-bottom: 0;
         }
