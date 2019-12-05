@@ -1,0 +1,169 @@
+{% load static%}
+<script type="text/x-template" id="vue-membership-explained-template">
+  <section class="membership-explained">
+    <!-- Header Start -->
+    <header>
+      <nav-bar />
+    </header>
+    <!-- Header Ends-->
+    <!-- Tabs Start -->
+    <div class="tabs__container membership-explained__tab--dark">
+      <div class="container">
+        <h2 class="tabs__heading">What’s the right plan for you?</h2>
+        <p class="tabs__subtitle">
+          Whether you travel for leisure or for work, we have a plan for you. Use our helpful <br>
+          guide to assist with selecting the right plan for your travel type.
+        </p>
+        <tabs>
+          <tab :selected="true" title="0 - 6 Round Trips">
+            <div class="row">
+              <div class="col-12 col-lg-4">
+                <div class="subscription">
+                  <div class="subscription__top">
+                    <div class="subscription__title">
+                      <h4 class="subscription__heading subscription__heading--type">Basic</h4>
+                      <h3 class="subscription__heading subscription__heading--price">$39.99/yr</h3>
+                    </div>
+                    <ul class="subscription__list">
+                      <li class="subscription__item">- Flight Search and Book</li>
+                      <li class="subscription__item">- Auto Check-in</li>
+                      <li class="subscription__item">- Max of 6 Bookings
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="subscription__bottom">
+                    <button class="button button--outline-blue">Get Started</button>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-lg-4">
+                <!-- Zach Said text should come here -->
+              </div>
+            </div>
+          </tab>
+          <tab title="6 - 9 Round Trips">
+            <div class="row">
+              <div class="col-12 col-lg-4">
+                <div class="subscription">
+                  <div class="subscription__top">
+                    <div class="subscription__title">
+                      <h4 class="subscription__heading subscription__heading--type">Basic</h4>
+                      <h3 class="subscription__heading subscription__heading--price">$39.99/yr</h3>
+                    </div>
+                    <ul class="subscription__list">
+                      <li class="subscription__item">- Flight Search and Book</li>
+                      <li class="subscription__item">- Auto Check-in</li>
+                      <li class="subscription__item">- Max of 6 Bookings
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="subscription__bottom">
+                    <button class="button button--outline-blue">Get Started</button>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-lg-4">
+                <!-- Zach Said text should come here -->
+              </div>
+            </div>
+          </tab>
+          <tab title="9+ Round Trips ">
+            <div class="row">
+              <div class="col-12 col-lg-4">
+                <div class="subscription">
+                  <div class="subscription__top">
+                    <div class="subscription__title">
+                      <h4 class="subscription__heading subscription__heading--type">Basic</h4>
+                      <h3 class="subscription__heading subscription__heading--price">$39.99/yr</h3>
+                    </div>
+                    <ul class="subscription__list">
+                      <li class="subscription__item">- Flight Search and Book</li>
+                      <li class="subscription__item">- Auto Check-in</li>
+                      <li class="subscription__item">- Max of 6 Bookings
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="subscription__bottom">
+                    <button class="button button--outline-blue">Get Started</button>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-lg-4">
+                <!-- Zach Said text should come here -->
+              </div>
+            </div>
+          </tab>
+        </tabs>
+      </div>
+    </div>
+    <!-- Tabs Ends -->
+    <!-- Tabs Start -->
+    <div class="tabs__container membership-explained__tab--light">
+      <div class="container">
+        <div class="row">
+          <div class="col-12 col-lg-8">
+            <h2 class="tabs__heading">Cheap Flights with Benefits? What’s the Catch?</h2>
+            <p class="tabs__subtitle">There isn’t one. Seriously. Read on to learn about the features and benefits associated with each plan we offer.</p>
+          </div>
+          <div class="col-12 col-lg-4">
+            <img src="{% static "home/img/main-landing/airlines-logos.png" %}" alt="Airlines Logo">
+          </div>
+        </div>
+        <tabs>
+          <tab :selected="true" title="Flight Search & Booking">
+            <ul class="membership-explained__tab-list">
+              <li>Included in all plans (Basic, Basic Plus, and Pro)</li>
+              <li>A booking is defined as the purchase of flight for an individual</li>
+              <li>Basic Members are limited to six (6) bookings every twelve (12) months</li>
+              <li>Basic Plus Members are limited to nine (9) bookings every twelve (12) months</li>
+              <li>Pro Members have unlimited booking</li>
+            </ul>
+          </tab>
+          <tab title="Automatic Check-in">
+            <ul class="membership-explained__tab-list">
+              <li>Included in all plans (Basic, Basic Plus, and Pro)</li>
+              <li>A booking is defined as the purchase of flight for an individual</li>
+              <li>Basic Members are limited to six (6) bookings every twelve (12) months</li>
+              <li>Basic Plus Members are limited to nine (9) bookings every twelve (12) months</li>
+              <li>Pro Members have unlimited booking</li>
+            </ul>
+          </tab>
+          <tab title="Companion Accounts">
+            <ul class="membership-explained__tab-list">
+              <li>Included in all plans (Basic, Basic Plus, and Pro)</li>
+              <li>A booking is defined as the purchase of flight for an individual</li>
+              <li>Basic Members are limited to six (6) bookings every twelve (12) months</li>
+              <li>Basic Plus Members are limited to nine (9) bookings every twelve (12) months</li>
+              <li>Pro Members have unlimited booking</li>
+            </ul>
+          </tab>
+          <tab title="Deal Alerts">
+            <ul class="membership-explained__tab-list">
+              <li>Included in all plans (Basic, Basic Plus, and Pro)</li>
+              <li>A booking is defined as the purchase of flight for an individual</li>
+              <li>Basic Members are limited to six (6) bookings every twelve (12) months</li>
+              <li>Basic Plus Members are limited to nine (9) bookings every twelve (12) months</li>
+              <li>Pro Members have unlimited booking</li>
+            </ul>
+          </tab>
+        </tabs>
+      </div>
+    </div>
+    <!-- Tabs Ends -->
+    <!-- Business Model Start -->
+    <div class="business-model">
+      <div class="container">
+        <div class="business-model__container">
+          <h2 class="business-model__title">Ready to Save?</h2>
+          <p class="business-model__text">
+            Whether you travel for leisure or for work, we have a plan for you. Use our helpful <br>
+            guide to assist with selecting the right plan for your travel type.
+          </p>
+          <button class="button button--big">Get Started</button>
+        </div>
+      </div>
+    </div>
+    <!-- Business Model Ends -->
+    <footer><main-landing-footer></main-landing-footer></footer>
+  </section>
+</script>

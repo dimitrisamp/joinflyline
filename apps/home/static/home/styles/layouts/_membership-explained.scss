@@ -1,0 +1,67 @@
+.membership-explained {
+  &__tab {
+    &-list {
+      text-align: left;
+      @include mq(lg) {
+        font-size: 1.125rem;
+        padding-top: 2rem;
+      }
+    }
+    &--dark {
+      background-color: $main-landing-footer-bg;
+      color: $white;
+      padding: 2rem 0 2.875rem 0;
+      .tabs__subtitle {
+        color: $white;
+      }
+      .tabs__link {
+        color: $white;
+      }
+      .tabs__item {
+        &.is-active {
+          .tabs__link {
+            color: $primary;
+          }
+        }
+      }
+
+      .tabs__content {
+        .subscription {
+          background-color: $white;
+          border: 0;
+        }
+      }
+    }
+    &--light {
+      padding: 2rem 0 2.875rem 0;
+      .tabs__content {
+        min-height: auto;
+      }
+      .row {
+        align-items: center;
+      }
+      .tabs__heading,
+      .tabs__subtitle {
+        text-align: left;
+      }
+
+      img {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 2rem;
+        @include mq(lg) {
+          margin-bottom: 0
+        }
+      }
+    }
+  }
+
+  .business-model {
+    .button {
+      min-width: 16rem;
+      color: $white;
+      padding-top: 0.5rem;
+    }
+  }
+}
