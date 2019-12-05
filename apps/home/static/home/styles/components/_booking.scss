@@ -1,4 +1,27 @@
 .booking-page {
+  .modal-content {
+    top: 60px;
+    .modal-title {
+      font-family: $dona-black;
+      .button {
+        .span {
+          font-family: $dona-black;
+        }
+      }
+    }
+    .modal-body {
+      h1 {
+        font-size: 16px;
+        line-height: 1.8;
+        font-family: $dona-bold;
+      }
+    }
+    .modal-footer {
+      button.btn.btn-secondary {
+        background-color: #00B7FF;
+      }
+    }
+  }
   &__header {
     background-color: $primary;
     padding: 2rem;
@@ -91,7 +114,7 @@
     padding-bottom: 1rem;
     .box-title {
       font-family: $dona-bold;
-      font-size: 1.75rem;
+      font-size: 1rem;
       color: $black;
       margin-bottom: 1rem;
     }
