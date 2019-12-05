@@ -1,0 +1,64 @@
+.fly-line {
+  &__container {
+    padding: 4rem 4rem 4rem 0;
+  }
+  &__content {
+    background-color: $main-landing-footer-bg;
+    color: $white;
+  }
+
+  &__item {
+    margin-bottom: 3.5rem;
+    border-bottom: 2px solid  transparentize($white, 0.50%);
+  }
+  &__title {
+    font-family: $dona-black;
+    font-size: 3.7rem;
+
+    &--small {
+      font-size: 2.375rem;
+    }
+  }
+
+  p {
+    font-size: 1.25rem;
+    color: transparentize($white, 0.50%)
+  }
+
+  &__body {
+    &-item {
+      ul {
+        margin-bottom: 1rem;
+        font-size: 1.25rem;
+        list-style-type: decimal;
+        li {
+          color: transparentize($white, 0.50%);
+          margin-bottom: 1rem;
+        }
+      }
+
+      .text--belong-to-ul {
+        padding-top: 1rem;
+        padding-left: 20px;
+      }
+     &:not(:last-child) {
+       padding-bottom: 3.5rem;
+     }
+    }
+  }
+
+  &__lines {
+    height: 100%;
+    display: flex;
+    span {
+      height: 100%;
+      display: block;
+      width: 5.3125rem;
+      background-color: $primary;
+      margin-right: 2.5rem;
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+}

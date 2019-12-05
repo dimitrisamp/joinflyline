@@ -15,6 +15,7 @@ import {MainLandingAbout} from "./components/main-landing-about.js"
 import { store } from './store.js';
 import {Faq} from "./components/faq.js";
 import {MembershipExplained} from "./components/membership-explained.js";
+import {Flyline101} from "./components/flyline101.js";
 
 const routes = [
   {
@@ -38,6 +39,11 @@ const routes = [
     path: '/membership-explained',
     name: 'membership-explained',
     component: MembershipExplained
+  },
+  {
+    path: '/flyline101',
+    name: 'flyline101',
+    component: Flyline101
   },
   {
     path: '/search-results',
