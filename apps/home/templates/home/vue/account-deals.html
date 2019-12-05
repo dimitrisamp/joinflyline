@@ -1,56 +1,63 @@
 <script type="text/x-template" id="vue-account-deals-template">
   <div class="main-padding">
-    <div class="account__form">
-      <h3>Deal Alert Notifications</h3>
-      <table v-if="dealWatches.length > 0">
-        <thead>
-          <tr>
-            <th>Destination</th>
-            <th>Max price</th>
-            <th>Airlines</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-        <tr v-for="dw in dealWatches">
-          <td>[[ formatPlace(dw.destination) ]]</td>
-          <td>[[ dw.max_price ]]</td>
-          <td>[[ formatAirlines(dw.airlines) ]]</td>
-          <td><button type="button" @click="deleteDealWatch(dw)">Delete</button></td>
-        </tr>
-        </tbody>
-      </table>
-      <p>Enter your notifiction parameters and your good to go</p>
+    <div class="account__form account__form--table">
       <div class="row">
-        <div class="col-12 col-xl-10">
-          <h6>Destination One</h6>
-          <div class="row">
-            <div class="col-12 col-lg-4">
-              <location-input
-                  :prompt="'Destination'"
-                  :search-type="'both'"
-                  :initial-value="form.destination"
-                  @place-selected="updateDestination" />
+        <div class="col-12 col-lg-10">
+            <h3>Deal Alert Notifications</h3>
+            <table v-if="dealWatches.length > 0">
+              <thead>
+                <tr>
+                  <th>Destination</th>
+                  <th>Max price</th>
+                  <th>Airlines</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+              <tr v-for="dw in dealWatches">
+                <td>[[ formatPlace(dw.destination) ]]</td>
+                <td>[[ dw.max_price ]]</td>
+                <td>[[ formatAirlines(dw.airlines) ]]</td>
+                <td><button type="button" class="button button--red" @click="deleteDealWatch(dw)">Delete</button></td>
+              </tr>
+              </tbody>
+            </table>
+            <p>Enter your notifiction parameters and your good to go</p>
+            <div class="row">
+              <div class="col-12">
+                <div class="row">
+                  <div class="col-12 col-lg-4">
+                    <location-input
+                        :prompt="'Destination'"
+                        :search-type="'both'"
+                        :initial-value="form.destination"
+                        @place-selected="updateDestination" />
+                  </div>
+                  <div class="col-12 col-lg-3">
+                    <input type="number" class="form-control" placeholder="Max Price" v-model="form.max_price" />
+                  </div>
+                  <div class="col-12 col-lg-5">
+                      <multiselect
+                          v-model="form.airlines"
+                          :options="airlineCodes"
+                          :multiple="true"
+                          :close-on-select="false"
+                          :clear-on-select="false"
+                          :preserve-search="true"
+                          label="label"
+                          track-by="label">
+                      </multiselect>
+                  </div>
+                  <div class="col-12">
+                    <div class="text-right">
+                      <button type="button" class="btn btn-primary" @click="addDealWatch">Add</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div class="col-12 col-lg-3">
-              <input type="number" class="form-control" placeholder="Max Price" v-model="form.max_price" />
-            </div>
-            <div class="col-12 col-lg-5">
-                <multiselect
-                    v-model="form.airlines"
-                    :options="airlineCodes"
-                    :multiple="true"
-                    :close-on-select="false"
-                    :clear-on-select="false"
-                    :preserve-search="true"
-                    label="label"
-                    track-by="label">
-                </multiselect>
-            </div>
-            <button type="button" @click="addDealWatch">Add</button>
           </div>
         </div>
       </div>
-    </div>
   </div>
 </script>

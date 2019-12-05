@@ -79,5 +79,16 @@
       width: 100%;
       max-width: 100%;
     }
+
+    // used in membership explained first section
+    &-inner {
+      h2 {
+        font-family: $dona-bold;
+        margin-bottom: 1rem;
+      }
+      p {
+        margin-bottom: 0.5rem;
+      }
+    }
   }
 }

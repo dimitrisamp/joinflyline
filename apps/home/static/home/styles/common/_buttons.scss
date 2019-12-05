@@ -2,7 +2,8 @@
   .btn-primary {
     border-radius: 0;
     background-color: $primary;
-    border-color: $primary
+    border-color: $primary;
+    min-width: 8rem;
   }
 }
 
@@ -42,6 +43,26 @@
   &--outline-blue {
     border-color: $primary;
     color: $primary;
+  }
+
+  &--red {
+    border-color: $red;
+    background-color: $red;
+    color: $white;
+    &:hover {
+      color: $white;
+      background-color: darken($red, 10%);
+    }
+  }
+
+  &--green {
+    border-color: $green;
+    background-color: $green;
+    color: $white;
+    &:hover {
+      color: $white;
+      background-color: darken($green, 10%);
+    }
   }
 }
 
