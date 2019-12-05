@@ -14,7 +14,7 @@ export const MainLandingHero = Vue.component("main-landing-hero", {
   methods: {
     ...Vuex.mapMutations(['updatePlaceFrom', 'updatePlaceTo']),
     searchFromHome() {
-      this.search({ clearFilters: false, saveSearch: false });
+      this.search({ clearFilters: true, saveSearch: false });
       this.$router.push({ name: "search-results" });
     },
     setFormFromTo(i) {
