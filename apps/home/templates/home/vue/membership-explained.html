@@ -14,43 +14,53 @@
           Whether you travel for leisure or for work, we have a plan for you. Use our helpful <br>
           guide to assist with selecting the right plan for your travel type.
         </p>
-        <tabs v-if="plans">
-          <tab v-for="(tab, paneIndex) in tabs" :title="tab.title" :key="`tab-${tab.plan}`" :selected="selectedIndex === paneIndex">
-            <div class="row">
-              <div class="col-12 col-lg-4">
-                <div class="subscription">
-                  <div class="subscription__top">
-                    <div class="subscription__title">
-                      <h4 class="subscription__heading subscription__heading--type">[[ plans[tab.plan].name ]]</h4>
-                      <h3 class="subscription__heading subscription__heading--price">$[[ plans[tab.plan].price.value ]]/yr</h3>
-                    </div>
-                    <ul class="subscription__list">
-                      <li class="subscription__item">- Flight Search and Book</li>
-                      <li class="subscription__item">- Auto Check-in</li>
-                      <li v-if="plans[tab.plan].limit" class="subscription__item">- Max of [[ plans[tab.plan].limit ]]
-                        Bookings
-                      </li>
-                      <li v-else class="subscription__item">- Unlimited Bookings</li>
-                      <li v-if="plans[tab.plan].deal_alerts" class="subscription__item">
-                        - Deal alerts
-                      </li>
-                      <li v-if="plans[tab.plan].companion" class="subscription__item">
+        <div class="row">
+          <div class="col-12 col-lg-9 m-auto">
+            <tabs v-if="plans">
+              <tab v-for="(tab, paneIndex) in tabs" :title="tab.title" :key="`tab-${tab.plan}`" :selected="selectedIndex === paneIndex">
+                <div class="row">
+                  <div class="col-12 col-lg-5">
+                    <div class="subscription">
+                      <div class="subscription__top">
+                        <div class="subscription__title">
+                          <h4 class="subscription__heading subscription__heading--type">[[ plans[tab.plan].name ]]</h4>
+                          <h3 class="subscription__heading subscription__heading--price">$[[ plans[tab.plan].price.value ]]/yr</h3>
+                        </div>
+                        <ul class="subscription__list">
+                          <li class="subscription__item">- Flight Search and Book</li>
+                          <li class="subscription__item">- Auto Check-in</li>
+                          <li v-if="plans[tab.plan].limit" class="subscription__item">- Max of [[ plans[tab.plan].limit ]]
+                            Bookings
+                          </li>
+                          <li v-else class="subscription__item">- Unlimited Bookings</li>
+                          <li v-if="plans[tab.plan].deal_alerts" class="subscription__item">
+                            - Deal alerts
+                          </li>
+                          <li v-if="plans[tab.plan].companion" class="subscription__item">
                         <!-- - [[ plans[tab.plan].companion ]] companion account[[ plans[tab.plan].companion>1?"s":"" ]] -->
                         - Companion account
-                      </li>
-                    </ul>
+                          </li>
+                        </ul>
+                      </div>
+                      <div class="subscription__bottom">
+                        <router-link :to="{name: 'get-started', params: {plan: tab.plan}}" class="button button--outline-blue">Get Started</router-link>
+                      </div>
+                    </div>
                   </div>
-                  <div class="subscription__bottom">
-                    <router-link :to="{name: 'get-started', params: {plan: tab.plan}}" class="button button--outline-blue">Get Started</router-link>
+                  <div class="col-12 col-lg-7">
+                    <!-- Zach Said text should come here -->
+                    <div class="tabs__content-inner">
+                      <h2>We choose this for you because</h2>
+                      <p>- We are awesome devs</p>
+                      <p>- We are the best in the world</p>
+                      <p>- We are nerds</p>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="col-12 col-lg-4">
-                <!-- Zach Said text should come here -->
-              </div>
-            </div>
-          </tab>
-        </tabs>
+              </tab>
+            </tabs>
+          </div>
+        </div>
       </div>
     </div>
     <!-- Tabs Ends -->

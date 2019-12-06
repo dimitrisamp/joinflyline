@@ -1,4 +1,7 @@
 .booking-page {
+  @include mq(lg) {
+    margin-top: -2.375rem;
+  }
   .modal-content {
     top: 60px;
     .modal-title {
