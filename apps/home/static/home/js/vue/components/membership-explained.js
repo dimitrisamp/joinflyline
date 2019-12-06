@@ -7,12 +7,12 @@ export const MembershipExplained = Vue.component("membership-explained", {
         {
           title: "0 - 6 Round Trips",
           plan: "basic",
-          builtFor: ['Leisure Travelers', 'Solo Travelers', 'Solo Travelers']
+          builtFor: ['Leisure Travelers', 'Solo Travelers', 'Small Family Trip']
         },
         {
           title: "6 - 9 Round Trips",
           plan: "basic-plus",
-          builtFor: ['Leisure Travelers', 'Light Business Travel', 'Light Business Travel', 'Couples and individuals that traveling together']
+          builtFor: ['Leisure Travelers', 'Light Business Travel', 'Small Family Trip', 'Couples and individuals that traveling together']
         },
         {
           title: "9+ Round Trips",
