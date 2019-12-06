@@ -4,13 +4,13 @@ import { store } from "../store.js";
 export const Dashboard = Vue.component("dashboard", {
   template: "#vue-dashboard-template",
   watch: {
-    $route() {
-      if(this.$route.name === 'booking') {
-       this.$store.commit('hideDashboardNav')
-      } else {
-        this.$store.commit('showDashboardNav')
-      }
-    }
+    // $route() {
+    //   if(this.$route.name === 'booking') {
+    //    this.$store.commit('hideDashboardNav')
+    //   } else {
+    //     this.$store.commit('showDashboardNav')
+    //   }
+    // }
   },
   computed: {
     ...Vuex.mapState(['showDashboardNavigation'])
