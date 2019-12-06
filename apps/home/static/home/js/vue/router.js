@@ -1,4 +1,3 @@
-import {SavingsExplained} from "./components/savings-explained.js";
 import {Wizard} from "./components/wizard.js";
 import {LearnMore} from "./components/learn-more.js";
 import {PromoLanding} from "./components/promo-landing.js";
@@ -92,10 +91,6 @@ const routes = [
         component: BookingPage,
       },
     ]
-  },
-  {
-    path: '/savings-explained/',
-    component: SavingsExplained
   },
   {
     path: '/get-started/:plan?',
