@@ -47,7 +47,8 @@
                     - Deal alerts
                   </li>
                   <li v-if="plans[pk].companion">
-                    - [[ plans[pk].companion ]] companion account[[ plans[pk].companion>1?"s":"" ]]
+                    <!-- - [[ plans[pk].companion ]] companion account[[ plans[pk].companion>1?"s":"" ]] -->
+                    - Companion account
                   </li>
                 </ul>
                 <router-link :to="{name: 'get-started', params: {plan: pk}}" class="btn btn-default">Get Started
@@ -97,7 +98,8 @@
                       - Deal alerts
                     </li>
                     <li v-if="plans[pk].companion">
-                      - [[ plans[pk].companion ]] companion account[[ plans[pk].companion>1?"s":"" ]]
+                      <!-- - [[ plans[pk].companion ]] companion account[[ plans[pk].companion>1?"s":"" ]] -->
+                      - Companion account
                     </li>
                   </ul>
                   <router-link :to="{name: 'get-started', params: {plan: pk}}" class="btn btn-default">Get

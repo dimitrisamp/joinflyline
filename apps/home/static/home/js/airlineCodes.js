@@ -203,7 +203,6 @@ export const airlineCodes = {
   HI: "Papillon Airways",
   PW: "Precision Airlines",
   QF: "Qantas Airways",
-  AT: "Royal Air Maroc",
   BI: "Royal Brunei Airlines",
   RJ: "Royal Jordanian",
   SQ: "Singapore Airlines",
