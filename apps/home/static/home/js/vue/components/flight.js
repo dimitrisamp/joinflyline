@@ -44,5 +44,10 @@ Vue.component('flight', {
         secs2hm,
         staticUrl,
         timeInterval
+    },
+    computed: {
+        interlining() {
+            return new Set(this.flight.route.map(o=>o.airline)).size > 1;
+        },
     }
 });

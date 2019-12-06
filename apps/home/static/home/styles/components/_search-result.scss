@@ -20,3 +20,15 @@
     display: none;
   }
 }
+
+.result-block {
+  .flight__interlining {
+    position: absolute;
+    right: 0.75rem;
+    top: 0.75rem;
+    width: 65px;
+    @include mq(md) {
+      width: 127px;
+    }
+  }
+}

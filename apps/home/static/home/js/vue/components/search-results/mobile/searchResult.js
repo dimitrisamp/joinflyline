@@ -27,6 +27,9 @@ Vue.component('search-result-mobile', {
         dest() {
             return this.data.cityTo;
         },
+        interlining() {
+            return new Set(this.data.route.map(o=>o.airline)).size > 1;
+        },
         price() {
             return this.data.conversion.USD;
         },

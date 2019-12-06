@@ -97,7 +97,7 @@ export const recentDeals = [
     to: { type: "airport", code: "LGA", name: "LaGuardia", city: "New York" },
     duration: {
       nonstop: "3h 20m",
-      multi: null
+      multi: "6h+"
     },
     savings: 26,
     average: 180,
@@ -159,8 +159,8 @@ export const recentDeals = [
       city: "Chicago"
     },
     duration: {
-      nonstop: null,
-      multi: null
+      nonstop: "2h 9m",
+      multi: "5h+"
     },
     savings: 43,
     average: 256,

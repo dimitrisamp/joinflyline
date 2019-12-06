@@ -20,7 +20,7 @@ fieldset[disabled] .multiselect {
     width: 16px;
     height: 16px;
     border-radius: 100%;
-    border-color: #41b883 transparent transparent;
+    border-color: #00aeef transparent transparent;
     border-style: solid;
     border-width: 2px;
     box-shadow: 0 0 0 1px transparent;
@@ -165,7 +165,7 @@ fieldset[disabled] .multiselect {
   margin-right: 10px;
   color: #fff;
   line-height: 1;
-  background: #41b883;
+  background: #00aeef;
   margin-bottom: 5px;
   white-space: nowrap;
   overflow: hidden;
@@ -195,7 +195,7 @@ fieldset[disabled] .multiselect {
   }
 
   &:focus, &:hover {
-    background: #369a6e;
+    background: #00aeef;
   }
 
   &:focus:after, &:hover:after {
@@ -328,13 +328,13 @@ fieldset[disabled] .multiselect {
 }
 
 .multiselect__option--highlight {
-  background: #41b883;
+  background: #00aeef;
   outline: none;
   color: white;
 
   &:after {
     content: attr(data-select);
-    background: #41b883;
+    background: #00aeef;
     color: white;
   }
 }
