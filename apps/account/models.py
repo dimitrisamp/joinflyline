@@ -1,12 +1,12 @@
 from django.contrib.auth.models import User
 from django.contrib.postgres.fields import JSONField, ArrayField
 from django.db import models
-from django.db.models.signals import post_save
-from django.dispatch import receiver
 from django_enumfield import enum
 from creditcards.models import CardExpiryField, CardNumberField, SecurityCodeField
 
 from apps.account import enums
+from apps.booking.models import Deal
+from wanderift.utils import l2q
 
 
 class Account(models.Model):
@@ -30,7 +30,7 @@ class Profile(models.Model):
     title = models.CharField(max_length=5, blank=True)
     market = JSONField(null=True)
     gender = enum.EnumField(enums.Gender, null=True, blank=True)
-    phone_number = models.CharField(max_length=20, blank=True)
+    phone_number = models.CharField(max_length=25, blank=True)
     secret = models.CharField(max_length=16, blank=True)
     expiration_time = models.DateTimeField(blank=True, null=True)
     dob = models.DateField(blank=True, null=True)
@@ -53,18 +53,36 @@ class FrequentFlyer(models.Model):
     hawaiian_airlines = models.CharField(max_length=30, blank=True)
 
 
+class DealWatchGroup(models.Model):
+    source = models.CharField(max_length=20)
+    destination = models.CharField(max_length=20)
+    airlines = models.CharField(max_length=100, blank=True, null=True)
+    last_updated = models.DateTimeField(null=True, blank=True)
+
+    def airline_list(self):
+        if len(self.airlines) == 0:
+            return []
+        return list(self.airlines.split(','))
+
+
+
 class DealWatch(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    group = models.ForeignKey(DealWatchGroup, on_delete=models.PROTECT, related_name='watches', null=True, blank=True)
+    timestamp = models.DateTimeField(auto_now_add=True)
     destination = JSONField()
-    max_price = models.DecimalField(max_digits=10, decimal_places=2)
-    airlines = ArrayField(models.CharField(max_length=10))
+    max_price = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
+    airlines = ArrayField(models.CharField(max_length=10), default=list, blank=True)
+
+    def save(self, **kwargs):
+        defaults = {
+            'source': l2q(self.user.profile.market),
+            'destination': l2q(self.destination),
+            'airlines': ','.join(list(sorted(self.airlines)))
+        }
+        self.group = DealWatchGroup.objects.get_or_create(defaults)[0]
+        super().save(**kwargs)
 
     def __str__(self):
         return f'{self.user} {self.destination} {self.max_price} {self.airlines}'
-
-
-@receiver(post_save, sender=User)
-def create_user_profile(sender, instance, created, **kwargs):
-    if created:
-        Profile.objects.get_or_create(user=instance)
 

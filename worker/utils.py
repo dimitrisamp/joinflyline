@@ -11,6 +11,7 @@ def save2db(flights: List[Trip]):
     if not flights:
         return
     ff = flights[0]
+    result = []
     with transaction.atomic():
         Deal.objects.filter(city_from=ff.city_from, city_to=ff.city_to).delete()
         for trip in flights:
@@ -23,4 +24,5 @@ def save2db(flights: List[Trip]):
             d["departure_time"] = local_departure.time()
             d["return_date"] = local_return_departure.date()
             d["return_time"] = local_return_departure.time()
-            Deal.objects.create(**d)
+            result.append(Deal.objects.create(**d))
+    return result
