@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from django.contrib.postgres.fields import JSONField, ArrayField
+from django.conf import settings
 from django.db import models
 from django_enumfield import enum
 from creditcards.models import CardExpiryField, CardNumberField, SecurityCodeField
@@ -62,27 +63,57 @@ class DealWatchGroup(models.Model):
     def airline_list(self):
         if len(self.airlines) == 0:
             return []
-        return list(self.airlines.split(','))
+        return list(self.airlines.split(","))
 
+    def in_cities(self):
+        st, sv = self.source.split(":")
+        dt, dv = self.destination.split(":")
+        if not (st == "city" and dt == "city"):
+            return False
+        return sv in settings.DEALS_CITIES and dv in settings.DEALS_CITIES
+
+    def in_home_markets(self):
+        st, sv = self.source.split(":")
+        dt, dv = self.destination.split(":")
+        return User.objects.filter(
+            profile__market__type=st,
+            profile__market__code=sv,
+            dealwatch__destination__type=dt,
+            dealwatch__destination__code=dv,
+        ).exists()
+
+    def must_die(self):
+        if self.in_cities():
+            return False
+        if self.in_home_markets():
+            return False
+        if
 
 
 class DealWatch(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    group = models.ForeignKey(DealWatchGroup, on_delete=models.PROTECT, related_name='watches', null=True, blank=True)
+    group = models.ForeignKey(
+        DealWatchGroup,
+        on_delete=models.PROTECT,
+        related_name="watches",
+        null=True,
+        blank=True,
+    )
     timestamp = models.DateTimeField(auto_now_add=True)
     destination = JSONField()
-    max_price = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
+    max_price = models.DecimalField(
+        max_digits=10, decimal_places=2, null=True, blank=True
+    )
     airlines = ArrayField(models.CharField(max_length=10), default=list, blank=True)
 
     def save(self, **kwargs):
         defaults = {
-            'source': l2q(self.user.profile.market),
-            'destination': l2q(self.destination),
-            'airlines': ','.join(list(sorted(self.airlines)))
+            "source": l2q(self.user.profile.market),
+            "destination": l2q(self.destination),
+            "airlines": ",".join(list(sorted(self.airlines))),
         }
-        self.group = DealWatchGroup.objects.get_or_create(defaults)[0]
+        self.group = DealWatchGroup.objects.get_or_create(**defaults)[0]
         super().save(**kwargs)
 
     def __str__(self):
-        return f'{self.user} {self.destination} {self.max_price} {self.airlines}'
-
+        return f"{self.user} {self.destination} {self.max_price} {self.airlines}"

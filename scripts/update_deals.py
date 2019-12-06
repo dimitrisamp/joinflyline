@@ -1,4 +1,5 @@
 import asyncio
+import itertools
 from collections import defaultdict
 from typing import DefaultDict, List
 
@@ -14,7 +15,7 @@ from worker.kiwi import fetch_all_city_interconnections, check_flights
 
 os.environ['DJANGO_SETTINGS_MODULE'] = 'wanderift.settings'
 django.setup()
-from apps.account.models import DealWatch
+from apps.account.models import DealWatch, DealWatchGroup, Profile
 from worker.utils import save2db
 
 from django.conf import settings
@@ -49,6 +50,7 @@ async def main():
         session = RateLimiter(session, 300, 300)
         #await fetch_all_cities(session)
         await fetch_watches(session)
+
 
 
 if __name__ == '__main__':

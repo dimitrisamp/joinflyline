@@ -21,7 +21,7 @@ def test_dealwatchgroup_is_created_no_airlines(db):
 def test_dealwatchgroup_deleted(db):
     user = UserFactory()
     dw = DealWatchFactory(user=user, airlines=[])
-    dw2 = DealWatchFactory(user=user, airlines=[], max_price=100)
+    dw2 = DealWatchFactory(user=user, airlines=[], max_price=100, destination=dw.destination)
     group_pk = dw.group.pk
     dw.delete()
     assert DealWatchGroup.objects.filter(pk=group_pk).exists()
