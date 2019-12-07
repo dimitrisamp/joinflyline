@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: env-config
+data:
+  STAGE: production
+  POSTGRES_HOST: 10.51.112.4
+  POSTGRES_DB: staging
+  POSTGRES_USER: postgres
+  GOOGLE_APPLICATION_CREDENTIALS: /etc/secrets/GCE_SERVICE_ACCOUNT_KEY
+  MAINTENANCE: "true"
+  STRIPE_BASIC_PLAN_ID: plan_G8WEw4WJ7o212y
+  REDIS_URL: redis://10.218.76.59:6379/0
+  PLANS_CONFIG_FILE: /etc/secrets/STRIPE_PLANS
