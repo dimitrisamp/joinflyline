@@ -46,4 +46,3 @@ k8s-deploy:
 
   environment:
     name: dev
-  when: on_success
