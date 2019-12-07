@@ -14,18 +14,20 @@ cache:
 
 docker-build:
   stage: package
-  only:
-    - /^rc-.*$/
+  rules:
+    - if: '${CI_COMMIT_REF_NAME} == "master"'
+      when: always
   script:
-    - docker build -t registry.gitlab.com/zburau/joinflyline:latest -f devops/docker/django/Dockerfile .
+    - docker build -t registry.gitlab.com/zburau/joinflyline:${CI_COMMIT_SHORT_SHA} -f devops/docker/django/Dockerfile .
     - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
-    - docker push registry.gitlab.com/zburau/joinflyline:latest
+    - docker push registry.gitlab.com/zburau/joinflyline:${CI_COMMIT_SHORT_SHA}
 
 k8s-deploy:
   image: google/cloud-sdk
   stage: deploy
-  only:
-    - /^rc-.*$/
+  rules:
+    - if: '${CI_COMMIT_REF_NAME} == "master"'
+      when: always
   script:
   - kubectl config set-cluster ${KUBE_CLUSTER} --server=$KUBE_URL --insecure-skip-tls-verify=true
   - kubectl config set-credentials admin --token=$KUBE_TOKEN
@@ -40,7 +42,6 @@ k8s-deploy:
   - kubectl apply -f devops/k8s/env.yml -n ${KUBE_NAMESPACE}
   - sed -ie "s/THIS_STRING_IS_REPLACED_DURING_BUILD/$(date)/g" devops/k8s/deployment.yml
   - kubectl apply -f devops/k8s/deployment.yml -n ${KUBE_NAMESPACE}
-  - kubectl apply -f devops/k8s/ingress.yml -n ${KUBE_NAMESPACE}
   - kubectl apply -f devops/k8s/service.yml -n ${KUBE_NAMESPACE}
 
   environment:
