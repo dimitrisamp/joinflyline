@@ -47,8 +47,6 @@ k8s-deploy-staging:
   environment:
     name: staging
     url: https://staging.joinflyline.com
-    kubernetes:
-      namespace: joinflyline-dev
 
 k8s-deploy-production:
   image: google/cloud-sdk
@@ -74,5 +72,4 @@ k8s-deploy-production:
   environment:
     name: production
     url: https://joinflyline.com
-    kubernetes:
-      namespace: joinflyline-prod
+
