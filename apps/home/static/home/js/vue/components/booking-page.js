@@ -13,26 +13,61 @@ const sampleAge = {
   infants: 1
 };
 
-function makePassenger(primary = true, category = "adults") {
-  let today = new Date();
-  let birthDate = new Date(today.getTime());
-  birthDate.setFullYear(today.getFullYear() - sampleAge[category]);
+const genderToTitle = {0: 'mr', 1: 'ms'}
+
+function makePassenger(primary = true, category = "adults", user_data = null) {
+  let dataValues;
+
+  if (user_data) {
+    dataValues = {
+      name: user_data.name,
+      surname: user_data.surname,
+      nationality: user_data.nationality,
+      month: user_data.month,
+      day: user_data.day,
+      year: user_data.year,
+      title: user_data.title,
+    };
+  } else {
+    let today = new Date();
+    let birthDate = new Date(today.getTime());
+    birthDate.setFullYear(today.getFullYear() - sampleAge[category]);
+
+    dataValues = {
+      name: "",
+      surname: "",
+      nationality: "US",
+      month: birthDate.getMonth(),
+      day: birthDate.getDay(),
+      year: birthDate.getFullYear(),
+      title: 0,
+    };
+  }
+
   return {
     isPrimary: primary,
-    name: "",
-    surname: "",
-    nationality: "US",
-    month: birthDate.getMonth(),
-    day: birthDate.getDay(),
-    year: birthDate.getFullYear(),
-    title: "mr",
     cardno: "",
     expiration: "",
     combinations: {
       hand_bag: 0,
       hold_bag: 0
-    }
+    },
+    ...dataValues
   };
+}
+
+function formatUserData(user) {
+  let bdate = moment(user.profile.dob);
+
+  return {
+    name: user.first_name,
+    surname: user.last_name,
+    nationality: "US",
+    month: bdate.month() + 1,
+    day: bdate.date(),
+    year: bdate.year(),
+    title: genderToTitle[user.profile.gender] || 0
+  }
 }
 
 export const BookingPage = Vue.component("booking-page", {
@@ -42,11 +77,14 @@ export const BookingPage = Vue.component("booking-page", {
     let seats = {
       ...this.$store.getters.flightToBook.parent.search_params.seats
     };
+    let user = {
+      ...this.$store.getters.user
+    };
     delete seats.passengers;
     let initialPassengers = [];
     if (seats.adults > 0) {
       seats.adults = seats.adults - 1;
-      initialPassengers.push(makePassenger());
+      initialPassengers.push(makePassenger(true, "adults", formatUserData(user)));
     }
     for (let [category, count] of Object.entries(seats)) {
       for (let i = 0; i < count; i++) {
@@ -60,8 +98,8 @@ export const BookingPage = Vue.component("booking-page", {
         card_number: "",
         expiry: "",
         credit_card_cvv: "",
-        email: "",
-        phone: ""
+        email: user.email,
+        phone: user.profile.phone_number
       },
       passengers: initialPassengers,
       checkFlightData: null,
