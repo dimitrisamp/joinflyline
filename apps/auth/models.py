@@ -14,7 +14,6 @@ class User(AbstractUser):
     gender = enum.EnumField(enums.Gender, null=True, blank=True)
     phone_number = models.CharField(max_length=20, blank=True)
     dob = models.DateField(blank=True, null=True)
-    customer_id = models.CharField(max_length=70, blank=True)
     tsa_precheck_number = models.CharField(max_length=30, blank=True, null=True)
     account = models.ForeignKey('account.Account', null=True, blank=True, on_delete=models.PROTECT)
     country_code = models.CharField(max_length=5, blank=True)

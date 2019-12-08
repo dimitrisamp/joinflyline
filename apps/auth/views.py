@@ -61,13 +61,8 @@ class ForgotPasswordView(FormView):
 
         secret = random_16bit_hex_string()
         forgot_password(user.pk, secret)
-
-        #user.profile.secret = secret
-        #user.profile.expiration_time = datetime.now() + timedelta(
-        #    seconds=settings.SECRET_LINK_EXPIRATION_SECONDS)
-        user.profile.save()
-
         return redirect(index_view)
+
 
 def random_16bit_hex_string():
     hex_characters = '0123456789abcdef'
@@ -87,8 +82,3 @@ def check_user_view(request):
         if User.objects.filter(email=email).exists():
             result = True
     return JsonResponse({'exists': result})
-
-
-class UserInfoView(View):
-    def get(self, request):
-        return JsonResponse(get_user_info(request.user))

@@ -1,21 +1,7 @@
+from creditcards.forms import CardNumberField, CardExpiryField, SecurityCodeField
 from django import forms
 from django.conf import settings
 from django.contrib.postgres.forms import JSONField
-
-from apps.auth.enums import Gender
-from creditcards.forms import CardNumberField, CardExpiryField, SecurityCodeField
-
-
-class ProfileForm(forms.Form):
-    first_name = forms.CharField(required=False)
-    last_name = forms.CharField(required=False)
-    email = forms.EmailField(required=False)
-    dob = forms.DateField(required=False)
-    gender = forms.TypedChoiceField(choices=Gender.choices(), coerce=int)
-    market = forms.CharField(required=False)
-    tsa_precheck_number = forms.CharField(required=False)
-    phone_number = forms.CharField(required=False)
-    password = forms.CharField(widget=forms.PasswordInput, required=False)
 
 
 class WizardForm(forms.Form):

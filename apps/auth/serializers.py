@@ -14,7 +14,6 @@ class EditUser(serializers.ModelSerializer):
             "gender",
             "phone_number",
             "dob",
-            "customer_id",
             "tsa_precheck_number",
         ]
 
@@ -38,7 +37,6 @@ class User(serializers.ModelSerializer):
             "gender",
             "phone_number",
             "dob",
-            "customer_id",
             "tsa_precheck_number",
             "zip",
             "country_code",

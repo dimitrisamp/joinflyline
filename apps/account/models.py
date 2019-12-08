@@ -1,8 +1,6 @@
 from apps.auth.models import User
 from django.contrib.postgres.fields import JSONField, ArrayField
 from django.db import models
-from django.db.models.signals import post_save
-from django.dispatch import receiver
 from creditcards.models import CardExpiryField, CardNumberField, SecurityCodeField
 
 
@@ -12,11 +10,12 @@ class Account(models.Model):
     expiry = CardExpiryField(null=True)
     brand = models.CharField(max_length=10, blank=True)
     last4 = models.CharField(max_length=5, blank=True)
+    customer_id = models.CharField(max_length=70, blank=True)
     stripe_id = models.CharField(max_length=50, blank=True)
     token = models.CharField(max_length=100, blank=True)
 
     def __str__(self):
-        return f"{self.user} {self.zip}"
+        return f"{self.customer_id}"
 
 
 class FrequentFlyer(models.Model):
