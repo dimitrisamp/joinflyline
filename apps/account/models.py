@@ -75,7 +75,7 @@ class DealWatchGroup(models.Model):
             return False
         if self.in_home_markets():
             return False
-        if
+        return True
 
 
 class DealWatch(models.Model):
@@ -96,7 +96,7 @@ class DealWatch(models.Model):
 
     def save(self, **kwargs):
         defaults = {
-            "source": l2q(self.user.profile.market),
+            "source": l2q(self.user.market),
             "destination": l2q(self.destination),
             "airlines": ",".join(list(sorted(self.airlines))),
         }

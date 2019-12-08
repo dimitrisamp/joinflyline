@@ -1,6 +1,6 @@
 from apps.account.models import DealWatchGroup
 from apps.account.tests.factories import DealWatchFactory
-from apps.oauth.factories import UserFactory
+from apps.auth.factories import UserFactory
 
 
 def test_dealwatchgroup_is_created(db):

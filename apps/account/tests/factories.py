@@ -3,8 +3,7 @@ import random
 import factory
 import factory.fuzzy
 
-from apps.account.enums import Gender
-from apps.account.models import DealWatch, Profile, Account
+from apps.account.models import DealWatch, Account
 from .. import signals
 
 DESTINATIONS = [
@@ -129,20 +128,6 @@ class DealWatchFactory(factory.DjangoModelFactory):
         return random.sample(AIRLINES, random.randint(1, 4))
 
 
-class ProfileFactory(factory.DjangoModelFactory):
-    class Meta:
-        model = Profile
-
-    title = factory.fuzzy.FuzzyChoice(('mr', 'ms'))
-    market = factory.fuzzy.FuzzyChoice(DESTINATIONS)
-    gender = factory.fuzzy.FuzzyChoice([o[0] for o in Gender.choices()])
-    phone_number = factory.faker.Faker('phone_number')
-    secret = ''
-    dob = factory.faker.Faker('date_of_birth', minimum_age=18)
-    customer_id = ''
-    tsa_precheck_number = ''
-
-
 class AccountFactory(factory.DjangoModelFactory):
     class Meta:
         model = Account
@@ -150,9 +135,5 @@ class AccountFactory(factory.DjangoModelFactory):
     card_number = factory.faker.Faker('credit_card_number')
     cvc = factory.faker.Faker('credit_card_security_code')
     expiry = factory.faker.Faker('credit_card_expire')
-    country = factory.faker.Faker('country_code')
-    zip = factory.faker.Faker('postalcode')
-    brand = ''
-    last4 = ''
     stripe_id = ''
-    token = ''
+    customer_id = ''
