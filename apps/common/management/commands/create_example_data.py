@@ -1,10 +1,13 @@
 import os
+from datetime import timedelta
+
 from django.core.management import BaseCommand
-from django.contrib.auth import get_user_model
+from django.utils.timezone import now
+from psycopg2.extras import DateTimeTZRange
 
+from apps.account.models import Account
+from apps.auth.models import User
 from apps.subscriptions.models import Subscriptions
-
-User = get_user_model()
 
 
 class Command(BaseCommand):
@@ -21,14 +24,19 @@ class Command(BaseCommand):
         sub_name = os.getenv("SUBSCRIBER_NAME")
         sub_password = os.getenv("SUBSCRIBER_PASSWORD")
         if sub_name:
-            u = User.objects.create_user(sub_name, sub_name, sub_password)
-            Subscriptions.objects.create(user=u, plan="basic")
-            u.profile.market = {
+            account = Account.objects.create()
+            market = {
                 "code": "DFW",
                 "name": "Dallas",
                 "type": "city",
                 "country": {"code": "US"},
                 "subdivision": {"name": "Texas"},
             }
-            u.profile.save()
-
+            u = User.objects.create_user(
+                sub_name, sub_name, sub_password, account=account, market=market
+            )
+            Subscriptions.objects.create(
+                account=u.account,
+                plan="basic-plus",
+                period=DateTimeTZRange(now(), now() + timedelta(days=365)),
+            )

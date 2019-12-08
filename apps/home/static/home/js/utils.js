@@ -55,6 +55,10 @@ export function formatDate(value) {
   return moment.utc(value).format("D MMM");
 }
 
+export function formatDateTime(value) {
+  return moment.utc(value).format("D MMM hh:mm A");
+}
+
 export function formatDateDeals(value) {
   return moment.utc(value).format("MM/DD");
 }

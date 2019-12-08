@@ -101,16 +101,12 @@ export const Wizard = Vue.component("wizard", {
           .then(response => response.json())
           .then(data => {
             if (data.success) {
-              fetch("/auth/user-info/")
-                .then(response => response.json())
-                .then(data => {
-                  this.authenticate({
-                    email: this.form.email,
-                    password: this.form.password,
-                    router: this.$router,
-                    name: 'account'
-                  });
-                });
+              this.authenticate({
+                email: this.form.email,
+                password: this.form.password,
+                router: this.$router,
+                name: "account"
+              });
             } else {
               window.alert(JSON.stringify(data));
             }

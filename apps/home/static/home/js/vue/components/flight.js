@@ -47,7 +47,9 @@ Vue.component('flight', {
     },
     computed: {
         interlining() {
-            return new Set(this.flight.route.map(o=>o.airline)).size > 1;
+            return false;
+            // TODO: disabled for now
+            // return new Set(this.flight.route.map(o=>o.airline)).size > 1;
         },
     }
 });

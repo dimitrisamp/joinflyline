@@ -1,64 +1,10 @@
-from .base import *
-import sentry_sdk
-from sentry_sdk.integrations.django import DjangoIntegration
-from sentry_sdk.integrations.celery import CeleryIntegration
-from sentry_sdk.integrations.aiohttp import AioHttpIntegration
-from sentry_sdk.integrations.redis import RedisIntegration
+from .common_server import *
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
 
-sentry_sdk.init(
-    dsn=SENTRY_DSN,
-    integrations=[
-        DjangoIntegration(),
-        CeleryIntegration(),
-        AioHttpIntegration(),
-        RedisIntegration(),
-    ],
-)
-DEFAULT_FILE_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
-STATICFILES_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
-COMPRESS_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
+GS_BUCKET_NAME = "joinflyline"
 
-GS_BUCKET_NAME = "joinflyline-staging"
-GS_DEFAULT_ACL = "publicRead"
-GS_CACHE_CONTROL = "max-age=120"
-MEDIA_ROOT = "media"
-
-COMPRESS_ENABLED = True
-COMPRESS_OFFLINE = True
-COMPRESS_FILTERS = {
-    "css": ["compressor.filters.css_default.CssAbsoluteFilter"],
-    "js": [
-        "compressor.filters.jsmin.JSMinFilter",
-        "compressor.filters.jsmin.SlimItFilter",
-    ],
-}
 COMPRESS_URL = os.getenv(
-    "COMPRESS_URL", "https://storage.googleapis.com/joinflyline-staging/"
+    "COMPRESS_URL", f"https://storage.googleapis.com/{GS_BUCKET_NAME}/"
 )
 
-
-SITE_URL = os.getenv("SITE_URL", "https://stating.joinflyline.com")
-DEALS_CITIES = [
-    "ATL",
-    "AUS",
-    "MTN",
-    "BOS",
-    "CLT",
-    "CHI",
-    "DFW",
-    "DEN",
-    "DTT",
-    "LAS",
-    "LAX",
-    "MIA",
-    "NYC",
-    "ORL",
-    "PHL",
-    "SLC",
-    "SFO",
-    "SEA",
-    "WAS",
-]
+SITE_URL = os.getenv("SITE_URL", "https://joinflyline.com")

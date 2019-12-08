@@ -1,41 +1,24 @@
-from django.contrib.auth.models import User
-from django.contrib.postgres.fields import JSONField, ArrayField
-from django.db import models
-from django.db.models.signals import post_save
-from django.dispatch import receiver
-from django_enumfield import enum
-from creditcards.models import CardExpiryField, CardNumberField, SecurityCodeField
+from django_enumfield.db.fields import EnumField
 
 from apps.account import enums
+from apps.auth.models import User
+from django.contrib.postgres.fields import JSONField, ArrayField
+from django.db import models
+from creditcards.models import CardExpiryField, CardNumberField, SecurityCodeField
 
 
 class Account(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
     card_number = CardNumberField(null=True)
     cvc = SecurityCodeField(null=True)
     expiry = CardExpiryField(null=True)
-    country = models.CharField(max_length=30, blank=True)
-    zip = models.CharField(max_length=20, blank=True)
     brand = models.CharField(max_length=10, blank=True)
     last4 = models.CharField(max_length=5, blank=True)
+    customer_id = models.CharField(max_length=70, blank=True)
     stripe_id = models.CharField(max_length=50, blank=True)
     token = models.CharField(max_length=100, blank=True)
 
     def __str__(self):
-        return f"{self.user} {self.zip}"
-
-
-class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    title = models.CharField(max_length=5, blank=True)
-    market = JSONField(null=True)
-    gender = enum.EnumField(enums.Gender, null=True, blank=True)
-    phone_number = models.CharField(max_length=20, blank=True)
-    secret = models.CharField(max_length=16, blank=True)
-    expiration_time = models.DateTimeField(blank=True, null=True)
-    dob = models.DateField(blank=True, null=True)
-    customer_id = models.CharField(max_length=70, blank=True)
-    tsa_precheck_number = models.CharField(max_length=30, blank=True, null=True)
+        return f"{self.customer_id}"
 
 
 class FrequentFlyer(models.Model):
@@ -60,11 +43,28 @@ class DealWatch(models.Model):
     airlines = ArrayField(models.CharField(max_length=10))
 
     def __str__(self):
-        return f'{self.user} {self.destination} {self.max_price} {self.airlines}'
+        return f"{self.user} {self.destination} {self.max_price} {self.airlines}"
 
 
-@receiver(post_save, sender=User)
-def create_user_profile(sender, instance, created, **kwargs):
-    if created:
-        Profile.objects.get_or_create(user=instance)
+class CompanionInvite(models.Model):
+    email = models.EmailField()
+    sender = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name="sent_invites"
+    )
+    user = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name="received_invites",
+        blank=True,
+        null=True,
+    )
+    status = EnumField(
+        enums.CompanionInviteStatus, default=enums.CompanionInviteStatus.created
+    )
+    invite_code = models.CharField(max_length=50)
+    invited = models.DateTimeField(auto_now_add=True)
+    accessed = models.DateTimeField(null=True, blank=True)
+    signed_up = models.DateTimeField(null=True, blank=True)
 
+    def __str__(self):
+        return f"{self.email}"

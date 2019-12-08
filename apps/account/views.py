@@ -36,32 +36,26 @@ def card_token(card_number, expiry, cvc):
     )
 
 
-def add_subscription(user_id, plan):
-    if isinstance(user_id, (int, str)):
-        user = User.objects.get(pk=user_id)
-    else:
-        user = user_id
-    if not Subscriptions.objects.filter(user=user).exists():
+def add_subscription(account, plan):
+    if not Subscriptions.objects.filter(account=account).exists():
         subscription = stripe.Subscription.create(
-            customer=user.profile.customer_id,
+            customer=account.customer_id,
             items=[{"plan": settings.SUBSCRIPTION_PLANS[plan]["stripe_plan_id"]}],
         )
         start = datetime.datetime.fromtimestamp(subscription["current_period_start"])
         end = datetime.datetime.fromtimestamp(subscription["current_period_end"])
         Subscriptions.objects.create(
-            user=user, plan=plan, period=DateTimeTZRange(start, end)
+            account=account, plan=plan, period=DateTimeTZRange(start, end)
         )
 
 
-def add_to_stripe(user, plan):
-    account = user.account
+def add_to_stripe(account, plan):
     stripe_card_token = card_token(account.card_number, account.expiry, account.cvc)
     account.token = stripe_card_token.id
+    customer = stripe_customer(account)
+    account.customer_id = customer.id
     account.save()
-    customer = stripe_customer(user)
-    user.profile.customer_id = customer.id
-    user.profile.save()
-    add_subscription(user, plan)
+    add_subscription(account, plan)
 
 
 class WizardView(FormView):
@@ -82,18 +76,16 @@ class WizardView(FormView):
             cd["password"],
             first_name=cd["first_name"],
             last_name=cd["last_name"],
+            zip=cd["zip"],
+            market=cd["home_airport"],
         )
         signup_success(new_user.pk)
         # TODO: handle promocode
         account = Account.objects.create(
-            user=new_user,
             card_number=cd["card_number"],
             cvc=cd["cvc"],
             expiry=cd["expiry"],
-            zip=cd["zip"],
         )
-        new_user.profile.market = cd["home_airport"]
-        new_user.profile.save()
         if account.card_number and account.expiry and account.cvc:
-            add_to_stripe(new_user, cd["plan"])
+            add_to_stripe(account, cd["plan"])
         return JsonResponse({"success": True})

@@ -1,7 +1,7 @@
 import pytest
 from rest_framework.test import APIClient
 
-from apps.oauth.factories import UserFactory
+from apps.auth.factories import UserFactory
 
 
 @pytest.fixture
