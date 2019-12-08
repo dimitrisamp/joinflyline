@@ -25,7 +25,7 @@ from django.views import View
 from django.views.generic import TemplateView
 from rest_framework import routers
 
-from apps.account.viewsets import FrequentFlyerViewSet, DealWatchViewSet
+from apps.account.viewsets import FrequentFlyerViewSet, DealWatchViewSet, CompanionInviteViewSet
 from apps.booking.views import (
     CheckFlightsView,
     SaveBookingView,
@@ -49,6 +49,7 @@ router.register(r'flight', FlightViewSet)
 router.register(r'deals', DealViewSet, basename="deals")
 router.register(r'search-history', SearchHistoryViewSet, basename='search-history')
 router.register(r'deal-watch', DealWatchViewSet, basename='deal-watch')
+router.register(r'companion', CompanionInviteViewSet, basename='companion-invite')
 
 user_router = UserRouter()
 user_router.register(r'frequentflyer', FrequentFlyerViewSet, basename='frequentflyer')

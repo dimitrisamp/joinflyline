@@ -7,27 +7,26 @@ function emptyForm() {
   }
 }
 
+const statusText = new Map([
+    [0, 'Created'],
+    [1, 'Email sent'],
+    [2, 'Active']
+]);
+
 export const AccountCompanion = Vue.component('account-companion', {
   template: '#vue-account-companion-template',
   delimiters: ['[[', ']]'],
   data() {
     return {
       companions: [
-        {
-          email: "admin@admin.com",
-          invited: "2019-12-28T06:00:00Z",
-          status: "active",
-        },
-        {
-          email: "admin2@admin.com",
-          invited: "2019-12-30T00:00:00Z",
-          status: "active",
-        }
       ],
       form: emptyForm(),
     };
   },
   methods: {
+    getStatusText(status) {
+      return statusText.get(status);
+    },
     formatDateTime,
     loadCompanions() {
       api.get("/companion/").then((response) => {
@@ -35,8 +34,7 @@ export const AccountCompanion = Vue.component('account-companion', {
       });
     },
     inviteCompanion() {
-      let params = {...this.form};
-      api.post("/companion/", params).then((response) => {
+      api.post("/companion/", this.form).then((response) => {
         this.companions.push(response.data);
         this.form = emptyForm();
       });
@@ -48,6 +46,6 @@ export const AccountCompanion = Vue.component('account-companion', {
     }
   },
   mounted() {
-    //this.loadCompanions();
+    this.loadCompanions();
   }
 });

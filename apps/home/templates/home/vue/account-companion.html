@@ -17,7 +17,7 @@
               <tr v-for="companion in companions">
                 <td>[[ companion.email ]]</td>
                 <td>[[ formatDateTime(companion.invited) ]]</td>
-                <td>[[ companion.status ]]</td>
+                <td>[[ getStatusText(companion.status) ]]</td>
                 <td><button type="button" class="button button--red" @click="deleteCompanion(companion)">Delete</button></td>
               </tr>
               </tbody>

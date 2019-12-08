@@ -1,26 +1,16 @@
-from django.contrib import messages, auth
+import random
+
+from django.contrib import auth
 from django.contrib.auth import authenticate, logout
 from django.contrib.auth.models import User
-from django.http import HttpResponse
-from django.shortcuts import redirect
-from django.template.loader import render_to_string
-from django.urls import reverse
-from django.views import View
-
-from apps.common.context_processors.common import get_user_info
-from apps.home.views import index_view
-
-from apps.emails.views import signup_success, forgot_password
-from apps.auth.forms import PasswordResetForm
-from django.core.mail import send_mail
-from datetime import datetime, timedelta
-from django.conf import settings
-
-from django.views.generic import FormView
 from django.http import JsonResponse
-from django.conf import settings
+from django.shortcuts import redirect
+from django.urls import reverse
+from django.views.generic import FormView
 
-import random
+from apps.auth.forms import PasswordResetForm
+from apps.emails.views import signup_success, forgot_password
+from apps.home.views import index_view
 
 
 def create_user(request):

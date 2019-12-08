@@ -1,3 +1,6 @@
+from django_enumfield.db.fields import EnumField
+
+from apps.account import enums
 from apps.auth.models import User
 from django.contrib.postgres.fields import JSONField, ArrayField
 from django.db import models
@@ -40,5 +43,28 @@ class DealWatch(models.Model):
     airlines = ArrayField(models.CharField(max_length=10))
 
     def __str__(self):
-        return f'{self.user} {self.destination} {self.max_price} {self.airlines}'
+        return f"{self.user} {self.destination} {self.max_price} {self.airlines}"
 
+
+class CompanionInvite(models.Model):
+    email = models.EmailField()
+    sender = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name="sent_invites"
+    )
+    user = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name="received_invites",
+        blank=True,
+        null=True,
+    )
+    status = EnumField(
+        enums.CompanionInviteStatus, default=enums.CompanionInviteStatus.created
+    )
+    invite_code = models.CharField(max_length=50)
+    invited = models.DateTimeField(auto_now_add=True)
+    accessed = models.DateTimeField(null=True, blank=True)
+    signed_up = models.DateTimeField(null=True, blank=True)
+
+    def __str__(self):
+        return f"{self.email}"

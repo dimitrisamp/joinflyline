@@ -1,6 +1,6 @@
+from django.contrib.auth.models import AbstractUser
 from django.contrib.postgres.fields import JSONField
 from django.db import models
-from django.contrib.auth.models import AbstractUser
 from django.db.models.functions import Now
 from django_enumfield import enum
 

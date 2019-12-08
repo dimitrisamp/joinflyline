@@ -29,3 +29,13 @@ class DealWatch(serializers.ModelSerializer):
             "max_price",
             "airlines"
         )
+
+
+class CompanionInvite(serializers.ModelSerializer):
+    class Meta:
+        model = models.CompanionInvite
+        fields = (
+            'email',
+            'invited',
+            'status'
+        )

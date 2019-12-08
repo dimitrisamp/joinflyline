@@ -7,7 +7,6 @@ from apps.auth.models import User
 from wanderift.utils import parse_isodatetime
 
 
-
 class BookingContact(models.Model):
     booking_id = models.CharField(max_length=20, db_index=True)
     email = models.EmailField()

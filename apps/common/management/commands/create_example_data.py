@@ -1,10 +1,13 @@
 import os
+from datetime import timedelta
+
 from django.core.management import BaseCommand
+from django.utils.timezone import now
+from psycopg2.extras import DateTimeTZRange
 
 from apps.account.models import Account
 from apps.auth.models import User
 from apps.subscriptions.models import Subscriptions
-
 
 
 class Command(BaseCommand):
@@ -29,7 +32,11 @@ class Command(BaseCommand):
                 "country": {"code": "US"},
                 "subdivision": {"name": "Texas"},
             }
-            u = User.objects.create_user(sub_name, sub_name, sub_password, account=account, market=market)
-            Subscriptions.objects.create(account=u.account, plan="basic")
-
-
+            u = User.objects.create_user(
+                sub_name, sub_name, sub_password, account=account, market=market
+            )
+            Subscriptions.objects.create(
+                account=u.account,
+                plan="basic-plus",
+                period=DateTimeTZRange(now(), now() + timedelta(days=365)),
+            )
