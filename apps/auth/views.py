@@ -11,7 +11,7 @@ from apps.common.context_processors.common import get_user_info
 from apps.home.views import index_view
 
 from apps.emails.views import signup_success, forgot_password
-from apps.oauth.forms import PasswordResetForm
+from apps.auth.forms import PasswordResetForm
 from django.core.mail import send_mail
 from datetime import datetime, timedelta
 from django.conf import settings
@@ -62,9 +62,9 @@ class ForgotPasswordView(FormView):
         secret = random_16bit_hex_string()
         forgot_password(user.pk, secret)
 
-        user.profile.secret = secret
-        user.profile.expiration_time = datetime.now() + timedelta(
-            seconds=settings.SECRET_LINK_EXPIRATION_SECONDS)
+        #user.profile.secret = secret
+        #user.profile.expiration_time = datetime.now() + timedelta(
+        #    seconds=settings.SECRET_LINK_EXPIRATION_SECONDS)
         user.profile.save()
 
         return redirect(index_view)

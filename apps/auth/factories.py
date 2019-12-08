@@ -1,11 +1,12 @@
 import factory
-from django.contrib.auth import get_user_model
 from django.utils.timezone import now
+
+from apps.auth.models import User
 
 
 class UserFactory(factory.DjangoModelFactory):
     class Meta:
-        model = get_user_model()
+        model = User
 
     first_name = factory.Faker('first_name')
     last_name = factory.Faker('last_name')

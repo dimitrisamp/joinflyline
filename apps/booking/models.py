@@ -1,12 +1,11 @@
-from django.contrib.auth import get_user_model
 from django.contrib.postgres.fields import ArrayField, JSONField
 from django.contrib.postgres.indexes import BTreeIndex
 from django.db import models
 from django.db.transaction import atomic
 
+from apps.auth.models import User
 from wanderift.utils import parse_isodatetime
 
-User = get_user_model()
 
 
 class BookingContact(models.Model):

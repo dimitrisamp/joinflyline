@@ -56,7 +56,7 @@ INSTALLED_APPS = [
     "apps.home",
     "apps.account",
     "apps.booking",
-    "apps.oauth",
+    "apps.auth.apps.AuthConfig",
     "apps.emails",
     "apps.common",
     "anymail",
@@ -74,6 +74,8 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "django.middleware.common.CommonMiddleware",
 ]
+
+AUTH_USER_MODEL = "oauth.user"
 
 ROOT_URLCONF = "wanderift.urls"
 

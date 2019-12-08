@@ -44,7 +44,7 @@ class TripSummary(APIView):
         plans = settings.PLAN_DEFINITIONS
         try:
             current_plan = Subscriptions.objects.get(
-                user=user, period__contains=Now()
+                account=user.account, period__contains=Now()
             ).plan
         except Subscriptions.DoesNotExist:
             current_plan = None
@@ -55,7 +55,7 @@ class TripSummary(APIView):
         count = {"domestic": 0, "international": 0}
         savings = {"domestic": 0, "international": 0}
         # TODO: optimize db usage (aggregate on DB)
-        trips_booked = booking_models.BookingContact.objects.filter(user=user)
+        trips_booked = booking_models.BookingContact.objects.filter(user__account=user.account)
         for f in trips_booked:
             kind = "domestic" if f.is_domestic() else "international"
             count[kind] += 1

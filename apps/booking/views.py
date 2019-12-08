@@ -110,7 +110,7 @@ def save_booking(request, data, zooz=True, test=False):
             user = User.objects.create(
                 username=payment["email"], email=payment["email"]
             )
-            # TODO: send activation link to email implement in `oauth` module
+            # TODO: send activation link to email implement in `auth` module
     BookingContact.from_data(
         booking_data=booking,
         email=payment["email"],

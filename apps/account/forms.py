@@ -2,7 +2,7 @@ from django import forms
 from django.conf import settings
 from django.contrib.postgres.forms import JSONField
 
-from apps.account.enums import Gender
+from apps.auth.enums import Gender
 from creditcards.forms import CardNumberField, CardExpiryField, SecurityCodeField
 
 
