@@ -272,7 +272,6 @@ REST_PROXY = {
 }
 
 URL_REDIRECTS = (
-    (r'www\.joinflyline\.com/(.*)', 'https://joinflyline.com/'),
+    (r'www\.joinflyline\.com/', 'https://joinflyline.com/'),
     (r'wanderift\.com/', 'https://joinflyline.com/'),
-    (r'www\.staging\.joinflyline\.com/', 'https://staging.joinflyline.com/'),
 )
