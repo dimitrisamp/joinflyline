@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: env-config
 data:
-  STAGE: production
+  STAGE: staging
   POSTGRES_HOST: 10.51.112.4
   POSTGRES_DB: joinflyline-staging
   POSTGRES_USER: postgres
