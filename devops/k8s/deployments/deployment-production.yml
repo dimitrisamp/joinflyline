@@ -77,6 +77,7 @@ spec:
       initContainers:
         - name: migrate
           image: registry.gitlab.com/zburau/joinflyline:master
+          imagePullPolicy: Always
           command: ['python', 'manage.py', 'migrate']
           envFrom:
             - configMapRef:
@@ -102,6 +103,7 @@ spec:
               mountPath: /etc/secrets
         - name: collectstatic
           image: registry.gitlab.com/zburau/joinflyline:master
+          imagePullPolicy: Always
           command: ['inv', 'static']
           envFrom:
             - configMapRef:
