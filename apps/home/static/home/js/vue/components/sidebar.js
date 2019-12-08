@@ -19,8 +19,8 @@ export const Sidebar = {
             return 'No user'
         },
         userPlan() {
-            if (this.user && this.user.subscriptions && this.plans) {
-                const p = this.plans[this.user.subscriptions.plan];
+            if (this.user && this.user.subscription && this.plans) {
+                const p = this.plans[this.user.subscription.plan];
                 if (p) return `${p.name} - $${p.price.value}/yr`;
                 return '';
             }
