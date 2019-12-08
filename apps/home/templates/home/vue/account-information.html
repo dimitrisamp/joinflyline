@@ -18,16 +18,9 @@
           <div class="col-12 col-xl-3">
             <h3>Traveler Information</h3>
           </div>
-          <div class="col-12 col-xl-7">
+          <div v-if="userReady" class="col-12 col-xl-7">
             <form action="">
               <div class="row">
-                <!--
-              <div class="col-12 col-lg-6">
-                <input type="text" class="form-control" placeholder="Email Address" />
-              </div>
-              <div class="col-12 col-lg-6">
-              </div>
-              -->
                 <div class="col-12 col-lg-6">
                   <input type="text" class="form-control" placeholder="First Name" v-model="user.first_name"/>
                 </div>
@@ -39,7 +32,7 @@
                 </div>
                 <div class="col-12 col-lg-6">
                   <div class="account__select">
-                    <select class="form-control account__select-input" v-model="profile.gender">
+                    <select class="form-control account__select-input" v-model="user.gender">
                       <option value="0">Male</option>
                       <option value="1">Female</option>
                     </select>
@@ -49,16 +42,16 @@
                   </div>
                 </div>
                 <div class="col-12 col-lg-6">
-                  <location-input :prompt="''" @place-selected="updateHomeAirport" :initial-value="profile.market"/>
+                  <location-input :prompt="''" @place-selected="updateHomeAirport" :initial-value="user.market"/>
                 </div>
                 <div class="col-12 col-lg-6">
-                  <input type="phone" class="form-control" placeholder="Phone Number" v-model="profile.phone_number"/>
+                  <input type="phone" class="form-control" placeholder="Phone Number" v-model="user.phone_number"/>
                 </div>
                 <div class="col-12 col-lg-6">
                 </div>
                 <div class="col-12 col-lg-6">
                   <input type="text" class="form-control mb-4" placeholder="Known Traveler Number"
-                         v-model="profile.tsa_precheck_number"/>
+                         v-model="user.tsa_precheck_number"/>
                 </div>
                 <div class="col-12 col-lg-6 ml-auto text-right mb-4">
                   <button type="button" class="btn btn-primary" @click="saveAccount">Save Traveler Information</button>
@@ -80,7 +73,7 @@
           </div>
           <div class="col-12 col-xl-7">
             <form action="">
-              <div class="row" v-if="frequentflyer_ready">
+              <div class="row" v-if="frequentflyerReady">
                 <div v-for="(label, value) in frequentFlyerNames" class="col-12 col-lg-6">
                   <div class="form-group">
                     <input type="text" class="form-control" :placeholder="airlineCodes[label]"
@@ -102,7 +95,6 @@
     </div>
 
     <hr>
-
     <account-deals />
 
     <hr>

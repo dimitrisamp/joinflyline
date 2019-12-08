@@ -16,8 +16,6 @@ class EditUser(serializers.ModelSerializer):
             "dob",
             "customer_id",
             "tsa_precheck_number",
-            "zip",
-            "country",
         ]
 
 
