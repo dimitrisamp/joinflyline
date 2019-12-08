@@ -693,7 +693,9 @@ header.sticky {
 
 .result-block {
   padding: 0;
+  position: relative;
 }
+
 
 .search-results .result-block {
   padding: 10px;

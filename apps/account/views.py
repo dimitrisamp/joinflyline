@@ -1,23 +1,23 @@
 import datetime
 
-from django.conf import settings
 import stripe
 import stripe.error
 from django.conf import settings
-from django.contrib.auth.models import User
+from django.db import transaction
 from django.http import JsonResponse
 from django.views.generic import FormView
 from psycopg2.extras import DateTimeTZRange
 
 from apps.account.forms import WizardForm
 from apps.account.models import Account
+from apps.auth.models import User
 from apps.emails.views import signup_success
 from apps.subscriptions.models import Subscriptions
 
 stripe.api_key = settings.STRIPE_API_KEY
 
 
-def stripe_customer(user):
+def stripe_customer(user: User):
     return stripe.Customer.create(
         email=user.email,
         name="%s %s" % (user.first_name, user.last_name),
@@ -36,32 +36,27 @@ def card_token(card_number, expiry, cvc):
     )
 
 
-def add_subscription(user_id, plan):
-    if isinstance(user_id, (int, str)):
-        user = User.objects.get(pk=user_id)
-    else:
-        user = user_id
-    if not Subscriptions.objects.filter(user=user).exists():
+def add_subscription(account: Account, plan: str):
+    if not Subscriptions.objects.filter(account=account).exists():
         subscription = stripe.Subscription.create(
-            customer=user.profile.customer_id,
+            customer=account.customer_id,
             items=[{"plan": settings.SUBSCRIPTION_PLANS[plan]["stripe_plan_id"]}],
         )
         start = datetime.datetime.fromtimestamp(subscription["current_period_start"])
         end = datetime.datetime.fromtimestamp(subscription["current_period_end"])
         Subscriptions.objects.create(
-            user=user, plan=plan, period=DateTimeTZRange(start, end)
+            account=account, plan=plan, period=DateTimeTZRange(start, end)
         )
 
 
-def add_to_stripe(user, plan):
+def add_to_stripe(user: User, plan):
     account = user.account
     stripe_card_token = card_token(account.card_number, account.expiry, account.cvc)
     account.token = stripe_card_token.id
-    account.save()
     customer = stripe_customer(user)
-    user.profile.customer_id = customer.id
-    user.profile.save()
-    add_subscription(user, plan)
+    account.customer_id = customer.id
+    account.save()
+    add_subscription(account, plan)
 
 
 class WizardView(FormView):
@@ -72,28 +67,28 @@ class WizardView(FormView):
 
     def form_valid(self, form):
         cd = form.cleaned_data
-        if User.objects.filter(email=cd["email"]).exists():
-            return JsonResponse(
-                {"errors": {"email": "User already exists"}}, status=400
+        with transaction.atomic():
+            if User.objects.filter(email=cd["email"]).exists():
+                return JsonResponse(
+                    {"errors": {"email": "User already exists"}}, status=400
+                )
+            account = Account.objects.create(
+                card_number=cd["card_number"],
+                cvc=cd["cvc"],
+                expiry=cd["expiry"],
             )
-        new_user = User.objects.create_user(
-            cd["email"],
-            cd["email"],
-            cd["password"],
-            first_name=cd["first_name"],
-            last_name=cd["last_name"],
-        )
-        signup_success(new_user.pk)
-        # TODO: handle promocode
-        account = Account.objects.create(
-            user=new_user,
-            card_number=cd["card_number"],
-            cvc=cd["cvc"],
-            expiry=cd["expiry"],
-            zip=cd["zip"],
-        )
-        new_user.profile.market = cd["home_airport"]
-        new_user.profile.save()
-        if account.card_number and account.expiry and account.cvc:
-            add_to_stripe(new_user, cd["plan"])
-        return JsonResponse({"success": True})
+            new_user = User.objects.create_user(
+                cd["email"],
+                cd["email"],
+                cd["password"],
+                first_name=cd["first_name"],
+                last_name=cd["last_name"],
+                zip=cd["zip"],
+                market=cd["home_airport"],
+                account=account
+            )
+            signup_success(new_user.pk)
+            # TODO: handle promocode
+            if account.card_number and account.expiry and account.cvc:
+                add_to_stripe(new_user, cd["plan"])
+            return JsonResponse({"success": True})

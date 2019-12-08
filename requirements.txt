@@ -7,11 +7,9 @@ django-spurl
 sendgrid
 sentry-sdk
 django-suit
-
 python-dotenv
 psycopg2-binary
 invoke
-
 django-extensions
 factory-boy
 django-enumfield

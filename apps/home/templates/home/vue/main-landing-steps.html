@@ -1,7 +1,7 @@
 {% load static %}
 <script type="text/x-template" id="vue-main-landing-steps-template">
   <div class="steps__container">
-    
+
       <!-- Step 1 with background starts -->
       <div class="steps steps--background-blue steps--lines-left js-steps-large-blue" >
         <div class="steps__inner">
@@ -11,7 +11,7 @@
                       <h2 class="steps__title title--blue-big">Step 1</h2>
                       <h3 class="steps__subtitle title--black">Choose Your Subscription</h3>
                       <p class="steps__text">Choose between FlyLine Basic <br> or Pro for great savings!</p>
-                      <a class="button button--big button--blue" href="#section5-Bg">View Plans</a>
+                      <router-link class="button button--big button--blue" :to="{name: 'membership-explained'}">Learn More</router-link>
                   </div>
                   <div class="col-12 col-lg-6 hide-element-on-mobile">
                       <img class="steps__logo" src="{% static "home/img/main-landing/Flyline_Logo_Blk_Whi.svg" %}" alt="Logo">
@@ -45,10 +45,10 @@
                           <h2 class="steps__title title--blue-big">Step 2</h2>
                           <h3 class="steps__subtitle title--black">Search for Savings</h3>
                           <p class="steps__text">Search our flight inventory to find savings on <br> both domestic and international flights</p>
-                          <a class="button button--big button--blue" href="#search-hero">Search Flights</a>
+                          <router-link class="button button--big button--blue" :to="{name: 'flyline101'}">Savings Explained</router-link>
                       </div>
                   </div>
-                  
+
               </div>
           </div>
       </div>
@@ -58,7 +58,7 @@
       <div class="steps steps--background-blue steps--lines-right js-steps-large-blue">
           <div class="container">
               <div class="row">
-                
+
                 <!-- Left Start -->
                 <div class="col-12 col-lg-6">
                   <div class="steps__left">

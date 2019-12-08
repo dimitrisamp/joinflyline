@@ -25,7 +25,7 @@ from django.views import View
 from django.views.generic import TemplateView
 from rest_framework import routers
 
-from apps.account.viewsets import AccountViewSet, FrequentFlyerViewSet, ProfileViewSet, DealWatchViewSet
+from apps.account.viewsets import FrequentFlyerViewSet, DealWatchViewSet, CompanionInviteViewSet
 from apps.booking.views import (
     CheckFlightsView,
     SaveBookingView,
@@ -49,12 +49,10 @@ router.register(r'flight', FlightViewSet)
 router.register(r'deals', DealViewSet, basename="deals")
 router.register(r'search-history', SearchHistoryViewSet, basename='search-history')
 router.register(r'deal-watch', DealWatchViewSet, basename='deal-watch')
+router.register(r'companion', CompanionInviteViewSet, basename='companion-invite')
 
 user_router = UserRouter()
-user_router.register(r'account', AccountViewSet, basename='account')
 user_router.register(r'frequentflyer', FrequentFlyerViewSet, basename='frequentflyer')
-user_router.register(r'profile', ProfileViewSet, basename='profile')
-
 
 
 class SiteMapView(View):
@@ -73,7 +71,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("", index_view, name="index"),
     # Auth urls
-    path("auth/", include("apps.oauth.urls")),
+    path("auth/", include("apps.auth.urls")),
     path(r'api/auth/', include('knox.urls')),
     # booking
     path("promo/", lambda _: redirect("/#/promo/"), name="promo-landing"),

@@ -1,30 +1,24 @@
-from django.contrib.auth import get_user_model
 from rest_framework.viewsets import GenericViewSet
-from apps.account import serializers
+
+import apps.auth.serializers
 from rest_framework import mixins
 
 from apps.account.models import FrequentFlyer, Account
+from apps.auth.models import User
 
-UserModel = get_user_model()
 
-
-class UserViewSet(
-    mixins.UpdateModelMixin,
-    mixins.RetrieveModelMixin,
-    GenericViewSet,
-):
-    queryset = UserModel.objects.all()
-    serializer_class = serializers.User
+class UserViewSet(mixins.UpdateModelMixin, mixins.RetrieveModelMixin, GenericViewSet):
+    queryset = User.objects.all()
+    serializer_class = apps.auth.serializers.User
 
     def get_object(self):
         if self.kwargs.get("pk", None) == "me":
             self.kwargs["pk"] = self.request.user.pk
         user = super(UserViewSet, self).get_object()
         FrequentFlyer.objects.get_or_create(user=user)
-        Account.objects.get_or_create(user=user)
         return user
 
     def get_serializer_class(self):
-        if self.action in ('update', 'partial_update'):
-            return serializers.EditUser
-        return serializers.User
+        if self.action in ("update", "partial_update"):
+            return apps.auth.serializers.EditUser
+        return apps.auth.serializers.User

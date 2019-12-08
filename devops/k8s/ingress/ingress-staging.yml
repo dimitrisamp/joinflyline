@@ -17,5 +17,5 @@ spec:
         paths:
           - path: /
             backend:
-              serviceName: wanderift-service
+              serviceName: wanderift-service-staging
               servicePort: 80

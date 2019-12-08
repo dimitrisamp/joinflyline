@@ -1,6 +1,6 @@
 .fly-line {
   &__container {
-    padding: 4rem 4rem 4rem 0;
+    padding: 4rem 4rem 1rem 0;
   }
   &__content {
     background-color: $main-landing-footer-bg;
@@ -8,28 +8,29 @@
   }
 
   &__item {
-    margin-bottom: 3.5rem;
-    border-bottom: 2px solid  transparentize($white, 0.50%);
+    margin-bottom: 1rem;
+    border-bottom: 1px solid  transparentize($white, 0.50%);
   }
   &__title {
     font-family: $dona-black;
-    font-size: 3.7rem;
+    font-size: 2.2rem;
 
     &--small {
-      font-size: 2.375rem;
+      font-size: 1.5rem;
     }
   }
 
   p {
-    font-size: 1.25rem;
-    color: transparentize($white, 0.50%)
+    font-size: 1rem;
+    color: transparentize($white, 0.50%);
+    line-height: 2rem;
   }
 
   &__body {
     &-item {
       ul {
         margin-bottom: 1rem;
-        font-size: 1.25rem;
+        font-size: 1rem;
         list-style-type: decimal;
         li {
           color: transparentize($white, 0.50%);

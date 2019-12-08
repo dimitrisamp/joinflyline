@@ -6,15 +6,18 @@ export const MembershipExplained = Vue.component("membership-explained", {
       tabs: [
         {
           title: "0 - 6 Round Trips",
-          plan: "basic"
+          plan: "basic",
+          builtFor: ['Leisure Travelers', 'Solo Travelers', 'Small Family Trip']
         },
         {
           title: "6 - 9 Round Trips",
-          plan: "basic-plus"
+          plan: "basic-plus",
+          builtFor: ['Leisure Travelers', 'Light Business Travel', 'Small Family Trip', 'Couples and individuals that traveling together']
         },
         {
           title: "9+ Round Trips",
-          plan: "pro"
+          plan: "pro",
+          builtFor: ['Business Travel', 'Active Leisure Travelers']
         }
       ],
       selectedIndex: 0,

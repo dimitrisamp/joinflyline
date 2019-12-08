@@ -48,12 +48,11 @@
                     </div>
                   </div>
                   <div class="col-12 col-lg-7">
-                    <!-- Zach Said text should come here -->
                     <div class="tabs__content-inner">
-                      <h2>We choose this for you because</h2>
-                      <p>- We are awesome devs</p>
-                      <p>- We are the best in the world</p>
-                      <p>- We are nerds</p>
+                      <h2>This Plan is Built For</h2>
+                      <ul>
+                      <li v-for="item in tab.builtFor">[[ item ]]</li>
+                      </ul>
                     </div>
                   </div>
                 </div>
@@ -88,29 +87,23 @@
           </tab>
           <tab title="Automatic Check-in">
             <ul class="membership-explained__tab-list">
+              <li>24hrs before your flight we will check you in to your flight. No more alarms and reminders to complete this task anymore. Just book and forget about it. We’ll take care of the rest.</li>
               <li>Included in all plans (Basic, Basic Plus, and Pro)</li>
-              <li>A booking is defined as the purchase of flight for an individual</li>
-              <li>Basic Members are limited to six (6) bookings every twelve (12) months</li>
-              <li>Basic Plus Members are limited to nine (9) bookings every twelve (12) months</li>
-              <li>Pro Members have unlimited booking</li>
             </ul>
           </tab>
           <tab title="Companion Accounts">
             <ul class="membership-explained__tab-list">
-              <li>Included in all plans (Basic, Basic Plus, and Pro)</li>
-              <li>A booking is defined as the purchase of flight for an individual</li>
-              <li>Basic Members are limited to six (6) bookings every twelve (12) months</li>
-              <li>Basic Plus Members are limited to nine (9) bookings every twelve (12) months</li>
-              <li>Pro Members have unlimited booking</li>
+              <li>Included with Basic Plus and Pro plans</li>
+              <li>A companion is defined as an individual designated by a paid member to be a non-paid member associated with their account</li>
+              <li>When you designate a companion, they will receive a welcome email prompting them to setup an account with FlyLine under your membership</li>
+              <li>Companions will be allowed to book as members, with each of their bookings counting against your total bookings</li>
+              <li>Basic Plus and Pro Members are allowed a companion</li>
             </ul>
           </tab>
           <tab title="Deal Alerts">
             <ul class="membership-explained__tab-list">
-              <li>Included in all plans (Basic, Basic Plus, and Pro)</li>
-              <li>A booking is defined as the purchase of flight for an individual</li>
-              <li>Basic Members are limited to six (6) bookings every twelve (12) months</li>
-              <li>Basic Plus Members are limited to nine (9) bookings every twelve (12) months</li>
-              <li>Pro Members have unlimited booking</li>
+              <li>Included with Basic Plus and Pro plans</li>
+              <li>You have the ability to list destinations you want to monitor for discounts and price drops. FlyLine will then monitor these destinations and alert you when prices for those destinations reach a deal-worthy level.</li>
             </ul>
           </tab>
         </tabs>
@@ -123,8 +116,8 @@
         <div class="business-model__container">
           <h2 class="business-model__title">Ready to Save?</h2>
           <p class="business-model__text">
-            Whether you travel for leisure or for work, we have a plan for you. Use our helpful <br>
-            guide to assist with selecting the right plan for your travel type.
+            Are you ready to start saving on flights and simplify your travel? <br>
+            Click the button below to get started with your FlyLine membership, plans start at $39.
           </p>
           <router-link :to="{name: 'get-started'}" class="button button--big">Get Started</router-link>
         </div>

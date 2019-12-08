@@ -1,26 +1,16 @@
-from django.contrib import messages, auth
-from django.contrib.auth import authenticate, logout
-from django.contrib.auth.models import User
-from django.http import HttpResponse
-from django.shortcuts import redirect
-from django.template.loader import render_to_string
-from django.urls import reverse
-from django.views import View
-
-from apps.common.context_processors.common import get_user_info
-from apps.home.views import index_view
-
-from apps.emails.views import signup_success, forgot_password
-from apps.oauth.forms import PasswordResetForm
-from django.core.mail import send_mail
-from datetime import datetime, timedelta
-from django.conf import settings
-
-from django.views.generic import FormView
-from django.http import JsonResponse
-from django.conf import settings
-
 import random
+
+from django.contrib import auth
+from django.contrib.auth import authenticate, logout
+from apps.auth.models import User
+from django.http import JsonResponse
+from django.shortcuts import redirect
+from django.urls import reverse
+from django.views.generic import FormView
+
+from apps.auth.forms import PasswordResetForm
+from apps.emails.views import signup_success, forgot_password
+from apps.home.views import index_view
 
 
 def create_user(request):
@@ -61,13 +51,8 @@ class ForgotPasswordView(FormView):
 
         secret = random_16bit_hex_string()
         forgot_password(user.pk, secret)
-
-        user.profile.secret = secret
-        user.profile.expiration_time = datetime.now() + timedelta(
-            seconds=settings.SECRET_LINK_EXPIRATION_SECONDS)
-        user.profile.save()
-
         return redirect(index_view)
+
 
 def random_16bit_hex_string():
     hex_characters = '0123456789abcdef'
@@ -87,8 +72,3 @@ def check_user_view(request):
         if User.objects.filter(email=email).exists():
             result = True
     return JsonResponse({'exists': result})
-
-
-class UserInfoView(View):
-    def get(self, request):
-        return JsonResponse(get_user_info(request.user))

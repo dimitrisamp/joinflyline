@@ -56,7 +56,7 @@ INSTALLED_APPS = [
     "apps.home",
     "apps.account.apps.AccountConfig",
     "apps.booking",
-    "apps.oauth",
+    "apps.auth.apps.AuthConfig",
     "apps.emails",
     "apps.common",
     "anymail",
@@ -64,6 +64,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    "apps.common.middleware.UrlRedirectMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -74,6 +75,8 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "django.middleware.common.CommonMiddleware",
 ]
+
+AUTH_USER_MODEL = "oauth.user"
 
 ROOT_URLCONF = "wanderift.urls"
 
@@ -94,7 +97,6 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
-                "apps.common.context_processors.common.common_processor",
             ],
         },
     }
@@ -268,3 +270,8 @@ REST_PROXY = {
         'apikey': KIWI_API_KEY,
     },
 }
+
+URL_REDIRECTS = (
+    (r'www\.joinflyline\.com/', 'https://joinflyline.com/'),
+    (r'wanderift\.com/', 'https://joinflyline.com/'),
+)

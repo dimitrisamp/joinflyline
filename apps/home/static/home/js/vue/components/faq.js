@@ -3,7 +3,91 @@ export const Faq = Vue.component('faq', {
   delimiters: ['[[', ']]'],
   data() {
     return {
+
       faqList: [
+        {
+          id: 1,
+          active: false,
+          title: "Why are flights cheaper on FlyLine than otherbooking sites?",
+          details: `
+            Simply put, we don’t markup the wholesale rates we source from the airlines.
+          `
+        },
+        {
+          id: 2,
+          active: false,
+          title: "Why do I need a membership to purchase a flight on FlyLine?",
+          details: `
+            Membership revenue enables us to pass along really low wholesale airfare pricing to ourmembers
+          `
+        },
+        {
+          id: 3,
+          active: false,
+          title: "What is FlyLine’s flight purchase refund policy?",
+          details: `
+            Members have 24 hours to cancel their booking to receive a full refund.
+          `
+        },
+        {
+          id: 4,
+          active: false,
+          title: "What is virtual interlining?",
+          details: `
+            Interlining, also known asinterlineticketing andinterlinebooking, is a voluntary commercial agreement between individualairlinesto handle passengers traveling on itineraries that require multipleflightson multipleairlines. At FlyLine, we handle this process virtually for members so that the booking process is seamless and easy.
+          `
+        },
+        {
+          id: 5,
+          active: false,
+          title: "Do flight prices include taxes & fees?",
+          details: `
+            Yes, flight purchase prices include all taxes and fees.
+          `
+        },
+        {
+          id: 6,
+          active: false,
+          title: "Do flight prices include baggage fees?",
+          details: `
+            No, checked baggage can be an additional cost depending on the airline, the frequent flyer status of the flyer, and the class of ticket purchased.
+          `
+        },
+        {
+          id: 7,
+          active: false,
+          title: "Can I book a flight for me and my child?",
+          details: `
+            When searching for flights on FlyLine, you can select the number of children and infant passengers via the traveler drop-down menu. Then book the selected flight for you and your child passenger.
+          `
+        },
+        {
+          id: 8,
+          active: false,
+          title: "Can I book a flight for another person?",
+          details: `
+            Any paid member or companion can purchase a flight and add as many people to their reservation as necessary, as long as they are listed on the reservation as well.
+          `
+        },
+        {
+          id: 9,
+          active: false,
+          title: "What is a companion account?",
+          details: `
+            A companion account is an invite-only account that is prompted by a paying member. This feature is limited to Basic Plus and Pro members, whom are allowed to designate a companion (friend, family member, coworker) that they want to associate with their account. The companion is given membership status for as long as the paid member has a valid membership and has maintained the companion status of the companion. Companions have full membership booking capabilities and can book with or without the presence of paid members on their flight itineraries. Paid members are can change the designation of their companion account up to two times each 12-month period.
+          `
+        },
+        {
+          id: 10,
+          active: false,
+          title: "How do I cancel my subscription?",
+          details: `
+            Please email support@joinflyline.com to cancel
+          `
+        }
+      ],
+
+      faqList2: [
         {
           id: 1,
           active: false,
@@ -39,7 +123,7 @@ export const Faq = Vue.component('faq', {
           `
         }
       ],
-      faqList2: [
+      faqList3: [
         {
           id: 1,
           active: false,
@@ -73,7 +157,7 @@ export const Faq = Vue.component('faq', {
           `
         },
       ],
-      faqList3: [
+      faqList4: [
         {
           id: 1,
           active: false,
@@ -115,7 +199,7 @@ export const Faq = Vue.component('faq', {
           `
         },
       ],
-      faqList4: [
+      faqList5: [
         {
           id: 1,
           active: false,
@@ -157,7 +241,7 @@ export const Faq = Vue.component('faq', {
           `
         },
       ],
-      faqList5: [
+      faqList6: [
         {
           id: 1,
           active: false,
@@ -175,7 +259,7 @@ export const Faq = Vue.component('faq', {
           `
         },
       ],
-      faqList6: [
+      faqList7: [
         {
           id: 1,
           active: false,
@@ -210,7 +294,7 @@ export const Faq = Vue.component('faq', {
           `
         },
       ],
-      faqList7: [
+      faqList8: [
         {
           id: 1,
           active: false,
@@ -229,7 +313,7 @@ export const Faq = Vue.component('faq', {
           `
         },
       ],
-      faqList8: [
+      faqList9: [
         {
           id: 1,
           active: false,
@@ -247,7 +331,7 @@ export const Faq = Vue.component('faq', {
           `
         },
       ],
-      faqList9: [
+      faqList10: [
         {
           id: 1,
           active: false,

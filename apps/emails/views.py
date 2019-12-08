@@ -1,14 +1,10 @@
-from django.contrib.auth import get_user_model
-from django.http import HttpResponse
-from django.shortcuts import render
 from django.template.loader import render_to_string
 
+from apps.auth.models import User
 from apps.booking.models import BookingContact
 from django.core.mail import send_mail
 from django.conf import settings
 
-
-User = get_user_model()
 
 def booking_success(request, booking):
     booking_contact = BookingContact.objects.filter(booking_id=booking["booking_id"]).first()
