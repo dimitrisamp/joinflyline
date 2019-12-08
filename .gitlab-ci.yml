@@ -45,7 +45,7 @@ k8s-deploy-staging:
   - kubectl apply -f devops/k8s/deployments/deployment-staging.yml -n ${KUBE_NAMESPACE}
   - kubectl apply -f devops/k8s/services/service-staging.yml -n ${KUBE_NAMESPACE}
   environment:
-    name: staging
+    name: test
     url: https://staging.joinflyline.com
 
 k8s-deploy-production:

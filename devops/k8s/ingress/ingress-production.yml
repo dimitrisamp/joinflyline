@@ -6,21 +6,31 @@ metadata:
     kubernetes.io/ingress.class: "nginx"
     certmanager.k8s.io/cluster-issuer: 'letsencrypt-prod'
     certmanager.k8s.io/acme-challenge-type: http01
+    ingress.kubernetes.io/configuration-snippet: | 
+        rewrite ^/(.*)$ https://joinflyline.com$1 permanent;
 spec:
   tls:
     - hosts:
-        - staging.joinflyline.com
         - joinflyline.com
+        - wanderift.com
+        - www.joinflyline.com
       secretName: wanderift-secret
   rules:
-    - host: staging.joinflyline.com
+    - host: joinflyline.com
       http:
         paths:
           - path: /
             backend:
-              serviceName: wanderift-service-staging
+              serviceName: wanderift-service-production
               servicePort: 80
-    - host: joinflyline.com
+    - host: wanderift.com
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: wanderift-service-production
+              servicePort: 80
+    - host: www.joinflyline.com
       http:
         paths:
           - path: /
