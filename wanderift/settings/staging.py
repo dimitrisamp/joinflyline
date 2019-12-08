@@ -1,4 +1,4 @@
-from .base import *
+from .common_server import *
 
 
 GS_BUCKET_NAME = "joinflyline-staging"
