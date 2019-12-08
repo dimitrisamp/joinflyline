@@ -1,14 +1,11 @@
+from creditcards.models import CardExpiryField, CardNumberField, SecurityCodeField
+from django.conf import settings
+from django.contrib.postgres.fields import JSONField, ArrayField
+from django.db import models
 from django_enumfield.db.fields import EnumField
 
 from apps.account import enums
 from apps.auth.models import User
-from django.contrib.postgres.fields import JSONField, ArrayField
-from django.conf import settings
-from django.db import models
-from django_enumfield import enum
-from creditcards.models import CardExpiryField, CardNumberField, SecurityCodeField
-
-from apps.account import enums
 from apps.booking.models import Deal
 from wanderift.utils import l2q
 
