@@ -1,112 +1,11 @@
 import random
 
-import factory
 import factory.fuzzy
 
-from apps.account.models import DealWatch, Account
-from .. import signals
-
-DESTINATIONS = [
-    {
-        "code": "DFW",
-        "name": "Dallas",
-        "type": "city",
-        "country": {"code": "US"},
-        "subdivision": {"name": "Texas"},
-    },
-    {
-        "code": "LAS",
-        "name": "Las Vegas",
-        "type": "city",
-        "country": {"code": "US"},
-        "subdivision": {"name": "Nevada"},
-    },
-    {
-        "code": "NYC",
-        "name": "New York",
-        "type": "city",
-        "country": {"code": "US"},
-        "subdivision": {"name": "New York"},
-    },
-    {
-        "code": "WAS",
-        "name": "Washington, D.C.",
-        "type": "city",
-        "country": {"code": "US"},
-        "subdivision": {"name": "District of Columbia"},
-    },
-    {
-        "code": "HOU",
-        "name": "Houston",
-        "type": "city",
-        "country": {"code": "US"},
-        "subdivision": {"name": "Texas"},
-    },
-    {
-        "code": "LAX",
-        "name": "Los Angeles",
-        "type": "city",
-        "country": {"code": "US"},
-        "subdivision": {"name": "California"},
-    },
-    {
-        "code": "ALA",
-        "name": "Almaty",
-        "type": "city",
-        "country": {"code": "KZ"},
-        "subdivision": {"name": None},
-    },
-    {
-        "code": "TSE",
-        "name": "Nur-Sultan",
-        "type": "city",
-        "country": {"code": "KZ"},
-        "subdivision": {"name": None},
-    },
-    {
-        "code": "CAI",
-        "name": "Cairo",
-        "type": "city",
-        "country": {"code": "EG"},
-        "subdivision": {"name": None},
-    },
-    {
-        "code": "MOW",
-        "name": "Moscow",
-        "type": "city",
-        "country": {"code": "RU"},
-        "subdivision": {"name": "Central Federal District"},
-    },
-    {
-        "code": "BJS",
-        "name": "Beijing",
-        "type": "city",
-        "country": {"code": "CN"},
-        "subdivision": {"name": None},
-    },
-]
-AIRLINES = [
-    "DL",
-    "AS",
-    "NK",
-    "B6",
-    "F9",
-    "G4",
-    "UA",
-    "AA",
-    "WN",
-    "SY",
-    "4O",
-    "AC",
-    "AF",
-    "AM",
-    "DI",
-    "EK",
-    "F8",
-    "HU",
-    "KL",
-    "LH",
-]
+from apps.account.enums import CompanionInviteStatus
+from apps.account.models import DealWatch, Account, CompanionInvite
+from apps.account.tests.data import DESTINATIONS, AIRLINES
+from apps.auth.factories import SubscriberUserFactory
 
 
 class DealWatchFactory(factory.DjangoModelFactory):
@@ -132,8 +31,19 @@ class AccountFactory(factory.DjangoModelFactory):
     class Meta:
         model = Account
 
-    card_number = factory.faker.Faker('credit_card_number')
-    cvc = factory.faker.Faker('credit_card_security_code')
-    expiry = factory.faker.Faker('credit_card_expire')
-    stripe_id = ''
-    customer_id = ''
+    card_number = factory.faker.Faker("credit_card_number")
+    cvc = factory.faker.Faker("credit_card_security_code")
+    expiry = factory.faker.Faker("credit_card_expire")
+    stripe_id = ""
+    customer_id = ""
+
+
+class CompanionInviteFactory(factory.DjangoModelFactory):
+    class Meta:
+        model = CompanionInvite
+
+    email = factory.faker.Faker('email')
+    sender = factory.SubFactory(SubscriberUserFactory)
+    user = None
+    status = CompanionInviteStatus.created
+

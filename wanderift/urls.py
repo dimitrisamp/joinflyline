@@ -37,7 +37,7 @@ from apps.booking.viewsets import (
 from apps.common.user_router import UserRouter
 from apps.emails.views import booking_success
 from apps.home.views import index_view
-from apps.account.views import WizardView
+from apps.account.views import WizardView, InviteCheckView
 from apps.account.api_views import UserViewSet
 from django.conf import settings
 
@@ -91,6 +91,7 @@ urlpatterns = [
     path("api/booking/check_flights/", CheckFlightsView.as_view(), name="check-flights"),
     path("api/locations/query/", LocationQueryView.as_view(), name="location-query"),
     path("api/search/", FlightSearchView.as_view(), name="flight-search"),
+    path("api/invite-check/", InviteCheckView.as_view(), name="invite-check"),
     re_path("^api/users/me/", include(user_router.urls)),
     re_path("^api/", include(router.urls)),
 ]

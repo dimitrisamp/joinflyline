@@ -1,16 +1,15 @@
 import factory.fuzzy
 from django.utils.timezone import now
 
-from apps.account.tests.factories import DESTINATIONS, AccountFactory
+from apps.account.tests.data import DESTINATIONS
 from apps.auth.enums import Gender
 from apps.auth.models import User
-from apps.subscriptions.tests.factories import SubscriptionsFactory
 
 
 class UserFactory(factory.DjangoModelFactory):
     class Meta:
         model = User
-    account = factory.SubFactory(AccountFactory)
+    account = factory.SubFactory('apps.account.tests.factories.AccountFactory')
     first_name = factory.Faker('first_name')
     last_name = factory.Faker('last_name')
     email = factory.LazyAttribute(lambda a: f'{a.first_name}.{a.last_name}@example.com')
@@ -31,6 +30,7 @@ class UserFactory(factory.DjangoModelFactory):
 class SubscriberUserFactory(UserFactory):
     @factory.post_generation
     def subscription(self, create, value, **kwargs):
+        from apps.subscriptions.tests.factories import SubscriptionsFactory
         if not create:
             return
         data = {'account': self.account}

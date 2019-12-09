@@ -5,11 +5,18 @@ import stripe.error
 from django.conf import settings
 from django.db import transaction
 from django.http import JsonResponse
+from django.utils.timezone import now
 from django.views.generic import FormView
 from psycopg2.extras import DateTimeTZRange
+from rest_framework.generics import get_object_or_404
+from rest_framework.response import Response
+from rest_framework import status
+from rest_framework.views import APIView
 
+from apps.account import serializers
+from apps.account.enums import CompanionInviteStatus
 from apps.account.forms import WizardForm
-from apps.account.models import Account
+from apps.account.models import Account, CompanionInvite
 from apps.auth.models import User
 from apps.emails.views import signup_success
 from apps.subscriptions.models import Subscriptions
@@ -59,6 +66,16 @@ def add_to_stripe(user: User, plan):
     add_subscription(account, plan)
 
 
+class InviteCheckView(APIView):
+    def get(self, request):
+        code = request.query_params.get("code")
+        invite = get_object_or_404(CompanionInvite, invite_code=code, status=CompanionInviteStatus.created)
+        invite.accessed = now()
+        invite.save()
+        return Response(serializers.CompanionInvite(instance=invite).data)
+
+
+
 class WizardView(FormView):
     form_class = WizardForm
 
@@ -73,9 +90,7 @@ class WizardView(FormView):
                     {"errors": {"email": "User already exists"}}, status=400
                 )
             account = Account.objects.create(
-                card_number=cd["card_number"],
-                cvc=cd["cvc"],
-                expiry=cd["expiry"],
+                card_number=cd["card_number"], cvc=cd["cvc"], expiry=cd["expiry"]
             )
             new_user = User.objects.create_user(
                 cd["email"],
@@ -85,7 +100,7 @@ class WizardView(FormView):
                 last_name=cd["last_name"],
                 zip=cd["zip"],
                 market=cd["home_airport"],
-                account=account
+                account=account,
             )
             signup_success(new_user.pk)
             # TODO: handle promocode

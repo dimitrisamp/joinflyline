@@ -1,3 +1,6 @@
+import random
+import string
+
 from creditcards.models import CardExpiryField, CardNumberField, SecurityCodeField
 from django.conf import settings
 from django.contrib.postgres.fields import JSONField, ArrayField
@@ -104,6 +107,11 @@ class DealWatch(models.Model):
         return f"{self.user} {self.destination} {self.max_price} {self.airlines}"
 
 
+def generate_invite_code():
+    choose_from = string.ascii_letters + string.digits
+    return ''.join([random.choice(choose_from) for _ in range(20)])
+
+
 class CompanionInvite(models.Model):
     email = models.EmailField()
     sender = models.ForeignKey(
@@ -119,7 +127,7 @@ class CompanionInvite(models.Model):
     status = EnumField(
         enums.CompanionInviteStatus, default=enums.CompanionInviteStatus.created
     )
-    invite_code = models.CharField(max_length=50)
+    invite_code = models.CharField(max_length=50, default=generate_invite_code)
     invited = models.DateTimeField(auto_now_add=True)
     accessed = models.DateTimeField(null=True, blank=True)
     signed_up = models.DateTimeField(null=True, blank=True)
