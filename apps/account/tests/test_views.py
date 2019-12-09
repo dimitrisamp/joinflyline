@@ -100,6 +100,7 @@ def test_invite_register(bad, result, customer, anonapiclient):
         companion = User.objects.get(email=invite.email)
         assert companion.role == UserRole.COMPANION
         assert invite.status == CompanionInviteStatus.active
+        assert companion.account == customer.account
 
 
 def test_companion_cannot_invite(db):
