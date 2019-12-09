@@ -1,8 +1,9 @@
 import factory.fuzzy
 from django.utils.timezone import now
 
+from apps.account.enums import CompanionInviteStatus
 from apps.account.tests.data import DESTINATIONS
-from apps.auth.enums import Gender
+from apps.auth.enums import Gender, UserRole
 from apps.auth.models import User
 
 
@@ -28,6 +29,8 @@ class UserFactory(factory.DjangoModelFactory):
 
 
 class SubscriberUserFactory(UserFactory):
+    role = UserRole.SUBSCRIBER
+
     @factory.post_generation
     def subscription(self, create, value, **kwargs):
         from apps.subscriptions.tests.factories import SubscriptionsFactory
@@ -35,3 +38,27 @@ class SubscriberUserFactory(UserFactory):
             return
         data = {'account': self.account}
         SubscriptionsFactory(**data, **kwargs)
+
+
+class CompanionUserFactory(UserFactory):
+    role = UserRole.COMPANION
+    account = None
+
+    class Params:
+        subscriber = None
+
+    @factory.post_generation
+    def account(self, create, value, **kwargs):
+        from apps.account.tests.factories import CompanionInviteFactory
+        subscriber = SubscriberUserFactory()
+        current_time = now()
+        CompanionInviteFactory.build(
+            email=self.email,
+            sender=subscriber,
+            user=self,
+            status=CompanionInviteStatus.active,
+            accessed=current_time,
+            signed_up=current_time
+        )
+        self.account = subscriber.account
+        self.save()

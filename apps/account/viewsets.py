@@ -14,6 +14,7 @@ from rest_framework.mixins import (
 
 from . import models as accounts_models, enums
 from . import serializers
+from ..auth.enums import UserRole
 from ..auth.models import User
 from ..emails.tasks import invite_companion
 
@@ -57,6 +58,10 @@ class CompanionInviteViewSet(
         return accounts_models.CompanionInvite.objects.filter(sender=self.request.user)
 
     def create(self, request, *args, **kwargs):
+        if self.request.user.role == UserRole.COMPANION:
+            return Response(
+                {"error": {"code": "non-subscriber"}}, status=status.HTTP_403_FORBIDDEN
+            )
         with transaction.atomic():
             subscription = self.request.user.subscription()
             if not subscription:

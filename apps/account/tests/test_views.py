@@ -4,12 +4,13 @@ import factory
 import pytest
 from django.urls import reverse
 from django.utils.dateparse import parse_datetime
+from rest_framework.test import APIClient
 
 from apps.account.enums import CompanionInviteStatus
 from apps.account.models import CompanionInvite
 from apps.account.tests.data import DESTINATIONS
 from apps.account.tests.factories import CompanionInviteFactory
-from apps.auth.factories import UserFactory, SubscriberUserFactory
+from apps.auth.factories import UserFactory, SubscriberUserFactory, CompanionUserFactory
 
 COMPANION_EMAIL = "companion@example.com"
 EXISTING_USER_EMAIL = "existing.user@example.com"
@@ -83,3 +84,11 @@ def test_invite_register(bad, result, customer, anonapiclient):
     )
     assert resp.status_code == result
 
+
+def test_companion_cannot_invite(db):
+    companion = CompanionUserFactory()
+    client = APIClient()
+    client.force_authenticate(companion)
+    email = factory.faker.Faker('email').generate()
+    resp = client.post(reverse("companion-list"), {"email": email})
+    assert resp.status_code == 403

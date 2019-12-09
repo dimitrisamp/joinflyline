@@ -46,4 +46,6 @@ class CompanionInviteFactory(factory.DjangoModelFactory):
     sender = factory.SubFactory(SubscriberUserFactory)
     user = None
     status = CompanionInviteStatus.created
+    accessed = None
+    signed_up = None
 
