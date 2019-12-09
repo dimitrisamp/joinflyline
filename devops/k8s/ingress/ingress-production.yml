@@ -13,6 +13,7 @@ spec:
     - hosts:
         - joinflyline.com
         - wanderift.com
+        - www.wanderift.com
         - www.joinflyline.com
       secretName: wanderift-secret
   rules:
