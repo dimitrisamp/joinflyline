@@ -1,3 +1,7 @@
+import api from "../http.js";
+
+const getStartedCompanionUrl = '/get-started-companion/';
+
 export const Wizard = Vue.component("wizard", {
   template: "#vue-wizard-template",
   metaInfo: {
@@ -20,9 +24,19 @@ export const Wizard = Vue.component("wizard", {
         card_number: "",
         expiry: "",
         cvc: "",
-        plan: null
-      }
+        plan: null,
+        code: this.$route.query.code,
+      },
+      inviteMode: this.$route.query.hasOwnProperty("code"),
+      invite: null,
+      inviteCodeCheckProgress: false,
+      inviteCodeRejected: false
     };
+  },
+  created() {
+    if (this.inviteMode) {
+      this.checkInvite();
+    }
   },
   delimiters: ["{(", ")}"],
   watch: {
@@ -48,6 +62,21 @@ export const Wizard = Vue.component("wizard", {
           that.step = 2;
         }
       });
+    },
+    checkInvite() {
+      this.inviteCodeCheckProgress = true;
+      api
+        .get("check-invite/", { params: { code: this.form.code } })
+        .then(response => {
+          this.invite = response.data;
+          this.form.email = response.data.email;
+        })
+        .catch(e => {
+          this.inviteCodeRejected = true;
+        })
+        .finally(() => {
+          this.inviteCodeCheckProgress = false;
+        });
     },
     verifyEmail(callback) {
       if (this.emailInvalid) return;
@@ -94,7 +123,7 @@ export const Wizard = Vue.component("wizard", {
             }
           }
         }
-        fetch(getStartedUrl, {
+        fetch(this.inviteMode?getStartedCompanionUrl:getStartedUrl, {
           method: "POST",
           body: formData
         })
@@ -118,6 +147,11 @@ export const Wizard = Vue.component("wizard", {
     emailInvalid() {
       return this.form.email.length > 0 && !this.form.email.includes("@");
     },
+    displayForm() {
+      if (!this.inviteMode) return true;
+      if (this.inviteCodeCheckProgress) return false;
+      if (this.invite) return true;
+    },
     isStep1Complete() {
       return (
         this.form.home_airport !== "" &&
@@ -127,6 +161,9 @@ export const Wizard = Vue.component("wizard", {
       );
     },
     isStep2Complete() {
+      if (this.inviteMode) {
+        return this.form.first_name !== "" && this.form.last_name !== "";
+      }
       return (
         this.form.first_name !== "" &&
         this.form.last_name !== "" &&

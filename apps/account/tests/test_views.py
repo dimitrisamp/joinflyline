@@ -1,9 +1,13 @@
+import json
+
+import factory
 import pytest
 from django.urls import reverse
 from django.utils.dateparse import parse_datetime
 
 from apps.account.enums import CompanionInviteStatus
 from apps.account.models import CompanionInvite
+from apps.account.tests.data import DESTINATIONS
 from apps.account.tests.factories import CompanionInviteFactory
 from apps.auth.factories import UserFactory, SubscriberUserFactory
 
@@ -52,9 +56,9 @@ def test_invite_check(send, result, customer, apiclient):
     if send is None:
         data = {}
     elif send:
-        data = {'code': invite.invite_code}
+        data = {"code": invite.invite_code}
     else:
-        data = {'code': 'nothing'}
+        data = {"code": "nothing"}
     resp = apiclient.get(reverse("invite-check"), data)
     assert resp.status_code == result
     if result == 200:
@@ -62,3 +66,20 @@ def test_invite_check(send, result, customer, apiclient):
         assert parse_datetime(resp.data["invited"]) == invite.invited
         assert resp.data["email"] == invite.email
         assert resp.data["status"] == CompanionInviteStatus.created
+
+
+@pytest.mark.parametrize("bad,result", ((False, 200), (True, 400)))
+def test_invite_register(bad, result, customer, anonapiclient):
+    invite: CompanionInvite = CompanionInviteFactory(sender=customer)
+    resp = anonapiclient.post(
+        reverse("get-started-companion"),
+        {
+            "home_airport": json.dumps(DESTINATIONS[0]),
+            "password": "someWeird1234Password",
+            "first_name": factory.faker.Faker("first_name").generate(),
+            "last_name": factory.faker.Faker("last_name"),
+            "code": 'bad' if bad else invite.invite_code,
+        },
+    )
+    assert resp.status_code == result
+

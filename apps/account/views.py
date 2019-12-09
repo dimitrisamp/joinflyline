@@ -9,13 +9,14 @@ from django.utils.timezone import now
 from django.views.generic import FormView
 from psycopg2.extras import DateTimeTZRange
 from rest_framework.generics import get_object_or_404
+from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.views import APIView
 
 from apps.account import serializers
 from apps.account.enums import CompanionInviteStatus
-from apps.account.forms import WizardForm
+from apps.account.forms import WizardForm, InviteWizardForm
 from apps.account.models import Account, CompanionInvite
 from apps.auth.models import User
 from apps.emails.views import signup_success
@@ -67,6 +68,8 @@ def add_to_stripe(user: User, plan):
 
 
 class InviteCheckView(APIView):
+    permission_classes = (AllowAny,)
+
     def get(self, request):
         code = request.query_params.get("code")
         invite = get_object_or_404(CompanionInvite, invite_code=code, status=CompanionInviteStatus.created)
@@ -75,6 +78,31 @@ class InviteCheckView(APIView):
         return Response(serializers.CompanionInvite(instance=invite).data)
 
 
+class InviteWizardView(FormView):
+    form_class = InviteWizardForm
+
+    def form_invalid(self, form):
+        return JsonResponse({"errors": form.errors.as_json()}, status=400)
+
+    def form_valid(self, form):
+        cd = form.cleaned_data
+        with transaction.atomic():
+            invite: CompanionInvite = cd['code']
+            if User.objects.filter(email=invite.email).exists():
+                return JsonResponse(
+                    {"errors": {"email": "User already exists"}}, status=400
+                )
+            new_user = User.objects.create_user(
+                invite.email,
+                invite.email,
+                cd["password"],
+                first_name=cd["first_name"],
+                last_name=cd["last_name"],
+                market=cd["home_airport"],
+                account=invite.sender.account,
+            )
+            signup_success(new_user.pk)
+            return JsonResponse({"success": True})
 
 class WizardView(FormView):
     form_class = WizardForm

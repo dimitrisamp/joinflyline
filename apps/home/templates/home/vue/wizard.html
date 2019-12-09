@@ -16,12 +16,19 @@
                               <img src="{% static "home/img/flyline_logos-01-1.png" %}">
                           </div>
 
-                          <div class="form-descrption step-01 text-center">
+
+                          <div class="form-descrption step-01 text-center" v-if="displayForm">
                               <div><strong>Lets Get Started   </strong></div>
                               <span>Step {( step )} of 2</span>
                               <p>Enter some information to get started</p>
                           </div>
-
+                          <div class="form-descrption step-01 text-center" v-else-if="inviteCodeCheckProgress">
+                              <div><strong>Checking your invite code...</strong></div>
+                          </div>
+                          <div class="form-descrption step-01 text-center" v-else-if="inviteCodeRejected">
+                              <div><strong>Your invite code was not found</strong></div>
+                          </div>
+                          <template v-if="displayForm">
                           <div class="input-group input-group-sm step-f-inputs">
                               <location-input :prompt="'Home Airport'"
                                               :prompt-mobile="'Home Airport'"
@@ -35,7 +42,7 @@
                                      name="email"
                                      @keyup.enter="focusElement('password')"
                                      @keyup="onEmailChange"
-                                     placeholder="Email Address" v-model="form.email">
+                                     placeholder="Email Address" v-model="form.email" :disabled="inviteMode">
                               <small v-if="emailVerified && emailExists"
                                      class="form-text text-danger">User with that
                                   email is already registered. Is that you? <router-link :to="{name: 'sign-in'}">Sign In</router-link></small>
@@ -55,7 +62,7 @@
                                   Continue
                               </button>
                           </div>
-
+                          </template>
                       </div>
                   </div>
               </div>
@@ -94,7 +101,7 @@
                                      name="last_name"
                                      placeholder="Last Name" v-model="form.last_name">
                           </div>
-
+                          <template v-if="!inviteMode">
                           <div class="form-group form-group-sm step-f-inputs">
                               <dynamic-select class="form-control"
                                               name="plan"
@@ -141,7 +148,7 @@
                                          placeholder="CCV Code" v-model="form.cvc">
                               </div>
                           </div>
-
+                          </template>
 
                           <div class="input-group step-f-inputs">
                               <button type="button" class="btn btn-default"

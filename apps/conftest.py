@@ -14,3 +14,8 @@ def apiclient(db, customer):
     client = APIClient()
     client.force_authenticate(customer)
     return client
+
+
+@pytest.fixture
+def anonapiclient(db):
+    return APIClient()
