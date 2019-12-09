@@ -40,4 +40,5 @@ class User(serializers.ModelSerializer):
             "tsa_precheck_number",
             "zip",
             "country_code",
+            "role",
         ]

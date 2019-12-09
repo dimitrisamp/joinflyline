@@ -1,5 +1,5 @@
 import api from "../http.js";
-import {formatDateFull, airlineIcon} from "../../utils.js";
+import {formatDateFull, airlineIcon, userRoles} from "../../utils.js";
 import {airlineCodes} from "../../airlineCodes.js";
 
 const frequentFlyerNames = {
@@ -16,10 +16,13 @@ const frequentFlyerNames = {
   hawaiian_airlines: "HA"
 };
 
+
+
 export const AccountInformation = Vue.component("account-information", {
   template: "#vue-account-information-template",
   data() {
     return {
+      userRoles,
       frequentflyerReady: false,
       userReady: false,
       frequentflyer: {},

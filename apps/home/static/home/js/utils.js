@@ -18,6 +18,11 @@ export const maxStopsFilterOptions = {
   2: "Two Stops"
 };
 
+export const userRoles = {
+  companion: 1,
+  subscriber: 0,
+};
+
 export const destinationTypes = {
   round: "Round Trip",
   oneway: "Oneway"
