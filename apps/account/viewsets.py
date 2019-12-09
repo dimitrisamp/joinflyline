@@ -15,6 +15,7 @@ from rest_framework.mixins import (
 from . import models as accounts_models, enums
 from . import serializers
 from ..auth.models import User
+from ..emails.tasks import invite_companion
 
 
 class FrequentFlyerViewSet(RetrieveModelMixin, UpdateModelMixin, GenericViewSet):
@@ -82,6 +83,7 @@ class CompanionInviteViewSet(
             obj = accounts_models.CompanionInvite.objects.create(
                 sender=self.request.user, **serializer.validated_data
             )
+            transaction.on_commit(lambda: invite_companion.delay(obj.pk))
             serializer = self.get_serializer_class()(obj)
             headers = self.get_success_headers(serializer.data)
             return Response(

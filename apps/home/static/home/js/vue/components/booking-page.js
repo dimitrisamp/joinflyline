@@ -57,7 +57,7 @@ function makePassenger(primary = true, category = "adults", user_data = null) {
 }
 
 function formatUserData(user) {
-  let bdate = moment(user.profile.dob);
+  let bdate = moment(user.dob);
 
   return {
     name: user.first_name,
@@ -66,7 +66,7 @@ function formatUserData(user) {
     month: bdate.month() + 1,
     day: bdate.date(),
     year: bdate.year(),
-    title: genderToTitle[user.profile.gender] || 0
+    title: genderToTitle[user.gender] || 0
   }
 }
 
@@ -99,7 +99,7 @@ export const BookingPage = Vue.component("booking-page", {
         expiry: "",
         credit_card_cvv: "",
         email: user.email,
-        phone: user.profile.phone_number
+        phone: user.phone_number
       },
       passengers: initialPassengers,
       checkFlightData: null,
