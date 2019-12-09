@@ -1,24 +1,21 @@
 import asyncio
-import itertools
-from collections import defaultdict
-from datetime import timedelta
-from typing import DefaultDict, List
-
-import aiohttp
 import logging
 import os
-
+import sys
+from datetime import timedelta
+import aiohttp
 import django
 from django.db.models import Q
 from django.utils.timezone import now
 
-from wanderift.utils import l2q
+sys.path.append(os.path.dirname(os.path.dirname(__file__)))
+
 from wanderift.utils.ratelimiter import RateLimiter
 from worker.kiwi import fetch_all_city_interconnections, check_flights
 
 os.environ['DJANGO_SETTINGS_MODULE'] = 'wanderift.settings'
 django.setup()
-from apps.account.models import DealWatch, DealWatchGroup
+from apps.account.models import DealWatchGroup
 from worker.utils import save2db
 
 from django.conf import settings

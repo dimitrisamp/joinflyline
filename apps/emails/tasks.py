@@ -26,3 +26,4 @@ def invite_companion(invite_id):
         send_mail(subject, "text body", from_email,
                   [to_email], html_message=htm_content)
         invite.status = CompanionInviteStatus.email_sent
+        invite.save()
