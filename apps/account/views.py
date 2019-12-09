@@ -103,6 +103,8 @@ class InviteWizardView(FormView):
                 market=cd["home_airport"],
                 account=invite.sender.account,
             )
+            invite.status = CompanionInviteStatus.active
+            invite.save()
             signup_success(new_user.pk)
             return JsonResponse({"success": True})
 

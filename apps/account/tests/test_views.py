@@ -86,8 +86,10 @@ def test_invite_register(bad, result, customer, anonapiclient):
     )
     assert resp.status_code == result
     if not bad:
+        invite.refresh_from_db()
         companion = User.objects.get(email=invite.email)
         assert companion.role == UserRole.COMPANION
+        assert invite.status == CompanionInviteStatus.active
 
 
 def test_companion_cannot_invite(db):
