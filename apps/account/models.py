@@ -63,15 +63,20 @@ class DealWatchGroup(models.Model):
     def in_home_markets(self):
         st, sv = self.source.split(":")
         dt, dv = self.destination.split(":")
+        if not (dt == 'city' and dv in settings.DEALS_CITIES):
+            return False
         return User.objects.filter(
-            profile__market__type=st,
-            profile__market__code=sv,
-            dealwatch__destination__type=dt,
-            dealwatch__destination__code=dv,
+            market__type=st,
+            market__code=sv,
         ).exists()
+
+    def in_watches(self):
+        return self.watches.exists()
 
     def must_die(self):
         if self.in_cities():
+            return False
+        if self.in_watches():
             return False
         if self.in_home_markets():
             return False

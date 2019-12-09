@@ -58,8 +58,8 @@
         </div>
       </tile-component>
       <tile-component class="tile--flights"
-                      :title="`Suggested Trips From ${user.profile.market.name}`"
-                      v-if="user && user.profile && user.profile.market">
+                      :title="`Suggested Trips From ${user.market.name}`"
+                      v-if="user && user.market">
         <div class="tile__list">
           <deal v-for="(deal, index) in suggested_deals" :deal="deal" :key="`upcoming-deal-${index}`"/>
         </div>

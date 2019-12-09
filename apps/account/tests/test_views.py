@@ -1,7 +1,11 @@
 import json
+from unittest import mock
 
 import factory
 import pytest
+from django.core import mail
+from django.db import transaction
+from django.test import override_settings, TestCase
 from django.urls import reverse
 from django.utils.dateparse import parse_datetime
 from rest_framework.test import APIClient
@@ -28,6 +32,7 @@ EXISTING_USER_EMAIL = "existing.user@example.com"
         (EXISTING_USER_EMAIL, "pro", 404, {"error": {"code": "existing-user"}}),
     ],
 )
+@pytest.mark.django_db(transaction=True)
 def test_companion_invite_creation(
     email, plan, status_code, data, apiclient, existing_user
 ):
@@ -36,7 +41,8 @@ def test_companion_invite_creation(
     else:
         user = UserFactory()
     apiclient.force_authenticate(user)
-    resp = apiclient.post(reverse("companion-list"), {"email": email})
+    with override_settings(EMAIL_BACKEND="anymail.backends.test.EmailBackend"):
+        resp = apiclient.post(reverse("companion-list"), {"email": email})
     assert resp.status_code == status_code
     if data:
         assert resp.data == data
@@ -51,6 +57,10 @@ def test_companion_invite_creation(
         assert not obj.accessed
         assert not obj.signed_up
         assert obj.sender == user
+        # invite = CompanionInvite.objects.get(email=COMPANION_EMAIL)
+        # assert invite.status == CompanionInviteStatus.email_sent
+        # assert len(mail.outbox) == 1
+        # assert mail.outbox[0].to == obj.email
 
 
 @pytest.mark.parametrize("send,result", ((True, 200), (False, 404), (None, 404)))

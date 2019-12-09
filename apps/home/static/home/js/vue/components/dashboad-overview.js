@@ -23,7 +23,7 @@ export const DashboadOverview = Vue.component("dashboad-overview", {
       api
         .get("/deals/", {
           params: {
-            city_from: `${this.user.profile.market.type}:${this.user.profile.market.code}`
+            city_from: `${this.user.market.type}:${this.user.market.code}`
           }
         })
         .then(response => (this.suggested_deals = response.data.results));

@@ -30,7 +30,8 @@ async def get_trips(
     asc: bool = True,
     limit: int = 10,
     sort: str = "price",
-    max_price: int = None
+    max_price: int = None,
+    airlines: list = None,
 ) -> List[Trip]:
     headers = {"apikey": settings.KIWI_API_KEY}
     date_from_str = date_from.strftime("%d/%m/%Y")
@@ -50,8 +51,8 @@ async def get_trips(
         "asc": int(asc),
         "sort": sort,
     }
-    if max_price:
-        params['max_price'] = max_price
+    if airlines:
+        params['selected_airlines'] = airlines
     try_count = 0
     while try_count < SEARCH_MAX_TRIES:
         response = await session.get(SEARCH_API_URL, params=params, headers=headers)
