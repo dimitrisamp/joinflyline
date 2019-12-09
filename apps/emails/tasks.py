@@ -3,6 +3,7 @@ from django.conf import settings
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
 
+from apps.account.enums import CompanionInviteStatus
 from apps.account.models import CompanionInvite
 
 
@@ -24,3 +25,4 @@ def invite_companion(invite_id):
         subject = "You are invited"
         send_mail(subject, "text body", from_email,
                   [to_email], html_message=htm_content)
+        invite.status = CompanionInviteStatus.email_sent
