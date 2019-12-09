@@ -1,12 +1,12 @@
 import pytest
 from rest_framework.test import APIClient
 
-from apps.auth.factories import UserFactory
+from apps.auth.factories import SubscriberUserFactory
 
 
 @pytest.fixture
 def customer(db):
-    return UserFactory()
+    return SubscriberUserFactory()
 
 
 @pytest.fixture

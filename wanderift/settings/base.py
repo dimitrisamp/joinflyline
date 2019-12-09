@@ -54,7 +54,7 @@ INSTALLED_APPS = [
     # My apps
     "apps.subscriptions.apps.SubscriptionsConfig",
     "apps.home",
-    "apps.account",
+    "apps.account.apps.AccountConfig",
     "apps.booking",
     "apps.auth.apps.AuthConfig",
     "apps.emails",
@@ -64,7 +64,6 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    "apps.common.middleware.UrlRedirectMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -272,7 +271,6 @@ REST_PROXY = {
 }
 
 URL_REDIRECTS = (
-    (r'www\.joinflyline\.com/(.*)', 'https://joinflyline.com/'),
+    (r'www\.joinflyline\.com/', 'https://joinflyline.com/'),
     (r'wanderift\.com/', 'https://joinflyline.com/'),
-    (r'www\.staging\.joinflyline\.com/', 'https://staging.joinflyline.com/'),
 )

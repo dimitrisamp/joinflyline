@@ -23,19 +23,10 @@ class FrequentFlyer(serializers.ModelSerializer):
 class DealWatch(serializers.ModelSerializer):
     class Meta:
         model = models.DealWatch
-        fields = (
-            "id",
-            "destination",
-            "max_price",
-            "airlines"
-        )
+        fields = ("id", "destination", "max_price", "airlines")
 
 
 class CompanionInvite(serializers.ModelSerializer):
     class Meta:
         model = models.CompanionInvite
-        fields = (
-            'email',
-            'invited',
-            'status'
-        )
+        fields = ("id", "email", "invited", "status")

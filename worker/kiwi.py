@@ -23,20 +23,21 @@ from worker.types import Trip, FlightStatus
 
 async def get_trips(
     session,
-    city_from,
-    city_to,
+    fly_from,
+    fly_to,
     date_from: datetime.date,
     date_to: datetime.date,
     asc: bool = True,
     limit: int = 10,
     sort: str = "price",
+    max_price: int = None
 ) -> List[Trip]:
     headers = {"apikey": settings.KIWI_API_KEY}
     date_from_str = date_from.strftime("%d/%m/%Y")
     date_to_str = date_to.strftime("%d/%m/%Y")
     params = {
-        "fly_from": f"city:{city_from}",
-        "fly_to": f"city:{city_to}",
+        "fly_from": fly_from,
+        "fly_to": fly_to,
         "curr": "USD",
         "flight_type": "round",
         "date_from": date_from_str,
@@ -49,6 +50,8 @@ async def get_trips(
         "asc": int(asc),
         "sort": sort,
     }
+    if max_price:
+        params['max_price'] = max_price
     try_count = 0
     while try_count < SEARCH_MAX_TRIES:
         response = await session.get(SEARCH_API_URL, params=params, headers=headers)
@@ -58,7 +61,7 @@ async def get_trips(
         else:
             break
     else:
-        logging.error(f"Error getting trips {city_from}->{city_to}...")
+        logging.error(f"Error getting trips {fly_from}->{fly_to}...")
         return []
 
     data = await response.json()
@@ -68,8 +71,8 @@ async def get_trips(
             departure_routes = [r for r in trip["route"] if r["return"] == 0]
             return_routes = [r for r in trip["route"] if r["return"] == 1]
             t = Trip(
-                city_from=city_from,
-                city_to=city_to,
+                city_from=fly_from,
+                city_to=fly_to,
                 city_from_name=departure_routes[0]["cityFrom"],
                 city_to_name=departure_routes[-1]["cityTo"],
                 price=trip["conversion"]["USD"],
@@ -135,13 +138,14 @@ async def check_and_update_trip_price(trip: Trip, session):
         trip.status = FlightStatus.timeout
 
 
-async def check_flights(city_from, city_to, session):
+async def check_flights(city_from, city_to, session, **kwargs):
     trips = await get_trips(
         session,
         city_from,
         city_to,
         datetime.date.today(),
         datetime.date.today() + datetime.timedelta(days=DEALS_DAYS),
+        **kwargs
     )
     tasks = []
     for t in trips:
@@ -153,7 +157,7 @@ async def check_flights(city_from, city_to, session):
 async def fetch_all_city_interconnections(session, codes):
     tasks = []
     for a, b in itertools.combinations(codes, 2):
-        tasks.append(check_flights(a, b, session))
-        tasks.append(check_flights(b, a, session))
+        tasks.append(check_flights(f'city:{a}', f'city:{b}', session))
+        tasks.append(check_flights(f'city:{b}', f'city:{a}', session))
     for f in asyncio.as_completed(tasks):
         yield [o for o in await f if o.status == FlightStatus.checked]

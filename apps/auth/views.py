@@ -2,7 +2,7 @@ import random
 
 from django.contrib import auth
 from django.contrib.auth import authenticate, logout
-from django.contrib.auth.models import User
+from apps.auth.models import User
 from django.http import JsonResponse
 from django.shortcuts import redirect
 from django.urls import reverse

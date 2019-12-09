@@ -1,6 +1,18 @@
 import { airlineCodes } from "../../airlineCodes.js";
 import { formatDateDeals } from "../../utils.js";
 
+function splitLocation(location) {
+  const parts = location.split(':');
+  let type = 'airport';
+  let code;
+  if (parts.length === 1) {
+    code = parts[0];
+  } else {
+    [type, code] = parts;
+  }
+  return {code, type};
+}
+
 export const Deal = Vue.component("deal", {
   props: ["deal"],
   template: "#vue-deal-template",
@@ -12,14 +24,12 @@ export const Deal = Vue.component("deal", {
     searchMe() {
       this.setForm({
         place_from: {
-          code: this.deal.fly_from,
+          ...splitLocation(this.deal.fly_from),
           name: this.deal.city_from_name,
-          type: "airport"
         },
         place_to: {
-          code: this.deal.fly_to,
+          ...splitLocation(this.deal.fly_to),
           name: this.deal.city_to_name,
-          type: "airport"
         },
         adults: 1,
         children: 0,
