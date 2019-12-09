@@ -18,7 +18,7 @@
                 <td>[[ companion.email ]]</td>
                 <td>[[ formatDateTime(companion.invited) ]]</td>
                 <td>[[ getStatusText(companion.status) ]]</td>
-                <td><button v-if="companion.status !== active" type="button" class="button button--red" @click="deleteCompanion(companion)">Delete</button></td>
+                <td><button v-if="companion.status !== 'active'" type="button" class="button button--red" @click="deleteCompanion(companion)">Delete</button></td>
               </tr>
               </tbody>
             </table>

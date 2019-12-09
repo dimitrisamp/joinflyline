@@ -10,7 +10,9 @@ from apps.account.enums import CompanionInviteStatus
 from apps.account.models import CompanionInvite
 from apps.account.tests.data import DESTINATIONS
 from apps.account.tests.factories import CompanionInviteFactory
+from apps.auth.enums import UserRole
 from apps.auth.factories import UserFactory, SubscriberUserFactory, CompanionUserFactory
+from apps.auth.models import User
 
 COMPANION_EMAIL = "companion@example.com"
 EXISTING_USER_EMAIL = "existing.user@example.com"
@@ -83,6 +85,9 @@ def test_invite_register(bad, result, customer, anonapiclient):
         },
     )
     assert resp.status_code == result
+    if not bad:
+        companion = User.objects.get(email=invite.email)
+        assert companion.role == UserRole.COMPANION
 
 
 def test_companion_cannot_invite(db):

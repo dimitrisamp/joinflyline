@@ -232,13 +232,13 @@ DATE_FORMAT = "m/d/Y"
 DATE_INPUT_FORMATS = ["%Y-%m-%d", "%m/%d/%Y"]
 
 ANYMAIL = {
-    "SENDGRID_API_KEY": "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"
+    "MAILGUN_API_KEY": "6bee4aaf5117bdaaefb99493e1d6277f-5645b1f9-73c5a1f3",
 }
 
 SENDGRID_API_URL = "https://api.sendgrid.com/v3/"
-EMAIL_BACKEND = "anymail.backends.sendgrid.EmailBackend"
-DEFAULT_FROM_EMAIL = "noreply@joinflyline.com"
-SERVER_EMAIL = "noreply@joinflyline.com"
+EMAIL_BACKEND = "anymail.backends.mailgun.EmailBackend"
+DEFAULT_FROM_EMAIL = "noreply@mg.joinflyline.com"
+SERVER_EMAIL = "noreply@mg.joinflyline.com"
 
 SECRET_LINK_EXPIRATION_SECONDS = 3600
 

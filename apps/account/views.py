@@ -18,6 +18,7 @@ from apps.account import serializers
 from apps.account.enums import CompanionInviteStatus
 from apps.account.forms import WizardForm, InviteWizardForm
 from apps.account.models import Account, CompanionInvite
+from apps.auth.enums import UserRole
 from apps.auth.models import User
 from apps.emails.views import signup_success
 from apps.subscriptions.models import Subscriptions
@@ -96,6 +97,7 @@ class InviteWizardView(FormView):
                 invite.email,
                 invite.email,
                 cd["password"],
+                role=UserRole.COMPANION,
                 first_name=cd["first_name"],
                 last_name=cd["last_name"],
                 market=cd["home_airport"],
