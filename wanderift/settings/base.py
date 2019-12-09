@@ -64,7 +64,6 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    "apps.common.middleware.UrlRedirectMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",

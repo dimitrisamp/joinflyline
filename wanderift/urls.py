@@ -49,7 +49,7 @@ router.register(r'flight', FlightViewSet)
 router.register(r'deals', DealViewSet, basename="deals")
 router.register(r'search-history', SearchHistoryViewSet, basename='search-history')
 router.register(r'deal-watch', DealWatchViewSet, basename='deal-watch')
-router.register(r'companion', CompanionInviteViewSet, basename='companion-invite')
+router.register(r'companion', CompanionInviteViewSet, basename='companion')
 
 user_router = UserRouter()
 user_router.register(r'frequentflyer', FrequentFlyerViewSet, basename='frequentflyer')
