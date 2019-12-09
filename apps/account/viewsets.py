@@ -14,6 +14,7 @@ from rest_framework.mixins import (
 
 from . import models as accounts_models, enums
 from . import serializers
+from ..auth.models import User
 
 
 class FrequentFlyerViewSet(RetrieveModelMixin, UpdateModelMixin, GenericViewSet):
@@ -74,6 +75,10 @@ class CompanionInviteViewSet(
                 )
             serializer = self.get_serializer(data=request.data)
             serializer.is_valid(raise_exception=True)
+            if User.objects.filter(email=serializer.data['email']).exists():
+                return Response(
+                    {"error": {"code": "existing-user"}}, status.HTTP_404_NOT_FOUND
+                )
             obj = accounts_models.CompanionInvite.objects.create(
                 sender=self.request.user, **serializer.validated_data
             )
