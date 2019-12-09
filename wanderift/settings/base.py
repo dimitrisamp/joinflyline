@@ -273,6 +273,7 @@ REST_PROXY = {
 URL_REDIRECTS = (
     (r'www\.joinflyline\.com/', 'https://joinflyline.com/'),
     (r'wanderift\.com/', 'https://joinflyline.com/'),
+    (r'www\.wanderift\.com/', 'https://joinflyline.com/'),
 )
 
 MAINTENANCE_LOCKFILE_PATH = os.path.join(BASE_DIR, 'maintenance.lock')
