@@ -1,4 +1,12 @@
 export const airlineCodes = {
+  TW: "T’way Air",
+  UT: "Utair",
+  G9: "Air Arabia",
+  J2: "Azerbaijan Airways",
+  BJ: "Nouvelair",
+  CY: "Cyprus Airlines",
+  ME: "Middle East Airlines",
+  SS: "Corsair",
   DY: "Norwegian Air Shuttle",
   DL: "Delta Airlines",
   AS: "Alaska Airlines",
@@ -133,7 +141,6 @@ export const airlineCodes = {
   "5T": "Canadian North",
   V3: "Carpat Air",
   "9M": "Central Mountain Air",
-  SS: "Cosair",
   "9K": "Cape Air",
   CI: "China Airlines",
   DE: "Condor Flugdienst",
@@ -183,7 +190,6 @@ export const airlineCodes = {
   YV: "Mesa Airlines",
   ZB: "Air Albania",
   AE: "Mandarin Airlines",
-  ME: "Middle East",
   MX: "Mexicana",
   YM: "Montenegro Airlines",
   MP: "Martinair Holland",
@@ -257,8 +263,7 @@ export const airlineCodes = {
   LV: "Albanian Airlines",
   AW: "Africa World Airlines",
   BF: "French bee",
-  AT: "Royal Air Maroc",
-
+  AT: "Royal Air Maroc"
 };
 
 export const lowcostAirlines = [
