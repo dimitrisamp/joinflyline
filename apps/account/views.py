@@ -76,7 +76,7 @@ class InviteCheckView(APIView):
         invite = get_object_or_404(
             CompanionInvite,
             invite_code=code,
-            status=[CompanionInviteStatus.created, CompanionInviteStatus.email_sent],
+            status__in=[CompanionInviteStatus.created, CompanionInviteStatus.email_sent],
         )
         invite.accessed = now()
         invite.save()
