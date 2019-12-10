@@ -15,6 +15,8 @@ import { store } from './store.js';
 import {Faq} from "./components/faq.js";
 import {MembershipExplained} from "./components/membership-explained.js";
 import {Flyline101} from "./components/flyline101.js";
+import {PrivacyPolicy} from "./components/privacy-policy.js";
+import {TermsOfSerivces} from "./components/terms-of-serivces.js";
 
 const routes = [
   {
@@ -43,6 +45,16 @@ const routes = [
     path: '/flyline101',
     name: 'flyline101',
     component: Flyline101
+  },
+  {
+    path: '/privacy-policy',
+    name: 'privacy-policy',
+    component: PrivacyPolicy
+  },
+  {
+    path: '/terms-of-services',
+    name: 'terms-of-services',
+    component: TermsOfSerivces
   },
   {
     path: '/search-results',
