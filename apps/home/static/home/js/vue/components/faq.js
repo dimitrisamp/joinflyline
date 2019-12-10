@@ -18,7 +18,7 @@ export const Faq = Vue.component('faq', {
           active: false,
           title: "Why do I need a membership to purchase a flight on FlyLine?",
           details: `
-            Membership revenue enables us to pass along really low wholesale airfare pricing to our members
+            Membership revenue enables us to pass along really low wholesale airfare pricing to our members.
           `
         },
         {
@@ -40,9 +40,9 @@ export const Faq = Vue.component('faq', {
         {
           id: 5,
           active: false,
-          title: "Do flight prices include taxes & fees?",
+          title: "Do flight prices include taxes?",
           details: `
-            Yes, flight purchase prices include all taxes and fees.
+            Yes, flight purchase prices include all applicable taxes.
           `
         },
         {
@@ -74,7 +74,7 @@ export const Faq = Vue.component('faq', {
           active: false,
           title: "What is a companion account?",
           details: `
-            A companion account is an invite-only account that is prompted by a paying member. This feature is limited to Basic Plus and Pro members, whom are allowed to designate a companion (friend, family member, coworker) that they want to associate with their account. The companion is given membership status for as long as the paid member has a valid membership and has maintained the companion status of the companion. Companions have full membership booking capabilities and can book with or without the presence of paid members on their flight itineraries. Paid members are can change the designation of their companion account up to two times each 12-month period.
+            A companion account is an invite-only account that is prompted by a paying member. This feature is limited to Basic Plus and Pro members, whom are allowed to designate a companion (friend, family member, coworker) that they want to associate with their account. The companion is given membership status for as long as the paid member has a valid membership and has maintained the companion status of the companion. Companions have full membership booking capabilities and can book with or without the presence of paid members on their flight itineraries. Paid members can change the designation of their companion account up to two times each 12-month period.
           `
         },
         {
@@ -82,7 +82,15 @@ export const Faq = Vue.component('faq', {
           active: false,
           title: "How do I cancel my subscription?",
           details: `
-            Please email support@joinflyline.com to cancel
+            Please email help@joinflyline.com to cancel.
+          `
+        },
+        {
+          id: 11,
+          active: false,
+          title: "Is my frequent flyer status applicable to basic economy tickets",
+          details: `
+            No, basic economy tickets do not honor frequent flyer perks and privileges.
           `
         }
       ],
@@ -93,7 +101,7 @@ export const Faq = Vue.component('faq', {
           active: false,
           title: "Check in online",
           details: `
-          Want to save yourself time to the airport? Or maybe even save some cash on your checked bags? You can check it online 24-47 hours
+          Want to save yourself time to the airport? Or maybe even save some cash on your checked bags? You can check it online 24 hours
           before take-off-depending on your airline. After checking in, follow the prompts to get your boarding pass. You may be able to print
           it, save or send it to your phone, or pick it up at a kiosk at the airport
           `
@@ -103,7 +111,7 @@ export const Faq = Vue.component('faq', {
           active: false,
           title: "Check in at the airport",
           details: `
-            Want to snag your boarding pass in person? Airline’s generally open their check-in desks 2-3 hours before a flight. You may even be able to check in on your own at a check-in kiosk.If you go the airport check-in route, you’ll need a couple of things: 1.Valid government-issued photo ID 2.Flight info (like your airline confirmation code)
+            Want to snag your boarding pass in person? Airline’s generally open their check-in desks 2-3 hours before a flight. You may even be able to check in on your own at a check-in kiosk. If you go to the airport check-in route, you’ll need a couple of things: 1.Valid government-issued photo ID 2.Flight info (like your airline confirmation code)
           `
         },
         {
@@ -119,7 +127,7 @@ export const Faq = Vue.component('faq', {
           active: false,
           title: "Good to Know",
           details: `
-            To review your flight schedule and other trip details, take look at your itinerary. If you want to add passport info to your profile, you can do that in your user account.
+            To review your flight schedule and other trip details, take look at your itinerary. If you want to add passport info to your profile, you can do that in your traveler account.
           `
         }
       ],
@@ -137,7 +145,7 @@ export const Faq = Vue.component('faq', {
           active: false,
           title: "Full-service airlines",
           details: `
-            If you booked: In the last 24 hours: Some airlines will let you cancel your flight for free. Not sure this applies to you? Check the Airline rules + restrictions in your itinerary for details. More than 24 hours ago: Airline cancellation fees come into play at this point. See the Airline rules + restrictions in your itinerary for more info. Non-refundable fares: You won’t get a refund if you cancel, but you might get an airline credit to use later. If you do get a credit, be sure to read up on how to book a flight with an airline credit.
+            If you booked in the last 24 hours some airlines will let you cancel your flight for free. Not sure if this applies to you? Check the Airline rules + restrictions in your itinerary for details. Less then 24 hours before your flight? Airline cancellation fees come into play at this point. See the Airline rules + restrictions in your itinerary for more info. Non-refundable fares you won’t get a refund if you cancel, but you might get an airline credit to use later. If you do get a credit, be sure to read up on how to book a flight with an airline credit.
           `
         },
         {
@@ -153,7 +161,7 @@ export const Faq = Vue.component('faq', {
           active: false,
           title: "Low-cost airlines",
           details: `
-            Low-cost airlines, like Frontier and Spirit, like to handle their own changes and cancellations. But we can help you get in touch. We’ve got a list ofairline phone numbers right here. Roundtrip flights with 2 one-way faresBecause each ticket is considered separate, be sure to cancel each of your one-way flights individually. For more info, readRoundtrip flights with 2 one-way fares.If one of your flights is with alow-cost airline, like Frontier or Spirit, you’ll need to contact the airline to cancel that flight. (They like to do that part on their end.) You can cancel your other flight with us.
+            Low-cost airlines, like Frontier and Spirit, handle their own changes and cancellations. But we can help you get in touch. We’ve got a list of airline phone numbers right here.
           `
         },
       ],
@@ -163,7 +171,7 @@ export const Faq = Vue.component('faq', {
           active: false,
           title: "Low-cost airlines",
           details: `
-            If you booked with alow-cost airline, like Frontier or Spirit, you’ll need to contact the airline about anything schedule-change related. (They handle that bit on their end.) But we can help you get in touch. We’ve got airline phone numbers right here. If only one of your flights is with alow-cost airline, contact that airline to make any changes you need. Then, if you want to make any changes to the rest of your trip, you canget in touch with us.
+            If you booked with a low-cost airline, like Frontier or Spirit, you’ll need to contact the airline about anything schedule-change related. (They handle that on their end.) But we can help you get in touch. We’ve got airline phone numbers right here. If only one of your flights is with a low-cost airline, contact that airline to make any changes you need. Then, if you want to make any changes to the rest of your trip, you can get in touch with us.
           `
         },
         {
@@ -171,7 +179,7 @@ export const Faq = Vue.component('faq', {
           active: false,
           title: "Full-service airlines",
           details: `
-            We’ll work with your airline to find you a flight comparable to your original one. After we find you a new flight, we’ll get in touch with details via email, text or app notification. If it’s urgent (say your flight’stoday, for example), we might also give you a call. When you get an email, text, or app notification from us, be sure to read the details carefully and follow any directions – which might include contacting us to confirm your flight changes. After we confirm the flight changes with you (if needed) and the airline approves them, we call it all final. And we’ll send you a new confirmation email with your revised itinerary.
+            We’ll work with your airline to find a flight comparable to your original one. After we find a new flight for you, we’ll get in touch with details via email. If it’s urgent (say your flight’s today, for example), we might also give you a call. When you get an email notification from us, be sure to read the details carefully and follow any directions – which might include contacting us to confirm your flight changes. After we confirm the flight changes with you (if needed) and the airline approves them, we call it all final. And we’ll send you a new confirmation email with your revised itinerary.
           `
         },
         {
@@ -187,7 +195,7 @@ export const Faq = Vue.component('faq', {
           active: false,
           title: "If you made upgrades or additions to your original flight",
           details: `
-            Contact your airline to make sure any upgrades or other services you added on (like a hot meal or a wheelchair onboard) carry over to your new flight. Keep in mind, after the airline schedule change is finalized, any additional updates you make are subject to the rules and restrictionsof your original ticket. For info on what you can change, what costs money, etc., read Change your flight.
+            Contact your airline to make sure any upgrades or other services you added on (like a hot meal or a wheelchair onboard) carry over to your new flight. Keep in mind, after the airline schedule change is finalized, any additional updates you make are subject to the rules and restrictions of your original ticket. For info on what you can change, what costs money, etc., read change your flight.
           `
         },
         {
@@ -195,7 +203,7 @@ export const Faq = Vue.component('faq', {
           active: false,
           title: "To make changes to another part of your trip",
           details: `
-            First, review all your flight details. Sometimes when you have a round trip flight with 2 one-way fares, one flight will be changed and the other will stay the same. So double check! If you make any changes to a flight that wasn’t impacted by the airline schedule change, you might have to pay an airline change fee – plus any fare difference – to do that.If you made upgrades or additions to your original flight contact your airline to make sure any upgrades or other services you added on (like a hot meal or a wheelchair onboard) carry over to your new flight. Keep in mind, after the airline schedule change is finalized, any additional updates you make are subject to the rules and restrictions of your original ticket.
+            First, review all your flight details. Sometimes when you have a round trip flight with 2 one-way fares, one flight will be changed and the other will stay the same. So double check! If you make any changes to a flight that wasn’t impacted by the airline schedule change, you might have to pay an airline change fee – plus any fare difference – to do that. If you made upgrades or additions to your original flight contact your airline to make sure any upgrades or other services you added on (like a hot meal or a wheelchair onboard) carry over to your new flight. Keep in mind, after the airline schedule change is finalized, any additional updates you make are subject to the rules and restrictions of your original ticket.
           `
         },
       ],
@@ -205,7 +213,7 @@ export const Faq = Vue.component('faq', {
           active: false,
           title: "Full-service airlines",
           details: `
-            If you booked In the last 24 hours Some airlines let you cancel your flight for free. So you can book a new flight that works better for you and cancel your original. Basic Economy or Light fares The airline won't let you make changes. Not sure if you booked one of these fares? Check your confirmation email oritineraryfor details on your flight.
+            If you booked In the last 24 hours some airlines let you cancel your flight for free. So you can book a new flight that works better for you and cancel your original. Basic Economy or Light fares the airline won't let you make changes. Not sure if you booked one of these fares? Check your confirmation email or itinerary for details on your flight.
           `
         },
         {
@@ -213,7 +221,7 @@ export const Faq = Vue.component('faq', {
           active: false,
           title: "Low-cost airlines",
           details: `
-            Low-cost airlines, like Frontier and Spirit, like to handle their own changes and cancellations. But we can help you get in touch. We've got lists of their websites and phone numbers right here.
+            Low-cost airlines, like Frontier and Spirit, handle their own changes and cancellations. But we can help you get in touch. We've got lists of their websites and phone numbers right here.
           `
         },
         {
@@ -229,7 +237,7 @@ export const Faq = Vue.component('faq', {
           active: false,
           title: "Same-day flight changes",
           details: `
-            If you change your flight within 24 hours of when it's scheduled to leave, the airlines listed here might give you a lower change fee if you go through them. You can check their websites, or give them a call, for info: Alaska, American Airlines, Delta, JetBlue, United. Wondering why we can't offer you a lower change fee, too? Our hands are tied, unfortunately. The airlines require us to use the change fee as it's listed in the fine print on your ticket.
+            If you change your flight within 24 hours of when it's scheduled to leave, the airlines listed here might give you a lower change fee if you go through them. You can check their websites, or give them a call, for info: Alaska, American Airlines, Delta, JetBlue, United. Wondering why we can't offer you a lower change fee, too? Our hands are tied. The airlines require us to use the change fee as it's listed in the fine print on your ticket.
           `
         },
         {
@@ -237,7 +245,7 @@ export const Faq = Vue.component('faq', {
           active: false,
           title: "Ticket transfers",
           details: `
-            We understand that plans change, and sometimes you can't make the trip. Unfortunately, airlines don't allow you to transfer your ticket to someone else. There's nothing we can do about that.
+            We understand that plans change, and sometimes you can't make the trip. Airlines don't allow you to transfer your ticket to someone else. There's nothing we can do about that.
           `
         },
       ],
@@ -300,7 +308,7 @@ export const Faq = Vue.component('faq', {
           active: false,
           title: "How to make a flight ticket name change",
           details: `
-          If you need to change or fix the name on your ticket, send us a completed name correction form along with any relevant documentation as soon as you can. You'll see the documentation you need to send once you start filling out the form.
+          If you need to change or fix the name on your ticket, send us an email with the name change and any relevant documentation as soon as you can. You'll see the documentation you need to send once you start filling out the form.
           Once we get your information, we’ll work with the airline and then get back to you with an update and any next steps within 48 hours.
           `
         },
@@ -327,7 +335,7 @@ export const Faq = Vue.component('faq', {
           active: false,
           title: "Refunds",
           details: `
-            Refunds on missed flights are the discretion of the airline. The airline may give you a flight credit for a future booking instead of a refund.
+            Refunds on missed flights are at the discretion of the airline. The airline may give you a flight credit for a future booking instead of a refund.
           `
         },
       ],
@@ -337,7 +345,7 @@ export const Faq = Vue.component('faq', {
           active: false,
           title: "Low Cost Airline Booking Help",
           details: `
-          You chose to save some cash and book with alow-cost airline like Frontier, Spirit, Ryanair, Jetstar, AirAsia, or easyJet – smart move! We'd love to help you with your booking, but we don't have access to these airlines' systems. That means you'll need to talk to the airline directly.
+          You chose to save some cash and book with a low-cost airline like Frontier, Spirit, Ryanair, Jetstar, AirAsia, or easyJet – smart move! We'd love to help you with your booking, but we don't have access to these airlines' systems. That means you'll need to talk to the airline directly.
           `
         },
       ],
