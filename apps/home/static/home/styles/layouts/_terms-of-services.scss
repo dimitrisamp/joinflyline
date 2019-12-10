@@ -1,0 +1,21 @@
+.terms-of-services {
+  &__content {
+    padding-top: 2rem;
+
+    strong {
+      font-family: $dona-bold;
+    }
+
+    ul {
+      list-style: lower-alpha;
+    }
+
+    h3 {
+      margin-bottom: 2rem;
+    }
+
+    h4 {
+      padding: 1rem 0;
+    }
+  }
+}
