@@ -37,3 +37,10 @@ spec:
             backend:
               serviceName: wanderift-service-production
               servicePort: 80
+    - host: www.wanderift.com
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: wanderift-service-production
+              servicePort: 80
