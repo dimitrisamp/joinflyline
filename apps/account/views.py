@@ -73,7 +73,11 @@ class InviteCheckView(APIView):
 
     def get(self, request):
         code = request.query_params.get("code")
-        invite = get_object_or_404(CompanionInvite, invite_code=code, status=CompanionInviteStatus.created)
+        invite = get_object_or_404(
+            CompanionInvite,
+            invite_code=code,
+            status=[CompanionInviteStatus.created, CompanionInviteStatus.email_sent],
+        )
         invite.accessed = now()
         invite.save()
         return Response(serializers.CompanionInvite(instance=invite).data)
@@ -88,7 +92,7 @@ class InviteWizardView(FormView):
     def form_valid(self, form):
         cd = form.cleaned_data
         with transaction.atomic():
-            invite: CompanionInvite = cd['code']
+            invite: CompanionInvite = cd["code"]
             if User.objects.filter(email=invite.email).exists():
                 return JsonResponse(
                     {"errors": {"email": "User already exists"}}, status=400
@@ -107,6 +111,7 @@ class InviteWizardView(FormView):
             invite.save()
             signup_success(new_user.pk)
             return JsonResponse({"success": True})
+
 
 class WizardView(FormView):
     form_class = WizardForm
