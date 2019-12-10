@@ -28,6 +28,7 @@ export const AccountInformation = Vue.component("account-information", {
       frequentflyer: {},
       user: {},
       dobText: "",
+      accountSavedDisplay: false,
       planTabs: [
         {
           group: "basic",
@@ -100,6 +101,8 @@ export const AccountInformation = Vue.component("account-information", {
         this.dobText = this.user.dob
             ? formatDateFull(new Date(this.user.dob))
             : "";
+        this.accountSavedDisplay = true;
+        setTimeout(()=>{this.accountSavedDisplay = false}, 5000);
       });
     },
     airlineIcon

@@ -8,6 +8,13 @@
       position: relative;
     }
 
+    .label-information-saved {
+      font: $dona-black;
+      color: gray;
+      font-weight: 600;
+      margin-right: 1rem;
+    }
+
     &-icon {
       position: absolute;
       top: 0;
