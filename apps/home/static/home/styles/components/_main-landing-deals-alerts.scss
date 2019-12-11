@@ -1,0 +1,28 @@
+.deals-alerts {
+  background-color: $main-landing-footer-bg;
+  padding: 4rem 0 5rem 0;
+  color: $white;
+
+  h3 {
+    color: $white;
+  }
+  &__top-text {
+    padding-bottom: 2rem;
+    font-size: 1.2rem;
+  }
+  &__text {
+    font-family: $dona-black;
+    font-size: 1rem;
+  }
+  &__img {
+    width: 60%;
+    margin: auto;
+    padding-top: 2rem;
+    @include mq(lg) {
+      padding-top: 0;
+    }
+    img {
+      width: 100%;
+    }
+  }
+}

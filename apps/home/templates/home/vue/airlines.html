@@ -1,0 +1,21 @@
+<script type="text/x-template" id="vue-airlines-template">
+<div class="airlines">
+  <header> <nav-bar /></header>
+  <div class="container">
+    <div class="airlines__list">
+      <h3>Flights to airports around the world</h3>
+      <div class="airlines__header">
+        <div class="airlines__code">Code</div>
+        <div class="airlines__airline">Airline</div>
+        <div class="airlines__phone">Phone</div>
+      </div>
+      <div v-for="(phone, code) in airlinePhones" class="airlines__item">
+        <div class="airlines__icon"><img :alt="code" :src="airlineIcon(code)"></div>
+        <div class="airlines__code">[[ code ]]</div>
+        <div class="airlines__link">[[ airlineCodes[code] ]]</div>
+        <div class="airlines__phone">[[ phone ]]</div>
+      </div>
+    </div>
+  </div>
+</div>
+</script>

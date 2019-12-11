@@ -1,0 +1,50 @@
+.airlines {
+  &__list {
+    padding-top: 4rem;
+    max-width: 100%;
+    @include mq(lg) {
+      max-width: 65%;
+    }
+    h3 {
+      margin-bottom: 4rem;
+      font-family: $dona-black;
+    }
+  }
+  &__item,
+  &__header {
+    display: flex;
+    border-bottom: 2px solid $border-color;
+    padding-bottom: 0.7rem;
+    margin-bottom: 1rem;
+    font-size: 0.8125rem;
+    align-items: center;
+    @include mq(lg) {
+      font-size: 1rem;
+    }
+  }
+  &__header {
+    padding-left: 2.4rem;
+    font-family: $dona-bold;
+    @include mq(md) {
+      padding-left: 4rem;
+    }
+  }
+  &__airline {
+    width: 14rem;
+  }
+  &__icon {
+    width: 4rem;
+    img {
+      width: 22px;
+    }
+  }
+  &__code {
+    width: 5rem;
+  }
+  &__link {
+    width: 14rem;
+  }
+  &__phone {
+    width: 14rem;
+  }
+}

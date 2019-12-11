@@ -17,6 +17,7 @@ import {MembershipExplained} from "./components/membership-explained.js";
 import {Flyline101} from "./components/flyline101.js";
 import {PrivacyPolicy} from "./components/privacy-policy.js";
 import {TermsOfServices} from "./components/terms-of-services.js";
+import {Airlines} from "./components/airlines.js";
 
 const routes = [
   {
@@ -55,6 +56,11 @@ const routes = [
     path: '/terms-of-services',
     name: 'terms-of-services',
     component: TermsOfServices
+  },
+  {
+    path: '/airlines',
+    name: 'airlines',
+    component: Airlines
   },
   {
     path: '/search-results',
