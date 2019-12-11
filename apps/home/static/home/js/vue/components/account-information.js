@@ -99,7 +99,7 @@ export const AccountInformation = Vue.component("account-information", {
       api.patch("/users/me/", this.user).then(response => {
         this.user = {...this.user, ...response.data};
         this.dobText = this.user.dob
-            ? formatDateFull(moment(this.user.dob))
+            ? moment(this.user.dob).format('MM/DD/YYYY')
             : "";
         this.accountSavedDisplay = true;
         setTimeout(()=>{this.accountSavedDisplay = false}, 5000);
