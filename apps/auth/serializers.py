@@ -8,13 +8,14 @@ class EditUser(serializers.ModelSerializer):
     class Meta:
         model = UserModel
         fields = [
-            'first_name',
-            'last_name',
+            "first_name",
+            "last_name",
             "market",
             "gender",
             "phone_number",
             "dob",
             "tsa_precheck_number",
+            "passport_number",
         ]
 
 
@@ -41,4 +42,5 @@ class User(serializers.ModelSerializer):
             "zip",
             "country_code",
             "role",
+            "passport_number",
         ]

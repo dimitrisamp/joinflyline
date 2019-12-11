@@ -48,6 +48,7 @@
                   <input type="phone" class="form-control" placeholder="Phone Number" v-model="user.phone_number"/>
                 </div>
                 <div class="col-12 col-lg-6">
+                  <input type="text" class="form-control" placeholder="Passport Number" v-model="user.passport_number"/>
                 </div>
                 <div class="col-12 col-lg-6">
                   <input type="text" class="form-control mb-4" placeholder="Known Traveler Number"
@@ -112,7 +113,7 @@
           </div>
           <div class="col-12 col-xl-7">
             <tabs>
-              <tab v-for="(o, paneIndex) in planTabs" :title="o.label" :selected="selectedIndex === paneIndex">
+              <tab v-for="(o, paneIndex) in planTabs" :title="o.label" :selected="selectedIndex === paneIndex" :key="`pane-${paneIndex}`">
                 <div class="row justify-content-center">
                   <div class="col-12 col-lg-6" v-for="pk in o.plans">
                     <div class="subscription">

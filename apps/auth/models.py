@@ -18,6 +18,7 @@ class User(AbstractUser):
     country_code = models.CharField(max_length=5, blank=True)
     zip = models.CharField(max_length=20, blank=True)
     role = enum.EnumField(enums.UserRole, default=enums.UserRole.SUBSCRIBER)
+    passport_number = models.CharField(max_length=50, blank=True, default="")
 
     def subscription(self):
         from ..subscriptions.models import Subscriptions
