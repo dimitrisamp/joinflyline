@@ -45,7 +45,7 @@ export const Wizard = Vue.component("wizard", {
   },
   delimiters: ["{(", ")}"],
   watch: {
-    step: function(val, oldVal) {
+    step: function (val, oldVal) {
       Vue.nextTick().then(() => {
         if (val === 2) this.focusElement("first_name");
       });
@@ -68,38 +68,41 @@ export const Wizard = Vue.component("wizard", {
         }
       });
     },
-    checkPromo: debounce(function() {
-      if (this.promoCheckProgress) return;
+    checkPromo: debounce(function () {
+      if (this.promoCheckProgress) setTimeout(this.checkPromo, 500);
       const promo = this.form.promo_code;
-      if (promo.length === 0) return;
+      if (promo.length === 0) {
+        this.promoInvalid = false;
+        return;
+      }
       this.promoCheckProgress = true;
       api
-        .get("subscriptions/check-promo", { params: { promocode: promo } })
-        .then(response => {
-          this.discount = response.data.discount;
-          this.promoInvalid = false;
-        })
-        .catch(e => {
-          this.promoInvalid = true;
-        })
-        .finally(() => {
-          this.promoCheckProgress = false;
-        });
+          .get("subscriptions/check-promo", {params: {promocode: promo}})
+          .then(response => {
+            this.discount = response.data.discount;
+            this.promoInvalid = false;
+          })
+          .catch(e => {
+            this.promoInvalid = true;
+          })
+          .finally(() => {
+            this.promoCheckProgress = false;
+          });
     }, 500),
     checkInvite() {
       this.inviteCodeCheckProgress = true;
       api
-        .get("check-invite/", { params: { code: this.form.code } })
-        .then(response => {
-          this.invite = response.data;
-          this.form.email = response.data.email;
-        })
-        .catch(e => {
-          this.inviteCodeRejected = true;
-        })
-        .finally(() => {
-          this.inviteCodeCheckProgress = false;
-        });
+          .get("check-invite/", {params: {code: this.form.code}})
+          .then(response => {
+            this.invite = response.data;
+            this.form.email = response.data.email;
+          })
+          .catch(e => {
+            this.inviteCodeRejected = true;
+          })
+          .finally(() => {
+            this.inviteCodeCheckProgress = false;
+          });
     },
     verifyEmail(callback) {
       if (this.emailInvalid) return;
@@ -109,12 +112,12 @@ export const Wizard = Vue.component("wizard", {
       };
       url.search = new URLSearchParams(searchParams);
       fetch(url)
-        .then(response => response.json())
-        .then(data => {
-          this.emailExists = data.exists;
-          this.emailVerified = true;
-          if (callback) callback();
-        });
+          .then(response => response.json())
+          .then(data => {
+            this.emailExists = data.exists;
+            this.emailVerified = true;
+            if (callback) callback();
+          });
     },
     onEmailChange() {
       this.emailVerified = false;
@@ -141,6 +144,10 @@ export const Wizard = Vue.component("wizard", {
           if (this.form[k]) {
             if (k === "home_airport") {
               formData.append(k, JSON.stringify(this.form[k]));
+            } else if (k === "promo_code") {
+              if (this.form[k].length !== 0 && !this.promoInvalid) {
+                formData.append(k, this.form[k]);
+              }
             } else {
               formData.append(k, this.form[k]);
             }
@@ -150,19 +157,19 @@ export const Wizard = Vue.component("wizard", {
           method: "POST",
           body: formData
         })
-          .then(response => response.json())
-          .then(data => {
-            if (data.success) {
-              this.authenticate({
-                email: this.form.email,
-                password: this.form.password,
-                router: this.$router,
-                name: "account"
-              });
-            } else {
-              window.alert(JSON.stringify(data));
-            }
-          });
+            .then(response => response.json())
+            .then(data => {
+              if (data.success) {
+                this.authenticate({
+                  email: this.form.email,
+                  password: this.form.password,
+                  router: this.$router,
+                  name: "account"
+                });
+              } else {
+                window.alert(JSON.stringify(data));
+              }
+            });
       });
     }
   },
@@ -177,10 +184,10 @@ export const Wizard = Vue.component("wizard", {
     },
     isStep1Complete() {
       return (
-        this.form.home_airport !== "" &&
-        this.form.email !== "" &&
-        this.form.password !== "" &&
-        !this.emailExists
+          this.form.home_airport !== "" &&
+          this.form.email !== "" &&
+          this.form.password !== "" &&
+          !this.emailExists
       );
     },
     isStep2Complete() {
@@ -188,11 +195,12 @@ export const Wizard = Vue.component("wizard", {
         return this.form.first_name !== "" && this.form.last_name !== "";
       }
       return (
-        this.form.first_name !== "" &&
-        this.form.last_name !== "" &&
-        this.form.card_number !== "" &&
-        this.form.expiry !== "" &&
-        this.form.cvc !== ""
+          this.form.first_name !== "" &&
+          this.form.last_name !== "" &&
+          this.form.card_number !== "" &&
+          this.form.expiry !== "" &&
+          this.form.cvc !== "" &&
+          !this.promoCheckProgress
       );
     }
   }
