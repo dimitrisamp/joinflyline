@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
+    "collectfast",
     "django.contrib.staticfiles",
     "django.contrib.humanize",
     # 3rd party libs
@@ -96,7 +97,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
-            ],
+            ]
         },
     }
 ]
@@ -195,7 +196,9 @@ RECEIVE_EMAIL = "bookings@joinflyline.com"
 RECEIVE_PHONE = "+18105131533"
 KIWI_API_KEY = "4TMnq4G90OPMYDAGVHzlP9LQo2hvzzdc"
 STRIPE_API_KEY = os.getenv("STRIPE_API_KEY")
-PLANS_DEFINITION_FILE = os.path.join(os.path.dirname(os.path.dirname(__file__)), "plans.json")
+PLANS_DEFINITION_FILE = os.path.join(
+    os.path.dirname(os.path.dirname(__file__)), "plans.json"
+)
 PLANS_CONFIG_FILE = os.getenv(
     "PLANS_CONFIG_FILE",
     os.path.join(os.path.dirname(os.path.dirname(__file__)), "plan-stipe.json"),
@@ -231,9 +234,7 @@ ROBOTS_TXT = os.path.join(BASE_DIR, "wanderift", "robots.txt")
 DATE_FORMAT = "m/d/Y"
 DATE_INPUT_FORMATS = ["%Y-%m-%d", "%m/%d/%Y"]
 
-ANYMAIL = {
-    "MAILGUN_API_KEY": "6bee4aaf5117bdaaefb99493e1d6277f-5645b1f9-73c5a1f3",
-}
+ANYMAIL = {"MAILGUN_API_KEY": "6bee4aaf5117bdaaefb99493e1d6277f-5645b1f9-73c5a1f3"}
 
 SENDGRID_API_URL = "https://api.sendgrid.com/v3/"
 EMAIL_BACKEND = "anymail.backends.mailgun.EmailBackend"
@@ -258,22 +259,18 @@ REST_FRAMEWORK = {
     ),
     "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
     "DEFAULT_FILTER_BACKENDS": ("django_filters.rest_framework.DjangoFilterBackend",),
-    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
 }
 
 REST_PROXY = {
-    'HOST': 'https://kiwicom-prod.apigee.net',
-    'AUTH': {
-        'user': None,
-        'password': None,
-        'apikey': KIWI_API_KEY,
-    },
+    "HOST": "https://kiwicom-prod.apigee.net",
+    "AUTH": {"user": None, "password": None, "apikey": KIWI_API_KEY},
 }
 
 URL_REDIRECTS = (
-    (r'www\.joinflyline\.com/', 'https://joinflyline.com/'),
-    (r'wanderift\.com/', 'https://joinflyline.com/'),
-    (r'www\.wanderift\.com/', 'https://joinflyline.com/'),
+    (r"www\.joinflyline\.com/", "https://joinflyline.com/"),
+    (r"wanderift\.com/", "https://joinflyline.com/"),
+    (r"www\.wanderift\.com/", "https://joinflyline.com/"),
 )
 
-MAINTENANCE_LOCKFILE_PATH = os.path.join(BASE_DIR, 'maintenance.lock')
+MAINTENANCE_LOCKFILE_PATH = os.path.join(BASE_DIR, "maintenance.lock")

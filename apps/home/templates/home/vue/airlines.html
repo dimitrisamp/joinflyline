@@ -9,7 +9,7 @@
         <div class="airlines__airline">Airline</div>
         <div class="airlines__phone">Phone</div>
       </div>
-      <div v-for="(phone, code) in airlinePhones" class="airlines__item">
+      <div v-for="(phone, code) in airlinePhones" class="airlines__item" :key="`phone-${code}`">
         <div class="airlines__icon"><img :alt="code" :src="airlineIcon(code)"></div>
         <div class="airlines__code">[[ code ]]</div>
         <div class="airlines__link">[[ airlineCodes[code] ]]</div>

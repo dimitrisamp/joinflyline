@@ -41,3 +41,4 @@ pytest
 pytest-django
 pytest-xdist
 
+Collectfast

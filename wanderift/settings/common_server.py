@@ -41,8 +41,8 @@ DEALS_CITIES = [
     "SEA",
     "WAS",
 ]
-
-
+COLLECTFAST_THREADS = 20
+COLLECTFAST_STRATEGY = "collectfast.strategies.gcloud.GoogleCloudStrategy"
 DEFAULT_FILE_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
 STATICFILES_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
 COMPRESS_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
@@ -60,4 +60,3 @@ COMPRESS_FILTERS = {
         "compressor.filters.jsmin.SlimItFilter",
     ],
 }
-
