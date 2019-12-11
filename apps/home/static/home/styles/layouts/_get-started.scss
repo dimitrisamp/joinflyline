@@ -9,6 +9,9 @@
           box-shadow: none;
           border-color: $primary;
         }
+        &.invalid {
+          border-color: red;
+        }
     }
     select.form-control {
       text-align-last: center;

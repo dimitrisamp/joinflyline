@@ -76,7 +76,7 @@
                       <div class="step-formbg">
                           <div id="navbar-progress">
                               <div id="navbar-progress-indicator"
-                                   :class="{busy: requestSent}"></div>
+                                   :class="{busy: requestSent || promoCheckProgress}"></div>
                           </div>
                           <div class="form-logo text-center">
                               <img src="{% static "home/img/flyline_logos-01-1.png" %}">
@@ -105,6 +105,7 @@
                           <div class="form-group form-group-sm step-f-inputs">
                               <dynamic-select class="form-control"
                                               name="plan"
+                                              :discount="discount"
                                               v-model="form.plan"
                                               @data-arrived="updateSelectValue"
                               />
@@ -112,9 +113,11 @@
 
                           <div class="input-group input-group-sm step-f-inputs">
                               <input type="text" class="form-control"
+                                     :class="{invalid: promoInvalid}"
                                      placeholder="Promo Code"
                                      @keyup.enter="focusElement('zip')"
                                      name="promo_code"
+                                     @input="checkPromo"
                                      v-model="form.promo_code">
                           </div>
 

@@ -1,7 +1,8 @@
 import api from "../http.js";
+import {debounce} from "../../utils.js";
 
-const getStartedCompanionUrl = '/api/get-started-companion/';
-const getStartedUrl = '/api/get-started/';
+const getStartedCompanionUrl = "/api/get-started-companion/";
+const getStartedUrl = "/api/get-started/";
 
 export const Wizard = Vue.component("wizard", {
   template: "#vue-wizard-template",
@@ -26,12 +27,15 @@ export const Wizard = Vue.component("wizard", {
         expiry: "",
         cvc: "",
         plan: null,
-        code: this.$route.query.code,
+        code: this.$route.query.code
       },
       inviteMode: this.$route.query.hasOwnProperty("code"),
       invite: null,
       inviteCodeCheckProgress: false,
-      inviteCodeRejected: false
+      inviteCodeRejected: false,
+      discount: null,
+      promoCheckProgress: false,
+      promoInvalid: false,
     };
   },
   created() {
@@ -64,6 +68,24 @@ export const Wizard = Vue.component("wizard", {
         }
       });
     },
+    checkPromo: debounce(function() {
+      if (this.promoCheckProgress) return;
+      const promo = this.form.promo_code;
+      if (promo.length === 0) return;
+      this.promoCheckProgress = true;
+      api
+        .get("subscriptions/check-promo", { params: { promocode: promo } })
+        .then(response => {
+          this.discount = response.data.discount;
+          this.promoInvalid = false;
+        })
+        .catch(e => {
+          this.promoInvalid = true;
+        })
+        .finally(() => {
+          this.promoCheckProgress = false;
+        });
+    }, 500),
     checkInvite() {
       this.inviteCodeCheckProgress = true;
       api
@@ -124,7 +146,7 @@ export const Wizard = Vue.component("wizard", {
             }
           }
         }
-        fetch(this.inviteMode?getStartedCompanionUrl:getStartedUrl, {
+        fetch(this.inviteMode ? getStartedCompanionUrl : getStartedUrl, {
           method: "POST",
           body: formData
         })

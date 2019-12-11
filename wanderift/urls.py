@@ -76,6 +76,7 @@ urlpatterns = [
     # booking
     path("api/check-promo/", CheckPromoView.as_view(), name="check-promo"),
     path("api/get-started/", WizardView.as_view(), name="wizard"),
+    path("api/subscriptions/", include("apps.subscriptions.urls")),
     path("api/get-started-companion/", InviteWizardView.as_view(), name="get-started-companion"),
     path("sitemap.xml", SiteMapView.as_view(), name="sitemap"),
     path("robots.txt", RobotsTxtView.as_view(), name="robots"),

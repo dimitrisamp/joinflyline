@@ -1,6 +1,8 @@
 import stripe
+import stripe.error
 from django.conf import settings
 from django.utils.timezone import now
+from rest_framework import status
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -40,3 +42,15 @@ class Plans(APIView):
     permission_classes = [AllowAny]
     def get(self, request):
         return Response(settings.PLAN_DEFINITIONS)
+
+
+class CheckPromoView(APIView):
+    permission_classes = [AllowAny]
+
+    def get(self, request):
+        promocode = request.query_params.get('promocode')
+        try:
+            coupon = stripe.Coupon.retrieve(promocode)
+        except stripe.error.StripeError:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+        return Response({'discount': {'percentage': coupon.percent_off}})
