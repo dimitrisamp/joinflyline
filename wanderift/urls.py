@@ -68,8 +68,8 @@ class RobotsTxtView(View):
 
 
 urlpatterns = [
-    path("admin/", admin.site.urls),
     path("", index_view, name="index"),
+    path("admin/", admin.site.urls),
     # Auth urls
     path("auth/", include("apps.auth.urls")),
     path(r'api/auth/', include('knox.urls')),
@@ -118,3 +118,7 @@ if settings.STAGE == "localprod":
             {"document_root": settings.STATIC_ROOT},
         ),
     ]
+
+urlpatterns += [
+    re_path('^.*$', TemplateView.as_view(template_name="home/index.html")),
+]
