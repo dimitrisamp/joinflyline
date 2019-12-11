@@ -1,7 +1,7 @@
 import { getAgeCategory, validateCardNumber } from "../../utils.js";
 import api from "../http.js";
 
-const checkInterval = 15000;
+const checkInterval = 60000;
 
 const checkFlightsApiUrl = "/booking/check_flights/";
 

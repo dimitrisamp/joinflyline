@@ -149,7 +149,7 @@ $(function () {
     function checkPromo() {
         $.ajax({
             type: "GET",
-            url: '/check-promo/',
+            url: '/api/check-promo/',
             data: {
                 "promocode": getCheckoutFormData().promocode
             },

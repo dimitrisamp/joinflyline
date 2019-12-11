@@ -1,6 +1,7 @@
 import api from "../http.js";
 
-const getStartedCompanionUrl = '/get-started-companion/';
+const getStartedCompanionUrl = '/api/get-started-companion/';
+const getStartedUrl = '/api/get-started/';
 
 export const Wizard = Vue.component("wizard", {
   template: "#vue-wizard-template",
@@ -80,7 +81,7 @@ export const Wizard = Vue.component("wizard", {
     },
     verifyEmail(callback) {
       if (this.emailInvalid) return;
-      let url = new URL("/auth/check-user/", window.location.href);
+      let url = new URL("/api/auth/check-user/", window.location.href);
       let searchParams = {
         email: this.form.email
       };

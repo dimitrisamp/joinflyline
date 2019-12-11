@@ -71,14 +71,12 @@ urlpatterns = [
     path("", index_view, name="index"),
     path("admin/", admin.site.urls),
     # Auth urls
-    path("auth/", include("apps.auth.urls")),
+    path("api/auth/", include("apps.auth.urls")),
     path(r'api/auth/', include('knox.urls')),
     # booking
-    path("promo/", lambda _: redirect("/#/promo/"), name="promo-landing"),
-    path("check-promo/", CheckPromoView.as_view(), name="check-promo"),
-    path("emails/<str:booking_id>", booking_success, name="email"),
-    path("get-started/", WizardView.as_view(), name="wizard"),
-    path("get-started-companion/", InviteWizardView.as_view(), name="get-started-companion"),
+    path("api/check-promo/", CheckPromoView.as_view(), name="check-promo"),
+    path("api/get-started/", WizardView.as_view(), name="wizard"),
+    path("api/get-started-companion/", InviteWizardView.as_view(), name="get-started-companion"),
     path("sitemap.xml", SiteMapView.as_view(), name="sitemap"),
     path("robots.txt", RobotsTxtView.as_view(), name="robots"),
     path(
@@ -120,5 +118,5 @@ if settings.STAGE == "localprod":
     ]
 
 urlpatterns += [
-    re_path('^.*$', TemplateView.as_view(template_name="home/index.html")),
+    re_path('^(?!admin|api).*$', TemplateView.as_view(template_name="home/index.html")),
 ]
