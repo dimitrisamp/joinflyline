@@ -45,12 +45,15 @@ def card_token(card_number, expiry, cvc):
     )
 
 
-def add_subscription(account: Account, plan: str):
+def add_subscription(account: Account, plan: str, promocode: str):
     if not Subscriptions.objects.filter(account=account).exists():
-        subscription = stripe.Subscription.create(
-            customer=account.customer_id,
-            items=[{"plan": settings.SUBSCRIPTION_PLANS[plan]["stripe_plan_id"]}],
-        )
+        params = {
+            "customer": account.customer_id,
+            "items": [{"plan": settings.SUBSCRIPTION_PLANS[plan]["stripe_plan_id"]}],
+        }
+        if promocode:
+            params["coupon"] = promocode
+        subscription = stripe.Subscription.create(**params)
         start = datetime.datetime.fromtimestamp(subscription["current_period_start"])
         end = datetime.datetime.fromtimestamp(subscription["current_period_end"])
         Subscriptions.objects.create(
@@ -58,14 +61,14 @@ def add_subscription(account: Account, plan: str):
         )
 
 
-def add_to_stripe(user: User, plan):
+def add_to_stripe(user: User, plan, promocode):
     account = user.account
     stripe_card_token = card_token(account.card_number, account.expiry, account.cvc)
     account.token = stripe_card_token.id
     customer = stripe_customer(user)
     account.customer_id = customer.id
     account.save()
-    add_subscription(account, plan)
+    add_subscription(account, plan, promocode)
 
 
 class InviteCheckView(APIView):
@@ -76,7 +79,10 @@ class InviteCheckView(APIView):
         invite = get_object_or_404(
             CompanionInvite,
             invite_code=code,
-            status__in=[CompanionInviteStatus.created, CompanionInviteStatus.email_sent],
+            status__in=[
+                CompanionInviteStatus.created,
+                CompanionInviteStatus.email_sent,
+            ],
         )
         invite.accessed = now()
         invite.save()
@@ -142,5 +148,5 @@ class WizardView(FormView):
             signup_success(new_user.pk)
             # TODO: handle promocode
             if account.card_number and account.expiry and account.cvc:
-                add_to_stripe(new_user, cd["plan"])
+                add_to_stripe(new_user, cd["plan"], cd["promo_code"])
             return JsonResponse({"success": True})
