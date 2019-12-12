@@ -16,12 +16,10 @@
                 <p>Filter by : Stops, Airlines,Times, and more</p>
               </div>
               <div class="filter-sidebar__body">
-                <div class="filter-sidebar__item">
-                  <h3 class="filter-sidebar__item-title">Filter By Airlines</h3>
+                <collapse :collapsed="false" title="Filter By Airlines">
                   <airline-filter :data="form.airlines" @select="toggleAirline" />
-                </div>
-                <div class="filter-sidebar__item">
-                  <h3 class="filter-sidebar__item-title">Filter By Time</h3>
+                </collapse>
+                <collapse title="Filter By Time">
                   <tabs class="tabs--alpha-theme">
                     <tab :selected="true" title="Take-off">
                       <div class="filter-sidebar__item-spacing">
@@ -40,17 +38,18 @@
                       </div>
 
                     </tab>
-                    <tab title="Landing"></tab>
+                    <tab title="Landing">
+
+                    </tab>
                   </tabs>
-                </div>
-                <div class="filter-sidebar__item">
-                  <h3 class="filter-sidebar__item-title">Filter By Stops</h3>
+                </collapse>
+                <collapse title="Filter By Stops">
                   <max-stops-filter :data="form.maxStops" @select="setMaxStops" />
-                </div>
-                <div class="filter-sidebar__item">
-                  <h3 class="filter-sidebar__item-title">Filter By Price</h3>
+                </collapse>
+                <collapse title="Filter By Price">
                   <price-filter :data="form.priceRange" @select="setPriceRange" />
-                </div>
+                </collapse>
+
                 <div class="input-group search-dropdown">
                     <div class="bg-white-close-holes">
                         <span class="input-group-text search-form-input">Filter by Time</span>

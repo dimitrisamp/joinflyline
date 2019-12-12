@@ -45,11 +45,17 @@
         right: 0;
         z-index: 11;
         top: calc(50% + 1px);
-        transform: translateY(-50%);
+        transform: translateY(-50%) rotate(180deg);
         background-size: 1.0625rem 0.625rem;
         width: 1.0625rem;
         height: 0.625rem;
         background-repeat: no-repeat;
+        transition: transform .3s $easeInOutQuad;
+      }
+      &.collapsed {
+        &:after {
+          transform: translateY(-50%) rotate(0deg);
+        }
       }
     }
 
