@@ -4,11 +4,15 @@ export const ResultComponent = Vue.component("result-component", {
   mixins: [FilterForm],
   template: "#vue-result-component-template",
   delimiters: ["[[", "]]"],
+  components: {
+    VueSlider: window["vue-slider-component"]
+  },
   data() {
     return {
       searchProgress: false,
       user: {
-        anonymous: true
+        anonymous: true,
+        value3: [0, 50],
       },
     };
   },

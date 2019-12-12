@@ -11,6 +11,7 @@
 @import "common/forms";
 @import "common/buttons";
 @import "common/utils";
+@import "common/control";
 
 // Components
 @import "components/section-heading";
@@ -36,6 +37,8 @@
 @import "components/subscription";
 @import "components/accordion";
 @import "components/faq";
+@import "components/filter-sidebar";
+@import "components/filter-flights";
 
 // Layout
 @import 'layouts/header';

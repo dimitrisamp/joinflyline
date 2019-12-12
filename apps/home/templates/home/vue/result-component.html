@@ -7,24 +7,57 @@
         </div>
         <div class="col-12 col-xl-3 result__filters">
           <form action="" class="bg-white">
-            <div class="tile">
-                <div class="tile__heading-container">
-                  <h3 class="tile__heading">
-                    <span>Filters</span>
-                    <span class="tile__heading-right" @click="clearFiltersAndUpdate">Clear</span>
-                  </h3>
+            <div class="filter-sidebar">
+              <div class="filter-sidebar__header">
+                <h3 class="filter-sidebar__title">
+                  <span>Flight Filters</span>
+                  <span @click="clearFiltersAndUpdate">Clear All</span>
+                </h3>
+                <p>Filter by : Stops, Airlines,Times, and more</p>
+              </div>
+              <div class="filter-sidebar__body">
+                <div class="filter-sidebar__item">
+                  <h3 class="filter-sidebar__item-title">Filter By Airlines</h3>
+                  <airline-filter :data="form.airlines" @select="toggleAirline" />
                 </div>
-              <div class="tile__body">
-                <airline-filter :data="form.airlines" @select="toggleAirline" />
-                <max-stops-filter :data="form.maxStops" @select="setMaxStops" />
-                <price-filter :data="form.priceRange" @select="setPriceRange" />
+                <div class="filter-sidebar__item">
+                  <h3 class="filter-sidebar__item-title">Filter By Time</h3>
+                  <tabs class="tabs--alpha-theme">
+                    <tab :selected="true" title="Take-off">
+                      <div class="filter-sidebar__item-spacing">
+                        <div class="filter-sidebar__item-text">
+                          Take-off from DFW <br>
+                          Sun 5:00 AM – 11:30 PM
+                        </div>
+                        <vue-slider :value="[0, 3000]" :min="0" :max="3000"></vue-slider>
+                      </div>
+                      <div class="filter-sidebar__item-spacing">
+                        <div class="filter-sidebar__item-text">
+                          Take-off from DFW <br>
+                          Sun 5:00 AM – 11:30 PM
+                        </div>
+                        <vue-slider :value="[0, 3000]" :min="0" :max="3000"></vue-slider>
+                      </div>
+
+                    </tab>
+                    <tab title="Landing"></tab>
+                  </tabs>
+                </div>
+                <div class="filter-sidebar__item">
+                  <h3 class="filter-sidebar__item-title">Filter By Stops</h3>
+                  <max-stops-filter :data="form.maxStops" @select="setMaxStops" />
+                </div>
+                <div class="filter-sidebar__item">
+                  <h3 class="filter-sidebar__item-title">Filter By Price</h3>
+                  <price-filter :data="form.priceRange" @select="setPriceRange" />
+                </div>
                 <div class="input-group search-dropdown">
                     <div class="bg-white-close-holes">
                         <span class="input-group-text search-form-input">Filter by Time</span>
                         <input type="text" class="mb-3 form-control" placeholder="Filter By Times (Coming Soon)">
                     </div>
                   </div>
-                
+
                 <button type="button" class="btn btn-primary w-100" @click="search({clearFilters: false, saveSearch: false})">Update Result</button>
               </div>
             </div>

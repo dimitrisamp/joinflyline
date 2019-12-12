@@ -8,6 +8,11 @@ export const PriceFilter = Vue.component("price-filter", {
   components: {
     VueSlider: window["vue-slider-component"]
   },
+  data() {
+    return {
+      value3: [0, 50],
+    }
+  },
   methods: {
     select(value) {
       this.$emit('select', value);
