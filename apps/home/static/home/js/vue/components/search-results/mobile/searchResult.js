@@ -35,6 +35,6 @@ Vue.component('search-result-mobile', {
         price() {
             return this.data.conversion.USD;
         },
-        ...Vuex.mapState(['user']),
+        ...Vuex.mapState("user", ['user']),
     }
 });

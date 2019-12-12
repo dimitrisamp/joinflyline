@@ -1,4 +1,4 @@
-import { userStorage } from '../utils.js';
+import { userStorage } from './store/user.js';
 
 export default axios.create({
   baseURL: '/api/',

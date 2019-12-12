@@ -16,7 +16,7 @@ export const DashboadOverview = Vue.component("dashboad-overview", {
   template: "#vue-dashboad-overview-template",
   delimiters: ["[[", "]]"],
   methods: {
-    ...Vuex.mapActions(["setFormAndSearch"]),
+    ...Vuex.mapActions('search', ["setFormAndSearch"]),
     formatDateDeals,
     updateDeals() {
       if (!this.user || this.user.anonymous) return;
@@ -51,6 +51,6 @@ export const DashboadOverview = Vue.component("dashboad-overview", {
     this.updateDeals();
   },
   computed: {
-    ...Vuex.mapState(["user"])
+    ...Vuex.mapState('user', ["user"])
   }
 });

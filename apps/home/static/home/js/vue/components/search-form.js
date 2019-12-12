@@ -23,8 +23,8 @@ export const SearchForm = {
         });
       }, 500);
     },
-    ...Vuex.mapActions(['search', 'loadMore', 'sortResultsBy']),
-    ...Vuex.mapMutations([
+    ...Vuex.mapActions('search', ['search', 'loadMore', 'sortResultsBy']),
+    ...Vuex.mapMutations('search', [
       "updatePlaceFrom",
       "updatePlaceTo",
       "setSeatType",
@@ -36,8 +36,9 @@ export const SearchForm = {
     this.setDatePick();
   },
   computed: {
-    ...Vuex.mapState(["user", "searchResults", "form", "searchProgress"]),
-    ...Vuex.mapGetters(['cityFromTo', 'airlineNames']),
+    ...Vuex.mapState('user', ["user"]),
+    ...Vuex.mapState('search', ["searchResults", "form", "searchProgress"]),
+    ...Vuex.mapGetters("search", ['cityFromTo', 'airlineNames']),
     isFormIncomplete() {
       if (this.form.destinationTypeId === "round") {
         if (!this.form.return_date) return true;

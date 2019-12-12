@@ -12,7 +12,7 @@ export const MainLandingTiles = Vue.component("main-landing-tiles", {
     };
   },
   methods: {
-    ...Vuex.mapMutations(['updatePlaceFrom', 'updatePlaceTo']),
+    ...Vuex.mapMutations('search', ['updatePlaceFrom', 'updatePlaceTo']),
     setFromTo(from, to) {
       this.updatePlaceFrom(from);
       this.updatePlaceTo(to);

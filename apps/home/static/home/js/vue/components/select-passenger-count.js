@@ -11,10 +11,10 @@ export const SelectPassengerCount = Vue.component('select-passenger-count', {
     decrement(index) {
       this.updatePassengers({index, by: -1});
     },
-    ...Vuex.mapMutations(['updatePassengers']),
+    ...Vuex.mapMutations('search', ['updatePassengers']),
   },
   computed: {
-    ...Vuex.mapState(['form']),
+    ...Vuex.mapState('search', ['form']),
     passengers() {
       return this.form.valAdults + this.form.valChildren + this.form.valInfants;
     },

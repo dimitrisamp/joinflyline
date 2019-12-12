@@ -18,8 +18,8 @@ export const Deal = Vue.component("deal", {
   template: "#vue-deal-template",
   delimiters: ["[[", "]]"],
   methods: {
-    ...Vuex.mapMutations(["setForm"]),
-    ...Vuex.mapActions(["search"]),
+    ...Vuex.mapMutations('search', ["setForm"]),
+    ...Vuex.mapActions('search', ["search"]),
     formatDateDeals,
     searchMe() {
       this.setForm({

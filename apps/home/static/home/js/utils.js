@@ -338,51 +338,6 @@ export function removeBModalOverlay() {
  * Handles user info to localstorage
  */
 
-export const userStorage = {
-  keys: {
-    token: "authToken",
-    tokenExpiry: "authTokenExpiry"
-  },
-
-  /**
-   * Stores user sesstion to localstorage
-   * @param {string} token
-   * @param {string} expiry
-   */
-  setSession(token, expiry) {
-    localStorage.setItem(this.keys.token, token);
-    localStorage.setItem(this.keys.tokenExpiry, expiry);
-  },
-
-  /**
-   * @returns {(string|null)}
-   */
-  get token() {
-    return localStorage.getItem(this.keys.token);
-  },
-
-  /**
-   * @returns {string}
-   */
-  get tokenExpiry() {
-    return localStorage.getItem(this.keys.tokenExpiry);
-  },
-
-  /**
-   * @returns {boolean}
-   */
-  get isExpired() {
-    return new Date() > this.tokenExpiry;
-  },
-
-  /**
-   * @returns {boolean}
-   */
-  get isSessionValid() {
-    return this.isExpired || this.token === null ? false : true;
-  }
-};
-
 export function getAgeCategory(p, singular = false) {
   const birthDate = new Date(p.year, p.month, p.day);
   const today = new Date();

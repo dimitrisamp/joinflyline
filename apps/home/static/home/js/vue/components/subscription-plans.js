@@ -1,3 +1,6 @@
+const {mapState} = Vuex.createNamespacedHelpers('plans');
+
+
 export const SubscriptionPlans = Vue.component("subscription-plans", {
   template: "#vue-subscription-plans-template",
   delimiters: ["[[", "]]"],
@@ -16,6 +19,6 @@ export const SubscriptionPlans = Vue.component("subscription-plans", {
     }
   },
   computed: {
-    ...Vuex.mapState(['plans']),
+    ...Vuex.mapState('plans', ['plans']),
   }
 });

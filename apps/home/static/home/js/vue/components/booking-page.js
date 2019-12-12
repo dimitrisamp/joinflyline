@@ -87,10 +87,10 @@ export const BookingPage = Vue.component("booking-page", {
   delimiters: ["[[", "]]"],
   data() {
     let seats = {
-      ...this.$store.getters.flightToBook.parent.search_params.seats
+      ...this.$store.getters['search/flightToBook'].parent.search_params.seats
     };
     let user = {
-      ...this.$store.getters.user
+      ...this.$store.getters['user/user']
     };
     delete seats.passengers;
     let initialPassengers = [];
@@ -329,7 +329,7 @@ export const BookingPage = Vue.component("booking-page", {
     }
   },
   computed: {
-    ...Vuex.mapGetters(["flightToBook"]),
+    ...Vuex.mapGetters('search', ["flightToBook"]),
     passengerCount() {
       if (!this.passengers)
         return { adults: 0, children: 0, infants: 0, pnum: 0 };

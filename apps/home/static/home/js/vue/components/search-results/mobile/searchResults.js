@@ -7,10 +7,10 @@ Vue.component('search-results-mobile', {
             this.$emit('back-pressed');
         },
         showPopup,
-        ...Vuex.mapActions(['sortResultsBy'])
+        ...Vuex.mapActions("search", ['sortResultsBy'])
     },
     delimiters: ['{(', ')}'],
     computed: {
-        ...Vuex.mapState(['searchProgress', 'searchResults', 'form']),
+        ...Vuex.mapState("search", ['searchProgress', 'searchResults', 'form']),
     }
 });

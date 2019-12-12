@@ -7,7 +7,8 @@ Vue.component("quicklinks", {
   props: ["data", "sort", "airlinesFilter"],
   delimiters: ["{(", ")}"],
   computed: {
-    ...Vuex.mapState(["user", "form"]),
+    ...Vuex.mapState('user', ["user"]),
+    ...Vuex.mapState('search', ["form"]),
     airlineFilters() {
       const legacySet = new Set(legacyAirlines);
       const lowcostSet = new Set(lowcostAirlines);
@@ -41,6 +42,7 @@ Vue.component("quicklinks", {
   },
   methods: {
     secs2hm,
-    ...Vuex.mapActions(["sortResultsBy", "applyAirlinesFilter"])
+    ...Vuex.mapActions(
+        'search', ["sortResultsBy", "applyAirlinesFilter"])
   }
 });

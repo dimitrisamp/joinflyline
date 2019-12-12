@@ -12,7 +12,7 @@ export const SignIn = Vue.component("SignInFormComponent", {
     };
   },
   methods: {
-    ...Vuex.mapActions(["authenticate"]),
+    ...Vuex.mapActions('user', ["authenticate"]),
     handleSubmit(event) {
       const ctx = this;
       if (this.email && this.password) {
@@ -28,6 +28,6 @@ export const SignIn = Vue.component("SignInFormComponent", {
     }
   },
   computed: {
-    ...Vuex.mapState(["authErrorText"])
+    ...Vuex.mapState('user', ["authErrorText"])
   }
 });

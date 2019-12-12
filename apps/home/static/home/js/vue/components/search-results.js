@@ -4,8 +4,8 @@ Vue.component("search-results", {
   template: "#vue-search-results-template",
   methods: {
     showPopup,
-    ...Vuex.mapMutations(['setSearchResultIndex']),
-    ...Vuex.mapActions(["loadMore", "sortResultsBy"]),
+    ...Vuex.mapMutations('search', ['setSearchResultIndex']),
+    ...Vuex.mapActions('search', ["loadMore", "sortResultsBy"]),
     bookFlight(index) {
       this.setSearchResultIndex(index);
       this.$router.push({'name': 'booking'});
@@ -13,12 +13,12 @@ Vue.component("search-results", {
   },
   delimiters: ["{(", ")}"],
   computed: {
-    ...Vuex.mapState([
+    ...Vuex.mapState('search',[
       "quickFiltersData",
       "searchResults",
       "form",
-      "user",
       "searchProgress",
-    ])
+    ]),
+    ...Vuex.mapState('user', ['user']),
   }
 });
