@@ -27,6 +27,9 @@
   width: 20px;
   border: 1px solid $border-color;
   background-color: $white;
+  &.checked {
+    background-color: #00aeef;
+  }
 }
 
 .control--radio .control__indicator {

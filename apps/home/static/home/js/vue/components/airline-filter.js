@@ -4,11 +4,11 @@ import {airlineIcon} from "../../utils.js";
 export const AirlineFilter = Vue.component("airline-filter", {
   extends: PopupSelect,
   template: "#vue-airline-filter-template",
-  props: ['data'],
+  props: ['data', 'prices'],
   methods: {
     airlineIcon,
-    select(value) {
-      this.$emit('select', value);
+    select(airlineCode) {
+      this.$emit('select', airlineCode);
     }
   },
   computed: {

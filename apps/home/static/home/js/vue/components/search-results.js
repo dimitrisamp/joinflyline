@@ -14,10 +14,12 @@ Vue.component("search-results", {
   delimiters: ["{(", ")}"],
   computed: {
     ...Vuex.mapState('search',[
-      "quickFiltersData",
-      "searchResults",
       "form",
       "searchProgress",
+    ]),
+    ...Vuex.mapGetters('search', [
+        "finalResults",
+        "quickFiltersData",
     ]),
     ...Vuex.mapState('user', ['user']),
   }

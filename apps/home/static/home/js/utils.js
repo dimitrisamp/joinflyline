@@ -209,6 +209,14 @@ export function getAirlines(flights) {
   return [...airlines].sort();
 }
 
+export function getFlightAirlines(flight) {
+  let airlines = new Set();
+  for (const airline of flight.airlines) {
+    airlines.add(airline);
+  }
+  return [...airlines].sort();
+}
+
 export function processFlight(sr) {
   const to_routes = sr.route.filter(r => r.return === 0);
   const return_routes = sr.route.filter(r => r.return === 1);
@@ -252,6 +260,41 @@ export function getQuickLinksData(flights) {
     ),
     date: data.reduce((prev, curr) => (prev.date < curr.date ? prev : curr))
   };
+}
+
+export function getStops(sr) {
+  const toFlights = sr.route.filter(o=>!o.return);
+  const returnFlights = sr.route.filter(o=>!o.return);
+  return Math.max(toFlights.length - 1, returnFlights.length - 1);
+}
+
+export function getBaseSearchURL(form, limit=0) {
+  let formData = new FormData();
+  formData.append("fly_from", placeToRequestValue(form.placeFrom));
+  formData.append("fly_to", placeToRequestValue(form.placeTo));
+  const dateFrom = form.departure_date_data.format("DD/MM/YYYY");
+  formData.append("date_from", dateFrom);
+  formData.append("date_to", dateFrom);
+  formData.append("type", form.destinationTypeId);
+  if (form.destinationTypeId === "round") {
+    const dateTo = form.return_date_data.format("DD/MM/YYYY");
+    formData.append("return_from", dateTo);
+    formData.append("return_to", dateTo);
+  }
+  formData.append("adults", form.valAdults);
+  formData.append("infants", form.valInfants);
+  formData.append("children", form.valChildren);
+  formData.append("selected_cabins", form.seatType);
+  formData.append("curr", "USD");
+  if (limit) {
+    formData("limit", form.limit)
+  }
+  let url = new URL(
+    "/api/search",
+     window.location
+  );
+  url.search = new URLSearchParams(formData);
+  return url;
 }
 
 export function getSearchURL(form) {

@@ -91,7 +91,7 @@ export const userStore = {
         .then(response => {
           if (response.status < 400) {
             userStorage.setSession(response.data.token, response.data.expiry);
-            ctx.dispatch("initialize").then(() => {
+            ctx.dispatch("initializeUser").then(() => {
               router.push({ name });
             });
           }

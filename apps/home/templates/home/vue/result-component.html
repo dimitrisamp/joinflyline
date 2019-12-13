@@ -17,7 +17,7 @@
               </div>
               <div class="filter-sidebar__body">
                 <collapse :collapsed="false" title="Filter By Airlines">
-                  <airline-filter :data="form.airlines" @select="toggleAirline" />
+                  <airline-filter :data="filterableAirlines" @select="toggleAirline" />
                 </collapse>
                 <collapse title="Filter By Time">
                   <tabs class="tabs--alpha-theme">

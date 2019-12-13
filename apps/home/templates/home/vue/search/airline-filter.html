@@ -1,28 +1,11 @@
 <script type="text/x-template" id="vue-airline-filter-template">
         <div class="filter-flights">
-          <div class="filter-flights__item">
+          <div v-for="airlineData of data" class="filter-flights__item" @click="select(airlineData.aIndex)">
             <label class="control control--checkbox">
-              <span>American Airlines</span>
-              <input type="checkbox" checked="checked"/>
-              <div class="control__indicator"></div>
+              <span>[[ airlineData.name ]]</span>
+              <div class="control__indicator" :class="{checked: airlineData.checked}"></div>
             </label>
-            <div class="filter-flights__item-price">$72</div>
-          </div>
-          <div class="filter-flights__item">
-            <label class="control control--checkbox">
-              <span>Delta Airlines</span>
-              <input type="checkbox"/>
-              <div class="control__indicator"></div>
-            </label>
-            <div class="filter-flights__item-price">$115</div>
-          </div>
-          <div class="filter-flights__item">
-            <label class="control control--checkbox">
-              <span>United Airlines</span>
-              <input type="checkbox"/>
-              <div class="control__indicator"></div>
-            </label>
-            <div class="filter-flights__item-price">$155</div>
+            <div class="filter-flights__item-price"><!--[[ prices[airlineCode] ]]--></div>
           </div>
 
         </div>

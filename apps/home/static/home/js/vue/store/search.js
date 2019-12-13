@@ -1,22 +1,22 @@
 import {
-  getAirlines,
   getQuickLinksData,
-  getSearchURL,
-  processFlight
+  getBaseSearchURL,
+  processFlight,
+  getAirlines,
+  getFlightAirlines,
 } from "../../utils.js";
-import { airlineCodes } from "../../airlineCodes.js";
+import {airlineCodes, lowcostAirlines, legacyAirlines} from "../../airlineCodes.js";
 import api from "../http.js";
-import { userStorage } from "../store/user.js";
+import {userStorage} from "../store/user.js";
 
 export const searchStore = {
   namespaced: true,
   state: {
     authErrorText: "",
-    user: {anonymous: true},
     plans: null,
     form: {
       airlinesFilter: null,
-      limit: 20,
+      limit: 10,
       limitIncrement: 0,
       sort: null,
       priceRange: [0, 3000],
@@ -35,7 +35,6 @@ export const searchStore = {
       placeTo: null
     },
     searchResults: [],
-    quickFiltersData: null,
     toggleSidebar: false,
     searchProgress: false,
     searchResultIndex: null,
@@ -44,9 +43,6 @@ export const searchStore = {
   mutations: {
     setQuickFiltersData(state, value) {
       state.quickFiltersData = value;
-    },
-    updateUser(state, user) {
-      state.user = user;
     },
     setSearchResults(state, results) {
       state.searchResults = results;
@@ -94,32 +90,29 @@ export const searchStore = {
       }
     },
     setDates(state, payload) {
-      const { start, end } = payload;
+      const {start, end} = payload;
       if (start) state.form.departure_date = start.format("MM/DD/YYYY");
       if (end) state.form.return_date = end.format("MM/DD/YYYY");
       state.form.departure_date_data = start;
       state.form.return_date_data = end;
     },
-    setUser(state, user) {
-      state.user = user;
-    },
     updatePassengers(state, payload) {
-      const { index, by } = payload;
+      const {index, by} = payload;
       let vals = {
         valAdults: state.form.valAdults,
         valChildren: state.form.valChildren,
         valInfants: state.form.valInfants
       };
       const propertyName = ["valAdults", "valChildren", "valInfants"][
-        index - 1
-      ];
+      index - 1
+          ];
       vals[propertyName] += by;
       const passengers = vals.valAdults + vals.valChildren + vals.valInfants;
       if (!(passengers > 0 && passengers <= 9)) return;
       if (vals.valInfants > vals.valAdults) return;
       if (vals.valInfants > 0 && vals.valChildren > 0 && vals.valAdults === 0)
         return;
-      state.form = { ...state.form, ...vals }; // Apply changes
+      state.form = {...state.form, ...vals}; // Apply changes
     },
     setSearchProgress(state, value) {
       state.searchProgress = value;
@@ -167,140 +160,116 @@ export const searchStore = {
     setFormAndSearch(context, data) {
       context.commit("setForm", data);
       const departureDate = moment(data.departure_date);
-      const returnDate = data.return_date?moment(data.return_date):null;
+      const returnDate = data.return_date ? moment(data.return_date) : null;
       context.commit("setDates", {start: departureDate, end: returnDate});
       context.dispatch("search", {clearFilters: true, saveSearch: false})
     },
     applyAirlinesFilter(context, kind) {
       context.commit("toggleAirlinesFilter", kind);
-      context.dispatch("search", {clearFilters: false, saveSearch: false});
-    },
-    initialize(context) {
-      context.dispatch("initializeUser");
-      context.dispatch("initializePlans");
-    },
-    initializeUser(context) {
-      return api
-        .get("/users/me/")
-        .then(response => {
-          context.commit("setUser", Object.assign(
-            {}, {anonymous: false}, response.data)
-          );
-        })
-        .catch(err => {
-          if (err.response.status === 401) {
-            context.commit("setUser", { anonymous: true });
-          }
-        });
-    },
-    logOut(context, router) {
-      localStorage.removeItem("authToken");
-      context.commit("setUser", { anonymous: true });
-      router.push({ name: "index" });
-    },
-    initializePlans(context) {
-      api.get("/subscriptions/plan/").then(response => {
-        context.commit("setPlans", response.data);
-      });
-    },
-    authenticate(ctx, params) {
-      const {email, password, router, name} = params;
-      axios
-        .post(
-          "/api/auth/login/",
-          {},
-          {
-            headers: {
-              Authorization: "Basic " + btoa(`${email}:${password}`)
-            }
-          }
-        )
-        .then(response => {
-          if (response.status < 400) {
-            userStorage.setSession(response.data.token, response.data.expiry);
-            context.dispatch("initialize").then(() => {
-              router.push({ name });
-            });
-          }
-        })
-        .catch(error => {
-          if (error.response.status === 401) {
-            ctx.commit('setAuthError', "Incorrect Email or Password");
-          } else {
-            ctx.commit('setAuthError', "Something went wrong");
-          }
-        });
-    },
-    toggleSidebar(context) {
-      context.commit("TOGGLE_SIDEBAR");
     },
     loadMore(context) {
       context.commit("increaseLimit", 10);
-      context.dispatch("search", {clearFilters: false, saveSearch: false});
     },
     sortResultsBy(context, sort) {
       context.commit("toggleSort", sort);
-      context.dispatch("search", {clearFilters: false, saveSearch: false});
     },
     clearFiltersAndUpdate(context) {
       context.commit("clearFilters");
       context.commit("resetAirlinesFilter");
-      context.dispatch("search", {clearFilters: true, saveSearch: false});
     },
     search(context, payload) {
-      const { clearFilters, saveSearch } = payload;
-      if (clearFilters) {
-        context.commit("clearFilters");
-        context.commit("resetAirlinesFilter");
-      }
+      const {clearFilters, saveSearch} = payload;
       context.commit('setSearchResultIndex', null);
       context.commit("setSearchProgress", true);
-      api.get(getSearchURL(context.state.form))
-        .then(response => {
-          const data = response.data;
-          let parent = { ...data };
-          delete parent.data;
-          data.data = data.data.map(processFlight);
-          data.data = data.data.map(o => {
-            o.parent = parent;
-            return o;
-          });
-
-          context.commit("setQuickFiltersData", getQuickLinksData(data.data));
-          if (clearFilters) {
+      api.get(getBaseSearchURL(context.state.form))
+          .then(response => {
+            const data = response.data;
+            let parent = {...data};
+            delete parent.data;
+            data.data = data.data.map(processFlight);
+            data.data = data.data.map((o, i) => {
+              o.parent = parent;
+              o.srIndex = i;
+              return o;
+            });
             const airlines = getAirlines(data.data);
             context.commit(
-              "setAirlines",
-              airlines.map(a => ({
-                code: a,
-                name: airlineCodes[a] || a,
-                checked: false
-              }))
+                "setAirlines",
+                airlines.map((a, i) => ({
+                  code: a,
+                  name: airlineCodes[a] || a,
+                  checked: false,
+                  aIndex: i
+                }))
             );
-            context.commit("resetAirlinesFilter");
-          }
-          context.commit("setSearchResults", data.data);
-        })
-        .finally(() => {
-          context.commit("setSearchProgress", false);
-        });
+            context.commit("setSearchResults", data.data);
+          })
+          .finally(() => {
+            context.commit("setSearchProgress", false);
+          });
       if (saveSearch) {
-        api.post('/search-history/', {
-          place_from: context.state.form.placeFrom,
-          place_to: context.state.form.placeTo,
-          departure_date: context.state.form.departure_date_data.toJSON().slice(0, 10),
-          return_date: context.state.form.return_date_data.toJSON().slice(0, 10),
-          adults: context.state.form.valAdults,
-          children: context.state.form.valChildren,
-          infants: context.state.form.valInfants,
-          seat_type: context.state.form.seatType,
-          destination_type: context.state.form.destinationTypeId
-        });
+        context.dispatch('saveSearchHistory');
       }
-    }
+    },
+    saveSearchHistory(context) {
+      api.post('/search-history/', {
+        place_from: context.state.form.placeFrom,
+        place_to: context.state.form.placeTo,
+        departure_date: context.state.form.departure_date_data.toJSON().slice(0, 10),
+        return_date: context.state.form.return_date_data.toJSON().slice(0, 10),
+        adults: context.state.form.valAdults,
+        children: context.state.form.valChildren,
+        infants: context.state.form.valInfants,
+        seat_type: context.state.form.seatType,
+        destination_type: context.state.form.destinationTypeId
+      });
+    },
   },
   getters: {
+    quickFiltersData(state, getters) {
+      return getQuickLinksData(getters.filteredResults);
+    },
     toggleSidebar: state => state.toggleSidebar,
+    filterableAirlines(state) {
+      const kind = state.form.airlinesFilter;
+      if (kind === 'lowcost') {
+        return state.form.airlines.filter(o=>lowcostAirlines.includes(o.code))
+      } else if (kind === 'legacy') {
+        return state.form.airlines.filter(o=>legacyAirlines.includes(o.code))
+      }
+      return state.form.airlines;
+    },
+    checkedAirlines(state, getters) {
+      return getters.filterableAirlines.filter(o=>o.checked).map(o=>o.code);
+    },
+    airlinesFilterToApply(state, getters) {
+      const kind = state.form.airlinesFilter;
+      if (getters.checkedAirlines.length > 0) {
+        return getters.checkedAirlines;
+      }
+      if (kind === 'lowcost') {
+        return lowcostAirlines;
+      } else if (kind === 'legacy') {
+        return legacyAirlines;
+      }
+      return [];
+    },
+    filteredResults(state, getters) {
+      let result = state.searchResults;
+      if (getters.airlinesFilterToApply.length > 0) {
+        result = result.filter(o=>{
+          const airlines = getFlightAirlines(o);
+          return airlines.every(a=>getters.airlinesFilterToApply.includes(a));
+        })
+      }
+      return result;
+    },
+    finalResults(state, getters) {
+      return getters.filteredResults.slice(0, state.form.limit + state.form.limitIncrement);
+    },
+    airlinePrices(state, getters) {
+
+    },
     cityFromTo(state) {
       if (!state.form.placeFrom || !state.form.placeTo) {
         return null;

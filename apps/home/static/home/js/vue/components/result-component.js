@@ -17,11 +17,12 @@ export const ResultComponent = Vue.component("result-component", {
     };
   },
   methods: {
-    ...Vuex.mapActions('search', ["sortResultsBy", "loadMore", "search"]),
+    ...Vuex.mapActions('search', ["sortResultsBy", "loadMore", "search",]),
+    ...Vuex.mapMutations('search', ["toggleAirline"]),
     ...Vuex.mapMutations('search', ["setMaxStops"])
   },
   computed: {
-    ...Vuex.mapState('search', ["searchResults", "quickFiltersData", "form"]),
-    ...Vuex.mapGetters('search', ["cityFromTo", "airlineNames"])
+    ...Vuex.mapState('search', ["form"]),
+    ...Vuex.mapGetters('search', ["cityFromTo", "airlineNames", "filterableAirlines", "quickFiltersData", "finalResults"])
   }
 });
