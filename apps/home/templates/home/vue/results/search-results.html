@@ -40,11 +40,11 @@
         </div>
         <div class="search-results normal-scroll" :class="{anonymous: user.anonymous}"
              v-cloak
-             v-if="!searchProgress && searchResults.length !== 0">
+             v-if="!searchProgress && finalResults.length !== 0">
 
-            <flight v-for="(flight, i) in searchResults"
+            <flight v-for="flight in finalResults"
                     :flight="flight" :form="form" :user="user"
-                    :key="flight.id" @showPopup="showPopup" @proceed-to-booking="bookFlight(i)"></flight>
+                    :key="flight.id" @showPopup="showPopup" @proceed-to-booking="bookFlight(flight.srIndex)"></flight>
 
             <div class="h-btngroups">
                 <a class="btn btn-default" href="#"

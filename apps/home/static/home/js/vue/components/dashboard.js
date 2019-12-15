@@ -1,5 +1,4 @@
 import {SearchForm} from "./search-form.js";
-import { store } from "../store.js";
 
 export const Dashboard = Vue.component("dashboard", {
   template: "#vue-dashboard-template",
@@ -13,7 +12,7 @@ export const Dashboard = Vue.component("dashboard", {
     // }
   },
   computed: {
-    ...Vuex.mapState(['showDashboardNavigation'])
+    ...Vuex.mapState('dashboard', ['showDashboardNavigation'])
   },
   methods: {
     proceedToSearchResults() {

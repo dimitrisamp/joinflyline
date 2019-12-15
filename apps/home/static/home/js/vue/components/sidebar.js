@@ -3,9 +3,9 @@ export const Sidebar = {
     delimiters: ['[[', ']]'],
     name: 'sidebar',
     methods: {
-        ...Vuex.mapActions(['logOut']),
+        ...Vuex.mapActions('user', ['logOut']),
         handleSidebarLinkClick() {
-            this.$store.dispatch('toggleSidebar');
+            this.$store.dispatch('dashboard/toggleSidebar');
         }
     },
     computed: {
@@ -25,6 +25,7 @@ export const Sidebar = {
                 return '';
             }
         },
-        ...Vuex.mapState(['user', 'plans']),
+        ...Vuex.mapState('user', ['user']),
+        ...Vuex.mapState('plans', ['plans']),
     },
 };

@@ -6,15 +6,15 @@ export const FilterForm = {
     }
   },
   methods: {
-    ...Vuex.mapMutations([
+    ...Vuex.mapMutations('search', [
       "setMaxStops",
       "setPriceRange",
       "toggleAirline",
     ]),
-    ...Vuex.mapActions(['search', 'clearFiltersAndUpdate'])
+    ...Vuex.mapActions('search', ['search', 'clearFiltersAndUpdate'])
   },
   computed: {
-    ...Vuex.mapState(['form']),
+    ...Vuex.mapState('search', ['form']),
     seatTypeName: st => seatTypes[st],
   }
 };

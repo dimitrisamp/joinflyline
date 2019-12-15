@@ -24,6 +24,6 @@ export const MembershipExplained = Vue.component("membership-explained", {
     };
   },
   computed: {
-    ...Vuex.mapState(['plans']),
+    ...Vuex.mapState('plans', ['plans']),
   }
 });

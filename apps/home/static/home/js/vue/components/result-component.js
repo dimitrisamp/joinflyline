@@ -4,20 +4,25 @@ export const ResultComponent = Vue.component("result-component", {
   mixins: [FilterForm],
   template: "#vue-result-component-template",
   delimiters: ["[[", "]]"],
+  components: {
+    VueSlider: window["vue-slider-component"]
+  },
   data() {
     return {
       searchProgress: false,
       user: {
-        anonymous: true
+        anonymous: true,
+        value3: [0, 50],
       },
     };
   },
   methods: {
-    ...Vuex.mapActions(["sortResultsBy", "loadMore", "search"]),
-    ...Vuex.mapMutations(["setMaxStops"])
+    ...Vuex.mapActions('search', ["sortResultsBy", "loadMore", "search",]),
+    ...Vuex.mapMutations('search', ["toggleAirline"]),
+    ...Vuex.mapMutations('search', ["setMaxStops"])
   },
   computed: {
-    ...Vuex.mapState(["searchResults", "quickFiltersData", "form"]),
-    ...Vuex.mapGetters(["cityFromTo", "airlineNames"])
+    ...Vuex.mapState('search', ["form"]),
+    ...Vuex.mapGetters('search', ["cityFromTo", "airlineNames", "filterableAirlines", "quickFiltersData", "finalResults"])
   }
 });

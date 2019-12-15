@@ -11,7 +11,7 @@ export const MaxStopsFilter = Vue.component("max-stops-filter", {
   },
   methods: {
     select(data) {
-      this.$emit('select', data);
+      this.$emit('select', parseInt(data));
       this.close();
     }
   },

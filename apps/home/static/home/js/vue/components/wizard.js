@@ -52,7 +52,7 @@ export const Wizard = Vue.component("wizard", {
     }
   },
   methods: {
-    ...Vuex.mapActions(["authenticate"]),
+    ...Vuex.mapActions('user', ["authenticate"]),
     prevStep() {
       this.step = 1;
     },

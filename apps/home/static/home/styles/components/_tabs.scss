@@ -92,3 +92,32 @@
     }
   }
 }
+
+
+// Tab Theme Alpha
+.tabs--alpha-theme {
+  .tabs__list {
+    border: 1px solid #E4E7EC;
+  }
+  .tabs__item {
+    padding: 0;
+    border: 0;
+    height: 2.5rem;
+    cursor: pointer;
+    .tabs__link {
+      font-family: $dona-bold;
+    }
+    &.is-active {
+      background-color: #E4E7EC;
+      border: 0;
+      padding: 0;
+      .tabs__link {
+        font-family: $dona-bold;
+      }
+    }
+  }
+  .tabs__content {
+    min-height: auto;
+    padding: 1rem 0;
+  }
+}

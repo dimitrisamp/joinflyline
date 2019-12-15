@@ -1,0 +1,15 @@
+.filter-flights {
+  &__item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    .control {
+      margin-bottom: 0;
+    }
+    &-price {
+      font-size: 13px;
+      font-family: $dona-bold;
+    }
+  }
+}

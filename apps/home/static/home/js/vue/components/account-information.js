@@ -108,7 +108,7 @@ export const AccountInformation = Vue.component("account-information", {
     airlineIcon
   },
   computed: {
-    ...Vuex.mapState(['plans']),
+    ...Vuex.mapState('plans', ['plans']),
     frequentFlyerNames() {
       return frequentFlyerNames;
     },

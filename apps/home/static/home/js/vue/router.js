@@ -11,7 +11,7 @@ import {SignIn} from "./components/sign-in.js"
 import {MainLanding} from "./components/main-landing.js"
 import {BookingPage} from "./components/booking-page.js";
 import {MainLandingAbout} from "./components/main-landing-about.js"
-import { store } from './store.js';
+import { store } from './store/index.js';
 import {Faq} from "./components/faq.js";
 import {MembershipExplained} from "./components/membership-explained.js";
 import {Flyline101} from "./components/flyline101.js";
@@ -25,7 +25,7 @@ const routes = [
     name: 'index',
     component: MainLanding,
     beforeEnter(to, from, next) {
-      if (!store.getters.user.anonymous) {
+      if (!store.state.user.user.anonymous) {
         next({name: 'overview'});
       } else {
         next();
@@ -76,7 +76,7 @@ const routes = [
     path: '/dashboard',
     component: Dashboard,
     beforeEnter(to, from, next) {
-      if (store.getters.user.anonymous) {
+      if (store.state.user.user.anonymous) {
         next({name: 'index'});
       } else {
         next();
@@ -147,13 +147,12 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  store.dispatch("initializeUser").then(() => {
+  store.dispatch("user/initializeUser").then(() => {
     next();
   }).catch(error => {
-    console.error(error);
     next();
   });
-  store.dispatch("initializePlans");
+  store.dispatch("plans/initializePlans");
 });
 
 export { router }

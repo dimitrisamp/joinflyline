@@ -12,8 +12,9 @@ export const SearchResultsPage = Vue.component('search-results-page', {
     }
   },
   computed: {
-    ...Vuex.mapState(['searchProgress', 'searchResults', 'user', 'form']),
-      ...Vuex.mapGetters(['airlineNames', 'cityFromTo']),
+    ...Vuex.mapState('user', ['user']),
+    ...Vuex.mapState('search', ['searchProgress', 'searchResults', 'form']),
+      ...Vuex.mapGetters('search', ['airlineNames', 'cityFromTo']),
       isMobile() {
         return this.$mq === 'sm';
       }
