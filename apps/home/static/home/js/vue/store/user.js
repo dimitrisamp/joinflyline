@@ -16,6 +16,11 @@ export const userStorage = {
     localStorage.setItem(this.keys.tokenExpiry, expiry);
   },
 
+
+  dropSession() {
+    localStorage.removeItem(this.keys.token);
+    localStorage.removeItem(this.keys.tokenExpiry);
+  },
   /**
    * @returns {(string|null)}
    */
@@ -67,6 +72,7 @@ export const userStore = {
         })
         .catch(err => {
           if (err.response.status === 401) {
+            userStorage.dropSession();
             context.commit("setUser", { anonymous: true });
           }
         });

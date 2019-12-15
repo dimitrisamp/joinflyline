@@ -3,11 +3,22 @@ import {
   getBaseSearchURL,
   processFlight,
   getAirlines,
-  getFlightAirlines,
+  getStops,
+  getFlightAirlines
 } from "../../utils.js";
-import {airlineCodes, lowcostAirlines, legacyAirlines} from "../../airlineCodes.js";
+import {
+  airlineCodes,
+  lowcostAirlines,
+  legacyAirlines
+} from "../../airlineCodes.js";
 import api from "../http.js";
-import {userStorage} from "../store/user.js";
+import { userStorage } from "../store/user.js";
+
+function dateInRange(isoDate, range) {
+  const d = moment(isoDate);
+  const total_minutes = d.hour() * 60 + d.minute();
+  return total_minutes >= range[0] && total_minutes <= range[1];
+}
 
 export const searchStore = {
   namespaced: true,
@@ -32,7 +43,18 @@ export const searchStore = {
       departure_date_data: null,
       return_date_data: null,
       placeFrom: null,
-      placeTo: null
+      placeTo: null,
+      singleCarrier: false,
+      timeFilters: {
+        departure: {
+          takeoff: [0, 24 * 60],
+          landing: [0, 24 * 60]
+        },
+        return: {
+          takeoff: [0, 24 * 60],
+          landing: [0, 24 * 60]
+        }
+      }
     },
     searchResults: [],
     toggleSidebar: false,
@@ -41,6 +63,16 @@ export const searchStore = {
     showDashboardNavigation: true
   },
   mutations: {
+    SET_TIME_FILTERS(state, v) {
+      const { destination, direction, value } = v;
+      state.form.timeFilters[destination][direction] = value;
+    },
+    SET_SINGLE_CARRIER(state, v) {
+      state.form.singleCarrier = true;
+    },
+    TOGGLE_SINGLE_CARRIER(state) {
+      state.form.singleCarrier = !state.form.singleCarrier;
+    },
     setQuickFiltersData(state, value) {
       state.quickFiltersData = value;
     },
@@ -90,29 +122,29 @@ export const searchStore = {
       }
     },
     setDates(state, payload) {
-      const {start, end} = payload;
+      const { start, end } = payload;
       if (start) state.form.departure_date = start.format("MM/DD/YYYY");
       if (end) state.form.return_date = end.format("MM/DD/YYYY");
       state.form.departure_date_data = start;
       state.form.return_date_data = end;
     },
     updatePassengers(state, payload) {
-      const {index, by} = payload;
+      const { index, by } = payload;
       let vals = {
         valAdults: state.form.valAdults,
         valChildren: state.form.valChildren,
         valInfants: state.form.valInfants
       };
       const propertyName = ["valAdults", "valChildren", "valInfants"][
-      index - 1
-          ];
+        index - 1
+      ];
       vals[propertyName] += by;
       const passengers = vals.valAdults + vals.valChildren + vals.valInfants;
       if (!(passengers > 0 && passengers <= 9)) return;
       if (vals.valInfants > vals.valAdults) return;
       if (vals.valInfants > 0 && vals.valChildren > 0 && vals.valAdults === 0)
         return;
-      state.form = {...state.form, ...vals}; // Apply changes
+      state.form = { ...state.form, ...vals }; // Apply changes
     },
     setSearchProgress(state, value) {
       state.searchProgress = value;
@@ -140,29 +172,40 @@ export const searchStore = {
       state.authErrorText = value;
     },
     showDashboardNav(state) {
-      state.showDashboardNavigation = true
+      state.showDashboardNavigation = true;
     },
     hideDashboardNav(state) {
-      state.showDashboardNavigation = false
+      state.showDashboardNavigation = false;
     },
     setForm(state, data) {
-
-      state.form.placeFrom = data.place_from;
-      state.form.placeTo = data.place_to;
-      state.form.valAdults = data.adults;
-      state.form.valChildren = data.children;
-      state.form.valInfants = data.infants;
-      state.form.seatType = data.seat_type;
-      state.form.destinationTypeId = data.destination_type;
-    },
+      state.form = {
+        ...state.form,
+        placeFrom: data.place_from,
+        placeTo: data.place_to,
+        valAdults: data.adults,
+        valChildren: data.children,
+        valInfants: data.infants,
+        seatType: data.seat_type,
+        destinationTypeId: data.destination_type
+      };
+    }
   },
   actions: {
+    toggleSingleCarrier(context) {
+      context.commit('TOGGLE_SINGLE_CARRIER');
+    },
+    setSingleCarrier(context, value) {
+      context.commit('SET_SINGLE_CARRIER', value);
+    },
+    setTimeFilters(context, value) {
+      context.commit("SET_TIME_FILTERS", value);
+    },
     setFormAndSearch(context, data) {
       context.commit("setForm", data);
       const departureDate = moment(data.departure_date);
       const returnDate = data.return_date ? moment(data.return_date) : null;
-      context.commit("setDates", {start: departureDate, end: returnDate});
-      context.dispatch("search", {clearFilters: true, saveSearch: false})
+      context.commit("setDates", { start: departureDate, end: returnDate });
+      context.dispatch("search", { clearFilters: true, saveSearch: false });
     },
     applyAirlinesFilter(context, kind) {
       context.commit("toggleAirlinesFilter", kind);
@@ -177,45 +220,53 @@ export const searchStore = {
       context.commit("clearFilters");
       context.commit("resetAirlinesFilter");
     },
-    search(context, payload) {
-      const {clearFilters, saveSearch} = payload;
-      context.commit('setSearchResultIndex', null);
+    search(context, payload, getters) {
+      const { clearFilters, saveSearch } = payload;
+      context.commit("setSearchResultIndex", null);
       context.commit("setSearchProgress", true);
-      api.get(getBaseSearchURL(context.state.form))
-          .then(response => {
-            const data = response.data;
-            let parent = {...data};
-            delete parent.data;
-            data.data = data.data.map(processFlight);
-            data.data = data.data.map((o, i) => {
-              o.parent = parent;
-              o.srIndex = i;
-              return o;
-            });
-            const airlines = getAirlines(data.data);
-            context.commit(
-                "setAirlines",
-                airlines.map((a, i) => ({
-                  code: a,
-                  name: airlineCodes[a] || a,
-                  checked: false,
-                  aIndex: i
-                }))
-            );
-            context.commit("setSearchResults", data.data);
-          })
-          .finally(() => {
-            context.commit("setSearchProgress", false);
+      api
+        .get(getBaseSearchURL(context.state.form))
+        .then(response => {
+          const data = response.data;
+          let parent = { ...data };
+          delete parent.data;
+          data.data = data.data.map(processFlight);
+          data.data = data.data.map((o, i) => {
+            o.parent = parent;
+            o.srIndex = i;
+            Object.freeze(o);
+            return o;
           });
+          const airlines = getAirlines(data.data);
+          context.commit(
+            "setAirlines",
+            airlines.map((a, i) => ({
+              code: a,
+              name: airlineCodes[a] || a,
+              checked: false,
+              aIndex: i
+            }))
+          );
+          context.commit("setSearchResults", data.data);
+          context.commit("setPriceRange", [
+            context.getters.priceLimits.min,
+            context.getters.priceLimits.max
+          ]);
+        })
+        .finally(() => {
+          context.commit("setSearchProgress", false);
+        });
       if (saveSearch) {
-        context.dispatch('saveSearchHistory');
+        context.dispatch("saveSearchHistory");
       }
     },
     saveSearchHistory(context) {
-      api.post('/search-history/', {
+      api.post("/search-history/", {
         place_from: context.state.form.placeFrom,
         place_to: context.state.form.placeTo,
-        departure_date: context.state.form.departure_date_data.toJSON().slice(0, 10),
+        departure_date: context.state.form.departure_date_data
+          .toJSON()
+          .slice(0, 10),
         return_date: context.state.form.return_date_data.toJSON().slice(0, 10),
         adults: context.state.form.valAdults,
         children: context.state.form.valChildren,
@@ -223,7 +274,7 @@ export const searchStore = {
         seat_type: context.state.form.seatType,
         destination_type: context.state.form.destinationTypeId
       });
-    },
+    }
   },
   getters: {
     quickFiltersData(state, getters) {
@@ -232,44 +283,139 @@ export const searchStore = {
     toggleSidebar: state => state.toggleSidebar,
     filterableAirlines(state) {
       const kind = state.form.airlinesFilter;
-      if (kind === 'lowcost') {
-        return state.form.airlines.filter(o=>lowcostAirlines.includes(o.code))
-      } else if (kind === 'legacy') {
-        return state.form.airlines.filter(o=>legacyAirlines.includes(o.code))
+      let result;
+      if (kind === "lowcost") {
+        result = state.form.airlines.filter(o =>
+          lowcostAirlines.includes(o.code)
+        );
+      } else if (kind === "legacy") {
+        result = state.form.airlines.filter(o => legacyAirlines.includes(o.code));
+      } else {
+        result = state.form.airlines;
       }
-      return state.form.airlines;
+      if (state.form.singleCarrier) {
+        const singleCarrierAirlines = new Set(state.searchResults.filter(o=>o.airlines.length === 1).map(o=>o.airlines[0]));
+        result = result.filter(o=>singleCarrierAirlines.has(o.code));
+      }
+      return result;
     },
     checkedAirlines(state, getters) {
-      return getters.filterableAirlines.filter(o=>o.checked).map(o=>o.code);
+      return getters.filterableAirlines.filter(o => o.checked).map(o => o.code);
     },
     airlinesFilterToApply(state, getters) {
       const kind = state.form.airlinesFilter;
       if (getters.checkedAirlines.length > 0) {
         return getters.checkedAirlines;
       }
-      if (kind === 'lowcost') {
+      if (kind === "lowcost") {
         return lowcostAirlines;
-      } else if (kind === 'legacy') {
+      } else if (kind === "legacy") {
         return legacyAirlines;
       }
       return [];
     },
     filteredResults(state, getters) {
-      let result = state.searchResults;
+      let result = [...state.searchResults];
       if (getters.airlinesFilterToApply.length > 0) {
-        result = result.filter(o=>{
-          const airlines = getFlightAirlines(o);
-          return airlines.every(a=>getters.airlinesFilterToApply.includes(a));
-        })
+        result = result.filter(o => {
+          return o.airlines.every(a => getters.airlinesFilterToApply.includes(a));
+        });
+      }
+      result = result.filter(o => {
+        return (
+          o.conversion.USD >= state.form.priceRange[0] &&
+          o.conversion.USD <= state.form.priceRange[1]
+        );
+      });
+      if (state.form.maxStops !== null) {
+        result = result.filter(o => {
+          return getStops(o) <= state.form.maxStops;
+        });
+      }
+      result = result.filter(o => {
+        const tf = state.form.timeFilters;
+        if (o.roundtrip) {
+          if (
+            o.local_departure_int < tf.departure.takeoff[0] ||
+            o.local_departure_int > tf.departure.takeoff[1]
+          )
+            return false;
+          if (
+            o.local_arrival_int < tf.departure.landing[0] ||
+            o.local_arrival_int > tf.departure.landing[1]
+          )
+            return false;
+          if (
+            o.return_departure_int < tf.return.takeoff[0] ||
+            o.return_departure_int > tf.return.takeoff[1]
+          )
+            return false;
+          if (
+            o.return_arrival_int < tf.return.landing[0] ||
+            o.return_arrival_int > tf.return.landing[1]
+          )
+            return false;
+          return true;
+        }
+      });
+      if (state.form.singleCarrier) {
+        result = result.filter(o=>o.airlines.length === 1);
+      }
+      if (state.form.sort) {
+        if (state.form.sort === "price") {
+          result.sort((a, b) => {
+            if (a.conversion.USD > b.conversion.USD) return 1;
+            if (a.conversion.USD === b.conversion.USD) {
+              if (a.quality > b.quality) return 1;
+              if (a.quality === b.quality) return 0;
+              if (a.quality < b.quality) return -1;
+            }
+            return -1;
+          });
+        } else if (state.form.sort === "quality") {
+          result.sort((a, b) => {
+            if (a.quality > b.quality) return 1;
+            if (a.quality === b.quality) {
+              if (a.price > b.price) return 1;
+              if (a.price === b.price) return 0;
+              return -1;
+            }
+            return -1;
+          });
+        } else if (state.form.sort === "duration") {
+          result.sort((a, b) => {
+            const adur = Math.min(
+              ...[a.duration.departure, a.duration.return].filter(o => o)
+            );
+            const bdur = Math.min(
+              ...[b.duration.departure, b.duration.return].filter(o => o)
+            );
+            if (adur > bdur) return 1;
+            if (adur === bdur) {
+              if (a.price > b.price) return 1;
+              if (a.price === b.price) return 0;
+              return -1;
+            }
+            return -1;
+          });
+        }
       }
       return result;
     },
+    priceLimits(state, getters) {
+      const prices = state.searchResults.map(o => o.conversion.USD);
+      return {
+        min: Math.min(...prices),
+        max: Math.max(...prices)
+      };
+    },
     finalResults(state, getters) {
-      return getters.filteredResults.slice(0, state.form.limit + state.form.limitIncrement);
+      return getters.filteredResults.slice(
+        0,
+        state.form.limit + state.form.limitIncrement
+      );
     },
-    airlinePrices(state, getters) {
-
-    },
+    airlinePrices(state, getters) {},
     cityFromTo(state) {
       if (!state.form.placeFrom || !state.form.placeTo) {
         return null;
@@ -287,7 +433,7 @@ export const searchStore = {
       return airlinesText;
     },
     user(state) {
-      return state.user
+      return state.user;
     },
     flightToBook(state) {
       if (state.searchResultIndex === null) return null;

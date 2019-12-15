@@ -3,7 +3,7 @@ import {
   legacyAirlines,
   lowcostAirlines
 } from "./airlineCodes.js";
-import api from './vue/http.js';
+import api from "./vue/http.js";
 
 export const seatTypes = {
   M: "Economy",
@@ -20,7 +20,7 @@ export const maxStopsFilterOptions = {
 
 export const userRoles = {
   companion: 1,
-  subscriber: 0,
+  subscriber: 0
 };
 
 export const destinationTypes = {
@@ -94,6 +94,11 @@ export function airlineIcon(name) {
 
 export function formatTime(value) {
   return moment.utc(value).format("hh:mm A");
+}
+
+export function isoToMins(value) {
+  const v = moment.utc(value);
+  return v.hour() * 60 + v.minute();
 }
 
 export function getSpecificRoute(routes, _return, last) {
@@ -171,9 +176,10 @@ export function locationSearch(term, locationTypes) {
     let searchParams = {
       term,
       locale: "en-US",
-      location_types: searchLocationTypes,
+      location_types: searchLocationTypes
     };
-    api.get(url, {params: searchParams})
+    api
+      .get(url, { params: searchParams })
       .then(response => resolve(processLocationSearch(response.data)));
   });
 }
@@ -224,11 +230,35 @@ export function processFlight(sr) {
   calculateLayovers(return_routes);
   const roundtrip = return_routes.length > 0;
   const return_departure = roundtrip ? return_routes[0].local_departure : null;
+  const return_arrival = roundtrip ? return_routes[return_routes.length - 1].local_arrival : null;
+  const return_departure_int = roundtrip ? isoToMins(return_departure) : null;
+  const return_arrival_int = roundtrip ? isoToMins(return_arrival) : null;
+  const local_departure_int = isoToMins(to_routes[0].local_departure);
+  const local_arrival_int = isoToMins(to_routes[to_routes.length - 1].local_arrival);
   return {
     ...sr,
     roundtrip,
-    return_departure
+    return_departure,
+    return_arrival,
+    return_departure_int,
+    return_arrival_int,
+    local_departure_int,
+    local_arrival_int,
   };
+}
+
+export function formatMin(min) {
+  let minVal = parseInt(min);
+  let hours = Math.floor(minVal / 60);
+  const minutes = minVal % 60;
+  let ampm = "AM";
+  if (hours > 12) {
+    ampm = "PM";
+    hours -= 12;
+  }
+  const hh = hours.toString().padStart(2, "0");
+  const mm = minutes.toString().padStart(2, "0");
+  return `${hh}:${mm} ${ampm}`;
 }
 
 export function getQuickLinksData(flights) {
@@ -253,7 +283,10 @@ export function getQuickLinksData(flights) {
   return {
     price: data.reduce((prev, curr) => (prev.price < curr.price ? prev : curr)),
     duration: data.reduce((prev, curr) =>
-      prev.duration < curr.duration ? prev : curr
+      prev.duration < curr.duration ? prev :
+          prev.duration === curr.duration ?
+              (prev.price < curr.price ? prev : curr)
+              : curr
     ),
     quality: data.reduce((prev, curr) =>
       prev.quality < curr.quality ? prev : curr
@@ -263,12 +296,12 @@ export function getQuickLinksData(flights) {
 }
 
 export function getStops(sr) {
-  const toFlights = sr.route.filter(o=>!o.return);
-  const returnFlights = sr.route.filter(o=>!o.return);
+  const toFlights = sr.route.filter(o => !o.return);
+  const returnFlights = sr.route.filter(o => o.return);
   return Math.max(toFlights.length - 1, returnFlights.length - 1);
 }
 
-export function getBaseSearchURL(form, limit=0) {
+export function getBaseSearchURL(form, limit = 0) {
   let formData = new FormData();
   formData.append("fly_from", placeToRequestValue(form.placeFrom));
   formData.append("fly_to", placeToRequestValue(form.placeTo));
@@ -287,12 +320,9 @@ export function getBaseSearchURL(form, limit=0) {
   formData.append("selected_cabins", form.seatType);
   formData.append("curr", "USD");
   if (limit) {
-    formData("limit", form.limit)
+    formData("limit", form.limit);
   }
-  let url = new URL(
-    "/api/search",
-     window.location
-  );
+  let url = new URL("/api/search", window.location);
   url.search = new URLSearchParams(formData);
   return url;
 }
@@ -345,10 +375,7 @@ export function getSearchURL(form) {
   }
   //formData.append("limit", form.limit + form.limitIncrement);
   formData.append("curr", "USD");
-  let url = new URL(
-    "/api/search",
-    window.location
-  );
+  let url = new URL("/api/search", window.location);
   url.search = new URLSearchParams(formData);
   return url;
 }
@@ -398,29 +425,27 @@ export function getAgeCategory(p, singular = false) {
   return singular ? "adult" : "adults";
 }
 
-
 export function cityThumbnail(city) {
-  return `${staticUrlValue}images/cities/${city}.png`
+  return `${staticUrlValue}images/cities/${city}.png`;
 }
 
 export function validateCardNumber(number) {
-    let regex = new RegExp("^[0-9]{16}$");
-    if (!regex.test(number))
-        return false;
-    return luhnCheck(number);
+  let regex = new RegExp("^[0-9]{16}$");
+  if (!regex.test(number)) return false;
+  return luhnCheck(number);
 }
 
 function luhnCheck(val) {
-    let sum = 0;
-    for (let i = 0; i < val.length; i++) {
-        let intVal = parseInt(val.substr(i, 1));
-        if (i % 2 === 0) {
-            intVal *= 2;
-            if (intVal > 9) {
-                intVal = 1 + (intVal % 10);
-            }
-        }
-        sum += intVal;
+  let sum = 0;
+  for (let i = 0; i < val.length; i++) {
+    let intVal = parseInt(val.substr(i, 1));
+    if (i % 2 === 0) {
+      intVal *= 2;
+      if (intVal > 9) {
+        intVal = 1 + (intVal % 10);
+      }
     }
-    return (sum % 10) === 0;
+    sum += intVal;
+  }
+  return sum % 10 === 0;
 }

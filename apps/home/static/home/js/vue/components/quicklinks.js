@@ -1,14 +1,13 @@
 import { secs2hm, pick, stripAirlines } from "../../utils.js";
 import { legacyAirlines, lowcostAirlines } from "../../airlineCodes.js";
 
-
 Vue.component("quicklinks", {
   template: "#vue-quicklinks-template",
   props: ["data", "sort", "airlinesFilter"],
   delimiters: ["{(", ")}"],
   computed: {
-    ...Vuex.mapState('user', ["user"]),
-    ...Vuex.mapState('search', ["form"]),
+    ...Vuex.mapState("user", ["user"]),
+    ...Vuex.mapState("search", ["form"]),
     airlineFilters() {
       const legacySet = new Set(legacyAirlines);
       const lowcostSet = new Set(lowcostAirlines);
@@ -31,10 +30,11 @@ Vue.component("quicklinks", {
     },
     columns() {
       const additionalCol =
-        this.user && this.user.anonymous ? { date: "Earliest" } : {};
+        this.user && this.user.anonymous
+          ? { date: "Earliest", quality: "Recommended" }
+          : {};
       return {
         price: "Cheapest",
-        quality: "Recommended",
         duration: "Quickest",
         ...additionalCol
       };
@@ -42,7 +42,10 @@ Vue.component("quicklinks", {
   },
   methods: {
     secs2hm,
-    ...Vuex.mapActions(
-        'search', ["sortResultsBy", "applyAirlinesFilter"])
+    ...Vuex.mapActions("search", [
+      "sortResultsBy",
+      "applyAirlinesFilter",
+      "toggleSingleCarrier"
+    ])
   }
 });

@@ -20,43 +20,14 @@
                   <airline-filter :data="filterableAirlines" @select="toggleAirline" />
                 </collapse>
                 <collapse title="Filter By Time">
-                  <tabs class="tabs--alpha-theme">
-                    <tab :selected="true" title="Take-off">
-                      <div class="filter-sidebar__item-spacing">
-                        <div class="filter-sidebar__item-text">
-                          Take-off from DFW <br>
-                          Sun 5:00 AM – 11:30 PM
-                        </div>
-                        <vue-slider :value="[0, 3000]" :min="0" :max="3000"></vue-slider>
-                      </div>
-                      <div class="filter-sidebar__item-spacing">
-                        <div class="filter-sidebar__item-text">
-                          Take-off from DFW <br>
-                          Sun 5:00 AM – 11:30 PM
-                        </div>
-                        <vue-slider :value="[0, 3000]" :min="0" :max="3000"></vue-slider>
-                      </div>
-
-                    </tab>
-                    <tab title="Landing">
-
-                    </tab>
-                  </tabs>
+                  <time-filter></time-filter>
                 </collapse>
                 <collapse title="Filter By Stops">
                   <max-stops-filter :data="form.maxStops" @select="setMaxStops" />
                 </collapse>
                 <collapse title="Filter By Price">
-                  <price-filter :data="form.priceRange" @select="setPriceRange" />
+                  <price-filter @select="setPriceRange" />
                 </collapse>
-
-                <div class="input-group search-dropdown">
-                    <div class="bg-white-close-holes">
-                        <span class="input-group-text search-form-input">Filter by Time</span>
-                        <input type="text" class="mb-3 form-control" placeholder="Filter By Times (Coming Soon)">
-                    </div>
-                  </div>
-
                 <button type="button" class="btn btn-primary w-100" @click="search({clearFilters: false, saveSearch: false})">Update Result</button>
               </div>
             </div>

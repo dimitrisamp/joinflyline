@@ -18,6 +18,20 @@
           </div>
       </div>
       <template v-if="!user.anonymous">
+          <div class="search-quick-filter"
+               :class="{applied: form.singleCarrier}"
+               @click="toggleSingleCarrier">
+            <div class="search-quick-filter-filter-name">
+              <strong>Single Carrier</strong>
+            </div>
+            <div class="search-quick-filter-filter-price-duration">
+              <span class="small">  </span>
+            </div>
+            <div class="border-line w-75 mx-auto"></div>
+            <div class="loading-animation-topsearch">
+                <div class="animate-element-topresult"></div>
+            </div>
+          </div>
           <div v-for="(label, kind) in {'legacy': 'Legacy', 'lowcost': 'Low-cost'}"
                class="search-quick-filter"
                :class="{applied: airlinesFilter === kind}"

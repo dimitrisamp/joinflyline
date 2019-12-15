@@ -25,7 +25,7 @@ const routes = [
     name: 'index',
     component: MainLanding,
     beforeEnter(to, from, next) {
-      if (store.state.user.user.anonymous) {
+      if (!store.state.user.user.anonymous) {
         next({name: 'overview'});
       } else {
         next();
@@ -150,7 +150,6 @@ router.beforeEach((to, from, next) => {
   store.dispatch("user/initializeUser").then(() => {
     next();
   }).catch(error => {
-    console.error(error);
     next();
   });
   store.dispatch("plans/initializePlans");

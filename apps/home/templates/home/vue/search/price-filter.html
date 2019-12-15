@@ -1,6 +1,6 @@
 <script type="text/x-template" id="vue-price-filter-template">
     <div class="filter-flights">
-        <vue-slider @change="select" :value="[0, 3000]" :enable-cross="false" :min="0" :max="3000"></vue-slider>
+        <vue-slider @change="select" v-model="limits" :enable-cross="false" :min="priceLimits.min" :max="priceLimits.max" :lazy="true"></vue-slider>
     </div>
 <!--  <div class="input-group input-group-sm search-dropdown">-->
 <!--      <div class="bg-white-close-holes">-->
