@@ -1,67 +1,73 @@
 <div id="dealform" class="h-dealform" v-cloak>
-    <div class="search-form__filters">
-        <div class="filters__container">
-            <select-destination :value="form.destinationTypeId"
-                                @select="setDestinationType"/>
-        </div>
-        <div class="filters__container">
-            <select-passenger-count/>
-        </div>
-        <div class="filters__container">
-            <select-seat-type :value="form.seatType" @select="setSeatType"/>
-        </div>
+  <div class="search-form__filters">
+    <div class="filters__container">
+      <select-destination :value="form.destinationTypeId"
+                          @select="setDestinationType"/>
+    </div>
+    <div class="filters__container">
+      <select-passenger-count/>
+    </div>
+    <div class="filters__container">
+      <select-seat-type :value="form.seatType" @select="setSeatType"/>
+    </div>
+  </div>
+
+  <div class="input-group input-group-sm search-dropdown-outer">
+    <location-input :prompt="'From:'" :promptMobile="'From Where?'"
+                    @place-selected="updatePlaceFrom" :initial-value="form.placeFrom"/>
+  </div>
+  <div class="input-group input-group-sm search-dropdown-outer">
+    <location-input :prompt="'To:'" :promptMobile="'To Where?'"
+                    @place-selected="updatePlaceTo" :initial-value="form.placeTo"/>
+  </div>
+
+  <div class="h-dealform__dates">
+    <div class="input-group input-group-sm search-dropdown">
+      <div class="bg-white-close-holes">
+        <span class="input-group-text search-form-input">Dep:</span>
+        <input type="text" id="departure_date"
+               aria-describedby="basic-addon3"
+               class="form-control search-input"
+               v-model="form.departure_date"/>
+      </div>
     </div>
 
-    <div class="input-group input-group-sm search-dropdown-outer">
-        <location-input :prompt="'From:'" :promptMobile="'From Where?'"
-                        @place-selected="updatePlaceFrom" :initial-value="form.placeFrom"/>
+    <div v-if="form.destinationTypeId === 'round'"
+         class="input-group input-group-sm search-dropdown">
+      <div class="bg-white-close-holes">
+        <span class="input-group-text search-form-input">Ret:</span>
+        <input type="text" id="return_date"
+               aria-describedby="basic-addon3"
+               class="form-control search-input"
+               data-return="Ret"
+               v-model="form.return_date"/>
+      </div>
     </div>
-    <div class="input-group input-group-sm search-dropdown-outer">
-        <location-input :prompt="'To:'" :promptMobile="'To Where?'"
-                        @place-selected="updatePlaceTo" :initial-value="form.placeTo"/>
+  </div>
+  <div v-if="$mq !== 'sm'" class="dealform__filters">
+    <div class="filter-field">
+      <span>Filters (Optional)</span>
+      <button class="clear-filters" @click="clearFiltersAndUpdate">
+        <!-- <i class="fa fa-close"></i> -->
+        clear
+      </button>
     </div>
+    <div class="filter-devider"></div>
+    <collapse title="Filter By Airline">
+      <airline-filter :data="form.airlines" @select="toggleAirline"/>
+    </collapse>
+    <collapse title="Filter By Stops">
+      <max-stops-filter :data="form.maxStops" @select="setMaxStops"/>
+    </collapse>
+    <collapse title="Filter By Price">
+      <price-filter v-if="searchResults" @select="setPriceRange"/>
+    </collapse>
+  </div>
 
-    <div class="h-dealform__dates">
-        <div class="input-group input-group-sm search-dropdown">
-            <div class="bg-white-close-holes">
-                <span class="input-group-text search-form-input">Dep:</span>
-                <input type="text" id="departure_date"
-                       aria-describedby="basic-addon3"
-                       class="form-control search-input"
-                       v-model="form.departure_date"/>
-            </div>
-        </div>
-
-        <div v-if="form.destinationTypeId === 'round'"
-             class="input-group input-group-sm search-dropdown">
-            <div class="bg-white-close-holes">
-                <span class="input-group-text search-form-input">Ret:</span>
-                <input type="text" id="return_date"
-                       aria-describedby="basic-addon3"
-                       class="form-control search-input"
-                       data-return="Ret"
-                       v-model="form.return_date"/>
-            </div>
-        </div>
-    </div>
-    <div v-if="$mq !== 'sm'" class="dealform__filters">
-        <div class="filter-field">
-            <span>Filters (Optional)</span>
-            <button class="clear-filters" @click="clearFiltersAndUpdate">
-                <!-- <i class="fa fa-close"></i> -->
-                clear
-            </button>
-        </div>
-        <div class="filter-devider"></div>
-        <airline-filter :data="form.airlines" @select="toggleAirline"/>
-        <max-stops-filter :data="form.maxStops" @select="setMaxStops"/>
-        <price-filter @select="setPriceRange"/>
-    </div>
-
-    <div class="search-button">
-        <button type="button" class="btn btn-info" @click="search({clearFilters: false, saveSearch: false})"
-                :disabled="isFormIncomplete">
-            View Flights
-        </button>
-    </div>
+  <div class="search-button">
+    <button type="button" class="btn btn-info" @click="search({clearFilters: false, saveSearch: false})"
+            :disabled="isFormIncomplete">
+      View Flights
+    </button>
+  </div>
 </div>
