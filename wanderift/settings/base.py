@@ -91,7 +91,7 @@ MAINTENANCE_MODE = (
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [os.path.join(BASE_DIR, "templates")],
+        "DIRS": [os.path.join(BASE_DIR, "frontend/dist")],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -175,7 +175,7 @@ STATIC_ROOT = ""
 
 STATIC_URL = "/static/"
 
-STATICFILES_DIRS = (os.path.join("static"),)
+STATICFILES_DIRS = (os.path.join("static"),os.path.join(BASE_DIR, 'frontend/dist/static'))
 
 STATICFILES_FINDERS = [
     "django.contrib.staticfiles.finders.FileSystemFinder",

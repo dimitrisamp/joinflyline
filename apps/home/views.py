@@ -8,7 +8,7 @@ from apps.home.models import PromoInfo
 
 
 def index_view(request):
-    return render(request, "home/index.html")
+    return render(request, "index.html")
 
 
 class PromoLandingView(CreateView):

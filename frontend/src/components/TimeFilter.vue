@@ -29,6 +29,7 @@ import { formatMin } from "../utils/utils";
 import Vuex from "vuex";
 import Tabs from "./Tabs";
 import Tab from "./Tab";
+import TimeSlider from "./TimeSlider";
 
 const timeLabels = {
   takeoff: "Take-off",
@@ -39,7 +40,8 @@ export default {
   delimiters: ["{{", "}}"],
   components: {
     Tabs,
-    Tab
+    Tab,
+    TimeSlider
   },
   data() {
     return {

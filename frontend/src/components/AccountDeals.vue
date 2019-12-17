@@ -88,7 +88,7 @@ import api from "../utils/http";
 import { airlineCodes } from "../utils/airlineCodes";
 import { formatPlace } from "../utils/utils";
 import LocationInput from "./LocationInput";
-import {Multiselect} from "vue-multiselect";
+import { Multiselect } from "vue-multiselect";
 
 function emptyForm() {
   return {

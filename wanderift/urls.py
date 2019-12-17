@@ -119,5 +119,5 @@ if settings.STAGE == "localprod":
     ]
 
 urlpatterns += [
-    re_path('^(?!admin|api).*$', TemplateView.as_view(template_name="home/index.html")),
+    re_path('^(?!admin|api).*$', TemplateView.as_view(template_name="index.html")),
 ]

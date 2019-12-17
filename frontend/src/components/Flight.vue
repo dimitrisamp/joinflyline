@@ -77,7 +77,11 @@
 
         <div class="arrival-row d-flex justify-content-start">
           <div class="airline-logo-holder d-flex">
-            <div v-for="(route, routeIndex) in returnRoutes" :key="`route-${routeIndex}`" class="img-airline">
+            <div
+              v-for="(route, routeIndex) in returnRoutes"
+              :key="`route-${routeIndex}`"
+              class="img-airline"
+            >
               <div class="airline">
                 <img
                   :src="airlineIcon(route.airline)"
@@ -298,7 +302,10 @@
               {{ formatDate(flight.return_departure) }}
             </strong>
           </p>
-          <div v-for="(route, routeIndex) in returnRoutes" :key="`route-${routeIndex}`">
+          <div
+            v-for="(route, routeIndex) in returnRoutes"
+            :key="`route-${routeIndex}`"
+          >
             <div class="d-flex align-items-center position-relative">
               <i class="fa fa-plane mr-2 w-10 text-muted rotated-plane-icon" />
               <div

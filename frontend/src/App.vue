@@ -16,4 +16,5 @@
 @import "./assets/css/font-awesome.css";
 @import "./assets/css/loading-animation.css";
 @import "~lightpick/css/lightpick.css";
+@import "~vue-slider-component/theme/default.css";
 </style>
