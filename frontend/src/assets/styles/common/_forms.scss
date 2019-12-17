@@ -1,0 +1,41 @@
+.app {
+  .form-control {
+    border: 2px solid $input-border-color;
+    margin-right: 1.1875rem;
+    border-radius: 0;
+    &::placeholder {
+      color: $input-text-color;
+    }
+    &:focus {
+      box-shadow: none;
+      border-color: $primary
+    }
+    // Container for select
+    &__select {
+      position: relative;
+      &::after {
+        content: '';
+        background-image: url(/src/assets/img/dashboard/down-arrow.png);
+        position: absolute;
+        right: 0.8rem;
+        z-index: 11;
+        top: calc(50% + 1px);
+        transform: translateY(-50%);
+        background-size: 1.0625rem 0.625rem;
+        width: 1.0625rem;
+        height: 0.625rem;
+        background-repeat: no-repeat;
+      }
+    }
+    &--select {
+      -webkit-appearance: none;
+      border-radius: 0;
+    }
+  }
+}
+
+.account__form {
+  .form-control {
+    margin-bottom: 1.875rem;
+  }
+}

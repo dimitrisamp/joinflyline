@@ -13,3 +13,7 @@ MIDDLEWARE = [
 ]
 
 SITE_URL = os.getenv("SITE_URL", "https://joinflyline.com")
+
+CORS_ORIGIN_WHITELIST = [
+    "https://joinflyline.com"
+]

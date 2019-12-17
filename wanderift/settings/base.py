@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "django_filters",
     "knox",
+    "corsheaders",
     # My apps
     "apps.subscriptions.apps.SubscriptionsConfig",
     "apps.home",
@@ -67,6 +68,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -187,7 +189,7 @@ COMPRESS_PRECOMPILERS = (("text/x-scss", "django_libsass.SassCompiler"),)
 
 MESSAGE_TAGS = {messages.ERROR: "", 40: "danger"}
 
-MEDIA_ROOT = os.path.join(BASE_DIR, "static/images")
+MEDIA_ROOT = os.path.join(BASE_DIR, "static/../../frontend/src/assets/images")
 MEDIA_URL = "/images/"
 
 LOGIN_REDIRECT_URL = "accounts"

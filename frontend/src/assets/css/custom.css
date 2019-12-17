@@ -1,0 +1,744 @@
+@font-face {
+  font-family:Dona-Black;
+  src: url(../fonts/Dona/DonaAlt-Black.ttf);
+}
+@font-face {
+  font-family:Dona-Regular;
+  src: url(../fonts/Dona/Dona-Regular.ttf);
+}
+@font-face {
+    font-family: Dona-Bold;
+    src: url(../fonts/Dona/Dona-Bold.ttf);
+}
+
+body{
+    font-family:Dona-Regular;
+}
+.background-colored {
+    background-color: #fff;
+    padding-bottom: 120px;
+}
+
+.content-holder {
+    padding: 30px 15px 50px 15px;
+}
+
+.primary-button {
+    background-color: #00B7FF;
+    color: white;
+}
+.primary-button:hover {
+    background-color: white;
+    color: #00B7FF;
+    border: 1px solid #00B7FF;
+}
+
+.header-image-holder img {
+    margin-top: 40px;
+    width: 45%;
+    margin-right: 100px;
+}
+
+.result-item {
+    background-color: white;
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 4px;
+}
+.result-item .result-block {
+    cursor: pointer;
+}
+.price-block {
+    min-width: 110px;
+}
+
+.payment-flight-info {
+    background-color: white;
+}
+
+.search_btn.book-btn {
+    color: #00b7ff;
+    background-color: white;
+    border: 1px solid #00b7ff;
+    padding: 8px 15px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.thin-blue-btn {
+    color: white;
+    background-color: #00b7ff;
+    border: 1px solid #00b7ff;
+    border-radius: 4px;
+    padding: 3px 15px;
+    font-weight: normal;
+    margin: 0;
+    text-align: center;
+    min-width: 120px;
+}
+
+
+/*HELPERS*/
+.no-bg-color {
+
+}
+.divider-15,
+.divider-30 {
+    height: 0;
+    width: 100%;
+    clear: both;
+}
+.divider-15 {
+    margin-top: 15px;
+}
+.divider-30 {
+    margin-top: 30px;
+}
+.large_btn {
+    font-size: 1.4em;
+}
+.total-tokens {
+    font-size: 2em;
+}
+.corporate-progress {
+    height: 3em;
+}
+.text-primary {
+    color: #00B7FF!important;
+}
+.progress-bar {
+    background-color: #00B7FF;
+}
+.slider-handle {
+    background-color: #00B7FF;
+    background-image: none;
+}
+.white-block {
+    background-color: white;
+}
+.white-block h4 {
+    padding-top: 10px;
+    font-size: 1.2rem;
+}
+.simple-column {
+    padding: 60px 0 30px 0;
+}
+.simple-column h1 {
+    padding: 30px 0;
+}
+.simple-column p {
+    font-size: 1.2em;
+    line-height: 1.8;
+}
+.form.card {
+    padding: 15px;
+}
+.cursor-pointer {
+    cursor: pointer;
+}
+
+
+.conversion-box {
+    border: 2px solid rgba(0,0,0,0.1);
+    border-radius: 6px;
+}
+.appstore-btn {
+    background-color: white;
+    min-width: 210px;
+}
+.appstore-btn span {
+    font-size: 16px;
+    font-weight: 600;
+    color: #151f3f;
+}
+
+.offer-card.active {
+    border: 1px solid #00b7ff;
+    box-shadow: 0 2px 6px rgba(0, 183, 255, 0.4);
+    z-index: 1;
+}
+
+.nav-tabs li a.active {
+    color: #00B7FF;
+}
+
+.faq-accordion .card .card-header,
+.subs-accordion .card .card-header {
+    background-color: #f7f9ff;
+}
+.faq-accordion .card .card-header button,
+.subs-accordion .card .card-header button {
+    color: black;
+    font-weight: bold;
+}
+.faq-accordion .card .card-header button:hover,
+.subs-accordion .card .card-header button:hover {
+    text-decoration: none;
+}
+.faq-accordion .card .card-header button:focus,
+.subs-accordion .card .card-header button:focus {
+    text-decoration: none;
+}
+
+
+.non-subs-accordion .card .card-header,
+.pack-accordion .card .card-header {
+    background-color: white;
+}
+.non-subs-accordion .card .card-header button,
+.pack-accordion .card .card-header button {
+    color: black;
+    font-weight: 600;
+}
+.non-subs-accordion .card .card-header button:hover,
+.pack-accordion .card .card-header button:hover {
+    text-decoration: none;
+}
+.non-subs-accordion .card .card-header button:focus,
+.pack-accordion .card .card-header button:focus {
+    text-decoration: none;
+}
+
+.subscription-card {
+    border-width: 2px;
+}
+
+.container.wide-container {
+    max-width: 1400px;
+}
+
+.subscription-card .card-header {
+    background-color: #00b7ff;
+    color: white;
+    padding: 15px;
+    height: 140px;
+}
+.subscription-card .card-header h2 {
+    font-size: 34px;
+}
+.subscription-card .card-body {
+    font-weight: bold;
+}
+.subscription-card .card-body ul {
+    list-style: none;
+    margin: 40px 0;
+}
+.subscription-card .card-body ul li {
+    margin-bottom: 15px;
+    font-weight: 400;
+}
+.subscription-card .card-body .btn {
+    margin: 30px 0;
+    height: 40px;
+}
+.subscription-card .card-body p {
+    font-size: 1.5rem;
+}
+
+.subscription-card-light {
+    height: 100%;
+}
+
+.banner-sticky {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 999;
+}
+.btn.main-btn-outline {
+    background-color: white;
+    border: 1px solid #00b7ff;
+    color: #00b7ff;
+    font-weight: bold;
+}
+.btn.main-btn-outline:hover {
+    background-color: #00b7ff;
+    border: 1px solid #00b7ff;
+    color: white;
+}
+
+
+.team-grid-item {
+    margin: 30px 0;
+    text-align: center;
+    padding: 10px 15px;
+}
+.team-grid-item .img-holder {
+    width: 140px;
+    height: 140px;
+    overflow: hidden;
+    border-radius: 50%;
+    margin: 15px auto;
+    text-align: center;
+}
+.team-grid-item .img-holder .image {
+    position: relative;
+    left: -50%;
+    height: 140px;
+    width: 140px;
+}
+.team-grid-item .img-holder img {
+    height: 100%;
+    width: auto;
+    margin-left: 50%;
+}
+
+.partners-grid-item .card {
+    padding: 30px;
+    margin-top: 30px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.partners-grid-item h4 {
+    font-size: 1.9em;
+    margin-bottom: 30px;
+    justify-self: flex-start;
+}
+.partners-grid-item p,
+.partners-grid-item a {
+    font-size: 1.2em;
+}
+.partners-grid-item p {
+    justify-self: center;
+}
+.partners-grid-item a {
+    justify-self: flex-end;
+}
+
+.search_btn.link {
+    background-color: #00B7FF;
+    padding: 8px 25px;
+    color: white;
+    border-radius: 4px;
+}
+
+/*****NEW SEARCH BAR*******/
+
+.flexed-search-bar {
+    display: flex;
+}
+.flexed-search-bar .flexed-search-item {
+    position: relative;
+    min-width: 120px;
+    padding: 0 10px;
+}
+.flexed-search-bar .flexed-search-item label {
+    width: 100%;
+    margin-left: -8px;
+    height: 50px;
+}
+.flexed-search-bar .flexed-search-item label h6 {
+    font-size: 16px;
+    margin-left: 5px;
+    margin-top: 14px;
+    font-family: karla;
+    font-weight:bold;
+    opacity: .5;
+}
+.flexed-search-bar .flexed-search-item img.icon_repeat {
+    position: absolute;
+    right: -7px;
+    top: 10px;
+    z-index: 9;
+    opacity: 0.8;
+    width: 30px;
+}
+.flexed-search-bar .flexed-search-item button {
+    padding: 13px 30px;
+}
+
+.manage-trip-item {
+    min-height: 160px;
+    padding-top: 30px;
+}
+.manage-trip-item .card {
+    border-width: 2px;
+}
+
+.empty-card {
+    min-height: 160px;
+}
+.empty-card {
+    font-size: 1.1em;
+}
+
+.btn.small-btn {
+    font-size: 14px;
+    padding: 2px 15px;
+    line-height: 25px;
+}
+
+.page-sub-text {
+    font-size: 1.2em;
+}
+
+.blue-landing-block {
+    background-color: #131f3f;
+}
+.blue-landing-block .container {
+    padding: 6% 15px;
+}
+.landing-block-title {
+    line-height: 1.3em;
+    font-size: 3em;
+}
+.landing-block-text {
+    line-height: 1.6em;
+    font-size: 1.2em;
+}
+.landing-block-images {
+    align-items: flex-end;
+}
+.landing-block-images img {
+    width: 80%;
+    margin-bottom: 56px;
+}
+.landing-block-images img:nth-child(2) {
+    align-self: flex-start;
+}
+
+.subscription-tab-menu .nav-item {
+    width: 25%;
+    text-align: center;
+}
+.subscription-tab-menu .nav-item a {
+    padding: 15px 0;
+    border-radius: 0;
+    border-right: 1px solid silver;
+}
+.subscription-tab-menu .nav-item:last-child a {
+    border-right: 0;
+}
+.subscription-tab-menu .nav-item a.active {
+    background-color: #00b7ff;
+}
+
+/************* Loading Animation *************/
+.plan-description {
+    min-height: 12em;
+}
+
+.btn-get .btn.btn-default {
+    margin-top: 0px;
+}
+
+.loading_animation {
+    background: #fff;
+    width: 100%;
+    height: 163px;
+    border-radius: 4px;
+    left: 0px;
+}
+@keyframes animate {
+     0% {
+     background-position: -468px 0
+   }
+   100% {
+     background-position: 468px 0
+   }
+
+}
+.animate-element {
+  position:relative;
+  background-color: #CCC;
+  height: 6px;
+  animation-name: animate; 
+  animation-duration: 2s; 
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;   
+  background: -webkit-gradient(linear, left top, right top, color-stop(8%, #eeeeee), color-stop(18%, #dddddd), color-stop(33%, #eeeeee));
+  background: -webkit-linear-gradient(left, #eeeeee 8%, #dddddd 18%, #eeeeee 33%);
+  background: linear-gradient(to right, #eeeeee 8%, #dddddd 18%, #eeeeee 33%);
+  -webkit-background-size: 800px 104px;  
+}
+.animate-element-02 {
+    left: 0;
+    height: 27px;
+    width: 79px;
+    margin-top: 20px;
+    top: 5px;
+}
+.animate-element-01 {
+    width: 75px;
+    height: 20px;
+    margin-top: 74px;
+}
+.animate-element-03{
+    margin-top: 66px;
+    height: 27px;
+    width: 79px;
+}
+.animate-element-04 {
+    width: 100%;
+    height: 12px;
+    margin: 34px 0;
+}
+.animate-element-05 {
+    width: 100%;
+    height: 12px;
+    margin: 24px 0;
+    top: 30%;
+}
+
+/**** Trip *****/
+.trips-nav a {
+    margin: 0 22px;
+    font-size: 20px;
+    font-weight: 600;
+    color: #00b0f5 !important;
+}
+.trips-nav .btn{
+    background: #00b0f5;
+    color: #fff !important;
+    border-radius: 0px;
+    margin-left: 19px;
+    font-size: 15px;
+    padding: 9px 36px;
+    border-color: #00b0f5 !important;
+    line-height: 20px;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+.trip-title{
+    font-size: 40px;
+    color: #fff;
+    font-weight: 600;
+    font-family:Dona-Black;
+    margin-top: 10px;
+}
+.title-sec-descrption{
+    color: #fff;
+    font-size: 19px;
+    margin-bottom: 0;
+    padding-top: 10px;
+    font-family:Dona-Bold;
+}
+.txt-block{
+    display: block;
+}
+.title-section{
+    background: url('../images/home/pricing_background.png');
+    width: 100%;
+    background-size: cover;
+    padding: 20px 0px;
+}
+.activity-box h3{
+    font-family:Dona-Black;
+    font-size: 26px;
+    font-weight: 600;
+    color: #000;
+    margin-top: 20px;
+}
+.tips-select {
+    font-family: Dona-Bold;
+    border: 2px solid #ccc;
+    font-size: 22px;
+    font-weight: 600;
+    color: #000;
+    padding: 50px 0;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+.trips-line{
+    background: #D7D7D7;
+    width: 100%;
+    height: 2px;
+    margin: 10px 0;
+}
+.trips-btn{
+    float: right;
+    background: #00b0f5;
+    color: #fff !important;
+    padding: 6px 27px;
+    border-radius: 0px;
+    font-size: 19px;
+    margin-top: 10px;
+}
+.nav-navbar-trip{
+     background: #fff !important;
+     padding: 6px 0;
+     border-bottom: 2px solid #ccc;
+}
+.t-space{
+    margin-top: 60px;
+}
+.account-title{
+    font-size: 31px;
+    color: #000;
+    font-weight: 600;
+    font-family: Dona-Black;
+}
+.account-btn{
+    float: right;
+    background: #00b0f5;
+    color: #fff !important;
+    padding: 8px 60px;
+    border-radius: 0px;
+    font-size: 19px;
+    font-weight: 600;
+}
+.bottom-line{
+    background: #D7D7D7;
+    width: 100%;
+    height: 2px;
+    margin: 18px 0;
+}
+.account-info h3{
+    font-family: Dona-Bold;
+    color: #000;
+    font-size: 27px;
+    font-weight: 600;
+    margin-bottom: 39px;
+    margin-top: 24px;
+    text-align: left;
+}
+.ac-input-list{
+    margin-top: 20px;
+}
+.account-inputs{
+    margin-bottom: 26px;
+}
+.account-inputs input:focus{
+    color: #000 !important;
+    outline: 0;
+}
+.account-inputs input{
+    border-radius: 0px !important;
+    border: 2px solid #D7D7D7;
+    padding: 19px 15px !important;
+    font-weight: bold;
+    color: #000;
+}
+.account-info-btn{
+    font-size: 22px;
+    width: 100%;
+    font-family: Dona-Bold;
+    letter-spacing: 1px;
+}
+.account-inputs select  {
+    border-radius: 0px !important;
+    border: 2px solid #D7D7D7;
+    height: 42px !important;
+    font-weight: bold;
+}
+.account-inputs input::placeholder{
+    color: #000;
+    font-size: 12px;
+    font-family: Dona-Bold;
+    font-weight: bold;
+}
+.discount-price{
+    margin-top: 50px;
+    margin-bottom: 100px;
+}
+.discount-price p{
+    color: #D7D7D7;
+    font-weight: 500;
+    margin-bottom: 40px;
+    font-size: 18px;
+}
+.d-heading{
+    color: #000;
+    font-size: 23px;
+    font-weight: 600;
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-family: Dona-Bold;
+}
+
+/*SMALL DEVICES*/
+@media screen and (max-width: 992px) {
+    .flexed-search-bar {
+        flex-direction: column;
+    }
+    .flexed-search-bar .flexed-search-item {
+        min-width: 100%;
+    }
+    .flexed-search-bar .flexed-search-item label {
+        margin-left: 0;
+    }
+    .flexed-search-bar .flexed-search-item img.icon_repeat {
+        left: 48%;
+        top: 38px;
+    }
+
+    .slider-holder {
+        display: block!important;
+    }
+    .slider-holder .slider {
+        width: 100%;
+    }
+
+    .search_content_box {
+        padding-top: 15px;
+    }
+    .search-column-dropdown {
+        padding-left: 20px;
+    }
+    .conversion-box {
+        border: 0;
+    }
+    .appstore-btn {
+        width: 100%;
+    }
+
+}
+
+a {
+    color: #142346;
+}
+
+.in-progress-badge {
+    position: absolute;
+    font-size: 90%;
+    right: 1.2em;
+    top: 0.4em;
+    font-weight: bold;
+}
+
+.flight-container {
+    position: relative;
+}
+
+@media(min-width: 320px) and (max-width: 480px){
+.account-info,.account-title,.bottom-line{
+    display: none;
+}
+.t-space{
+    margin-top: 10px;
+}
+.loading_animation{
+    display: none;
+}
+.landing-block-images img{
+    width: 100%;
+    margin-bottom: 10px;
+}
+.banner-sticky{
+    bottom: 0;
+    top: inherit;
+}
+.landing-block-images img {
+    width: 80%;
+    margin-bottom: 0px;
+}
+body {
+    padding-top: 0 !important;
+}
+
+
+}
+@media(min-width: 768px) and (max-width: 1024px){
+.loading_animation{
+    display: none;
+}
+
+.landing-block-images img {
+    width: 80%;
+    margin-bottom: 0px;
+}
+
+
+}

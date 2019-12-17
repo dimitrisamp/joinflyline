@@ -1,0 +1,155 @@
+// Adel
+.search-result {
+  &__inner {
+    .navbar-expand-lg > .container {
+      @include mqr(lg) {
+        padding-left: 1rem;
+        padding-right: 1rem;
+        max-width: 100%;
+      }
+    }
+  }
+  &__container {
+    background-image: url(assets/img/headerbackground.png);
+    width: 100%;
+    background-position: bottom;
+    &__inner {
+      display: flex;
+      width: 100%;
+      flex-direction: column;
+      @include mq(xl) {
+        flex-direction: row;
+      }
+    }
+    
+    &__left {
+      padding-right: 1em;
+      overflow-y: scroll;
+      flex: 0 0 100%;
+      background-image: url(assets/img/Wallpaper-Left.png);
+      background-size: cover;
+      padding-bottom: 3rem;
+      padding-top: 1.5rem;
+      padding-left: 1rem;
+      padding-right: 1rem;
+      @include mq(xl) {
+        flex: 0 0 40%;
+        padding-left: calc(100% / 2 - 1140px / 2 + 15px);
+        height: 100vh;
+        position: sticky;
+        top: 0;
+      }
+      
+      .bg-white-close-holes {
+        .form-control {
+          border-radius: 0;
+          border-color: $white;
+          color: $primary;
+          &:focus {
+            border-color: $white;
+          }
+          &::placeholder {
+            color: $primary;
+          }
+        }
+        .input-group-text {
+          color: $primary;
+          border-color: $white;
+        }
+      }
+
+      .h-dealform__dates {
+        .input-group:first-child {
+          margin-right: 15px;
+        }
+      }
+
+      .filter-field span{
+        color: $white;
+        font-family: $dona-black;
+        font-size: 1.5rem;
+      }
+
+      .search-f-dropdown {
+        top: 100%;
+        left: 0;
+        width: 100%;
+        margin: 0;
+        .s-dropdown-list {
+          max-height: 13rem;
+          overflow-y: auto;
+          overflow-x: hidden;
+          li:hover {
+            color: $white;
+          }
+        }
+      }
+
+      .search-outer .search-item .form-control {
+        border-radius: 0;
+        border-color: $white;
+        color: $primary;
+        font-family: $dona-bold;
+        &::placeholder {
+          color: $primary;
+        }
+        &:focus {
+          border-color: $primary;
+        }
+      }
+      
+      .filters__container {
+        background-color: $white;
+        margin-bottom: 1rem;
+        text-align: center;
+        padding: 7px;
+        cursor: pointer;
+        color: $primary;
+        transition: opacity .2s ease-in-out;
+        font-family: $dona-bold;
+        position: relative;
+      }
+
+      .search-button button {
+        font-family: $dona-bold;
+      }
+      .h-dealform .filter-field {
+        justify-content: space-between;
+        padding: 1rem 0;
+        .clear-filters {
+          color: $white;
+          border: 0;
+          background-color: transparent;
+          font-family: $dona-black;
+        }
+      }
+
+      .search-flight-home h3 {
+        font-family: $dona-black;
+        font-size: 1.5rem;
+      }
+    }
+
+    &__right {
+      padding-left: 1em;
+      padding-top: 2rem;
+      flex: 0 0 100%;
+      padding-left: 1rem;
+      padding-right: 1rem;
+      @include mq(xl) {
+        flex: 0 0 60%;
+        padding-right: calc(100% / 2 - 1140px / 2 + 15px);
+      }
+    }
+
+    .bg-white-close-holes {
+      display: flex;
+      width: 100%;
+    }
+    .search-flight-home {
+      h3,p {
+        color: $white;
+      }
+    }
+  }
+}

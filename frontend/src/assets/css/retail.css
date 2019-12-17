@@ -1,0 +1,735 @@
+@font-face {
+  font-family:dona-black;
+  src: url(../fonts/Dona/DonaAlt-Black.ttf);
+}
+@font-face {
+  font-family:Dona-Regular;
+  src: url(../fonts/Dona/Dona-Regular.ttf);
+}
+@font-face {
+    font-family: Dona-Bold;
+    src: url(../fonts/Dona/Dona-Bold.ttf);
+}
+body{
+    background: #FFF;
+    font-family: Dona-Bold !important;
+}
+
+
+/*Summary Section */
+
+.summary-section{
+    background: #fff;
+    border: 2px solid #ccc;
+    padding: 26px 24px;
+    margin-top: 0px;
+    border-radius: 2px;
+}
+.trip-summary{
+    font-weight: 600;
+    font-size: 20px;
+    margin: 0;
+    margin-bottom: 20px;
+}
+.trip-summary span{
+    margin-right: 10px;
+    font-size: 21px;
+    position: relative;
+    top: 2px;
+}
+.icon-list{
+    list-style: none;
+    margin:0;
+    padding: 0;
+    float: right;
+}
+.icon-list li{
+    display: inline-block;
+    margin-right: 20px;
+}
+.icon-list li span{
+    font-size: 20px;
+}
+.box-title {
+    color: #000;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 16px;
+    font-family: Dona-Bold;
+}
+.box-title span {
+    color: #fff;
+    font-size: 11px;
+    font-weight: 100;
+    background: #00b7ff;
+    padding: 7px 17px;
+    text-transform: capitalize;
+    margin-left: 10px;
+    font-size: 13px;
+}
+.clander-list{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    margin-top: 20px;
+}
+.clander-list li{
+    display: inline-block;
+}
+.clander-list li span{
+    margin-right: 10px;
+}
+.clander-list li:nth-child(2){
+    font-weight: 600;
+    color: #000;
+    margin-bottom: 11px;
+}
+.clander-list li:nth-child(3n){
+    font-family:Dona-Regular;
+    align-items: center;
+    min-height: 24px;
+    line-height: 25px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #00aeef;
+    border-radius: 12px;
+    padding: 0 8px;
+    margin-top: 17px;
+}
+.detail-box p{
+    font-size: 14px;
+    margin: 0;
+    font-weight: 600;
+    color: #000;
+    font-family: Dona-Bold;
+}
+.detail-box p span{
+    color: #b9b8b8;
+    font-size: 13px;
+}
+.detail-box {
+    border: 1px solid #ccc;
+    padding: 4px 5px;
+    position: relative;
+    left: 28px;
+    top: 9px;
+    width: 91%;
+    border-radius: 0px;
+}
+.detail-box img{
+    position: absolute;
+    right: 7px;
+    top: 7px;
+    width: 32px;
+}
+.whiteBg{
+	padding: 12px 29px;
+	margin-top:20px;
+	background: #fff;
+    border: 2px solid #ccc;
+    border-bottom: none;
+}
+.booking-p-button{
+    background: #fff;
+    margin-bottom: 40px;
+    border-left: 2px solid #ccc;
+    border-right: 2px solid #ccc;
+    border-bottom: 2px solid #ccc;
+}
+.col-sub{
+    position: absolute;
+    right: 5px;
+    background: #fff;
+    width: 45px;
+    height: 13px;
+    line-height: 15px;
+    bottom: -6px;
+    text-align: center;
+    color: #7c8b99;
+    font-size: 11px;
+}
+.descrption-txt {
+    color: #57626c;
+    font-size: 12px;
+    margin-left: 50px;
+    margin-top: 30px;
+}
+.more-info h3{
+    font-size: 25px;
+    font-weight: bold;
+    color: #000;
+    margin-bottom: 20px;
+    font-family: Dona-Bold;
+}
+.alert-information {
+    font-size: 14px;
+    margin-bottom: 20px;
+    color: #00bdf6;
+    font-family: Dona-Bold;
+    line-height: 27px;
+}
+.more-info {
+    margin-top: 20px;
+}
+b.passenger-kind {
+    font-family: Dona-Black;
+    font-size: 27px;
+    font-weight: bold;
+    color: #000;
+    margin: 11px 6px;
+    display: inline-grid;
+}
+.more-info .fa-mobile{
+    font-size: 29px;
+    position: relative;
+    top: 2px;
+    margin-right: 4px;
+}
+.more-info .fa-money{
+    align-items: center;
+    line-height: 23px;
+    font-size: 14px;
+    font-weight: bold;
+    background-color: #EBF4EC;
+    color: #28A138;
+    border-radius: 12px;
+    padding: 0 8px;
+    position: relative;
+    top: -2px;
+}
+.more-info p{
+    font-size: 17px;
+    color: #777575;
+    margin-bottom: 0;
+}
+.more-info p a{
+    color: #00B7FF;
+    font-weight: bold;
+    text-decoration: none;
+}
+.manage-row .col-md-6{
+    height: 190px;
+}
+.detail-box:before {
+    content: '';
+    position: absolute;
+    background: #ccc;
+    width: 2px;
+    height: 100px;
+    left: -27px;
+    margin-top: -5px;
+}
+.flighticon:before {
+    position: absolute;
+    content: '';
+    width: 1px;
+    height: 56px;
+    margin-top: 22px;
+    left: 21px;
+    border-right: 2px dotted #ccc;
+}
+.flighticon i {
+    position: absolute;
+    top: 47%;
+    transform: rotate(89deg);
+    font-size: 22px;
+    left: 10px;
+    color: #ccc;
+}
+.main-heading h3{
+    font-size: 35px;
+    font-weight: 700;
+    font-family: dona-black;
+    color: #252A31;
+    line-height: 44px;
+    margin: 0;
+    margin-bottom: 8px;
+    margin-top: 22px;
+}
+.p-tripsummry{
+    font-family: Dona-Black;
+    font-size: 27px;
+    font-weight: bold;
+    color: #000;
+    margin-bottom: 30px;
+}
+.p-tripsummry span {
+    font-size: 14px;
+    margin-left: 7px;
+    font-weight: 100;
+    color: #000;
+}
+.p-departurec-col strong {
+    color: #000;
+    font-size: 15px;
+    font-weight: bold;
+}
+.p-departurec-col span {
+    color: #fff;
+    font-size: 11px;
+    font-weight: bold;
+    background: #00b7ff;
+    padding: 7px 17px;
+    margin-left: 16px;
+}
+.p-datetext {
+    color: #373737;
+    font-size: 14px;
+    font-weight: bold;
+    margin: 20px 0;
+}
+.p-inputs {
+    border-left: 1px solid #ccc;
+    padding-left: 25px;
+    margin-right: 30px;
+    margin-top: 30px;
+}
+.p-inputs .p-input {
+    border: 1px solid #000;
+    border-radius: 0px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+.input-bleowfont {
+    color: #373737;
+    font-size: 12px;
+    margin: 19px 0px;
+    display: block;
+}
+.p-inputs .p-input input {
+    padding: 20px 10px;
+}
+.p-bottomText {
+    margin-top: 50px;
+}
+.p-bottomText h3 {
+    font-size: 25px;
+    font-weight: bold;
+    color: #000;
+    margin-bottom: 20px;
+}
+.p-bottomText p {
+    font-size: 14px;
+    color: #000;
+    font-weight: bold;
+}
+
+
+.title-section{
+    background: url('../images/home/pricing_background.png');
+    width: 100%;
+    background-size: cover;
+    padding: 20px 0px;
+    margin-bottom: 40px;
+}
+.trip-title{
+    font-size: 38px;
+    color: #fff;
+    font-weight: 600;
+    font-family:Dona-Black;
+    margin-top: 10px;
+}
+
+.txt-block{
+    display: block;
+}
+
+
+/*alert bar */
+
+.alert-info{
+    font-size: 12px;
+    background: #e5f7ff !important;
+    color: #3778b4 !important;
+    margin-top: 5px;
+    margin-bottom: 19px;
+    border-radius: 0px;
+}
+.alert-info span{
+	margin-right: 10px;
+}
+
+/*  simple fomr  */
+
+.national_gender .form-group-sm:nth-child(1){
+	width: 48%;
+	float: left;
+	margin-right: 12px;
+}
+.national_gender .form-group-sm:nth-child(2){
+	width: 48%;
+	float: left;
+}
+.given_surmane .form-group-sm{
+	width: 49%;
+	float: left;
+}
+.given_surmane .form-group-sm:nth-child(1){
+	margin-right: 12px;
+}
+.date_of_birth .form-group-sm:nth-child(1){
+    width: 20%;
+    float: left;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+.date_of_birth .form-group-sm:nth-child(2){
+	width: 13%;
+	float: left;
+	margin-right: 12px;
+    margin-top: 24px;
+}
+.date_of_birth .form-group-sm:nth-child(3){
+	width: 13%;
+	float: left;
+    margin-top: 24px;
+}
+.tow_section .form-group-sm {
+	float: left;
+}
+.userForm input[type="text"] {
+    border-color: #c7d1dd;
+    border-radius: 0px;
+    border: 2px solid #ccc;
+    height: 48px;
+}
+.userForm input[type="text"]::placeholder{
+  color: #c7d1dd;
+}
+.userForm select {
+    border-color: #c7d1dd;
+    height: 48px !important;
+    border-radius: 0px;
+    width: 100%;
+    border: 2px solid #ccc;
+}
+.form-group-sm label {
+    font-size: 14px;
+    color: #000;
+    font-family: Dona-Bold;
+}
+
+/*Optionnal section */
+
+.optional_section{
+	margin-top: 30px;
+}
+.heading {
+    font-family: Dona-Black;
+    font-size: 27px;
+    font-weight: bold;
+    color: #000;
+    margin-bottom: 23px;
+}
+.heading  span{
+    color: #000;
+    position: relative;
+    top: 2px;
+    font-size: 13px;
+    font-family:Dona-Bold !important;
+    left: 10px;
+}
+.order-list{
+    border:2px solid #00B7FF;
+    padding: 2px 15px;
+    border-radius: 0px;
+    margin-bottom: 20px;
+}
+
+.order-list p{
+  padding-top: 10px;
+  text-align: right;
+}
+
+.optional_section p{
+	font-size: 12px;
+}
+.light-border{
+	border:2px solid #f0f2f5;
+}
+.radio {
+    position: relative;
+    padding-left: 25px;
+    top: 25%;
+    font-size: 15px;
+    font-family:Dona-Bold !important;    
+    color: #0e0e0e;
+}
+input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+}
+.checkmark {
+    position: absolute;
+    top: 3px;
+    left: 0;
+    height: 17px;
+    width: 17px;
+    border: 2px solid #E0E6EC;
+    border-radius: 50%;
+}
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+.radio input:checked~.checkmark:after {
+    display: block;
+}
+.radio .checkmark:after {
+    top: 2px;
+    left: 2px;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #00B7FF;
+}
+.font-light{
+	font-weight: 100;
+    color: #878787;
+}
+.add-btn {
+    background: transparent;
+    border-radius: 2px;
+    padding: 10px 17px !important;
+    color: #000 !important;
+    margin-top: 15px;
+    border: 2px solid #00B7FF;
+    margin-bottom: 30px;
+    width: 92%;
+    font-size: 21px !important;
+    font-family: Dona-Black;
+}
+.add-btn:hover{
+    background: #00B7FF;
+    border-color: #00B7FF;
+    color: #fff !important;
+}
+.add-btn span{
+	margin-right: 5px;
+}
+.price_detail {
+    margin-top: 0;
+    background: #fff;
+    padding: 21px 23px;
+    border: 2px solid #cccccc;
+}
+.price_detail h3{
+    font-family: Dona-Black;
+    font-size: 27px;
+    font-weight: bold;
+    color: #000;    
+    margin-bottom: 20px;
+}
+.list-price-detail{
+	list-style: none;
+	padding: 0;
+	margin:0;
+}
+.list-price-detail li {
+    margin-bottom: 18px;
+    font-weight: bold;
+    font-size: 16px;
+    color: #6c6c6c;
+    font-family:Dona-Bold;
+    color: #000;
+}
+.totalusd {
+    font-family: Dona-Black;
+    font-size: 27px;
+    font-weight: bold;
+}
+.list-price-detail li b{
+    font-family: Dona-Black;
+    font-size: 27px;
+    font-weight: bold;
+    color: #000;
+}
+.list-price-detail li:nth-child(4n){
+	margin-top: 40px;
+}
+
+/*checkout section */
+
+.checkout-section {
+    background: #fff;
+    padding: 14px 36px;
+    margin-top: 40px;
+    border: 2px solid #cccccc;
+}
+.checkout-section h3 {
+    margin-top: 22px;
+    font-size: 27px;
+    font-weight: bold;
+    margin-bottom: 22px;
+    font-family: Dona-Black;
+    color: #000;
+}
+.checkout-section label{
+    font-size: 14px;
+    color: #000;
+    font-family: Dona-Bold;
+}
+.checkout-section input[type="text"]{
+    margin-bottom: 0px;
+    border-radius: 0px;
+    padding: 17px 10px;
+    border:2px solid #ccc;
+}
+.checkout-section .form-group{
+    margin-bottom: 10px;
+}
+.checkout-section .btn{
+    background: transparent;
+    width: 100%;
+    border: 2px solid #00B7FF;
+    color: #000;
+    font-weight: bold;
+    font-size: 17px;
+    border-radius: 0px;
+    padding: 5px 0;
+    margin-bottom: 10px;
+    margin-top: -10px;
+}
+.colum-02 .col6{
+    width: 48%;
+    float: left;
+}
+.colum-02 .col6:nth-child(1){
+    margin-right: 10px;
+}
+
+/*Subcribe Sec*/
+
+.subcribe-section{
+    background: #fff;
+    border: 2px solid #cccccc;
+    padding: 10px 10px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+.subcribe-btn .btn{
+    background: #00b9ff;
+    border-color: #00b9ff;
+    color: #fff;
+    font-size: 12px;
+    border-radius: 3px;
+    padding: 5px 20px;
+    position: relative;
+    right: 13px;
+    top: 10px;
+    line-height: 20px;
+}
+.subscribe_detail p{
+    font-size: 14px;
+    font-weight: 400;
+    position: relative;
+    top: 5px;
+}
+
+
+@media(min-width:320px) and (max-width:480px){
+.checkout-section{
+    margin-bottom: 30px;
+}
+.form-group-sm {
+    width: 100% !important;
+}
+.date_of_birth .form-group-sm:nth-child(1){
+	margin-right: 0px;
+    margin-left: 0px;
+}
+.order-list p {
+    padding-top: 10px;
+    text-align: left;
+}
+.manage-row .col-md-6:nth-child(1){
+    border-right: none;
+}
+.manage-row .col-md-6{
+    border-bottom: none;
+    height: auto;
+}
+.colum-02 .col6{
+    width: 100%;
+}
+.colum-02 .col6:nth-child(1){
+    margin-right: 0px;
+}
+
+/*************** Booking Page ******************/
+.p-tripsummry {
+    font-family: Dona-Black;
+    font-size: 22px;
+}
+.p-tripsummry span {
+    font-size: 9px;
+}
+.box-title{
+    font-size: 17px;  
+}
+.detail-box {
+    top: 4px;
+    border-radius: 0px;
+    margin-bottom: 37px;
+}
+
+
+
+}
+@media(min-width:768px) and (max-width: 1024px){
+.date_of_birth .form-group-sm:nth-child(2) {
+    width: 13%;
+    float: left;
+    margin-right: 5px;
+    margin-top: 24px;
+}
+.given_surmane .form-group-sm:nth-child(1) {
+    margin-right: 10px;
+}
+.national_gender .form-group-sm:nth-child(1) {
+    margin-right: 10px;
+}
+.colum-02 .col6{
+    width: 100%;
+}
+.colum-02 .col6:nth-child(1){
+    margin-right: 0px;
+}
+
+/*************** Booking Page ******************/
+.p-tripsummry span {
+    font-size: 9px;
+}
+.box-title{
+    font-size: 17px;  
+}
+.price_detail h3{
+    font-size: 18px;   
+}
+.list-price-detail li{
+    font-size: 10px;   
+}
+.totalusd{
+    font-size: 13px;  
+}
+.list-price-detail li b{
+    font-size: 15px;   
+}
+.checkout-section h3{
+    font-size: 21px;    
+}
+.checkout-section{
+    padding: 14px 11px;    
+}
+b.passenger-kind {
+    font-size: 17px;
+}
+.alert-information {
+    font-size: 13px;
+    line-height: 19px;
+}
+
+
+
+}

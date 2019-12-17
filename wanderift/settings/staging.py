@@ -8,3 +8,7 @@ COMPRESS_URL = os.getenv(
 )
 
 SITE_URL = os.getenv("SITE_URL", "https://staging.joinflyline.com")
+
+CORS_ORIGIN_WHITELIST = [
+    "https://staging.joinflyline.com"
+]
