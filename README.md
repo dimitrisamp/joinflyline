@@ -1,7 +1,13 @@
 ### Quick start
 
 Install Docker on your machine
-Prepare virtualenv and activate it
+You will need Python 3.7. Prepare virtualenv and activate it with these commands
+```shell script
+python -m venv venv
+. venv/bin/activate
+# Or venv/scripts/activate if you are on windows
+
+```
 ```shell script
 git checkout develop
 cp .env.example .env
