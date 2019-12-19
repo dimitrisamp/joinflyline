@@ -15,9 +15,9 @@ class WizardForm(forms.Form):
     last_name = forms.CharField()
     promo_code = forms.CharField(required=False)
     zip = forms.CharField(required=False)
-    card_number = CardNumberField()
-    expiry = CardExpiryField()
-    cvc = SecurityCodeField()
+    card_number = CardNumberField(required=False)
+    expiry = CardExpiryField(required=False)
+    cvc = SecurityCodeField(required=False)
     plan = forms.ChoiceField(
         choices=tuple((o, o) for o in settings.PLAN_DEFINITIONS.keys())
     )

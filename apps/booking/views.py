@@ -42,6 +42,7 @@ class FlightsNotCheckedYetException(ClientException):
 
 
 class CheckFlightsView(ProxyView):
+    permission_classes = [AllowAny]
     source = 'v2/booking/check_flights'
 
 
@@ -131,6 +132,8 @@ class CheckPromoView(View):
 
 
 class SaveBookingView(APIView):
+    permission_classes = [AllowAny]
+
     def is_test_request(self, data):
         fp = data["passengers"][0]
         return (fp["name"].lower(), fp["surname"].lower()) == ("test", "test")

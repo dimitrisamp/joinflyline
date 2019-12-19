@@ -171,88 +171,83 @@
 
     <hr />
 
-    <div class="main-padding" v-if="plans && user.subscription">
+    <div class="main-padding" v-if="plans">
       <div class="account__form">
         <div class="row">
           <div class="col-12 col-xl-3">
             <h3>Subscription Management</h3>
           </div>
           <div class="col-12 col-xl-7">
-            <tabs>
-              <tab
-                v-for="(o, paneIndex) in planTabs"
-                :title="o.label"
-                :selected="selectedIndex === paneIndex"
-                :key="`pane-${paneIndex}`"
+            <div class="row justify-content-center">
+              <div
+                class="col-12 col-lg-6"
+                v-for="(plan, code) in plans"
+                :key="`plan-${code}`"
               >
-                <div class="row justify-content-center">
-                  <div
-                    class="col-12 col-lg-6"
-                    v-for="(pk, planIndex) in o.plans"
-                    :key="`plan-${planIndex}`"
-                  >
-                    <div class="subscription">
-                      <div class="subscription__top">
-                        <div class="subscription__title">
-                          <h4
-                            class="subscription__heading subscription__heading--type"
-                          >
-                            {{ plans[pk].name }}
-                          </h4>
-                          <h3
-                            class="subscription__heading subscription__heading--price"
-                          >
-                            ${{ plans[pk].price.value }}/yr
-                          </h3>
-                        </div>
-                        <ul class="subscription__list">
-                          <li class="subscription__item">
-                            - Flight Search and Book
-                          </li>
-                          <li class="subscription__item">- Auto Check-in</li>
-                          <li v-if="plans[pk].limit" class="subscription__item">
-                            - Max of {{ plans[pk].limit }} Bookings
-                          </li>
-                          <li v-else class="subscription__item">
-                            - Unlimited Bookings
-                          </li>
-                          <li
-                            v-if="plans[pk].deal_alerts"
-                            class="subscription__item"
-                          >
-                            - Deal alerts
-                          </li>
-                          <li
-                            v-if="plans[pk].companion"
-                            class="subscription__item"
-                          >
-                            <!-- - {{ plans[pk].companion }} companion account{{ plans[pk].companion>1?"s":"" }} -->
-                            - Companion account
-                          </li>
-                        </ul>
-                      </div>
-                      <div class="subscription__bottom">
-                        <button
-                          v-if="planStatus(pk) === 'current'"
-                          class="button button--outline-blue"
-                        >
-                          Current Plan
-                        </button>
-                        <button
-                          v-else-if="planStatus(pk) === 'upgrade'"
-                          class="button button--outline-blue"
-                        >
-                          Upgrade plan
-                        </button>
-                        <button v-else class="button button--outline-blue">
-                          Downgrade plan
-                        </button>
-                      </div>
+                <div class="subscription">
+                  <div class="subscription__top">
+                    <div class="subscription__title">
+                      <h4
+                        class="subscription__heading subscription__heading--type"
+                      >
+                        {{ plan.name }}
+                      </h4>
+                      <h3
+                        v-if="plan.price"
+                        class="subscription__heading subscription__heading--price"
+                      >
+                        ${{ plan.price.value }}/yr
+                      </h3>
+                      <h3
+                        v-else
+                        class="subscription__heading subscription__heading--price"
+                      >
+                        Free
+                      </h3>
                     </div>
+                    <ul class="subscription__list">
+                      <li class="subscription__item">
+                        - Flight Search and Book
+                      </li>
+                      <li class="subscription__item">- Auto Check-in</li>
+                      <li v-if="plan.limit" class="subscription__item">
+                        - Max of {{ plan.limit }} Bookings
+                      </li>
+                      <li v-else class="subscription__item">
+                        - Unlimited Bookings
+                      </li>
+                      <li
+                        v-if="plan.deal_alerts"
+                        class="subscription__item"
+                      >
+                        - Deal alerts
+                      </li>
+                      <li v-if="plan.companion" class="subscription__item">
+                        <!-- - {{ plans[pk].companion }} companion account{{ plans[pk].companion>1?"s":"" }} -->
+                        - Companion account
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="subscription__bottom">
+                    <button
+                      v-if="planStatus(code) === 'current'"
+                      class="button button--outline-blue"
+                    >
+                      Current Plan
+                    </button>
+                    <button
+                      v-else-if="planStatus(code) === 'upgrade'"
+                      class="button button--outline-blue"
+                    >
+                      Upgrade plan
+                    </button>
+                    <button v-else class="button button--outline-blue">
+                      Downgrade plan
+                    </button>
                   </div>
                 </div>
-              </tab>
-            </tabs>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -270,8 +265,6 @@ import Vuex from "vuex";
 import LocationInput from "../components/LocationInput";
 import AccountCompanion from "../components/AccountCompanion";
 import AccountDeals from "../components/AccountDeals";
-import Tabs from "../components/Tabs";
-import Tab from "../components/Tab";
 
 const frequentFlyerNames = {
   american_airlines: "AA",
@@ -291,9 +284,7 @@ export default {
   components: {
     AccountDeals,
     AccountCompanion,
-    LocationInput,
-    Tabs,
-    Tab
+    LocationInput
   },
   data() {
     return {
@@ -303,20 +294,7 @@ export default {
       frequentflyer: {},
       user: {},
       dobText: "",
-      accountSavedDisplay: false,
-      planTabs: [
-        {
-          group: "basic",
-          label: "Basic",
-          plans: ["basic", "basic-plus"]
-        },
-        {
-          group: "pro",
-          label: "Pro",
-          plans: ["pro"]
-        }
-      ],
-      selectedIndex: 0
+      accountSavedDisplay: false
     };
   },
   watch: {

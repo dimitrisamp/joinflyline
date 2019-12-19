@@ -11,6 +11,8 @@
 </template>
 
 <script>
+import api from "../utils/http";
+
 export default {
   data() {
     return {
@@ -21,12 +23,17 @@ export default {
   delimiters: ["{{", "}}"],
   methods: {
     loadData() {
-      fetch("/api/subscriptions/plan/")
-        .then(response => response.json())
-        .then(data => {
-          this.options = data;
-          this.$emit("data-arrived", Object.keys(data)[0]);
-        });
+      api.get("subscriptions/plan/").then(response => {
+        this.options = response.data;
+        this.$emit("data-arrived", Object.keys(response.data)[0]);
+      });
+    },
+    getPriceValue(value) {
+      if (value.price === null) return 0;
+      if (this.discount) {
+        return (value.price.value * (100 - this.discount.percentage)) / 100;
+      }
+      return value.price.value;
     }
   },
   created() {
@@ -37,11 +44,9 @@ export default {
       let result = {};
       for (let [name, value] of Object.entries(this.options)) {
         if (this.discount) {
-          result[name] = `${value.name} ($${(value.price.value *
-            (100 - this.discount.percentage)) /
-            100}/yr)`;
+          result[name] = `${value.name} ($${this.getPriceValue(value)}/yr)`;
         } else {
-          result[name] = `${value.name} ($${value.price.value}/yr)`;
+          result[name] = `${value.name} ($${this.getPriceValue(value)}/yr)`;
         }
       }
       return result;

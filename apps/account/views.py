@@ -6,6 +6,7 @@ from django.conf import settings
 from django.db import transaction
 from django.http import JsonResponse
 from django.utils.timezone import now
+from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import FormView
 from psycopg2.extras import DateTimeTZRange
 from rest_framework.generics import get_object_or_404
@@ -121,6 +122,10 @@ class InviteWizardView(FormView):
 
 class WizardView(FormView):
     form_class = WizardForm
+
+    @csrf_exempt
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
 
     def form_invalid(self, form):
         return JsonResponse({"errors": form.errors.as_json()}, status=400)

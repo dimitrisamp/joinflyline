@@ -3,7 +3,7 @@ import axios from "axios";
 
 const BASE_URL = process.env.VUE_APP_API_ENDPOINT;
 
-export default axios.create({
+export const api = axios.create({
   baseURL: `${BASE_URL}/api/`,
   headers: {
     Authorization: {
@@ -14,3 +14,5 @@ export default axios.create({
     }
   }
 });
+
+export default api;

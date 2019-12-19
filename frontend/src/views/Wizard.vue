@@ -148,65 +148,66 @@
                     @data-arrived="updateSelectValue"
                   />
                 </div>
-
-                <div class="input-group input-group-sm step-f-inputs">
-                  <input
-                    type="text"
-                    class="form-control"
-                    :class="{ invalid: promoInvalid }"
-                    placeholder="Promo Code"
-                    @keyup.enter="focusElement('zip')"
-                    name="promo_code"
-                    @input="checkPromo"
-                    v-model="form.promo_code"
-                  />
-                </div>
-
-                <div class="input-group input-group-sm step-f-inputs">
-                  <input
-                    type="text"
-                    class="form-control"
-                    @keyup.enter="focusElement('card_number')"
-                    name="zip"
-                    placeholder="Billing Zip"
-                    v-model="form.zip"
-                  />
-                </div>
-
-                <div class="input-group input-group-sm step-f-inputs">
-                  <input
-                    type="text"
-                    class="form-control"
-                    placeholder="Credit Card Number"
-                    @keyup.enter="focusElement('expiry')"
-                    name="card_number"
-                    v-model="form.card_number"
-                  />
-                </div>
-
-                <div class="row">
-                  <div class="input-group input-group-sm step-f-inputs col-6">
+                <template v-if="form.plan !== 'free'">
+                  <div class="input-group input-group-sm step-f-inputs">
                     <input
                       type="text"
                       class="form-control"
-                      @keyup.enter="focusElement('cvc')"
-                      name="expiry"
-                      placeholder="Exp Date"
-                      v-model="form.expiry"
+                      :class="{ invalid: promoInvalid }"
+                      placeholder="Promo Code"
+                      @keyup.enter="focusElement('zip')"
+                      name="promo_code"
+                      @input="checkPromo"
+                      v-model="form.promo_code"
                     />
                   </div>
 
-                  <div class="input-group input-group-sm step-f-inputs col-6">
+                  <div class="input-group input-group-sm step-f-inputs">
                     <input
                       type="text"
                       class="form-control"
-                      name="cvc"
-                      @keyup.enter="submit()"
-                      placeholder="CCV Code"
-                      v-model="form.cvc"
+                      @keyup.enter="focusElement('card_number')"
+                      name="zip"
+                      placeholder="Billing Zip"
+                      v-model="form.zip"
                     />
                   </div>
-                </div>
+
+                  <div class="input-group input-group-sm step-f-inputs">
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Credit Card Number"
+                      @keyup.enter="focusElement('expiry')"
+                      name="card_number"
+                      v-model="form.card_number"
+                    />
+                  </div>
+
+                  <div class="row">
+                    <div class="input-group input-group-sm step-f-inputs col-6">
+                      <input
+                        type="text"
+                        class="form-control"
+                        @keyup.enter="focusElement('cvc')"
+                        name="expiry"
+                        placeholder="Exp Date"
+                        v-model="form.expiry"
+                      />
+                    </div>
+
+                    <div class="input-group input-group-sm step-f-inputs col-6">
+                      <input
+                        type="text"
+                        class="form-control"
+                        name="cvc"
+                        @keyup.enter="submit()"
+                        placeholder="CCV Code"
+                        v-model="form.cvc"
+                      />
+                    </div>
+                  </div>
+                </template>
               </template>
 
               <div class="input-group step-f-inputs">
@@ -233,9 +234,10 @@ import { debounce } from "../utils/utils";
 import DynamicSelect from "../components/DynamicSelect";
 import LocationInput from "../components/LocationInput";
 import Vuex from "vuex";
+import Vue from "vue";
 
-const getStartedCompanionUrl = "/api/get-started-companion/";
-const getStartedUrl = "/api/get-started/";
+const getStartedCompanionUrl = "/get-started-companion/";
+const getStartedUrl = "/get-started/";
 
 export default {
   components: {
@@ -282,7 +284,7 @@ export default {
   delimiters: ["{{", "}}"],
   watch: {
     step: function(val) {
-      this.nextTick().then(() => {
+      Vue.nextTick().then(() => {
         if (val === 2) this.focusElement("first_name");
       });
     }
@@ -342,14 +344,10 @@ export default {
     },
     verifyEmail(callback) {
       if (this.emailInvalid) return;
-      let url = new URL("/api/auth/check-user/", window.location.href);
-      let searchParams = {
-        email: this.form.email
-      };
-      url.search = new URLSearchParams(searchParams);
-      fetch(url)
-        .then(response => response.json())
-        .then(data => {
+      api
+        .get("auth/check-user/", { params: { email: this.form.email } })
+        .then(response => {
+          const data = response.data;
           this.emailExists = data.exists;
           this.emailVerified = true;
           if (callback) callback();
@@ -373,7 +371,7 @@ export default {
     submit() {
       if (!this.isStep2Complete) return;
       this.requestSent = true;
-      this.nextTick().then(() => {
+      Vue.nextTick().then(() => {
         let formData = new FormData();
         //formData.append("csrfmiddlewaretoken", csrfmiddlewaretoken); TODO: csrf-exempt?
         for (let k in this.form) {
@@ -389,12 +387,10 @@ export default {
             }
           }
         }
-        fetch(this.inviteMode ? getStartedCompanionUrl : getStartedUrl, {
-          method: "POST",
-          body: formData
-        })
-          .then(response => response.json())
-          .then(data => {
+        api
+          .post(this.inviteMode ? getStartedCompanionUrl : getStartedUrl, formData)
+          .then(response => {
+            const data = response.data;
             if (data.success) {
               this.authenticate({
                 email: this.form.email,
@@ -428,7 +424,7 @@ export default {
       );
     },
     isStep2Complete() {
-      if (this.inviteMode) {
+      if (this.inviteMode || this.form.plan === "free") {
         return this.form.first_name !== "" && this.form.last_name !== "";
       }
       return (
