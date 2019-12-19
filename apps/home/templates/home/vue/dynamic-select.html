@@ -1,5 +1,0 @@
-<script type="text/x-template" id="vue-dynamic-select-template">
-    <select :value="value" @input="$emit('input', $event.target.value)">
-        <option v-for="(name, val) in items" :value="val" :selected="val === value" v-html="name" />
-    </select>
-</script>

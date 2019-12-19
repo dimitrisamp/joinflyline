@@ -1,9 +1,0 @@
-<script type="text/x-template" id="vue-search-results-mobile-template">
-    <div class="search-rmobile-view">
-        <search-info-mobile :form="form"
-                            :sort-results-by="sortResultsBy"
-                            v-on:back-pressed="backPressed" />
-        <search-result-mobile v-for="data in searchResults" :data="data" @showPopup="showPopup" />
-        <search-results-popup/>
-    </div>
-</script>
