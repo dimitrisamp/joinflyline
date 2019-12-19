@@ -264,7 +264,7 @@ export default {
         card_number: "",
         expiry: "",
         cvc: "",
-        plan: null,
+        plan: "basic",
         code: this.$route.query.code
       },
       inviteMode: this.$route.query.hasOwnProperty("code"),

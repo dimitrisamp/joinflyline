@@ -11,23 +11,12 @@
 </template>
 
 <script>
-import api from "../utils/http";
+import Vuex from "vuex";
 
 export default {
-  data() {
-    return {
-      options: {}
-    };
-  },
   props: ["value", "discount"],
   delimiters: ["{{", "}}"],
   methods: {
-    loadData() {
-      api.get("subscriptions/plan/").then(response => {
-        this.options = response.data;
-        this.$emit("data-arrived", Object.keys(response.data)[0]);
-      });
-    },
     getPriceValue(value) {
       if (value.price === null) return 0;
       if (this.discount) {
@@ -36,13 +25,11 @@ export default {
       return value.price.value;
     }
   },
-  created() {
-    this.loadData();
-  },
   computed: {
+    ...Vuex.mapState("plans", ["plans"]),
     items() {
       let result = {};
-      for (let [name, value] of Object.entries(this.options)) {
+      for (let [name, value] of Object.entries(this.plans)) {
         if (this.discount) {
           result[name] = `${value.name} ($${this.getPriceValue(value)}/yr)`;
         } else {
