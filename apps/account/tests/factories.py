@@ -31,9 +31,6 @@ class AccountFactory(factory.DjangoModelFactory):
     class Meta:
         model = Account
 
-    card_number = factory.faker.Faker("credit_card_number")
-    cvc = factory.faker.Faker("credit_card_security_code")
-    expiry = factory.faker.Faker("credit_card_expire")
     stripe_id = ""
     customer_id = ""
 

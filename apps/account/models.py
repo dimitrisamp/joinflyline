@@ -14,9 +14,6 @@ from wanderift.utils import l2q
 
 
 class Account(models.Model):
-    card_number = CardNumberField(null=True)
-    cvc = SecurityCodeField(null=True)
-    expiry = CardExpiryField(null=True)
     brand = models.CharField(max_length=10, blank=True)
     last4 = models.CharField(max_length=5, blank=True)
     customer_id = models.CharField(max_length=70, blank=True)

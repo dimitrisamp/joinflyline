@@ -236,7 +236,7 @@ ROBOTS_TXT = os.path.join(BASE_DIR, "wanderift", "robots.txt")
 DATE_FORMAT = "m/d/Y"
 DATE_INPUT_FORMATS = ["%Y-%m-%d", "%m/%d/%Y"]
 
-ANYMAIL = {"MAILGUN_API_KEY": "6bee4aaf5117bdaaefb99493e1d6277f-5645b1f9-73c5a1f3"}
+ANYMAIL = {"MAILGUN_API_KEY": os.getenv('MAILGUN_API_KEY')}
 
 SENDGRID_API_URL = "https://api.sendgrid.com/v3/"
 EMAIL_BACKEND = "anymail.backends.mailgun.EmailBackend"

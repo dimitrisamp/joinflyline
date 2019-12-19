@@ -48,28 +48,32 @@ def card_token(card_number, expiry, cvc):
 
 def add_subscription(account: Account, plan: str, promocode: str):
     if not Subscriptions.objects.filter(account=account).exists():
-        params = {
-            "customer": account.customer_id,
-            "items": [{"plan": settings.SUBSCRIPTION_PLANS[plan]["stripe_plan_id"]}],
-        }
-        if promocode:
-            params["coupon"] = promocode
-        subscription = stripe.Subscription.create(**params)
-        start = datetime.datetime.fromtimestamp(subscription["current_period_start"])
-        end = datetime.datetime.fromtimestamp(subscription["current_period_end"])
+        if plan != 'free':
+            params = {
+                "customer": account.customer_id,
+                "items": [{"plan": settings.SUBSCRIPTION_PLANS[plan]["stripe_plan_id"]}],
+            }
+            if promocode:
+                params["coupon"] = promocode
+            subscription = stripe.Subscription.create(**params)
+            start = datetime.datetime.fromtimestamp(subscription["current_period_start"])
+            end = datetime.datetime.fromtimestamp(subscription["current_period_end"])
+        else:
+            curr = now()
+            start = curr
+            end = curr.replace(year=curr.year + 1)
         Subscriptions.objects.create(
             account=account, plan=plan, period=DateTimeTZRange(start, end)
         )
 
 
-def add_to_stripe(user: User, plan, promocode):
+def add_to_stripe(user: User, plan, promocode, card_number, expiry, cvc):
     account = user.account
-    stripe_card_token = card_token(account.card_number, account.expiry, account.cvc)
+    stripe_card_token = card_token(card_number, expiry, cvc)
     account.token = stripe_card_token.id
     customer = stripe_customer(user)
     account.customer_id = customer.id
     account.save()
-    add_subscription(account, plan, promocode)
 
 
 class InviteCheckView(APIView):
@@ -137,9 +141,7 @@ class WizardView(FormView):
                 return JsonResponse(
                     {"errors": {"email": "User already exists"}}, status=400
                 )
-            account = Account.objects.create(
-                card_number=cd["card_number"], cvc=cd["cvc"], expiry=cd["expiry"]
-            )
+            account = Account.objects.create()
             new_user = User.objects.create_user(
                 cd["email"],
                 cd["email"],
@@ -152,6 +154,14 @@ class WizardView(FormView):
             )
             signup_success(new_user.pk)
             # TODO: handle promocode
-            if account.card_number and account.expiry and account.cvc:
-                add_to_stripe(new_user, cd["plan"], cd["promo_code"])
+            if cd["card_number"] and cd["expiry"] and cd["cvc"]:
+                add_to_stripe(
+                    new_user,
+                    cd["plan"],
+                    cd["promo_code"],
+                    cd["card_number"],
+                    cd["expiry"],
+                    cd["cvc"],
+                )
+            add_subscription(account, cd["plan"], cd["promo_code"])
             return JsonResponse({"success": True})

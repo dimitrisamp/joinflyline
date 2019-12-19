@@ -216,6 +216,9 @@
                       <li v-else class="subscription__item">
                         - Unlimited Bookings
                       </li>
+                      <li class="subscription__item">
+                        - Access to FlyLine Portal
+                      </li>
                       <li
                         v-if="plan.deal_alerts"
                         class="subscription__item"

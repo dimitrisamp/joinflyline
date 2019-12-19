@@ -2,6 +2,7 @@ from creditcards.forms import CardNumberField, CardExpiryField, SecurityCodeFiel
 from django import forms
 from django.conf import settings
 from django.contrib.postgres.forms import JSONField
+from django.core.exceptions import ValidationError
 
 from apps.account.enums import CompanionInviteStatus
 from apps.account.models import CompanionInvite
@@ -21,6 +22,12 @@ class WizardForm(forms.Form):
     plan = forms.ChoiceField(
         choices=tuple((o, o) for o in settings.PLAN_DEFINITIONS.keys())
     )
+
+    def clean(self):
+        cd = self.cleaned_data
+        if cd['plan'] != 'free':
+            if not (cd['card_number'] and cd['expiry'] and cd['cvc']):
+                raise ValidationError('Paid account requires payment credentials')
 
 
 class InviteWizardForm(forms.Form):
