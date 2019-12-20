@@ -62,6 +62,9 @@ export const userStore = {
   },
   actions: {
     initializeUser(context) {
+      if (localStorage.getItem("authToken") === null){
+        return;
+      }
       return api
         .get("/users/me/")
         .then(response => {
@@ -78,9 +81,11 @@ export const userStore = {
         });
     },
     logOut(context, router) {
-      localStorage.removeItem("authToken");
-      context.commit("setUser", { anonymous: true });
-      router.push({ name: "index" });
+      api.post("/auth/logout/").then(() => {
+        localStorage.removeItem("authToken");
+        context.commit("setUser", { anonymous: true });
+        router.push({ name: "index" });
+      });
     },
     authenticate(ctx, params) {
       const { email, password, router, name } = params;

@@ -23,5 +23,11 @@ new Vue({
   computed: {
     ...Vuex.mapState("user", ["user"])
   },
+  created() {
+    Promise.all([
+      this.$store.dispatch("user/initializeUser"),
+      this.$store.dispatch("plans/initializePlans")
+    ]);
+  },
   render: h => h(App)
 }).$mount("#app");

@@ -90,10 +90,9 @@ export default {
     ...Vuex.mapActions("search", ["loadMore", "sortResultsBy"]),
     bookFlight(index) {
       this.setSearchResultIndex(index);
-      if(this.user.anonymous){
+      if (this.user.anonymous) {
         this.$router.push({ name: "search-booking" });
-      }
-      else{
+      } else {
         this.$router.push({ name: "booking" });
       }
     }

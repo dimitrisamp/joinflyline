@@ -219,10 +219,7 @@
                       <li class="subscription__item">
                         - Access to FlyLine Portal
                       </li>
-                      <li
-                        v-if="plan.deal_alerts"
-                        class="subscription__item"
-                      >
+                      <li v-if="plan.deal_alerts" class="subscription__item">
                         - Deal alerts
                       </li>
                       <li v-if="plan.companion" class="subscription__item">

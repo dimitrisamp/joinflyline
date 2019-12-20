@@ -1,11 +1,4 @@
 {
-  "free": {
-    "name": "Free",
-    "price": null,
-    "limit": 2,
-    "deal_alerts": false,
-    "companion": false
-  },
   "basic": {
     "name": "Basic",
     "price": {

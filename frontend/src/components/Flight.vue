@@ -430,12 +430,7 @@ export default {
         .join(", ");
     },
     bookFlight() {
-      if (this.user.anonymous) {
-        this.$emit("proceed-to-booking");
-//        this.$emit("showPopup");
-      } else {
-        this.$emit("proceed-to-booking");
-      }
+      this.$emit("proceed-to-booking");
     },
     toggleCollapsed() {
       this.collapsed = !this.collapsed;

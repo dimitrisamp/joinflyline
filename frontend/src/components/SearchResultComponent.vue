@@ -3,45 +3,8 @@
     <div class="result__container main-padding">
       <div class="row">
         <div class="col-12 col-xl-3 result__filters">
-          <form action="" class="bg-white">
-            <div class="search-filter">
-              <div class="search-filter__header">
-                <div class="search-quick-filter-filter-name">
-                    <strong>Flight Filters</strong>
-                </div>
-                <p>Filter by : Stops, Airlines,Times, and more</p>
-              </div>
-              <div class="search-filter__body">
-                <collapse :collapsed="false" title="Filter By Airlines">
-                  <airline-filter
-                    :data="filterableAirlines"
-                    @select="toggleAirline"
-                  />
-                </collapse>
-                <collapse title="Filter By Time">
-                  <time-filter />
-                </collapse>
-                <collapse title="Filter By Stops">
-                  <max-stops-filter
-                    :data="form.maxStops"
-                    @select="setMaxStops"
-                  />
-                </collapse>
-                <collapse title="Filter By Price">
-                  <price-filter @select="setPriceRange" />
-                </collapse>
-                <button
-                  type="button"
-                  class="btn btn-primary w-100"
-                  @click="search({ clearFilters: false, saveSearch: false })"
-                >
-                  Update Result
-                </button>
-              </div>
-            </div>
-          </form>
+          <filter-form-component />
         </div>
-
         <div class="col-12 col-xl-9">
           <search-results />
         </div>
@@ -53,23 +16,15 @@
 <script>
 import Vuex from "vuex";
 import FilterForm from "./FilterForm";
-import AirlineFilter from "./AirlineFilter";
-import MaxStopsFilter from "./MaxStopsFilter";
-import PriceFilter from "./PriceFilter";
-import TimeFilter from "./TimeFilter";
 import SearchResults from "./SearchResults";
-import Collapse from "./Collapse";
+import FilterFormComponent from "./FilterFormComponent";
 
 export default {
   mixins: [FilterForm],
   delimiters: ["{{", "}}"],
   components: {
-    AirlineFilter,
-    MaxStopsFilter,
-    PriceFilter,
-    TimeFilter,
-    SearchResults,
-    Collapse
+    FilterFormComponent,
+    SearchResults
   },
   data() {
     return {

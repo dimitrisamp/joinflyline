@@ -445,7 +445,8 @@ export default {
           passengers: this.passengersParameter(),
           payment_gateway: "payu",
           payment: this.form,
-          retail_info: this.flightToBook
+          retail_info: this.flightToBook,
+          searchForm: this.searchForm
         }
       });
     },
@@ -558,6 +559,7 @@ export default {
   },
   computed: {
     ...Vuex.mapGetters("search", ["flightToBook"]),
+    ...Vuex.mapState("search", { searchForm: "form" }),
     passengerCount() {
       if (!this.passengers)
         return { adults: 0, children: 0, infants: 0, pnum: 0 };

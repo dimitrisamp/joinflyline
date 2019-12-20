@@ -1,5 +1,4 @@
 import Wizard from "../views/Wizard";
-import { store } from "../store";
 import MainLanding from "../views/MainLanding";
 import MainLandingAbout from "../components/MainLandingAbout";
 import MembershipExplained from "../views/MembershipExplained";
@@ -30,43 +29,57 @@ const routes = [
     path: "/",
     name: "index",
     component: MainLanding,
-    beforeEnter(to, from, next) {
-      if (!store.state.user.user.anonymous) {
-        next({ name: "overview" });
-      } else {
-        next();
-      }
+    meta: {
+      loginRequired: false
     }
   },
   {
     path: "/about",
     name: "about",
-    component: MainLandingAbout
+    component: MainLandingAbout,
+    meta: {
+      loginRequired: false
+    }
   },
   {
     path: "/membership-explained",
     name: "membership-explained",
-    component: MembershipExplained
+    component: MembershipExplained,
+    meta: {
+      loginRequired: false
+    }
   },
   {
     path: "/flyline101",
     name: "flyline101",
-    component: Flyline101
+    component: Flyline101,
+    meta: {
+      loginRequired: false
+    }
   },
   {
     path: "/privacy-policy",
     name: "privacy-policy",
-    component: PrivacyPolicy
+    component: PrivacyPolicy,
+    meta: {
+      loginRequired: false
+    }
   },
   {
     path: "/terms-of-services",
     name: "terms-of-services",
-    component: TermsOfServices
+    component: TermsOfServices,
+    meta: {
+      loginRequired: false
+    }
   },
   {
     path: "/airlines",
     name: "airlines",
-    component: Airlines
+    component: Airlines,
+    meta: {
+      loginRequired: false
+    }
   },
   {
     path: "/search-results",
@@ -75,76 +88,104 @@ const routes = [
       {
         path: "",
         name: "search-results",
-        component: SearchResultComponent
+        component: SearchResultComponent,
+        meta: {
+          loginRequired: false
+        }
       },
       {
         path: "booking",
         name: "search-booking",
-        component: SearchBookingPage
-      },
+        component: SearchBookingPage,
+        meta: {
+          loginRequired: false
+        }
+      }
     ]
   },
   {
     path: "/sign-in",
     name: "sign-in",
-    component: SignIn
+    component: SignIn,
+    meta: {
+      loginRequired: false
+    }
   },
   {
     path: "/dashboard",
     component: Dashboard,
-    beforeEnter(to, from, next) {
-      if (store.state.user.user.anonymous) {
-//        next({ name: "index" });
-        next();
-      } else {
-        next();
-      }
-    },
     children: [
       {
         path: "",
         name: "overview",
-        component: DashboadOverview
+        component: DashboadOverview,
+        meta: {
+          loginRequired: true
+        }
       },
       {
         path: "trips",
         name: "trips",
-        component: Trips
+        component: Trips,
+        meta: {
+          loginRequired: true
+        }
       },
       {
         path: "results",
         name: "results",
-        component: ResultComponent
+        component: ResultComponent,
+        meta: {
+          loginRequired: true
+        }
       },
       {
         path: "account",
         name: "account",
-        component: AccountInformation
+        component: AccountInformation,
+        meta: {
+          loginRequired: true
+        }
       },
       {
         path: "booking",
         name: "booking",
-        component: BookingPage
+        component: BookingPage,
+        meta: {
+          loginRequired: true
+        }
       }
     ]
   },
   {
     path: "/get-started/:plan?",
     name: "get-started",
-    component: Wizard
+    component: Wizard,
+    meta: {
+      loginRequired: false
+    }
   },
   {
     path: "/learn-more/",
-    component: LearnMore
+    component: LearnMore,
+    meta: {
+      loginRequired: false
+    }
   },
   {
     path: "/promo/",
-    component: PromoLanding
+    component: PromoLanding,
+    meta: {
+      loginRequired: false
+    }
   },
   {
     path: "/faq/",
     name: "faq",
-    component: Faq
+    component: Faq,
+    meta: {
+      loginRequired: false
+    }
   }
 ];
 
@@ -156,15 +197,17 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  store
-    .dispatch("user/initializeUser")
-    .then(() => {
+  if (to.matched.some(record => record.meta.loginRequired)) {
+    if (localStorage.getItem("authToken") == null) {
+      next({
+        name: "sign-in"
+      });
+    } else {
       next();
-    })
-    .catch(() => {
-      next();
-    });
-  store.dispatch("plans/initializePlans");
+    }
+  } else {
+    next();
+  }
 });
 
 export { router };

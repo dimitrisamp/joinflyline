@@ -107,7 +107,12 @@
             </div>
 
             <button class="btn btn-search" @click.prevent="doSearch">
-              <img width="21" height="21" data-v-55a08d38="" src="/static/img/search.3a5a60f1.png">
+              <img
+                width="21"
+                height="21"
+                data-v-55a08d38=""
+                src="/static/img/search.3a5a60f1.png"
+              />
             </button>
           </form>
         </div>

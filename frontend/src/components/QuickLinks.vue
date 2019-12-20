@@ -15,10 +15,10 @@
           >${{ data[sortBy].price }} -
           {{ secs2hm(data[sortBy].duration) }}</span
         >
-        <span class="small" v-if="label == 'Low-Cost'"
+        <span class="small" v-if="label === 'Low-Cost'"
           >Southwest and more</span
         >
-        <span class="small" v-if="label == 'Legacy'"
+        <span class="small" v-if="label === 'Legacy'"
           >American Airlines and more</span
         >
       </div>
@@ -109,7 +109,7 @@ export default {
           : {};*/
       const additionalCol =
         this.user && this.user.anonymous
-          ? { date: "Single Carrier", lowcost: 'Low-Cost', legacy: 'Legacy' }
+          ? { date: "Single Carrier", lowcost: "Low-Cost", legacy: "Legacy" }
           : {};
       return {
         price: "Cheapest",

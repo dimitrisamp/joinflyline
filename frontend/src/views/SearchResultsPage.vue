@@ -143,7 +143,7 @@
                 </div>
               </div>
             </div>
-            
+
             <div class="search-result__container__top">
               <search-header
                 v-show="showDashboardNavigation"
@@ -158,12 +158,14 @@
                   <p>Carriers: {{ airlineNames }}</p>
                 </div>
                 <div>
-                  <button
+                  <router-link
+                    tag="button"
                     type="button"
                     class="btn btn-info"
+                    :to="{ name: 'flyline101' }"
                   >
-                  FlyLine 101
-                  </button>
+                    FlyLine 101
+                  </router-link>
                   <h5>How to get the most savings on FlyLine</h5>
                 </div>
               </div>
@@ -230,7 +232,7 @@ export default {
     AirlineFilter,
     PriceFilter,
     MaxStopsFilter,
-//    SearchResults,
+    //    SearchResults,
     MainLandingFooter,
     SearchHeader
   },

@@ -10,7 +10,10 @@
             <!-- Flights -->
             <div class="summary__flights">
               <p>
-                  It looks like you found a great deal! If you choose to book this flight it will count as one of your free booking. Once you use your free bookings you will have to upgrade to either FlyLine Basic or FlyLine Pro to continue saving with FlyLine.
+                It looks like you found a great deal! If you choose to book this
+                flight it will count as one of your free booking. Once you use
+                your free bookings you will have to upgrade to either FlyLine
+                Basic or FlyLine Pro to continue saving with FlyLine.
               </p>
             </div>
           </div>
@@ -66,52 +69,54 @@
           </div>
           <div class="pform__field--button">
             <h4>
-                To add another passanger upgrade to FlyLine Basic or Pro
+              To add another passanger upgrade to FlyLine Basic or Pro
             </h4>
           </div>
         </div>
 
         <div class="summary__right">
-
           <div class="summary__inner">
             <div class="summary__inner__totals">
-                <h3 class="summary__inner__totals__heading">Upgrade to FlyLine Basic or Pro</h3>
-                <p>Get the most out of FlyLine and save when upgrading to FlyLine Basic or Pro</p>
-                <div class="summary__inner__totals__item">
-                    <label class="control control--checkbox"
-                        @click="clickUpgrade('basic')"
-                    >
-                        <span>
-                            <h3>FlyLine Basic $39/yr</h3>
-                            <br>- Flight Search & Book
-                            <br>- Max of 6 bookings
-                            <br>- Access to FlyLine Portal
-                            <br>- Deal Alerts
-                        </span>
-                        <div
-                        class="control__indicator"
-                        :class="{ checked: upgradeBasic }"
-                        ></div>
-                    </label>
-                </div>
-                <div class="summary__inner__totals__item">
-                    <label class="control control--checkbox"
-                        @click="clickUpgrade('pro')"
-                    >
-                        <span>
-                            <h3>FlyLine Pro $139/yr</h3>
-                            <br>- Flight Search & Book
-                            <br>- Unlimited Bookings
-                            <br>- Access to FlyLine Portal
-                            <br>- Deal Alerts
-                            <br>- Companion Account
-                        </span>
-                        <div
-                        class="control__indicator"
-                        :class="{ checked: upgradePro }"
-                        ></div>
-                    </label>
-                </div>
+              <h3 class="summary__inner__totals__heading">
+                Upgrade to FlyLine Basic or Pro
+              </h3>
+              <p>
+                Get the most out of FlyLine and save when upgrading to FlyLine
+                Basic or Pro
+              </p>
+              <div class="summary__inner__totals__item">
+                <label
+                  class="control control--checkbox"
+                  @click="clickUpgrade('basic')"
+                >
+                  <span>
+                    <h3>FlyLine Basic $39/yr</h3>
+                    <br />- Flight Search & Book <br />- Max of 6 bookings
+                    <br />- Access to FlyLine Portal <br />- Deal Alerts
+                  </span>
+                  <div
+                    class="control__indicator"
+                    :class="{ checked: upgradeBasic }"
+                  ></div>
+                </label>
+              </div>
+              <div class="summary__inner__totals__item">
+                <label
+                  class="control control--checkbox"
+                  @click="clickUpgrade('pro')"
+                >
+                  <span>
+                    <h3>FlyLine Pro $139/yr</h3>
+                    <br />- Flight Search & Book <br />- Unlimited Bookings
+                    <br />- Access to FlyLine Portal <br />- Deal Alerts <br />-
+                    Companion Account
+                  </span>
+                  <div
+                    class="control__indicator"
+                    :class="{ checked: upgradePro }"
+                  ></div>
+                </label>
+              </div>
             </div>
           </div>
           <div class="summary__inner">
@@ -596,13 +601,13 @@ export default {
     goHome() {
       this.$router.push({ name: "overview" });
     },
-    clickUpgrade(type){
-        if(type == "basic"){
-            this.upgradeBasic = !this.upgradeBasic;
-        }
-        if(type == "pro"){
-            this.upgradePro = !this.upgradePro;
-        }
+    clickUpgrade(type) {
+      if (type == "basic") {
+        this.upgradeBasic = !this.upgradeBasic;
+      }
+      if (type == "pro") {
+        this.upgradePro = !this.upgradePro;
+      }
     }
   },
   computed: {

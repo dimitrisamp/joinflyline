@@ -388,7 +388,10 @@ export default {
           }
         }
         api
-          .post(this.inviteMode ? getStartedCompanionUrl : getStartedUrl, formData)
+          .post(
+            this.inviteMode ? getStartedCompanionUrl : getStartedUrl,
+            formData
+          )
           .then(response => {
             const data = response.data;
             if (data.success) {

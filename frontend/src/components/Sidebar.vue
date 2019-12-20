@@ -50,7 +50,9 @@
         </li>
       </ul>
     </nav>
-    <a href="" class="sidebar__logout" @click="logOut($router)">Log out</a>
+    <span class="sidebar__logout" @click="logOut($router)">
+      Log out
+    </span>
   </aside>
 </template>
 
