@@ -62,7 +62,7 @@ export const userStore = {
   },
   actions: {
     initializeUser(context) {
-      if (localStorage.getItem("authToken") === null){
+      if (localStorage.getItem("authToken") === null) {
         return;
       }
       return api

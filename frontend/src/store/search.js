@@ -440,6 +440,12 @@ export const searchStore = {
     flightToBook(state) {
       if (state.searchResultIndex === null) return null;
       return state.searchResults[state.searchResultIndex];
+    },
+    returnFlights() {
+      return this.flightToBook.route.filter(o => o.return === 1);
+    },
+    departureFlights() {
+      return this.flightToBook.route.filter(o => o.return === 0);
     }
   }
 };
