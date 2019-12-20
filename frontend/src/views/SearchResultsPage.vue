@@ -21,9 +21,9 @@
         <!-- Desktop Inner Ends -->
 
         <!-- Search Container Start -->
-        <div class="search-result__container">
+        <div class="search-result__container" style="padding-top: 60px;">
           <div class="search-result__container__inner">
-            <div class="search-result__container__left">
+            <div class="search-result__container__left" style="display:none;">
               <div class="search-flight-home">
                 <h3>{{ cityFromTo }}</h3>
                 <p>Carriers: {{ airlineNames }}</p>
@@ -143,8 +143,34 @@
                 </div>
               </div>
             </div>
+            
+            <div class="search-result__container__top">
+              <search-header
+                v-show="showDashboardNavigation"
+                @search-complete="proceedToSearchResults"
+              />
+            </div>
+
+            <div class="search-result__container__left">
+              <div class="search-flight-home">
+                <div>
+                  <h3>{{ cityFromTo }}</h3>
+                  <p>Carriers: {{ airlineNames }}</p>
+                </div>
+                <div>
+                  <button
+                    type="button"
+                    class="btn btn-info"
+                  >
+                  FlyLine 101
+                  </button>
+                  <h5>How to get the most savings on FlyLine</h5>
+                </div>
+              </div>
+            </div>
+
             <div class="search-result__container__right">
-              <search-results />
+              <SearchResultComponent/>
             </div>
           </div>
         </div>
@@ -187,8 +213,10 @@ import PriceFilter from "../components/PriceFilter";
 import AirlineFilter from "../components/AirlineFilter";
 import Collapse from "../components/Collapse";
 import LocationInput from "../components/LocationInput";
-import SearchResults from "../components/SearchResults";
+//import SearchResults from "../components/SearchResults";
 import MainLandingFooter from "../components/MainLandingFooter";
+import SearchHeader from "../components/SearchHeader";
+import SearchResultComponent from "../components/SearchResultComponent";
 
 export default {
   components: {
@@ -202,8 +230,10 @@ export default {
     AirlineFilter,
     PriceFilter,
     MaxStopsFilter,
-    SearchResults,
-    MainLandingFooter
+//    SearchResults,
+    MainLandingFooter,
+    SearchHeader,
+    SearchResultComponent
   },
   delimiters: ["{{", "}}"],
   mixins: [SearchForm, FilterForm],
@@ -217,6 +247,7 @@ export default {
     ...Vuex.mapState("user", ["user"]),
     ...Vuex.mapState("search", ["searchProgress", "searchResults", "form"]),
     ...Vuex.mapGetters("search", ["airlineNames", "cityFromTo"]),
+    ...Vuex.mapState("dashboard", ["showDashboardNavigation"]),
     isMobile() {
       return this.$mq === "sm";
     }
@@ -239,6 +270,10 @@ export default {
         const headerHeight = headerEl.offsetHeight;
         searchContainer.style.paddingTop = headerHeight + "px";
       }
+    },
+
+    proceedToSearchResults() {
+      this.$router.push({ name: "results" });
     }
   }
 };

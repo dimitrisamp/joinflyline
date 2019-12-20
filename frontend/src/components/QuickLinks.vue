@@ -15,6 +15,12 @@
           >${{ data[sortBy].price }} -
           {{ secs2hm(data[sortBy].duration) }}</span
         >
+        <span class="small" v-if="label == 'Low-Cost'"
+          >Southwest and more</span
+        >
+        <span class="small" v-if="label == 'Legacy'"
+          >American Airlines and more</span
+        >
       </div>
 
       <div class="border-line w-75 mx-auto"></div>
@@ -96,9 +102,14 @@ export default {
       };
     },
     columns() {
+      /*
       const additionalCol =
         this.user && this.user.anonymous
           ? { date: "Earliest", quality: "Recommended" }
+          : {};*/
+      const additionalCol =
+        this.user && this.user.anonymous
+          ? { date: "Single Carrier", lowcost: 'Low-Cost', legacy: 'Legacy' }
           : {};
       return {
         price: "Cheapest",

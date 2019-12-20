@@ -39,6 +39,7 @@
 @import "components/faq";
 @import "components/filter-sidebar";
 @import "components/filter-flights";
+@import "components/search-filter";
 
 // Layout
 @import 'layouts/header';
@@ -57,3 +58,4 @@
 @import 'layouts/airlines';
 @import 'layouts/privacy';
 @import 'layouts/terms-of-services';
+@import 'layouts/search-header';
