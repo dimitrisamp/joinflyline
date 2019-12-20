@@ -15,6 +15,8 @@ import Trips from "../components/Trips";
 import ResultComponent from "../components/ResultComponent";
 import AccountInformation from "../views/AccountInformation";
 import BookingPage from "../views/BookingPage";
+import SearchBookingPage from "../views/SearchBookingPage";
+import SearchResultComponent from "../components/SearchResultComponent";
 import LearnMore from "../views/LearnMore";
 import PromoLanding from "../views/PromoLanding";
 import Faq from "../views/Faq";
@@ -68,8 +70,19 @@ const routes = [
   },
   {
     path: "/search-results",
-    name: "search-results",
-    component: SearchResultsPage
+    component: SearchResultsPage,
+    children: [
+      {
+        path: "",
+        name: "search-results",
+        component: SearchResultComponent
+      },
+      {
+        path: "booking",
+        name: "search-booking",
+        component: SearchBookingPage
+      },
+    ]
   },
   {
     path: "/sign-in",
@@ -81,7 +94,8 @@ const routes = [
     component: Dashboard,
     beforeEnter(to, from, next) {
       if (store.state.user.user.anonymous) {
-        next({ name: "index" });
+//        next({ name: "index" });
+        next();
       } else {
         next();
       }

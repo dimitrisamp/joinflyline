@@ -23,8 +23,6 @@
     }
     
     &__left {
-      padding-right: 1em;
-      overflow-y: scroll;
       flex: 0 0 100%;
 //      background-image: url(assets/img/Wallpaper-Left.png);
       background: #3caeef;
@@ -189,5 +187,9 @@
       }
       flex-direction: row;
     }
+  }
+
+  .search-header{
+    padding: 1rem 0rem;
   }
 }

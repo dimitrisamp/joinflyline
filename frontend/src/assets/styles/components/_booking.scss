@@ -101,12 +101,21 @@
       .pform {
         &__field {
           &--button {
+            text-align: center;
+            font-family: $dona-black;
+            border: 2px solid red;
+
             .button {
               padding-top: 0.5rem;
               margin-bottom: 2rem;
               width: 100%;
-              font-size: 1.4rem;
+              font-size: 1.2rem;
               font-family: $dona-black;
+            }
+
+            h4{
+              margin: 0.5rem;
+              font-size: 1.2rem;
             }
           }
         }
@@ -117,6 +126,32 @@
       padding: 1.5rem;
       border: 1.5px solid $border-color;
       margin: 1.5rem 0;
+
+      &__totals {
+        border: 1.5px solid #D8D8D8;
+        padding: 0 1.5rem 1.5rem;
+        margin-bottom: 2.5rem;
+    
+        &__heading {
+          font-family: $dona-black;
+          font-size: 1.7rem;
+          margin-bottom: 1.5rem;
+          margin: 2rem 0;
+        }
+    
+        &__item {
+          padding-left: 20px;
+          padding-right: 20px;
+
+          .control{
+            h3{
+              margin: 0px;
+              font-size: 1.2rem;
+              font-family: Dona-Black;
+            }
+          }
+        }
+      }
     }
 
     &__right {
@@ -130,7 +165,6 @@
       }
 
       .summary__inner {
-        position: sticky;
         top: 1rem;
         border: 0;
         padding: 0;

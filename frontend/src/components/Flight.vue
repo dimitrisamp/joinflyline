@@ -431,7 +431,8 @@ export default {
     },
     bookFlight() {
       if (this.user.anonymous) {
-        this.$emit("showPopup");
+        this.$emit("proceed-to-booking");
+//        this.$emit("showPopup");
       } else {
         this.$emit("proceed-to-booking");
       }

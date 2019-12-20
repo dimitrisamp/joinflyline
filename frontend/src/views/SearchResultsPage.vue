@@ -168,9 +168,10 @@
                 </div>
               </div>
             </div>
-
             <div class="search-result__container__right">
-              <SearchResultComponent/>
+              <transition name="slide" mode="out-in" appear>
+                <router-view />
+              </transition>
             </div>
           </div>
         </div>
@@ -216,7 +217,6 @@ import LocationInput from "../components/LocationInput";
 //import SearchResults from "../components/SearchResults";
 import MainLandingFooter from "../components/MainLandingFooter";
 import SearchHeader from "../components/SearchHeader";
-import SearchResultComponent from "../components/SearchResultComponent";
 
 export default {
   components: {
@@ -232,8 +232,7 @@ export default {
     MaxStopsFilter,
 //    SearchResults,
     MainLandingFooter,
-    SearchHeader,
-    SearchResultComponent
+    SearchHeader
   },
   delimiters: ["{{", "}}"],
   mixins: [SearchForm, FilterForm],
