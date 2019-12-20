@@ -571,12 +571,6 @@ export default {
         bnum: 0,
         ...this.passengerCount
       };
-    },
-    returnFlights() {
-      return this.flightToBook.route.filter(o => o.return === 1);
-    },
-    departureFlights() {
-      return this.flightToBook.route.filter(o => o.return === 0);
     }
   },
   mounted() {
