@@ -17,7 +17,7 @@
               </p>
             </div>
           </div>
-          <trip-summary/>
+          <trip-summary />
           <div
             class="passenger"
             v-for="(passenger, i) in passengers"

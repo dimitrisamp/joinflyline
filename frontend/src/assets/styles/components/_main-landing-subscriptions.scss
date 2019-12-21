@@ -1,0 +1,151 @@
+#subscription {
+  background: url(assets/img/pricing_background.png);
+  background-size: cover;
+}
+
+.section5-Bg {
+  margin-top: 50px;
+  padding-top: 25px;
+  padding-bottom: 20px;
+}
+
+.section5-content h3 {
+  font-size: 50px;
+  font-weight: 600;
+  font-family: Dona-Black;
+  color: #fff;
+  margin-top: 34px;
+  letter-spacing: 1px;
+}
+
+.section5-content p {
+  color: #fff;
+  font-size: 21px;
+  font-family: Dona-Bold;
+  margin: 25px 220px;
+  line-height: 31px;
+  margin-bottom: 30px;
+}
+
+.h-planbox {
+  background: #fff;
+  padding: 20px 30px;
+  margin-top: 20px;
+  min-height: 450px;
+  display: flex;
+  flex-direction: column;
+  &:not(:last-child) {
+    margin-right: 1.875rem;
+  }
+}
+
+.h-planbox .mark-heading {
+  background: #00b0f5;
+  color: #fff;
+  padding: 9px 20px;
+  font-size: 14px;
+  font-family: Dona-Bold;
+  margin-bottom: 21px;
+  display: inline-block;
+}
+
+.h-planbox h3 {
+  color: $primary;
+  font-weight: 600;
+  font-size: 1.5rem;
+  font-family: $dona-black;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid $gray;
+}
+
+.h-planbox h3 span {
+  font-family: Dona-Bold;
+}
+
+.pricing-section-home {
+  margin: 0px 90px;
+}
+
+.pricing-section-home .spacing-price {
+  padding: 0;
+}
+
+//.pricing-section-home .pricing-border {
+//  border-right: 1px solid #ccc;
+//}
+
+.plan-list {
+  list-style: none;
+  margin: 0;
+  padding: 0 1px;
+  text-align: left;
+}
+
+.h-planbox strong {
+  color: $black;
+  font-size: 1.75rem;
+  font-family: $dona-black;
+  margin-bottom: 7px;
+  display: block;
+}
+
+.h-planbox p {
+  font-size: 13px;
+  font-family: Dona-Bold;
+  color: #00aeef;
+}
+
+.plan-list {
+  margin-top: 30px;
+  flex-grow: 1;
+  margin-bottom: 30px;
+  border-bottom: 2px solid $gray;
+}
+
+.plan-list li {
+  font-size: 16px;
+  font-family: $dona-bold;
+  line-height: 38px;
+  color: $black;
+}
+
+.h-planbox .btn {
+  color: $black;
+  border-radius: 0;
+  font-size: 18px;
+  padding: 7px 21px;
+  font-weight: 600;
+  font-family: $dona-bold;
+  border: 2px solid #00b0f5;
+  width: -webkit-fill-available;
+  max-width: 100%;
+}
+
+.h-planbox .btn:hover {
+  background: #00aeef;
+  color: #fff;
+}
+
+/******** Tabs *********/
+.pricing-tabs {
+  margin: 11px auto;
+  display: table;
+}
+
+.pricing-tabs .nav-tabs li a {
+  background: #fff;
+  border-radius: 0px;
+  padding: 16px 51px;
+  font-family: Dona-Bold;
+  font-size: 18px;
+  color: #a0a0a0;
+  border: none;
+}
+
+.pricing-tabs .nav-tabs li {
+  border-right: 1px solid #ccc;
+}
+
+.pricing-tabs .nav-tabs li a.active {
+  color: #00aeef;
+}

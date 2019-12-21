@@ -4,7 +4,6 @@
   </div>
 </template>
 <style lang="scss">
-@import "./assets/styles/main.scss";
 @import "~bootstrap";
 @import "./assets/css/home-page.css";
 @import "./assets/css/resultpage-mobile-view.css";
@@ -17,4 +16,5 @@
 @import "./assets/css/loading-animation.css";
 @import "~lightpick/css/lightpick.css";
 @import "~vue-slider-component/theme/default.css";
+@import "./assets/styles/main.scss";
 </style>
