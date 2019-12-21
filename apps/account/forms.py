@@ -20,12 +20,13 @@ class WizardForm(forms.Form):
     expiry = CardExpiryField(required=False)
     cvc = SecurityCodeField(required=False)
     plan = forms.ChoiceField(
-        choices=tuple((o, o) for o in settings.PLAN_DEFINITIONS.keys())
+        choices=tuple((o, o) for o in settings.PLAN_DEFINITIONS.keys()),
+        required=False
     )
 
     def clean(self):
         cd = self.cleaned_data
-        if cd['plan'] != 'free':
+        if cd.get('plan'):
             if not (cd['card_number'] and cd['expiry'] and cd['cvc']):
                 raise ValidationError('Paid account requires payment credentials')
 

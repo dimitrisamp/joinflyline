@@ -1,7 +1,3 @@
-import random
-import string
-
-from creditcards.models import CardExpiryField, CardNumberField, SecurityCodeField
 from django.conf import settings
 from django.contrib.postgres.fields import JSONField, ArrayField
 from django.db import models
@@ -10,7 +6,7 @@ from django_enumfield.db.fields import EnumField
 from apps.account import enums
 from apps.auth.models import User
 from apps.booking.models import Deal
-from wanderift.utils import l2q
+from wanderift.utils import l2q, generate_invite_code
 
 
 class Account(models.Model):
@@ -107,11 +103,6 @@ class DealWatch(models.Model):
 
     def __str__(self):
         return f"{self.user} {self.destination} {self.max_price} {self.airlines}"
-
-
-def generate_invite_code():
-    choose_from = string.ascii_letters + string.digits
-    return ''.join([random.choice(choose_from) for _ in range(20)])
 
 
 class CompanionInvite(models.Model):

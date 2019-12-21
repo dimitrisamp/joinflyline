@@ -115,8 +115,8 @@ def test_companion_cannot_invite(db):
 @pytest.mark.parametrize(
     "plan,send_card,response_code",
     (
-        ("free", False, 200),
-        ("free", True, 200),
+        (None, False, 200),
+        (None, True, 200),
         ("basic", False, 400),
         ("basic", True, 200),
         ("pro", False, 400),
@@ -134,13 +134,14 @@ def test_sign_up(db, plan, send_card, response_code, anonapiclient):
         }
     request_params = {
         "home_airport": json.dumps(DESTINATIONS[0]),
-        "plan": plan,
         "email": factory.faker.Faker("email").generate(),
         "password": "someWeird1234Password",
         "first_name": factory.faker.Faker("first_name").generate(),
         "last_name": factory.faker.Faker("last_name"),
         **card_params,
     }
+    if plan:
+        request_params["plan"] = plan
     with mock.patch(
         "stripe.Subscription.create",
         new=lambda *args, **kwargs: {"current_period_start": 1576739554, "current_period_end": 1577739554},
