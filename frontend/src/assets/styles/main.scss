@@ -7,6 +7,9 @@
 @import "general/variables";
 @import "general/base";
 
+// Global
+@import "components/modal";
+
 // Common
 @import "common/forms";
 @import "common/buttons";
@@ -32,6 +35,7 @@
 @import "components/main-landing-stats";
 @import "components/main-landing-logos";
 @import "components/main-landing-deals-alerts";
+@import "components/main-landing-subscriptions";
 @import "components/tabs";
 @import "components/business-model";
 @import "components/subscription";
@@ -40,6 +44,7 @@
 @import "components/filter-sidebar";
 @import "components/filter-flights";
 @import "components/search-filter";
+@import "components/membership-guest";
 
 // Layout
 @import 'layouts/header';

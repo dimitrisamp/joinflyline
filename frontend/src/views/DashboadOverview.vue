@@ -1,5 +1,15 @@
 <template>
   <div class="overview">
+    <button @click="showModal = true">Show Modal</button>
+    <modal
+      v-show="showModal"
+      @close="showModal = false"
+      @click-outside="showModal = false"
+    >
+      <template slot="body">
+        <MembershipGuest></MembershipGuest>
+      </template>
+    </modal>
     <div class="section-heading">
       <div class="section-heading__inner">
         <h1 class="section-heading__title">Dashboard</h1>
@@ -110,18 +120,21 @@
 import api from "../utils/http";
 import { formatDateDeals } from "../utils/utils";
 import TileComponent from "../components/TileComponent";
+import MembershipGuest from "@/components/Membership-guest";
 import Vuex from "vuex";
 
 export default {
   components: {
-    TileComponent
+    TileComponent,
+    MembershipGuest
   },
   data() {
     return {
       deals: [],
       suggested_deals: [],
       trip_summary: null,
-      searchHistory: []
+      searchHistory: [],
+      showModal: false
     };
   },
   metaInfo: {

@@ -1,0 +1,139 @@
+.membership-guest {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -2rem;
+  margin-left: -2rem;
+  &__heading {
+    font-family: $dona-black;
+    font-size: 2.3rem;
+    margin-bottom: 0;
+    margin-top: 3rem;
+    @include mq(lg) {
+      margin-top: 0;
+    }
+  }
+  &__text {
+    font-family: $dona-bold;
+    margin-bottom: 1.2rem;
+    &--large {
+      font-size: 1.15rem;
+    }
+  }
+  &__right,
+  &__left {
+    width: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    @include mq(lg) {
+      padding-left: 2rem;
+      padding-right: 2rem;
+      width: auto;
+    }
+  }
+
+  &__right {
+    border-right: 1px solid $gray;
+    @include mq(lg) {
+      width: 60%;
+    }
+    @include mq(xl) {
+      width: auto;
+    }
+  }
+  &__left {
+    @include mq(lg) {
+      width: 40%;
+    }
+    @include mq(xl) {
+      width: auto;
+    }
+  }
+
+  &__form {
+    .form-control {
+      margin-bottom: 1rem;
+      margin-right: 0;
+    }
+    p {
+      border: 2px solid $gray;
+      padding: 0.5rem;
+      font-family: $dona-black;
+      font-size: 0.85rem;
+      color: $primary;
+    }
+
+    .form-container {
+      display: flex;
+      .form-control {
+        &:first-child {
+          margin-right: 1rem;
+        }
+      }
+    }
+
+    .button {
+      width: 100%;
+      color: $black;
+      font-size: 1.3rem;
+      margin-top: 1.5rem;
+      &:hover {
+        color: $white;
+      }
+    }
+  }
+
+  &__price {
+    color: $primary;
+    font-size: 1.9rem;
+    span {
+      color: $black;
+    }
+  }
+  &__plan {
+    display: flex;
+    margin-bottom: 1.5rem;
+    border: 2px solid $gray;
+    transition: border-color .3s $easeInOutQuad;
+    padding: 1rem;
+    flex-direction: column;
+    @include mq(lg) {
+      flex-direction: row;
+    }
+    &--active,
+    &:hover {
+      border-color: $primary;
+    }
+    &-left {
+      @include mq(lg) {
+        border-right: 1px solid $gray;
+        padding-right: 2.5rem;
+      }
+      h4 {
+        font-family: $dona-black;
+      }
+      .button {
+        width: 100%;
+        margin-top: 0.6rem;
+        font-size: 1rem;
+        padding-top: 0.4rem;
+      }
+    }
+    &-right {
+      padding-top: 1.3rem;
+      @include mq(lg) {
+        padding-top: 0;
+        padding-left: 1.5rem;
+      }
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        font-family: $dona-bold;
+        font-size: 0.95rem;
+      }
+      li {
+        margin-bottom: 0.6rem;
+      }
+    }
+  }
+}

@@ -1,9 +1,5 @@
 <template>
-  <div
-    v-if="plans"
-    class="section fp-auto-height-responsive fp-section"
-    id="subscription"
-  >
+  <div v-if="plans" class="section" id="subscription">
     <div class="section5-Bg">
       <div class="text-center section5-content">
         <h3>Your Easiest Travel Decision</h3>
@@ -11,6 +7,12 @@
           Tap into More Savings, More Benefits, and More <br />
           Travel with a FlyLine membership
         </p>
+        <!--        <button @click="showPaymentModal = true">Show Modal</button>-->
+        <!--        <modal-->
+        <!--          v-show="showPaymentModal"-->
+        <!--          @close="showPaymentModal = false"-->
+        <!--          @click-outside="showPaymentModal = false"-->
+        <!--        ></modal>-->
       </div>
 
       <div v-if="$mq !== 'sm'" class="container">
@@ -26,20 +28,12 @@
               ${{ plan.price.value }}/<span>yr</span>
             </h3>
             <h3 v-else class="h-planbox__header">Free</h3>
-            <ul class="plan-list" style="margin-bottom: 30px;">
-              <li>
-                - Flights Search & Booking
-              </li>
-              <li>
-                - Auto Check-in
-              </li>
-              <li v-if="plan.limit === null">
-                - Unlimited bookings
-              </li>
+            <ul class="plan-list">
+              <li>- Flights Search & Booking</li>
+              <li>- Auto Check-in</li>
+              <li v-if="plan.limit === null">- Unlimited bookings</li>
               <li v-else>- Max of {{ plan.limit }} bookings</li>
-              <li v-if="plan.deal_alerts">
-                - Deal alerts
-              </li>
+              <li v-if="plan.deal_alerts">- Deal alerts</li>
               <li v-if="plan.companion">
                 <!-- - {{ plans[pk].companion }} companion account{{ plans[pk].companion>1?"s":"" }} -->
                 - Companion account
@@ -58,7 +52,6 @@
 
       <!-- Mobile View Price Plan -->
       <div class="mobile-pricing-plan" v-else>
-        <!-- Tab panes -->
         <div class="pricing-section-home">
           <div class="spacing-price" v-for="(plan, code) in plans" :key="code">
             <div class="h-planbox text-center pricing-border">
@@ -66,28 +59,16 @@
               <h3 v-if="plan.price" class="h-planbox__header">
                 ${{ plan.price.value }}/<span>yr</span>
               </h3>
-              <h3 v-else class="h-planbox__header">
-                Free
-              </h3>
-              <ul class="plan-list" style="margin-bottom: 30px;">
-                <li>
-                  - Flights Search & Booking
-                </li>
-                <li>
-                  - Auto Check-in
-                </li>
+              <h3 v-else class="h-planbox__header">Free</h3>
+              <ul class="plan-list">
+                <li>- Flights Search & Booking</li>
+                <li>- Auto Check-in</li>
                 <li v-if="plan.limit !== null">
                   - Max of {{ plan.limit }} bookings
                 </li>
-                <li v-else>
-                  - Unlimited bookings
-                </li>
-                <li v-if="plan.deal_alerts">
-                  - Deal alerts
-                </li>
-                <li v-if="plan.companion">
-                  - Companion account
-                </li>
+                <li v-else>- Unlimited bookings</li>
+                <li v-if="plan.deal_alerts">- Deal alerts</li>
+                <li v-if="plan.companion">- Companion account</li>
               </ul>
               <router-link
                 :to="{ name: 'get-started', params: { plan: code } }"
@@ -97,7 +78,6 @@
             </div>
           </div>
         </div>
-        <!-- tab content -->
       </div>
     </div>
   </div>
@@ -108,6 +88,11 @@ import Vuex from "vuex";
 
 export default {
   delimiters: ["{{", "}}"],
+  data() {
+    return {
+      showPaymentModal: false
+    };
+  },
   computed: {
     ...Vuex.mapState("plans", ["plans"])
   }

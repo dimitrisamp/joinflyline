@@ -3,9 +3,9 @@ import store from "./store";
 import Vue from "vue";
 import Vuex from "vuex";
 import App from "./App.vue";
-
 import VueMeta from "vue-meta";
 import VueMq from "vue-mq";
+import "@/global-components";
 
 Vue.use(VueMeta);
 Vue.use(VueMq, {
