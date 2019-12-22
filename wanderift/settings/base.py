@@ -175,7 +175,9 @@ STATIC_ROOT = ""
 
 STATIC_URL = "/static/"
 
-STATICFILES_DIRS = (os.path.join("static"),os.path.join(BASE_DIR, 'frontend/dist/static'))
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, "frontend/dist/static"),
+)
 
 STATICFILES_FINDERS = [
     "django.contrib.staticfiles.finders.FileSystemFinder",
