@@ -45,18 +45,7 @@ COLLECTFAST_THREADS = 20
 COLLECTFAST_STRATEGY = "collectfast.strategies.gcloud.GoogleCloudStrategy"
 DEFAULT_FILE_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
 STATICFILES_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
-COMPRESS_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
 
 GS_DEFAULT_ACL = "publicRead"
 GS_CACHE_CONTROL = "max-age=120"
 MEDIA_ROOT = "media"
-
-COMPRESS_ENABLED = True
-COMPRESS_OFFLINE = True
-COMPRESS_FILTERS = {
-    "css": ["compressor.filters.css_default.CssAbsoluteFilter"],
-    "js": [
-        "compressor.filters.jsmin.JSMinFilter",
-        "compressor.filters.jsmin.SlimItFilter",
-    ],
-}

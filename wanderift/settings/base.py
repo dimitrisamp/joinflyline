@@ -62,7 +62,6 @@ INSTALLED_APPS = [
     "apps.emails",
     "apps.common",
     "anymail",
-    "compressor",
 ]
 
 MIDDLEWARE = [
@@ -182,10 +181,7 @@ STATICFILES_DIRS = (
 STATICFILES_FINDERS = [
     "django.contrib.staticfiles.finders.FileSystemFinder",
     "django.contrib.staticfiles.finders.AppDirectoriesFinder",
-    "compressor.finders.CompressorFinder",
 ]
-
-COMPRESS_PRECOMPILERS = (("text/x-scss", "django_libsass.SassCompiler"),)
 
 # graph_models --pydot -a -g -o my_project_visualized.png
 
