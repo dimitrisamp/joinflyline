@@ -38,11 +38,11 @@ spec:
                   name: api-keys
                   key: STRIPE_API_KEY
 
-            - name: MAILGUN_API_KEY
+            - name: SENDINBLUE_API_KEY
               valueFrom:
                 secretKeyRef:
                   name: api-keys
-                  key: MAILGUN_API_KEY
+                  key: SENDINBLUE_API_KEY
 
             - name: FOR_GODS_SAKE_PLEASE_REDEPLOY
               value: 'THIS_STRING_IS_REPLACED_DURING_BUILD'
@@ -73,11 +73,11 @@ spec:
                   name: api-keys
                   key: STRIPE_API_KEY
 
-            - name: MAILGUN_API_KEY
+            - name: SENDINBLUE_API_KEY
               valueFrom:
                 secretKeyRef:
                   name: api-keys
-                  key: MAILGUN_API_KEY
+                  key: SENDINBLUE_API_KEY
 
             - name: FOR_GODS_SAKE_PLEASE_REDEPLOY
               value: 'THIS_STRING_IS_REPLACED_DURING_BUILD'
@@ -107,11 +107,11 @@ spec:
                   name: api-keys
                   key: STRIPE_API_KEY
 
-            - name: MAILGUN_API_KEY
+            - name: SENDINBLUE_API_KEY
               valueFrom:
                 secretKeyRef:
                   name: api-keys
-                  key: MAILGUN_API_KEY
+                  key: SENDINBLUE_API_KEY
 
             - name: FOR_GODS_SAKE_PLEASE_REDEPLOY
               value: 'THIS_STRING_IS_REPLACED_DURING_BUILD'
@@ -139,11 +139,11 @@ spec:
                   name: api-keys
                   key: STRIPE_API_KEY
 
-            - name: MAILGUN_API_KEY
+            - name: SENDINBLUE_API_KEY
               valueFrom:
                 secretKeyRef:
                   name: api-keys
-                  key: MAILGUN_API_KEY
+                  key: SENDINBLUE_API_KEY
 
             - name: FOR_GODS_SAKE_PLEASE_REDEPLOY
               value: 'THIS_STRING_IS_REPLACED_DURING_BUILD'
