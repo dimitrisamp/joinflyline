@@ -238,8 +238,8 @@ ANYMAIL = {"MAILGUN_API_KEY": os.getenv("MAILGUN_API_KEY")}
 
 SENDGRID_API_URL = "https://api.sendgrid.com/v3/"
 EMAIL_BACKEND = "anymail.backends.mailgun.EmailBackend"
-DEFAULT_FROM_EMAIL = "noreply@mg.joinflyline.com"
-SERVER_EMAIL = "noreply@mg.joinflyline.com"
+DEFAULT_FROM_EMAIL = "noreply@mg2.joinflyline.com"
+SERVER_EMAIL = "noreply@mg2.joinflyline.com"
 
 SECRET_LINK_EXPIRATION_SECONDS = 3600
 
