@@ -102,6 +102,7 @@ def build_frontend(c):
     curdir = os.getcwd()
     frontend_dir = root_dir / 'frontend'
     os.chdir(frontend_dir)
+    c.run('npm install')
     c.run('npm run build')
     os.chdir(curdir)
     fname = frontend_dir / 'dist/index.html'
