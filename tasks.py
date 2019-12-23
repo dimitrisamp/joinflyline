@@ -95,9 +95,6 @@ def deals(c):
 
 @task
 def build_frontend(c):
-    import django
-    django.setup()
-    from django.templatetags.static import static
     import os
     curdir = os.getcwd()
     frontend_dir = root_dir / 'frontend'
@@ -107,5 +104,5 @@ def build_frontend(c):
     os.chdir(curdir)
     fname = frontend_dir / 'dist/index.html'
     contents = open(fname).read()
-    new_contents = re.sub('/static/', static(''), contents)
-    open(fname, 'w').write(new_contents)
+    new_contents = re.sub(r'/static/([^\s\>]+)', f'"{{% static "\\1" %}}"', contents)
+    open(fname, 'w').write(f"{{% load static %}}\n{new_contents}")
