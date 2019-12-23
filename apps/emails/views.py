@@ -14,7 +14,7 @@ def booking_success(booking):
             "emails/booking_success.html",
             {"data": booking, "i": 0, "booking_contact": booking_contact},
         )
-        from_email = "booking@mg.joinflyline.com"
+        from_email = "booking@mg2.joinflyline.com"
         to_email = booking_contact.email
         subject = "Booking Successful"
         send_mail(subject, "text body", from_email,
