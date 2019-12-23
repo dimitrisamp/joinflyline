@@ -144,7 +144,7 @@ def test_sign_up(db, plan, send_card, response_code, anonapiclient):
         request_params["plan"] = plan
     with mock.patch(
         "stripe.Subscription.create",
-        new=lambda *args, **kwargs: {"current_period_start": 1576739554, "current_period_end": 1577739554},
+        new=lambda *args, **kwargs: {"current_period_start": 1576739554, "current_period_end": 1577739554, "id": 123},
     ) as sub_create, mock.patch(
         "stripe.Customer.create", new=lambda *args, **kwargs: SimpleNamespace(id="cus")
     ) as cus_create, mock.patch(

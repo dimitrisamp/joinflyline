@@ -249,11 +249,14 @@ export function formatMin(min) {
   let hours = Math.floor(minVal / 60);
   const minutes = minVal % 60;
   let ampm = "AM";
-  if (hours > 12) {
+  if (hours == 24) {
+    ampm = "AM";
+    hours = 0;
+  } else if (hours > 12) {
     ampm = "PM";
     hours -= 12;
   }
-  const hh = hours.toString().padStart(2, "0");
+  const hh = hours.toString();
   const mm = minutes.toString().padStart(2, "0");
   return `${hh}:${mm} ${ampm}`;
 }

@@ -41,6 +41,7 @@ from apps.account.views import WizardView, InviteCheckView, InviteWizardView
 from apps.account.api_views import UserViewSet
 from django.conf import settings
 
+from apps.subscriptions.views import SetPlanView
 
 router = routers.DefaultRouter()
 router.register(r'users', UserViewSet)
@@ -92,6 +93,7 @@ urlpatterns = [
     path("api/locations/query/", LocationQueryView.as_view(), name="location-query"),
     path("api/search/", FlightSearchView.as_view(), name="flight-search"),
     path("api/check-invite/", InviteCheckView.as_view(), name="invite-check"),
+    path("api/set-plan/", SetPlanView.as_view(), name="set-plan"),
     re_path("^api/users/me/", include(user_router.urls)),
     re_path("^api/", include(router.urls)),
 ]

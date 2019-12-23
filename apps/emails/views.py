@@ -34,19 +34,6 @@ def signup_success(user_id):
               [to_email], html_message=htm_content)
 
 
-def send_activation_email(user_id):
-    user = User.objects.get(pk=user_id)
-    htm_content = render_to_string(
-        "emails/add-traveler-information.html",
-        {"data": user, 'SITE_URL': settings.SITE_URL},
-    )
-    from_email = settings.DEFAULT_FROM_EMAIL
-    to_email = user.email
-    subject = "Welcome to FlyLine"
-    send_mail(subject, "text body", from_email,
-              [to_email], html_message=htm_content)
-
-
 def finish_setting_up_account(request, user):
     if user:
         htm_content = render_to_string(

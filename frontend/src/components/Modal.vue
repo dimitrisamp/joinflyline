@@ -4,11 +4,15 @@
       <div class="modal__wrapper">
         <div class="modal__container" @click.stop>
           <div class="modal__body">
-            <slot name="body"></slot>
+            <slot name="body" />
           </div>
 
           <!-- Close Modal -->
-          <button class="modal__button" @click="$emit('close')"></button>
+          <button
+            v-if="showCloseButton"
+            class="modal__button"
+            @click="$emit('close')"
+          />
         </div>
       </div>
     </div>
@@ -17,8 +21,7 @@
 
 <script>
 export default {
-  name: "Modal"
+  name: "Modal",
+  props: ["showCloseButton"]
 };
 </script>
-
-<style scoped></style>

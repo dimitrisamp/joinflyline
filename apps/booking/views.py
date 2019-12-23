@@ -46,7 +46,7 @@ class SaveBookingView(APIView):
 
     def post(self, request):
         data = request.data
-        if not self.request.user.is_authenticated and not self.is_test_request(data):
+        if not self.request.user.is_authenticated:
             user_by_email = User.objects.filter(email=data["payment"]["email"]).first()
             user_by_phone = User.objects.filter(phone_number=data["payment"]["phone"])
             if user_by_email or user_by_phone:

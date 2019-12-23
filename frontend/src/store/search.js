@@ -441,11 +441,11 @@ export const searchStore = {
       if (state.searchResultIndex === null) return null;
       return state.searchResults[state.searchResultIndex];
     },
-    returnFlights() {
-      return this.flightToBook.route.filter(o => o.return === 1);
+    returnFlights(state, getters) {
+      return getters.flightToBook.route.filter(o => o.return === 1);
     },
-    departureFlights() {
-      return this.flightToBook.route.filter(o => o.return === 0);
+    departureFlights(state, getters) {
+      return getters.flightToBook.route.filter(o => o.return === 0);
     }
   }
 };

@@ -6,6 +6,7 @@ from django.conf import settings
 from django.db import transaction
 
 from apps.auth.enums import UserRole
+from apps.emails.tasks import send_activation_email
 from apps.emails.views import signup_success
 from django.utils.timezone import now
 from psycopg2._range import DateTimeTZRange
@@ -76,7 +77,7 @@ def add_subscription(account: Account, plan: str, promocode: str):
         )
         end = datetime.datetime.fromtimestamp(subscription["current_period_end"])
         Subscriptions.objects.create(
-            account=account, plan=plan, period=DateTimeTZRange(start, end)
+            account=account, plan=plan, period=DateTimeTZRange(start, end), subscription_id=subscription['id']
         )
 
 

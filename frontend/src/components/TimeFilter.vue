@@ -12,8 +12,14 @@
         :key="`block-${direction}-${destination}`"
       >
         <div class="filter-sidebar__item-text">
-          {{ label }} from {{ form.cityFrom }}<br />
-          {{ form.departure_date_data.format("ddd") }}
+          {{ label }} {{ directionPrep[direction] }}
+          {{ form[destinationKeys[destination]].code }}<br />
+          {{ form[destinationDateKeys[destination]].format("ddd") }}
+          {{
+            `${formatMin(
+              form.timeFilters[destination][direction][0]
+            )} - ${formatMin(form.timeFilters[destination][direction][1])}`
+          }}
         </div>
         <time-slider
           :value="form.timeFilters[destination][direction]"
@@ -36,6 +42,21 @@ const timeLabels = {
   landing: "Landing"
 };
 
+const directionPrep = {
+  takeoff: "from",
+  landing: "to"
+};
+
+const destinationKeys = {
+  departure: "placeFrom",
+  return: "placeTo"
+};
+
+const destinationDateKeys = {
+  departure: "departure_date_data",
+  return: "return_date_data"
+};
+
 export default {
   delimiters: ["{{", "}}"],
   components: {
@@ -47,7 +68,10 @@ export default {
     return {
       timeLabels: timeLabels,
       selectedTab: 0,
-      limits: [0, 60 * 24]
+      limits: [0, 60 * 24 - 1],
+      destinationKeys,
+      destinationDateKeys,
+      directionPrep
     };
   },
   methods: {
@@ -65,7 +89,8 @@ export default {
         value
       };
       this.setTimeFilters(payload);
-    }
+    },
+    formatMin
   },
   computed: {
     destinations() {

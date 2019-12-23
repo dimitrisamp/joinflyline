@@ -350,7 +350,7 @@ export default {
     },
     baggageParameter() {
       let combinationPassengers = {};
-      for (let [passenger, passengerIndex] of this.passengers) {
+      for (let [passengerIndex, passenger] of this.passengers.entries()) {
         for (let [category, combinationIndex] of Object.entries(
           passenger.combinations
         )) {

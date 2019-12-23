@@ -1,13 +1,13 @@
 <template>
   <div class="overview">
-    <button @click="showModal = true">Show Modal</button>
     <modal
-      v-show="showModal"
+      :showCloseButton="false"
+      v-show="user.subscription === null"
       @close="showModal = false"
       @click-outside="showModal = false"
     >
       <template slot="body">
-        <MembershipGuest></MembershipGuest>
+        <MembershipGuest />
       </template>
     </modal>
     <div class="section-heading">
@@ -120,7 +120,7 @@
 import api from "../utils/http";
 import { formatDateDeals } from "../utils/utils";
 import TileComponent from "../components/TileComponent";
-import MembershipGuest from "@/components/Membership-guest";
+import MembershipGuest from "../components/MembershipGuest";
 import Vuex from "vuex";
 
 export default {
@@ -145,7 +145,8 @@ export default {
     ...Vuex.mapActions("search", ["setFormAndSearch"]),
     formatDateDeals,
     updateDeals() {
-      if (!this.user || this.user.anonymous) return;
+      if (!this.user || this.user.anonymous || this.user.market === null)
+        return;
       api
         .get("/deals/", {
           params: {

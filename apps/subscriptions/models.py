@@ -8,6 +8,7 @@ class Subscriptions(models.Model):
     account = models.ForeignKey(Account, on_delete=models.PROTECT)
     plan = models.CharField(max_length=30, blank=False)
     period = DateTimeRangeField(null=True, blank=True)
+    subscription_id = models.CharField(max_length=30, null=True, blank=True)
 
     def __str__(self):
         return f'{self.account} {self.plan} {self.period}'
