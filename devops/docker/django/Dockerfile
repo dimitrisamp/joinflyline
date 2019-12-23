@@ -3,7 +3,7 @@ FROM python:3.7
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
         postgresql-client curl \
-RUN curl -sL https://deb.nodesource.com/setup_13.x | sudo -E bash -
+RUN curl -sL https://deb.nodesource.com/setup_13.x | bash
 RUN apt-get install -y nodejs && rm -rf /var/lib/apt/lists/*
 WORKDIR /usr/src/app
 COPY requirements.txt ./
