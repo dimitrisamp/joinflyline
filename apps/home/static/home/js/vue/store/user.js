@@ -60,6 +60,9 @@ export const userStore = {
     setUser(state, user) {
       state.user = user;
     },
+    setAuthError(state, value) {
+      state.authErrorText = value;
+    }
   },
   actions: {
     initializeUser(context) {
