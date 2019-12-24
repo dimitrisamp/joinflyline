@@ -1,6 +1,8 @@
 FROM python:3.7
 ARG VUE_PUBLIC_PATH=/static/
+ARG VUE_APP_API_ENDPOINT=http://127.0.0.1:8000
 ENV VUE_PUBLIC_PATH=${VUE_PUBLIC_PATH}
+ENV VUE_APP_API_ENDPOINT=${VUE_APP_API_ENDPOINT}
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
         postgresql-client curl bash
