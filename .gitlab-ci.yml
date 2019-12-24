@@ -19,6 +19,8 @@ docker-build:
     - if: '$CI_COMMIT_REF_NAME == "master"'
       when: always
   script:
+    - echo "VUE_PUBLIC_PATH=${VUE_PUBLIC_PATH}"
+    - env
     - docker build --build-arg VUE_PUBLIC_PATH=${VUE_PUBLIC_PATH} -t registry.gitlab.com/zburau/joinflyline:${CI_COMMIT_REF_NAME} -f devops/docker/django/Dockerfile .
     - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
     - docker push registry.gitlab.com/zburau/joinflyline:${CI_COMMIT_REF_NAME}
