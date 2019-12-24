@@ -57,124 +57,27 @@
         </div>
       </div>
     </div>
-    <div
-      class="modal fade"
-      id="booking-success-modal"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">
-              Booking Confirmed
-            </h5>
-            <button class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <h1>
-              Congrats! Your flight is booked, we'll send an email confirmation
-              shortly.
-            </h1>
-          </div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-dismiss="modal"
-              @click="goHome"
-            >
-              Close
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div
-      class="modal fade"
-      id="booking-failure-modal"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">Booking Error</h5>
-            <button
-              type="button"
-              class="close"
-              data-dismiss="modal"
-              aria-label="Close"
-            >
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <h1>
-              There seemed to be an error when booking your flight, try again or
-              contact Wanderift support, support@wanderift.com
-            </h1>
-          </div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-dismiss="modal"
-            >
-              Close
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div
-      class="modal fade"
-      id="flight-invalid-modal"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">
-              Flight is invalid
-            </h5>
-            <button
-              type="button"
-              class="close"
-              data-dismiss="modal"
-              aria-label="Close"
-            >
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <h1>
-              Sorry, seems like the flight does not exist. Please choose another
-              one.
-            </h1>
-          </div>
-          <div class="modal-footer">
-            <button
-              @click="$router.go(-1)"
-              type="button"
-              class="btn btn-secondary"
-              data-dismiss="modal"
-            >
-              Back
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
+    <booking-popup
+      v-if="bookingSuccess"
+      title="Booking Confirmed"
+      body="Congrats! Your flight is booked, we'll send an email confirmation shortly."
+      button-label="Close"
+      @button-click="goHome"
+    />
+    <booking-popup
+      v-if="bookingFailure"
+      title="Booking Error"
+      body="There seemed to be an error when booking your flight, try again or contact FlyLine support, support@joinflyline.com"
+      button-label="Close"
+      @button-click="closeBookingError"
+    />
+    <booking-popup
+      v-if="flightInvalid"
+      title="Flight is invalid"
+      body="Sorry, seems like the flight does not exist. Please choose another one."
+      button-label="Back"
+      @button-click="$router.go(-1)"
+    />
   </div>
 </template>
 
@@ -183,11 +86,11 @@ import { getAgeCategory, validateCardNumber } from "../utils/utils";
 import api from "../utils/http";
 import moment from "moment";
 import Vuex from "vuex";
-import $ from "jquery";
 import BookingPassengerForm from "../components/BookingPassengerForm";
 import BookingTotals from "../components/BookingTotals";
 import CheckoutForm from "../components/CheckoutForm";
 import TripSummary from "../components/TripSummary";
+import BookingPopup from "../components/BookingPopup";
 
 const checkInterval = 60000;
 
@@ -276,7 +179,8 @@ export default {
     TripSummary,
     BookingPassengerForm,
     BookingTotals,
-    CheckoutForm
+    CheckoutForm,
+    BookingPopup
   },
   data() {
     let seats = {
@@ -294,9 +198,7 @@ export default {
           makePassenger(true, "adults", formatUserData(user))
         );
       } else {
-        initialPassengers.push(
-          makePassenger(true, "adults")
-        );
+        initialPassengers.push(makePassenger(true, "adults"));
       }
     }
     for (let [category, count] of Object.entries(seats)) {
@@ -324,7 +226,9 @@ export default {
       bookingProgress: false,
       emailCheckProgress: false,
       emailVerified: true,
-      emailExists: false
+      emailExists: false,
+      bookingSuccess: false,
+      bookingFailure: false
     };
   },
   watch: {
@@ -351,16 +255,12 @@ export default {
         this.checkFlight();
       },
       deep: true
-    },
-    flightInvalid: {
-      handler(value) {
-        if (value) {
-          $("#booking-success-modal").modal();
-        }
-      }
     }
   },
   methods: {
+    closeBookingError() {
+      this.bookingFailure = false;
+    },
     addPassenger() {
       this.passengers.push(makePassenger(false));
     },
@@ -534,19 +434,22 @@ export default {
       if (!this.canBook()) return;
       this.bookingProgress = true;
       this.saveBooking()
-        .then(response => {
-          if (response.status === 200) {
-            $("#booking-success-modal").modal();
-          } else {
-            $("#booking-failure-modal").modal();
-          }
+        .then(() => {
+          this.bookingSuccess = true;
+        })
+        .catch(() => {
+          this.bookingFailure = true;
         })
         .finally(() => {
           this.bookingProgress = false;
         });
     },
     goHome() {
-      this.$router.push({ name: "overview" });
+      if (this.user.anonymous) {
+        this.$router.push({ name: "index" });
+      } else {
+        this.$router.push({ name: "overview" });
+      }
     }
   },
   computed: {
@@ -559,7 +462,11 @@ export default {
       const categories = this.passengers.map(getAgeCategory);
       const counter = categories.reduce(
         (c, val) => c.set(val, 1 + (c.get(val) || 0)),
-        new Map([["infants", 0], ["children", 0], ["adults", 0]])
+        new Map([
+          ["infants", 0],
+          ["children", 0],
+          ["adults", 0]
+        ])
       );
       const result = Object.fromEntries(counter.entries());
       const pnum = Object.values(result).reduce((a, b) => a + b);

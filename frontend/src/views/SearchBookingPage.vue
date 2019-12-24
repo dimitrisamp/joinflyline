@@ -59,124 +59,27 @@
         </div>
       </div>
     </div>
-    <div
-      class="modal fade"
-      id="booking-success-modal"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">
-              Booking Confirmed
-            </h5>
-            <button class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <h1>
-              Congrats! Your flight is booked, we'll send an email confirmation
-              shortly.
-            </h1>
-          </div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-dismiss="modal"
-              @click="goHome"
-            >
-              Close
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div
-      class="modal fade"
-      id="booking-failure-modal"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">Booking Error</h5>
-            <button
-              type="button"
-              class="close"
-              data-dismiss="modal"
-              aria-label="Close"
-            >
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <h1>
-              There seemed to be an error when booking your flight, try again or
-              contact Wanderift support, support@wanderift.com
-            </h1>
-          </div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-dismiss="modal"
-            >
-              Close
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div
-      class="modal fade"
-      id="flight-invalid-modal"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">
-              Flight is invalid
-            </h5>
-            <button
-              type="button"
-              class="close"
-              data-dismiss="modal"
-              aria-label="Close"
-            >
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <h1>
-              Sorry, seems like the flight does not exist. Please choose another
-              one.
-            </h1>
-          </div>
-          <div class="modal-footer">
-            <button
-              @click="$router.go(-1)"
-              type="button"
-              class="btn btn-secondary"
-              data-dismiss="modal"
-            >
-              Back
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
+    <booking-popup
+      v-if="bookingSuccess"
+      title="Booking Confirmed"
+      body="Congrats! Your flight is booked, we'll send an email confirmation shortly."
+      button-label="Close"
+      @button-click="goHome"
+    />
+    <booking-popup
+      v-if="bookingFailure"
+      title="Booking Error"
+      body="There seemed to be an error when booking your flight, try again or contact FlyLine support, support@joinflyline.com"
+      button-label="Close"
+      @button-click="closeBookingError"
+    />
+    <booking-popup
+      v-if="flightInvalid"
+      title="Flight is invalid"
+      body="Sorry, seems like the flight does not exist. Please choose another one."
+      button-label="Back"
+      @button-click="$router.go(-1)"
+    />
   </div>
 </template>
 

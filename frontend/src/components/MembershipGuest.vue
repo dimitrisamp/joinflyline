@@ -4,7 +4,9 @@
       >Back to home</span
     >
     <div class="membership-guest__right">
-      <h3 class="membership-guest__heading">Welcome Back Zach!</h3>
+      <h3 class="membership-guest__heading">
+        Welcome Back {{ user.first_name }}!
+      </h3>
       <p class="membership-guest__text">
         You've used your free booking, now it's time to pick a plan
       </p>
@@ -130,6 +132,7 @@ export default {
   },
   computed: {
     ...Vuex.mapState("plans", ["plans"]),
+    ...Vuex.mapState("user", ["user"]),
     formComplete() {
       return (
         this.selectedPlan &&
