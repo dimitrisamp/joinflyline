@@ -92,16 +92,18 @@
                 type="text"
                 class="form-control"
                 id="departure_date"
+                autocomplete="off"
                 v-model="form.departure_date"
                 placeholder="Dep: "
               />
             </div>
-            <div class="search-form-field__container">
+            <div v-if="form.destinationTypeId === 'round'" class="search-form-field__container">
               <input
                 type="text"
                 class="form-control"
                 id="return_date"
                 v-model="form.return_date"
+                autocomplete="off"
                 placeholder="Ret: "
               />
             </div>

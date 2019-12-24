@@ -102,14 +102,9 @@ export default {
       };
     },
     columns() {
-      /*
       const additionalCol =
         this.user && this.user.anonymous
           ? { date: "Earliest", quality: "Recommended" }
-          : {};*/
-      const additionalCol =
-        this.user && this.user.anonymous
-          ? { date: "Single Carrier", lowcost: "Low-Cost", legacy: "Legacy" }
           : {};
       return {
         price: "Cheapest",
