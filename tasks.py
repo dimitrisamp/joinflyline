@@ -95,6 +95,7 @@ def deals(c):
 @task
 def build_frontend(c):
     import os
+    print(os.environ)
     curdir = os.getcwd()
     frontend_dir = root_dir / 'frontend'
     os.chdir(frontend_dir)
