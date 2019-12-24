@@ -19,7 +19,12 @@
                 class="form-descrption step-01 text-center"
                 v-if="displayForm"
               >
-                <div><strong>Lets Get Started </strong></div>
+                <div><strong>Let's Get Started </strong></div>
+                <div>
+                  <span v-if="inviteMode"
+                    >Sign Up for your companion account</span
+                  >
+                </div>
                 <span>Step {{ step }} of 2</span>
                 <p>Enter your information to get started</p>
               </div>
@@ -35,12 +40,19 @@
               >
                 <div><strong>Your invite code was not found</strong></div>
               </div>
+              <div v-else-if="activationCodeCheckProgress">
+                <div><strong>Checking your activation code...</strong></div>
+              </div>
+              <div v-else-if="activationCodeRejected">
+                <div><strong>Your activation code was not found</strong></div>
+              </div>
               <template v-if="displayForm">
                 <div class="input-group input-group-sm step-f-inputs">
                   <location-input
                     :prompt="'Home Airport'"
                     :prompt-mobile="'Home Airport'"
                     :search-type="'city'"
+                    :initial-value="form.home_airport"
                     @place-selected="updatePlaceFrom"
                   />
                 </div>
@@ -55,7 +67,7 @@
                     @keyup="onEmailChange"
                     placeholder="Email Address"
                     v-model="form.email"
-                    :disabled="inviteMode"
+                    :disabled="inviteMode || activationMode"
                   />
                   <small
                     v-if="emailVerified && emailExists"
@@ -138,7 +150,7 @@
                   v-model="form.last_name"
                 />
               </div>
-              <template v-if="!inviteMode">
+              <template v-if="!inviteMode && !activationMode">
                 <div class="form-group form-group-sm step-f-inputs">
                   <dynamic-select
                     class="form-control"
@@ -236,8 +248,17 @@ import LocationInput from "../components/LocationInput";
 import Vuex from "vuex";
 import Vue from "vue";
 
-const getStartedCompanionUrl = "/get-started-companion/";
-const getStartedUrl = "/get-started/";
+const Mode = {
+  SIGNUP: 0,
+  INVITE: 1,
+  ACTIVATE: 2
+};
+
+const urls = {
+  [Mode.SIGNUP]: "/get-started/",
+  [Mode.INVITE]: "/get-started-companion/",
+  [Mode.ACTIVATE]: "/get-started-activation/"
+};
 
 export default {
   components: {
@@ -265,20 +286,33 @@ export default {
         expiry: "",
         cvc: "",
         plan: "basic",
-        code: this.$route.query.code
+        code: this.$route.query.code || null,
+        activation_code: this.$route.query.activation_code || null
       },
       inviteMode: this.$route.query.hasOwnProperty("code"),
+      activationMode: this.$route.query.hasOwnProperty("activation_code"),
+      activation: null,
+      activationCodeCheckProgress: false,
+      activationCodeRejected: false,
       invite: null,
       inviteCodeCheckProgress: false,
       inviteCodeRejected: false,
       discount: null,
       promoCheckProgress: false,
-      promoInvalid: false
+      promoInvalid: false,
+      mode: this.$route.query.hasOwnProperty("code")
+        ? Mode.INVITE
+        : this.$route.query.hasOwnProperty("activation_code")
+        ? Mode.ACTIVATE
+        : Mode.SIGNUP,
+      Mode
     };
   },
   created() {
     if (this.inviteMode) {
       this.checkInvite();
+    } else if (this.activationMode) {
+      this.checkActivationCode();
     }
   },
   delimiters: ["{{", "}}"],
@@ -342,6 +376,28 @@ export default {
           this.inviteCodeCheckProgress = false;
         });
     },
+    checkActivationCode() {
+      this.activationCodeCheckProgress = true;
+      api
+        .get("check-activation-code/", {
+          params: { activation_code: this.form.activation_code }
+        })
+        .then(response => {
+          this.activation = response.data;
+          const data = response.data;
+          this.form.home_airport = data.market;
+          this.form.email = data.email;
+          this.form.first_name = data.first_name;
+          this.form.last_name = data.last_name;
+          this.form.zip = data.zip;
+        })
+        .catch(() => {
+          this.activationCodeRejected = true;
+        })
+        .finally(() => {
+          this.activationCodeCheckProgress = false;
+        });
+    },
     verifyEmail(callback) {
       if (this.emailInvalid) return;
       api
@@ -368,12 +424,14 @@ export default {
     updatePlaceFrom(value) {
       this.form.home_airport = value;
     },
+    getPostUrl() {
+      return urls[this.mode];
+    },
     submit() {
       if (!this.isStep2Complete) return;
       this.requestSent = true;
       Vue.nextTick().then(() => {
         let formData = new FormData();
-        //formData.append("csrfmiddlewaretoken", csrfmiddlewaretoken); TODO: csrf-exempt?
         for (let k in this.form) {
           if (this.form[k]) {
             if (k === "home_airport") {
@@ -387,24 +445,19 @@ export default {
             }
           }
         }
-        api
-          .post(
-            this.inviteMode ? getStartedCompanionUrl : getStartedUrl,
-            formData
-          )
-          .then(response => {
-            const data = response.data;
-            if (data.success) {
-              this.authenticate({
-                email: this.form.email,
-                password: this.form.password,
-                router: this.$router,
-                name: "account"
-              });
-            } else {
-              window.alert(JSON.stringify(data));
-            }
-          });
+        api.post(this.getPostUrl(), formData).then(response => {
+          const data = response.data;
+          if (data.success) {
+            this.authenticate({
+              email: this.form.email,
+              password: this.form.password,
+              router: this.$router,
+              name: "account"
+            });
+          } else {
+            window.alert(JSON.stringify(data));
+          }
+        });
       });
     }
   },
@@ -413,9 +466,10 @@ export default {
       return this.form.email.length > 0 && !this.form.email.includes("@");
     },
     displayForm() {
-      if (!this.inviteMode) return true;
-      if (this.inviteCodeCheckProgress) return false;
-      if (this.invite) return true;
+      if (!this.inviteMode && !this.activationMode) return true;
+      if (this.inviteCodeCheckProgress || this.activationCodeCheckProgress)
+        return false;
+      if (this.invite || this.activation) return true;
       return false;
     },
     isStep1Complete() {
@@ -427,7 +481,7 @@ export default {
       );
     },
     isStep2Complete() {
-      if (this.inviteMode || this.form.plan === "free") {
+      if (this.mode !== Mode.SIGNUP) {
         return this.form.first_name !== "" && this.form.last_name !== "";
       }
       return (

@@ -13,11 +13,12 @@ from rest_framework.views import APIView
 from apps.account import serializers
 from apps.account.actions import add_subscription, add_to_stripe, create_subscriber
 from apps.account.enums import CompanionInviteStatus
-from apps.account.forms import WizardForm, InviteWizardForm
+from apps.account.forms import WizardForm, InviteWizardForm, ActivationWizardForm
 from apps.account.models import Account, CompanionInvite
 from apps.auth.enums import UserRole
 from apps.auth.models import User
 from apps.emails.views import signup_success
+from apps.auth import serializers as auth_serializers
 
 stripe.api_key = settings.STRIPE_API_KEY
 
@@ -40,8 +41,49 @@ class InviteCheckView(APIView):
         return Response(serializers.CompanionInvite(instance=invite).data)
 
 
+class ActivationCheckView(APIView):
+    permission_classes = (AllowAny, )
+
+    def get(self, request):
+        code = request.query_params.get("activation_code")
+        if not code:
+            return JsonResponse({}, status=404)
+        user = get_object_or_404(
+            User,
+            activation_code=code,
+        )
+        return Response(auth_serializers.User(instance=user).data)
+
+
+class ActivationWizardView(FormView):
+    form_class = ActivationWizardForm
+
+    @csrf_exempt
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+
+    def form_invalid(self, form):
+        return JsonResponse({"errors": form.errors.as_json()}, status=400)
+
+    def form_valid(self, form):
+        cd = form.cleaned_data
+        with transaction.atomic():
+            user: User = get_object_or_404(User.objects.all(), activation_code=cd['activation_code'])
+            user.set_password(cd['password'])
+            user.market = cd['home_airport']
+            user.first_name = cd['first_name']
+            user.last_name = cd['last_name']
+            user.activation_code = None
+            user.save()
+            return JsonResponse({"success": True})
+
+
 class InviteWizardView(FormView):
     form_class = InviteWizardForm
+
+    @csrf_exempt
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
 
     def form_invalid(self, form):
         return JsonResponse({"errors": form.errors.as_json()}, status=400)

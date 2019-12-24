@@ -40,3 +40,12 @@ class InviteWizardForm(forms.Form):
         CompanionInvite.objects.exclude(status=CompanionInviteStatus.active),
         to_field_name="invite_code",
     )
+
+
+class ActivationWizardForm(forms.Form):
+    home_airport = JSONField()
+    email = forms.EmailField()
+    password = forms.CharField(widget=forms.PasswordInput)
+    first_name = forms.CharField()
+    last_name = forms.CharField()
+    activation_code = forms.CharField()

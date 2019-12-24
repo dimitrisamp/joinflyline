@@ -228,16 +228,6 @@ export default {
           builtFor: ["Leisure Travelers", "Solo Travelers", "Small Family Trip"]
         },
         {
-          title: "6 - 9 Bookings",
-          plan: "basic-plus",
-          builtFor: [
-            "Leisure Travelers",
-            "Light Business Travel",
-            "Small Family Trip",
-            "Couples and individuals traveling together"
-          ]
-        },
-        {
           title: "9+ Bookings",
           plan: "pro",
           builtFor: ["Business Travel", "Active Leisure Travelers"]

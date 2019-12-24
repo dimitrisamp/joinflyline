@@ -38,6 +38,6 @@ class Command(BaseCommand):
             )
             Subscriptions.objects.create(
                 account=u.account,
-                plan="basic-plus",
+                plan="basic",
                 period=DateTimeTZRange(now(), now() + timedelta(days=365)),
             )

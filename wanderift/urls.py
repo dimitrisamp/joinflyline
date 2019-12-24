@@ -25,35 +25,52 @@ from django.views import View
 from django.views.generic import TemplateView
 from rest_framework import routers
 
-from apps.account.viewsets import FrequentFlyerViewSet, DealWatchViewSet, CompanionInviteViewSet
+from apps.account.viewsets import (
+    FrequentFlyerViewSet,
+    DealWatchViewSet,
+    CompanionInviteViewSet,
+)
 from apps.booking.views import (
     CheckFlightsView,
     SaveBookingView,
     CheckPromoView,
-    LocationQueryView, FlightSearchView)
+    LocationQueryView,
+    FlightSearchView,
+)
 from apps.subscriptions import views as subscriptions_views
 from apps.booking.viewsets import (
-    BookingViewSet, FlightViewSet, DealViewSet, TripSummary, SearchHistoryViewSet)
+    BookingViewSet,
+    FlightViewSet,
+    DealViewSet,
+    TripSummary,
+    SearchHistoryViewSet,
+)
 from apps.common.user_router import UserRouter
 from apps.emails.views import booking_success
 from apps.home.views import index_view
-from apps.account.views import WizardView, InviteCheckView, InviteWizardView
+from apps.account.views import (
+    WizardView,
+    InviteCheckView,
+    InviteWizardView,
+    ActivationCheckView,
+    ActivationWizardView,
+)
 from apps.account.api_views import UserViewSet
 from django.conf import settings
 
 from apps.subscriptions.views import SetPlanView
 
 router = routers.DefaultRouter()
-router.register(r'users', UserViewSet)
-router.register(r'bookings', BookingViewSet, basename='bookings')
-router.register(r'flight', FlightViewSet)
-router.register(r'deals', DealViewSet, basename="deals")
-router.register(r'search-history', SearchHistoryViewSet, basename='search-history')
-router.register(r'deal-watch', DealWatchViewSet, basename='deal-watch')
-router.register(r'companion', CompanionInviteViewSet, basename='companion')
+router.register(r"users", UserViewSet)
+router.register(r"bookings", BookingViewSet, basename="bookings")
+router.register(r"flight", FlightViewSet)
+router.register(r"deals", DealViewSet, basename="deals")
+router.register(r"search-history", SearchHistoryViewSet, basename="search-history")
+router.register(r"deal-watch", DealWatchViewSet, basename="deal-watch")
+router.register(r"companion", CompanionInviteViewSet, basename="companion")
 
 user_router = UserRouter()
-user_router.register(r'frequentflyer', FrequentFlyerViewSet, basename='frequentflyer')
+user_router.register(r"frequentflyer", FrequentFlyerViewSet, basename="frequentflyer")
 
 
 class SiteMapView(View):
@@ -73,12 +90,21 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     # Auth urls
     path("api/auth/", include("apps.auth.urls")),
-    path(r'api/auth/', include('knox.urls')),
+    path(r"api/auth/", include("knox.urls")),
     # booking
     path("api/check-promo/", CheckPromoView.as_view(), name="check-promo"),
     path("api/get-started/", WizardView.as_view(), name="wizard"),
     path("api/subscriptions/", include("apps.subscriptions.urls")),
-    path("api/get-started-companion/", InviteWizardView.as_view(), name="get-started-companion"),
+    path(
+        "api/get-started-companion/",
+        InviteWizardView.as_view(),
+        name="get-started-companion",
+    ),
+    path(
+        "api/get-started-activation/",
+        ActivationWizardView.as_view(),
+        name="get-started-activation",
+    ),
     path("sitemap.xml", SiteMapView.as_view(), name="sitemap"),
     path("robots.txt", RobotsTxtView.as_view(), name="robots"),
     path(
@@ -87,12 +113,19 @@ urlpatterns = [
         name="maintenance",
     ),
     path("api/book/", SaveBookingView.as_view(), name="book"),
-    path('api/bookings/summary/', TripSummary.as_view(), name="booking-summary"),
-    path('api/subscriptions/plan/', subscriptions_views.Plans.as_view(), name="plans"),
-    path("api/booking/check_flights/", CheckFlightsView.as_view(), name="check-flights"),
+    path("api/bookings/summary/", TripSummary.as_view(), name="booking-summary"),
+    path("api/subscriptions/plan/", subscriptions_views.Plans.as_view(), name="plans"),
+    path(
+        "api/booking/check_flights/", CheckFlightsView.as_view(), name="check-flights"
+    ),
     path("api/locations/query/", LocationQueryView.as_view(), name="location-query"),
     path("api/search/", FlightSearchView.as_view(), name="flight-search"),
     path("api/check-invite/", InviteCheckView.as_view(), name="invite-check"),
+    path(
+        "api/check-activation-code/",
+        ActivationCheckView.as_view(),
+        name="activation-code-check",
+    ),
     path("api/set-plan/", SetPlanView.as_view(), name="set-plan"),
     re_path("^api/users/me/", include(user_router.urls)),
     re_path("^api/", include(router.urls)),
@@ -104,6 +137,7 @@ if settings.STAGE == "local" and os.getenv("DEBUG_TOOLBAR", "false").lower() in 
     "on",
 ):
     import debug_toolbar
+
     urlpatterns += [path("__debug__/", include(debug_toolbar.urls))]
 
 if settings.STAGE == "localprod":
@@ -121,5 +155,5 @@ if settings.STAGE == "localprod":
     ]
 
 urlpatterns += [
-    re_path('^(?!admin|api).*$', TemplateView.as_view(template_name="index.html")),
+    re_path("^(?!admin|api).*$", TemplateView.as_view(template_name="index.html"))
 ]

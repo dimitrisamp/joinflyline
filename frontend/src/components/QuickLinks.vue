@@ -39,7 +39,9 @@
         </div>
         <div class="search-quick-filter-filter-price-duration">
           <span class="small">{{
-            singleCarrierAirlines ? `${airlineCodes[singleCarrierAirlines[0]]} and more` : ""
+            singleCarrierAirlines
+              ? `${airlineCodes[singleCarrierAirlines[0]]} and more`
+              : ""
           }}</span>
         </div>
         <div class="border-line w-75 mx-auto"></div>
@@ -59,9 +61,7 @@
         </div>
         <div class="search-quick-filter-filter-price-duration">
           <span class="small">{{
-            airlineFilters[kind]
-              ? `${airlineFilters[kind]} and more`
-              : ""
+            airlineFilters[kind] ? `${airlineFilters[kind]} and more` : ""
           }}</span>
         </div>
 

@@ -43,7 +43,7 @@
                     v-model="form.email"
                   />
                 </div>
-                <div class="col-12 col-lg-3">
+                <div class="col-12 col-lg-8">
                   <button
                     type="button"
                     class="btn btn-primary invite-companion"
@@ -51,6 +51,9 @@
                   >
                     Invite
                   </button>
+                  <span v-if="formError" class="account__form__errors">{{
+                    formError
+                  }}</span>
                 </div>
               </div>
             </div>
@@ -77,12 +80,19 @@ const statusText = new Map([
   [2, "Active"]
 ]);
 
+const errorDescription = {
+  "limit-exceeded": "Companion limit has exceeded",
+  "non-subscriber": "You are not subscriber so you can't invite",
+  "existing-user": "The user is already registered"
+};
+
 export default {
   delimiters: ["{{", "}}"],
   data() {
     return {
       companions: [],
-      form: emptyForm()
+      form: emptyForm(),
+      formError: null
     };
   },
   methods: {
@@ -96,10 +106,15 @@ export default {
       });
     },
     inviteCompanion() {
-      api.post("/companion/", this.form).then(response => {
-        this.companions.push(response.data);
-        this.form = emptyForm();
-      });
+      api
+        .post("/companion/", this.form)
+        .then(response => {
+          this.companions.push(response.data);
+          this.form = emptyForm();
+        })
+        .catch(e => {
+          this.formError = errorDescription[e.response.data.error.code];
+        });
     },
     deleteCompanion(companion) {
       api.delete(`/companion/${companion.id}/`).then(() => {

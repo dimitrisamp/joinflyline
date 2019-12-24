@@ -330,7 +330,7 @@ export default {
       ) {
         return null;
       }
-      const planOrder = ["basic", "basic-plus", "pro"];
+      const planOrder = ["basic", "pro"];
       const currentPlanIndex = planOrder.indexOf(this.user.subscription.plan);
       const planIndex = planOrder.indexOf(plan);
       if (planIndex < currentPlanIndex) return "downgrade";
