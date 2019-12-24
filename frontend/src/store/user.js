@@ -58,6 +58,9 @@ export const userStore = {
   mutations: {
     setUser(state, user) {
       state.user = user;
+    },
+    setAuthError(state, value) {
+      state.authErrorText = value;
     }
   },
   actions: {
