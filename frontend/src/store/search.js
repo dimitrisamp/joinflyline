@@ -446,6 +446,14 @@ export const searchStore = {
     },
     departureFlights(state, getters) {
       return getters.flightToBook.route.filter(o => o.return === 0);
+    },
+    singleCarrierAirlines(state) {
+      const singleCarrierAirlines = new Set(
+        state.searchResults
+          .filter(o => o.airlines.length === 1)
+          .map(o => o.airlines[0])
+      );
+      return [...singleCarrierAirlines];
     }
   }
 };

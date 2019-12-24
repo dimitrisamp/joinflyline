@@ -38,7 +38,9 @@
           <strong>Single Carrier</strong>
         </div>
         <div class="search-quick-filter-filter-price-duration">
-          <span class="small"> </span>
+          <span class="small">{{
+            singleCarrierAirlines ? `${airlineCodes[singleCarrierAirlines[0]]} and more` : ""
+          }}</span>
         </div>
         <div class="border-line w-75 mx-auto"></div>
         <div class="loading-animation-topsearch">
@@ -57,7 +59,9 @@
         </div>
         <div class="search-quick-filter-filter-price-duration">
           <span class="small">{{
-            airlineFilters[kind] ? `${airlineFilters[kind]} and more` : ""
+            airlineFilters[kind]
+              ? `${airlineFilters[kind]} and more`
+              : ""
           }}</span>
         </div>
 
@@ -72,15 +76,25 @@
 
 <script>
 import { secs2hm, pick, stripAirlines } from "../utils/utils";
-import { legacyAirlines, lowcostAirlines } from "../utils/airlineCodes";
+import {
+  legacyAirlines,
+  lowcostAirlines,
+  airlineCodes
+} from "../utils/airlineCodes";
 import Vuex from "vuex";
 
 export default {
   props: ["data", "sort", "airlinesFilter"],
   delimiters: ["{{", "}}"],
+  data() {
+    return {
+      airlineCodes
+    };
+  },
   computed: {
     ...Vuex.mapState("user", ["user"]),
     ...Vuex.mapState("search", ["form"]),
+    ...Vuex.mapGetters("search", ["singleCarrierAirlines"]),
     airlineFilters() {
       const legacySet = new Set(legacyAirlines);
       const lowcostSet = new Set(lowcostAirlines);
