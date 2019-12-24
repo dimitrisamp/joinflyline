@@ -50,6 +50,7 @@
               :total_price="prices.total"
               :booking-progress="bookingProgress"
               :can-book="canBook()"
+              :email-exists="emailExists"
               @book="book"
             />
           </div>
@@ -288,9 +289,15 @@ export default {
     let initialPassengers = [];
     if (seats.adults > 0) {
       seats.adults = seats.adults - 1;
-      initialPassengers.push(
-        makePassenger(true, "adults", formatUserData(user))
-      );
+      if (!user.anonymous) {
+        initialPassengers.push(
+          makePassenger(true, "adults", formatUserData(user))
+        );
+      } else {
+        initialPassengers.push(
+          makePassenger(true, "adults")
+        );
+      }
     }
     for (let [category, count] of Object.entries(seats)) {
       for (let i = 0; i < count; i++) {
@@ -314,10 +321,30 @@ export default {
       flightInvalid: false,
       checkFlightProgress: false,
       interval: null,
-      bookingProgress: false
+      bookingProgress: false,
+      emailCheckProgress: false,
+      emailVerified: true,
+      emailExists: false
     };
   },
   watch: {
+    "form.email": {
+      handler() {
+        if (this.emailCheckProgress) return;
+        if (this.user.anonymous) {
+          this.emailVerified = false;
+          this.emailCheckProgress = true;
+          api
+            .get("auth/check-user/", { params: { email: this.form.email } })
+            .then(response => {
+              const data = response.data;
+              this.emailExists = data.exists;
+              this.emailVerified = true;
+              this.emailCheckProgress = false;
+            });
+        }
+      }
+    },
     formState: {
       handler() {
         this.flightChecked = false;
@@ -499,7 +526,8 @@ export default {
         !this.bookingProgress &&
         this.flightChecked &&
         this.passengersValid() &&
-        this.formValid()
+        this.formValid() &&
+        !this.emailExists
       );
     },
     book() {
@@ -523,6 +551,7 @@ export default {
   },
   computed: {
     ...Vuex.mapGetters("search", ["flightToBook"]),
+    ...Vuex.mapState("user", ["user"]),
     ...Vuex.mapState("search", { searchForm: "form" }),
     passengerCount() {
       if (!this.passengers)
@@ -530,11 +559,7 @@ export default {
       const categories = this.passengers.map(getAgeCategory);
       const counter = categories.reduce(
         (c, val) => c.set(val, 1 + (c.get(val) || 0)),
-        new Map([
-          ["infants", 0],
-          ["children", 0],
-          ["adults", 0]
-        ])
+        new Map([["infants", 0], ["children", 0], ["adults", 0]])
       );
       const result = Object.fromEntries(counter.entries());
       const pnum = Object.values(result).reduce((a, b) => a + b);

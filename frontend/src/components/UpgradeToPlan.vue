@@ -54,6 +54,7 @@ export default {
       } else {
         this.selectedPlan = code;
       }
+      this.$emit("selected-plan", this.selectedPlan);
     }
   },
   computed: {

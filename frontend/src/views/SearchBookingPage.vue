@@ -39,18 +39,20 @@
         </div>
 
         <div class="summary__right">
-          <upgrade-to-plan />
+          <upgrade-to-plan @selected-plan="selectPlan" />
           <div class="summary__inner">
             <booking-totals
               :prices="prices"
               :count="passengerCount"
               :busy="!flightChecked"
+              :selected-plan="selectedPlan"
             />
             <checkout-form
               :form="form"
               :total_price="prices.total"
               :booking-progress="bookingProgress"
               :can-book="canBook()"
+              :email-exists="emailExists"
               @book="book"
             />
           </div>
@@ -185,6 +187,16 @@ import UpgradeToPlan from "../components/UpgradeToPlan";
 export default {
   delimiters: ["{{", "}}"],
   extends: BookingPage,
+  data() {
+    return {
+      selectedPlan: null
+    };
+  },
+  methods: {
+    selectPlan(plan) {
+      this.selectedPlan = plan;
+    }
+  },
   components: {
     UpgradeToPlan
   }

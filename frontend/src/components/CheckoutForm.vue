@@ -62,6 +62,9 @@
     <div class="checkout__row">
       <label for="email">E-Mail</label>
       <input id="email" class="form-control" type="text" v-model="form.email" />
+      <span v-if="emailExists" class="checkout__email-warning"
+        >User with this email already exists. Please sign-in</span
+      >
     </div>
 
     <div class="checkout__row">
@@ -83,7 +86,7 @@
 
 <script>
 export default {
-  props: ["form", "total_price", "bookingProgress", "canBook"],
+  props: ["form", "total_price", "bookingProgress", "canBook", "emailExists"],
   methods: {
     book() {
       this.$emit("book");

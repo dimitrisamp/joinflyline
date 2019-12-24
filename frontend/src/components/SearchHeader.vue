@@ -112,8 +112,7 @@
               <img
                 width="21"
                 height="21"
-                data-v-55a08d38=""
-                src="/static/img/search.3a5a60f1.png"
+                src="@/assets/img/search.png"
               />
             </button>
           </form>
