@@ -1,5 +1,6 @@
 FROM python:3.7
 ARG VUE_PUBLIC_PATH=/static/
+ENV VUE_PUBLIC_PATH=${VUE_PUBLIC_PATH}
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
         postgresql-client curl bash
