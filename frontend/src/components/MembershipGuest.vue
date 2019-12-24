@@ -1,6 +1,8 @@
 <template>
   <div class="membership-guest" v-if="plans">
-    <span class="membership-guest__back-to-home" @click="logOut($router)">Back to home</span>
+    <span class="membership-guest__back-to-home" @click="logOut($router)"
+      >Back to home</span
+    >
     <div class="membership-guest__right">
       <h3 class="membership-guest__heading">Welcome Back Zach!</h3>
       <p class="membership-guest__text">
