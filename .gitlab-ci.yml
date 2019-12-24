@@ -16,8 +16,6 @@ docker-build-staging:
   rules:
     - if: '$CI_COMMIT_REF_NAME == "develop"'
       when: always
-    - if: '$CI_COMMIT_REF_NAME == "master"'
-      when: always
   script:
     - echo "VUE_PUBLIC_PATH=${VUE_PUBLIC_PATH}"
     - env
@@ -32,8 +30,6 @@ docker-build-staging:
 docker-build-production:
   stage: package
   rules:
-    - if: '$CI_COMMIT_REF_NAME == "develop"'
-      when: always
     - if: '$CI_COMMIT_REF_NAME == "master"'
       when: always
   script:
