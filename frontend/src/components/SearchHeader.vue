@@ -92,6 +92,7 @@
                 type="text"
                 class="form-control"
                 id="departure_date"
+                autocomplete="off"
                 v-model="form.departure_date"
                 placeholder="Dep: "
               />
@@ -101,6 +102,7 @@
                 type="text"
                 class="form-control"
                 id="return_date"
+                autocomplete="off"
                 v-model="form.return_date"
                 placeholder="Ret: "
               />

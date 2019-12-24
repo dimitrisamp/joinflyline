@@ -69,6 +69,7 @@
                               <input
                                 type="text"
                                 id="departure_date"
+                                autocomplete="off"
                                 aria-describedby="basic-addon3"
                                 class="form-control search-input"
                                 v-model="form.departure_date"
@@ -89,6 +90,7 @@
                                 <input
                                   type="text"
                                   id="return_date"
+                                  autocomplete="off"
                                   aria-describedby="basic-addon3"
                                   class="form-control search-input"
                                   v-model="form.return_date"
