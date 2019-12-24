@@ -60,8 +60,30 @@
         @showPopup="showPopup"
         @proceed-to-booking="bookFlight(flight.srIndex)"
       />
-
-      <div class="h-btngroups">
+      <div v-if="user.anonymous" class="fake-results">
+        <flight
+          v-for="flight in finalResults"
+          :flight="flight"
+          :form="form"
+          :user="user"
+          :key="flight.id"
+          @showPopup="showPopup"
+          @proceed-to-booking="bookFlight(flight.srIndex)"
+        />
+        <overlay-component
+          v-if="user.anonymous"
+          :link="{ name: 'get-started' }"
+        >
+          <h5 class="overlay-component__heading">
+            Create Your FlyLine Account to Filter Result
+          </h5>
+          <p>
+            To view more results and take a look at all the great deals we have
+            to offer create your FlyLine account to Basic or Pro
+          </p>
+        </overlay-component>
+      </div>
+      <div v-if="!user.anonymous" class="h-btngroups">
         <a class="btn btn-default" href="#" @click="loadMore">Load More</a>
       </div>
     </div>
@@ -76,13 +98,15 @@ import Flight from "./Flight";
 import QuickLinks from "./QuickLinks";
 import SearchProgress from "./SearchProgress";
 import SearchResultsPopup from "./SearchResultsPopup";
+import OverlayComponent from "./OverlayComponent";
 
 export default {
   components: {
     Flight,
     SearchResultsPopup,
     SearchProgress,
-    QuickLinks
+    QuickLinks,
+    OverlayComponent
   },
   methods: {
     showPopup,

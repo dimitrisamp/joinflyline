@@ -1,11 +1,11 @@
 <template>
   <form action="" class="bg-white">
-    <overlay-component link="/home">
+    <overlay-component v-if="user.anonymous" :link="{name: 'get-started'}">
       <h5 class="overlay-component__heading">
-        Create Your flyLine Account to Filter Result
+        Create Your FlyLine Account to Filter Result
       </h5>
       <p>
-        To view more results and take a look at all the great deaals we have to
+        To view more results and take a look at all the great deals we have to
         offer create your FlyLine account to Basic or Pro
       </p>
     </overlay-component>
@@ -62,6 +62,7 @@ export default {
   },
   computed: {
     ...Vuex.mapState("search", ["form"]),
+    ...Vuex.mapState("user", ["user"]),
     ...Vuex.mapGetters("search", [
       "cityFromTo",
       "airlineNames",

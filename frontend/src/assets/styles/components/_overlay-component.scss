@@ -2,7 +2,8 @@
     position: absolute;
     top: 0;
     height: 100%;
-    background-color: $white;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.9);
     box-shadow: 1px 1px 4px $primary;
     z-index: 1000;
     border: 0.5px solid $primary;
@@ -22,5 +23,13 @@
         &:hover {
             color: $white;
         }
+    }
+    p {
+        font-size: 1rem;
+    }
+    &.half-bottom {
+        bottom: 0;
+        top: 50%;
+        height: 50%;
     }
 }

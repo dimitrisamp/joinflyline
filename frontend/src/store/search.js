@@ -412,11 +412,11 @@ export const searchStore = {
         max: Math.max(...prices)
       };
     },
-    finalResults(state, getters) {
-      return getters.filteredResults.slice(
-        0,
-        state.form.limit + state.form.limitIncrement
-      );
+    finalResults(state, getters, rootState, rootGetters) {
+      const limit = rootGetters["user/user"].anonymous
+        ? 2
+        : state.form.limit + state.form.limitIncrement;
+      return getters.filteredResults.slice(0, limit);
     },
     cityFromTo(state) {
       if (!state.form.placeFrom || !state.form.placeTo) {

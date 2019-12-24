@@ -1,5 +1,5 @@
 <template>
-  <div class="overlay-component">
+  <div class="overlay-component" :class="{ 'half-bottom': halfBottom }">
     <slot></slot>
     <router-link :to="link" class="button button--big button--outline"
       >Get Started</router-link
@@ -9,6 +9,6 @@
 
 <script>
 export default {
-  props: ["link"]
+  props: ["link", "halfBottom"]
 };
 </script>
