@@ -1,5 +1,14 @@
 <template>
   <form action="" class="bg-white">
+    <overlay-component link="/home">
+      <h5 class="overlay-component__heading">
+        Create Your flyLine Account to Filter Result
+      </h5>
+      <p>
+        To view more results and take a look at all the great deaals we have to
+        offer create your FlyLine account to Basic or Pro
+      </p>
+    </overlay-component>
     <div class="search-filter">
       <div class="search-filter__header">
         <div class="search-quick-filter-filter-name">
@@ -38,6 +47,7 @@ import AirlineFilter from "./AirlineFilter";
 import TimeFilter from "./TimeFilter";
 import MaxStopsFilter from "./MaxStopsFilter";
 import PriceFilter from "./PriceFilter";
+import OverlayComponent from "./OverlayComponent";
 import Vuex from "vuex";
 
 export default {
@@ -65,7 +75,13 @@ export default {
     AirlineFilter,
     TimeFilter,
     MaxStopsFilter,
-    PriceFilter
+    PriceFilter,
+    OverlayComponent
   }
 };
 </script>
+<style>
+form {
+  position: relative;
+}
+</style>

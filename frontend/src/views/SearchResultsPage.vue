@@ -19,7 +19,6 @@
           <nav-bar />
         </header>
         <!-- Desktop Inner Ends -->
-
         <!-- Search Container Start -->
         <div class="search-result__container" style="padding-top: 60px;">
           <div class="search-result__container__inner">

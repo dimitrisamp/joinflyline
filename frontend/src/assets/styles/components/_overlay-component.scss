@@ -1,0 +1,26 @@
+.overlay-component {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    background-color: $white;
+    box-shadow: 1px 1px 4px $primary;
+    z-index: 1000;
+    border: 0.5px solid $primary;
+    text-align: center;
+    padding: 2.5rem 1rem;
+
+    &__heading {
+        font-family: $dona-black;
+    }
+
+    .button {
+        width: 100%;
+        font-size: 1.18rem;
+        padding-top: 6px;
+        color: $black;
+        font-family: $dona-black;
+        &:hover {
+            color: $white;
+        }
+    }
+}
