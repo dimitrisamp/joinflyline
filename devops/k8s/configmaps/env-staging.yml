@@ -11,3 +11,5 @@ data:
   MAINTENANCE: "true"
   REDIS_URL: redis://10.218.76.59:6379/1
   PLANS_CONFIG_FILE: /etc/secrets/STRIPE_PLANS
+  VUE_PUBLIC_PATH: https://storage.googleapis.com/joinflyline-staging
+  VUE_APP_API_ENDPOINT: https://staging.joinflyline.com

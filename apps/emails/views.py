@@ -6,7 +6,7 @@ from django.core.mail import send_mail
 from django.conf import settings
 
 
-def booking_success(request, booking):
+def booking_success(booking):
     booking_contact = BookingContact.objects.filter(booking_id=booking["booking_id"]).first()
 
     if booking_contact:

@@ -9,16 +9,6 @@
     "deal_alerts": false,
     "companion": 0
   },
-  "basic-plus": {
-    "name": "Basic Plus",
-    "price": {
-      "period": "annual",
-      "value": 69.99
-    },
-    "limit": 9,
-    "deal_alerts": true,
-    "companion": 1
-  },
   "pro": {
     "name": "Pro",
     "price": {

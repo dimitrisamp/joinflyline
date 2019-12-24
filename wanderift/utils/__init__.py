@@ -1,5 +1,7 @@
+import random
+import string
 from itertools import tee
-from datetime import datetime
+from datetime import datetime, date
 from django.utils.timezone import utc
 
 
@@ -16,3 +18,20 @@ def pairwise(iterable):
 
 def l2q(l):
     return '{}:{}'.format(l['type'], l['code'])
+
+
+def generate_invite_code():
+    choose_from = string.ascii_letters + string.digits
+    return ''.join([random.choice(choose_from) for _ in range(20)])
+
+
+def get_category(passenger):
+    born = datetime.strptime(passenger["birthday"], "%Y-%m-%d")
+    today = date.today()
+    age = today.year - born.year - ((today.month, today.day) < (born.month, born.day))
+    if age < 3:
+        return "infants"
+    elif age < 13:
+        return "children"
+    else:
+        return "adults"

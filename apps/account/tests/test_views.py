@@ -1,4 +1,5 @@
 import json
+from types import SimpleNamespace
 from unittest import mock
 
 import factory
@@ -27,7 +28,6 @@ EXISTING_USER_EMAIL = "existing.user@example.com"
     [
         (COMPANION_EMAIL, None, 404, {"error": {"code": "non-subscriber"}}),
         (COMPANION_EMAIL, "basic", 404, {"error": {"code": "limit-exceeded"}}),
-        (COMPANION_EMAIL, "basic-plus", 201, None),
         (COMPANION_EMAIL, "pro", 201, None),
         (EXISTING_USER_EMAIL, "pro", 404, {"error": {"code": "existing-user"}}),
     ],
@@ -91,7 +91,7 @@ def test_invite_register(bad, result, customer, anonapiclient):
             "password": "someWeird1234Password",
             "first_name": factory.faker.Faker("first_name").generate(),
             "last_name": factory.faker.Faker("last_name"),
-            "code": 'bad' if bad else invite.invite_code,
+            "code": "bad" if bad else invite.invite_code,
         },
     )
     assert resp.status_code == result
@@ -107,6 +107,48 @@ def test_companion_cannot_invite(db):
     companion = CompanionUserFactory()
     client = APIClient()
     client.force_authenticate(companion)
-    email = factory.faker.Faker('email').generate()
+    email = factory.faker.Faker("email").generate()
     resp = client.post(reverse("companion-list"), {"email": email})
     assert resp.status_code == 403
+
+
+@pytest.mark.parametrize(
+    "plan,send_card,response_code",
+    (
+        (None, False, 200),
+        (None, True, 200),
+        ("basic", False, 400),
+        ("basic", True, 200),
+        ("pro", False, 400),
+        ("pro", True, 200),
+    ),
+)
+def test_sign_up(db, plan, send_card, response_code, anonapiclient):
+    if not send_card:
+        card_params = {}
+    else:
+        card_params = {
+            "card_number": factory.faker.Faker("credit_card_number").generate(),
+            "cvc": factory.faker.Faker("credit_card_security_code").generate(),
+            "expiry": factory.faker.Faker("credit_card_expire").generate(),
+        }
+    request_params = {
+        "home_airport": json.dumps(DESTINATIONS[0]),
+        "email": factory.faker.Faker("email").generate(),
+        "password": "someWeird1234Password",
+        "first_name": factory.faker.Faker("first_name").generate(),
+        "last_name": factory.faker.Faker("last_name"),
+        **card_params,
+    }
+    if plan:
+        request_params["plan"] = plan
+    with mock.patch(
+        "stripe.Subscription.create",
+        new=lambda *args, **kwargs: {"current_period_start": 1576739554, "current_period_end": 1577739554, "id": 123},
+    ) as sub_create, mock.patch(
+        "stripe.Customer.create", new=lambda *args, **kwargs: SimpleNamespace(id="cus")
+    ) as cus_create, mock.patch(
+        "stripe.Token.create", new=lambda *args, **kwargs: SimpleNamespace(id="tok")
+    ) as tok_create:
+        resp = anonapiclient.post(reverse("wizard"), request_params)
+    assert resp.status_code == response_code

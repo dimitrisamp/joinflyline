@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "django_filters",
     "knox",
+    "corsheaders",
     # My apps
     "apps.subscriptions.apps.SubscriptionsConfig",
     "apps.home",
@@ -61,12 +62,12 @@ INSTALLED_APPS = [
     "apps.emails",
     "apps.common",
     "anymail",
-    "compressor",
 ]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -89,7 +90,7 @@ MAINTENANCE_MODE = (
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [os.path.join(BASE_DIR, "templates")],
+        "DIRS": [os.path.join(BASE_DIR, "frontend/dist")],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -173,21 +174,20 @@ STATIC_ROOT = ""
 
 STATIC_URL = "/static/"
 
-STATICFILES_DIRS = (os.path.join("static"),)
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, "frontend/dist/"),
+)
 
 STATICFILES_FINDERS = [
     "django.contrib.staticfiles.finders.FileSystemFinder",
     "django.contrib.staticfiles.finders.AppDirectoriesFinder",
-    "compressor.finders.CompressorFinder",
 ]
-
-COMPRESS_PRECOMPILERS = (("text/x-scss", "django_libsass.SassCompiler"),)
 
 # graph_models --pydot -a -g -o my_project_visualized.png
 
 MESSAGE_TAGS = {messages.ERROR: "", 40: "danger"}
 
-MEDIA_ROOT = os.path.join(BASE_DIR, "static/images")
+MEDIA_ROOT = os.path.join(BASE_DIR, "static/../../frontend/src/assets/images")
 MEDIA_URL = "/images/"
 
 LOGIN_REDIRECT_URL = "accounts"

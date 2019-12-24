@@ -1,0 +1,90 @@
+.filter-sidebar {
+  &__header {
+    padding: 0.7rem 0.5rem 0.5rem 0.5rem;
+    border: 2px solid $border-color;
+    margin-bottom: 1rem;
+    p {
+      margin-bottom: 0;
+      font-size: 13px;
+      font-family: $dona-bold;
+    }
+  }
+  &__title {
+    display: flex;
+    justify-content: space-between;
+
+    span {
+      &:first-child {
+        font-family: $dona-black;
+        font-size: 1rem;
+      }
+      &:last-child {
+        font-family: $dona-bold;
+        font-size: 1rem;
+        color: transparentize($black, 0.5%);
+        cursor: pointer;
+        &:hover {
+          opacity: 0.8;
+        }
+      }
+    }
+  }
+
+  &__item {
+    border-bottom: 1px solid $border-color;
+    margin-bottom: 1.5rem;
+    &-title {
+      font-size: 1.20rem;
+      margin-bottom: 1.5rem;
+      font-family: $dona-black;
+      position: relative;
+      &:after {
+        content: '';
+        background-image: url(assets/img/dashboard/arrow-down.png);
+        position: absolute;
+        right: 0;
+        z-index: 11;
+        top: calc(50% + 1px);
+        transform: translateY(-50%) rotate(180deg);
+        background-size: 1.0625rem 0.625rem;
+        width: 1.0625rem;
+        height: 0.625rem;
+        background-repeat: no-repeat;
+        transition: transform .3s $easeInOutQuad;
+      }
+      &.collapsed {
+        &:after {
+          transform: translateY(-50%) rotate(0deg);
+        }
+      }
+    }
+
+    &-text {
+      margin-bottom: 1rem;
+      line-height: 1.2;
+      font-family: $dona-bold;
+      font-size: 14px;
+    }
+
+    &-spacing {
+      margin-bottom: 1.5rem;
+    }
+  }
+
+  // Vue Slider override style
+  .vue-slider {
+    height: 1px !important;
+  }
+  .vue-slider-process {
+    background-color: $primary;
+  }
+  .vue-slider-dot {
+    width: 20px !important;
+    height: 20px !important;
+  }
+  .vue-slider-dot-handle {
+    box-shadow: none;
+    background-color: #E4E7EC;
+    border: 1px solid $primary;
+  }
+}

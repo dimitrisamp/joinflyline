@@ -28,11 +28,8 @@ django-maintenancemode
 
 django-rest-framework
 
-django_compressor
 django-libsass
 lxml
-slimit
-csscompressor
 
 aiohttp[speedups]
 asgiref
@@ -42,3 +39,4 @@ pytest-django
 pytest-xdist
 
 Collectfast
+django-cors-headers

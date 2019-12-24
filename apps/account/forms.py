@@ -2,6 +2,7 @@ from creditcards.forms import CardNumberField, CardExpiryField, SecurityCodeFiel
 from django import forms
 from django.conf import settings
 from django.contrib.postgres.forms import JSONField
+from django.core.exceptions import ValidationError
 
 from apps.account.enums import CompanionInviteStatus
 from apps.account.models import CompanionInvite
@@ -15,12 +16,19 @@ class WizardForm(forms.Form):
     last_name = forms.CharField()
     promo_code = forms.CharField(required=False)
     zip = forms.CharField(required=False)
-    card_number = CardNumberField()
-    expiry = CardExpiryField()
-    cvc = SecurityCodeField()
+    card_number = CardNumberField(required=False)
+    expiry = CardExpiryField(required=False)
+    cvc = SecurityCodeField(required=False)
     plan = forms.ChoiceField(
-        choices=tuple((o, o) for o in settings.PLAN_DEFINITIONS.keys())
+        choices=tuple((o, o) for o in settings.PLAN_DEFINITIONS.keys()),
+        required=False
     )
+
+    def clean(self):
+        cd = self.cleaned_data
+        if cd.get('plan'):
+            if not (cd['card_number'] and cd['expiry'] and cd['cvc']):
+                raise ValidationError('Paid account requires payment credentials')
 
 
 class InviteWizardForm(forms.Form):
@@ -32,3 +40,12 @@ class InviteWizardForm(forms.Form):
         CompanionInvite.objects.exclude(status=CompanionInviteStatus.active),
         to_field_name="invite_code",
     )
+
+
+class ActivationWizardForm(forms.Form):
+    home_airport = JSONField()
+    email = forms.EmailField()
+    password = forms.CharField(widget=forms.PasswordInput)
+    first_name = forms.CharField()
+    last_name = forms.CharField()
+    activation_code = forms.CharField()

@@ -11,17 +11,33 @@ cache:
   paths:
     - .python/
 
-docker-build:
+docker-build-staging:
   stage: package
   rules:
     - if: '$CI_COMMIT_REF_NAME == "develop"'
       when: always
+  script:
+    - docker build --build-arg VUE_PUBLIC_PATH=${VUE_PUBLIC_PATH} --build-arg VUE_APP_API_ENDPOINT=${VUE_APP_API_ENDPOINT} -t registry.gitlab.com/zburau/joinflyline:${CI_COMMIT_REF_NAME} -f devops/docker/django/Dockerfile .
+    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
+    - docker push registry.gitlab.com/zburau/joinflyline:${CI_COMMIT_REF_NAME}
+  environment:
+    name: test
+    url: https://staging.joinflyline.com
+
+
+docker-build-production:
+  stage: package
+  rules:
     - if: '$CI_COMMIT_REF_NAME == "master"'
       when: always
   script:
-    - docker build -t registry.gitlab.com/zburau/joinflyline:${CI_COMMIT_REF_NAME} -f devops/docker/django/Dockerfile .
+    - docker build --build-arg VUE_PUBLIC_PATH=${VUE_PUBLIC_PATH} --build-arg VUE_APP_API_ENDPOINT=${VUE_APP_API_ENDPOINT} -t registry.gitlab.com/zburau/joinflyline:${CI_COMMIT_REF_NAME} -f devops/docker/django/Dockerfile .
     - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
     - docker push registry.gitlab.com/zburau/joinflyline:${CI_COMMIT_REF_NAME}
+  environment:
+    name: production
+    url: https://joinflyline.com
+
 
 k8s-deploy-staging:
   image: google/cloud-sdk

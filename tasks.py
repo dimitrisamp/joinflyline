@@ -1,11 +1,12 @@
-import os
-
+import re
 import pathlib
 import dotenv
 dotenv.load_dotenv()
 
 from invoke import task
 from wanderift.wait import wait_for_pg
+
+root_dir = pathlib.Path(__file__).parent
 
 
 @task
@@ -52,7 +53,6 @@ INCLUDE_JS = """<script type="module" src="{{% static "{path}" %}}"></script>\n"
 @task
 def mc(c, kebab_name):
     camelcase_name = "".join([o.capitalize() for o in kebab_name.split("-")])
-    root_dir = pathlib.Path(__file__).parent
     js_dir = root_dir / "apps/home/static/home/js/vue/components"
     html_dir = root_dir / "apps/home/templates/home/vue/"
     js_file_name = js_dir / f'{kebab_name}.js'
@@ -85,9 +85,19 @@ def worker(c):
 @task
 def static(c):
     c.run('python manage.py collectstatic --noinput -v 3')
-    c.run('python manage.py compress')
 
 
 @task
 def deals(c):
     c.run('python manage.py fill_deals')
+
+
+@task
+def build_frontend(c):
+    import os
+    curdir = os.getcwd()
+    frontend_dir = root_dir / 'frontend'
+    os.chdir(frontend_dir)
+    c.run('npm install')
+    c.run('npm run build')
+    os.chdir(curdir)
