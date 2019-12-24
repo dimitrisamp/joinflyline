@@ -1,9 +1,9 @@
 import {
   getQuickLinksData,
-  getBaseSearchURL,
   processFlight,
   getAirlines,
-  getStops
+  getStops,
+  getSearchParams
 } from "../utils/utils";
 
 import {
@@ -220,7 +220,7 @@ export const searchStore = {
       context.commit("setSearchResultIndex", null);
       context.commit("setSearchProgress", true);
       api
-        .get(getBaseSearchURL(context.state.form))
+        .get("search", { params: getSearchParams(context.state.form) })
         .then(response => {
           const data = response.data;
           let parent = { ...data };

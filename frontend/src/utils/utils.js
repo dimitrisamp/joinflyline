@@ -304,30 +304,28 @@ export function getStops(sr) {
   return Math.max(toFlights.length - 1, returnFlights.length - 1);
 }
 
-export function getBaseSearchURL(form, limit = 0) {
-  let formData = new FormData();
-  formData.append("fly_from", placeToRequestValue(form.placeFrom));
-  formData.append("fly_to", placeToRequestValue(form.placeTo));
+export function getSearchParams(form, limit = 0) {
+  let formData = {};
+  formData["fly_from"] = placeToRequestValue(form.placeFrom);
+  formData["fly_to"] = placeToRequestValue(form.placeTo);
   const dateFrom = form.departure_date_data.format("DD/MM/YYYY");
-  formData.append("date_from", dateFrom);
-  formData.append("date_to", dateFrom);
-  formData.append("type", form.destinationTypeId);
+  formData["date_from"] = dateFrom;
+  formData["date_to"] = dateFrom;
+  formData["type"] = form.destinationTypeId;
   if (form.destinationTypeId === "round") {
     const dateTo = form.return_date_data.format("DD/MM/YYYY");
-    formData.append("return_from", dateTo);
-    formData.append("return_to", dateTo);
+    formData["return_from"] = dateTo;
+    formData["return_to"] = dateTo;
   }
-  formData.append("adults", form.valAdults);
-  formData.append("infants", form.valInfants);
-  formData.append("children", form.valChildren);
-  formData.append("selected_cabins", form.seatType);
-  formData.append("curr", "USD");
+  formData["adults"] = form.valAdults;
+  formData["infants"] = form.valInfants;
+  formData["children"] = form.valChildren;
+  formData["selected_cabins"] = form.seatType;
+  formData["curr"] = "USD";
   if (limit) {
-    formData("limit", form.limit);
+    formData["limit"] = form.limit;
   }
-  let url = new URL("/api/search", process.env.VUE_APP_API_ENDPOINT);
-  url.search = new URLSearchParams(formData);
-  return url;
+  return formData;
 }
 
 export function getSearchURL(form) {

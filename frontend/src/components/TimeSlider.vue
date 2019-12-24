@@ -1,5 +1,12 @@
 <template>
-  <vue-slider :value="value" @change="change" :min="0" :max="1440" :lazy="true" tooltip="none" />
+  <vue-slider
+    :value="value"
+    @change="change"
+    :min="0"
+    :max="1440"
+    :lazy="true"
+    tooltip="none"
+  />
 </template>
 
 <script>
