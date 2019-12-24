@@ -175,7 +175,7 @@ STATIC_ROOT = ""
 STATIC_URL = "/static/"
 
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, "frontend/dist/static"),
+    os.path.join(BASE_DIR, "frontend/dist/"),
 )
 
 STATICFILES_FINDERS = [

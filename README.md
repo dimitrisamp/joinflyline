@@ -10,7 +10,7 @@ python -m venv venv
 ```
 ```shell script
 git checkout develop
-cp .env.example .env
+cp .env.example.example .env.example
 pip install -r requirements.txt
 inv reset
 python manage.py runserver

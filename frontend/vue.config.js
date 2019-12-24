@@ -1,3 +1,3 @@
 module.exports = {
-  assetsDir: "static"
+  publicPath: process.env.VUE_PUBLIC_PATH
 };

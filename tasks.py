@@ -101,7 +101,3 @@ def build_frontend(c):
     c.run('npm install')
     c.run('npm run build')
     os.chdir(curdir)
-    fname = frontend_dir / 'dist/index.html'
-    contents = open(fname).read()
-    new_contents = re.sub(r'/static/([^\s\>]+)', f'"{{% static "\\1" %}}"', contents)
-    open(fname, 'w').write(f"{{% load static %}}\n{new_contents}")
