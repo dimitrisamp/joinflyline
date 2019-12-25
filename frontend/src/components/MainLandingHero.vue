@@ -121,7 +121,7 @@
                   <div class="row mt-0">
                     <div class="col-12 trending-flights-container">
                       <!-- Trending Flights -->
-                      <span>Trending Flights</span>
+                      <span>Suggested Routes on FlyLine</span>
                       <div class="trending-flights">
                         <div
                           class="trending-flights__item"
