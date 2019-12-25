@@ -3,7 +3,6 @@
     <header><nav-bar /></header>
     <main>
       <main-landing-hero />
-      <main-landing-tiles />
       <main-landing-steps />
       <main-landing-stats />
       <main-landing-airlines-logos />
@@ -22,7 +21,6 @@ import SubscriptionPlans from "../components/SubscriptionPlans";
 import MainLandingDealsAlerts from "../components/MainLandingDealsAlerts";
 import MainLandingStats from "../components/MainLandingStats";
 import MainLandingSteps from "../components/MainLandingSteps";
-import MainLandingTiles from "../components/MainLandingTiles";
 import MainLandingHero from "../components/MainLandingHero";
 import MainLandingAirlinesLogos from "../components/MainLandingAirlinesLogos";
 import NavBar from "../components/NavBar";
@@ -31,7 +29,6 @@ export default {
   components: {
     NavBar,
     MainLandingHero,
-    MainLandingTiles,
     MainLandingSteps,
     MainLandingStats,
     MainLandingAirlinesLogos,
