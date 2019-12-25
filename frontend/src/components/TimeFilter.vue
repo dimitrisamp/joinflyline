@@ -7,7 +7,7 @@
       :key="`time-filters-tab-${i}`"
     >
       <div
-        v-for="destination in destinations"
+        v-for="destination in matching[form.destinationTypeId][direction]"
         class="filter-sidebar__item-spacing"
         :key="`block-${direction}-${destination}`"
       >
@@ -52,6 +52,17 @@ const destinationKeys = {
   return: "placeTo"
 };
 
+const matching = {
+  round: {
+    takeoff: ["departure", "return"],
+    landing: ["deprature", "return"]
+  },
+  oneway: {
+    takeoff: ["departure"],
+    landing: ["return"]
+  }
+};
+
 const destinationDateKeys = {
   departure: "departure_date_data",
   return: "return_date_data"
@@ -71,7 +82,8 @@ export default {
       limits: [0, 60 * 24 - 1],
       destinationKeys,
       destinationDateKeys,
-      directionPrep
+      directionPrep,
+      matching
     };
   },
   methods: {
@@ -93,11 +105,6 @@ export default {
     formatMin
   },
   computed: {
-    destinations() {
-      if (this.form.destinationTypeId === "round")
-        return ["departure", "return"];
-      return ["departure"];
-    },
     ...Vuex.mapState("search", ["form"])
   }
 };

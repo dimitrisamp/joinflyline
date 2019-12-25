@@ -10,22 +10,32 @@ export const SearchForm = {
       fullPageApplied: false
     };
   },
+  picker: null,
+  watch: {
+    "form.destinationTypeId": {
+      handler() {
+        if (this.$options.picker) this.$options.picker.destroy();
+        this.setDatePick();
+      }
+    }
+  },
   methods: {
     switchToForm() {
       this.backToForm = true;
     },
     setDatePick() {
-      let that = this;
-      setTimeout(() => {
-        new Lightpick({
-          field: document.getElementById("departure_date"),
-          secondField: document.getElementById("return_date"),
-          singleDate: false,
-          onSelect(start, end) {
-            that.setDates({ start, end });
-          }
-        });
-      }, 500);
+      const that = this;
+      this.$options.picker = new Lightpick({
+        field: document.getElementById("departure_date"),
+        secondField:
+          this.form.destinationTypeId === "round"
+            ? document.getElementById("return_date")
+            : null,
+        singleDate: this.form.destinationTypeId !== "round",
+        onSelect(start, end) {
+          that.setDates({ start, end });
+        }
+      });
     },
     ...Vuex.mapActions("search", ["search", "loadMore", "sortResultsBy"]),
     ...Vuex.mapMutations("search", [

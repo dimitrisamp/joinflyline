@@ -262,7 +262,9 @@ export const searchStore = {
         departure_date: context.state.form.departure_date_data
           .toJSON()
           .slice(0, 10),
-        return_date: context.state.form.return_date_data.toJSON().slice(0, 10),
+        return_date: context.state.form.return_date_data
+          ? context.state.form.return_date_data.toJSON().slice(0, 10)
+          : null,
         adults: context.state.form.valAdults,
         children: context.state.form.valChildren,
         infants: context.state.form.valInfants,
@@ -359,6 +361,18 @@ export const searchStore = {
           )
             return false;
           return true;
+        } else {
+          if (
+            o.local_departure_int < tf.departure.takeoff[0] ||
+            o.local_departure_int > tf.departure.takeoff[1]
+          )
+            return false;
+          if (
+            o.return_arrival_int < tf.return.landing[0] ||
+            o.return_arrival_int > tf.return.landing[1]
+          )
+            return false;
+          return true;
         }
       });
       if (state.form.singleCarrier) {
@@ -442,10 +456,14 @@ export const searchStore = {
       return state.searchResults[state.searchResultIndex];
     },
     returnFlights(state, getters) {
-      return getters.flightToBook.route.filter(o => o.return === 1);
+      return getters.flightToBook
+        ? getters.flightToBook.route.filter(o => o.return === 1)
+        : [];
     },
     departureFlights(state, getters) {
-      return getters.flightToBook.route.filter(o => o.return === 0);
+      return getters.flightToBook
+        ? getters.flightToBook.route.filter(o => o.return === 0)
+        : [];
     },
     singleCarrierAirlines(state) {
       const singleCarrierAirlines = new Set(

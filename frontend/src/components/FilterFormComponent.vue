@@ -2,11 +2,10 @@
   <form action="" class="bg-white">
     <overlay-component v-if="user.anonymous" :link="{name: 'get-started'}">
       <h5 class="overlay-component__heading">
-        Create Your FlyLine Account to Filter Result
+        Create Your FlyLine Account to view Filters
       </h5>
       <p>
-        To view more results and take a look at all the great deals we have to
-        offer create your FlyLine account to Basic or Pro
+        To filter results upgrade to FlyLine Basic or Pro
       </p>
     </overlay-component>
     <div class="search-filter">

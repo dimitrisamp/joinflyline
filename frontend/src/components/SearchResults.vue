@@ -75,11 +75,10 @@
           :link="{ name: 'get-started' }"
         >
           <h5 class="overlay-component__heading">
-            Create Your FlyLine Account to Filter Result
+            Create Your FlyLine Account to view all of our flights
           </h5>
           <p>
-            To view more results and take a look at all the great deals we have
-            to offer create your FlyLine account to Basic or Pro
+            We have thousands of flights from hundreds of carriers upgrade to FlyLine Basic or Pro to view thew all!
           </p>
         </overlay-component>
       </div>

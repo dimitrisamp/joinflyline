@@ -34,6 +34,7 @@ import { airlineIcon } from "../utils/utils";
 import { airlinePhones } from "../utils/airlinePhones";
 import { airlineCodes } from "../utils/airlineCodes";
 import MainLandingFooter from "./MainLandingFooter";
+import NavBar from "./NavBar";
 
 export default {
   data() {
@@ -44,7 +45,8 @@ export default {
     };
   },
   components: {
-    "main-landing-footer": MainLandingFooter
+    "main-landing-footer": MainLandingFooter,
+    NavBar
   },
   delimiters: ["{{", "}}"]
 };

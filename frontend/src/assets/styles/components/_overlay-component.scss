@@ -5,13 +5,16 @@
     width: 100%;
     background-color: rgba(255, 255, 255, 0.9);
     box-shadow: 1px 1px 4px $primary;
-    z-index: 1000;
+    z-index: 1;
     border: 0.5px solid $primary;
     text-align: center;
     padding: 2.5rem 1rem;
 
     &__heading {
         font-family: $dona-black;
+        p {
+            font-family: $dona-bold;
+        }
     }
 
     .button {
