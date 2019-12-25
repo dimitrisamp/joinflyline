@@ -200,7 +200,7 @@
 
       <div class="route-box row">
         <div class="col-12 col-md-6 departure-block border-right pt-4 pb-4">
-          <h6 class="text-muted mb-3">
+          <h6 class="text-unmuted mb-3">
             DEPARTURE
             <span class="small ml-2">Duration:</span>
             <span class="small">{{ secs2hm(flight.duration.departure) }}</span>
@@ -291,7 +291,7 @@
         </div>
         <!-----------Return Flights ------------------------>
         <div v-if="flight.roundtrip" class="col-12 col-md-6 return-block pt-4">
-          <h6 class="text-muted mb-3">
+          <h6 class="text-unmuted mb-3">
             RETURN
             <span class="small ml-2">Duration:</span>
             <span class="small">{{ secs2hm(flight.duration.return) }}</span>

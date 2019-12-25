@@ -711,7 +711,7 @@ header.sticky {
   display: block;
 }
 
-.route-box .text-muted span {
+.route-box .text-unmuted span {
   display: table-cell;
   margin: 10px 0;
   position: relative;
@@ -985,7 +985,7 @@ header.sticky {
   width: 100% !important;
 }
 
-.text-muted {
+.text-unmuted {
   color: #000 !important;
   font-family: Dona-Black;
   font-size: 19px;

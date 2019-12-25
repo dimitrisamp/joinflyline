@@ -97,23 +97,22 @@
                 placeholder="Dep: "
               />
             </div>
-            <div class="search-form-field__container">
+            <div
+              v-if="form.destinationTypeId === 'round'"
+              class="search-form-field__container"
+            >
               <input
                 type="text"
                 class="form-control"
                 id="return_date"
-                autocomplete="off"
                 v-model="form.return_date"
+                autocomplete="off"
                 placeholder="Ret: "
               />
             </div>
 
-            <button class="btn btn-search" @click.prevent="doSearch">
-              <img
-                width="21"
-                height="21"
-                src="@/assets/img/search.png"
-              />
+            <button type="button" class="btn btn-search" @click="doSearch">
+              <img width="21" height="21" src="@/assets/img/search.png" />
             </button>
           </form>
         </div>
@@ -158,7 +157,7 @@ export default {
   methods: {
     doSearch() {
       this.search({ clearFilters: true, saveSearch: true });
-      this.$router.push({ name: "results" });
+      this.$router.push({ name: "search-results" });
     },
     showSearchFormHandler() {
       this.isOpen = this.$mq !== "sm";

@@ -1,5 +1,8 @@
 <template>
   <div class="filter-flights">
+    <div class="filter-sidebar__item-text">
+      ${{ limits[0] }} - ${{ limits[1] }}
+    </div>
     <vue-slider
       @change="select"
       v-model="limits"
