@@ -78,6 +78,70 @@ export const trending = [
       subdivision: { name: null },
       country: { code: "CN" }
     }
+  },
+  {
+    from: {
+      type: "city",
+      code: "SEA",
+      name: "Seattle",
+      subdivision: { name: "Washington" },
+      country: { code: "US" }
+    },
+    to: {
+      type: "city",
+      code: "CHI",
+      name: "Chicago",
+      subdivision: { name: "Illinois" },
+      country: { code: "US" }
+    }
+  },
+  {
+    from: {
+      type: "city",
+      code: "WAS",
+      name: "Washington, D.C.",
+      subdivision: { name: "District of Columbia" },
+      country: { code: "US" }
+    },
+    to: {
+      type: "city",
+      code: "LAX",
+      name: "Los Angeles",
+      subdivision: { name: "California" },
+      country: { code: "US" }
+    }
+  },
+  {
+    from: {
+      type: "city",
+      code: "NYC",
+      name: "New York",
+      subdivision: { name: "New York" },
+      country: { code: "US" }
+    },
+    to: {
+      type: "city",
+      code: "LON",
+      name: "London",
+      subdivision: { name: null },
+      country: { code: "GB" }
+    }
+  },
+  {
+    from: {
+      type: "city",
+      code: "NYC",
+      name: "New York",
+      subdivision: { name: "New York" },
+      country: { code: "US" }
+    },
+    to: {
+      type: "city",
+      code: "SJU",
+      name: "San Juan",
+      subdivision: { name: null },
+      country: { code: "US" }
+    }
   }
 ];
 
