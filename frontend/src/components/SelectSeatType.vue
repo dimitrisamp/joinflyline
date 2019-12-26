@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import { PopupSelect } from "./PopupSelect.vue";
+import PopupSelect from "./PopupSelect.vue";
 import { seatTypes } from "../utils/utils";
 import ClickOutside from "v-click-outside";
 

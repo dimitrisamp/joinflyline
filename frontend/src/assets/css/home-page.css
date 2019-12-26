@@ -363,6 +363,7 @@ header.sticky {
 
 .dat-blue-border {
   display: flex;
+  flex-direction: row-reverse;
   width: 100%;
 }
 .dat-blue-border .search-form-input {

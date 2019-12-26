@@ -63,9 +63,6 @@
                             class="input-group input-group-sm search-dropdown home-date-field-dep"
                           >
                             <div class="dat-blue-border dep-date">
-                              <span class="input-group-text search-form-input"
-                                >Dep:</span
-                              >
                               <input
                                 type="text"
                                 id="departure_date"
@@ -74,6 +71,9 @@
                                 class="form-control search-input"
                                 v-model="form.departure_date"
                               />
+                              <span class="input-group-text search-form-input"
+                                >Dep:</span
+                              >
                             </div>
                           </div>
                         </div>
@@ -84,9 +84,6 @@
                               class="input-group input-group-sm search-dropdown home-date-field-ret"
                             >
                               <div class="dat-blue-border ret-date">
-                                <span class="input-group-text search-form-input"
-                                  >Ret:</span
-                                >
                                 <input
                                   type="text"
                                   id="return_date"
@@ -95,6 +92,9 @@
                                   class="form-control search-input"
                                   v-model="form.return_date"
                                 />
+                                <span class="input-group-text search-form-input"
+                                  >Ret:</span
+                                >
                               </div>
                             </div>
                           </div>
@@ -199,6 +199,13 @@ export default {
       color: #7d7d7d;
       border: 2px solid #ececec;
       border-right: transparent;
+    }
+    .search-input {
+      border: 2px solid #ececec;
+      border-left: none;
+    }
+    .search-input:focus + span {
+      border-color: #0aaeff;
     }
   }
 }

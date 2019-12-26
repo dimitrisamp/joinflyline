@@ -6,7 +6,7 @@
       "value": 39.99
     },
     "limit": 6,
-    "deal_alerts": false,
+    "deal_alerts": true,
     "companion": 0
   },
   "pro": {
