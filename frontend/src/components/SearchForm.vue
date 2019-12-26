@@ -26,7 +26,7 @@ export const SearchForm = {
     setDatePick() {
       const that = this;
       setTimeout(() => {
-        this.$options.picker = new Lightpick({
+        that.$options.picker = new Lightpick({
           field: document.getElementById("departure_date"),
           secondField:
             this.form.destinationTypeId === "round"
