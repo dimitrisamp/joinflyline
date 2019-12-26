@@ -238,8 +238,8 @@ ANYMAIL = {"SENDINBLUE_API_KEY": os.getenv("SENDINBLUE_API_KEY")}
 
 SENDGRID_API_URL = "https://api.sendgrid.com/v3/"
 EMAIL_BACKEND = "anymail.backends.sendinblue.EmailBackend"
-DEFAULT_FROM_EMAIL = "noreply@mg2.joinflyline.com"
-SERVER_EMAIL = "noreply@mg2.joinflyline.com"
+DEFAULT_FROM_EMAIL = "noreply@sb.joinflyline.com"
+SERVER_EMAIL = "noreply@sb.joinflyline.com"
 
 SECRET_LINK_EXPIRATION_SECONDS = 3600
 
