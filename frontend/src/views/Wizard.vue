@@ -47,7 +47,7 @@
                 <div><strong>Your activation code was not found</strong></div>
               </div>
               <template v-if="displayForm">
-                <div class="form-group input-group input-group-sm step-f-inputs">
+                <div class="form-group form-group  step-f-inputs">
                   <location-input
                     :prompt="'Home Airport'"
                     :prompt-mobile="'Home Airport'"
@@ -57,7 +57,7 @@
                   />
                 </div>
 
-                <div class="form-group input-group-sm step-f-inputs">
+                <div class="form-group  step-f-inputs">
                   <input
                     type="text"
                     class="form-control"
@@ -82,7 +82,7 @@
                   >
                 </div>
 
-                <div class="form-group input-group input-group-sm step-f-inputs">
+                <div class="form-group form-group  step-f-inputs">
                   <input
                     type="password"
                     class="form-control"
@@ -93,7 +93,7 @@
                   />
                 </div>
 
-                <div class="input-group step-f-inputs">
+                <div class="form-group step-f-inputs">
                   <button
                     type="button"
                     class="btn btn-default"
@@ -130,7 +130,7 @@
                 <p>Enter some information to get started.</p>
               </div>
 
-              <div class="input-group input-group-sm step-f-inputs">
+              <div class="form-group  step-f-inputs">
                 <input
                   type="text"
                   class="form-control"
@@ -141,7 +141,7 @@
                 />
               </div>
 
-              <div class="input-group input-group-sm step-f-inputs">
+              <div class="form-group  step-f-inputs">
                 <input
                   type="text"
                   class="form-control"
@@ -161,7 +161,7 @@
                   />
                 </div>
                 <template v-if="form.plan !== 'free'">
-                  <div class="input-group input-group-sm step-f-inputs">
+                  <div class="form-group  step-f-inputs">
                     <input
                       type="text"
                       class="form-control"
@@ -174,7 +174,7 @@
                     />
                   </div>
 
-                  <div class="input-group input-group-sm step-f-inputs">
+                  <div class="form-group  step-f-inputs">
                     <input
                       type="text"
                       class="form-control"
@@ -185,7 +185,7 @@
                     />
                   </div>
 
-                  <div class="input-group input-group-sm step-f-inputs">
+                  <div class="form-group  step-f-inputs">
                     <input
                       type="text"
                       class="form-control"
@@ -197,7 +197,7 @@
                   </div>
 
                   <div class="row">
-                    <div class="input-group input-group-sm step-f-inputs col-6">
+                    <div class="form-group  step-f-inputs col-6">
                       <input
                         type="text"
                         class="form-control"
@@ -208,7 +208,7 @@
                       />
                     </div>
 
-                    <div class="input-group input-group-sm step-f-inputs col-6">
+                    <div class="form-group  step-f-inputs col-6">
                       <input
                         type="text"
                         class="form-control"
@@ -222,7 +222,7 @@
                 </template>
               </template>
 
-              <div class="input-group step-f-inputs">
+              <div class="form-group step-f-inputs">
                 <button
                   type="button"
                   class="btn btn-default"
