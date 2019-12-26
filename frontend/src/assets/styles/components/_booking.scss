@@ -102,7 +102,7 @@
           &--button {
             text-align: center;
             font-family: $dona-black;
-            border: 2px solid red;
+
 
             .button {
               padding-top: 0.5rem;
@@ -115,6 +115,9 @@
             h4{
               margin: 0.5rem;
               font-size: 1.2rem;
+            }
+            &.red {
+              border: 2px solid red;
             }
           }
         }
@@ -269,6 +272,7 @@
 
   // Total
   .totals {
+    position: relative;
     margin-bottom: 2.5rem;
 
     &__heading {

@@ -31,7 +31,7 @@
               @passenger-updated="updatePassenger(i, ...arguments)"
             />
           </div>
-          <div class="pform__field--button">
+          <div class="pform__field--button red">
             <h4>
               To add another passenger upgrade to FlyLine Basic or Pro
             </h4>
