@@ -122,11 +122,13 @@ import { formatDateDeals } from "../utils/utils";
 import TileComponent from "../components/TileComponent";
 import MembershipGuest from "../components/MembershipGuest";
 import Vuex from "vuex";
+import Deal from "../components/Deal";
 
 export default {
   components: {
     TileComponent,
-    MembershipGuest
+    MembershipGuest,
+    Deal
   },
   data() {
     return {
