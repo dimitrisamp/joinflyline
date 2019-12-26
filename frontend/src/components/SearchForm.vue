@@ -25,17 +25,19 @@ export const SearchForm = {
     },
     setDatePick() {
       const that = this;
-      this.$options.picker = new Lightpick({
-        field: document.getElementById("departure_date"),
-        secondField:
-          this.form.destinationTypeId === "round"
-            ? document.getElementById("return_date")
-            : null,
-        singleDate: this.form.destinationTypeId !== "round",
-        onSelect(start, end) {
-          that.setDates({ start, end });
-        }
-      });
+      setTimeout(() => {
+        this.$options.picker = new Lightpick({
+          field: document.getElementById("departure_date"),
+          secondField:
+            this.form.destinationTypeId === "round"
+              ? document.getElementById("return_date")
+              : null,
+          singleDate: this.form.destinationTypeId !== "round",
+          onSelect(start, end) {
+            that.setDates({ start, end });
+          }
+        });
+      }, 500);
     },
     ...Vuex.mapActions("search", ["search", "loadMore", "sortResultsBy"]),
     ...Vuex.mapMutations("search", [
