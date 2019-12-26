@@ -13,6 +13,10 @@
         <div class="search-quick-filter-filter-name">
           <strong>Flight Filters</strong>
         </div>
+        <h3 class="filter-sidebar__title">
+          <span>Flight Filters</span>
+          <!-- <span @click="clearFiltersAndUpdate">Clear All</span> -->
+        </h3>
         <p>Filter by : Stops, Airlines,Times, and more</p>
       </div>
       <div class="search-filter__body" :class="{'search-filter__body--logged': !user.anonymous}">

@@ -1,6 +1,7 @@
 <script>
 import Lightpick from "lightpick";
 import Vuex from "vuex";
+import moment from "moment";
 
 export const SearchForm = {
   delimiters: ["{{", "}}"],
@@ -27,6 +28,8 @@ export const SearchForm = {
       const that = this;
       setTimeout(() => {
         that.$options.picker = new Lightpick({
+          startDate: this.form.departure_date_data || moment(),
+          endDate: this.form.return_date_data || moment(),
           field: document.getElementById("departure_date"),
           secondField:
             this.form.destinationTypeId === "round"

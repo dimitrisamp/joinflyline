@@ -1,7 +1,9 @@
 .app {
   .form-control {
     border: 2px solid $input-border-color;
-    margin-right: 1.1875rem;
+    @include mq(md) {
+      margin-right: 1.1875rem;
+    }
     border-radius: 0;
     &::placeholder {
       color: $input-text-color;

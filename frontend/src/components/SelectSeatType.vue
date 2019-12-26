@@ -49,6 +49,7 @@ export default {
 };
 </script>
 <style lang="scss">
+@import "@/assets/styles/mixins/_mq.scss";
 .arrow {
   position: relative;
   background-color: transparent !important;
@@ -56,7 +57,7 @@ export default {
   padding-right: 1.5rem !important;
   &:after {
     content: "";
-    background-image: url(../assets/img/dashboard/arrow-down.png);
+    background-image: url(../assets/images/arrow-white.png);
     position: absolute;
     right: 0;
     z-index: 11;
@@ -68,6 +69,9 @@ export default {
     background-repeat: no-repeat;
     transition: transform 300ms ease-in-out;
     opacity: 0.6;
+    @include mq(md) {
+      background-image: url(../assets/img/dashboard/arrow-down.png);
+    }
   }
 }
 </style>
