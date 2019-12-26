@@ -1,13 +1,12 @@
 .destination {
   display: flex;
   align-items: center;
-  .control--nodmad {
-    background-color: red;
+  .control--nomad {
     position: relative;
      .coming-soon {
       position: absolute;
       width: 100%;
-      // color: $primary;
+      color: $primary;
       font-size: 9px;
       top: -13px;
     }

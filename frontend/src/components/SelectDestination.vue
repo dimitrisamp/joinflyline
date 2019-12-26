@@ -18,19 +18,15 @@
     </div>
   </div> -->
   <div class="destination">
-    <label class="control control--checkbox">
-      <span>One Way</span>
-      <div class="control__indicator"></div>
-    </label>
-    <label class="control control--checkbox">
-      <span>Two Way</span>
-      <div class="control__indicator"></div>
-    </label>
-    <label class="control control--nomad">
+    <div v-for="(dtype, dtypeId) in destinationTypes" class="control control--checkbox" :key="dtypeId" @click="select(dtypeId)">
+      <span>{{ dtype }}</span>
+      <div class="control__indicator" :class="{checked: value === dtypeId}"></div>
+    </div>
+    <div class="control control--nomad">
       <span class="coming-soon">Coming Soon</span>
       <span class="nomad">Nomad</span>
       <div class="control__indicator"></div>
-    </label>
+    </div>
   </div>
 </template>
 
