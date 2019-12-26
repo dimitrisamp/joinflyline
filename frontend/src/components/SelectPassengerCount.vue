@@ -1,10 +1,9 @@
 <template>
-  <div class="s-result-dropdown">
-    <span href="#" @click="open" class="arrow">{{ text }}</span>
+  <div class="s-result-dropdown" @click="open">
+    <span class="arrow">{{ text }}</span>
 
     <div
       class="passengers-dropdown"
-      v-cloak
       v-if="selectProgress"
       v-click-outside="close"
     >
@@ -81,7 +80,7 @@
 </template>
 
 <script>
-import ClickOutside from "v-click-outside";
+import ClickOutside from "vue-click-outside";
 import PopupSelect from "./PopupSelect.vue";
 import Vuex from "vuex";
 

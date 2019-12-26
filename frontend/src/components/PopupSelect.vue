@@ -1,5 +1,5 @@
 <script>
-import ClickOutside from "v-click-outside";
+import ClickOutside from "vue-click-outside";
 
 export const PopupSelect = {
   data() {
