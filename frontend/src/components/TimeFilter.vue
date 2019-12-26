@@ -55,7 +55,7 @@ const destinationKeys = {
 const matching = {
   round: {
     takeoff: ["departure", "return"],
-    landing: ["deprature", "return"]
+    landing: ["departure", "return"]
   },
   oneway: {
     takeoff: ["departure"],
