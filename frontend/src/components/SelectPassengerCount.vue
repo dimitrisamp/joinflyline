@@ -1,6 +1,6 @@
 <template>
   <div class="s-result-dropdown">
-    <span href="#" @click="open">{{ text }}</span>
+    <span href="#" @click="open" class="arrow">{{ text }}</span>
 
     <div
       class="passengers-dropdown"

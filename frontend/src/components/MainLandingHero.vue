@@ -118,7 +118,7 @@
                       </div>
                     </div>
                   </div>
-                  <div class="row mt-0">
+                  <div class="row">
                     <div class="col-12 trending-flights-container">
                       <!-- Trending Flights -->
                       <span>Suggested Routes on FlyLine</span>
@@ -186,16 +186,20 @@ export default {
 };
 </script>
 
-<style scoped>
-.search-form-input {
-  background: #fff;
-  border-radius: 0px;
-  border-right: none;
-  font-size: 0.8em;
-  font-weight: 600;
-  font-family: Dona-Bold;
-  color: #7d7d7d;
-  border: 2px solid #ececec;
-  border-right: transparent;
+<style lang="scss">
+.hero-search {
+  .hero-search__item {
+    .search-form-input {
+      background: #fff;
+      border-radius: 0px;
+      border-right: none;
+      font-size: 0.8em;
+      font-weight: 600;
+      font-family: Dona-Bold;
+      color: #7d7d7d;
+      border: 2px solid #ececec;
+      border-right: transparent;
+    }
+  }
 }
 </style>

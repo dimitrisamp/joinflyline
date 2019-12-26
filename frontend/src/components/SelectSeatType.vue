@@ -1,6 +1,6 @@
 <template>
   <div class="s-result-dropdown">
-    <span @click="open" v-text="text" />
+    <span @click="open" v-text="text" class="arrow" />
     <div
       class="search-f-dropdown"
       v-if="selectProgress"
@@ -48,3 +48,26 @@ export default {
   }
 };
 </script>
+<style lang="scss">
+.arrow {
+  position: relative;
+  background-color: transparent !important;
+  border: 0 !important;
+  padding-right: 1.5rem !important;
+  &:after {
+    content: "";
+    background-image: url(../assets/img/dashboard/arrow-down.png);
+    position: absolute;
+    right: 0;
+    z-index: 11;
+    top: calc(50% + 1px);
+    transform: translateY(-50%);
+    background-size: 1.0625rem 0.625rem;
+    width: 1.0625rem;
+    height: 0.625rem;
+    background-repeat: no-repeat;
+    transition: transform 300ms ease-in-out;
+    opacity: 0.6;
+  }
+}
+</style>

@@ -1,5 +1,6 @@
 <template>
-  <div class="s-result-dropdown">
+  <!-- <div class="s-result-dropdown">
+    
     <span @click="open" v-text="text" />
     <div
       class="search-f-dropdown"
@@ -15,6 +16,21 @@
         />
       </ul>
     </div>
+  </div> -->
+  <div class="destination">
+    <label class="control control--checkbox">
+      <span>One Way</span>
+      <div class="control__indicator"></div>
+    </label>
+    <label class="control control--checkbox">
+      <span>Two Way</span>
+      <div class="control__indicator"></div>
+    </label>
+    <label class="control control--nomad">
+      <span class="coming-soon">Coming Soon</span>
+      <span class="nomad">Nomad</span>
+      <div class="control__indicator"></div>
+    </label>
   </div>
 </template>
 

@@ -94,5 +94,9 @@
         border: 0.5px solid #ccc;
         margin-top: 1rem;
         padding:10px;
+        &--logged {
+          box-shadow: none;
+          border: 0;
+        }
     }
   }

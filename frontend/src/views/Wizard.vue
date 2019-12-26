@@ -47,7 +47,7 @@
                 <div><strong>Your activation code was not found</strong></div>
               </div>
               <template v-if="displayForm">
-                <div class="input-group input-group-sm step-f-inputs">
+                <div class="form-group input-group input-group-sm step-f-inputs">
                   <location-input
                     :prompt="'Home Airport'"
                     :prompt-mobile="'Home Airport'"
@@ -82,7 +82,7 @@
                   >
                 </div>
 
-                <div class="input-group input-group-sm step-f-inputs">
+                <div class="form-group input-group input-group-sm step-f-inputs">
                   <input
                     type="password"
                     class="form-control"

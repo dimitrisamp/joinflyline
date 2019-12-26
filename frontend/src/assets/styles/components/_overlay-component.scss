@@ -5,7 +5,7 @@
     width: 100%;
     background-color: rgba(255, 255, 255, 0.9);
     z-index: 12;
-    border: 0.5px solid #ccc;
+    border: 0.5px solid $gray;
     text-align: center;
     padding: 2.5rem 1rem;
 
@@ -34,4 +34,11 @@
         top: 50%;
         height: 50%;
     }
+
+   + .search-filter {
+    .search-filter__body {
+        box-shadow: none;
+        border: 0;
+    }
+   }
 }

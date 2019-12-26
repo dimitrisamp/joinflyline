@@ -15,7 +15,7 @@
         </div>
         <p>Filter by : Stops, Airlines,Times, and more</p>
       </div>
-      <div class="search-filter__body">
+      <div class="search-filter__body" :class="{'search-filter__body--logged': !user.anonymous}">
         <collapse :collapsed="false" title="Filter By Airlines">
           <airline-filter :data="filterableAirlines" @select="toggleAirline" />
         </collapse>
