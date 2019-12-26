@@ -365,6 +365,7 @@ header.sticky {
   display: flex;
   flex-direction: row-reverse;
   width: 100%;
+  min-width: 9.5rem;
 }
 .dat-blue-border .search-form-input {
   padding: 0.5rem;

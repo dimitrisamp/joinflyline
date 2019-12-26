@@ -66,8 +66,8 @@
             :value="form.destinationTypeId"
             @select="setDestinationType"
           />
-          <select-passenger-count />
           <select-seat-type :value="form.seatType" @select="setSeatType" />
+          <select-passenger-count />
         </div>
         <div class="main-header__bottom">
           <form action="">
