@@ -6,19 +6,15 @@
       v-on:back-pressed="backPressed"
     />
     <search-result-mobile
-      v-for="data in searchResults"
+      v-for="data in finalResults"
       :key="data.id"
       :data="data"
-      @showPopup="showPopup"
     />
-    <search-results-popup />
   </div>
 </template>
 
 <script>
-import { showPopup } from "../utils/utils";
 import Vuex from "vuex";
-import SearchResultsPopup from "./SearchResultsPopup";
 import SearchResultMobile from "./SearchResultMobile";
 import SearchInfoMobile from "./SearchInfoMobile";
 
@@ -27,17 +23,24 @@ export default {
     backPressed() {
       this.$emit("back-pressed");
     },
-    showPopup,
+    bookFlight(index) {
+      this.setSearchResultIndex(index);
+      if (this.user.anonymous) {
+        this.$router.push({ name: "search-booking" });
+      } else {
+        this.$router.push({ name: "booking" });
+      }
+    },
     ...Vuex.mapActions("search", ["sortResultsBy"])
   },
   delimiters: ["{{", "}}"],
   components: {
-    SearchResultsPopup,
     SearchResultMobile,
     SearchInfoMobile
   },
   computed: {
-    ...Vuex.mapState("search", ["searchProgress", "searchResults", "form"])
+    ...Vuex.mapState("search", ["searchProgress", "form"]),
+    ...Vuex.mapGetters("search", ["finalResults"])
   }
 };
 </script>

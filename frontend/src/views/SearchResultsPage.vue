@@ -1,18 +1,11 @@
 <template>
   <div class="search-result" id="main" v-cloak>
     <!-- Mobile View Start   -->
-    <div
-      class="search-result__mobile"
-      v-if="
-        searchResults.length !== 0 && isMobile && !searchProgress && !backToForm
-      "
-    >
-      <search-results-mobile />
-    </div>
+
     <!-- Mobile View Ends-->
 
     <!-- Desktop View Start -->
-    <div class="search-result__desktop" v-else>
+    <div class="search-result__desktop">
       <div class="search-result__inner">
         <!-- Desktop Inner Start -->
         <header class="header">
@@ -207,7 +200,6 @@
 import SearchForm from "../components/SearchForm";
 import FilterForm from "../components/FilterForm";
 import Vuex from "vuex";
-import SearchResultsMobile from "../components/SearchResultsMobile";
 import NavBar from "../components/NavBar";
 import SelectDestination from "../components/SelectDestination";
 import SelectPassengerCount from "../components/SelectPassengerCount";
@@ -217,13 +209,11 @@ import PriceFilter from "../components/PriceFilter";
 import AirlineFilter from "../components/AirlineFilter";
 import Collapse from "../components/Collapse";
 import LocationInput from "../components/LocationInput";
-//import SearchResults from "../components/SearchResults";
 import MainLandingFooter from "../components/MainLandingFooter";
 import SearchHeader from "../components/SearchHeader";
 
 export default {
   components: {
-    SearchResultsMobile,
     NavBar,
     SelectDestination,
     SelectPassengerCount,
@@ -233,7 +223,6 @@ export default {
     AirlineFilter,
     PriceFilter,
     MaxStopsFilter,
-    //    SearchResults,
     MainLandingFooter,
     SearchHeader
   },

@@ -1,5 +1,8 @@
 <template>
-  <div class="result">
+  <div class="search-result__mobile" v-if="$mq === 'sm'">
+    <search-results-mobile />
+  </div>
+  <div class="result" v-else>
     <div class="result__container main-padding">
       <div class="row">
         <div class="col-12 col-xl-3 result__filters">
@@ -18,11 +21,13 @@ import Vuex from "vuex";
 import FilterForm from "./FilterForm";
 import SearchResults from "./SearchResults";
 import FilterFormComponent from "./FilterFormComponent";
+import SearchResultsMobile from "./SearchResultsMobile";
 
 export default {
   mixins: [FilterForm],
   delimiters: ["{{", "}}"],
   components: {
+    SearchResultsMobile,
     FilterFormComponent,
     SearchResults
   },

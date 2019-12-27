@@ -171,8 +171,12 @@
       }
 
       display: flex;
-      flex-direction: row;
+      flex-direction: column;
+      align-items: center;
       justify-content: space-between;
+      @include mq(md) {
+        flex-direction: row;
+      }
     }
 
     &__top {

@@ -21,7 +21,10 @@
             <b>Trip Price : ${{ price }}</b>
           </li>
           <li>
-            <a href="#" @click="bookFlight(data)" class="btn btn-default"
+            <a
+              href="#"
+              @click="bookFlight(data.srIndex)"
+              class="btn btn-default"
               >Book</a
             >
           </li>
@@ -32,7 +35,6 @@
 </template>
 
 <script>
-import { proceedToBooking, showPopup } from "../utils/utils";
 import Vuex from "vuex";
 import SummaryLegMobile from "./SummaryLegMobile";
 
@@ -43,12 +45,13 @@ export default {
     SummaryLegMobile
   },
   methods: {
-    showPopup,
-    bookFlight(flight) {
+    ...Vuex.mapMutations("search", ["setSearchResultIndex"]),
+    bookFlight(index) {
+      this.setSearchResultIndex(index);
       if (this.user.anonymous) {
-        this.$emit("showPopup");
+        this.$router.push({ name: "search-booking" });
       } else {
-        proceedToBooking(flight);
+        this.$router.push({ name: "booking" });
       }
     }
   },

@@ -1,6 +1,5 @@
 import { legacyAirlines, lowcostAirlines } from "./airlineCodes";
 import api from "./http";
-import $ from "jquery";
 import moment from "moment";
 
 export const seatTypes = {
@@ -379,10 +378,6 @@ export function getSearchURL(form) {
   let url = new URL("/api/search", window.location);
   url.search = new URLSearchParams(formData);
   return url;
-}
-
-export function showPopup() {
-  $("#search-results-popup").modal();
 }
 
 export function pick(a) {

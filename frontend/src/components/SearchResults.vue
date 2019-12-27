@@ -57,7 +57,6 @@
         :form="form"
         :user="user"
         :key="flight.id"
-        @showPopup="showPopup"
         @proceed-to-booking="bookFlight(flight.srIndex)"
       />
       <div v-if="user.anonymous" class="fake-results">
@@ -67,7 +66,6 @@
           :form="form"
           :user="user"
           :key="flight.id"
-          @showPopup="showPopup"
           @proceed-to-booking="bookFlight(flight.srIndex)"
         />
         <overlay-component
@@ -91,7 +89,6 @@
 </template>
 
 <script>
-import { showPopup } from "../utils/utils";
 import Vuex from "vuex";
 import Flight from "./Flight";
 import QuickLinks from "./QuickLinks";
@@ -108,7 +105,6 @@ export default {
     OverlayComponent
   },
   methods: {
-    showPopup,
     ...Vuex.mapMutations("search", ["setSearchResultIndex"]),
     ...Vuex.mapActions("search", ["loadMore", "sortResultsBy"]),
     bookFlight(index) {
