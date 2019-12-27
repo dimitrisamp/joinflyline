@@ -1947,7 +1947,7 @@ This one is disabled until top blue line is back
   }
 
   .mobile-pricing-plan .pricing-section-home {
-    width: 384px;
+    width: 100%;
     overflow-x: scroll;
     overflow-y: hidden;
     white-space: nowrap;

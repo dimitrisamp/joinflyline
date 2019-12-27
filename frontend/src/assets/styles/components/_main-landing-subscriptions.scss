@@ -13,9 +13,12 @@
   font-size: 50px;
   font-weight: 600;
   font-family: Dona-Black;
-  color: #fff;
+  color: $black;
   margin-top: 34px;
   letter-spacing: 1px;
+  @include mq(md) {
+    color: #fff;
+  }
 }
 
 .section5-content p {
@@ -63,7 +66,10 @@
 }
 
 .pricing-section-home {
-  margin: 0px 90px;
+  margin: 0;
+  @include mq(md) {
+    margin: 0 90px;
+  }
 }
 
 .pricing-section-home .spacing-price {
