@@ -3,7 +3,7 @@
     <li>
       <span class="info">{{ duration }}</span>
     </li>
-    <li v-for="airline in airlines" :key="airline">
+    <li v-for="(airline, i) in airlines" :key="`${airline}-${i}`">
       <img :src="airlineIcon(airline)" alt="airline" />
     </li>
     <li>

@@ -7,14 +7,13 @@
         src="@/assets/img/FlyLine_Interline.png"
         alt="interlining"
       />
-      <summary-leg-mobile :flights="flightsTo" :key="0" />
+      <summary-leg-mobile :flights="flightsTo" />
       <div v-if="flightsReturn.length !== 0" class="m-oof-nights">
         {{ nightsInDest }} night{{ nightsInDest > 1 ? "s" : "" }} in {{ dest }}
       </div>
       <summary-leg-mobile
         v-if="flightsReturn.length !== 0"
         :flights="flightsReturn"
-        :key="1"
       />
       <div class="m-total-p-section">
         <ul>
@@ -35,10 +34,14 @@
 <script>
 import { proceedToBooking, showPopup } from "../utils/utils";
 import Vuex from "vuex";
+import SummaryLegMobile from "./SummaryLegMobile";
 
 export default {
   props: ["data"],
   delimiters: ["{{", "}}"],
+  components: {
+    SummaryLegMobile
+  },
   methods: {
     showPopup,
     bookFlight(flight) {

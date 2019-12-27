@@ -7,7 +7,7 @@
     />
     <search-result-mobile
       v-for="data in searchResults"
-      :key="data"
+      :key="data.id"
       :data="data"
       @showPopup="showPopup"
     />
