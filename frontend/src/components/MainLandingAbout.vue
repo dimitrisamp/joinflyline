@@ -180,10 +180,12 @@
 
 <script>
 import MainLandingFooter from "./MainLandingFooter";
+import NavBar from "./NavBar";
 
 export default {
   components: {
-    "main-landing-footer": MainLandingFooter
+    "main-landing-footer": MainLandingFooter,
+    NavBar
   },
   delimiters: ["{{", "}}"]
 };
