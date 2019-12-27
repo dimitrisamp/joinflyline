@@ -2459,7 +2459,7 @@ This one is disabled until top blue line is back
     flex-direction: row;
   }
   .hero-search__item:not(.is-last) {
-    margin-right: 15px;
+    margin-right: 0.1rem;
     flex-grow: 1;
   }
   .hero-search__item.is-wide {
