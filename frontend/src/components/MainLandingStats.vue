@@ -1,7 +1,7 @@
 <template>
   <div class="stats">
     <div class="container">
-      <h2 class="stats__title">What FlyLine Subscribers Get</h2>
+      <h2 class="stats__title">What FlyLine Members Get</h2>
       <div class="row">
         <div class="col-12 col-lg-4">
           <div class="stats__item">

@@ -8,9 +8,9 @@
         <div class="container">
           <div class="row">
             <div class="col-12 col-lg-6">
-              <h2 class="steps__title title--blue-big">Step 1</h2>
+              <h2 class="steps__title title--blue-big">Step One</h2>
               <h3 class="steps__subtitle title--black">
-                Choose Your Subscription
+                Choose Your Membership
               </h3>
               <p class="steps__text">
                 Choose between FlyLine Basic <br />
@@ -66,11 +66,11 @@
 
           <div class="col-12 col-lg-6">
             <div class="steps__right">
-              <h2 class="steps__title title--blue-big">Step 2</h2>
+              <h2 class="steps__title title--blue-big">Step Two</h2>
               <h3 class="steps__subtitle title--black">Search for Savings</h3>
               <p class="steps__text">
-                Search our flight inventory to find savings on <br />
-                both domestic and international flights
+                Search our flight inventory to find <br />
+                savings up to 60% of
               </p>
               <router-link
                 class="button button--big button--blue"
@@ -93,7 +93,7 @@
           <!-- Left Start -->
           <div class="col-12 col-lg-6">
             <div class="steps__left">
-              <h2 class="steps__title title--blue-big">Step 3</h2>
+              <h2 class="steps__title title--blue-big">Step Three</h2>
               <h3 class="steps__subtitle title--black">Save Instantly</h3>
               <p class="steps__text">
                 Our average member recoups their subscription fee in 3 <br />

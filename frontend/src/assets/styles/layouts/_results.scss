@@ -150,9 +150,16 @@
       width: 100%;
     }
     .search-flight-home {
-      h3,p {
+      h3 {
+        color: $white;
+
+      }
+
+      p {
+        font-family: $dona-bold;
         color: $white;
       }
+
 
       button{
         width: 230px;

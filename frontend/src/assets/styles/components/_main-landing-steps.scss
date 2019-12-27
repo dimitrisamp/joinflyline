@@ -6,7 +6,7 @@
   @include mq(lg) {
     text-align: left;
   }
-    &--background {  
+    &--background {
       &-blue {
         background-image: url(assets/img/pricing_background.png);
         background-position: center;
@@ -24,7 +24,7 @@
     &--lines-left {
       @include steps-lines(left);
     }
-    
+
     &--lines-right {
       @include steps-lines(right);
     }
@@ -37,10 +37,12 @@
 
     &__text {
       font-size: 1.25rem;
+      font-family: $dona-bold;
       color: $main-landing-gray;
       margin: 1.8rem 0;
       .steps--background-blue & {
         color: $white;
+      font-family: $dona-bold;
       }
     }
 
