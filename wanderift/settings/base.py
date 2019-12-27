@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     "django_filters",
     "knox",
     "corsheaders",
+    "django_rest_passwordreset",
     # My apps
     "apps.subscriptions.apps.SubscriptionsConfig",
     "apps.home",

@@ -52,7 +52,8 @@ def forgot_password(user_id, secret):
         "emails/forgot-password.html",
         {
             "user": user,
-            "secret": secret
+            "secret": secret,
+            "SITE_URL": settings.SITE_URL
         },
     )
     from_email = settings.DEFAULT_FROM_EMAIL

@@ -21,6 +21,8 @@ import PromoLanding from "../views/PromoLanding";
 import Faq from "../views/Faq";
 import Vue from "vue";
 import VueRouter from "vue-router";
+import PasswordReset from "../views/PasswordReset";
+import PasswordResetConfirm from "../views/PasswordResetConfirm";
 
 Vue.use(VueRouter);
 
@@ -107,6 +109,22 @@ const routes = [
     path: "/sign-in",
     name: "sign-in",
     component: SignIn,
+    meta: {
+      loginRequired: false
+    }
+  },
+  {
+    path: "/password-reset",
+    name: "password-reset",
+    component: PasswordReset,
+    meta: {
+      loginRequired: false
+    }
+  },
+  {
+    path: "/password-reset/confirm",
+    name: "password-reset-confirm",
+    component: PasswordResetConfirm,
     meta: {
       loginRequired: false
     }

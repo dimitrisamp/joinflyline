@@ -43,7 +43,9 @@
             <button type="submit" class="btn btn-default submit-btn">
               Log In
             </button>
-            <a href="javascript:" class="forgot-link">Forgot Password?</a>
+            <router-link :to="{ name: 'password-reset' }" class="forgot-link"
+              >Forgot Password?</router-link
+            >
             <!-- TODO: Move forgot password here -->
           </form>
         </div>
