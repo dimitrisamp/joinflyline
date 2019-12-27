@@ -5,7 +5,7 @@
         Create Your FlyLine Account to view Filters
       </h5>
       <p>
-        To filter results upgrade to FlyLine Basic or Pro
+        Choose FlyLine Basic or Pro
       </p>
     </overlay-component>
     <div class="search-filter">
@@ -17,10 +17,10 @@
           <span>Flight Filters</span>
           <!-- <span @click="clearFiltersAndUpdate">Clear All</span> -->
         </h3>
-        <p>Filter by : Stops, Airlines,Times, and more</p>
+        <p>Filter by : Stops, Airline, Times, and more</p>
       </div>
       <div class="search-filter__body" :class="{'search-filter__body--logged': !user.anonymous}">
-        <collapse :collapsed="false" title="Filter By Airlines">
+        <collapse :collapsed="false" title="Filter By Airline">
           <airline-filter :data="filterableAirlines" @select="toggleAirline" />
         </collapse>
         <collapse title="Filter By Time">

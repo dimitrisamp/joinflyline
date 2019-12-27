@@ -13,7 +13,7 @@
           people spend less and travel more.
         </h1>
         <h4 class="about__subtitle">
-          Book all your favorite airlines at wholesale prices.
+          Save up to 60% on FlyLine fares and access the best flight deals on the net
         </h4>
         <p class="about__text">
           It’s easy to spend money on travel. But getting the most value is a
@@ -21,7 +21,11 @@
           Take trip planning for example. Finding the best deal takes time,
           prices change <br />
           depending on many variables, and pricing isn’t always transparent. We
-          don’t think that’s fair.
+          don’t think that’s fair. <br />
+          FlyLine is here to help. We give everyone the tools it takes to fine
+          the best savings, perks, and all around value <br />
+          We then make them easy-to-use with a straight forward membership model,
+          so you can always spend with confidence.
         </p>
         <p class="about__text">
           FlyLine is here to help. We give everyone the tools it takes to find
@@ -81,8 +85,8 @@
                     FlyLine Search & Booking Engine
                   </h2>
                   <p class="tabs__content-text">
-                    All of your favorite airline routes and <br />
-                    destinations at wholesale prices.
+                    Save up to 90% on FlyLine fares <br />
+                    and get access to the Internets best deals
                   </p>
                 </div>
                 <div class="col-12 col-lg-5">
@@ -154,7 +158,10 @@
             Airlines publish flights to the Airline Tariff Publishing Company
             (ATPCO), where we access them via <br />
             the Global Distribution System (GDS) and pass them on to you, our
-            members, at their low wholesale rate.
+            members, at their low wholesale rate. <br />
+            If our wholesale FlyLine fare isn’t the lowest available on the net
+            we’ll show you what is so you can always <br />
+            book with confidence and save!
           </p>
           <p class="business-model__text">
             We generate revenue through our memberships and a small
