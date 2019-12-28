@@ -275,7 +275,7 @@ export default {
       emailVerified: false,
       requestSent: false,
       form: {
-        home_airport: "",
+        home_airport: null,
         email: "",
         password: "",
         first_name: "",

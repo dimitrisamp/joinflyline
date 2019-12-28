@@ -211,7 +211,10 @@ const router = new VueRouter({
   mode: "history",
   routes,
   linkActiveClass: "active",
-  linkExactActiveClass: "exact-active"
+  linkExactActiveClass: "exact-active",
+  scrollBehavior() {
+    return { x: 0, y: 0 };
+  }
 });
 
 router.beforeEach((to, from, next) => {
