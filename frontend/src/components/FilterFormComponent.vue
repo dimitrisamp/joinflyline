@@ -1,6 +1,6 @@
 <template>
   <form action="" class="bg-white">
-    <overlay-component v-if="user.anonymous" :link="{name: 'get-started'}">
+    <overlay-component v-if="user.anonymous" :link="{ name: 'get-started' }">
       <h5 class="overlay-component__heading">
         Create Your FlyLine Account to view Filters
       </h5>
@@ -12,14 +12,17 @@
       <div class="search-filter__header">
         <div class="search-quick-filter-filter-name">
           <strong>Flight Filters</strong>
+          <h3 class="filter-sidebar__title">
+            <span @click="clearFiltersAndUpdate">Clear All</span>
+          </h3>
         </div>
-        <h3 class="filter-sidebar__title">
-          <span>Flight Filters</span>
-          <!-- <span @click="clearFiltersAndUpdate">Clear All</span> -->
-        </h3>
+
         <p>Filter by : Stops, Airline, Times, and more</p>
       </div>
-      <div class="search-filter__body" :class="{'search-filter__body--logged': !user.anonymous}">
+      <div
+        class="search-filter__body"
+        :class="{ 'search-filter__body--logged': !user.anonymous }"
+      >
         <collapse :collapsed="false" title="Filter By Airline">
           <airline-filter :data="filterableAirlines" @select="toggleAirline" />
         </collapse>
@@ -56,7 +59,12 @@ import Vuex from "vuex";
 export default {
   name: "FilterFormComponent",
   methods: {
-    ...Vuex.mapActions("search", ["sortResultsBy", "loadMore", "search"]),
+    ...Vuex.mapActions("search", [
+      "sortResultsBy",
+      "loadMore",
+      "search",
+      "clearFiltersAndUpdate"
+    ]),
     ...Vuex.mapMutations("search", [
       "toggleAirline",
       "setMaxStops",

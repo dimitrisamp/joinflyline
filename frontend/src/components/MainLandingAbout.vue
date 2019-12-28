@@ -181,11 +181,15 @@
 <script>
 import MainLandingFooter from "./MainLandingFooter";
 import NavBar from "./NavBar";
+import Tab from "./Tab";
+import Tabs from "./Tabs";
 
 export default {
   components: {
     "main-landing-footer": MainLandingFooter,
-    NavBar
+    NavBar,
+    Tabs,
+    Tab
   },
   delimiters: ["{{", "}}"]
 };

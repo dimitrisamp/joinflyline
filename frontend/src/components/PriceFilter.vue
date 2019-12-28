@@ -4,11 +4,10 @@
       ${{ limits[0] }} - ${{ limits[1] }}
     </div>
     <vue-slider
-      @change="select"
       v-model="limits"
       :enable-cross="false"
-      :min="priceLimits.min"
-      :max="priceLimits.max"
+      :min="priceLimits.min || 0"
+      :max="priceLimits.max || 3000"
       :lazy="true"
     />
   </div>
@@ -23,23 +22,21 @@ export default {
   components: {
     VueSlider
   },
-  data() {
-    const d = this.$store.getters["search/priceLimits"];
-    return {
-      limits: [d.min, d.max]
-    };
-  },
   methods: {
     select(value) {
       this.$emit("select", value);
     }
   },
   computed: {
-    ...Vuex.mapGetters("search", ["priceLimits"]),
-    text() {
-      const [a, b] = this.data.limits;
-      return `$${a}-$${b}`;
-    }
+    limits: {
+      get() {
+        return this.$store.state.search.form.priceRange;
+      },
+      set(value) {
+        this.$store.commit("search/setPriceRange", value);
+      }
+    },
+    ...Vuex.mapGetters("search", ["priceLimits"])
   }
 };
 </script>

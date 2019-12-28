@@ -43,7 +43,9 @@
                           <li class="subscription__item">
                             - Flight Search and Book
                           </li>
-                          <li class="subscription__item">- Auto Check-in</li>
+                          <li class="subscription__item">
+                            - Automatic check in
+                          </li>
                           <li
                             v-if="plans[tab.plan].limit"
                             class="subscription__item"
@@ -121,17 +123,13 @@
         <tabs>
           <tab :selected="true" title="Flight Search & Booking">
             <ul class="membership-explained__tab-list">
-              <li>Included in all plans (Basic, Basic Plus, and Pro)</li>
+              <li>Included in Basic and Pro</li>
               <li>
                 A booking is the purchase of "a" flight for an individual.
               </li>
               <li>
                 Basic Members are limited to six (6) bookings every twelve (12)
                 months
-              </li>
-              <li>
-                Basic Plus Members are limited to nine (9) bookings every twelve
-                (12) months
               </li>
               <li>Pro Members have unlimited booking</li>
             </ul>
@@ -148,7 +146,7 @@
           </tab>
           <tab title="Companion Accounts">
             <ul class="membership-explained__tab-list">
-              <li>Included with Basic Plus and Pro plans</li>
+              <li>Included with Pro plan</li>
               <li>
                 A companion is defined as an individual designated by a paid
                 member to be a non-paid member associated with their account
@@ -162,12 +160,12 @@
                 Companions will be allowed to book as members, with each of
                 their bookings counting against your total bookings
               </li>
-              <li>Basic Plus and Pro Members are allowed a companion</li>
+              <li>Pro Members are allowed a companion</li>
             </ul>
           </tab>
           <tab title="Deal Alerts">
             <ul class="membership-explained__tab-list">
-              <li>Included with Basic Plus and Pro plans</li>
+              <li>Included with Basic and Pro plans</li>
               <li>
                 You have the ability to list destinations you want to monitor
                 for discounts and price drops. FlyLine will then monitor these

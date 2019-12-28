@@ -15,6 +15,19 @@ import {
 import moment from "moment";
 import api from "../utils/http";
 
+function initialTimeFilters() {
+  return {
+    departure: {
+      takeoff: [0, 24 * 60],
+      landing: [0, 24 * 60]
+    },
+    return: {
+      takeoff: [0, 24 * 60],
+      landing: [0, 24 * 60]
+    }
+  };
+}
+
 export const searchStore = {
   namespaced: true,
   state: {
@@ -40,16 +53,7 @@ export const searchStore = {
       placeFrom: null,
       placeTo: null,
       singleCarrier: false,
-      timeFilters: {
-        departure: {
-          takeoff: [0, 24 * 60],
-          landing: [0, 24 * 60]
-        },
-        return: {
-          takeoff: [0, 24 * 60],
-          landing: [0, 24 * 60]
-        }
-      }
+      timeFilters: initialTimeFilters()
     },
     searchResults: [],
     toggleSidebar: false,
@@ -61,6 +65,9 @@ export const searchStore = {
     SET_TIME_FILTERS(state, v) {
       const { destination, direction, value } = v;
       state.form.timeFilters[destination][direction] = value;
+    },
+    RESET_TIME_FILTERS(state) {
+      state.form.timeFilters = initialTimeFilters();
     },
     SET_SINGLE_CARRIER(state) {
       state.form.singleCarrier = true;
@@ -87,7 +94,6 @@ export const searchStore = {
       for (let a of state.form.airlines) {
         a.checked = false;
       }
-      state.form.priceRange = [0, 3000];
       state.form.maxStops = null;
       state.form.limitIncrement = 0;
     },
@@ -213,7 +219,12 @@ export const searchStore = {
     },
     clearFiltersAndUpdate(context) {
       context.commit("clearFilters");
+      context.commit("setPriceRange", [
+        context.getters.priceLimits.min,
+        context.getters.priceLimits.max
+      ]);
       context.commit("resetAirlinesFilter");
+      context.commit("RESET_TIME_FILTERS");
     },
     search(context, payload) {
       const { saveSearch } = payload;
