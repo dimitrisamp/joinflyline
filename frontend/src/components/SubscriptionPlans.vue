@@ -29,7 +29,7 @@
             </h3>
             <h3 v-else class="h-planbox__header">Free</h3>
             <ul class="plan-list">
-              <li>- Flights Search & Booking</li>
+              <li>- Flight Search & Booking</li>
               <li>- Auto Check-in</li>
               <li v-if="plan.limit === null">- Unlimited bookings</li>
               <li v-else>- Max of {{ plan.limit }} bookings</li>
@@ -61,7 +61,7 @@
               </h3>
               <h3 v-else class="h-planbox__header">Free</h3>
               <ul class="plan-list">
-                <li>- Flights Search & Booking</li>
+                <li>- Flight Search & Booking</li>
                 <li>- Auto Check-in</li>
                 <li v-if="plan.limit !== null">
                   - Max of {{ plan.limit }} bookings

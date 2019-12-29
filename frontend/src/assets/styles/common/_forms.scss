@@ -2,7 +2,7 @@
   .form-control {
     border: 2px solid $input-border-color;
     @include mq(md) {
-      margin-right: 1.1875rem;
+      margin-right: 0;
     }
     border-radius: 0;
     &::placeholder {

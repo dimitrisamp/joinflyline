@@ -51,17 +51,29 @@
       v-cloak
       v-if="!searchProgress && finalResults.length !== 0"
     >
-      <flight
-        v-for="flight in finalResults"
-        :flight="flight"
-        :form="form"
-        :user="user"
-        :key="flight.id"
-        @proceed-to-booking="bookFlight(flight.srIndex)"
-      />
-      <div v-if="user.anonymous" class="fake-results">
+      <template v-if="!user.anonymous">
         <flight
           v-for="flight in finalResults"
+          :flight="flight"
+          :form="form"
+          :user="user"
+          :key="flight.id"
+          @proceed-to-booking="bookFlight(flight.srIndex)"
+        />
+      </template>
+      <template v-else>
+        <flight
+          v-for="flight in finalResults.slice(0, 2)"
+          :flight="flight"
+          :form="form"
+          :user="user"
+          :key="flight.id"
+          @proceed-to-booking="bookFlight(flight.srIndex)"
+        />
+      </template>
+      <div v-if="user.anonymous" class="fake-results">
+        <flight
+          v-for="flight in finalResults.slice(2, 4)"
           :flight="flight"
           :form="form"
           :user="user"
@@ -76,7 +88,8 @@
             Create Your FlyLine Account to view all of our flights
           </h5>
           <p>
-            We have thousands of flights from hundreds of carriers upgrade to FlyLine Basic or Pro to view thew all!
+            We have thousands of flights from hundreds of carriers upgrade to
+            FlyLine Basic or Pro to view thew all!
           </p>
         </overlay-component>
       </div>

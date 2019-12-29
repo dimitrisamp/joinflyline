@@ -434,7 +434,7 @@ export const searchStore = {
     },
     finalResults(state, getters, rootState, rootGetters) {
       const limit = rootGetters["user/user"].anonymous
-        ? 2
+        ? 4
         : state.form.limit + state.form.limitIncrement;
       return getters.filteredResults.slice(0, limit);
     },

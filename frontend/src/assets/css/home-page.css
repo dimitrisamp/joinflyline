@@ -255,7 +255,7 @@ header.sticky {
 
 .newhome-form h3 {
   font-weight: 600;
-  font-size: 43px;
+  font-size: 2.5rem;
   padding-top: 25px;
   color: #000;
   margin-bottom: 0;
@@ -2089,7 +2089,7 @@ This one is disabled until top blue line is back
   .section5-content p {
     color: #fff;
     font-weight: 600;
-    font-size: 14px;
+    font-size: 1.2rem;
     margin: 10px 10px;
     line-height: 23px;
   }
@@ -2306,7 +2306,7 @@ This one is disabled until top blue line is back
   .section5-content p {
     color: #fff;
     font-weight: 600;
-    font-size: 11px;
+    font-size: 1.2rem;
     margin: 10px 10px;
     line-height: 23px;
   }

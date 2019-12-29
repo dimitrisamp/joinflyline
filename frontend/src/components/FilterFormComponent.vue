@@ -23,7 +23,7 @@
         class="search-filter__body"
         :class="{ 'search-filter__body--logged': !user.anonymous }"
       >
-        <collapse :collapsed="false" title="Filter By Airline">
+        <collapse :collapsed="airlineCollapse" title="Filter By Airline">
           <airline-filter :data="filterableAirlines" @select="toggleAirline" />
         </collapse>
         <collapse title="Filter By Time">
@@ -57,6 +57,13 @@ import OverlayComponent from "./OverlayComponent";
 import Vuex from "vuex";
 
 export default {
+  props: {
+    airlineCollapse: {
+      type: Boolean,
+      default: false,
+      required: false
+    }
+  },
   name: "FilterFormComponent",
   methods: {
     ...Vuex.mapActions("search", [

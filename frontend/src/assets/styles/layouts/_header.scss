@@ -36,7 +36,7 @@
         font-family: $dona-bold;
         font-size: 0.75rem;
         @include mq(lg) {
-          font-size: 1rem;
+          font-size: 0.75rem;
         }
 
         &:last-child {

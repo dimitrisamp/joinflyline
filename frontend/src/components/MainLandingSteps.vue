@@ -70,7 +70,7 @@
               <h3 class="steps__subtitle title--black">Search for Savings</h3>
               <p class="steps__text">
                 Search our flight inventory to find <br />
-                savings up to 60% of
+                savings up to 60% off
               </p>
               <router-link
                 class="button button--big button--blue"

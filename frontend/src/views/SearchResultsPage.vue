@@ -1,19 +1,30 @@
 <template>
   <div class="search-result" id="main" v-cloak>
     <!-- Mobile View Start   -->
-
+    <search-progress :is-visible="searchProgress">
+      Give us a few moments while we load your search results
+    </search-progress>
+    <div
+      class="search-result__mobile"
+      v-if="searchResults.length !== 0 && isMobile && !searchProgress"
+    >
+      <search-results-mobile />
+    </div>
     <!-- Mobile View Ends-->
 
     <!-- Desktop View Start -->
-    <div class="search-result__desktop">
+    <div class="search-result__desktop" v-else>
       <div class="search-result__inner">
         <!-- Desktop Inner Start -->
         <header class="header">
           <nav-bar />
         </header>
+        <div class="container search-container">
+          <search-header />
+        </div>
         <!-- Desktop Inner Ends -->
         <!-- Search Container Start -->
-        <div class="search-result__container" style="padding-top: 60px;">
+        <div class="search-result__container">
           <div class="search-result__container__inner">
             <div class="search-result__container__left" style="display:none;">
               <div class="search-flight-home">
@@ -147,7 +158,7 @@
                   <router-link
                     tag="button"
                     type="button"
-                    class="btn btn-info"
+                    class="btn btn-info flyline-101"
                     :to="{ name: 'flyline101' }"
                   >
                     FlyLine 101
@@ -202,6 +213,9 @@ import AirlineFilter from "../components/AirlineFilter";
 import Collapse from "../components/Collapse";
 import LocationInput from "../components/LocationInput";
 import MainLandingFooter from "../components/MainLandingFooter";
+import SearchResultsMobile from "../components/SearchResultsMobile";
+import SearchProgress from "../components/SearchProgress";
+import SearchHeader from "../components/SearchHeader";
 
 export default {
   components: {
@@ -215,6 +229,9 @@ export default {
     PriceFilter,
     MaxStopsFilter,
     MainLandingFooter,
+    SearchResultsMobile,
+    SearchProgress,
+    SearchHeader
   },
   delimiters: ["{{", "}}"],
   mixins: [SearchForm, FilterForm],
@@ -240,9 +257,7 @@ export default {
   methods: {
     calcHeightOfHeader() {
       const headerEl = document.querySelector(".header");
-      const searchContainer = document.querySelector(
-        ".search-result__container"
-      );
+      const searchContainer = document.querySelector(".search-container");
       const searchForm = document.querySelector(
         ".search-result__container__left"
       );
@@ -259,3 +274,9 @@ export default {
   }
 };
 </script>
+<style>
+.btn.btn-info.flyline-101 {
+  border-radius: 0;
+  border: none;
+}
+</style>

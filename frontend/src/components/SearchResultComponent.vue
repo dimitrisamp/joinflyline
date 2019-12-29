@@ -6,7 +6,7 @@
     <div class="result__container main-padding">
       <div class="row">
         <div class="col-12 col-xl-3 result__filters">
-          <filter-form-component />
+          <filter-form-component :airline-collapse="true" />
         </div>
         <div class="col-12 col-xl-9">
           <search-results />
