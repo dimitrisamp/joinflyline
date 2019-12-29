@@ -51,7 +51,7 @@
         <button
           class="hamburger hamburger--slider"
           :class="{ 'is-active': toggleSidebar }"
-          @click.prevent="$store.dispatch('toggleSidebar')"
+          @click.prevent="$store.dispatch('dashboard/toggleSidebar')"
         >
           <span class="hamburger-box">
             <span class="hamburger-inner" />
@@ -133,7 +133,7 @@ export default {
   extends: SearchForm,
   delimiters: ["{{", "}}"],
   computed: {
-    ...Vuex.mapGetters("search", ["toggleSidebar"])
+    ...Vuex.mapGetters("dashboard", ["toggleSidebar"])
   },
   components: {
     SelectDestination,

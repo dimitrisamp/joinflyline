@@ -69,9 +69,6 @@ export default {
     }
   },
   computed: {
-    toggleSidebar() {
-      return this.$store.getters.toggleSidebar;
-    },
     userNameSurname() {
       if (this.user) {
         return `${this.user.first_name || ""} ${this.user.last_name || ""}`;
@@ -87,7 +84,8 @@ export default {
       return null;
     },
     ...Vuex.mapState("user", ["user"]),
-    ...Vuex.mapState("plans", ["plans"])
+    ...Vuex.mapState("plans", ["plans"]),
+    ...Vuex.mapState("dashboard", ["toggleSidebar"])
   }
 };
 </script>

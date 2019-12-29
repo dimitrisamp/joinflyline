@@ -56,7 +56,6 @@ export const searchStore = {
       timeFilters: initialTimeFilters()
     },
     searchResults: [],
-    toggleSidebar: false,
     searchProgress: false,
     searchResultIndex: null,
     showDashboardNavigation: true
@@ -80,9 +79,6 @@ export const searchStore = {
     },
     setSearchResults(state, results) {
       state.searchResults = results;
-    },
-    TOGGLE_SIDEBAR(state) {
-      state.toggleSidebar = !state.toggleSidebar;
     },
     updatePlaceFrom(state, value) {
       state.form.placeFrom = value;
@@ -288,7 +284,6 @@ export const searchStore = {
     quickFiltersData(state, getters) {
       return getQuickLinksData(getters.filteredResults);
     },
-    toggleSidebar: state => state.toggleSidebar,
     filterableAirlines(state) {
       const kind = state.form.airlinesFilter;
       let result;
