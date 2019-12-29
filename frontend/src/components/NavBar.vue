@@ -12,15 +12,13 @@
       <button
         class="navbar-toggler nav-home"
         type="button"
-        data-toggle="collapse"
-        data-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
+        @click="toggleNavigation"
       >
         <span class="navbar-toggler-icon" />
       </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <div
+        :class="{ collapse: !showNavigation}"
+      >
         <div class="navbar-nav ml-auto">
           <div class="nav-item">
             <router-link
@@ -50,7 +48,15 @@ import Vuex from "vuex";
 
 export default {
   delimiters: ["{{", "}}"],
+  data() {
+    return {
+      showNavigation: false
+    };
+  },
   methods: {
+    toggleNavigation() {
+      this.showNavigation = !this.showNavigation;
+    },
     ...Vuex.mapState("user", ["logOut"])
   },
   computed: {

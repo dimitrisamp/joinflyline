@@ -137,14 +137,6 @@
                 </div>
               </div>
             </div>
-
-            <div class="search-result__container__top">
-              <search-header
-                v-show="showDashboardNavigation"
-                @search-complete="proceedToSearchResults"
-              />
-            </div>
-
             <div class="search-result__container__left">
               <div class="search-flight-home">
                 <div>
@@ -210,7 +202,6 @@ import AirlineFilter from "../components/AirlineFilter";
 import Collapse from "../components/Collapse";
 import LocationInput from "../components/LocationInput";
 import MainLandingFooter from "../components/MainLandingFooter";
-import SearchHeader from "../components/SearchHeader";
 
 export default {
   components: {
@@ -224,7 +215,6 @@ export default {
     PriceFilter,
     MaxStopsFilter,
     MainLandingFooter,
-    SearchHeader
   },
   delimiters: ["{{", "}}"],
   mixins: [SearchForm, FilterForm],
