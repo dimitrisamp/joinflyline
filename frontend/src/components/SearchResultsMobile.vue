@@ -20,6 +20,7 @@
         <overlay-component
           v-if="user.anonymous"
           :link="{ name: 'get-started' }"
+          label="View them all"
         >
           <h5 class="overlay-component__heading">
             Create Your FlyLine Account to view all of our flights

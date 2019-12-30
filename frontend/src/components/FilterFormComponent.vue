@@ -1,6 +1,6 @@
 <template>
   <form action="" class="bg-white">
-    <overlay-component v-if="user.anonymous" :link="{ name: 'get-started' }">
+    <overlay-component v-if="user.anonymous" :link="{ name: 'get-started' }" label="Get Started">
       <h5 class="overlay-component__heading">
         Create Your FlyLine Account to view Filters
       </h5>
