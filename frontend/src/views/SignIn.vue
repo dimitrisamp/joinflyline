@@ -76,7 +76,7 @@ export default {
     };
   },
   methods: {
-    ...Vuex.mapActions("user", ["authenticate"]),
+    ...Vuex.mapActions("user", ["authenticate", "clearStatus"]),
     handleSubmit() {
       if (this.email && this.password) {
         this.authenticate({
@@ -92,6 +92,9 @@ export default {
   },
   computed: {
     ...Vuex.mapState("user", ["authErrorText"])
+  },
+  mounted() {
+    this.clearStatus();
   }
 };
 </script>

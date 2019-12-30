@@ -61,9 +61,15 @@ export const userStore = {
     },
     setAuthError(state, value) {
       state.authErrorText = value;
+    },
+    CLEAR_STATUS(state) {
+      state.authErrorText = "";
     }
   },
   actions: {
+    clearStatus(context) {
+      context.commit("CLEAR_STATUS");
+    },
     initializeUser(context) {
       if (localStorage.getItem("authToken") === null) {
         return;
