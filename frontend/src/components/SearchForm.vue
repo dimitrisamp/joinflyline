@@ -28,8 +28,12 @@ export const SearchForm = {
       const that = this;
       setTimeout(() => {
         that.$options.picker = new Lightpick({
-          startDate: this.form.departure_date_data || moment(),
-          endDate: this.form.return_date_data || moment(),
+          format: "MM/DD/YYYY",
+          startDate: that.form.departure_date_data || moment(),
+          endDate:
+            this.form.destinationTypeId === "round"
+              ? that.form.return_date_data || moment()
+              : null,
           field: document.getElementById("departure_date"),
           secondField:
             this.form.destinationTypeId === "round"
