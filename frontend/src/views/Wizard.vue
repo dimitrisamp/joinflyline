@@ -19,7 +19,7 @@
                 class="form-descrption step-01 text-center"
                 v-if="displayForm"
               >
-                <div><strong>Let's Get Started </strong></div>
+                <div><strong>Let's start your free trial</strong></div>
                 <div>
                   <span v-if="inviteMode"
                     >Sign Up for your companion account</span
@@ -127,7 +127,19 @@
               <div class="form-descrption text-center">
                 <div><strong>Lets Get Started</strong></div>
                 <span>Step {{ step }} of 2</span>
-                <p>Enter some information to get started.</p>
+                <p>
+                  - Cancel before
+                  <span class="highlighted">{{ trialDueDate }}</span> to not be
+                  charged
+                </p>
+                <p>
+                  - As a reminder we'll email you
+                  <span class="highlighted">3 days</span> before.
+                </p>
+                <p>
+                  - No commitments. <span class="highlighted">Cancel</span> at
+                  anytime
+                </p>
               </div>
 
               <div class="form-group  step-f-inputs">
@@ -247,6 +259,7 @@ import DynamicSelect from "../components/DynamicSelect";
 import LocationInput from "../components/LocationInput";
 import Vuex from "vuex";
 import Vue from "vue";
+import moment from "moment";
 
 const Mode = {
   SIGNUP: 0,
@@ -462,6 +475,11 @@ export default {
     }
   },
   computed: {
+    trialDueDate() {
+      return moment()
+        .add(14, "days")
+        .format("M/D/Y");
+    },
     emailInvalid() {
       return this.form.email.length > 0 && !this.form.email.includes("@");
     },

@@ -232,8 +232,9 @@
                     <button
                       v-if="planStatus(code) === 'current'"
                       class="button button--outline-blue"
+                      @click="cancelPlan"
                     >
-                      Current Plan
+                      Cancel Plan
                     </button>
                     <button
                       v-else-if="planStatus(code) === 'upgrade'"
@@ -361,6 +362,9 @@ export default {
           this.accountSavedDisplay = false;
         }, 5000);
       });
+    },
+    cancelPlan() {
+      api.post("subscriptions/cancel-subscription");
     },
     airlineIcon
   },

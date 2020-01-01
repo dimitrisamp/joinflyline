@@ -305,7 +305,7 @@ section.step-2 {
 
 
 p.label__plan-description {
-    font-family: dona-bold;
+    font-family: dona-bold, sans-serif;
     border: solid 2px rgba(230, 230, 230, 0.82);
     padding: 14px;
     padding-left: 27px;
@@ -317,4 +317,10 @@ p.label__plan-description {
     flex-direction: column;
     text-align: center;
     height: 100vh;
+}
+
+.form-descrption p .highlighted {
+    font-family: dona-bold, sans-serif;
+    font-size: 14px;
+    color: #0aaeff;
 }

@@ -4,6 +4,7 @@ from typing import Optional
 import stripe
 from django.conf import settings
 from django.db import transaction
+from django.db.models.functions import Now
 
 from apps.auth.enums import UserRole
 from apps.emails.tasks import send_activation_email
@@ -87,6 +88,7 @@ def stripe_subscribe(account: Account, plan: str, promocode: str):
     """
     params = {
         "customer": account.customer_id,
+        "trial_period_days": 14,
         "items": [{"plan": settings.SUBSCRIPTION_PLANS[plan]["stripe_plan_id"]}],
     }
     if promocode:
