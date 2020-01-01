@@ -273,7 +273,7 @@ export function getQuickLinksData(flights) {
     price: f.conversion.USD,
     duration: Math.min(
       ...[f.duration.departure, f.duration.return].filter(v => {
-        return typeof v === "number";
+        return typeof v === "number" && v !== 0;
       })
     ),
     quality: f.quality,
