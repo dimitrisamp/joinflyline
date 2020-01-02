@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     "knox",
     "corsheaders",
     "django_rest_passwordreset",
+    "django_celery_beat",
     # My apps
     "apps.subscriptions.apps.SubscriptionsConfig",
     "apps.home",
@@ -175,9 +176,7 @@ STATIC_ROOT = ""
 
 STATIC_URL = "/static/"
 
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, "frontend/dist/"),
-)
+STATICFILES_DIRS = (os.path.join(BASE_DIR, "frontend/dist/"),)
 
 STATICFILES_FINDERS = [
     "django.contrib.staticfiles.finders.FileSystemFinder",
