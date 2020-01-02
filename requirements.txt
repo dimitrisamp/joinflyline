@@ -24,6 +24,7 @@ django-rest-passwordreset
 git+https://github.com/leotrubach/django-rest-framework-proxy@fad224805c207c871cde0a394ee5eae7fb9c3750
 
 celery[redis]
+django-celery-beat
 
 django-maintenancemode
 

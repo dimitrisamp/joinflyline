@@ -101,3 +101,8 @@ def build_frontend(c):
     c.run('npm install')
     c.run('npm run build')
     os.chdir(curdir)
+
+
+@task
+def beat(c):
+    c.run('celery -A wanderift beat -l info --scheduler django_celery_beat.schedulers:DatabaseScheduler')
