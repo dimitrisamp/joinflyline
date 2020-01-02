@@ -10,7 +10,7 @@
     </overlay-component>
     <div class="search-filter">
       <div class="search-filter__header">
-        <div class="search-quick-filter-filter-name">
+        <div class="search-quick-filter-filter-name right-pane">
           <strong>Flight Filters</strong>
           <h3 class="filter-sidebar__title">
             <span @click="clearFiltersAndUpdate">Clear All</span>

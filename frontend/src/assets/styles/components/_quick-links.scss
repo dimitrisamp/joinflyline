@@ -51,6 +51,10 @@
   display: flex;
   justify-content: center;
 
+  &.right-pane {
+    justify-content: space-between;
+  }
+
   strong {
     font-family: dona-black;
   }
