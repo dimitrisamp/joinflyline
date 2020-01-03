@@ -21,5 +21,5 @@ app.conf.beat_schedule = {
 if settings.STAGE == 'production':
     app.conf.beat_schedule['tweet'] = {
         "task": "apps.common.tasks.tweet_deal",
-        "schedule": crontab(hour='17,22')  # 11 AM, 4PM Dallas time
+        "schedule": crontab(minute=0, hour='17,22')  # 11 AM, 4PM Dallas time
     }
