@@ -5,6 +5,9 @@ from celery.schedules import crontab
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'wanderift.settings')
 
+from django.conf import settings
+
+
 app = Celery('wanderift')
 app.config_from_object('django.conf:settings', namespace='CELERY')
 app.autodiscover_tasks()
@@ -15,3 +18,8 @@ app.conf.beat_schedule = {
         'schedule': crontab(minute=50),
     },
 }
+if settings.STAGE == 'production':
+    app.conf.beat_schedule['tweet'] = {
+        "task": "apps.common.tasks.tweet_deal",
+        "schedule": crontab(hour='17,22')  # 11 AM, 4PM Dallas time
+    }

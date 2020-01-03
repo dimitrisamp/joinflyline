@@ -42,3 +42,5 @@ pytest-xdist
 
 Collectfast
 django-cors-headers
+
+python-twitter

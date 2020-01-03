@@ -1,8 +1,13 @@
+import json
+import pathlib
 import random
 import string
 from itertools import tee
 from datetime import datetime, date
 from django.utils.timezone import utc
+
+
+AIRLINE_CODES = json.load(open(pathlib.Path(__file__).parent / 'airline_codes.json'))
 
 
 def parse_isodatetime(dt):

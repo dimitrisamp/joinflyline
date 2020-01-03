@@ -32,6 +32,30 @@ spec:
                   name: api-keys
                   key: POSTGRES_PASSWORD
 
+            - name: TWITTER_CONSUMER_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: api-keys
+                  key: TWITTER_CONSUMER_API_KEY
+
+            - name: TWITTER_CONSUMER_API_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: api-keys
+                  key: TWITTER_CONSUMER_API_SECRET_KEY
+
+            - name: TWITTER_ACCESS_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: api-keys
+                  key: TWITTER_ACCESS_TOKEN
+
+            - name: TWITTER_ACCESS_TOKEN_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: api-keys
+                  key: TWITTER_ACCESS_TOKEN_SECRET
+
             - name: STRIPE_API_KEY
               valueFrom:
                 secretKeyRef:
@@ -66,6 +90,30 @@ spec:
                 secretKeyRef:
                   name: api-keys
                   key: POSTGRES_PASSWORD
+
+            - name: TWITTER_CONSUMER_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: api-keys
+                  key: TWITTER_CONSUMER_API_KEY
+
+            - name: TWITTER_CONSUMER_API_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: api-keys
+                  key: TWITTER_CONSUMER_API_SECRET_KEY
+
+            - name: TWITTER_ACCESS_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: api-keys
+                  key: TWITTER_ACCESS_TOKEN
+
+            - name: TWITTER_ACCESS_TOKEN_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: api-keys
+                  key: TWITTER_ACCESS_TOKEN_SECRET
 
             - name: STRIPE_API_KEY
               valueFrom:
@@ -102,6 +150,30 @@ spec:
                   name: api-keys
                   key: POSTGRES_PASSWORD
 
+            - name: TWITTER_CONSUMER_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: api-keys
+                  key: TWITTER_CONSUMER_API_KEY
+
+            - name: TWITTER_CONSUMER_API_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: api-keys
+                  key: TWITTER_CONSUMER_API_SECRET_KEY
+
+            - name: TWITTER_ACCESS_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: api-keys
+                  key: TWITTER_ACCESS_TOKEN
+
+            - name: TWITTER_ACCESS_TOKEN_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: api-keys
+                  key: TWITTER_ACCESS_TOKEN_SECRET
+
             - name: STRIPE_API_KEY
               valueFrom:
                 secretKeyRef:
@@ -136,6 +208,30 @@ spec:
                   name: api-keys
                   key: POSTGRES_PASSWORD
 
+            - name: TWITTER_CONSUMER_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: api-keys
+                  key: TWITTER_CONSUMER_API_KEY
+
+            - name: TWITTER_CONSUMER_API_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: api-keys
+                  key: TWITTER_CONSUMER_API_SECRET_KEY
+
+            - name: TWITTER_ACCESS_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: api-keys
+                  key: TWITTER_ACCESS_TOKEN
+
+            - name: TWITTER_ACCESS_TOKEN_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: api-keys
+                  key: TWITTER_ACCESS_TOKEN_SECRET
+
             - name: STRIPE_API_KEY
               valueFrom:
                 secretKeyRef:
@@ -167,6 +263,30 @@ spec:
                 secretKeyRef:
                   name: api-keys
                   key: POSTGRES_PASSWORD
+
+            - name: TWITTER_CONSUMER_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: api-keys
+                  key: TWITTER_CONSUMER_API_KEY
+
+            - name: TWITTER_CONSUMER_API_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: api-keys
+                  key: TWITTER_CONSUMER_API_SECRET_KEY
+
+            - name: TWITTER_ACCESS_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: api-keys
+                  key: TWITTER_ACCESS_TOKEN
+
+            - name: TWITTER_ACCESS_TOKEN_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: api-keys
+                  key: TWITTER_ACCESS_TOKEN_SECRET
 
             - name: STRIPE_API_KEY
               valueFrom:
