@@ -7,7 +7,7 @@
         class="navbar-brand nav-logo flex-grow-1"
         :to="{ name: 'index' }"
       >
-        <img src="@/assets/img/flyline_logos-01-1.png" />
+        <img src="@/assets/img/logo-white.svg" />
       </router-link>
       <button
         class="navbar-toggler nav-home"
