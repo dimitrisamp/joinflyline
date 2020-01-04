@@ -3,116 +3,124 @@
     id="search-hero"
     class="hero search-container header-background homepage-background mobile-before first-page-body js-steps-small-blue"
   >
-    <div class="container align-self-center">
-      <div class="h-headermain">
-        <div class="row">
-          <div class="col-12 col-md-12 wide-form">
-            <div class="search-flight-home">
-              <div>
-                <cd-intro />
-              </div>
-              <div>
-                <div id="dealform" class="h-dealform horizontal-form">
-                  <div class="row">
-                    <div class="col">
-                      <div class="main-filters">
-                        <select-destination
-                          :value="form.destinationTypeId"
-                          @select="setDestinationType"
-                        />
-                        <select-seat-type
-                          :value="form.seatType"
-                          @select="setSeatType"
-                        />
-                        <select-passenger-count />
+    <div class="search-container__head">
+      <div class="container align-self-center">
+        <div class="h-headermain">
+          <div class="row">
+            <div class="col-12 col-md-12">
+              <div class="search-flight-home">
+                <div>
+                  <cd-intro />
+                </div>
+                <div>
+                  <div id="dealform" class="h-dealform horizontal-form">
+                    <div class="horizontal-form__head">
+                      <div class="row">
+                        <div class="col">
+                          <div class="main-filters">
+                            <select-destination
+                              :value="form.destinationTypeId"
+                              @select="setDestinationType"
+                            />
+                            <select-seat-type
+                              :value="form.seatType"
+                              @select="setSeatType"
+                            />
+                            <select-passenger-count />
+                          </div>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  <div class="row">
-                    <!-- TODO: insert controls -->
-                    <div class="col">
-                      <div class="hero-search">
-                        <div class="hero-search__item is-wide">
-                          <div
-                            class="input-group input-group-sm search-dropdown"
-                          >
-                            <location-input
-                              :prompt="'Departure City'"
-                              :promptMobile="'Departure City'"
-                              :promptMobileFocus="'From Where?'"
-                              :initialValue="form.placeFrom"
-                              @place-selected="updatePlaceFrom"
-                            />
-                          </div>
-                        </div>
-                        <div class="hero-search__item is-wide">
-                          <div
-                            class="input-group input-group-sm search-dropdown"
-                          >
-                            <location-input
-                              :prompt="'Arrival City'"
-                              :promptMobile="'Arrival City'"
-                              :promptMobileFocus="'To where?'"
-                              :initialValue="form.placeTo"
-                              @place-selected="updatePlaceTo"
-                            />
-                          </div>
-                        </div>
-                        <div class="hero-search__item">
-                          <div
-                            class="input-group input-group-sm search-dropdown home-date-field-dep"
-                          >
-                            <div class="dat-blue-border dep-date">
-                              <input
-                                type="text"
-                                id="departure_date"
-                                autocomplete="off"
-                                aria-describedby="basic-addon3"
-                                class="form-control search-input"
-                                v-model="form.departure_date"
-                              />
-                              <span class="input-group-text search-form-input"
-                                >Dep:</span
+                    <div class="horizontal-form__body">
+                      <div class="row">
+                        <!-- TODO: insert controls -->
+                        <div class="col">
+                          <div class="hero-search">
+                            <div class="hero-search__item is-wide">
+                              <div
+                                class="input-group input-group-sm search-dropdown"
                               >
-                            </div>
-                          </div>
-                        </div>
-
-                        <div v-if="form.destinationTypeId === 'round'">
-                          <div class="hero-search__item">
-                            <div
-                              class="input-group input-group-sm search-dropdown home-date-field-ret"
-                            >
-                              <div class="dat-blue-border ret-date">
-                                <input
-                                  type="text"
-                                  id="return_date"
-                                  autocomplete="off"
-                                  aria-describedby="basic-addon3"
-                                  class="form-control search-input"
-                                  v-model="form.return_date"
+                                <location-input
+                                  :prompt="'Departure City'"
+                                  :promptMobile="'Departure City'"
+                                  :promptMobileFocus="'From Where?'"
+                                  :initialValue="form.placeFrom"
+                                  @place-selected="updatePlaceFrom"
                                 />
-                                <span class="input-group-text search-form-input"
-                                  >Ret:</span
-                                >
                               </div>
                             </div>
-                          </div>
-                        </div>
-                        <div class="hero-search__item is-last">
-                          <div class="search-button horizontal-f-btn">
-                            <button
-                              type="button"
-                              class="btn-search"
-                              @click="searchFromHome"
-                              :disabled="isFormIncomplete"
-                            >
-                              <img
-                                v-if="$mq !== 'sm'"
-                                src="@/assets/img/search.png"
-                              />
-                              <span v-else>Search Flights</span>
-                            </button>
+                            <div class="hero-search__item is-wide">
+                              <div
+                                class="input-group input-group-sm search-dropdown"
+                              >
+                                <location-input
+                                  :prompt="'Arrival City'"
+                                  :promptMobile="'Arrival City'"
+                                  :promptMobileFocus="'To where?'"
+                                  :initialValue="form.placeTo"
+                                  @place-selected="updatePlaceTo"
+                                />
+                              </div>
+                            </div>
+                            <div class="hero-search__item">
+                              <div
+                                class="input-group input-group-sm search-dropdown home-date-field-dep"
+                              >
+                                <div class="dat-blue-border dep-date">
+                                  <input
+                                    type="text"
+                                    id="departure_date"
+                                    autocomplete="off"
+                                    aria-describedby="basic-addon3"
+                                    class="form-control search-input"
+                                    v-model="form.departure_date"
+                                  />
+                                  <span
+                                    class="input-group-text search-form-input"
+                                    >Dep:</span
+                                  >
+                                </div>
+                              </div>
+                            </div>
+
+                            <div v-if="form.destinationTypeId === 'round'">
+                              <div class="hero-search__item">
+                                <div
+                                  class="input-group input-group-sm search-dropdown home-date-field-ret"
+                                >
+                                  <div class="dat-blue-border ret-date">
+                                    <input
+                                      type="text"
+                                      id="return_date"
+                                      autocomplete="off"
+                                      aria-describedby="basic-addon3"
+                                      class="form-control search-input"
+                                      v-model="form.return_date"
+                                    />
+                                    <span
+                                      class="input-group-text search-form-input"
+                                      >Ret:</span
+                                    >
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="hero-search__item is-last">
+                              <div class="search-button horizontal-f-btn">
+                                <button
+                                  type="button"
+                                  class="btn-search"
+                                  @click="searchFromHome"
+                                  :disabled="isFormIncomplete"
+                                >
+                                  <img
+                                    v-if="$mq !== 'sm'"
+                                    src="@/assets/img/search.png"
+                                  />
+                                  <span v-else>Search Flights</span>
+                                </button>
+                              </div>
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -123,23 +131,55 @@
             </div>
           </div>
         </div>
+        <!-- h-headermain -->
       </div>
-      <!-- h-headermain -->
     </div>
 
-    <div class="container">
-      <div class="row">
-        <div class="col-12 trending-flights-container">
-          <!-- Trending Flights -->
-          <span>Suggested Routes on FlyLine</span>
-          <div class="trending-flights">
-            <div
-              class="trending-flights__item"
-              v-for="(o, i) in trending"
-              :key="`trending-${i}`"
-              @click="setFormFromTo(i)"
-            >
-              {{ o.from.name }} -> {{ o.to.name }}
+    <div class="search-container__footer">
+      <div class="container">
+        <div class="hero-features">
+          <div class="hero-feature">
+            <div class="hero-feature__img">
+              <img
+                class="hero-feature__img-src"
+                src="../assets/img/icons/danger.svg"
+              />
+            </div>
+            <div class="hero-feature__text">
+              <h5 class="hero-feature__title">Customized Deal Alerts</h5>
+              <p class="hero-feature__descr">
+                Set your destination and start saving
+              </p>
+            </div>
+          </div>
+
+          <div class="hero-feature">
+            <div class="hero-feature__img">
+              <img
+                class="hero-feature__img-src"
+                src="../assets/img/icons/dollar-sign.svg"
+              />
+            </div>
+            <div class="hero-feature__text">
+              <h5 class="hero-feature__title">Best Price Garuanteed</h5>
+              <p class="hero-feature__descr">
+                Up to 90% savings on internationa
+              </p>
+            </div>
+          </div>
+
+          <div class="hero-feature">
+            <div class="hero-feature__img">
+              <img
+                class="hero-feature__img-src"
+                src="../assets/img/icons/ticket.svg"
+              />
+            </div>
+            <div class="hero-feature__text">
+              <h5 class="hero-feature__title">Seemless and Safe Booking</h5>
+              <p class="hero-feature__descr">
+                Book in 20 seconds, no redirect
+              </p>
             </div>
           </div>
         </div>

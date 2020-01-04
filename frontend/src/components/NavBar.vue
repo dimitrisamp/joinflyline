@@ -1,7 +1,5 @@
 <template>
-  <nav
-    class="navbar navbar-expand-lg navbar-dark nav-navbar-trip default-nav justify-content-between"
-  >
+  <nav class="navbar navbar-expand-lg navbar-dark nav-navbar-trip default-nav">
     <div class="container">
       <router-link
         class="navbar-brand nav-logo flex-grow-1"
@@ -16,15 +14,16 @@
       >
         <span class="navbar-toggler-icon" />
       </button>
-      <div
-        :class="{ collapse: !showNavigation && $mq === 'sm'}"
-      >
+      <div :class="{ collapse: !showNavigation && $mq === 'sm' }">
         <div class="navbar-nav ml-auto">
           <div class="nav-item">
-            <router-link :to="{ name: 'index'}" class="btn">
+            <router-link :to="{ name: 'index' }" class="btn">
               Deals
             </router-link>
-            <router-link :to="{ name: 'index'}" class="btn my-2 get-s-btn my-sm-0">
+            <router-link
+              :to="{ name: 'index' }"
+              class="btn my-2 get-s-btn my-sm-0"
+            >
               Book
             </router-link>
             <router-link

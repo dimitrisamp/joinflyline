@@ -1,20 +1,32 @@
 @font-face {
-  font-family: Dona-Black;
-  src: url(fonts/Dona/DonaAlt-Black.ttf);
+  font-family: "Dona Variable";
+  src: url("./assets/fonts/Dona/DonaAlt-Black.ttf");
+  font-weight: 900;
 }
 
 @font-face {
-  font-family: Dona-Regular;
-  src: url(fonts/Dona/Dona-Regular.ttf);
+  font-family: "Dona Variable";
+  src: url("./assets/fonts/Dona/DonaAlt-Bold.ttf");
+  font-weight: 600;
 }
 
 @font-face {
-  font-family: Dona-Bold;
-  src: url(fonts/Dona/Dona-Bold.ttf);
+  font-family: "Dona";
+  src: url("./assets/fonts/Dona/Dona-Regular.ttf");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Dona";
+  src: url("./assets/fonts/Dona/Dona-Bold.ttf");
+  font-weight: 600;
 }
 
 body {
-  font-family: Dona-Regular;
+  font-family: "Dona", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-weight: 400;
 }
 
 /*
@@ -64,7 +76,7 @@ Show if mobile
 }
 
 .left-form-pane {
-  background: url("../img/Wallpaper-Left.png");
+  background: url("./assets/img/Wallpaper-Left.png");
   border-right: solid 1px rgb(204, 204, 204);
   background-size: cover;
 }
@@ -261,14 +273,37 @@ header.sticky {
   z-index: 1;
 }
 
-.newhome-form h3 {
-  font-weight: 600;
-  font-size: 2.5rem;
-  padding-top: 25px;
+.newhome-form__title {
+  font-weight: 900;
+  font-size: 4rem;
   color: #000;
   margin-bottom: 0;
-  font-family: Dona-Black;
-  display: inline-flex;
+  font-family: "Dona Variable";
+
+  @include media-breakpoint-up(md) {
+    color: #ffffff;
+    text-align: center;
+  }
+}
+
+.newhome-form__subtitle {
+  font-family: "Dona Variable";
+  @include media-breakpoint-up(md) {
+    color: #ffffff;
+    text-align: center;
+  }
+}
+
+.search-container__head {
+  @include media-breakpoint-up(md) {
+    min-height: 330px;
+    margin-bottom: -130px;
+  }
+}
+
+.search-container__footer {
+  padding-top: 60px;
+  background-color: #fff;
 }
 
 .left-form-pane .search-flight-home p {
@@ -320,7 +355,6 @@ header.sticky {
 }
 
 .wide-form {
-  padding-top: 34px;
   padding-bottom: 25px;
 }
 
@@ -545,11 +579,17 @@ header.sticky {
 }
 
 .horizontal-form {
-  background: transparent;
+  background: white;
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,0.50);
 }
 
-.horizontal-form .row {
-  margin-top: 15px;
+.horizontal-form__head {
+  padding: 8px 32px;
+  border-bottom: 2px solid #eaeaea;
+}
+
+.horizontal-form__body {
+  padding: 14px 32px 26px;
 }
 
 .horizontal-form .search-dropdown-outer {
@@ -572,14 +612,17 @@ header.sticky {
 }
 
 .header-background {
-  /* background: url("../img/headerbackground.png"); */
+  /* background: url("./assets/img/headerbackground.png"); */
 }
 .hero {
-  background-image: url("../img/home-bg.png");
+  background-image: url("./assets/img/home-bg.png");
   width: 100%;
-  background-repeat: repeat;
-  background-position: center;
+  background-repeat: no-repeat;
+  background-position: center top;
   position: relative;
+  @include media-breakpoint-up(md) {
+    padding-top: 120px;
+  }
 }
 .hero .h-headermain {
   position: relative;
@@ -608,6 +651,45 @@ header.sticky {
   background: #fff !important;
   border: 2px solid #ececec !important;
   color: #7d7d7d !important;
+}
+
+.hero-features {
+  display: flex;
+  margin-right: -15px;
+  margin-left: -15px;
+}
+
+.hero-feature {
+  flex: 0 0 33%;
+  display: flex;
+  margin: 25px 0 20px;
+  padding: 0 15px;
+  &:not(:last-child) {
+    border-right: 1px solid $border-color;
+  }
+}
+
+.hero-feature__img {
+  flex: 0 0 50px;
+  width: 50px;
+  height: 50px;
+  margin-right: 20px;
+  border-radius: 50%;
+  border: 2px solid $primary;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-feature__img-src {
+  width: 24px;
+  height: 24px;
+  display: inline-block;
+}
+
+.hero-feature__title {
+  font-weight: bold;
+  font-size: 18px;
 }
 
 .sign-up-header {
@@ -767,7 +849,7 @@ header.sticky {
 *****************************/
 #Section02 {
   width: 100%;
-  background: url("../img/wallpaper.png");
+  background: url("./assets/img/wallpaper.png");
   background-size: cover;
 }
 
@@ -806,7 +888,7 @@ header.sticky {
 *****************************/
 
 #sec3-Bg {
-  background: url(../img/pricing_background.png);
+  background: url(./assets/img/pricing_background.png);
   background-size: cover;
 }
 
@@ -848,7 +930,7 @@ header.sticky {
            Section 04
 *****************************/
 #sec4-bg {
-  background: url("../img/wallpaper.png");
+  background: url("./assets/img/wallpaper.png");
   background-size: cover;
 }
 
@@ -1687,7 +1769,7 @@ This one is disabled until top blue line is back
 
 .mobile-v-header {
   padding: 10px 17px;
-  background: url(../img/headerbackground.png);
+  background: url(./assets/img/headerbackground.png);
   padding-top: 30px;
   background-position: center;
 }
@@ -1752,7 +1834,7 @@ This one is disabled until top blue line is back
 *****************************/
 @media (min-width: 320px) and (max-width: 480px) {
   .header-background {
-    background: url(../img/pricing_background.png);
+    background: url(./assets/img/pricing_background.png);
   }
 
   footer {
@@ -1795,7 +1877,7 @@ This one is disabled until top blue line is back
   }
 
   #sec3-Bg {
-    background: url("../img/wallpaper.png") !important;
+    background: url("./assets/img/wallpaper.png") !important;
   }
 
   .newhome-form span {
@@ -1882,7 +1964,7 @@ This one is disabled until top blue line is back
   }
 
   .section5-Bg {
-    background: url("../img/wallpaper.png") !important;
+    background: url("./assets/img/wallpaper.png") !important;
     padding-top: 10px;
     padding-bottom: 10px;
     margin-top: 0;
