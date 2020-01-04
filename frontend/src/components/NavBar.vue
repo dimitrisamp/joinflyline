@@ -1,6 +1,6 @@
 <template>
   <nav
-    class="navbar navbar-expand-lg navbar-light  nav-navbar-trip default-nav justify-content-between"
+    class="navbar navbar-expand-lg navbar-dark nav-navbar-trip default-nav justify-content-between"
   >
     <div class="container">
       <router-link
@@ -21,6 +21,12 @@
       >
         <div class="navbar-nav ml-auto">
           <div class="nav-item">
+            <router-link :to="{ name: 'index'}" class="btn">
+              Deals
+            </router-link>
+            <router-link :to="{ name: 'index'}" class="btn my-2 get-s-btn my-sm-0">
+              Book
+            </router-link>
             <router-link
               :to="{ name: 'sign-in' }"
               :class="{ 'btn-online': !isMobile }"

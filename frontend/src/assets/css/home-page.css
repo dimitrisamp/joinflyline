@@ -253,6 +253,14 @@ header.sticky {
   margin-top: 1px;
 }
 
+.main-landing .navbar {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: 0;
+  z-index: 1;
+}
+
 .newhome-form h3 {
   font-weight: 600;
   font-size: 2.5rem;
@@ -347,8 +355,6 @@ header.sticky {
   margin-right: 20px;
 }
 
-
-
 .search-dropdown {
   margin-bottom: 10px;
 }
@@ -374,7 +380,7 @@ header.sticky {
 }
 
 .shadowsrch .dat-blue-border .search-form-input::placeholder {
-    color: #7d7d7d;
+  color: #7d7d7d;
 }
 
 @media (min-width: 768px) {
@@ -569,7 +575,7 @@ header.sticky {
   /* background: url("../img/headerbackground.png"); */
 }
 .hero {
-  background-image: url("../img/hero-header.svg");
+  background-image: url("../img/home-bg.png");
   width: 100%;
   background-repeat: repeat;
   background-position: center;
@@ -688,7 +694,6 @@ header.sticky {
   padding: 0;
   position: relative;
 }
-
 
 .search-results .result-block {
   padding: 10px;
@@ -1036,7 +1041,7 @@ header.sticky {
   border-bottom: 1px solid #ccc;
   padding: 0.5rem 1rem;
   font-family: Dona-Bold;
-  font-size: .8rem;
+  font-size: 0.8rem;
   color: #7d7d7d;
 }
 
@@ -2134,7 +2139,6 @@ This one is disabled until top blue line is back
     font-size: 12px;
   }
 
-
   .newhome-form p {
     display: none;
   }
@@ -2452,8 +2456,6 @@ This one is disabled until top blue line is back
   flex-direction: column;
 }
 
-
-
 @media screen and (min-width: 768px) {
   .hero-search {
     flex-direction: row;
@@ -2463,6 +2465,6 @@ This one is disabled until top blue line is back
     flex-grow: 1;
   }
   .hero-search__item.is-wide {
-      flex-basis: 45%;
+    flex-basis: 45%;
   }
 }

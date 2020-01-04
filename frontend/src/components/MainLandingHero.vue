@@ -1,7 +1,7 @@
 <template>
   <div
     id="search-hero"
-    class="hero search-container d-flex header-background homepage-background mobile-before first-page-body js-steps-small-blue"
+    class="hero search-container header-background homepage-background mobile-before first-page-body js-steps-small-blue"
   >
     <div class="container align-self-center">
       <div class="h-headermain">
@@ -118,22 +118,6 @@
                       </div>
                     </div>
                   </div>
-                  <div class="row">
-                    <div class="col-12 trending-flights-container">
-                      <!-- Trending Flights -->
-                      <span>Suggested Routes on FlyLine</span>
-                      <div class="trending-flights">
-                        <div
-                          class="trending-flights__item"
-                          v-for="(o, i) in trending"
-                          :key="`trending-${i}`"
-                          @click="setFormFromTo(i)"
-                        >
-                          {{ o.from.name }} -> {{ o.to.name }}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
                 </div>
               </div>
             </div>
@@ -141,6 +125,25 @@
         </div>
       </div>
       <!-- h-headermain -->
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-12 trending-flights-container">
+          <!-- Trending Flights -->
+          <span>Suggested Routes on FlyLine</span>
+          <div class="trending-flights">
+            <div
+              class="trending-flights__item"
+              v-for="(o, i) in trending"
+              :key="`trending-${i}`"
+              @click="setFormFromTo(i)"
+            >
+              {{ o.from.name }} -> {{ o.to.name }}
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
