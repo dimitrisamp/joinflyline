@@ -1,3 +1,27 @@
+@font-face {
+  font-family: 'Dona';
+  src: url('./assets/fonts/Dona-Bold.woff2') format('woff2'),
+      url('./assets/fonts/Dona-Bold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Dona';
+  src: url('./assets/fonts/Dona-Black.woff2') format('woff2'),
+      url('./assets/fonts/Dona-Black.woff') format('woff');
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Dona';
+  src: url('./assets/fonts/Dona-Regular.woff2') format('woff2'),
+      url('./assets/fonts/Dona-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
 // Configuration
 
 @import "~bootstrap/scss/functions";
@@ -45,4 +69,15 @@
 // Utilities
 
 // @import "~bootstrap/scss/utilities/api";
+
+// Globals
+
+body {
+  font-family: "Dona", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-weight: 400;
+}
+
+// Components
 @import "home-page";
