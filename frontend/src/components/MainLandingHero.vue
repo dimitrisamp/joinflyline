@@ -18,6 +18,7 @@
                       <div class="row">
                         <div class="col">
                           <div class="main-filters">
+                            <select-deal />
                             <select-destination
                               :value="form.destinationTypeId"
                               @select="setDestinationType"
@@ -197,6 +198,7 @@ import CdIntro from "./CdIntro";
 import LocationInput from "./LocationInput";
 import SelectPassengerCount from "./SelectPassengerCount";
 import SelectDestination from "./SelectDestination";
+import SelectDeal from "./SelectDeal";
 import SelectSeatType from "./SelectSeatType";
 
 export default {
@@ -207,7 +209,8 @@ export default {
     LocationInput,
     SelectPassengerCount,
     SelectSeatType,
-    SelectDestination
+    SelectDestination,
+    SelectDeal
   },
   data() {
     return {

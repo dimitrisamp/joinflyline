@@ -1,44 +1,38 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-dark nav-navbar-trip default-nav">
+  <nav class="navbar navbar-expand-lg navbar-light nav-navbar-trip default-nav">
     <div class="container">
       <router-link
         class="navbar-brand nav-logo flex-grow-1"
         :to="{ name: 'index' }"
       >
-        <img src="@/assets/img/logo-white.svg" />
+        <img v-if="$mq === 'sm'" src="@/assets/img/flyline_logos-01-1.png" />
+        <img v-else src="@/assets/img/logo-white.svg" />
       </router-link>
-      <button
-        class="navbar-toggler nav-home"
-        type="button"
-        @click="toggleNavigation"
-      >
+      <button class="navbar-toggler" type="button" @click="toggleNavigation">
         <span class="navbar-toggler-icon" />
       </button>
-      <div :class="{ collapse: !showNavigation && $mq === 'sm' }">
+      <div
+        class="navbar-collapse"
+        :class="{ collapse: !showNavigation && $mq === 'sm' }"
+      >
         <div class="navbar-nav ml-auto">
           <div class="nav-item">
-            <router-link :to="{ name: 'index' }" class="btn">
+            <router-link :to="{ name: 'sign-in' }" class="nav-link">
               Deals
             </router-link>
-            <router-link
-              :to="{ name: 'index' }"
-              class="btn my-2 get-s-btn my-sm-0"
-            >
+          </div>
+          <div class="nav-item">
+            <router-link :to="{ name: 'get-started' }" class="nav-link">
               Book
             </router-link>
-            <router-link
-              :to="{ name: 'sign-in' }"
-              :class="{ 'btn-online': !isMobile }"
-              class="btn my-2 get-s-btn my-sm-0"
+          </div>
+          <div class="nav-item">
+            <router-link :to="{ name: 'sign-in' }" class="nav-link has-border"
               >Log In</router-link
             >
-            <router-link
-              :to="{ name: 'get-started' }"
-              :class="{
-                'btn-outline': !isMobile,
-                'btn-outline--blue': !isMobile
-              }"
-              class="btn my-2 get-s-btn my-sm-0"
+          </div>
+          <div class="nav-item">
+            <router-link :to="{ name: 'get-started' }" class="nav-link"
               >Join</router-link
             >
           </div>

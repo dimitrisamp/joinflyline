@@ -1,6 +1,8 @@
 <template>
   <div class="newhome-form" id="newhome-form">
-    <h3 v-if="$mq === 'sm'">Spend Less, Travel More</h3>
+    <h1 class="newhome-form__title" v-if="$mq === 'sm'">
+      Spend Less, Travel More
+    </h1>
     <h1 class="newhome-form__title" v-else>StreamLine Your Flight Booking</h1>
     <h5 class="newhome-form__subtitle">
       Save time and money with flights discounted up to 90% off with FlyLine
