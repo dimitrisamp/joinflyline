@@ -15,5 +15,4 @@
 @import "~lightpick/css/lightpick.css";
 @import "~vue-slider-component/theme/default.css";
 @import "./assets/styles/main.scss";
-@import "./scss/app.scss";
 </style>
