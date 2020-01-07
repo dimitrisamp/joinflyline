@@ -68,6 +68,14 @@
                             <!-- - {{ plans[tab.plan].companion }} companion account{{ plans[tab.plan].companion>1?"s":"" }} -->
                             - Companion account
                           </li>
+                          <li class="subscription__item">
+                            -
+                            {{
+                              tab.plan === "basic"
+                                ? "1 FlyLine Member"
+                                : "2 FlyLine Members"
+                            }}
+                          </li>
                         </ul>
                       </div>
                       <div class="subscription__bottom">
@@ -87,6 +95,14 @@
                       <h2>This Plan is Built For</h2>
                       <ul>
                         <li v-for="item in tab.builtFor" :key="item">
+                          {{ item }}
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="tabs__content-inner">
+                      <h2>Notes</h2>
+                      <ul>
+                        <li v-for="item in tab.notes" :key="item">
                           {{ item }}
                         </li>
                       </ul>
@@ -223,12 +239,26 @@ export default {
         {
           title: "0 - 6 Bookings",
           plan: "basic",
-          builtFor: ["Leisure Travelers", "Solo Travelers", "Small Family Trip"]
+          builtFor: [
+            "Leisure Travelers",
+            "Solo Travelers",
+            "Small Family Trip"
+          ],
+          notes: [
+            "Additional passengers can be added to a flight with a FlyLine member on it and will count against the total bookings for the account"
+          ]
         },
         {
-          title: "9+ Bookings",
+          title: "6+ Bookings",
           plan: "pro",
-          builtFor: ["Business Travel", "Active Leisure Travelers"]
+          builtFor: [
+            "Business Travel",
+            "Active Leisure Travelers",
+            "Large and/or Frequent Family Travel"
+          ],
+          notes: [
+            "Additional passengers can be added to a flight with a FlyLine member on it and will count against the total bookings for the account"
+          ]
         }
       ],
       selectedIndex: 0
