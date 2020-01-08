@@ -39,9 +39,9 @@
         color: white;
         width: 100%;
         background-image: linear-gradient(
-                        to top,
-                        rgba(0, 0, 0, 0.9215686274509803),
-                        transparent
+          to top,
+          rgba(0, 0, 0, 0.9215686274509803),
+          transparent
         );
         padding-bottom: 1rem;
 
@@ -69,12 +69,15 @@
 
 // Hero
 .hero {
-  border-bottom: 2px solid #EBEBEB;
+  border-bottom: 2px solid #ebebeb;
 
   .horizontal-form {
     .main-filters {
       display: flex;
       flex-wrap: wrap;
+      @include media-breakpoint-up(md) {
+        justify-content: center;
+      }
       .control__indicator {
         &.checked {
           background-color: #7d7d7d;
