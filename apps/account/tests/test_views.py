@@ -28,8 +28,8 @@ EXISTING_USER_EMAIL = "existing.user@example.com"
     [
         (COMPANION_EMAIL, None, 404, {"error": {"code": "non-subscriber"}}),
         (COMPANION_EMAIL, "basic", 404, {"error": {"code": "limit-exceeded"}}),
-        (COMPANION_EMAIL, "pro", 201, None),
-        (EXISTING_USER_EMAIL, "pro", 404, {"error": {"code": "existing-user"}}),
+        (COMPANION_EMAIL, "premium", 201, None),
+        (EXISTING_USER_EMAIL, "premium", 404, {"error": {"code": "existing-user"}}),
     ],
 )
 @pytest.mark.django_db(transaction=True)
@@ -119,8 +119,8 @@ def test_companion_cannot_invite(db):
         (None, True, 200),
         ("basic", False, 400),
         ("basic", True, 200),
-        ("pro", False, 400),
-        ("pro", True, 200),
+        ("premium", False, 400),
+        ("premium", True, 200),
     ),
 )
 def test_sign_up(db, plan, send_card, response_code, anonapiclient):

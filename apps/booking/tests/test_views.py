@@ -22,7 +22,7 @@ def test_api_trip_summary(apiclient, customer):
     assert data["count"] == {"domestic": 0, "international": 0}
 
 
-@pytest.mark.parametrize("plan", ("basic", "pro", None))
+@pytest.mark.parametrize("plan", ("basic", "premium", None))
 def test_booking(plan, anonapiclient):
     phone_number = factory.faker.Faker("phone_number").generate()
     email = factory.faker.Faker("email").generate()
