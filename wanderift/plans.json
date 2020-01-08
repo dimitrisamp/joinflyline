@@ -7,16 +7,18 @@
     },
     "limit": 6,
     "deal_alerts": true,
-    "companion": 0
+    "companion": 0,
+    "members": 1
   },
-  "pro": {
-    "name": "Pro",
+  "premium": {
+    "name": "Premium",
     "price": {
       "period": "annual",
       "value": 79.99
     },
     "limit": null,
     "deal_alerts": true,
-    "companion": 3
+    "companion": 3,
+    "members": 2
   }
 }

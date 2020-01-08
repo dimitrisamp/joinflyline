@@ -250,7 +250,7 @@ export default {
         },
         {
           title: "6+ Bookings",
-          plan: "pro",
+          plan: "premium",
           builtFor: [
             "Business Travel",
             "Active Leisure Travelers",
