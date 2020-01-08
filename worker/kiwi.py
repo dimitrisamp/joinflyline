@@ -148,10 +148,10 @@ async def check_flights(city_from, city_to, session, **kwargs):
         datetime.date.today() + datetime.timedelta(days=DEALS_DAYS),
         **kwargs
     )
-    tasks = []
-    for t in trips:
-        tasks.append(check_and_update_trip_price(t, session))
-    await asyncio.gather(*tasks)
+    # tasks = []
+    # for t in trips:
+    #     tasks.append(check_and_update_trip_price(t, session))
+    # await asyncio.gather(*tasks)
     return trips
 
 
