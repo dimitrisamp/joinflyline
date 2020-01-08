@@ -1,4 +1,4 @@
-google-auth>=1.7,<1.8
+google-auth
 beautifulsoup4
 django-sendgrid-webhook
 stripe
