@@ -3,7 +3,7 @@
     "name": "Basic",
     "price": {
       "period": "annual",
-      "value": 39.99
+      "value": 49.99
     },
     "limit": 6,
     "deal_alerts": true,
@@ -13,7 +13,7 @@
     "name": "Pro",
     "price": {
       "period": "annual",
-      "value": 139.99
+      "value": 79.99
     },
     "limit": null,
     "deal_alerts": true,
