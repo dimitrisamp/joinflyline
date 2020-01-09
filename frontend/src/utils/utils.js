@@ -25,6 +25,11 @@ export const destinationTypes = {
   oneway: "Oneway"
 };
 
+export const dealsTypes = {
+  searchNBook: "Search & Book",
+  dealAlerts: "Deal Alerts"
+};
+
 export function proceedToBooking(flight) {
   let form = document.createElement("form");
   form.style.visibility = "hidden";

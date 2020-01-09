@@ -18,16 +18,25 @@
                       <div class="row">
                         <div class="col">
                           <div class="main-filters">
-                            <select-deal />
-                            <select-destination
-                              :value="form.destinationTypeId"
-                              @select="setDestinationType"
-                            />
-                            <select-seat-type
-                              :value="form.seatType"
-                              @select="setSeatType"
-                            />
-                            <select-passenger-count />
+                            <div class="main-filters__item">
+                              <select-deal
+                                :value="form.searchType"
+                                @select="setSearchType"
+                              />
+                            </div>
+                            <div class="main-filters__item">
+                              <select-destination
+                                :value="form.destinationTypeId"
+                                @select="setDestinationType"
+                              />
+                            </div>
+                            <div class="main-filters__item">
+                              <select-seat-type
+                                :value="form.seatType"
+                                @select="setSeatType"
+                              />
+                              <select-passenger-count />
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -63,7 +72,38 @@
                                 />
                               </div>
                             </div>
-                            <div class="hero-search__item">
+                            <div
+                              class="hero-search__item"
+                              v-if="form.searchType === 'dealAlerts'"
+                            >
+                              <div
+                                class="input-group input-group-sm search-item search-dropdown"
+                              >
+                                <input
+                                  type="text"
+                                  placeholder="Max Price"
+                                  class="form-control search-input"
+                                />
+                              </div>
+                            </div>
+                            <div
+                              class="hero-search__item"
+                              v-if="form.searchType === 'dealAlerts'"
+                            >
+                              <div
+                                class="input-group input-group-sm search-item search-dropdown"
+                              >
+                                <input
+                                  type="text"
+                                  placeholder="Carriers"
+                                  class="form-control search-input"
+                                />
+                              </div>
+                            </div>
+                            <div
+                              class="hero-search__item"
+                              v-if="form.searchType === 'searchNBook'"
+                            >
                               <div
                                 class="input-group input-group-sm search-dropdown home-date-field-dep"
                               >
@@ -84,7 +124,12 @@
                               </div>
                             </div>
 
-                            <div v-if="form.destinationTypeId === 'round'">
+                            <div
+                              v-if="
+                                form.destinationTypeId === 'round' &&
+                                  form.searchType === 'searchNBook'
+                              "
+                            >
                               <div class="hero-search__item">
                                 <div
                                   class="input-group input-group-sm search-dropdown home-date-field-ret"

@@ -52,7 +52,8 @@ export const SearchForm = {
       "updatePlaceTo",
       "setSeatType",
       "setDates",
-      "setDestinationType"
+      "setDestinationType",
+      "setSearchType"
     ])
   },
   mounted() {

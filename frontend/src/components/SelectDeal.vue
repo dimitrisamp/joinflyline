@@ -1,12 +1,16 @@
 <template>
   <div class="destination">
-    <div class="control">
-      <span class="nomad">Search & Book</span>
-      <div class="control__indicator"></div>
-    </div>
-    <div class="control control--nomad">
-      <span class="nomad">Deal Alerts</span>
-      <div class="control__indicator"></div>
+    <div
+      v-for="(dtype, dtypeId) in dealsTypes"
+      class="control control--checkbox"
+      :key="dtypeId"
+      @click="select(dtypeId)"
+    >
+      <span>{{ dtype }}</span>
+      <div
+        class="control__indicator"
+        :class="{ checked: value === dtypeId }"
+      ></div>
     </div>
   </div>
 </template>
@@ -14,14 +18,14 @@
 <script>
 import PopupSelect from "./PopupSelect.vue";
 import ClickOutside from "vue-click-outside";
-import { destinationTypes } from "../utils/utils";
+import { dealsTypes } from "../utils/utils";
 
 export default {
   extends: PopupSelect,
   props: ["value"],
   data() {
     return {
-      destinationTypes
+      dealsTypes
     };
   },
   directives: {
@@ -33,11 +37,6 @@ export default {
       this.close();
     }
   },
-  delimiters: ["{{", "}}"],
-  computed: {
-    text() {
-      return this.destinationTypes[this.value];
-    }
-  }
+  delimiters: ["{{", "}}"]
 };
 </script>

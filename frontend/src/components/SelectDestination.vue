@@ -32,8 +32,7 @@
     </div>
     <div class="control control--nomad">
       <span class="coming-soon">Coming Soon</span>
-      <span class="nomad">Nomad</span>
-      <div class="control__indicator"></div>
+      <span>Nomad</span>
     </div>
   </div>
 </template>
