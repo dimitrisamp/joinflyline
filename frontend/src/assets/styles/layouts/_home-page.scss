@@ -236,62 +236,81 @@ header.sticky {
 }
 
 .main-landing {
-  .navbar {
-    padding: 10px 0;
-    border-bottom: 1px solid #cfcfcf47;
+}
+
+.navbar {
+  padding: 10px 1.5rem;
+  border-bottom: 1px solid #cfcfcf47;
+  @include media-breakpoint-up(md) {
+    background-color: #fff;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 0;
+    z-index: 1;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    color: #ffffff;
+    border-bottom: 0;
+  }
+}
+
+.navbar-nav {
+  font-weight: 900;
+
+  .nav-item {
     @include media-breakpoint-up(md) {
-      position: absolute;
-      width: 100%;
-      left: 0;
-      top: 0;
-      z-index: 1;
-      padding-top: 1rem;
-      padding-bottom: 1rem;
-      color: #ffffff;
-      border-bottom: 0;
+      &:last-child {
+        border-left: 1px solid currentColor;
+      }
     }
   }
 
-  .navbar-nav {
-    font-weight: 900;
+  .nav-link {
+    padding-top: 0.4rem;
+    padding-bottom: 0.4rem;
+    padding-right: 1rem;
+    padding-left: 1rem;
+    color: #00aeef;
+    font-weight: bold;
 
-    .nav-item {
-      padding-right: 1rem;
-      padding-left: 1rem;
-
-      @include media-breakpoint-up(md) {
-        &:last-child {
-          border-left: 1px solid currentColor;
-        }
-      }
+    &.active {
+      color: $body-color;
+      text-decoration: underline;
     }
 
-    .nav-link {
-      padding-top: 0.4rem;
-      padding-bottom: 0.4rem;
-      padding-right: 1rem;
-      padding-left: 1rem;
-      color: #00aeef;
+    &:hover {
+      color: $body-color;
+      text-decoration: underline;
+    }
 
-      &.active {
-        color: #ffffff;
-        text-decoration: underline;
-      }
-
+    &.is-button {
+      border: 2px solid #00aeef;
+      padding-left: 2rem;
+      padding-right: 2rem;
+      text-decoration: none;
+      text-align: center;
       &:hover {
-        color: #ffffff;
-        text-decoration: underline;
-      }
-
-      @include media-breakpoint-up(md) {
+        background-color: #00aeef;
         color: #ffffff;
       }
     }
-  }
 
-  .navbar-toggler {
-    margin-right: 15px;
+    @include media-breakpoint-up(md) {
+      color: $body-color;
+    }
   }
+}
+
+.navbar-toggler {
+  margin-right: 15px;
+}
+
+.nav-link__icon {
+  width: 28px;
+  height: 28px;
+  display: inline-block;
+  margin-right: 0.5rem;
 }
 
 .newhome-form__title {
@@ -301,7 +320,7 @@ header.sticky {
   font-weight: 900;
 
   @include media-breakpoint-up(md) {
-    font-size: 4rem;
+    font-size: 3.625rem;
     text-align: center;
   }
 }

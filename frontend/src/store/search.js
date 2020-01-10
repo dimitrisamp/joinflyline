@@ -42,6 +42,7 @@ export const searchStore = {
       airlines: [],
       maxStops: null,
       destinationTypeId: "round",
+      searchType: "searchNBook",
       seatType: "M",
       valAdults: 1,
       valChildren: 0,
@@ -53,7 +54,8 @@ export const searchStore = {
       placeFrom: null,
       placeTo: null,
       singleCarrier: false,
-      timeFilters: initialTimeFilters()
+      timeFilters: initialTimeFilters(),
+      isDeals: false
     },
     searchResults: [],
     searchProgress: false,
@@ -107,6 +109,9 @@ export const searchStore = {
     },
     setDestinationType(state, value) {
       state.form.destinationTypeId = value;
+    },
+    setSearchType(state, value) {
+      state.form.searchType = value;
     },
     increaseLimit(state, by) {
       state.form.limitIncrement += by;
