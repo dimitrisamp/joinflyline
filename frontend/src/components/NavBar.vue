@@ -16,9 +16,7 @@
       >
         <span class="navbar-toggler-icon" />
       </button>
-      <div
-        :class="{ collapse: !showNavigation && $mq === 'sm'}"
-      >
+      <div :class="{ collapse: !showNavigation && $mq === 'sm' }">
         <div class="navbar-nav ml-auto">
           <div class="nav-item">
             <router-link

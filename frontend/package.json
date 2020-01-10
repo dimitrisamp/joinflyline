@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "env-path -p ../.env vue-cli-service serve",
+    "serve": "vue-cli-service serve",
     "build": "env-path -p ../.env vue-cli-service build",
     "test:unit": "env-path -p ../.env vue-cli-service test:unit",
     "lint": "env-path -p ../.env vue-cli-service lint"
