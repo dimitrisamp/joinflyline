@@ -2,6 +2,7 @@
   <div
     id="search-hero"
     class="hero search-container header-background homepage-background mobile-before first-page-body js-steps-small-blue"
+    :style="{ backgroundImage: `url(${backgroundImageUrl})` }"
   >
     <div class="search-container__head">
       <div class="container align-self-center">
@@ -245,6 +246,7 @@ import SelectPassengerCount from "./SelectPassengerCount";
 import SelectDestination from "./SelectDestination";
 import SelectDeal from "./SelectDeal";
 import SelectSeatType from "./SelectSeatType";
+import { getRandomImage } from "../utils/imageRotator";
 
 export default {
   delimiters: ["{{", "}}"],
@@ -259,7 +261,8 @@ export default {
   },
   data() {
     return {
-      trending
+      trending,
+      backgroundImageUrl: getRandomImage()
     };
   },
   methods: {
