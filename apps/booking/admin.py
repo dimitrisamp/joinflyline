@@ -1,3 +1,9 @@
 from django.contrib import admin
+from . import models as M
 
-# Register your models here.
+
+class CallbackRequestAdmin(admin.ModelAdmin):
+    list_display = ["timestamp", "trigger"]
+
+
+admin.site.register(M.CallbackRequest, CallbackRequestAdmin)
