@@ -36,7 +36,7 @@ from apps.booking.views import (
     CheckPromoView,
     LocationQueryView,
     FlightSearchView,
-)
+    CallbackView)
 from apps.subscriptions import views as subscriptions_views
 from apps.booking.viewsets import (
     BookingViewSet,
@@ -128,6 +128,7 @@ urlpatterns = [
         name="activation-code-check",
     ),
     path("api/set-plan/", SetPlanView.as_view(), name="set-plan"),
+    path("api/kiwi-callback/<str:trigger>/", CallbackView.as_view(), name="kiwi-callback"),
     re_path("^api/users/me/", include(user_router.urls)),
     re_path("^api/", include(router.urls)),
 ]

@@ -1,4 +1,5 @@
 from rest_framework.exceptions import ValidationError
+from rest_framework.response import Response
 
 from apps.account.actions import create_subscriber
 from apps.auth.models import User
@@ -11,6 +12,7 @@ from rest_framework_proxy.views import ProxyView
 
 from apps.booking.actions import save_booking
 from apps.booking.exceptions import ClientException
+from apps.booking.models import CallbackRequest
 
 
 class CheckFlightsView(ProxyView):
@@ -84,3 +86,9 @@ class SaveBookingView(APIView):
         return JsonResponse({})
 
 
+class CallbackView(APIView):
+    permission_classes = [AllowAny]
+
+    def post(self, request):
+        CallbackRequest.objects.create(body=request.data, trigger=self.kwargs['trigger'])
+        return Response()

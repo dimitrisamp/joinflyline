@@ -137,3 +137,9 @@ class SearchHistory(models.Model):
         indexes = (
             BTreeIndex(fields=('timestamp', )),
         )
+
+
+class CallbackRequest(models.Model):
+    timestamp = models.DateTimeField(auto_now_add=True)
+    trigger = models.CharField(max_length=50)
+    body = JSONField()
