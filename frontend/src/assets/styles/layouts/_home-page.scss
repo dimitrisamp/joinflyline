@@ -255,6 +255,7 @@ header.sticky {
 
   .nav-item {
     @include media-breakpoint-up(md) {
+      padding: 0 1.5rem;
       &:last-child {
         border-left: 1px solid currentColor;
       }
