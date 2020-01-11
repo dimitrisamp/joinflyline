@@ -7,6 +7,14 @@
 }
 
 @font-face {
+  font-family: 'Dona';
+  src: url('./assets/fonts/Dona-Heavy.woff2') format('woff2'),
+      url('./assets/fonts/Dona-Heavy.woff') format('woff');
+  font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
   font-family: "Dona";
   src: url("./assets/fonts/Dona-Black.woff2") format("woff2"),
     url("./assets/fonts/Dona-Black.woff") format("woff");
@@ -58,14 +66,8 @@
 @import "~bootstrap/scss/popover";
 @import "~bootstrap/scss/carousel";
 @import "~bootstrap/scss/spinners";
+@import "~bootstrap/scss/utilities";
 
-// Helpers
-
-// @import "~bootstrap/scss/helpers";
-
-// Utilities
-
-// @import "~bootstrap/scss/utilities/api";
 
 // Mixins
 @import "mixins/mq";
