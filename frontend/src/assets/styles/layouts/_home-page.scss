@@ -243,11 +243,6 @@ header.sticky {
   border-bottom: 1px solid #cfcfcf47;
   @include media-breakpoint-up(md) {
     background-color: #fff;
-    position: absolute;
-    width: 100%;
-    left: 0;
-    top: 0;
-    z-index: 1;
     padding-top: 1rem;
     padding-bottom: 1rem;
     color: #ffffff;
@@ -320,7 +315,7 @@ header.sticky {
   font-weight: 900;
 
   @include media-breakpoint-up(md) {
-    font-size: 3.625rem;
+    font-size: 3.4rem;
     text-align: center;
   }
 }
@@ -337,8 +332,8 @@ header.sticky {
 
 .search-container__head {
   @include media-breakpoint-up(md) {
-    min-height: 330px;
-    margin-bottom: -130px;
+    min-height: 360px;
+    margin-bottom: -60px;
   }
 }
 
@@ -347,6 +342,26 @@ header.sticky {
   @include media-breakpoint-up(md) {
     padding-top: 75px;
   }
+}
+
+.search-container__footer-text {
+  font-weight: bold;
+  font-size: 24px;
+  color: #919191;
+  text-align: center;
+  line-height: 40px;
+  text-align: center;
+  border-bottom: 2px solid #d8d8d8;
+  padding-bottom: 2rem;
+  margin-bottom: 2rem;
+}
+
+.search-container__footer-title {
+  font-weight: 80;
+  font-size: 40px;
+  color: #000000;
+  text-align: center;
+  line-height: 62px;
 }
 
 .left-form-pane .search-flight-home p {
@@ -670,7 +685,7 @@ header.sticky {
   background-position: center top;
   position: relative;
   @include media-breakpoint-up(md) {
-    padding-top: 120px;
+    padding-top: 60px;
   }
 }
 .hero .h-headermain {
@@ -704,48 +719,69 @@ header.sticky {
 
 .hero-features {
   display: flex;
-  margin-right: -15px;
-  margin-left: -15px;
+  overflow: hidden;
   flex-wrap: wrap;
   padding-top: 0.75rem;
+  @include media-breakpoint-up(md) {
+    margin-right: -50px;
+    margin-left: -50px;
+  }
+}
+
+.hero-features__more {
+  font-weight: bold;
+  font-size: 20px;
+  color: #00aeef;
+  text-align: center;
+  margin-bottom: 4rem;
 }
 
 .hero-feature {
   flex: 0 0 100%;
-  display: flex;
   margin: 25px 0 20px;
   padding: 0 15px;
   color: $body-color;
 
   @include media-breakpoint-up(md) {
     flex: 0 0 33%;
-    &:not(:last-child) {
-      border-right: 1px solid $border-color;
-    }
+    padding: 0 50px;
   }
 }
 
 .hero-feature__img {
-  flex: 0 0 50px;
-  width: 50px;
-  height: 50px;
-  margin-right: 20px;
+  background: #ffffff;
+  border: 2px solid #00aeef;
+  width: 130px;
+  height: 130px;
   border-radius: 50%;
   border: 2px solid $primary;
   display: flex;
   align-items: center;
   justify-content: center;
+  margin: 0 auto 24px;
 }
 
 .hero-feature__img-src {
-  width: 24px;
-  height: 24px;
+  width: 62px;
+  height: 62px;
   display: inline-block;
 }
 
 .hero-feature__title {
   font-weight: bold;
-  font-size: 18px;
+  font-size: 20px;
+  text-align: center;
+  line-height: 26px;
+  margin-bottom: 1.5rem;
+}
+
+.hero-feature__descr {
+  opacity: 0.5;
+  font-weight: bold;
+  font-size: 14px;
+  color: #000000;
+  text-align: center;
+  line-height: 26px;
 }
 
 .sign-up-header {
