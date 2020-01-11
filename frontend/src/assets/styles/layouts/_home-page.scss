@@ -243,11 +243,11 @@ header.sticky {
   border-bottom: 1px solid #cfcfcf47;
   @include media-breakpoint-up(md) {
     background-color: #fff;
-    position: absolute;
-    width: 100%;
-    left: 0;
-    top: 0;
-    z-index: 1;
+    // position: absolute;
+    // width: 100%;
+    // left: 0;
+    // top: 0;
+    // z-index: 1;
     padding-top: 1rem;
     padding-bottom: 1rem;
     color: #ffffff;
