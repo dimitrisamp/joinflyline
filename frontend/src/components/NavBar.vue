@@ -15,6 +15,11 @@
     >
       <div class="navbar-nav ml-auto">
         <div class="nav-item">
+          <router-link :to="{ name: 'membership-explained' }" class="nav-link">
+            Memberships
+          </router-link>
+        </div>
+        <div class="nav-item">
           <router-link :to="{ name: 'get-started' }" class="nav-link">
             <img
               class="nav-link__icon"

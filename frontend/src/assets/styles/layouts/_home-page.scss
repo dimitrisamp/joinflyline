@@ -243,6 +243,11 @@ header.sticky {
   border-bottom: 1px solid #cfcfcf47;
   @include media-breakpoint-up(md) {
     background-color: #fff;
+    // position: absolute;
+    // width: 100%;
+    // left: 0;
+    // top: 0;
+    // z-index: 1;
     padding-top: 1rem;
     padding-bottom: 1rem;
     color: #ffffff;
@@ -315,7 +320,7 @@ header.sticky {
   font-weight: 900;
 
   @include media-breakpoint-up(md) {
-    font-size: 3.4rem;
+    font-size: 3.625rem;
     text-align: center;
   }
 }
@@ -332,8 +337,8 @@ header.sticky {
 
 .search-container__head {
   @include media-breakpoint-up(md) {
-    min-height: 360px;
-    margin-bottom: -60px;
+    min-height: 330px;
+    margin-bottom: -130px;
   }
 }
 
