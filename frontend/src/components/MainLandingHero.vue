@@ -184,18 +184,47 @@
 
     <div class="search-container__footer">
       <div class="container">
+        <div class="search-container__footer-text">
+          Find the cheapest flights online. <br />
+          We’re leverging <a href="#">virtual interlining</a> technoloy so you
+          can spend less, and travel more
+        </div>
+        <div class="search-container__footer-title">
+          What is FlyLine
+        </div>
         <div class="hero-features">
           <div class="hero-feature">
             <div class="hero-feature__img">
               <img
                 class="hero-feature__img-src"
-                src="../assets/img/icons/danger.svg"
+                src="../assets/img/icons/worldwide.svg"
               />
             </div>
             <div class="hero-feature__text">
-              <h5 class="hero-feature__title">Customized Deal Alerts</h5>
+              <h5 class="hero-feature__title">
+                We make it easier to travel the world
+              </h5>
               <p class="hero-feature__descr">
-                Set your destination and start saving
+                Find unique flights. Save hundreds of dollars through virtual
+                interlining
+              </p>
+            </div>
+          </div>
+
+          <div class="hero-feature">
+            <div class="hero-feature__img">
+              <img
+                class="hero-feature__img-src"
+                src="../assets/img/icons/transfer.svg"
+              />
+            </div>
+            <div class="hero-feature__text">
+              <h5 class="hero-feature__title">
+                Save through virtual interlining
+              </h5>
+              <p class="hero-feature__descr">
+                Find unique flight and hotel rates. Save hundreds of dollars
+                compared to other sites.
               </p>
             </div>
           </div>
@@ -208,27 +237,18 @@
               />
             </div>
             <div class="hero-feature__text">
-              <h5 class="hero-feature__title">Best Price Garuanteed</h5>
+              <h5 class="hero-feature__title">
+                We show you the cheapest regular flights
+              </h5>
               <p class="hero-feature__descr">
-                Up to 90% savings on internationa
+                This way you can be sure you’re seeing the best available rates
+                anywhere.
               </p>
             </div>
           </div>
-
-          <div class="hero-feature">
-            <div class="hero-feature__img">
-              <img
-                class="hero-feature__img-src"
-                src="../assets/img/icons/ticket.svg"
-              />
-            </div>
-            <div class="hero-feature__text">
-              <h5 class="hero-feature__title">Seemless and Safe Booking</h5>
-              <p class="hero-feature__descr">
-                Book in 20 seconds, no redirect
-              </p>
-            </div>
-          </div>
+        </div>
+        <div class="hero-features__more">
+          <a href="#">Learn More</a>
         </div>
       </div>
     </div>
