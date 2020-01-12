@@ -19,19 +19,21 @@
         <header class="header">
           <nav-bar />
         </header>
-        <div class="container search-container">
-          <search-header />
+        <div class="search-result__search">
+          <div class="container search-container">
+            <search-header />
+          </div>
         </div>
         <!-- Desktop Inner Ends -->
         <!-- Search Container Start -->
         <div class="search-result__container">
           <div class="search-result__container__inner">
             <div class="search-result__container__left" style="display:none;">
-              <div class="search-flight-home">
+              <!-- <div class="search-flight-home">
                 <h3>{{ cityFromTo }}</h3>
                 <p>Carriers: {{ airlineNames }}</p>
                 <div class="search-flight-divider"></div>
-              </div>
+              </div> -->
               <div id="dealform" class="h-dealform" v-cloak>
                 <div class="search-form__filters">
                   <div class="filters__container">
@@ -149,7 +151,7 @@
               </div>
             </div>
             <div class="search-result__container__left">
-              <div class="search-flight-home">
+              <!-- <div class="search-flight-home">
                 <div>
                   <h3>{{ cityFromTo }}</h3>
                   <p>Carriers: {{ airlineNames }}</p>
@@ -165,7 +167,7 @@
                   </router-link>
                   <h5>How to get the most savings on FlyLine</h5>
                 </div>
-              </div>
+              </div> -->
             </div>
             <div class="search-result__container__right">
               <transition name="slide" mode="out-in" appear>

@@ -3,11 +3,26 @@
   &::before {
     position: absolute;
     top: -2.3875rem;
-    content: '';
+    content: "";
     width: calc(100% + 2rem);
     left: -2rem;
     background-position: bottom;
     height: calc(100% + 2.3875rem);
+  }
+  .result__filters-info {
+    background: #ffffff;
+    padding: .6rem 1rem;
+    border: 1.5px solid #ececec;
+    margin-bottom: 1rem;
+  }
+  .result__filters-count {
+    font-weight: 800;
+    font-size: 16px;
+  }
+  .result__filters-info-link {
+    font-weight: bold;
+    font-size: 14px;
+    color: #000000;
   }
   .result__filters {
     .tile__body {
@@ -33,7 +48,7 @@
         border: 2px solid #ececec;
         padding-left: 1rem;
         &::placeholder,
-        &.form-control::placeholder{
+        &.form-control::placeholder {
           font-family: $dona-regular;
           font-size: 0.9rem;
         }
