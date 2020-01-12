@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="result__filters-aside">
     <div class="result__filters-info">
       <div class="result__filters-count">
         Available Results : {{ searchResults.length }}

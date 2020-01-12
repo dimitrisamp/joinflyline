@@ -9,6 +9,12 @@
     background-position: bottom;
     height: calc(100% + 2.3875rem);
   }
+  .result__filters-aside {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding-bottom: 27px;
+  }
   .result__filters-info {
     background: #ffffff;
     padding: .5rem 1rem;
