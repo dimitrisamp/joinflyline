@@ -7,5 +7,5 @@ const filenames = [
 
 export function getRandomImage() {
   const randFilename = filenames[Math.floor(Math.random() * filenames.length)];
-  return require(`./photo_bank/${randFilename}`);
+  return require(`@/assets/photo_bank/${randFilename}`);
 }
