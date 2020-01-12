@@ -18,8 +18,8 @@
         <div class="col-12 col-lg-5">
           <div class="deals-alerts__img">
             <img
-              src="@/assets/img/main-landing/deals-alerts.png"
-              alt="Deals Alerts"
+              src="@/assets/img/main-landing/deal_alerts.png"
+              alt="Deal Alerts"
             />
           </div>
         </div>

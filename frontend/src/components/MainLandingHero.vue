@@ -312,6 +312,7 @@ export default {
       border-right: transparent;
     }
     .search-input {
+      font-family: dona-black;
       border: 2px solid #ececec;
       border-left: none;
     }
