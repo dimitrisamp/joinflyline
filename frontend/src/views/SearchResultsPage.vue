@@ -150,8 +150,8 @@
                 </div>
               </div>
             </div>
-            <div class="search-result__container__left">
-              <!-- <div class="search-flight-home">
+            <!-- <div class="search-result__container__left"> -->
+            <!-- <div class="search-flight-home">
                 <div>
                   <h3>{{ cityFromTo }}</h3>
                   <p>Carriers: {{ airlineNames }}</p>
@@ -168,7 +168,7 @@
                   <h5>How to get the most savings on FlyLine</h5>
                 </div>
               </div> -->
-            </div>
+            <!-- </div> -->
             <div class="search-result__container__right">
               <transition name="slide" mode="out-in" appear>
                 <router-view />

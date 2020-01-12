@@ -2,7 +2,7 @@
   <div>
     <div class="result__filters-info">
       <div class="result__filters-count">
-        Available Results : 532
+        Available Results : {{ searchResults.length }}
       </div>
       <router-link :to="{ name: 'sign-in' }" class="result__filters-info-link">
         Sign up to view all
@@ -108,7 +108,7 @@ export default {
     ])
   },
   computed: {
-    ...Vuex.mapState("search", ["form"]),
+    ...Vuex.mapState("search", ["form", "searchResults"]),
     ...Vuex.mapState("user", ["user"]),
     ...Vuex.mapGetters("search", [
       "cityFromTo",
