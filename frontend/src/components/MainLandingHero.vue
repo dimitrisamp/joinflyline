@@ -19,7 +19,7 @@
                       <div class="row">
                         <div class="col">
                           <div class="main-filters">
-                            <div class="main-filters__item">
+                            <div class="main-filters__item is-dynamic">
                               <select-deal
                                 :value="form.searchType"
                                 @select="setSearchType"
