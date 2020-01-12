@@ -8,7 +8,7 @@
         Sign up to view all
       </router-link>
     </div>
-    <form action="" class="bg-white">
+    <form action="" class="bg-white flex-grow-1">
       <overlay-component
         v-if="user.anonymous"
         :link="{ name: 'get-started' }"
