@@ -239,9 +239,10 @@ header.sticky {
 }
 
 .navbar {
-  padding: 10px 1.5rem;
+  padding: 10px 0;
   border-bottom: 1px solid #cfcfcf47;
   @include media-breakpoint-up(md) {
+    padding: 10px 1.5rem;
     background-color: #fff;
     // position: absolute;
     // width: 100%;
@@ -260,6 +261,7 @@ header.sticky {
 
   .nav-item {
     @include media-breakpoint-up(md) {
+      padding: 0 1.5rem;
       &:last-child {
         border-left: 1px solid currentColor;
       }
@@ -271,8 +273,12 @@ header.sticky {
     padding-bottom: 0.4rem;
     padding-right: 1rem;
     padding-left: 1rem;
-    color: #00aeef;
+    color: #00aeef !important;
     font-weight: bold;
+
+    @include media-breakpoint-up(md) {
+      color: $body-color !important;
+    }
 
     &.active {
       color: $body-color;
@@ -326,12 +332,14 @@ header.sticky {
 }
 
 .newhome-form__subtitle {
+  display: none;
   @include media-breakpoint-up(md) {
+    display: block;
     color: #ffffff;
     text-align: center;
     font-size: 22px;
     font-weight: bold;
-    margin-bottom: 26px;
+    margin-bottom: 30px;
   }
 }
 
@@ -344,8 +352,10 @@ header.sticky {
 
 .search-container__footer {
   background-color: #fff;
+  margin-top: 1rem;
   @include media-breakpoint-up(md) {
     padding-top: 75px;
+    margin-top: 75px;
   }
 }
 
@@ -691,7 +701,7 @@ header.sticky {
   background-position: center top;
   position: relative;
   @include media-breakpoint-up(md) {
-    padding-top: 60px;
+    padding-top: 90px;
   }
 }
 .hero .h-headermain {
@@ -1932,7 +1942,7 @@ This one is disabled until top blue line is back
 *****************************/
 @media (min-width: 320px) and (max-width: 480px) {
   .header-background {
-    background: url(./assets/img/pricing_background.png);
+    background: url(./assets/img/pricing_background.png) !important;
   }
 
   footer {

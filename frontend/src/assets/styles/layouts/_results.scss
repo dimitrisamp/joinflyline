@@ -1,4 +1,9 @@
 // Adel
+.search-result__search {
+  background-color: $primary;
+  padding-bottom: 20px;
+}
+
 .search-result {
   &__inner {
     .navbar-expand-lg > .container {
@@ -10,7 +15,6 @@
     }
   }
   &__container {
-//    background-image: url(assets/img/headerbackground.png);
     width: 100%;
     background-position: bottom;
     &__inner {
@@ -18,13 +22,13 @@
       width: 100%;
       flex-direction: column;
       @include mq(xl) {
-//        flex-direction: row;
+        //        flex-direction: row;
       }
     }
 
     &__left {
       flex: 0 0 100%;
-//      background-image: url(assets/img/Wallpaper-Left.png);
+      //      background-image: url(assets/img/Wallpaper-Left.png);
       background: #3caeef;
       background-size: cover;
       padding-bottom: 0rem;
@@ -36,7 +40,7 @@
         padding-left: calc(100% / 2 - 1140px / 2 + 15px);
         padding-right: calc(100% / 2 - 1140px / 2 + 15px);
         height: 100vh;
-//        position: sticky;
+        //        position: sticky;
         top: 0;
       }
 
@@ -64,7 +68,7 @@
         }
       }
 
-      .filter-field span{
+      .filter-field span {
         color: $white;
         font-family: $dona-black;
         font-size: 1.5rem;
@@ -105,7 +109,7 @@
         padding: 7px;
         cursor: pointer;
         color: $primary;
-        transition: opacity .2s ease-in-out;
+        transition: opacity 0.2s ease-in-out;
         font-family: $dona-bold;
         position: relative;
       }
@@ -143,6 +147,7 @@
         padding-left: calc(100% / 2 - 1140px / 2 + 15px);
       }
       flex-direction: row;
+      background-color: #f7f9fc;
     }
 
     .bg-white-close-holes {
@@ -152,7 +157,6 @@
     .search-flight-home {
       h3 {
         color: $white;
-
       }
 
       p {
@@ -160,8 +164,7 @@
         color: $white;
       }
 
-
-      button{
+      button {
         width: 230px;
         background: white;
         color: #3caeee;
@@ -170,7 +173,7 @@
         font-family: Dona-Black;
         height: 45px;
       }
-      h5{
+      h5 {
         font-size: 12px;
         margin-top: 5px;
         text-align: center;
@@ -200,7 +203,7 @@
     }
   }
 
-  .search-header{
-    padding: 1rem 0rem;
+  .search-header {
+    padding: 0;
   }
 }

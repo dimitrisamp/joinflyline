@@ -62,12 +62,21 @@
     <transition name="slide-up" mode="out-in" appear>
       <header class="search-header" v-show="isOpen">
         <div class="search-header__top">
-          <select-destination
-            :value="form.destinationTypeId"
-            @select="setDestinationType"
-          />
-          <select-passenger-count />
-          <select-seat-type :value="form.seatType" @select="setSeatType" />
+          <div class="main-filters">
+            <div class="main-filters__item">
+              <select-deal :value="form.searchType" @select="setSearchType" />
+            </div>
+            <div class="main-filters__item">
+              <select-destination
+                :value="form.destinationTypeId"
+                @select="setDestinationType"
+              />
+            </div>
+            <div class="main-filters__item">
+              <select-passenger-count />
+              <select-seat-type :value="form.seatType" @select="setSeatType" />
+            </div>
+          </div>
         </div>
         <div class="search-header__bottom">
           <form action="">
@@ -128,6 +137,7 @@ import SelectDestination from "./SelectDestination";
 import SelectPassengerCount from "./SelectPassengerCount";
 import SelectSeatType from "./SelectSeatType";
 import LocationInput from "./LocationInput";
+import SelectDeal from "../components/SelectDeal";
 
 export default {
   extends: SearchForm,
@@ -136,6 +146,7 @@ export default {
     ...Vuex.mapGetters("dashboard", ["toggleSidebar"])
   },
   components: {
+    SelectDeal,
     SelectDestination,
     SelectPassengerCount,
     SelectSeatType,
