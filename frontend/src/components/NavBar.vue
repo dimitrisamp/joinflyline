@@ -21,31 +21,16 @@
         </div>
         <div class="nav-item">
           <router-link :to="{ name: 'get-started' }" class="nav-link">
-            <img
-              class="nav-link__icon"
-              src="@/assets/img/ticket-lines.svg"
-              alt=""
-            />
             Book
           </router-link>
         </div>
         <div class="nav-item">
           <router-link :to="{ name: 'sign-in' }" class="nav-link">
-            <img
-              class="nav-link__icon"
-              src="@/assets/img/dollar-lines.svg"
-              alt=""
-            />
             Deals
           </router-link>
         </div>
         <div class="nav-item">
           <router-link :to="{ name: 'sign-in' }" class="nav-link has-border">
-            <img
-              class="nav-link__icon"
-              src="@/assets/img/user-lines.svg"
-              alt=""
-            />
             Log In
           </router-link>
         </div>
