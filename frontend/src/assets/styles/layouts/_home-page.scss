@@ -273,8 +273,12 @@ header.sticky {
     padding-bottom: 0.4rem;
     padding-right: 1rem;
     padding-left: 1rem;
-    color: #00aeef;
+    color: #00aeef !important;
     font-weight: bold;
+
+    @include media-breakpoint-up(md) {
+      color: $body-color !important;
+    }
 
     &.active {
       color: $body-color;
