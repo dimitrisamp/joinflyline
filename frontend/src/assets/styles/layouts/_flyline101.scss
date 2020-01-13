@@ -3,8 +3,8 @@
     padding: 4rem 4rem 1rem 0;
   }
   &__content {
-    background-color: $main-landing-footer-bg;
-    color: $white;
+    background-color: #F7F9FC;
+    color: #000;
   }
 
   &__item {
@@ -22,7 +22,7 @@
 
   p {
     font-size: 1rem;
-    color: transparentize($white, 0.50%);
+    color: #7F7F7F;
     line-height: 2rem;
   }
 
@@ -33,7 +33,7 @@
         font-size: 1rem;
         list-style-type: decimal;
         li {
-          color: transparentize($white, 0.50%);
+          color: #7F7F7F;
           margin-bottom: 1rem;
         }
       }
@@ -45,21 +45,6 @@
      &:not(:last-child) {
        padding-bottom: 3.5rem;
      }
-    }
-  }
-
-  &__lines {
-    height: 100%;
-    display: flex;
-    span {
-      height: 100%;
-      display: block;
-      width: 5.3125rem;
-      background-color: $primary;
-      margin-right: 2.5rem;
-      &:last-child {
-        margin-right: 0;
-      }
     }
   }
 }

@@ -39,9 +39,9 @@
         color: white;
         width: 100%;
         background-image: linear-gradient(
-                        to top,
-                        rgba(0, 0, 0, 0.9215686274509803),
-                        transparent
+          to top,
+          rgba(0, 0, 0, 0.9215686274509803),
+          transparent
         );
         padding-bottom: 1rem;
 
@@ -69,41 +69,7 @@
 
 // Hero
 .hero {
-  border-bottom: 2px solid #EBEBEB;
-
   .horizontal-form {
-    .main-filters {
-      display: flex;
-      flex-wrap: wrap;
-      .control__indicator {
-        &.checked {
-          background-color: #7d7d7d;
-          @include mq(md) {
-            background-color: #0aaeff;
-          }
-        }
-      }
-      .s-result-dropdown {
-        margin-top: 0.5rem;
-        margin-bottom: 0.5rem;
-        &:not(:last-child) {
-          margin-right: 2rem;
-        }
-
-        span {
-          font-size: 0.8rem;
-          padding: 9px 5px 5px 5px;
-        }
-
-        .search-f-dropdown {
-          min-width: 100px;
-        }
-
-        @include mq(md) {
-          min-width: 140px;
-        }
-      }
-    }
   }
 
   .wide-form {
@@ -158,6 +124,61 @@
           margin-bottom: 0.8rem;
         }
       }
+    }
+  }
+}
+
+.main-filters {
+  display: flex;
+  flex-wrap: wrap;
+  @include media-breakpoint-up(md) {
+    justify-content: center;
+  }
+  .control__indicator {
+    &.checked {
+      background-color: #7d7d7d;
+      @include mq(md) {
+        background-color: #0aaeff;
+      }
+    }
+  }
+  .s-result-dropdown {
+    &:not(:last-child) {
+      margin-right: 2rem;
+    }
+
+    span {
+      font-size: 13px;
+      padding: 9px 5px 5px 5px;
+    }
+
+    .search-f-dropdown {
+      min-width: 100px;
+    }
+
+    @include mq(md) {
+      min-width: 140px;
+    }
+  }
+}
+
+.main-filters__item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.725rem;
+  @include media-breakpoint-up(md) {
+    margin-top: 0.725rem;
+    padding-right: 1rem;
+    padding-left: 1rem;
+    &:not(:last-child) {
+      border-right: 1px solid #d8d8d8;
+    }
+  }
+
+  &.is-dynamic {
+    display: none;
+    @include media-breakpoint-up(md) {
+      display: block;
     }
   }
 }

@@ -15,7 +15,7 @@
     @include create-title($dona-black, $white, 2.5rem);
   }
   &--black-big {
-    @include create-title($dona-black, $black, 2.5rem);
+    @include create-title($dona-black, $black, 36px);
   }
 }
 

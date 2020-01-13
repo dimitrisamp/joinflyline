@@ -1,180 +1,169 @@
-body{
-    font-family:Dona-Regular;
-}
-
-.default-nav{
-    background: #fff !important;
-    padding: 6px 0;
-    border-bottom: 2px solid #ccc ;
+.default-nav {
+  background: #fff !important;
+  padding: 6px 0;
+  border-bottom: 2px solid #ccc;
 }
 .b-nav-logo img {
-    height: 33px;
+  height: 33px;
 }
 .b-nav-logo {
-    padding: 0;
+  padding: 0;
 }
 .navbar-light .btn {
-    font-family: Dona-Bold;
-    color: rgb(0, 174, 239);
+  font-family: Dona-Bold;
+  color: rgb(0, 174, 239);
 }
 
-
-.savingexplained{
-	padding:30px 10px;
+.savingexplained {
+  padding: 30px 10px;
 }
-.savingexplained .saving-title{
-	font-family:dona-black;	
-	line-height: 35px;
+.savingexplained .saving-title {
+  font-family: dona-black;
+  line-height: 35px;
 }
-.saving-block{
-	display: block;
+.saving-block {
+  display: block;
 }
-.savingexplained p{
-	color: #b3b2b2;
-	margin-bottom: 30px;
-	font-size: 15px;
-    line-height: 20px;
+.savingexplained p {
+  color: #b3b2b2;
+  margin-bottom: 30px;
+  font-size: 15px;
+  line-height: 20px;
 }
-.savings-horizontal{
-	background:#b3b2b2;
-	width: 100%;
-	height: 1px;
-	margin-top: 20px; 
-	margin-bottom: 30px;
+.savings-horizontal {
+  background: #b3b2b2;
+  width: 100%;
+  height: 1px;
+  margin-top: 20px;
+  margin-bottom: 30px;
 }
-.savingexplained h3{
-	font-family:Dona-Bold;		
-	font-weight:bold;
-	font-size: 22px;
-	margin-bottom: 20px;
+.savingexplained h3 {
+  font-family: Dona-Bold;
+  font-weight: bold;
+  font-size: 22px;
+  margin-bottom: 20px;
 }
-.note-t-book{
-    padding:30px 10px;    
+.note-t-book {
+  padding: 30px 10px;
 }
-.note-t-book p{
-    color: #b3b2b2;
-    margin-bottom: 30px;
-    font-size: 14px;
-    line-height: 33px;
+.note-t-book p {
+  color: #b3b2b2;
+  margin-bottom: 30px;
+  font-size: 14px;
+  line-height: 33px;
 }
-.not-book-title{
-    font-family:dona-black; 
-    font-size: 30px;
-    color: #000;
+.not-book-title {
+  font-family: dona-black;
+  font-size: 30px;
+  color: #000;
 }
-
 
 /*****************************
            Footer
 *****************************/
 
 footer {
-    background: #fff;
-    padding-top: 40px;
+  background: #fff;
+  padding-top: 40px;
 }
 .top-footer {
-    padding-bottom: 80px;
+  padding-bottom: 80px;
 }
-footer .top-footer h3 { 
-    margin-top: 40px;
-    font-size: 27px;
-    font-weight: bold;
-    line-height: 19px;
-    color: #000;
-    margin-bottom: 32px;
+footer .top-footer h3 {
+  margin-top: 40px;
+  font-size: 27px;
+  font-weight: bold;
+  line-height: 19px;
+  color: #000;
+  margin-bottom: 32px;
 }
 
 footer .top-footer ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 footer .top-footer ul li {
-    font-size: 13px;
-    line-height: 13px;
-    margin-bottom: 15px;
-    font-weight: 600;
+  font-size: 13px;
+  line-height: 13px;
+  margin-bottom: 15px;
+  font-weight: 600;
 }
 
 footer .top-footer a {
-    text-decoration: none;
-    color: #383838;
-    font-size: 16px;
-    margin-bottom: 26px;
-    display: block;
+  text-decoration: none;
+  color: #383838;
+  font-size: 16px;
+  margin-bottom: 26px;
+  display: block;
 }
 
 footer .bottom-footer {
-    background: #00b0f5;
-    padding: 10px 0;
+  background: #00b0f5;
+  padding: 10px 0;
 }
 
 footer .bottom-footer .logo {
-    width: 150px;
-    margin: 0 auto;
-    padding: 40px 0;
+  width: 150px;
+  margin: 0 auto;
+  padding: 40px 0;
 }
 
 footer .bottom-footer .logo > img {
-    width: 100%;
-    display: block;
+  width: 100%;
+  display: block;
 }
 
-footer .bottom-footer  ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    position: relative;
-    top: 4px;
+footer .bottom-footer ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  top: 4px;
 }
 
 footer .bottom-footer a {
-    color: #fff;
-    text-decoration: none;
-    font-size: 15px;
-    font-weight: 600;
-    letter-spacing: 1px;
+  color: #fff;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 1px;
 }
 
 footer .bottom-footer ul li {
-    display: inline-block;    
-    margin-right: 50px;
+  display: inline-block;
+  margin-right: 50px;
 }
 
 .logo h3 {
-    color: #000;
-    font-size: 47px;
-    font-weight: 600;
+  color: #000;
+  font-size: 47px;
+  font-weight: 600;
 }
 footer .bottom-footer ul li:first-child:before {
-    display: none;
+  display: none;
 }
-.footer-app-image{
-    margin-top: 40px;
+.footer-app-image {
+  margin-top: 40px;
 }
-.social-icon ul{
-    float: right;
-    position: relative !important;
-    top: 0 !important;
+.social-icon ul {
+  float: right;
+  position: relative !important;
+  top: 0 !important;
 }
-.social-icon ul li{
-    margin-right: 0px !important;
-    color: #fff;
-    font-weight: 600;
+.social-icon ul li {
+  margin-right: 0px !important;
+  color: #fff;
+  font-weight: 600;
 }
-.social-icon ul li a{
-    margin-right: 20px;
+.social-icon ul li a {
+  margin-right: 20px;
 }
 
 .s-result-dropdown {
-    margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 .search-dropdown {
-    margin-bottom: 10px;
+  margin-bottom: 10px;
 }
-
-
-
-
-

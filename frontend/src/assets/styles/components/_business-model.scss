@@ -1,24 +1,24 @@
 .business-model {
-    background-color: $main-landing-footer-bg;
-    color: $white;
-    text-align: center;
+  background-color: #f7f9fc;
+  color: #000;
+  text-align: center;
 
-    &__container {
-        padding: 3rem 0;
-        border-bottom: 2px solid $white;
-    }
+  &__container {
+    padding: 3rem 0;
+    border-bottom: 2px solid $white;
+  }
 
-    &__title {
-      font-family: $dona-black;
-      font-size: 2.5rem;
-      margin: 2.5rem 0;
-    }
+  &__title {
+    font-family: $dona-black;
+    font-size: 2.5rem;
+    margin: 2.5rem 0;
+  }
 
-    &__text {
-      color: $main-landing-about-stats;
-      font-family: $dona-regular;
-      font-size: 1.125rem;
-      padding-bottom: 1.5rem;
-      color: $white;
-    }
+  &__text {
+    color: #000;
+    font-family: $dona-regular;
+    font-size: 1.125rem;
+    padding-bottom: 1.5rem;
+    color: #7f7f7f;
+  }
 }

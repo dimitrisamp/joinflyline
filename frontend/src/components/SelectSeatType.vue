@@ -1,5 +1,5 @@
 <template>
-  <div class="s-result-dropdown">
+  <div class="main-filter s-result-dropdown">
     <span @click="open" v-text="text" class="arrow" />
     <div
       class="search-f-dropdown"

@@ -1,7 +1,6 @@
 CITY_CODES = [
     ["Atlanta", "ATL"],
     ["Austin", "AUS"],
-    ["Baltimore", "MTN"],
     ["Boston", "BOS"],
     ["Charlotte", "CLT"],
     ["Chicago", "CHI"],

@@ -1,7 +1,16 @@
 <template>
   <div class="newhome-form" id="newhome-form">
-    <h3 v-if="$mq === 'sm'">Spend Less, Travel More</h3>
-    <h3 v-else>Book your favorite airlines at wholesale prices</h3>
+    <h1 class="newhome-form__title" v-if="$mq === 'sm'">
+      Spend Less, Travel More
+    </h1>
+    <h1 class="newhome-form__title" v-else>
+      Extraordinary Flight Deals <br />
+      You Can’t Find Anywhere Else
+    </h1>
+    <h5 class="newhome-form__subtitle">
+      Our flights are cheap because we interline the fares and cut out the
+      markup
+    </h5>
     <!-- <h3>Spend Less,<br/> Travel More -->
     <!-- <div class="cd-intro full-web-form">
                 <h6 class="cd-headline slide loading-bar">

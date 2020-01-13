@@ -1,5 +1,6 @@
 .airlines-logos {
   padding: 5rem 0 2rem 0;
+  background-color: #F7F9FC;
     &__center {
       font-family: $dona-bold;
       text-align: center;
@@ -43,6 +44,7 @@
 
     &__text {
       font-family: $dona-bold;
+      font-size: 14px;
       text-align: center;
       padding: 1rem 0;
       padding-bottom: 1.8rem;

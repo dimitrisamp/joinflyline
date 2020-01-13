@@ -1,9 +1,7 @@
 <template>
   <section class="about">
     <!-- Header Start -->
-    <header>
-      <nav-bar />
-    </header>
+    <Header />
     <!-- Header Ends-->
     <!-- About Text Start -->
     <div class="container">
@@ -13,26 +11,22 @@
           people spend less and travel more.
         </h1>
         <h4 class="about__subtitle">
-          Save up to 60% on FlyLine fares and access the best flight deals on the net
+          Save up to 60% on FlyLine fares and access the best flight deals on
+          the net
         </h4>
         <p class="about__text">
-          It’s easy to spend money on travel. But getting the most value is a
+          It’s easy to spend money on travel but getting the most value is a
           different story. <br />
           Take trip planning for example. Finding the best deal takes time,
           prices change <br />
           depending on many variables, and pricing isn’t always transparent. We
-          don’t think that’s fair. <br />
-          FlyLine is here to help. We give everyone the tools it takes to fine
-          the best savings, perks, and all around value <br />
-          We then make them easy-to-use with a straight forward membership model,
-          so you can always spend with confidence.
+          don’t think that’s fair.
         </p>
         <p class="about__text">
           FlyLine is here to help. We give everyone the tools it takes to find
-          the best savings, <br />
-          perks, and all around value. And we make them easy-to-use with a
-          straightforward <br />
-          membership model. So you can always spend with confidence.
+          the best savings, perks, and all around value <br />
+          We then make them easy-to-use with a straight forward membership
+          model, so you can always spend with confidence. <br />
         </p>
       </div>
     </div>
@@ -85,7 +79,7 @@
                     FlyLine Search & Booking Engine
                   </h2>
                   <p class="tabs__content-text">
-                    Save up to 90% on FlyLine fares <br />
+                    Save up to 60% on FlyLine fares <br />
                     and get access to the Internets best deals
                   </p>
                 </div>
@@ -99,9 +93,9 @@
               </div>
             </div>
           </tab>
-          <tab title="Virtual Interlining">
+          <tab title="Virtual Inerlining">
             <h2 class="tabs__content-title">
-              Virtual Interlininng
+              Virtual Interlining
               <span>
                 <img src="@/assets/img/main-landing/WN.png" alt="WN" />
                 -> <img src="@/assets/img/main-landing/DL.png" alt="DL" />
@@ -112,7 +106,9 @@
               other booking sites <br />
               you would have to book each of these flights separately but with
               FlyLine it’s one <br />
-              simple transaction using virtual interlining technology.
+              simple transaction using virtual interlining technology. <br />
+              Worried about baggage transfers and missed connections? <br />
+              Don't worry our GDS guarantee covers you.
             </p>
           </tab>
           <tab title="Deal Alerts">
@@ -154,19 +150,32 @@
       <div class="container">
         <div class="business-model__container">
           <h2 class="business-model__title">Our Business Model</h2>
+          <h4 class="text-center mb-4">Source of Savings</h4>
           <p class="business-model__text">
             Airlines publish flights to the Airline Tariff Publishing Company
             (ATPCO), where we access them via <br />
+
             the Global Distribution System (GDS) and pass them on to you, our
             members, at their low wholesale rate. <br />
+
+            We take the savings a step further by also offering virtually
+            interlined flights at the same wholesale rate. <br />
+
+            These incredibly cheap fare options are created by connecting
+            discounted flights<br />between carriers into a singular fare for
+            unmatched savings. <br />
+
             If our wholesale FlyLine fare isn’t the lowest available on the net
-            we’ll show you what is so you can always <br />
-            book with confidence and save!
-          </p>
-          <p class="business-model__text">
-            We generate revenue through our memberships and a small
             <br />
-            commission on each of the flights we sell.
+            we’ll show you what is so you can always book with confidence and
+            save!
+          </p>
+          <h4 class="text-center mb-4">Customer Alignment</h4>
+          <p class="business-model__text">
+            We generate revenue through memberships versus marking up our fares
+            <br />
+            to align ourselves with our customer's pursuit of savings and to
+            reward loyalty.
           </p>
         </div>
       </div>
@@ -180,16 +189,16 @@
 
 <script>
 import MainLandingFooter from "./MainLandingFooter";
-import NavBar from "./NavBar";
 import Tab from "./Tab";
 import Tabs from "./Tabs";
+import Header from "./Header";
 
 export default {
   components: {
     "main-landing-footer": MainLandingFooter,
-    NavBar,
     Tabs,
-    Tab
+    Tab,
+    Header
   },
   delimiters: ["{{", "}}"]
 };

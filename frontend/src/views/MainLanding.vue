@@ -1,13 +1,10 @@
 <template>
   <div class="main-landing">
-    <header><nav-bar /></header>
+    <Header />
     <main>
       <main-landing-hero />
-      <main-landing-steps />
-      <main-landing-stats />
       <main-landing-airlines-logos />
       <main-landing-deals-alerts />
-      <subscription-plans />
     </main>
     <footer>
       <main-landing-footer />
@@ -17,23 +14,17 @@
 
 <script>
 import MainLandingFooter from "../components/MainLandingFooter";
-import SubscriptionPlans from "../components/SubscriptionPlans";
 import MainLandingDealsAlerts from "../components/MainLandingDealsAlerts";
-import MainLandingStats from "../components/MainLandingStats";
-import MainLandingSteps from "../components/MainLandingSteps";
 import MainLandingHero from "../components/MainLandingHero";
 import MainLandingAirlinesLogos from "../components/MainLandingAirlinesLogos";
-import NavBar from "../components/NavBar";
+import Header from "../components/Header";
 
 export default {
   components: {
-    NavBar,
+    Header,
     MainLandingHero,
-    MainLandingSteps,
-    MainLandingStats,
     MainLandingAirlinesLogos,
     MainLandingDealsAlerts,
-    SubscriptionPlans,
     MainLandingFooter
   },
   delimiters: ["{{", "}}"],

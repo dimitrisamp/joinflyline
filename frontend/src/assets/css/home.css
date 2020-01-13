@@ -10,10 +10,6 @@
     font-family: Dona-Bold;
     src: url(../fonts/Dona/Dona-Bold.ttf);
 }
-body{
-    font-family:Dona-Regular !important;
-}
-
 a{
 text-decoration:none !important;
 }

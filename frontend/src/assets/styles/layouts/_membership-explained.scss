@@ -1,3 +1,142 @@
+.membership-explained__hero {
+  min-height: 120px;
+  background-image: url("./assets/img/home-bg.png");
+  padding: 3rem 0 1rem;
+  @include media-breakpoint-up(md) {
+    min-height: 200px;
+    padding: 6rem 0 2rem;
+  }
+}
+
+.membership-explained__plans {
+  padding: 4rem 0;
+}
+
+.membership-explained__plans-title {
+  font-weight: 800;
+  font-size: 40px;
+  color: #00aeef;
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.membership-explained__plans-subtitle {
+  font-weight: bold;
+  font-size: 20px;
+  color: #7e7e7e;
+  text-align: center;
+  line-height: 36px;
+  margin-bottom: 60px;
+}
+
+.membership-explained__plans-list {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+  flex-direction: column;
+  @include media-breakpoint-up(md) {
+    flex-direction: row;
+  }
+}
+
+.membership-explained__plan-head {
+  padding: 14px 0;
+  margin: 0 12px;
+  border-bottom: 2px solid #d8d8d8;
+}
+
+.membership-explained__plan-trial {
+  font-weight: bold;
+  font-size: 16px;
+  color: #ffffff;
+  background: #00aeef;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+  display: inline-block;
+  padding: 8px 10px;
+  margin-bottom: 20px;
+  line-height: 1;
+}
+
+.membership-explained__plan-title {
+  font-weight: 800;
+  font-size: 36px;
+  color: #00aeef;
+  margin-bottom: 20px;
+  line-height: 1;
+}
+
+.membership-explained__plan-price {
+  font-weight: bold;
+  font-size: 20px;
+  color: #00aeef;
+  line-height: 1;
+  margin-bottom: 0;
+}
+
+.membership-explained__plan-list {
+  list-style: none;
+  font-weight: bold;
+  font-size: 20px;
+  color: #7e7e7e;
+  line-height: 40px;
+  margin: 16px 0 0;
+  padding: 0 12px;
+}
+
+.membership-explained__plan {
+  background: #ffffff;
+  box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+  @include media-breakpoint-up(md) {
+    min-width: 384px;
+    margin-bottom: 0;
+    margin-right: 40px;
+  }
+}
+
+.membership-explained__title {
+  font-weight: 800;
+  color: #ffffff;
+  text-align: center;
+  font-size: 32px;
+  line-height: 1.2;
+  @include media-breakpoint-up(md) {
+    font-size: 55px;
+  }
+}
+
+.membership-explained__plan-bottom {
+  text-align: center;
+  padding: 24px;
+  margin-top: auto;
+}
+
+.membership-explained__plan-btn {
+  border: 2px solid #00AEEF;
+  font-weight: 600;
+  font-size: 20px;
+  color: #7E7E7E;
+  text-align: center;
+  padding: 10px;
+  transition: color .25s ease, background-color .25s ease;
+  display: block;
+  margin-bottom: 1rem;
+  &:hover {
+    text-decoration: none;
+    color: #ffffff;
+    background-color: #00AEEF;
+  }
+}
+
+.membership-explained__plan-link {
+  font-weight: bold;
+  font-size: 12px;
+  color: #00AEEF;
+  text-align: center;
+}
+
 .membership-explained {
   &__tab {
     &-list {
@@ -52,7 +191,7 @@
         margin-right: auto;
         margin-bottom: 2rem;
         @include mq(lg) {
-          margin-bottom: 0
+          margin-bottom: 0;
         }
       }
     }

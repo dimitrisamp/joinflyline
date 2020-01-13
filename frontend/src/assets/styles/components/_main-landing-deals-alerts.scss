@@ -1,29 +1,23 @@
 .deals-alerts {
-  background-color: $main-landing-footer-bg;
-  padding: 4rem 0 5rem 0;
-  color: $white;
+  padding: 6rem 0 5rem 0;
+  color: $body-color;
+}
 
-  h3 {
-    color: $white;
+.deals-alerts__text {
+  font-size: 16px;
+  color: #7F7F7F;
+  font-weight: bold;
+  padding-top: 16px;
+}
+
+.deals-alerts__img {
+  width: 80%;
+  margin: auto;
+  padding-top: 2rem;
+  @include mq(lg) {
+    padding-top: 0;
   }
-  &__top-text {
-    font-family: $dona-bold;
-    padding-bottom: 2rem;
-    font-size: 1.2rem;
-  }
-  &__text {
-    font-family: $dona-black;
-    font-size: 1rem;
-  }
-  &__img {
-    width: 60%;
-    margin: auto;
-    padding-top: 2rem;
-    @include mq(lg) {
-      padding-top: 0;
-    }
-    img {
-      width: 100%;
-    }
+  img {
+    width: 100%;
   }
 }

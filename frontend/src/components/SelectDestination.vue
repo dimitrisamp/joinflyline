@@ -1,22 +1,4 @@
 <template>
-  <!-- <div class="s-result-dropdown">
-    
-    <span @click="open" v-text="text" />
-    <div
-      class="search-f-dropdown"
-      v-if="selectProgress"
-      v-click-outside="close"
-    >
-      <ul class="s-dropdown-list">
-        <li
-          v-for="(dtype, dtypeId) in destinationTypes"
-          :key="dtypeId"
-          @click="select(dtypeId)"
-          v-text="dtype"
-        />
-      </ul>
-    </div>
-  </div> -->
   <div class="destination">
     <div
       v-for="(dtype, dtypeId) in destinationTypes"
@@ -32,8 +14,7 @@
     </div>
     <div class="control control--nomad">
       <span class="coming-soon">Coming Soon</span>
-      <span class="nomad">Nomad</span>
-      <div class="control__indicator"></div>
+      <span>Nomad</span>
     </div>
   </div>
 </template>

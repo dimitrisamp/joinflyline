@@ -1,9 +1,7 @@
 <template>
   <section class="fly-line">
     <!-- Header Start -->
-    <header>
-      <nav-bar />
-    </header>
+    <Header />
     <!-- Header Ends-->
 
     <!--  FlyLine Content Start  -->
@@ -202,13 +200,13 @@
 </template>
 
 <script>
-import NavBar from "../components/NavBar";
+import Header from "../components/Header";
 import MainLandingFooter from "../components/MainLandingFooter";
 
 export default {
   components: {
     MainLandingFooter,
-    NavBar
+    Header
   },
   delimiters: ["{{", "}}"]
 };

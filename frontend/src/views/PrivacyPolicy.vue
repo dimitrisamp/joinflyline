@@ -1,6 +1,6 @@
 <template>
   <div class="privacy">
-    <header><nav-bar /></header>
+    <Header />
 
     <div class="privacy__content">
       <div class="container">
@@ -322,12 +322,12 @@
 </template>
 
 <script>
-import NavBar from "../components/NavBar";
+import Header from "../components/Header";
 import MainLandingFooter from "../components/MainLandingFooter";
 
 export default {
   components: {
-    NavBar,
+    Header,
     MainLandingFooter
   },
   delimiters: ["{{", "}}"]

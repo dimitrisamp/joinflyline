@@ -1,3 +1,75 @@
+@font-face {
+  font-family: "Dona";
+  src: url("./assets/fonts/Dona-Bold.woff2") format("woff2"),
+    url("./assets/fonts/Dona-Bold.woff") format("woff");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Dona';
+  src: url('./assets/fonts/Dona-Heavy.woff2') format('woff2'),
+      url('./assets/fonts/Dona-Heavy.woff') format('woff');
+  font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Dona";
+  src: url("./assets/fonts/Dona-Black.woff2") format("woff2"),
+    url("./assets/fonts/Dona-Black.woff") format("woff");
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Dona";
+  src: url("./assets/fonts/Dona-Regular.woff2") format("woff2"),
+    url("./assets/fonts/Dona-Regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+// Configuration
+
+
+@import "~bootstrap/scss/functions";
+@import "variables";
+@import "~bootstrap/scss/mixins";
+@import "~bootstrap/scss/utilities";
+
+// Layout & components
+
+@import "~bootstrap/scss/root";
+@import "~bootstrap/scss/reboot";
+@import "~bootstrap/scss/type";
+@import "~bootstrap/scss/images";
+@import "~bootstrap/scss/grid";
+@import "~bootstrap/scss/tables";
+@import "~bootstrap/scss/forms";
+@import "~bootstrap/scss/buttons";
+@import "~bootstrap/scss/transitions";
+@import "~bootstrap/scss/dropdown";
+@import "~bootstrap/scss/button-group";
+@import "~bootstrap/scss/nav";
+@import "~bootstrap/scss/navbar";
+@import "~bootstrap/scss/card";
+@import "~bootstrap/scss/breadcrumb";
+@import "~bootstrap/scss/pagination";
+@import "~bootstrap/scss/badge";
+@import "~bootstrap/scss/alert";
+@import "~bootstrap/scss/progress";
+@import "~bootstrap/scss/list-group";
+@import "~bootstrap/scss/close";
+@import "~bootstrap/scss/toasts";
+@import "~bootstrap/scss/modal";
+@import "~bootstrap/scss/tooltip";
+@import "~bootstrap/scss/popover";
+@import "~bootstrap/scss/carousel";
+@import "~bootstrap/scss/spinners";
+@import "~bootstrap/scss/utilities";
+
+
 // Mixins
 @import "mixins/mq";
 @import "mixins/create-title";
@@ -49,20 +121,30 @@
 @import "components/main-landing-hero";
 
 // Layout
-@import 'layouts/header';
-@import 'layouts/landingPage-header';
-@import 'layouts/sidebar';
-@import 'layouts/footer';
-@import 'layouts/results';
-@import 'layouts/savings-explained';
-@import 'layouts/get-started';
-@import 'layouts/landing-page';
-@import 'layouts/main-landing-about';
-@import 'layouts/membership-explained';
-@import 'layouts/flyline101';
-@import 'layouts/privacy';
-@import 'layouts/terms-of-services';
-@import 'layouts/airlines';
-@import 'layouts/privacy';
-@import 'layouts/terms-of-services';
-@import 'layouts/search-header';
+@import "layouts/header";
+@import "layouts/landingPage-header";
+@import "layouts/sidebar";
+@import "layouts/footer";
+@import "layouts/results";
+@import "layouts/savings-explained";
+@import "layouts/get-started";
+@import "layouts/landing-page";
+@import "layouts/home-page";
+@import "layouts/main-landing-about";
+@import "layouts/membership-explained";
+@import "layouts/flyline101";
+@import "layouts/privacy";
+@import "layouts/terms-of-services";
+@import "layouts/airlines";
+@import "layouts/privacy";
+@import "layouts/terms-of-services";
+@import "layouts/search-header";
+
+// Globals
+
+body {
+  font-family: "Dona", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-weight: 400;
+}

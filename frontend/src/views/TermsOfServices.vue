@@ -1,6 +1,6 @@
 <template>
   <div class="terms-of-services">
-    <header><nav-bar /></header>
+    <Header />
     <div class="container">
       <div class="terms-of-services__content">
         <h3 class="text-center" style="font-family: dona-black;">
@@ -396,11 +396,11 @@
 
 <script>
 import MainLandingFooter from "../components/MainLandingFooter";
-import NavBar from "../components/NavBar";
+import Header from "../components/Header";
 
 export default {
   components: {
-    NavBar,
+    Header,
     MainLandingFooter
   },
   delimiters: ["{{", "}}"]
