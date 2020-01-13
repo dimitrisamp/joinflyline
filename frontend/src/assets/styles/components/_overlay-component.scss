@@ -1,46 +1,48 @@
 .overlay-component {
-    position: absolute;
-    top: 0;
-    height: 100%;
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.96);
+  z-index: 12;
+  border: 1.5px solid #ececec;
+  padding: 2.5rem 1rem;
+
+  &__heading {
+    font-family: $dona-black;
+  }
+
+  .button {
     width: 100%;
-    background-color: rgba(255, 255, 255, 0.96);
-    z-index: 12;
-    border: 1.5px solid #ececec;
-    text-align: center;
-    padding: 2.5rem 1rem;
+    font-size: 1rem;
+    padding-top: 6px;
+    color: $black;
+    font-family: $dona-black;
+    &:hover {
+      color: $white;
+    }
+  }
 
-    &__heading {
-        font-family: $dona-black;
-        p {
-            font-family: $dona-bold;
-        }
-    }
+  &.half-bottom {
+    bottom: 0;
+    top: 50%;
+    height: 50%;
+  }
 
-    .button {
-        width: 100%;
-        font-size: 1rem;
-        padding-top: 6px;
-        color: $black;
-        font-family: $dona-black;
-        &:hover {
-            color: $white;
-        }
-    }
-    p {
-        font-size: .75rem;
-        font-family: $dona-bold;
-        color: #6c757d;
-    }
-    &.half-bottom {
-        bottom: 0;
-        top: 50%;
-        height: 50%;
-    }
-
-   + .search-filter {
+  + .search-filter {
     .search-filter__body {
-        box-shadow: none;
-        border: 0;
+      box-shadow: none;
+      border: 0;
     }
-   }
+  }
+}
+
+.overlay-component__text {
+  font-size: 0.75rem;
+  font-weight: bold;
+}
+
+.overlay-compnent__footer {
+  font-size: 12px;
+  font-weight: bold;
 }
