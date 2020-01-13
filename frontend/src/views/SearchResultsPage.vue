@@ -16,9 +16,7 @@
     <div class="search-result__desktop" v-else>
       <div class="search-result__inner">
         <!-- Desktop Inner Start -->
-        <header class="header">
-          <nav-bar />
-        </header>
+        <Header />
         <div class="search-result__search">
           <div class="container search-container">
             <search-header />
@@ -205,7 +203,7 @@
 import SearchForm from "../components/SearchForm";
 import FilterForm from "../components/FilterForm";
 import Vuex from "vuex";
-import NavBar from "../components/NavBar";
+import Header from "../components/Header";
 import SelectDestination from "../components/SelectDestination";
 import SelectPassengerCount from "../components/SelectPassengerCount";
 import SelectSeatType from "../components/SelectSeatType";
@@ -221,7 +219,7 @@ import SearchHeader from "../components/SearchHeader";
 
 export default {
   components: {
-    NavBar,
+    Header,
     SelectDestination,
     SelectPassengerCount,
     SelectSeatType,

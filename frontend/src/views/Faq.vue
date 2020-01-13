@@ -1,6 +1,6 @@
 <template>
   <div class="faq">
-    <header><nav-bar /></header>
+    <Header />
     <main>
       <div class="faq__heading">
         <div class="container">
@@ -76,14 +76,14 @@
 
 <script>
 import Accordion from "../components/Accordion";
-import NavBar from "../components/NavBar";
+import Header from "../components/Header";
 import MainLandingFooter from "../components/MainLandingFooter";
 
 export default {
   delimiters: ["{{", "}}"],
   components: {
     Accordion,
-    NavBar,
+    Header,
     MainLandingFooter
   },
   data() {

@@ -1,9 +1,7 @@
 <template>
   <section class="membership-explained">
     <!-- Header Start -->
-    <header>
-      <nav-bar />
-    </header>
+    <Header />
     <!-- Header Ends-->
     <!-- Tabs Start -->
     <section class="membership-explained__hero">
@@ -211,7 +209,7 @@
 <script>
 import Vuex from "vuex";
 import MainLandingFooter from "../components/MainLandingFooter";
-import NavBar from "../components/NavBar";
+import Header from "../components/Header";
 import Tabs from "../components/Tabs";
 import Tab from "../components/Tab";
 import MainLandingSteps from "../components/MainLandingSteps";
@@ -220,7 +218,7 @@ export default {
   components: {
     Tab,
     Tabs,
-    NavBar,
+    Header,
     MainLandingFooter,
     MainLandingSteps
   },

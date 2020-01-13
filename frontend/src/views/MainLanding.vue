@@ -1,6 +1,6 @@
 <template>
   <div class="main-landing">
-    <header><nav-bar /></header>
+    <Header />
     <main>
       <main-landing-hero />
       <main-landing-airlines-logos />
@@ -17,11 +17,11 @@ import MainLandingFooter from "../components/MainLandingFooter";
 import MainLandingDealsAlerts from "../components/MainLandingDealsAlerts";
 import MainLandingHero from "../components/MainLandingHero";
 import MainLandingAirlinesLogos from "../components/MainLandingAirlinesLogos";
-import NavBar from "../components/NavBar";
+import Header from "../components/Header";
 
 export default {
   components: {
-    NavBar,
+    Header,
     MainLandingHero,
     MainLandingAirlinesLogos,
     MainLandingDealsAlerts,
