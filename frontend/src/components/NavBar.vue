@@ -19,7 +19,7 @@
             Memberships
           </router-link>
         </div>
-        <div class="nav-item">
+        <!-- <div class="nav-item">
           <router-link :to="{ name: 'get-started' }" class="nav-link">
             Book
           </router-link>
@@ -28,7 +28,7 @@
           <router-link :to="{ name: 'sign-in' }" class="nav-link">
             Deals
           </router-link>
-        </div>
+        </div> -->
         <div class="nav-item">
           <router-link :to="{ name: 'sign-in' }" class="nav-link has-border">
             Log In
