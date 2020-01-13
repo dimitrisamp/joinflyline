@@ -1,7 +1,7 @@
 import { userStorage } from "../store/user.js";
 import axios from "axios";
 
-const BASE_URL = process.env.VUE_APP_API_ENDPOINT;
+const BASE_URL = process.env.VUE_APP_API_ENDPOINT || "http://127.0.0.1:8000";
 
 export const api = axios.create({
   baseURL: `${BASE_URL}/api/`,
