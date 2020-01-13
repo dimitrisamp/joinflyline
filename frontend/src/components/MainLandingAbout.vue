@@ -1,9 +1,7 @@
 <template>
   <section class="about">
     <!-- Header Start -->
-    <header>
-      <nav-bar />
-    </header>
+    <Header />
     <!-- Header Ends-->
     <!-- About Text Start -->
     <div class="container">
@@ -97,7 +95,7 @@
           </tab>
           <tab title="Virtual Inerlining">
             <h2 class="tabs__content-title">
-              Virtual Inerlining
+              Virtual Interlining
               <span>
                 <img src="@/assets/img/main-landing/WN.png" alt="WN" />
                 -> <img src="@/assets/img/main-landing/DL.png" alt="DL" />
@@ -191,16 +189,16 @@
 
 <script>
 import MainLandingFooter from "./MainLandingFooter";
-import NavBar from "./NavBar";
 import Tab from "./Tab";
 import Tabs from "./Tabs";
+import Header from "./Header";
 
 export default {
   components: {
     "main-landing-footer": MainLandingFooter,
-    NavBar,
     Tabs,
-    Tab
+    Tab,
+    Header
   },
   delimiters: ["{{", "}}"]
 };

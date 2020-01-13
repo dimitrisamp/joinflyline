@@ -14,7 +14,7 @@
             <li class="main-footer__item">
               <router-link
                 class="main-footer__link"
-                :to="{ name: 'index', hash: '#subscription' }"
+                :to="{ name: 'membership-explained' }"
                 >Subscription Plans</router-link
               >
             </li>

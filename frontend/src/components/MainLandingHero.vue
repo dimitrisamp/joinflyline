@@ -241,7 +241,7 @@
                 We Show You the Cheapest Regular Flights
               </h5>
               <p class="hero-feature__descr">
-                This way you can be sure you are seeing the best available rates
+                This way, you can be sure you see the best available rates
                 anywhere!
               </p>
             </div>

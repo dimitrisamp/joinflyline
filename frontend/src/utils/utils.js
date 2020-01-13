@@ -21,8 +21,8 @@ export const userRoles = {
 };
 
 export const destinationTypes = {
-  round: "Round Trip",
-  oneway: "Oneway"
+  round: "Round-trip",
+  oneway: "One-way"
 };
 
 export const dealsTypes = {
