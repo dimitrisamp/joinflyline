@@ -186,8 +186,8 @@
       <div class="container">
         <div class="search-container__footer-text">
           Find the cheapest flights online. <br />
-          We are leveraging <a href="#">virtual interlining</a> technology so you
-          can spend less and travel more!
+          We are leveraging <a href="#">virtual interlining</a> technology so
+          you can spend less and travel more!
         </div>
         <div class="search-container__footer-title">
           What is FlyLine
@@ -205,7 +205,8 @@
                 We Make It Easier to Travel the World
               </h5>
               <p class="hero-feature__descr">
-                Find unique flights and save hundreds of dollars through virtual interlining.
+                Find unique flights and save hundreds of dollars through virtual
+                interlining.
               </p>
             </div>
           </div>
@@ -222,7 +223,8 @@
                 Save Through Virtual Interlining
               </h5>
               <p class="hero-feature__descr">
-                 We connect one-way flights from different carriers to deliver the best savings.
+                We connect one-way flights from different carriers to deliver
+                the best savings.
               </p>
             </div>
           </div>
@@ -239,13 +241,16 @@
                 We Show You the Cheapest Regular Flights
               </h5>
               <p class="hero-feature__descr">
-                This way you can be sure you are seeing the best available rates anywhere!
+                This way you can be sure you are seeing the best available rates
+                anywhere!
               </p>
             </div>
           </div>
         </div>
         <div class="hero-features__more">
-          <a href="#">Learn More</a>
+          <router-link :to="{ name: 'membership-explained' }"
+            >Learn More</router-link
+          >
         </div>
       </div>
     </div>
