@@ -13,13 +13,14 @@
         v-if="user.anonymous"
         :link="{ name: 'get-started' }"
         label="Start Trial"
+        class="text-center"
       >
         <h5 class="overlay-component__heading">
-          Join for free to view flight filters
+          Join for Free to View Flight Filters
         </h5>
-        <p>
+        <p class="overlay-component__text">
           Sign up for your free 14 day trial of either Basic or Premium to see
-          all that FlyLine has to offer
+          all that FlyLine has to offer.
         </p>
         <template #footer>
           <br />

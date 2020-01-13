@@ -73,7 +73,7 @@
       </template>
       <div v-if="user.anonymous" class="fake-results">
         <flight
-          v-for="flight in finalResults.slice(2, 4)"
+          v-for="flight in finalResults.slice(2, 3)"
           :flight="flight"
           :form="form"
           :user="user"
@@ -83,15 +83,29 @@
         <overlay-component
           v-if="user.anonymous"
           :link="{ name: 'get-started' }"
-          label="View them all"
+          label="Start Trial"
+          class="fake-results__content"
         >
-          <h5 class="overlay-component__heading">
-            Create Your FlyLine Account to view all of our flights
-          </h5>
-          <p>
-            We have thousands of flights from hundreds of carriers upgrade to
-            FlyLine Basic or Pro to view thew all!
-          </p>
+          <div class="fake-results__left">
+            <h5 class="overlay-component__heading">
+              Want to Learn More About Flyline Memberships.
+            </h5>
+            <p class="overlay-component__text">
+              Sign up for your free 14 day trial of either Basic or Premium to
+              see all that FlyLine has to offer.
+            </p>
+          </div>
+
+          <template #footer>
+            <div class="text-center">
+              <br />
+              Want to Learn More About Flyline Memberships? <br />
+              Click
+              <router-link :to="{ name: 'membership-explained' }"
+                >HERE</router-link
+              >
+            </div>
+          </template>
         </overlay-component>
       </div>
       <div v-if="!user.anonymous" class="h-btngroups">

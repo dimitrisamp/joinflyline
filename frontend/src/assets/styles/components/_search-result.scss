@@ -35,4 +35,17 @@
 
 .fake-results {
   position: relative;
+  .fake-results__content {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
+    padding-right: 2.5rem;
+    padding-left: 2.5rem;
+  }
+}
+
+
+.fake-results__left {
+  flex: 0 0 50%;
 }
