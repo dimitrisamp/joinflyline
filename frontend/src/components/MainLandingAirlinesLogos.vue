@@ -108,7 +108,7 @@
           />
         </div>
       </div>
-      <p class="airlines-logos__text">And many more</p>
+      <p class="airlines-logos__text">View all</p>
     </div>
   </div>
 </template>

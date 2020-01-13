@@ -16,7 +16,7 @@
           Save up to 60% on FlyLine fares and access the best flight deals on the net
         </h4>
         <p class="about__text">
-          It’s easy to spend money on travel but getting the most value is a different story <br />
+          It’s easy to spend money on travel but getting the most value is a different story. <br />
           Take trip planning for example. Finding the best deal takes time,
           prices change <br />
           depending on many variables, and pricing isn’t always transparent. We
