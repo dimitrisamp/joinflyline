@@ -108,7 +108,11 @@
           />
         </div>
       </div>
-      <p class="airlines-logos__text">View all</p>
+      <div class="text-center">
+        <router-link :to="{ name: 'airlines' }" class="airlines-logos__text"
+          >View all</router-link
+        >
+      </div>
     </div>
   </div>
 </template>
