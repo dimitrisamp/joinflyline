@@ -222,7 +222,7 @@
                 Save Through Virtual Interlining
               </h5>
               <p class="hero-feature__descr">
-                 We mash together one-way flights from different carriers to deliver the best savings.
+                 We connect one-way flights from different carriers to deliver the best savings.
               </p>
             </div>
           </div>

@@ -75,7 +75,7 @@ nav {
 @media(min-width: 320px) and (max-width: 480px){
 .navbar-toggler{
     float: right;
-}    
+}
 .navbar-nav {
     text-align: left;
     align-items: end;

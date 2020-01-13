@@ -31,7 +31,7 @@
         </div>
         <div class="nav-item">
           <router-link :to="{ name: 'sign-in' }" class="nav-link has-border">
-            Log In
+            Login
           </router-link>
         </div>
         <div class="nav-item">

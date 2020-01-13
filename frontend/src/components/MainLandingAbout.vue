@@ -16,23 +16,17 @@
           Save up to 60% on FlyLine fares and access the best flight deals on the net
         </h4>
         <p class="about__text">
-          It’s easy to spend money on travel. But getting the most value is a
-          different story. <br />
+          It’s easy to spend money on travel but getting the most value is a different story <br />
           Take trip planning for example. Finding the best deal takes time,
           prices change <br />
           depending on many variables, and pricing isn’t always transparent. We
           don’t think that’s fair. <br />
-          FlyLine is here to help. We give everyone the tools it takes to fine
-          the best savings, perks, and all around value <br />
-          We then make them easy-to-use with a straight forward membership model,
-          so you can always spend with confidence.
         </p>
         <p class="about__text">
           FlyLine is here to help. We give everyone the tools it takes to find
-          the best savings, <br />
-          perks, and all around value. And we make them easy-to-use with a
-          straightforward <br />
-          membership model. So you can always spend with confidence.
+          the best savings, perks, and all around value <br />
+          We then make them easy-to-use with a straight forward membership model,
+          so you can always spend with confidence. <br />
         </p>
       </div>
     </div>

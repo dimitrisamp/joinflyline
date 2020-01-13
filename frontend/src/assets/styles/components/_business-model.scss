@@ -1,6 +1,6 @@
 .business-model {
-    background-color: $main-landing-footer-bg;
-    color: $white;
+    background-color: #F7F9FC;
+    color: #000;
     text-align: center;
 
     &__container {
@@ -15,10 +15,10 @@
     }
 
     &__text {
-      color: $main-landing-about-stats;
+      color: #000;
       font-family: $dona-regular;
       font-size: 1.125rem;
       padding-bottom: 1.5rem;
-      color: $white;
+      color: #7F7F7F;
     }
 }
