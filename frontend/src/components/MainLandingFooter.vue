@@ -2,42 +2,14 @@
   <div class="main-footer">
     <div class="container">
       <div class="row">
-        <div class="col">
-          <h4 class="main-footer__title">Company</h4>
-          <ul class="main-footer__list">
-            <li class="main-footer__item">
-              <router-link
-                :to="{ name: 'about' }"
-                class="main-footer__link"
-                href="/"
-                >About</router-link
-              >
-            </li>
-            <li class="main-footer__item">
-              <router-link
-                :to="{ name: 'flyline101' }"
-                class="main-footer__link"
-                href="/"
-                >Flyline 101</router-link
-              >
-            </li>
-            <li class="main-footer__item">
-              <router-link
-                :to="{ name: 'faq' }"
-                class="main-footer__link"
-                href="/"
-                >FAQ</router-link
-              >
-            </li>
-            <li class="main-footer__item">
-              <router-link class="main-footer__link" :to="{ name: 'airlines' }"
-                >Airlines</router-link
-              >
-            </li>
-          </ul>
-        </div>
-        <div class="col">
-          <h4 class="main-footer__title">Product</h4>
+        <div class="col-6 col-md-2">
+          <h4 class="main-footer__title">Products</h4>
+          <!-- 
+          Membership Plans
+          Virtual Interlining
+          Deal Alerts
+          Auto Check-in 
+          -->
           <ul class="main-footer__list">
             <li class="main-footer__item">
               <router-link
@@ -62,16 +34,43 @@
             </li>
           </ul>
         </div>
-        <div class="col">
-          <h4 class="main-footer__title">Legal</h4>
+        <div class="col-6 col-md-2">
+          <h4 class="main-footer__title">Company</h4>
           <ul class="main-footer__list">
             <li class="main-footer__item">
               <router-link
+                :to="{ name: 'about' }"
                 class="main-footer__link"
-                :to="{ name: 'privacy-policy' }"
-                >Privacy Policy</router-link
+                href="/"
+                >About</router-link
               >
             </li>
+            <li class="main-footer__item">
+              <router-link
+                :to="{ name: 'flyline101' }"
+                class="main-footer__link"
+                href="/"
+                >Flyline 101</router-link
+              >
+            </li>
+            <li class="main-footer__item">
+              <router-link
+                :to="{ name: 'faq' }"
+                class="main-footer__link"
+                href="/"
+                >Frequently Asked Questions</router-link
+              >
+            </li>
+            <li class="main-footer__item">
+              <router-link class="main-footer__link" :to="{ name: 'airlines' }"
+                >Airlines</router-link
+              >
+            </li>
+          </ul>
+        </div>
+        <div class="col-6 col-md-2">
+          <h4 class="main-footer__title">Legal</h4>
+          <ul class="main-footer__list">
             <li class="main-footer__item">
               <router-link
                 class="main-footer__link"
@@ -79,19 +78,18 @@
                 >Terms of Use</router-link
               >
             </li>
-          </ul>
-        </div>
-        <div class="col">
-          <h4 class="main-footer__title">Follow Us</h4>
-          <ul class="main-footer__list">
             <li class="main-footer__item">
-              <a
+              <router-link
                 class="main-footer__link"
-                target="_blank"
-                href="https://twitter.com/joinflyline"
-                >Twitter</a
+                :to="{ name: 'privacy-policy' }"
+                >Privacy Policy</router-link
               >
             </li>
+          </ul>
+        </div>
+        <div class="col-6 col-md-2">
+          <h4 class="main-footer__title">Social Media</h4>
+          <ul class="main-footer__list">
             <li class="main-footer__item">
               <a
                 class="main-footer__link"
@@ -100,9 +98,17 @@
                 >Instagram</a
               >
             </li>
+            <li class="main-footer__item">
+              <a
+                class="main-footer__link"
+                target="_blank"
+                href="https://twitter.com/joinflyline"
+                >Twitter</a
+              >
+            </li>
           </ul>
         </div>
-        <div class="col">
+        <!-- <div class="col">
           <h4 class="main-footer__title">App Coming Soon</h4>
           <ul class="main-footer__list">
             <li class="main-footer__item">
@@ -124,19 +130,20 @@
               </a>
             </li>
           </ul>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-12">
-          <p class="main-footer__copyright">FlyLine</p>
+        </div> -->
+        <div class="col-12 col-md-4 order-md-first">
+          <div>
+            <router-link
+              class="navbar-brand nav-logo flex-grow-1"
+              :to="{ name: 'index' }"
+            >
+              <img src="@/assets/img/flyline_logos-01-1.png" />
+            </router-link>
+          </div>
+          <br />
+          <p class="font-weight-bold">© 2020 FlyLine. All rights reserved.</p>
         </div>
       </div>
     </div>
   </div>
 </template>
-
-<script>
-export default {
-  delimiters: ["{{", "}}"]
-};
-</script>

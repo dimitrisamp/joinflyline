@@ -21,11 +21,11 @@
   }
   &__link {
     font-family: $dona-bold;
-    color: #7F7F7F;
+    color: $body-color;
     font-size: 0.875rem;
     transition: color .2s ease-in-out;
     &:hover {
-      color: $white;
+      color: $primary;
       text-decoration: none;
     }
   }
