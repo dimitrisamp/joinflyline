@@ -88,19 +88,18 @@
         >
           <div class="fake-results__left">
             <h5 class="overlay-component__heading">
-              Want to view more great deals?
+              Want to Learn More About Flyline Memberships.
             </h5>
             <p class="overlay-component__text">
               Sign up for your free 14 day trial of either Basic or Premium to
-              see all available flights on FlyLine. Save hundreds on FlyLine
-              fares
+              see all that FlyLine has to offer.
             </p>
           </div>
 
           <template #footer>
             <div class="text-center">
               <br />
-              Want to learn more about FlyLine memberships? <br />
+              Want to Learn More About Flyline Memberships? <br />
               Click
               <router-link :to="{ name: 'membership-explained' }"
                 >HERE</router-link
