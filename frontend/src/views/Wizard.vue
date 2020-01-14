@@ -511,6 +511,12 @@ export default {
         !this.promoCheckProgress
       );
     }
+  },
+  mounted() {
+    document.getElementsByTagName("body")[0].classList.add("nopad");
+  },
+  beforeDestroy() {
+    document.getElementsByTagName("body")[0].classList.remove("nopad");
   }
 };
 </script>
