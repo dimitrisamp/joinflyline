@@ -184,19 +184,6 @@
 
     <div class="search-container__footer">
       <div class="container">
-        <div class="search-container__footer-text">
-          Find the cheapest flights online. <br />
-          We are leveraging
-          <router-link
-            :to="{
-              name: 'about',
-              query: { tab: 'virtual-interlining' },
-              hash: '#travel-tool-kit'
-            }"
-            >virtual interlining</router-link
-          >
-          technology so you can spend less and travel more!
-        </div>
         <div class="search-container__footer-title">
           What is FlyLine
         </div>
@@ -210,11 +197,11 @@
             </div>
             <div class="hero-feature__text">
               <h5 class="hero-feature__title">
-                We Make It Easier to Travel the World
+                Stop Paying Retail With a FlyLine Membership
               </h5>
               <p class="hero-feature__descr">
-                Find unique flights and save hundreds of dollars through virtual
-                interlining.
+                We source flights from 250+ airlines and sell them directly to
+                you with zero markup.
               </p>
             </div>
           </div>
@@ -228,7 +215,7 @@
             </div>
             <div class="hero-feature__text">
               <h5 class="hero-feature__title">
-                Save Through Virtual Interlining
+                Save With Our Exclusive Virtual Interlining
               </h5>
               <p class="hero-feature__descr">
                 We connect one-way flights from different carriers to deliver
@@ -246,11 +233,11 @@
             </div>
             <div class="hero-feature__text">
               <h5 class="hero-feature__title">
-                We Show You the Cheapest Regular Flights
+                Search & Book both FlyLine and Public Fares
               </h5>
               <p class="hero-feature__descr">
-                This way, you can be sure you see the best available rates
-                anywhere!
+                We will always display the cheapest fare, whether it's a public
+                or FlyLine fare.
               </p>
             </div>
           </div>

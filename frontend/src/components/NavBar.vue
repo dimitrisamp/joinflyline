@@ -68,3 +68,8 @@ export default {
   }
 };
 </script>
+<style>
+.nav-navbar-trip {
+  background: #fff;
+}
+</style>
