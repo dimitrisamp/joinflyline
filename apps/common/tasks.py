@@ -18,7 +18,8 @@ def fetch_deals():
 TWEET_TEMPLATE = (
     "FlyLine Deal:  Round-trip flight on {airline} from {cityFrom} to {cityTo} "
     "for just ${price} on {departure_date} -> {return_date}! "
-    "Visit joinflyline.com and book it"
+    "Visit joinflyline.com and book it "
+    "#FlyLine #Travel #Wanderlust #Trip #TravelTheWorld"
 )
 
 

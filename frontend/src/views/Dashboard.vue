@@ -90,6 +90,12 @@ export default {
     proceedToSearchResults() {
       this.$router.push({ name: "results" });
     }
+  },
+  mounted() {
+    document.getElementsByTagName("body")[0].classList.add("nopad");
+  },
+  beforeDestroy() {
+    document.getElementsByTagName("body")[0].classList.remove("nopad");
   }
 };
 </script>

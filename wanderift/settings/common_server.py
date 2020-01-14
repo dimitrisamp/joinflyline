@@ -23,7 +23,6 @@ DEBUG = False
 DEALS_CITIES = [
     "ATL",
     "AUS",
-    "MTN",
     "BOS",
     "CLT",
     "CHI",
