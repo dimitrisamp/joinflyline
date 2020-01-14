@@ -1,6 +1,7 @@
 .membership-explained__hero {
   min-height: 120px;
   background-image: url("./assets/img/home-bg.png");
+  background-size: 100% 100%;
   padding: 3rem 0 1rem;
   @include media-breakpoint-up(md) {
     min-height: 200px;

@@ -36,6 +36,7 @@
 .fake-results {
   position: relative;
   .fake-results__content {
+    min-height: 8rem;
     display: flex;
     justify-content: space-between;
     padding-top: 1.25rem;

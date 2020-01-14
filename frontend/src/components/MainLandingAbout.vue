@@ -71,7 +71,10 @@
           work for you.
         </p>
         <tabs>
-          <tab :selected="true" title="FlyLine Search & Booking Engine">
+          <tab
+            :selected="selected_tab === 'search-booking' || !selected_tab"
+            title="FlyLine Search & Booking Engine"
+          >
             <div class="container">
               <div class="row">
                 <div class="col-12 col-lg-5">
@@ -93,7 +96,10 @@
               </div>
             </div>
           </tab>
-          <tab title="Virtual Inerlining">
+          <tab
+            :selected="selected_tab === 'virtual-interlining'"
+            title="Virtual Interlining"
+          >
             <h2 class="tabs__content-title">
               Virtual Interlining
               <span>
@@ -111,7 +117,7 @@
               Don't worry our GDS guarantee covers you.
             </p>
           </tab>
-          <tab title="Deal Alerts">
+          <tab :selected="selected_tab === 'deal-alerts'" title="Deal Alerts">
             <div class="container">
               <h2 class="tabs__content-title">Deals Alert</h2>
               <div class="row">
@@ -134,7 +140,10 @@
               </div>
             </div>
           </tab>
-          <tab title="Automatic Check-in">
+          <tab
+            :selected="selected_tab === 'automatic-check-in'"
+            title="Automatic Check-in"
+          >
             <h2 class="tabs__content-title">Automatic Check-in</h2>
             <p class="tabs__content-text">
               Never get a bad boarding group again with automatic 24-hour
@@ -193,7 +202,12 @@ import Tab from "./Tab";
 import Tabs from "./Tabs";
 import Header from "./Header";
 
-export default {
+export const MainLandingAbout = {
+  data() {
+    return {
+      selected_tab: this.$route.query.tab || null
+    };
+  },
   components: {
     "main-landing-footer": MainLandingFooter,
     Tabs,
@@ -202,4 +216,6 @@ export default {
   },
   delimiters: ["{{", "}}"]
 };
+
+export default MainLandingAbout;
 </script>
