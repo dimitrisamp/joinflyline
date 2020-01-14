@@ -186,8 +186,16 @@
       <div class="container">
         <div class="search-container__footer-text">
           Find the cheapest flights online. <br />
-          We are leveraging <a href="#">virtual interlining</a> technology so
-          you can spend less and travel more!
+          We are leveraging
+          <router-link
+            :to="{
+              name: 'about',
+              query: { tab: 'virtual-interlining' },
+              hash: '#travel-tool-kit'
+            }"
+            >virtual interlining</router-link
+          >
+          technology so you can spend less and travel more!
         </div>
         <div class="search-container__footer-title">
           What is FlyLine

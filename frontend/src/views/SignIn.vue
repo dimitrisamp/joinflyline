@@ -95,6 +95,15 @@ export default {
   },
   mounted() {
     this.clearStatus();
+    document.getElementsByTagName("body")[0].classList.add("nopad");
+  },
+  beforeDestroy() {
+    document.getElementsByTagName("body")[0].classList.remove("nopad");
   }
 };
 </script>
+<style>
+body.nopad {
+  padding-top: 0;
+}
+</style>
