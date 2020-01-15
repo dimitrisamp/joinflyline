@@ -34,6 +34,7 @@ export const searchStore = {
     authErrorText: "",
     plans: null,
     form: {
+      email: "",
       airlinesFilter: null,
       limit: 10,
       limitIncrement: 0,
@@ -60,9 +61,21 @@ export const searchStore = {
     searchResults: [],
     searchProgress: false,
     searchResultIndex: null,
-    showDashboardNavigation: true
+    showDashboardNavigation: true,
+    dealAlertsSubscribeProgress: false,
+    dealAlertsSubscribeSuccess: false,
+    dealAlertsSubscribeFailure: false,
   },
   mutations: {
+    SET_DEAL_ALERTS_SUBSCRIBE_SUCCESS(state, v) {
+      state.dealAlertsSubscribeSuccess = v;
+    },
+    SET_DEAL_ALERTS_SUBSCRIBE_FAILURE(state, v) {
+      state.dealAlertsSubscribeFailure = v;
+    },
+    SET_EMAIL(state, v) {
+      state.form.email = v;
+    },
     SET_TIME_FILTERS(state, v) {
       const { destination, direction, value } = v;
       state.form.timeFilters[destination][direction] = value;
@@ -193,6 +206,15 @@ export const searchStore = {
     }
   },
   actions: {
+    setDealAlertsSubscribeSuccess(context, value) {
+      context.commit("SET_DEAL_ALERTS_SUBSCRIBE_SUCCESS", value);
+    },
+    setDealAlertsSubscribeFailure(context, value) {
+      context.commit("SET_DEAL_ALERTS_SUBSCRIBE_FAILURE", value);
+    },
+    setEmail(context, value) {
+      context.commit("SET_EMAIL", value);
+    },
     toggleSingleCarrier(context) {
       context.commit("TOGGLE_SINGLE_CARRIER");
     },
@@ -226,6 +248,21 @@ export const searchStore = {
       ]);
       context.commit("resetAirlinesFilter");
       context.commit("RESET_TIME_FILTERS");
+    },
+    anonymousDealAlertsSubscribe(context) {
+      const { placeFrom, placeTo, email } = context.state.form;
+      api
+        .post("deal-alert-subscribe/", {
+          source: placeFrom,
+          destination: placeTo,
+          email: email
+        })
+        .then(() => {
+          context.commit("SET_DEAL_ALERTS_SUBSCRIBE_SUCCESS", true);
+        })
+        .catch(() => {
+          context.commit("SET_DEAL_ALERTS_SUBSCRIBE_FAILURE", true);
+        });
     },
     search(context, payload) {
       const { saveSearch } = payload;
@@ -286,6 +323,16 @@ export const searchStore = {
     }
   },
   getters: {
+    isDealFormIncomplete(state) {
+      return !(
+        !!state.form.placeFrom &&
+        !!state.form.placeTo &&
+        !!state.form.email
+      );
+    },
+    email(state) {
+      return state.form.email;
+    },
     quickFiltersData(state, getters) {
       return getQuickLinksData(getters.filteredResults);
     },

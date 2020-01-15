@@ -82,22 +82,9 @@
                               >
                                 <input
                                   type="text"
-                                  placeholder="Max Price"
+                                  placeholder="Email"
                                   class="form-control search-input"
-                                />
-                              </div>
-                            </div>
-                            <div
-                              class="hero-search__item"
-                              v-if="form.searchType === 'dealAlerts'"
-                            >
-                              <div
-                                class="input-group input-group-sm search-item search-dropdown"
-                              >
-                                <input
-                                  type="text"
-                                  placeholder="Carriers"
-                                  class="form-control search-input"
+                                  v-model="email"
                                 />
                               </div>
                             </div>
@@ -152,7 +139,10 @@
                                 </div>
                               </div>
                             </div>
-                            <div class="hero-search__item is-last">
+                            <div
+                              v-if="form.searchType === 'searchNBook'"
+                              class="hero-search__item is-last"
+                            >
                               <div class="search-button horizontal-f-btn">
                                 <button
                                   type="button"
@@ -165,6 +155,18 @@
                                     src="@/assets/img/search.png"
                                   />
                                   <span v-else>Search Flights</span>
+                                </button>
+                              </div>
+                            </div>
+                            <div v-else class="hero-search__item is-last">
+                              <div class="search-button horizontal-f-btn">
+                                <button
+                                  type="button"
+                                  class="btn-search"
+                                  @click="anonymousDealAlertsSubscribe"
+                                  :disabled="isDealFormIncomplete"
+                                >
+                                  <span>Set</span>
                                 </button>
                               </div>
                             </div>
@@ -249,6 +251,20 @@
         </div>
       </div>
     </div>
+    <booking-popup
+      v-if="dealAlertsSubscribeSuccess"
+      title="Deal Alerts"
+      body="Congrats! You have subscribed on deal alerts"
+      button-label="Close"
+      @button-click="setDealAlertsSubscribeSuccess(false)"
+    />
+    <booking-popup
+      v-if="dealAlertsSubscribeFailure"
+      title="Deal Alerts"
+      body="Sorry something went wrong"
+      button-label="Close"
+      @button-click="setDealAlertsSubscribeFailure(false)"
+    />
   </div>
 </template>
 
@@ -264,6 +280,7 @@ import SelectDestination from "./SelectDestination";
 import SelectDeal from "./SelectDeal";
 import SelectSeatType from "./SelectSeatType";
 import { getRandomImage } from "../utils/imageRotator";
+import BookingPopup from "./BookingPopup";
 
 export default {
   delimiters: ["{{", "}}"],
@@ -274,7 +291,8 @@ export default {
     SelectPassengerCount,
     SelectSeatType,
     SelectDestination,
-    SelectDeal
+    SelectDeal,
+    BookingPopup
   },
   data() {
     return {
@@ -284,6 +302,11 @@ export default {
   },
   methods: {
     ...Vuex.mapMutations("search", ["updatePlaceFrom", "updatePlaceTo"]),
+    ...Vuex.mapActions("search", [
+      "anonymousDealAlertsSubscribe",
+      "setDealAlertsSubscribeSuccess",
+      "setDealAlertsSubscribeFailure"
+    ]),
     searchFromHome() {
       this.search({ clearFilters: true, saveSearch: false });
       this.$router.push({ name: "search-results" });
@@ -293,6 +316,21 @@ export default {
       this.updatePlaceFrom(data.from);
       this.updatePlaceTo(data.to);
     }
+  },
+  computed: {
+    email: {
+      get() {
+        return this.$store.getters["search/email"];
+      },
+      set(value) {
+        this.$store.dispatch("search/setEmail", value);
+      }
+    },
+    ...Vuex.mapGetters("search", ["isDealFormIncomplete"]),
+    ...Vuex.mapState("search", [
+      "dealAlertsSubscribeSuccess",
+      "dealAlertsSubscribeFailure"
+    ])
   }
 };
 </script>

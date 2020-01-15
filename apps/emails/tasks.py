@@ -43,3 +43,18 @@ def send_activation_email(user_id):
         subject = "You are invited"
         send_mail(subject, "text body", from_email,
                   [to_email], html_message=htm_content)
+
+
+@shared_task
+def send_deal_alerts_activation_email(user_id):
+    user = User.objects.get(pk=user_id)
+    if user.activation_code:
+        htm_content = render_to_string(
+            "emails/invite.html",
+            {"code": user.activation_code, 'SITE_URL': settings.SITE_URL},
+        )
+        from_email = settings.SERVER_EMAIL
+        to_email = user.email
+        subject = "You are invited"
+        send_mail(subject, "text body", from_email,
+                  [to_email], html_message=htm_content)

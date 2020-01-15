@@ -5,6 +5,7 @@ from django.http import JsonResponse
 from django.utils.timezone import now
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import FormView
+from rest_framework import status
 from rest_framework.generics import get_object_or_404
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
@@ -14,11 +15,13 @@ from apps.account import serializers
 from apps.account.actions import add_subscription, add_to_stripe, create_subscriber
 from apps.account.enums import CompanionInviteStatus
 from apps.account.forms import WizardForm, InviteWizardForm, ActivationWizardForm
-from apps.account.models import Account, CompanionInvite
+from apps.account.models import Account, CompanionInvite, DealWatch
 from apps.auth.enums import UserRole
 from apps.auth.models import User
+from apps.emails.tasks import send_deal_alerts_activation_email
 from apps.emails.views import signup_success
 from apps.auth import serializers as auth_serializers
+from wanderift.utils import generate_invite_code
 
 stripe.api_key = settings.STRIPE_API_KEY
 
@@ -109,6 +112,32 @@ class InviteWizardView(FormView):
             invite.save()
             signup_success(new_user.pk)
             return JsonResponse({"success": True})
+
+
+class AnonymousDealAlertsView(APIView):
+    permission_classes = [AllowAny]
+
+    def post(self, request):
+        source = request.data['source']
+        destination = request.data['destination']
+        email = request.data['email']
+        if User.objects.filter(email=email).exists():
+            return Response(status=status.HTTP_404_NOT_FOUND)
+        account = Account.objects.create()
+        new_user = User.objects.create_user(
+            email,
+            email,
+            market=source,
+            account=account,
+            role=UserRole.SUBSCRIBER,
+            activation_code=generate_invite_code()
+        )
+        DealWatch.objects.create(
+            user=new_user,
+            destination=destination
+        )
+        send_deal_alerts_activation_email.delay(new_user.pk)
+        return Response()
 
 
 class WizardView(FormView):
