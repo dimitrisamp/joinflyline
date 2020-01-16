@@ -140,8 +140,16 @@ if settings.STAGE == "local" and os.getenv("DEBUG_TOOLBAR", "false").lower() in 
     "on",
 ):
     import debug_toolbar
+    urlpatterns += [
+        path("__debug__/", include(debug_toolbar.urls)),
+    ]
 
-    urlpatterns += [path("__debug__/", include(debug_toolbar.urls))]
+if settings.STAGE in ("local", "localprod", "staging"):
+    from rest_framework_swagger.views import get_swagger_view
+    schema_view = get_swagger_view(title='FlyLine API')
+    urlpatterns += [
+        path("api/swagger/", schema_view)
+    ]
 
 if settings.STAGE == "localprod":
     urlpatterns += [
