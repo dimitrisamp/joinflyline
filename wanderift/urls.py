@@ -129,7 +129,7 @@ urlpatterns = [
     ),
     path("api/deal-alert-subscribe/", AnonymousDealAlertsView.as_view(), name="anonymous-deal-alerts"),
     path("api/set-plan/", SetPlanView.as_view(), name="set-plan"),
-    path("api/kiwi-callback/<str:trigger>/", CallbackView.as_view(), name="kiwi-callback"),
+    path("api/kiwi-callback/", CallbackView.as_view(), name="kiwi-callback"),
     re_path("^api/users/me/", include(user_router.urls)),
     re_path("^api/", include(router.urls)),
 ]
