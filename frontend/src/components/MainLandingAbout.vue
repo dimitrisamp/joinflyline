@@ -24,7 +24,7 @@
         </p>
         <p class="about__text">
           FlyLine is here to help. We give everyone the tools it takes to find
-          the best savings, perks, and all around value <br />
+          the best savings, perks, and all around value. <br />
           We then make them easy-to-use with a straight forward membership
           model, so you can always spend with confidence. <br />
         </p>
