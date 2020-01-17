@@ -59,7 +59,7 @@
           </tab>
           <tab title="Additional Users">
             <ul class="membership-explained__tab-list">
-              <li>Included with Premium plan</li>
+              <li>Included with a Premium plan</li>
               <li>
                 An additional user is defined as an individual designated by a
                 paid member to be a non-paid member associated with their
@@ -67,14 +67,14 @@
               </li>
               <li>
                 When you designate an additional user, they will receive a
-                welcome email prompting them to setup an account with FlyLine
+                welcome email prompting them to set up an account with FlyLine
                 under your membership
               </li>
               <li>
                 Additional users will be allowed to book as members, with each
                 of their bookings counting against your total bookings
               </li>
-              <li>Premium members are allowed one additional user</li>
+              <li>Premium members are allowed, one additional user</li>
             </ul>
           </tab>
           <tab title="Deal Alerts">
