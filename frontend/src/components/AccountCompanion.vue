@@ -3,7 +3,7 @@
     <div class="account__form account__form--table">
       <div class="row">
         <div class="col-12 col-lg-10">
-          <h3>Companions</h3>
+          <h3>Addtional Users</h3>
           <table v-if="companions.length > 0">
             <thead>
               <tr>
@@ -31,7 +31,7 @@
               </tr>
             </tbody>
           </table>
-          <p>Enter companion email:</p>
+          <p>Enter additional users email:</p>
           <div class="row">
             <div class="col-12">
               <div class="row">

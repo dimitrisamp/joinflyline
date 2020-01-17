@@ -36,7 +36,7 @@
         <tabs>
           <tab :selected="true" title="Flight Search & Booking">
             <ul class="membership-explained__tab-list">
-              <li>Included in Basic and Pro</li>
+              <li>Included in Basic and Premium</li>
               <li>
                 A booking is the purchase of "a" flight for an individual.
               </li>
@@ -44,7 +44,7 @@
                 Basic Members are limited to six (6) bookings every twelve (12)
                 months
               </li>
-              <li>Pro Members have unlimited booking</li>
+              <li>Premium Members have unlimited booking</li>
             </ul>
           </tab>
           <tab title="Automatic Check-in">
@@ -54,31 +54,38 @@
                 No more alarms and reminders to complete this task anymore. Just
                 book and forget about it. We’ll take care of the rest.
               </li>
-              <li>Included in all plans (Basic, Basic Plus, and Pro)</li>
+              <li>Included in all plans (Basic and Premium)</li>
             </ul>
           </tab>
-          <tab title="Companion Accounts">
+          <tab title="Additional Users">
             <ul class="membership-explained__tab-list">
-              <li>Included with Pro plan</li>
+              <li>Included with Premium plan</li>
               <li>
                 A companion is defined as an individual designated by a paid
-                member to be a non-paid member associated with their account
+                member to be a non-paid member associated with their account"
+                change to "An additional user is defined as an individual
+                designated by a paid member to be a non-paid member associated
+                with their account
               </li>
               <li>
                 When you designate a companion, they will receive a welcome
                 email prompting them to setup an account with FlyLine under your
-                membership
+                membership" change to "When you designate an additional user,
+                they will receive a welcome email prompting them to setup an
+                account with FlyLine under your membership
               </li>
               <li>
                 Companions will be allowed to book as members, with each of
-                their bookings counting against your total bookings
+                their bookings counting against your total bookings" change to
+                "Additional users will be allowed to book as members, with each
+                of their bookings counting against your total bookings
               </li>
-              <li>Pro Members are allowed a companion</li>
+              <li>Premium members are allowed an additional user</li>
             </ul>
           </tab>
           <tab title="Deal Alerts">
             <ul class="membership-explained__tab-list">
-              <li>Included with Basic and Pro plans</li>
+              <li>Included with Basic and Premium plans</li>
               <li>
                 You have the ability to list destinations you want to monitor
                 for discounts and price drops. FlyLine will then monitor these
