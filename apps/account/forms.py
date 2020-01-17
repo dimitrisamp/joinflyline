@@ -8,6 +8,19 @@ from apps.account.enums import CompanionInviteStatus
 from apps.account.models import CompanionInvite
 
 
+class MyCardExpiryField(CardExpiryField):
+    input_formats = [
+        "%m/%y",
+        "%m/%Y",
+        "%m-%y",
+        "%m-%Y",
+        "%y/%m",
+        "%Y/%m",
+        "%y-%m",
+        "%Y-%m",
+    ]
+
+
 class WizardForm(forms.Form):
     home_airport = JSONField()
     email = forms.EmailField()
@@ -17,18 +30,17 @@ class WizardForm(forms.Form):
     promo_code = forms.CharField(required=False)
     zip = forms.CharField(required=False)
     card_number = CardNumberField(required=False)
-    expiry = CardExpiryField(required=False)
+    expiry = MyCardExpiryField(required=False)
     cvc = SecurityCodeField(required=False)
     plan = forms.ChoiceField(
-        choices=tuple((o, o) for o in settings.PLAN_DEFINITIONS.keys()),
-        required=False
+        choices=tuple((o, o) for o in settings.PLAN_DEFINITIONS.keys()), required=False
     )
 
     def clean(self):
         cd = self.cleaned_data
-        if cd.get('plan'):
-            if not (cd['card_number'] and cd['expiry'] and cd['cvc']):
-                raise ValidationError('Paid account requires payment credentials')
+        if cd.get("plan"):
+            if not (cd.get("card_number") and cd.get("expiry") and cd.get("cvc")):
+                raise ValidationError("Paid account requires payment credentials")
 
 
 class InviteWizardForm(forms.Form):
