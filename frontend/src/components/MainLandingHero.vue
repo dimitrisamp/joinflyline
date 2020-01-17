@@ -90,6 +90,20 @@
                             </div>
                             <div
                               class="hero-search__item"
+                              v-if="form.searchType === 'dealAlerts'"
+                            >
+                              <div
+                                class="input-group input-group-sm search-item search-dropdown"
+                              >
+                                <input
+                                  type="text"
+                                  placeholder="Max Price"
+                                  class="form-control search-input"
+                                />
+                              </div>
+                            </div>
+                            <div
+                              class="hero-search__item"
                               v-if="form.searchType === 'searchNBook'"
                             >
                               <div
@@ -254,17 +268,37 @@
     <booking-popup
       v-if="dealAlertsSubscribeSuccess"
       title="Deal Alerts"
-      body="Congrats! You have subscribed on deal alerts"
+      body="Congrats! You have subscribed to deal alerts"
       button-label="Close"
       @button-click="setDealAlertsSubscribeSuccess(false)"
     />
-    <booking-popup
-      v-if="dealAlertsSubscribeFailure"
-      title="Deal Alerts"
-      body="Sorry something went wrong"
-      button-label="Close"
-      @button-click="setDealAlertsSubscribeFailure(false)"
-    />
+    <modal v-if="dealAlertsSubscribeFailure">
+      <template #body>
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">
+              Deal alerts
+            </h5>
+          </div>
+          <div class="modal-body">
+            <h1>
+              Seems like account with email {{ form.email }} already exists. Please
+              <router-link :to="{ name: 'sign-in' }">sign in</router-link>
+            </h1>
+          </div>
+          <div class="modal-footer">
+            <button
+              @click="setDealAlertsSubscribeFailure(false)"
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </template>
+    </modal>
   </div>
 </template>
 
@@ -331,6 +365,11 @@ export default {
       "dealAlertsSubscribeSuccess",
       "dealAlertsSubscribeFailure"
     ])
+  },
+  beforeDestroy(to, from, next) {
+    this.setDealAlertsSubscribeSuccess(false);
+    this.setDealAlertsSubscribeFailure(false);
+    next();
   }
 };
 </script>

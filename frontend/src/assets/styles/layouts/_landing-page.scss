@@ -69,6 +69,35 @@
 
 // Hero
 .hero {
+  .modal-content {
+    .modal-title {
+      font-family: $dona-black;
+
+      .button {
+        .span {
+          font-family: $dona-black;
+        }
+      }
+    }
+
+    .modal-body {
+      h1 {
+        font-size: 1rem;
+        line-height: 1.8;
+        font-family: $dona-bold;
+      }
+    }
+
+    .modal-footer {
+      button.btn.btn-secondary {
+        font-family: $dona-bold;
+        background-color: #00AEEF;
+        border-radius: 0;
+        border: none;
+      }
+    }
+  }
+
   .horizontal-form {
   }
 
