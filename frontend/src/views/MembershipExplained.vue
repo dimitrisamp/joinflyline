@@ -74,7 +74,7 @@
                 Additional users will be allowed to book as members, with each
                 of their bookings counting against your total bookings
               </li>
-              <li>Premium members are allowed an additional user</li>
+              <li>Premium members are allowed one additional user</li>
             </ul>
           </tab>
           <tab title="Deal Alerts">
