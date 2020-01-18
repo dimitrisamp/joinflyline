@@ -1,7 +1,7 @@
 .account {
   &__form {
     h3 {
-        font-family: $dona-black;;
+      font-family: $dona-black;
     }
 
     .form-group {
@@ -79,5 +79,36 @@
     z-index: 11;
     top: calc(50% + 1px);
     transform: translateY(-50%);
+  }
+}
+
+.account-information {
+  .modal-content {
+    .modal-title {
+      font-family: $dona-black;
+
+      .button {
+        .span {
+          font-family: $dona-black;
+        }
+      }
+    }
+
+    .modal-body {
+      h1 {
+        font-size: 1rem;
+        line-height: 1.8;
+        font-family: $dona-bold;
+      }
+    }
+
+    .modal-footer {
+      button.btn.btn-secondary {
+        font-family: $dona-bold;
+        background-color: #00aeef;
+        border-radius: 0;
+        border: none;
+      }
+    }
   }
 }

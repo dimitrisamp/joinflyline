@@ -253,6 +253,33 @@
         </div>
       </div>
     </div>
+    <modal v-if="subscriptionCancelled">
+      <template #body>
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">
+              Subscription
+            </h5>
+          </div>
+          <div class="modal-body">
+            <h1>
+              You have successfully canceled your free trial. If you end up
+              changing your mind, please let us know and we will get you set up!
+            </h1>
+          </div>
+          <div class="modal-footer">
+            <button
+              @click="goToOverview"
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </template>
+    </modal>
   </div>
 </template>
 
@@ -295,7 +322,8 @@ export default {
       frequentflyer: {},
       user: {},
       dobText: "",
-      accountSavedDisplay: false
+      accountSavedDisplay: false,
+      subscriptionCancelled: false
     };
   },
   watch: {
@@ -325,6 +353,7 @@ export default {
     });
   },
   methods: {
+    ...Vuex.mapActions("user", ["initializeUser"]),
     planStatus(plan) {
       if (
         !(this.user && this.user.subscription && this.user.subscription.plan)
@@ -364,7 +393,14 @@ export default {
       });
     },
     cancelPlan() {
-      api.post("subscriptions/cancel-subscription");
+      api.post("subscriptions/cancel-subscription/").then(() => {
+        this.initializeUser().then(() => {
+          this.subscriptionCancelled = true;
+        });
+      });
+    },
+    goToOverview() {
+      this.$router.push({ name: "overview" });
     },
     airlineIcon
   },

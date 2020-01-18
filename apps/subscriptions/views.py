@@ -3,6 +3,7 @@ import stripe.error
 from django.conf import settings
 from django.db.models.functions import Now
 from django.utils.timezone import now
+from psycopg2._range import DateTimeRange
 from rest_framework import status
 from rest_framework.exceptions import ValidationError
 from rest_framework.generics import get_object_or_404
@@ -90,4 +91,6 @@ class CancelSubscriptionView(APIView):
             return Response({'code': "Account does not exist"}, status=status.HTTP_404_NOT_FOUND)
         sub = get_object_or_404(subscriptions_model.Subscriptions, account=account, period__contains=Now())
         stripe.Subscription.delete(sub.subscription_id)
+        sub.period = (sub.period.lower, now())
+        sub.save()
         return Response({"status": "success"})
