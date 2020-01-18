@@ -269,7 +269,7 @@ export const searchStore = {
       context.commit("setSearchResultIndex", null);
       context.commit("setSearchProgress", true);
       api
-        .get("search", { params: getSearchParams(context.state.form) })
+        .get("search/", { params: getSearchParams(context.state.form) })
         .then(response => {
           const data = response.data;
           let parent = { ...data };

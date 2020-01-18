@@ -1,3 +1,5 @@
+import datetime
+
 from rest_framework.exceptions import ValidationError
 from rest_framework.response import Response
 
@@ -12,7 +14,7 @@ from rest_framework_proxy.views import ProxyView
 
 from apps.booking.actions import save_booking
 from apps.booking.exceptions import ClientException
-from apps.booking.models import CallbackRequest
+from apps.booking.models import CallbackRequest, SearchHistory
 from apps.booking.workaround import CHICAGO_RESPONSE
 
 
@@ -24,18 +26,43 @@ class CheckFlightsView(ProxyView):
 class LocationQueryView(ProxyView):
     permission_classes = [AllowAny]
     source = "locations/query"
-    http_method_names = ['get']
+    http_method_names = ["get"]
 
     def get(self, request, *args, **kwargs):
-        if self.request.query_params.get('term').lower().startswith('chica'):
+        if self.request.query_params.get("term").lower().startswith("chica"):
             return Response(CHICAGO_RESPONSE)
         return super().get(request, *args, **kwargs)
+
+
+def str2place(fly):
+    if not fly:
+        return
+    place_type, place_code = fly.split(":")
+    return {"type": place_type, "code": place_code}
 
 
 class FlightSearchView(ProxyView):
     permission_classes = [AllowAny]
     source = "v2/search"
-    http_method_names = ['get']
+    http_method_names = ["get"]
+
+    def get(self, request, *args, **kwargs):
+        if request.user.is_anonymous:
+            qp = request.query_params
+            SearchHistory.objects.create(
+                place_from=str2place(qp.get("fly_from")),
+                place_to=str2place(qp.get("fly_to")),
+                departure_date=datetime.datetime.strptime(qp["date_from"], "%d/%m/%Y"),
+                return_date=datetime.datetime.strptime(qp["return_from"], "%d/%m/%Y")
+                if qp.get("return_from")
+                else None,
+                adults=int(qp["adults"]),
+                children=int(qp["children"]),
+                infants=int(qp["infants"]),
+                seat_type=qp["selected_cabins"],
+                destination_type=qp["type"],
+            )
+        return super().get(request, *args, **kwargs)
 
 
 class CheckPromoView(View):
@@ -69,7 +96,7 @@ class SaveBookingView(APIView):
                     if upgrade_to_plan not in settings.PLAN_DEFINITIONS:
                         raise ValidationError(
                             f"Cannot upgrade to plan: {upgrade_to_plan}",
-                            code="bad-plan"
+                            code="bad-plan",
                         )
                 search_form = data.pop("searchForm", {})
                 user = create_subscriber(
@@ -98,5 +125,7 @@ class CallbackView(APIView):
     permission_classes = [AllowAny]
 
     def post(self, request):
-        CallbackRequest.objects.create(body=request.data, trigger=self.kwargs['trigger'])
+        CallbackRequest.objects.create(
+            body=request.data, trigger=self.kwargs["trigger"]
+        )
         return Response()

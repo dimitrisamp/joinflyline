@@ -121,7 +121,7 @@ DESTINATION_TYPE_CHOICES = (("round", "Round Trip"), ("oneway", "Oneway"))
 
 
 class SearchHistory(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     timestamp = models.DateTimeField(auto_now_add=True)
     place_from = JSONField()
     place_to = JSONField()
