@@ -13,6 +13,7 @@ from rest_framework_proxy.views import ProxyView
 from apps.booking.actions import save_booking
 from apps.booking.exceptions import ClientException
 from apps.booking.models import CallbackRequest
+from apps.booking.workaround import CHICAGO_RESPONSE
 
 
 class CheckFlightsView(ProxyView):
@@ -23,11 +24,18 @@ class CheckFlightsView(ProxyView):
 class LocationQueryView(ProxyView):
     permission_classes = [AllowAny]
     source = "locations/query"
+    http_method_names = ['get']
+
+    def get(self, request, *args, **kwargs):
+        if self.request.query_params.get('term').lower().startswith('chica'):
+            return Response(CHICAGO_RESPONSE)
+        return super().get(request, *args, **kwargs)
 
 
 class FlightSearchView(ProxyView):
     permission_classes = [AllowAny]
     source = "v2/search"
+    http_method_names = ['get']
 
 
 class CheckPromoView(View):
