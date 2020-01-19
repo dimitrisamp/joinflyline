@@ -1,0 +1,425 @@
+<!DOCTYPE >
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add Traveler information</title>
+
+    <style type="text/css">
+      @font-face {
+        font-family: Dona-Black;
+        src: url(https://storage.googleapis.com/joinflyline/home/css/fonts/Dona/DonaAlt-Black.ttf);
+      }
+
+      @font-face {
+        font-family: Dona-Regular;
+        src: url(https://storage.googleapis.com/joinflyline/home/css/fonts/Dona/Dona-Regular.ttf);
+      }
+
+      @font-face {
+        font-family: Dona-Bold;
+        src: url(https://storage.googleapis.com/joinflyline/home/css/fonts/Dona/Dona-Bold.ttf);
+      }
+      body {
+        width: 100% !important;
+        -webkit-text-size-adjust: 100%;
+        -ms-text-size-adjust: 100%;
+        margin: 0;
+        padding: 0;
+        background: #f5f5f4;
+        font-family: "Dona-Bold", sans-serif !important;
+      }
+      #backgroundTable {
+        margin: 0;
+        padding: 0;
+        width: 100% !important;
+        line-height: 100% !important;
+        background: #f5f5f4;
+      }
+      a {
+        text-decoration: none;
+      }
+      @media only screen and (max-width: 640px) {
+        table[class="devicewidth"] {
+          width: 440px !important;
+          text-align: center !important;
+        }
+        table[class="devicewidthinner"] {
+          width: 420px !important;
+          text-align: center !important;
+        }
+        img[class="banner"] {
+          width: 440px !important;
+          height: 220px !important;
+        }
+        img[class="colimg2"] {
+          width: 440px !important;
+          height: 220px !important;
+        }
+      }
+      /*IPHONE STYLES*/
+      @media only screen and (max-width: 480px) {
+        table[class="devicewidth"] {
+          width: 280px !important;
+          text-align: center !important;
+        }
+        table[class="devicewidthinner"] {
+          width: 260px !important;
+          text-align: center !important;
+        }
+        img[class="banner"] {
+          width: 280px !important;
+          height: 140px !important;
+        }
+        img[class="colimg2"] {
+          width: 280px !important;
+          height: 140px !important;
+        }
+        td[class="mobile-hide"] {
+          display: none !important;
+        }
+        td[class="padding-bottom25"] {
+          padding-bottom: 25px !important;
+        }
+      }
+    </style>
+  </head>
+  <body bgcolor="#f5f7f9" style="background: #f5f7f9 !important;">
+    <br /><br />
+
+    <!-- Start of header -->
+    <table
+      width="100%"
+      bgcolor="#ffffff"
+      cellpadding="0"
+      cellspacing="0"
+      border="0"
+      id="backgroundTable"
+      st-sortable="header"
+    >
+      <tbody>
+        <tr>
+          <td>
+            <table
+              width="600"
+              cellpadding="0"
+              cellspacing="0"
+              border="0"
+              align="center"
+              class="devicewidth"
+              style="background: #fff;"
+            >
+              <tbody>
+                <tr>
+                  <td width="100%">
+                    <table
+                      width="600"
+                      cellpadding="20"
+                      cellspacing="0"
+                      border="0"
+                      align="center"
+                      class="devicewidth"
+                      style="background: #fff;"
+                    >
+                      <tbody>
+                        <tr>
+                          <td>
+                            <!-- logo -->
+                            <table
+                              width="100"
+                              align="center"
+                              border="0"
+                              cellpadding="0"
+                              cellspacing="0"
+                              class="devicewidth"
+                            >
+                              <tbody>
+                                <tr>
+                                  <td width="100" height="30" align="center">
+                                    <div class="imgpop">
+                                      <a target="_blank" href="#">
+                                        <img
+                                          src="https://storage.googleapis.com/joinflyline/home/img/flyline_logos-01-1.png"
+                                          alt=""
+                                          border="0"
+                                          width="100"
+                                          height="30"
+                                          style="display:block; border:none; outline:none; text-decoration:none;"
+                                        />
+                                      </a>
+                                    </div>
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                            <!-- end of logo -->
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <!-- End of Header -->
+
+    <!-- Start Full Text -->
+    <table
+      width="100%"
+      bgcolor="#ffffff"
+      cellpadding="0"
+      cellspacing="0"
+      border="0"
+      id="backgroundTable"
+      st-sortable="full-text"
+    >
+      <tbody>
+        <tr>
+          <td>
+            <table
+              width="600"
+              cellpadding="0"
+              cellspacing="0"
+              border="0"
+              align="center"
+              class="devicewidth"
+            >
+              <tbody>
+                <tr>
+                  <td width="100%">
+                    <table
+                      width="600"
+                      cellpadding="20"
+                      cellspacing="0"
+                      border="0"
+                      align="center"
+                      class="devicewidth"
+                      style="background: #fff;"
+                    >
+                      <tbody>
+                        <tr>
+                          <td>
+                            <table
+                              bgcolor="#FFFFFF"
+                              border="0"
+                              cellspacing="0"
+                              cellpadding="25"
+                              width="100%"
+                            >
+                              <tr>
+                                <td
+                                  width="90%"
+                                  bgcolor="#ffffff"
+                                  style="font-size: 16px;color: gray;text-align:center;line-height: 28px;margin-bottom: 4px;display: block;"
+                                    st-content="fulltext-content"
+                                >
+                                  <h3 align="center" style="color: #000;">
+                                    The week's deals,
+                                  </h3>
+                                  <p style="font-size: 16px;color: gray;">
+                                    Take a look at your FlyLine deal alerts. If
+                                    you see a deal you like click on it and
+                                    you’ll be routed to FlyLine to book.
+                                  </p>
+                                  <div>
+                                    <table
+                                      border="0"
+                                      cellspacing="0"
+                                      cellpadding="0"
+                                      width="100%"
+                                      class="emailwrapto100pc"
+                                    >
+                                      <tr>
+                                        <td
+                                          class="emailcolsplit"
+                                          align="left"
+                                          valign="top"
+                                          width="58%"
+                                        >
+                                          <h3 align="center">
+                                            Deals From {{ user.market.name }}
+                                          </h3>
+                                          <p style="font-size: 16px;color: gray;text-align:center;line-height: 28px;margin-bottom: 4px;display: block;">
+                                            We found the top deals departing
+                                            from your city.
+                                          </p>
+                                        </td>
+                                      </tr>
+                                      <tr>
+                                        <td
+                                          class="emailcolsplit"
+                                          align="center"
+                                          valign="top"
+                                          width="58%"
+                                        >
+                                          {% for deal in deals %}
+                                          <p style="font-size: 16px;color: gray;">
+                                            {{ deal.city_from_name }} ({{ deal.fly_from }}) -> {{ deal.city_to_name }} ({{ deal.fly_to }}) | {{ deal.departure_date|date:"m/d" }} -
+                                            {{ deal.return_date|date:"m/d" }} |
+                                            {{ deal.airlines_str }} ${{ deal.price }} Round Trip
+                                          </p>
+                                          {% endfor %}
+                                        </td>
+                                      </tr>
+                                    </table>
+                                  </div>
+                                </td>
+                              </tr>
+                            </table>
+
+                            <table
+                              bgcolor="#FFFFFF"
+                              border="0"
+                              cellspacing="0"
+                              cellpadding="25"
+                              width="100%"
+                            >
+                              <tr>
+                                <td
+                                  width="90%"
+                                  bgcolor="#ffffff"
+                                  style="font-size: 16px;color: gray;text-align:center;line-height: 28px;margin-bottom: 4px;display: block;"
+                                    st-content="fulltext-content"
+                                >
+                                  <h3 style="color: #000">
+                                    Trending Deals on Flyline
+                                  </h3>
+                                  <p style="font-size: 16px;color: gray;">
+                                    Have a look at what deals we found to be
+                                    trending on FlyLine. Do you see a deal you
+                                    like? Just click the deal and you will be
+                                    routed to FlyLine to book.
+                                  </p>
+                                  <div>
+                                    <table
+                                      border="0"
+                                      cellspacing="0"
+                                      cellpadding="0"
+                                      width="100%"
+                                      class="emailwrapto100pc"
+                                    >
+                                      <tr>
+                                        <td
+                                          class="emailcolsplit"
+                                          align="center"
+                                          valign="top"
+                                          width="58%"
+                                        >
+                                          {% for deal in random_deals %}
+                                          <p style="font-size: 16px;color: gray;">
+                                            {{ deal.city_from_name }} ({{ deal.fly_from }}) -> {{ deal.city_to_name }} ({{ deal.fly_to }}) | {{ deal.departure_date|date:"m/d" }} -
+                                            {{ deal.return_date|date:"m/d" }} |
+                                            {{ deal.airlines_str }} ${{ deal.price }} Round Trip
+                                          </p>
+                                          {% endfor %}
+                                        </td>
+                                      </tr>
+                                    </table>
+                                  </div>
+                                </td>
+                              </tr>
+                            </table>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <!-- end of full text -->
+
+    <!-- Start of seperator -->
+
+    <!-- End of seperator -->
+    <!-- 3 Start of Columns -->
+    <table
+      width="100%"
+      bgcolor="#ffffff"
+      cellpadding="0"
+      cellspacing="0"
+      border="0"
+      id="backgroundTable"
+    >
+      <tbody>
+        <tr>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+    <!-- end of 3 Columns -->
+    <!-- Start of seperator -->
+
+    <!-- End of seperator -->
+    <!-- 2columns -->
+    <table
+      width="100%"
+      bgcolor="#ffffff"
+      cellpadding="0"
+      cellspacing="0"
+      border="0"
+      id="backgroundTable"
+      st-sortable="2columns"
+    >
+      <tbody>
+        <tr>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+    <!-- end of 2 columns -->
+
+    <!-- Start of seperator -->
+    <table
+      width="100%"
+      bgcolor="#ffffff"
+      cellpadding="0"
+      cellspacing="0"
+      border="0"
+      id="backgroundTable"
+      st-sortable="seperator"
+    >
+      <tbody>
+        <tr>
+          <td>
+            <table
+              width="600"
+              align="center"
+              cellspacing="0"
+              cellpadding="0"
+              border="0"
+              class="devicewidth"
+              style="background: #fff;"
+            >
+              <tbody>
+                <tr>
+                  <td
+                    width="550"
+                    align="center"
+                    height="1"
+                    bgcolor="#d1d1d1"
+                    style="font-size:1px; line-height:1px;"
+                  >
+                    &nbsp;
+                  </td>
+                </tr>
+                <!--     <tr>
+                     <td align="center" height="30" style="font-size:1px; line-height:1px;">&nbsp;</td>
+                  </tr> -->
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <!-- End of seperator -->
+  </body>
+</html>

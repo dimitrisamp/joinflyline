@@ -26,8 +26,8 @@ def save_booking(user, data, zooz=True, test=False):
     promo = payment.pop("promocode")
     retail_info = body.pop("retail_info")
     p = body["passengers"][0]
-    p["email"] = S.RECEIVE_EMAIL
-    p["phone"] = payment.get("phone", S.RECEIVE_PHONE)
+    p["email"] = payment.get("email", user.email if not user.is_anonymous else S.RECEIVE_EMAIL)
+    p["phone"] = payment.get("phone", user.phone_number or S.RECEIVE_PHONE)
     headers = {"content-type": "application/json", "apikey": S.KIWI_API_KEY}
     try:
         response = requests.post(SAVE_BOOKING_API_URL, json=body, headers=headers)

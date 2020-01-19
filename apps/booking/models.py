@@ -4,7 +4,7 @@ from django.db import models
 from django.db.transaction import atomic
 
 from apps.auth.models import User
-from wanderift.utils import parse_isodatetime
+from wanderift.utils import parse_isodatetime, AIRLINE_CODES
 
 
 class BookingContact(models.Model):
@@ -109,6 +109,9 @@ class Deal(models.Model):
             f"{self.city_from}({self.fly_from}) -> {self.city_to}({self.fly_to}) "
             f"${self.price} {self.updated.isoformat()}"
         )
+
+    def airlines_str(self):
+        return ', '.join([AIRLINE_CODES[a] for a in self.airlines])
 
     class Meta:
         indexes = (
