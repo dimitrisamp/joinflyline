@@ -93,10 +93,13 @@ class DealWatch(models.Model):
     airlines = ArrayField(models.CharField(max_length=10), default=list, blank=True)
 
     def save(self, **kwargs):
+        airlines = ",".join(list(sorted(self.airlines)))
+        if airlines == '':
+            airlines = None
         defaults = {
             "source": l2q(self.user.market),
             "destination": l2q(self.destination),
-            "airlines": ",".join(list(sorted(self.airlines))),
+            "airlines": airlines,
         }
         self.group = DealWatchGroup.objects.get_or_create(**defaults)[0]
         super().save(**kwargs)
