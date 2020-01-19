@@ -203,7 +203,7 @@
                       <tbody>
                         <tr>
                           <td>
-                          {% if deal_alerts %}
+                          {% if deals %}
                             <table
                               bgcolor="#FFFFFF"
                               border="0"
@@ -258,11 +258,11 @@
                                           width="58%"
                                         >
                                           {% for deal in deals %}
-                                          <p style="font-size: 16px;color: gray;">
+                                          <a href="{{ SITE_URL }}"><p style="font-size: 16px;color: gray;">
                                             {{ deal.city_from_name }} ({{ deal.fly_from }}) -> {{ deal.city_to_name }} ({{ deal.fly_to }}) | {{ deal.departure_date|date:"m/d" }} -
                                             {{ deal.return_date|date:"m/d" }} |
                                             {{ deal.airlines_str }} ${{ deal.price }} Round Trip
-                                          </p>
+                                          </p></a>
                                           {% endfor %}
                                         </td>
                                       </tr>
@@ -311,11 +311,11 @@
                                           width="58%"
                                         >
                                           {% for deal in random_deals %}
-                                          <p style="font-size: 16px;color: gray;">
+                                          <a href="{{ SITE_URL }}"><p style="font-size: 16px;color: gray;">
                                             {{ deal.city_from_name }} ({{ deal.fly_from }}) -> {{ deal.city_to_name }} ({{ deal.fly_to }}) | {{ deal.departure_date|date:"m/d" }} -
                                             {{ deal.return_date|date:"m/d" }} |
                                             {{ deal.airlines_str }} ${{ deal.price }} Round Trip
-                                          </p>
+                                          </p></a>
                                           {% endfor %}
                                         </td>
                                       </tr>

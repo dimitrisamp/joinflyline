@@ -85,7 +85,7 @@ def send_deal_alerts(user_id):
     random_deals = Deal.objects.all().order_by("?")[:5]
     htm_content = render_to_string(
         "emails/deal-alert-email.html",
-        {"deals": deals, "user": user, "random_deals": random_deals},
+        {"deals": deals, "user": user, "random_deals": random_deals, "SITE_URL": settings.SITE_URL},
     )
     from_email = settings.DEFAULT_FROM_EMAIL
     to_email = user.email
