@@ -83,12 +83,11 @@ def send_deal_alerts(user_id):
     groups = DealWatchGroup.objects.filter(watches__user=user)
     deals = Deal.objects.filter(group__in=groups).order_by("?")[:5]
     random_deals = Deal.objects.all().order_by("?")[:5]
-    if deals:
-        htm_content = render_to_string(
-            "emails/deal-alert-email.html",
-            {"deals": deals, "user": user, "random_deals": random_deals},
-        )
-        from_email = settings.DEFAULT_FROM_EMAIL
-        to_email = user.email
-        subject = "The Best Deals Brought to You by Flyline"
-        send_mail(subject, "", from_email, [to_email], html_message=htm_content)
+    htm_content = render_to_string(
+        "emails/deal-alert-email.html",
+        {"deals": deals, "user": user, "random_deals": random_deals},
+    )
+    from_email = settings.DEFAULT_FROM_EMAIL
+    to_email = user.email
+    subject = "The Best Deals Brought to You by Flyline"
+    send_mail(subject, "", from_email, [to_email], html_message=htm_content)
