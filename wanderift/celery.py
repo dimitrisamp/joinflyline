@@ -25,12 +25,12 @@ if settings.STAGE == "production":
             minute=0, hour="12,14,15,16,17,18,20,22,0,2"
         ),  # -6 to get Dallas time
     }
-    app.conf.beat_schedule["deal_alerts"] = {
-        "task": "apps.booking.tasks.send_mass_deal_alerts",
-        "schedule": crontab(
-            minute=0, hour=14, day_of_week="1,3,5"
-        ),  # Monday,Wendesday,Friday at 8AM Dallas time
-    }
+    # app.conf.beat_schedule["deal_alerts"] = {
+    #     "task": "apps.booking.tasks.send_mass_deal_alerts",
+    #     "schedule": crontab(
+    #         minute=0, hour=14, day_of_week="1,3,5"
+    #     ),  # Monday,Wendesday,Friday at 8AM Dallas time
+    # }
     app.conf.beat_schedule["search_history"] = {
         "task": "apps.booking.tasks.send_search_history",
         "schedule": crontab(
