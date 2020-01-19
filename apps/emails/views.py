@@ -11,8 +11,7 @@ def booking_success(booking):
 
     if booking_contact:
         htm_content = render_to_string(
-            "emails/booking_success.html",
-            {"data": booking, "i": 0, "booking_contact": booking_contact},
+            "emails/booking-success-new.html",
         )
         from_email = "booking@sb.joinflyline.com"
         to_email = booking_contact.email
