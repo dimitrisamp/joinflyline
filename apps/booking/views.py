@@ -49,19 +49,22 @@ class FlightSearchView(ProxyView):
     def get(self, request, *args, **kwargs):
         if request.user.is_anonymous:
             qp = request.query_params
-            SearchHistory.objects.create(
-                place_from=str2place(qp.get("fly_from")),
-                place_to=str2place(qp.get("fly_to")),
-                departure_date=datetime.datetime.strptime(qp["date_from"], "%d/%m/%Y"),
-                return_date=datetime.datetime.strptime(qp["return_from"], "%d/%m/%Y")
-                if qp.get("return_from")
-                else None,
-                adults=int(qp["adults"]),
-                children=int(qp["children"]),
-                infants=int(qp["infants"]),
-                seat_type=qp["selected_cabins"],
-                destination_type=qp["type"],
-            )
+            try:
+                SearchHistory.objects.create(
+                    place_from=str2place(qp.get("fly_from")),
+                    place_to=str2place(qp.get("fly_to")),
+                    departure_date=datetime.datetime.strptime(qp["date_from"], "%d/%m/%Y"),
+                    return_date=datetime.datetime.strptime(qp["return_from"], "%d/%m/%Y")
+                    if qp.get("return_from")
+                    else None,
+                    adults=int(qp["adults"]),
+                    children=int(qp["children"]),
+                    infants=int(qp["infants"]),
+                    seat_type=qp["selected_cabins"],
+                    destination_type=qp["type"],
+                )
+            except:
+                pass
         return super().get(request, *args, **kwargs)
 
 
