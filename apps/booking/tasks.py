@@ -5,6 +5,7 @@ from datetime import timedelta
 
 from celery import shared_task
 from django.core.mail import send_mail, EmailMessage
+from django.db.models import Q
 from django.db.models.functions import Now
 from django.template.loader import render_to_string
 from django.utils.timezone import now
@@ -81,11 +82,19 @@ def send_mass_deal_alerts():
 def send_deal_alerts(user_id):
     user = User.objects.get(id=user_id)
     groups = DealWatchGroup.objects.filter(watches__user=user)
-    deals = Deal.objects.filter(group__in=groups).order_by("?")[:5]
+    deals = Deal.objects.filter(
+        Q(group__in=groups)
+        | Q(city_from="{}:{}".format(user.market["type"], user.market["code"]))
+    ).order_by("?")[:5]
     random_deals = Deal.objects.all().order_by("?")[:5]
     htm_content = render_to_string(
         "emails/deal-alert-email.html",
-        {"deals": deals, "user": user, "random_deals": random_deals, "SITE_URL": settings.SITE_URL},
+        {
+            "deals": deals,
+            "user": user,
+            "random_deals": random_deals,
+            "SITE_URL": settings.SITE_URL,
+        },
     )
     from_email = settings.DEFAULT_FROM_EMAIL
     to_email = user.email
