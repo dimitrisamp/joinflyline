@@ -19,6 +19,7 @@ import SearchResultComponent from "../components/SearchResultComponent";
 import LearnMore from "../views/LearnMore";
 import PromoLanding from "../views/PromoLanding";
 import Faq from "../views/Faq";
+import Apps from "../views/Apps";
 import Vue from "vue";
 import VueRouter from "vue-router";
 import PasswordReset from "../views/PasswordReset";
@@ -201,6 +202,14 @@ const routes = [
     path: "/faq/",
     name: "faq",
     component: Faq,
+    meta: {
+      loginRequired: false
+    }
+  },
+  {
+    path: "/apps",
+    name: "apps",
+    component: Apps,
     meta: {
       loginRequired: false
     }
