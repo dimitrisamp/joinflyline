@@ -4,6 +4,7 @@ from rest_framework.exceptions import ValidationError
 from rest_framework.response import Response
 
 from apps.account.actions import create_subscriber
+from apps.auth.enums import UserSource
 from apps.auth.models import User
 from django.http import JsonResponse
 from django.views import View
@@ -53,8 +54,12 @@ class FlightSearchView(ProxyView):
                 SearchHistory.objects.create(
                     place_from=str2place(qp.get("fly_from")),
                     place_to=str2place(qp.get("fly_to")),
-                    departure_date=datetime.datetime.strptime(qp["date_from"], "%d/%m/%Y"),
-                    return_date=datetime.datetime.strptime(qp["return_from"], "%d/%m/%Y")
+                    departure_date=datetime.datetime.strptime(
+                        qp["date_from"], "%d/%m/%Y"
+                    ),
+                    return_date=datetime.datetime.strptime(
+                        qp["return_from"], "%d/%m/%Y"
+                    )
                     if qp.get("return_from")
                     else None,
                     adults=int(qp["adults"]),
@@ -113,6 +118,7 @@ class SaveBookingView(APIView):
                     cvc=data["payment"]["credit_card_cvv"],
                     phone_number=data["payment"]["phone"],
                     plan=upgrade_to_plan,
+                    source=UserSource.BOOKING,
                 )
 
         else:

@@ -22,6 +22,7 @@ class User(AbstractUser):
     role = enum.EnumField(enums.UserRole, default=enums.UserRole.SUBSCRIBER)
     passport_number = models.CharField(max_length=50, blank=True, default="")
     activation_code = models.CharField(max_length=50, blank=True, null=True)
+    source = enum.EnumField(enums.UserSource, default=enums.UserSource.REGULAR)
 
     def subscription(self):
         from ..subscriptions.models import Subscriptions

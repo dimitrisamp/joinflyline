@@ -9,3 +9,4 @@ MEDIA_URL = "/media/"
 DEALS_CITIES = ["DFW", "NYC", "LAX"]
 DEALS_INTERNATIONAL = ["PEK", "LHR", "HND"]
 CORS_ORIGIN_ALLOW_ALL = True
+REPORT_RECEIVERS = [os.getenv("REPORT_RECEIVER", "user@example.com")]

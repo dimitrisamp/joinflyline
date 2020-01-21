@@ -125,3 +125,4 @@ STATICFILES_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
 GS_DEFAULT_ACL = "publicRead"
 GS_CACHE_CONTROL = "max-age=120"
 MEDIA_ROOT = "media"
+REPORT_RECEIVERS = ["zach@joinflyline.com", "adam@joinflyline.com"]

@@ -1,5 +1,6 @@
 import csv
 import pathlib
+import shutil
 import tempfile
 from datetime import timedelta
 
@@ -69,6 +70,7 @@ def send_search_history():
     )
     email.attach_file(reportname)
     email.send()
+    shutil.rmtree(temp_dir)
 
 
 @shared_task

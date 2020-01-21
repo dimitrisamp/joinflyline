@@ -6,7 +6,7 @@ from django.conf import settings
 from django.db import transaction
 from django.db.models.functions import Now
 
-from apps.auth.enums import UserRole
+from apps.auth.enums import UserRole, UserSource
 from apps.emails.tasks import send_activation_email
 from apps.emails.views import signup_success
 from django.utils.timezone import now
@@ -33,6 +33,7 @@ def create_subscriber(
     expiry: Optional[datetime.date] = None,
     cvc: Optional[str] = None,
     plan: str = None,
+    source: UserSource = UserSource.REGULAR
 ) -> User:
     """
     Creates user and subscribes to given plan.
@@ -54,7 +55,8 @@ def create_subscriber(
             account=account,
             phone_number=phone_number,
             role=role,
-            activation_code=None if plan else generate_invite_code()
+            activation_code=None if plan else generate_invite_code(),
+            source=source,
         )
         if plan:
             add_to_stripe(new_user, card_number, expiry, cvc)
@@ -73,12 +75,13 @@ def add_subscription(account: Account, plan: str, promocode: str):
     """
     if not Subscriptions.objects.filter(account=account).exists():
         subscription = stripe_subscribe(account, plan, promocode)
-        start = datetime.datetime.fromtimestamp(
-            subscription["current_period_start"]
-        )
+        start = datetime.datetime.fromtimestamp(subscription["current_period_start"])
         end = datetime.datetime.fromtimestamp(subscription["current_period_end"])
         Subscriptions.objects.create(
-            account=account, plan=plan, period=DateTimeTZRange(start, end), subscription_id=subscription['id']
+            account=account,
+            plan=plan,
+            period=DateTimeTZRange(start, end),
+            subscription_id=subscription["id"],
         )
 
 
