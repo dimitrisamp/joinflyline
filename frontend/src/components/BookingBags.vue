@@ -89,7 +89,7 @@
 </template>
 
 <script>
-import { getAgeCategory } from "../utils/utils";
+import { getAgeCategory, inchesInCm, poundsInKg } from "../utils/utils";
 
 const noneLabels = {
   hand_bag: "No hand baggage",
@@ -133,7 +133,11 @@ export default {
     },
     dimensions(definition) {
       const r = definition.restrictions;
-      return `${r.length}x${r.width}x${r.height}, ${r.weight} kg`;
+      return `${(r.length * inchesInCm).toFixed(1)}"x${(
+        r.width * inchesInCm
+      ).toFixed(1)}"x${(r.height * inchesInCm).toFixed(1)}", ${(
+        r.weight * poundsInKg
+      ).toFixed(2)} lbs`;
     },
     bagLabel(definition) {
       return bagLabels[definition.category];

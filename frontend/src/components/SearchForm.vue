@@ -29,6 +29,7 @@ export const SearchForm = {
       setTimeout(() => {
         that.$options.picker = new Lightpick({
           format: "MM/DD/YYYY",
+          minDate: moment(),
           startDate: that.form.departure_date_data || moment(),
           endDate:
             this.form.destinationTypeId === "round"

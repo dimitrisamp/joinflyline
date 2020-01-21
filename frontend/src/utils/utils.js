@@ -15,6 +15,10 @@ export const maxStopsFilterOptions = {
   2: "Two Stops"
 };
 
+export const inchesInCm = 0.393701;
+
+export const poundsInKg = 2.20462;
+
 export const userRoles = {
   companion: 1,
   subscriber: 0
