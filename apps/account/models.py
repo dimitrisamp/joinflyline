@@ -40,6 +40,7 @@ class DealWatchGroup(models.Model):
     destination = models.CharField(max_length=20)
     airlines = models.CharField(max_length=100, blank=True, null=True)
     last_updated = models.DateTimeField(null=True, blank=True)
+    kind = EnumField(enums.DWGKind, default=enums.DWGKind.unknown)
 
     def airline_list(self):
         if len(self.airlines) == 0:
@@ -51,17 +52,16 @@ class DealWatchGroup(models.Model):
         dt, dv = self.destination.split(":")
         if not (st == "city" and dt == "city"):
             return False
-        return sv in settings.DEALS_CITIES and dv in settings.DEALS_CITIES
+        return (sv in settings.DEALS_CITIES and dv in settings.DEALS_CITIES) or (
+            sv in settings.DEALS_INTERNATIONAL and dv in settings.DEALS_INTERNATIONAL
+        )
 
     def in_home_markets(self):
         st, sv = self.source.split(":")
         dt, dv = self.destination.split(":")
-        if not (dt == 'city' and dv in settings.DEALS_CITIES):
+        if not (dt == "city" and (dv in settings.DEALS_CITIES or dv in settings.DEALS_INTERNATIONAL)):
             return False
-        return User.objects.filter(
-            market__type=st,
-            market__code=sv,
-        ).exists()
+        return User.objects.filter(market__type=st, market__code=sv).exists()
 
     def in_watches(self):
         return self.watches.exists()
@@ -94,7 +94,7 @@ class DealWatch(models.Model):
 
     def save(self, **kwargs):
         airlines = ",".join(list(sorted(self.airlines)))
-        if airlines == '':
+        if airlines == "":
             airlines = None
         defaults = {
             "source": l2q(self.user.market),
