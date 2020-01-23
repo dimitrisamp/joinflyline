@@ -180,8 +180,8 @@
         <img
           :src="
             !collapsed
-              ? '@/assets/images/icons/up-arrow.png'
-              : '@/assets/images/icons/down-arrow.png'
+              ? require('@/assets/images/icons/up-arrow.png')
+              : require('@/assets/images/icons/down-arrow.png')
           "
           alt="Pull down"
           height="15"
@@ -243,7 +243,7 @@
                     </div>
                     <div class="col-1 text-right d-flex">
                       <img
-                        :src="'@/assets/images/arrow.png'"
+                        :src="require('@/assets/images/arrow.png')"
                         style="width: 10px; height: 5px;"
                         class="align-self-center"
                         alt="arrow"
@@ -337,7 +337,7 @@
                     </div>
                     <div class="col-1 text-right d-flex">
                       <img
-                        :src="'@/assets/images/arrow.png'"
+                        :src="require('@/assets/images/arrow.png')"
                         style="width: 10px; height: 5px;"
                         class="align-self-center"
                         alt="arrow"

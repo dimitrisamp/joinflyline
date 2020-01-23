@@ -101,9 +101,12 @@
                   class="form-control form-control--select"
                   v-model="p.year"
                 >
-                  <option v-for="i in 100" :value="2019 - i" :key="2019 - i">{{
-                    2019 - i
-                  }}</option>
+                  <option
+                    v-for="i in 100"
+                    :value="currentYear - i + 1"
+                    :key="currentYear - i + 1"
+                    >{{ currentYear - i + 1 }}</option
+                  >
                 </select>
               </div>
             </div>
@@ -183,8 +186,14 @@ export default {
   methods: {
     updateBaggage(data) {
       this.$set(this.p, "combinations", data);
-    }
+    },
   },
-  delimiters: ["{{", "}}"]
+  delimiters: ["{{", "}}"],
+  computed: {
+    currentYear() {
+      const d = new Date;
+      return d.getFullYear();
+    }
+  }
 };
 </script>
