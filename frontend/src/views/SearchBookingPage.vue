@@ -33,14 +33,14 @@
           </div>
           <div class="pform__field--button red">
             <h4>
-              To add another passenger upgrade to FlyLine Basic or Pro
+              To add another passenger upgrade to FlyLine Basic or Premium
             </h4>
           </div>
         </div>
 
         <div class="summary__right">
           <upgrade-to-plan @selected-plan="selectPlan" />
-          <div class="summary__inner">
+          <div class="">
             <booking-totals
               :prices="prices"
               :count="passengerCount"

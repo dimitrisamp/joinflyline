@@ -2,7 +2,7 @@
   <div class="summary__inner">
     <div class="summary__inner__totals">
       <h3 class="summary__inner__totals__heading">
-        Upgrade to FlyLine Basic or Pro
+        Upgrade to FlyLine Basic or Premium
       </h3>
       <p>
         Get the most out of FlyLine and save when upgrading to FlyLine Basic or

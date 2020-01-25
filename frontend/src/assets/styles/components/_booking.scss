@@ -128,6 +128,7 @@
       padding: 1.5rem;
       border: 1.5px solid $border-color;
       margin: 1.5rem 0;
+      background-color: #fff;
 
       &__totals {
         border: 1.5px solid #D8D8D8;
@@ -274,6 +275,7 @@
   .totals {
     position: relative;
     margin-bottom: 2.5rem;
+    background-color: #fff;
 
     &__heading {
       font-family: $dona-black;
@@ -308,6 +310,7 @@
   // Checkout
   .checkout {
     position: relative;
+    background-color: #fff;
 
     &__heading {
       font-family: $dona-black;
@@ -357,6 +360,7 @@
     padding: 1.5rem;
     border: 1.5px solid $border-color;
     margin: 1.5rem 0;
+    background-color: #fff;
 
     .pform {
       &__header {

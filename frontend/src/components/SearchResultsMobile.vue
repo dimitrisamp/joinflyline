@@ -27,7 +27,7 @@
           </h5>
           <p>
             We have thousands of flights from hundreds of carriers upgrade to
-            FlyLine Basic or Pro to view thew all!
+            FlyLine Basic or Premium to view thew all!
           </p>
         </overlay-component>
       </div>

@@ -14,7 +14,7 @@
               </h3>
               <p class="steps__text">
                 Choose between FlyLine Basic <br />
-                or Pro for great savings!
+                or Premium for great savings!
               </p>
               <router-link
                 class="button button--big button--blue"
