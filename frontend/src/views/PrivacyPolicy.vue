@@ -1,10 +1,10 @@
 <template>
   <div class="privacy">
-    <Header />
+    <Header v-if="$mq === 'lg'" />
 
     <div class="privacy__content">
       <div class="container">
-        <h3 class="text-center">
+        <h3 class="privacy__content-title">
           FLYLINE™ PRIVACY POLICY
         </h3>
         <p>
@@ -333,15 +333,3 @@ export default {
   delimiters: ["{{", "}}"]
 };
 </script>
-
-<style scoped>
-h5,
-h6 {
-  font-family: dona-bold, sans-serif;
-}
-
-h3,
-h4 {
-  font-family: Dona-Black, Sans-Serif;
-}
-</style>

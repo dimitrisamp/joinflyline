@@ -1,9 +1,9 @@
 <template>
   <div class="terms-of-services">
-    <Header />
+    <Header v-if="$mq === 'lg'" />
     <div class="container">
       <div class="terms-of-services__content">
-        <h3 class="text-center" style="font-family: dona-black;">
+        <h3 class="terms-of-services__content-title">
           ‌FlyLine™ Terms of Service Agreement
         </h3>
         <p>
