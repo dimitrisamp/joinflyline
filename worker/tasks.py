@@ -31,5 +31,5 @@ async def fetch_watches(session):
 
 async def update_watches_rate_limited():
     async with aiohttp.ClientSession() as session:
-        session = RateLimiter(session, 300, 300)
+        session = RateLimiter(session, 100, 10)
         await fetch_watches(session)
