@@ -23,8 +23,8 @@ class BookingContact(models.Model):
     @classmethod
     def from_data(cls, booking_data, user, email, phone, retail_info):
         retail_info = retail_info.copy()
-        route_information = retail_info.pop("route")
-        retail_info.pop("parent")
+        route_information = retail_info.pop("route", None)
+        retail_info.pop("parent", None)
         retail_flights = {o["id"]: o for o in route_information}
         bd = booking_data.copy()
         flights = bd.pop("flights")
