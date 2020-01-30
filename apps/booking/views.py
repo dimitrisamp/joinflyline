@@ -126,7 +126,7 @@ class SaveBookingView(APIView):
         try:
             save_booking(user, data, zooz=True, test=self.is_test_request(data))
         except ClientException as e:
-            return JsonResponse(e.args, status=400)
+            return JsonResponse(e.args, status=400, safe=False)
         return JsonResponse({})
 
 
