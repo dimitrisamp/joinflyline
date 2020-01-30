@@ -12,11 +12,11 @@ app = Celery("wanderift")
 app.config_from_object("django.conf:settings", namespace="CELERY")
 app.autodiscover_tasks()
 app.conf.beat_schedule = {
-    # Executes every Monday morning at 7:30 a.m.
-    # "fetch-deals": {
-    #     "task": "apps.common.tasks.fetch_deals",
-    #     "schedule": crontab(minute=50),
-    # }
+    # Executes every hour minute == 50
+    "fetch-deals": {
+        "task": "apps.common.tasks.fetch_deals",
+        "schedule": crontab(minute=50),
+    }
 }
 if settings.STAGE == "production":
     app.conf.beat_schedule["tweet"] = {
