@@ -58,11 +58,12 @@ async def get_trips(
         response = await session.get(SEARCH_API_URL, params=params, headers=headers)
         try_count += 1
         if response.status != 200:
+            logging.error(f"Error getting trips {fly_from} -> {fly_to}. Retrying...")
             await asyncio.sleep(SEARCH_DELAY)
         else:
             break
     else:
-        logging.error(f"Error getting trips {fly_from}->{fly_to}...")
+        logging.error(f"Error getting trips {fly_from}->{fly_to}.")
         return []
 
     data = await response.json()
@@ -139,7 +140,7 @@ async def check_and_update_trip_price(trip: Trip, session):
         trip.status = FlightStatus.timeout
 
 
-async def check_flights(city_from, city_to, session, **kwargs):
+async def check_flights(city_from, city_to, session, dw, **kwargs):
     trips = await get_trips(
         session,
         city_from,
@@ -152,7 +153,7 @@ async def check_flights(city_from, city_to, session, **kwargs):
     # for t in trips:
     #     tasks.append(check_and_update_trip_price(t, session))
     # await asyncio.gather(*tasks)
-    return trips
+    return trips, dw
 
 
 async def fetch_all_city_interconnections(session, codes):

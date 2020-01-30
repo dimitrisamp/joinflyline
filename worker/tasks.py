@@ -22,14 +22,14 @@ async def fetch_watches(session):
     dwl = list(outdated_dwgs())
     for dw in dwl:
         tasks.append(
-            check_flights(dw.source, dw.destination, session, airlines=dw.airlines)
+            check_flights(dw.source, dw.destination, session, dw, airlines=dw.airlines)
         )
-    results = await asyncio.gather(*tasks)
-    for dw, trips in zip(dwl, results):
+    for f in asyncio.as_completed(tasks):
+        trips, dw = await f
         save2db(trips, dw)
 
 
 async def update_watches_rate_limited():
     async with aiohttp.ClientSession() as session:
-        session = RateLimiter(session, 100, 10)
+        session = RateLimiter(session, 5, 10)
         await fetch_watches(session)
