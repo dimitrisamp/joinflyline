@@ -1,12 +1,16 @@
 import asyncio
+import datetime
 import random
 
+import stripe
 from celery import shared_task
 from django.conf import settings
 
 import twitter
+from django.utils.timezone import now, utc
 
 from apps.account.enums import DWGKind
+from apps.auth.models import User
 from wanderift.utils import AIRLINE_CODES
 from worker.tasks import update_watches_rate_limited
 from apps.booking.models import Deal
@@ -64,3 +68,21 @@ def tweet_deal():
         return_date=bd.return_date.strftime("%m/%d"),
     )
     api.PostUpdate(msg)
+
+
+@shared_task
+def sync_subscriptions():
+    current_date = now()
+    for u in User.objects.all():
+        subscription = u.account.subscriptions_set.all().order_by("-period").first()
+        if subscription:
+            if subscription.period.upper < current_date:
+                sub = stripe.Subscription.retrieve(subscription.subscription_id)
+                start = datetime.datetime.fromtimestamp(sub.current_period_start).replace(tzinfo=utc)
+                end = datetime.datetime.fromtimestamp(sub.current_period_end).replace(tzinfo=utc)
+                if start < current_date < end:
+                    print(f"setting period to {start}-{end}")
+                    subscription.period = (start, end)
+                    subscription.save()
+                else:
+                    print("date not in period")

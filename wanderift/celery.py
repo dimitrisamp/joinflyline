@@ -37,3 +37,9 @@ if settings.STAGE == "production":
             minute=0, hour=14
         ),  # Monday,Wendesday,Friday at 8AM Dallas time
     }
+    app.conf.beat_schedule["sync_subscriptions"] = {
+        "task": "apps.common.tasks.sync_subscriptions",
+        "schedule": crontab(
+            minute=0,
+        ),  # Monday,Wendesday,Friday at 8AM Dallas time
+    }
