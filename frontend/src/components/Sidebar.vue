@@ -29,7 +29,7 @@
             @click.native="handleSidebarLinkClick"
             :to="{ name: 'overview' }"
             class="sidebar__link"
-            >FlyLine Dashboard</router-link
+            >Travel Dashboard</router-link
           >
         </li>
         <li class="sidebar__item">
@@ -71,7 +71,7 @@ export default {
   computed: {
     userNameSurname() {
       if (this.user) {
-        return `${this.user.first_name || ""} ${this.user.last_name || ""}`;
+        return this.user.username;
       }
       return "No user";
     },
