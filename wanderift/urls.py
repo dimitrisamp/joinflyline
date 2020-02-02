@@ -16,6 +16,7 @@ Including another URLconf
 import os
 
 from django.conf.urls.static import static
+from django.views.decorators.cache import cache_page
 from django.views.static import serve
 from django.contrib import admin
 from django.http import HttpResponse
@@ -119,7 +120,7 @@ urlpatterns = [
     path(
         "api/booking/check_flights/", CheckFlightsView.as_view(), name="check-flights"
     ),
-    path("api/locations/query/", LocationQueryView.as_view(), name="location-query"),
+    path("api/locations/query/", cache_page(24*60*60)(LocationQueryView.as_view()), name="location-query"),
     path("api/search/", FlightSearchView.as_view(), name="flight-search"),
     path("api/check-invite/", InviteCheckView.as_view(), name="invite-check"),
     path(
