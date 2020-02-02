@@ -6,17 +6,13 @@
 }
 
 .tile {
-  border-color: $gray;
-  border-style: solid;
-  border-width: 0 2px 2px 2px;
-  //min-height: 14rem;
-  margin-bottom: 1.875rem;
+  background: #ffffff;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
   position: relative;
-  //height: 100%;
   &::before {
     position: absolute;
     top: 0;
-    content: '';
+    content: "";
     background-image: url("assets/img/dashboard/tile-background.png");
     background-repeat: no-repeat;
     background-size: cover;
@@ -27,12 +23,10 @@
   }
 
   .tile__heading {
-    color: $primary;
     font-size: 1rem;
-    font-family: $dona-bold;
+    font-weight: bold;
     padding: 1rem 0.5rem;
     border-bottom: 1px solid $border-color;
-    border-top: 1px solid $border-color;
     background-color: $white;
     display: flex;
     justify-content: space-between;
@@ -43,7 +37,7 @@
     &-right {
       color: $gray;
       &:hover {
-        color: #00AEEF;
+        color: #00aeef;
         cursor: pointer;
       }
     }
@@ -74,21 +68,18 @@
       align-items: center;
       justify-content: space-between;
       padding-top: 1.5rem;
-      color: $primary;
-      font-family: $dona-bold;
+      font-weight: bold;
 
       .booking {
-        color: $primary;
-        font-family: $dona-bold;
+        font-weight: bold;
       }
       .upgrade {
         font-size: 0.85rem;
-        font-family: $dona-black;
+        font-weight: 90;
         color: $gray;
       }
     }
     &-top-numbers {
-      color: $primary;
       &:first-child {
         margin-right: 4rem;
         @include mq(lg) {
@@ -110,7 +101,7 @@
 
     // Flight component
     strong,
-    .price-block h5{
+    .price-block h5 {
       font-family: $dona-black;
     }
     .small {
@@ -165,7 +156,6 @@
       margin-top: 0;
     }
   }
-
 
   &--flights {
     .tile__body {
