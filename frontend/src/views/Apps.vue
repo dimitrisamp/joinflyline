@@ -76,10 +76,10 @@ export default {
 }
 
 .apps__img-src {
-  margin-top: -2rem;
-  margin-right: -2rem;
-  margin-left: -2rem;
-  margin-bottom: -2rem;
+  margin-top: 4rem;
+  margin-right: 2rem;
+  margin-left: 2rem;
+  margin-bottom: 4rem;
 }
 
 .apps__title {
