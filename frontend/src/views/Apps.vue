@@ -9,13 +9,13 @@
               class="apps__img-src"
               src="@/assets/images/phone_with_app_compressed.png"
               alt="appstore badge"
+              style="width: 400px;"
             />
           </div>
           <div class="apps__content">
             <h1 class="apps__title">Get the app to go mobile</h1>
             <p class="apps__lead">
-              For the best mobile FlyLine <br />
-              experince download our free app.
+              For the best mobile FlyLine experince download our free app.  <br /> Saving money on flights has never been easier.
             </p>
             <div class="apps__badges">
               <a href="#" target="_blank" class="apps__badge">
@@ -77,10 +77,10 @@ export default {
 }
 
 .apps__img-src {
-  margin-top: -2rem;
-  margin-right: -2rem;
-  margin-left: -2rem;
-  margin-bottom: -2rem;
+  margin-top: 4rem;
+  margin-right: 2rem;
+  margin-left: 2rem;
+  margin-bottom: 4rem;
 }
 
 .apps__title {
@@ -91,10 +91,11 @@ export default {
 }
 
 .apps__lead {
-  font-weight: bold;
-  font-size: 26px;
+  font-weight: 560;
+  font-size: 20px;
   color: #b2b2b2;
-  line-height: 40px;
+  line-height: 36px;
+  padding-bottom: 20px;
 }
 
 .apps__badges {
