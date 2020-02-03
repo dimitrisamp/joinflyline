@@ -1,8 +1,18 @@
 <template>
   <div id="app" class="app">
-    <router-view />
+    <apps-stub v-if="$mq === 'sm'"></apps-stub>
+    <router-view v-else />
   </div>
 </template>
+<script>
+import AppsStub from "./views/AppsStub";
+
+export default {
+  components: {
+    appsStub: AppsStub
+  }
+};
+</script>
 <style lang="scss">
 @import "./assets/css/resultpage-mobile-view.css";
 @import "./assets/css/dropdown.css";
