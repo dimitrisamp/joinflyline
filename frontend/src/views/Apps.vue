@@ -9,6 +9,7 @@
               class="apps__img-src"
               src="@/assets/images/phone_with_app_compressed.png"
               alt="appstore badge"
+              style="width: 400px;"
             />
           </div>
           <div class="apps__content">
