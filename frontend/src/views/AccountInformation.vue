@@ -232,6 +232,7 @@
                     <button
                       v-if="planStatus(code) === 'current'"
                       class="button button--outline-blue"
+                      :disabled="cancelPlanProgress"
                       @click="cancelPlan"
                     >
                       Cancel Plan
@@ -323,7 +324,8 @@ export default {
       user: {},
       dobText: "",
       accountSavedDisplay: false,
-      subscriptionCancelled: false
+      subscriptionCancelled: false,
+      cancelPlanProgress: false
     };
   },
   watch: {
@@ -393,11 +395,18 @@ export default {
       });
     },
     cancelPlan() {
-      api.post("subscriptions/cancel-subscription/").then(() => {
-        this.initializeUser().then(() => {
-          this.subscriptionCancelled = true;
+      if (this.cancelPlanProgress) return;
+      this.cancelPlanProgress = true;
+      api
+        .post("subscriptions/cancel-subscription/")
+        .then(() => {
+          this.initializeUser().then(() => {
+            this.subscriptionCancelled = true;
+          });
+        })
+        .finally(() => {
+          this.cancelPlanProgress = false;
         });
-      });
     },
     goToOverview() {
       this.$router.push({ name: "overview" });
