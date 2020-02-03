@@ -10,12 +10,15 @@ import NavBar from "./NavBar";
 export default {
   components: {
     NavBar
+  },
+  mounted() {
+    document.body.classList.add("has-fixed-nav");
   }
 };
 </script>
 
 <style>
-body {
+body.has-fixed-nav {
   padding-top: 72px;
 }
 </style>

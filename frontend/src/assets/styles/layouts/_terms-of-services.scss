@@ -1,7 +1,11 @@
 .terms-of-services {
   &__content {
-    padding-top: 4rem;
+    padding-top: 2rem;
     padding-bottom: 4rem;
+
+    @include media-breakpoint-up(md) {
+      padding-top: 4rem;
+    }
 
     strong {
       font-family: $dona-bold;
@@ -19,4 +23,9 @@
       padding: 1rem 0;
     }
   }
+}
+
+.terms-of-services__content-title {
+  font-weight: 900;
+  text-align: center;
 }

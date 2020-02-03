@@ -1,12 +1,13 @@
 <template>
   <div class="faq">
-    <Header />
+    <Header v-if="$mq === 'lg'" />
     <main>
       <div class="faq__heading">
         <div class="container">
           <h1 class="faq__title">Frequently Asked Questions.</h1>
           <p class="faq__text">
-            Have a question? Browse through the list below <br />
+            Have a question? Browse through the list below
+            <br class="d-none d-md-block" />
             and I'm sure we'll answer your questions
           </p>
         </div>

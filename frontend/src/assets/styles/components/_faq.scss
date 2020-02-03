@@ -1,9 +1,13 @@
 .faq {
   &__heading {
     text-align: center;
-    padding: 4rem 0;
-    border-bottom: 1px solid #ddd;
-    margin-bottom: 5rem;
+    padding: 2rem 0;
+    
+    @include media-breakpoint-up(md) {
+      border-bottom: 1px solid #ddd;
+      padding-top: 4rem;
+      margin-bottom: 5rem;
+    }
   }
   &__text {
     font-size: 1.125rem;
