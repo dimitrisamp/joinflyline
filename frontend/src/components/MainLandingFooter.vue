@@ -29,7 +29,12 @@
               <router-link
                 class="main-footer__link"
                 :to="{ name: 'membership-explained' }"
-                >Membership Explained</router-link
+                >Membership 101</router-link
+              >
+            </li>
+            <li class="main-footer__item">
+              <router-link class="main-footer__link" :to="{ name: 'apps' }"
+                >Download App</router-link
               >
             </li>
           </ul>
@@ -58,7 +63,12 @@
                 :to="{ name: 'faq' }"
                 class="main-footer__link"
                 href="/"
-                >Frequently Asked Questions</router-link
+                >FAQ</router-link
+              >
+            </li>
+            <li class="main-footer__item">
+              <router-link class="main-footer__link" :to="{ name: 'help' }"
+                >Support</router-link
               >
             </li>
             <li class="main-footer__item">

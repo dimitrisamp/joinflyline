@@ -15,6 +15,11 @@
     >
       <div class="navbar-nav ml-auto">
         <div class="nav-item">
+          <router-link :to="{ name: 'apps' }" class="nav-link">
+            Download App
+          </router-link>
+        </div>
+        <div class="nav-item">
           <router-link :to="{ name: 'membership-explained' }" class="nav-link">
             Memberships
           </router-link>
