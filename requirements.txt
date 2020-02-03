@@ -45,3 +45,5 @@ django-cors-headers
 
 python-twitter
 django-rest-swagger
+
+django-redis
