@@ -64,7 +64,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .apps {
   display: flex;
   flex-direction: column;
@@ -80,6 +80,8 @@ export default {
   width: 100%;
   padding: 17px;
   text-align: center;
+  z-index: 2;
+  background: white;
 }
 
 .apps__body {

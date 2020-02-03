@@ -24,6 +24,8 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import PasswordReset from "../views/PasswordReset";
 import PasswordResetConfirm from "../views/PasswordResetConfirm";
+import Apps from "../views/Apps";
+import AppsStub from "../views/AppsStub";
 
 Vue.use(VueRouter);
 
@@ -210,6 +212,22 @@ const routes = [
     path: "/help",
     name: "help",
     component: Help,
+    meta: {
+      loginRequired: false
+    }
+  },
+  {
+    path: "/apps",
+    name: "apps",
+    component: Apps,
+    meta: {
+      loginRequired: false
+    }
+  },
+  {
+    path: "/apps-stub",
+    name: "apps-stub",
+    component: AppsStub,
     meta: {
       loginRequired: false
     }
