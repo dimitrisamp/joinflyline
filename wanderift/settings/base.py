@@ -251,6 +251,18 @@ CELERY_RESULT_SERIALIZER = "json"
 CELERY_TIMEZONE = TIME_ZONE
 SITE_URL = os.getenv("SITE_URL", "https://joinflyline.com")
 
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": os.getenv("REDIS_URL"),
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient"
+        },
+        "KEY_PREFIX": "rediscache"
+    }
+}
+
+
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
         "knox.auth.TokenAuthentication",
@@ -272,6 +284,10 @@ URL_REDIRECTS = (
     (r"www\.joinflyline\.com/", "https://joinflyline.com/"),
     (r"wanderift\.com/", "https://joinflyline.com/"),
     (r"www\.wanderift\.com/", "https://joinflyline.com/"),
+    (r"flyline\.io", "https://joinflyline.com/"),
+    (r"www\.flyline\.io", "https://joinflyline.com/"),
+    (r"flylineapp\.com", "https://joinflyline.com/"),
+    (r"www\.flylineapp\.com", "https://joinflyline.com/"),
 )
 
 MAINTENANCE_LOCKFILE_PATH = os.path.join(BASE_DIR, "maintenance.lock")

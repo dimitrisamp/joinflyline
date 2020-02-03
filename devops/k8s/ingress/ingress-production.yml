@@ -15,6 +15,10 @@ spec:
         - wanderift.com
         - www.wanderift.com
         - www.joinflyline.com
+        - flylineapp.com
+        - www.flylineapp.com
+        - flyline.io
+        - www.flyline.io
       secretName: wanderift-secret
   rules:
     - host: joinflyline.com
@@ -39,6 +43,34 @@ spec:
               serviceName: wanderift-service-production
               servicePort: 80
     - host: www.wanderift.com
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: wanderift-service-production
+              servicePort: 80
+    - host: flylineapp.com
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: wanderift-service-production
+              servicePort: 80
+    - host: www.flylineapp.com
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: wanderift-service-production
+              servicePort: 80
+    - host: flyline.io
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: wanderift-service-production
+              servicePort: 80
+    - host: www.flyline.io
       http:
         paths:
           - path: /
