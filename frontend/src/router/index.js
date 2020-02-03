@@ -20,6 +20,7 @@ import LearnMore from "../views/LearnMore";
 import PromoLanding from "../views/PromoLanding";
 import Faq from "../views/Faq";
 import Apps from "../views/Apps";
+import Help from "../views/Help";
 import Vue from "vue";
 import VueRouter from "vue-router";
 import PasswordReset from "../views/PasswordReset";
@@ -210,6 +211,14 @@ const routes = [
     path: "/apps",
     name: "apps",
     component: Apps,
+    meta: {
+      loginRequired: false
+    }
+  },
+  {
+    path: "/help",
+    name: "help",
+    component: Help,
     meta: {
       loginRequired: false
     }
