@@ -62,7 +62,7 @@
     </div>
     <transition name="slide-up" mode="out-in" appear>
       <header class="main-header" v-show="isOpen">
-        <h1 class="main-header__title">Where are we going?</h1>
+        <h1 class="main-header__title">Where are you going?</h1>
         <div class="main-header__form">
           <div class="main-header__top">
             <div class="main-filters">

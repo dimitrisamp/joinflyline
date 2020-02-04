@@ -14,8 +14,8 @@
     <div class="main-padding">
       <div class="row">
         <div class="col-12 col-xl-6">
+          <h3 class="tile__heading">Upcoming Trips</h3>
           <div class="tile">
-            <h3 class="tile__heading">Upcoming Trips</h3>
             <div class="tile__body">
               <p v-if="upcomingLoading" class="tile__body-no-result">
                 Loading...
@@ -27,16 +27,19 @@
                   :key="trip.id"
                 />
               </div>
-              <p v-else class="tile__body-no-result">
-                No Upcoming Trips, Get Away Today!
-              </p>
+<!--              <p v-else class="tile__body-no-result">-->
+<!--                No Upcoming Trips, Get Away Today!-->
+<!--              </p>-->
             </div>
+          </div>
+          <div v-if="!upcomingLoading" class="tile--no-result">
+            <p class="tile--no-result__text">You have no upcoming trips</p>
           </div>
         </div>
 
         <div class="col-12 col-xl-6">
+          <h3 class="tile__heading">Previous Trips</h3>
           <div class="tile">
-            <h3 class="tile__heading">Previous Trips</h3>
             <div class="tile__body">
               <p v-if="pastLoading" class="tile__body-no-result">Loading...</p>
               <div v-else-if="pastTrips.length > 0">
@@ -46,10 +49,13 @@
                   :key="trip.id"
                 />
               </div>
-              <p v-else="" class="tile__body-no-result">
-                No Previous Trips, Start Booking
-              </p>
+<!--              <p v-else="" class="tile__body-no-result">-->
+<!--                No Previous Trips, Start Booking-->
+<!--              </p>-->
             </div>
+          </div>
+          <div v-if="!pastLoading" class="tile--no-result">
+            <p class="tile--no-result__text">You have no previous trips</p>
           </div>
         </div>
       </div>

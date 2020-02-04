@@ -48,6 +48,14 @@
             >Account Information</router-link
           >
         </li>
+        <li class="sidebar__item">
+          <router-link
+            @click.native="handleSidebarLinkClick"
+            :to="{ name: 'dashboard-help' }"
+            class="sidebar__link"
+          >Help</router-link
+          >
+        </li>
       </ul>
     </nav>
     <span class="sidebar__logout" @click="logOut($router)">
