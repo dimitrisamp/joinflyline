@@ -112,3 +112,15 @@
     }
   }
 }
+
+
+// Tabs
+.account-information {
+  .tabs__item {
+    border-width: 1px;
+  }
+
+  .tabs__item.is-active {
+    border-color: #D8D8D8;
+  }
+}
