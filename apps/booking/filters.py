@@ -10,6 +10,7 @@ BOOKING_KIND_FILTER_CHOICES = (("upcoming", "Upcoming"), ("past", "Past"))
 
 class DealPagination(PageNumberPagination):
     page_size = 5
+    page_size_query_param = 'size'
 
 
 class DealFilterSet(django_filters.FilterSet):
