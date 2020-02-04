@@ -444,21 +444,7 @@ export default {
       if (!this.isStep2Complete) return;
       this.requestSent = true;
       Vue.nextTick().then(() => {
-        let formData = new FormData();
-        for (let k in this.form) {
-          if (this.form[k]) {
-            if (k === "home_airport") {
-              formData.append(k, JSON.stringify(this.form[k]));
-            } else if (k === "promo_code") {
-              if (this.form[k].length !== 0 && !this.promoInvalid) {
-                formData.append(k, this.form[k]);
-              }
-            } else {
-              formData.append(k, this.form[k]);
-            }
-          }
-        }
-        api.post(this.getPostUrl(), formData).then(response => {
+        api.post(this.getPostUrl(), this.form).then(response => {
           const data = response.data;
           if (data.success) {
             this.authenticate({
