@@ -55,17 +55,13 @@ class ActivationCheckView(APIView):
         return Response(auth_serializers.User(instance=user).data)
 
 
-class ActivationWizardView(FormView):
-    form_class = ActivationWizardForm
+class ActivationWizardView(APIView):
+    permission_classes = [AllowAny]
 
-    @csrf_exempt
-    def dispatch(self, request, *args, **kwargs):
-        return super().dispatch(request, *args, **kwargs)
-
-    def form_invalid(self, form):
-        return JsonResponse({"errors": form.errors.as_json()}, status=400)
-
-    def form_valid(self, form):
+    def form_valid(self, request):
+        form = ActivationWizardForm(request.data)
+        if not form.is_valid():
+            return Response({"errors": form.errors.as_json()}, status=400)
         cd = form.cleaned_data
         with transaction.atomic():
             user: User = get_object_or_404(
@@ -77,20 +73,17 @@ class ActivationWizardView(FormView):
             user.last_name = cd["last_name"]
             user.activation_code = None
             user.save()
-            return JsonResponse({"success": True})
+            return Response({"success": True})
 
 
-class InviteWizardView(FormView):
+class InviteWizardView(APIView):
     form_class = InviteWizardForm
+    permission_classes = [AllowAny]
 
-    @csrf_exempt
-    def dispatch(self, request, *args, **kwargs):
-        return super().dispatch(request, *args, **kwargs)
-
-    def form_invalid(self, form):
-        return JsonResponse({"errors": form.errors.as_json()}, status=400)
-
-    def form_valid(self, form):
+    def post(self, request):
+        form = InviteWizardForm(request.data)
+        if not form.is_valid():
+            return Response({"errors": form.errors.as_json()}, status=400)
         cd = form.cleaned_data
         with transaction.atomic():
             invite: CompanionInvite = cd["code"]
@@ -111,7 +104,7 @@ class InviteWizardView(FormView):
             invite.status = CompanionInviteStatus.active
             invite.save()
             signup_success(new_user.pk)
-            return JsonResponse({"success": True})
+            return Response({"success": True})
 
 
 class AnonymousDealAlertsView(APIView):
@@ -138,22 +131,14 @@ class AnonymousDealAlertsView(APIView):
         return Response()
 
 
-class WizardView(FormView):
-    form_class = WizardForm
+class WizardView(APIView):
+    permission_classes = [AllowAny]
 
-    @csrf_exempt
-    def dispatch(self, request, *args, **kwargs):
-        return super().dispatch(request, *args, **kwargs)
-
-    def form_invalid(self, form):
-        return JsonResponse({"errors": form.errors.as_json()}, status=400)
-
-    def form_valid(self, form):
+    def post(self, request):
+        form = WizardForm(request.data)
+        if not form.is_valid():
+            return Response({"errors": form.errors.as_json()}, status=400)
         cd = form.cleaned_data
-        if User.objects.filter(email=cd["email"]).exists():
-            return JsonResponse(
-                {"errors": {"email": "User already exists"}}, status=400
-            )
         create_subscriber(
             account=None,
             email=cd["email"],
@@ -168,4 +153,5 @@ class WizardView(FormView):
             cvc=cd["cvc"],
             plan=cd["plan"],
         )
-        return JsonResponse({"success": True})
+        return Response({"success": True})
+
