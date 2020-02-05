@@ -4,6 +4,7 @@
   transition: margin-left .3s ease-in-out;
   @include mq(lg) {
     margin-left: $sidebar-width;
+    margin-top: 4.8rem;
   }
 }
 

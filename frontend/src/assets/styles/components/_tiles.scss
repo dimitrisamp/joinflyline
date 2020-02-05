@@ -170,3 +170,33 @@
     }
   }
 }
+
+
+
+.tile--no-result {
+  min-height: 15.25rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url("assets/images/arial_view_two.jpg");
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  z-index: 10;
+  &:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: transparentize($black, 0.6);
+  }
+  &__text {
+    position: relative;
+    z-index: 12;
+    color: $white;
+    font-size: 1.875rem;
+    font-family: $dona-bold;
+  }
+}

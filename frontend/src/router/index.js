@@ -26,6 +26,7 @@ import PasswordReset from "../views/PasswordReset";
 import PasswordResetConfirm from "../views/PasswordResetConfirm";
 import Apps from "../views/Apps";
 import AppsStub from "../views/AppsStub";
+import DashboardHelp from "../views/DashboardHelp";
 
 Vue.use(VueRouter);
 
@@ -175,7 +176,15 @@ const routes = [
         meta: {
           loginRequired: true
         }
-      }
+      },
+      {
+        path: "help",
+        name: "dashboard-help",
+        component: DashboardHelp,
+        meta: {
+          loginRequired: true
+        }
+      },
     ]
   },
   {
