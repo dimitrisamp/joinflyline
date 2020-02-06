@@ -416,8 +416,10 @@ export default {
         if (!p.surname || p.surname.length === 0) return false;
         if (!p.nationality || p.nationality.length === 0) return false;
         if (!["mr", "ms"].includes(p.title)) return false;
-        if (!p.cardno || p.cardno.length === 0) return false;
-        if (!p.expiration || p.expiration.length === 0) return false;
+        if (!this.isDomestic) {
+          if (!p.cardno || p.cardno.length === 0) return false;
+          if (!p.expiration || p.expiration.length === 0) return false;
+        }
       }
       return true;
     },
@@ -453,7 +455,7 @@ export default {
     }
   },
   computed: {
-    ...Vuex.mapGetters("search", ["flightToBook"]),
+    ...Vuex.mapGetters("search", ["flightToBook", "isDomestic"]),
     ...Vuex.mapState("user", ["user"]),
     ...Vuex.mapState("search", { searchForm: "form" }),
     passengerCount() {
