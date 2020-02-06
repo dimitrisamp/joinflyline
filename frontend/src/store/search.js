@@ -64,7 +64,7 @@ export const searchStore = {
     showDashboardNavigation: true,
     dealAlertsSubscribeProgress: false,
     dealAlertsSubscribeSuccess: false,
-    dealAlertsSubscribeFailure: false,
+    dealAlertsSubscribeFailure: false
   },
   mutations: {
     SET_DEAL_ALERTS_SUBSCRIBE_SUCCESS(state, v) {
@@ -512,6 +512,11 @@ export const searchStore = {
     flightToBook(state) {
       if (state.searchResultIndex === null) return null;
       return state.searchResults[state.searchResultIndex];
+    },
+    isDomestic(state, getters) {
+      return (
+        getters.flightToBook.countryFrom.code === getters.flightToBook.countryTo.code
+      );
     },
     returnFlights(state, getters) {
       return getters.flightToBook
