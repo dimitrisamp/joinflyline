@@ -3,11 +3,6 @@
     <div class="section-heading">
       <div class="section-heading__inner">
         <h1 class="section-heading__title">Trip Activity</h1>
-        <p class="section-heading__text">
-          Get a “birds every view” off all your travel. On Trip Activity look at
-          your upcoming trip, <br />
-          previous trip and flights you’ve recent searched for
-        </p>
       </div>
     </div>
 

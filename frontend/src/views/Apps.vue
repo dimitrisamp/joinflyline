@@ -9,7 +9,7 @@
               class="apps__img-src"
               src="@/assets/images/phone_with_app_compressed.png"
               alt="appstore badge"
-              style="width: 400px;"
+              style="width: 350px;"
             />
           </div>
           <div class="apps__content">
@@ -68,6 +68,8 @@ export default {
 }
 
 .apps__body {
+  margin-top: 80px;
+  margin-bottom:40px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -85,16 +87,16 @@ export default {
 
 .apps__title {
   font-weight: 900;
-  font-size: 46px;
+  font-size: 40px;
   color: #000000;
   line-height: 60px;
 }
 
 .apps__lead {
-  font-weight: 560;
-  font-size: 20px;
+  font-weight: 400;
+  font-size: 18px;
   color: #b2b2b2;
-  line-height: 36px;
+  line-height: 30px;
   padding-bottom: 20px;
 }
 
