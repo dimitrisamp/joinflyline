@@ -239,11 +239,13 @@ header.sticky {
 }
 
 .navbar {
-  padding: 10px 0;
+  padding: 17px 0;
   border-bottom: 1px solid #cfcfcf47;
+  text-align: center;
   @include media-breakpoint-up(md) {
     padding: 10px 1.5rem;
     background-color: #fff;
+    text-align-last: left;
     // position: absolute;
     // width: 100%;
     // left: 0;

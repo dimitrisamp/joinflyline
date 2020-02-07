@@ -1,13 +1,6 @@
 <template>
   <div class="apps">
-    <header class="apps__header">
-      <router-link
-        class="navbar-brand nav-logo flex-grow-1"
-        :to="{ name: 'index' }"
-      >
-        <img src="@/assets/img/flyline_logos-01-1.png" />
-      </router-link>
-    </header>
+    <Header />
     <main class="apps__body">
       <div class="apps__content">
         <div class="container">
@@ -49,21 +42,20 @@
         </router-link>
       </div>
     </div>
-    <footer class="apps__footer">
-      <router-link :to="{ name: 'terms-of-services' }">
-        FlyLine - Terms of Use
-      </router-link>
-      &nbsp;|&nbsp;
-      <router-link :to="{ name: 'privacy-policy' }">
-        Privacy Policy
-      </router-link>
-    </footer>
+    <simple-footer />
   </div>
 </template>
 
 <script>
+import Header from "../components/Header";
+import SimpleFooter from "../components/SimpleFooter";
+
 export default {
   delimiters: ["{{", "}}"],
+  components: {
+    Header,
+    SimpleFooter
+  },
   data() {
     return {};
   }
@@ -77,17 +69,6 @@ export default {
   min-height: 100vh;
   padding-top: 72px;
   margin-top: -72px;
-}
-
-.apps__header {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  padding: 17px;
-  text-align: center;
-  z-index: 2;
-  background: white;
 }
 
 .apps__body {
@@ -168,22 +149,5 @@ export default {
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
   padding: 0.65rem 2rem;
   text-align: center;
-}
-
-.apps__footer {
-  display: block;
-  background-color: #f7f9fc;
-  color: #929292;
-  min-height: 48px;
-  padding: 10px;
-  text-align: center;
-  margin-top: auto;
-
-  a {
-    color: #929292;
-    padding: 0;
-    letter-spacing: 0;
-    font-size: 14px;
-  }
 }
 </style>

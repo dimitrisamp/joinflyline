@@ -1,17 +1,30 @@
 .get-started {
   min-height: 100vh;
+  background-image: none;
+  @include media-breakpoint-up(md) {
+    background-image: url("./assets/img/hero-header.svg");
+    background-repeat: repeat;
+    background-position: center;
+  }
   .container {
     input.form-control {
-        padding: 24px 15px;
-        text-align: center;
-        transition: border-color .2s ease-out;
-        &:focus {
+      padding: 24px 15px;
+      text-align: center;
+      transition: border-color 0.2s ease-out;
+      @include media-breakpoint-down(md) {
+        background: #ffffff;
+        box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+        border-color: transparent;
+      }
+      &:focus {
+        border-color: $primary;
+        @include media-breakpoint-up(md) {
           box-shadow: none;
-          border-color: $primary;
         }
-        &.invalid {
-          border-color: red;
-        }
+      }
+      &.invalid {
+        border-color: red;
+      }
     }
     select.form-control {
       text-align-last: center;
@@ -19,11 +32,33 @@
       border: 0;
       outline: 2px solid #e6e6e6d1;
       outline-offset: -1px;
-      transition: outline-color .2s ease-out;
-      &:focus {
-        box-shadow: none;
-        outline-color: $primary;
+      transition: outline-color 0.2s ease-out;
+      @include media-breakpoint-down(md) {
+        background: #ffffff;
+        box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+        border-color: transparent;
       }
+      &:focus {
+        outline-color: $primary;
+        @include media-breakpoint-up(md) {
+          box-shadow: none;
+        }
+      }
+    }
+  }
+
+  .step-formbg {
+    @include media-breakpoint-down(md) {
+      border: 0;
+      padding: 0;
+      margin-top: 0;
+    }
+  }
+
+  .form-logo {
+    display: none;
+    @include media-breakpoint-up(md) {
+      display: block;
     }
   }
 }

@@ -6,9 +6,9 @@
     >
       <img src="@/assets/img/flyline_logos-01-1.png" />
     </router-link>
-    <button class="navbar-toggler" type="button" @click="toggleNavigation">
+    <!-- <button class="navbar-toggler" type="button" @click="toggleNavigation">
       <span class="navbar-toggler-icon" />
-    </button>
+    </button> -->
     <div
       class="navbar-collapse"
       :class="{ collapse: !showNavigation && $mq === 'sm' }"
