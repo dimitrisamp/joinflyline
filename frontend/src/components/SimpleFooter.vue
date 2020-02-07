@@ -26,5 +26,9 @@
     letter-spacing: 0;
     font-size: 14px;
   }
+
+  @include media-breakpoint-up(md) {
+    display: none;
+  }
 }
 </style>

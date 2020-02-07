@@ -21,4 +21,7 @@ export default {
 body.has-fixed-nav {
   padding-top: 72px;
 }
+.app {
+  min-height: calc(100vh - 72px);
+}
 </style>
