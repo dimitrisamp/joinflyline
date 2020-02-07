@@ -16,8 +16,8 @@
             to go mobile
           </h1>
           <p class="apps__lead">
-            For the best mobile FlyLine <br />
-            experince download our free app.
+            Ready to save on flights? Start your 14 day free trial and download
+            the FlyLine app on iOS or Android
           </p>
           <div class="apps__badges">
             <img
@@ -36,7 +36,13 @@
         </div>
       </div>
     </main>
-    <div class="container">
+    <div class="container pb-5 pt-5">
+      <div class="text-center">
+        <router-link class="apps__start" :to="{ name: 'get-started' }"
+          >Start 14 Day Free Trial
+        </router-link>
+      </div>
+      <br />
       <div class="text-center">
         <router-link class="apps__about" :to="{ name: 'about' }"
           >What is FlyLine
@@ -86,13 +92,13 @@ export default {
 
 .apps__body {
   min-height: 430px;
-  background-image: url("../assets/img/miami.png");
+  background-image: url("../assets/img/coast.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   color: #ffffff;
   position: relative;
-  padding-top: 90px;
-  padding-bottom: 55px;
+  padding-top: 140px;
+  padding-bottom: 70px;
   text-align: center;
 
   &:before {
@@ -138,18 +144,30 @@ export default {
   }
 }
 
-.apps__about {
+.apps__start {
   font-weight: 900;
   font-size: 20px;
   color: #ffffff;
   text-align: center;
-  display: inline-block;
+  display: block;
   background: #00aeef;
   border: 2px solid #00aeef;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
   padding: 0.65rem 2rem;
   text-align: center;
-  margin: 40px 0;
+}
+
+.apps__about {
+  font-weight: 900;
+  font-size: 20px;
+  color: #000;
+  text-align: center;
+  display: block;
+  background: white;
+  border: 2px solid transparent;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+  padding: 0.65rem 2rem;
+  text-align: center;
 }
 
 .apps__footer {
