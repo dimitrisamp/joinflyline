@@ -1,6 +1,8 @@
 .get-started {
-  min-height: 100vh;
   background-image: none;
+  min-height: calc(100vh - 72px);
+  display: flex;
+  flex-direction: column;
   @include media-breakpoint-up(md) {
     background-image: url("./assets/img/hero-header.svg");
     background-repeat: repeat;
