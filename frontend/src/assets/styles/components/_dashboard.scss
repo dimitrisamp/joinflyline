@@ -24,10 +24,10 @@
 }
 
 .dashboard-content__title {
-  font-weight: bold;
-  font-size: 30px;
-  margin-bottom: 1rem;
+  font-weight: 600;
+  font-size: 22px;
+  margin-bottom: 20px;
   @include media-breakpoint-up(md) {
-    margin-bottom: 3rem;
+    margin-bottom: 20px;
   }
 }

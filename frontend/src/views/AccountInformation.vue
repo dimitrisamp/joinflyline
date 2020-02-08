@@ -3,11 +3,6 @@
     <div class="section-heading">
       <div class="section-heading__inner">
         <h1 class="section-heading__title">Account Information</h1>
-        <p class="section-heading__text">
-          Add your traveler information to speed up the booking process, <br />
-          and enter your Deal Alert Preferences so we can notify you of our best
-          deals that fit your parameters.
-        </p>
       </div>
     </div>
 

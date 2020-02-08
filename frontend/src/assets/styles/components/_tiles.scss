@@ -24,14 +24,14 @@
 
   .tile__heading {
     font-size: 1rem;
-    font-weight: bold;
+    font-weight: 600;
     padding: 1rem 0.5rem;
-    border-bottom: 1px solid $border-color;
+    border-bottom: .1px solid $border-color;
     background-color: $white;
     display: flex;
     justify-content: space-between;
     @include mq(lg) {
-      font-size: 1.125rem;
+      font-size: .9rem;
       padding: 1rem;
     }
     &-right {
@@ -60,23 +60,28 @@
     &-bottom {
       display: flex;
       flex-wrap: wrap;
+      font-size: 14px;
+      
       p {
         margin: 0;
       }
     }
     &-bottom {
+      font-size: 0.72rem;
       align-items: center;
       justify-content: space-between;
       padding-top: 1.5rem;
       font-weight: bold;
+      color: #999A9C;
+
 
       .booking {
         font-weight: bold;
       }
       .upgrade {
-        font-size: 0.85rem;
-        font-weight: 90;
-        color: $gray;
+        font-size: 0.72rem;
+        font-weight: bold;
+        color: #999A9C;
       }
     }
     &-top-numbers {
@@ -91,10 +96,10 @@
       }
       > span {
         font-family: $dona-black;
-        font-size: 1.875rem;
+        font-size: 2rem;
         + span {
           font-family: $dona-bold;
-          font-size: 1.25rem;
+          font-size: 1rem;
         }
       }
     }
