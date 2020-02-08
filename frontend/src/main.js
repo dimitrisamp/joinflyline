@@ -27,7 +27,15 @@ new Vue({
     Promise.all([
       this.$store.dispatch("user/initializeUser"),
       this.$store.dispatch("plans/initializePlans")
-    ]);
+    ]).then(() => {
+      let params = {
+        app_id: "mkmh7651"
+      };
+      if (!this.$store.state.user.user.anonymous) {
+        params.email = this.$store.state.user.user.email;
+      }
+      window.Intercom("boot", params);
+    });
   },
   render: h => h(App)
 }).$mount("#app");

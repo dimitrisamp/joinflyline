@@ -272,5 +272,9 @@ router.beforeEach((to, from, next) => {
   }
 });
 
+router.afterEach(() => {
+  window.Intercom("update");
+});
+
 export { router };
 export default router;

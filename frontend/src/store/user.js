@@ -93,7 +93,17 @@ export const userStore = {
       api.post("/auth/logout/").then(() => {
         localStorage.removeItem("authToken");
         context.commit("setUser", { anonymous: true });
-        router.push({ name: "index" });
+        window.Intercom("shutdown");
+        router.push(
+          {
+            name: "index"
+          },
+          () => {
+            window.Intercom("boot", {
+              app_id: "mkmh7651"
+            });
+          }
+        );
       });
     },
     authenticate(ctx, params) {
@@ -112,7 +122,18 @@ export const userStore = {
           if (response.status < 400) {
             userStorage.setSession(response.data.token, response.data.expiry);
             ctx.dispatch("initializeUser").then(() => {
-              router.push({ name });
+              window.Intercom("shutdown");
+              router.push(
+                {
+                  name
+                },
+                () => {
+                  window.Intercom("boot", {
+                    app_id: "mkmh7651",
+                    email
+                  });
+                }
+              );
             });
           }
         })
