@@ -1,5 +1,6 @@
 <template>
-  <div class="tile__item" @click="searchMe">
+  <div class="deal" @click="searchMe">
+    <img class="tile__thumbnail" :src="getCityThumbnail(deal.fly_to)" />
     <div class="tile__item-left">
       <p class="tile__item-left-top--clickable">
         {{ deal.city_from_name }} ({{ deal.fly_from }}) ->
@@ -18,6 +19,7 @@
 import { airlineCodes } from "../utils/airlineCodes";
 import { formatDateDeals } from "../utils/utils";
 import Vuex from "vuex";
+import { getCityThumbnail } from "../utils/cityThumbnails";
 
 function splitLocation(location) {
   const parts = location.split(":");
@@ -38,6 +40,7 @@ export default {
     ...Vuex.mapMutations("search", ["setForm"]),
     ...Vuex.mapActions("search", ["search"]),
     formatDateDeals,
+    getCityThumbnail,
     searchMe() {
       this.setForm({
         place_from: {

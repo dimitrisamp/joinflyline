@@ -88,33 +88,21 @@
         </div>
       </section>
       <h2 class="dashboard-content__title">Trending Trips</h2>
-      <section class="dashboard-content__section">
-        <tile-component class="tile--flights" title="Trending on FlyLine">
-          <div class="tile__list">
-            <deal
-              v-for="(deal, index) in deals"
-              :deal="deal"
-              :key="`treding-deal-${index}`"
-            />
-          </div>
-        </tile-component>
+      <section class="deal-block">
+        <deal
+          v-for="(deal, index) in deals"
+          :deal="deal"
+          :key="`treding-deal-${index}`"
+        />
       </section>
       <h2 class="dashboard-content__title">Suggested Trips</h2>
-      <section class="dashboard-content__section">
-        <tile-component
-          class="tile--flights"
-          :title="`Suggested Trips From ${user.market.name}`"
-          v-if="user && user.market"
-        >
-          <div class="tile__list">
-            <deal
-              v-for="(deal, index) in suggested_deals"
-              :deal="deal"
-              :key="`upcoming-deal-${index}`"
-            />
-          </div>
-        </tile-component>
-      </section>
+      <div class="deal-block">
+        <deal
+          v-for="(deal, index) in suggested_deals"
+          :deal="deal"
+          :key="`upcoming-deal-${index}`"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -155,7 +143,8 @@ export default {
       api
         .get("/deals/", {
           params: {
-            city_from: `${this.user.market.type}:${this.user.market.code}`
+            city_from: `${this.user.market.type}:${this.user.market.code}`,
+            size: 3
           }
         })
         .then(response => (this.suggested_deals = response.data.results));
@@ -171,9 +160,15 @@ export default {
     }
   },
   created() {
-    api.get("/deals/").then(response => {
-      this.deals = response.data.results;
-    });
+    api
+      .get("/deals/", {
+        params: {
+          size: 3
+        }
+      })
+      .then(response => {
+        this.deals = response.data.results;
+      });
     api.get("/bookings/summary/").then(response => {
       this.trip_summary = response.data;
     });
