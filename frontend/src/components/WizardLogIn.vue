@@ -25,7 +25,7 @@
             </div>
             <!-- Submit Button -->
             <div class="col-12">
-              <button class="wizard__submit">Log In</button>
+              <button class="wizard__submit">Log in</button>
             </div>
             <!-- Checkbox -->
             <div class="col-12">

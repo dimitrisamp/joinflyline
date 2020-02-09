@@ -42,8 +42,8 @@
           <!--  Payment Information -->
           <div class="wizard-payment">
            <div class="wizard-payment__heading">
-             <h5>Payment Information</h5>
-             <p>We will send you an email reminder 3 days before your trial ends</p>
+             <h5 class="wizard-payment__title">Payment Information</h5>
+             <p class="wizard-payment__text">We will send you an email reminder 3 days before your trial ends</p>
            </div>
             <div class="row">
               <div class="col-12 col-lg-6">
