@@ -1,0 +1,23 @@
+.wizard--login {
+  .wizard__submit {
+    margin-top: 1rem;
+  }
+  .wizard__remember-me {
+    display: flex;
+    justify-content: space-between;
+    padding: 1.2rem 0;
+  }
+  hr {
+    border-bottom: 1px solid #D8D8D8;
+    margin-bottom: 33px;
+    margin-top: 33px;
+  }
+  .wizard__bottom {
+    width: 100%;
+    margin: auto;
+    padding: 8rem 0;
+    @include mq(xl) {
+      width: 60%;
+    }
+  }
+}

@@ -28,6 +28,8 @@ import Apps from "../views/Apps";
 import AppsStub from "../views/AppsStub";
 import DashboardHelp from "../views/DashboardHelp";
 import WizardGetStarted from "../components/WizardGetStarted";
+import WizardLogIn from "../components/WizardLogIn";
+import WizardForgetPassword from "../components/WizardForgetPassword";
 
 Vue.use(VueRouter);
 
@@ -200,6 +202,22 @@ const routes = [
     path: "/get-started-new/:plan?",
     name: "get-started-new",
     component: WizardGetStarted,
+    meta: {
+      loginRequired: false
+    }
+  },
+  {
+    path: "/login-new",
+    name: "login-new",
+    component: WizardLogIn,
+    meta: {
+      loginRequired: false
+    }
+  },
+  {
+    path: "/forget-password-new",
+    name: "forget-password-new",
+    component: WizardForgetPassword,
     meta: {
       loginRequired: false
     }

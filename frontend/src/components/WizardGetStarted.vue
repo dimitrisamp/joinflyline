@@ -69,7 +69,7 @@
               <div class="col-12">
                 <label class="control control--checkbox">
                   <span>By creating a FlyLine account you agree with our <router-link to="/">Terms of Use </router-link> and <router-link to="/">Privacy Policy</router-link></span>
-                  <input type="checkbox" v-model="agreeToTerms" />
+                  <input type="checkbox" />
                   <div class="control__indicator" />
                 </label>
               </div>
