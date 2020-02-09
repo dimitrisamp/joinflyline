@@ -34,8 +34,10 @@ export default {
   data() {
     return {
       swiperOption: {
+        speed: 800,
         pagination: {
-          el: ".swiper-pagination"
+          el: ".swiper-pagination",
+          clickable: true
         }
       }
     };
