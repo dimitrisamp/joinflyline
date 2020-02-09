@@ -27,6 +27,7 @@ import PasswordResetConfirm from "../views/PasswordResetConfirm";
 import Apps from "../views/Apps";
 import AppsStub from "../views/AppsStub";
 import DashboardHelp from "../views/DashboardHelp";
+import WizardGetStarted from "../components/WizardGetStarted";
 
 Vue.use(VueRouter);
 
@@ -191,6 +192,14 @@ const routes = [
     path: "/get-started/:plan?",
     name: "get-started",
     component: Wizard,
+    meta: {
+      loginRequired: false
+    }
+  },
+  {
+    path: "/get-started-new/:plan?",
+    name: "get-started-new",
+    component: WizardGetStarted,
     meta: {
       loginRequired: false
     }
