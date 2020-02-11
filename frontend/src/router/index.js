@@ -1,4 +1,3 @@
-import Wizard from "../views/Wizard";
 import MainLanding from "../views/MainLanding";
 import MainLandingAbout from "../components/MainLandingAbout";
 import MembershipExplained from "../views/MembershipExplained";
@@ -7,7 +6,6 @@ import PrivacyPolicy from "../views/PrivacyPolicy";
 import TermsOfServices from "../views/TermsOfServices";
 import Airlines from "../components/Airlines";
 import SearchResultsPage from "../views/SearchResultsPage";
-import SignIn from "../views/SignIn";
 import Dashboard from "../views/Dashboard";
 import DashboadOverview from "../views/DashboadOverview";
 import Trips from "../components/Trips";
@@ -22,7 +20,6 @@ import Faq from "../views/Faq";
 import Help from "../views/Help";
 import Vue from "vue";
 import VueRouter from "vue-router";
-import PasswordReset from "../views/PasswordReset";
 import PasswordResetConfirm from "../views/PasswordResetConfirm";
 import Apps from "../views/Apps";
 import AppsStub from "../views/AppsStub";
@@ -115,7 +112,7 @@ const routes = [
   {
     path: "/sign-in",
     name: "sign-in",
-    component: SignIn,
+    component: WizardLogIn,
     meta: {
       loginRequired: false
     }
@@ -123,7 +120,7 @@ const routes = [
   {
     path: "/password-reset",
     name: "password-reset",
-    component: PasswordReset,
+    component: WizardForgetPassword,
     meta: {
       loginRequired: false
     }
@@ -187,37 +184,13 @@ const routes = [
         meta: {
           loginRequired: true
         }
-      },
+      }
     ]
   },
   {
     path: "/get-started/:plan?",
     name: "get-started",
-    component: Wizard,
-    meta: {
-      loginRequired: false
-    }
-  },
-  {
-    path: "/get-started-new/:plan?",
-    name: "get-started-new",
     component: WizardGetStarted,
-    meta: {
-      loginRequired: false
-    }
-  },
-  {
-    path: "/login-new",
-    name: "login-new",
-    component: WizardLogIn,
-    meta: {
-      loginRequired: false
-    }
-  },
-  {
-    path: "/forget-password-new",
-    name: "forget-password-new",
-    component: WizardForgetPassword,
     meta: {
       loginRequired: false
     }

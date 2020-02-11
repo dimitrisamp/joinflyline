@@ -300,7 +300,8 @@ export default {
         cvc: "",
         plan: "basic",
         code: this.$route.query.code || null,
-        activation_code: this.$route.query.activation_code || null
+        activation_code: this.$route.query.activation_code || null,
+        terms_agree: false
       },
       inviteMode: this.$route.query.hasOwnProperty("code"),
       activationMode: this.$route.query.hasOwnProperty("activation_code"),
