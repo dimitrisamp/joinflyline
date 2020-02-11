@@ -1,15 +1,15 @@
 <template>
   <div id="app" class="app">
-    <!-- <apps-stub v-if="$mq === 'sm'"></apps-stub> -->
-    <router-view />
+    <apps-stub v-if="$mq === 'sm'"></apps-stub>
+    <router-view v-else />
   </div>
 </template>
 <script>
-// import AppsStub from "./views/AppsStub";
+import AppsStub from "./views/AppsStub";
 
 export default {
   components: {
-    // appsStub: AppsStub
+    appsStub: AppsStub
   }
 };
 </script>
