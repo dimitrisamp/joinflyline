@@ -44,27 +44,6 @@ Show if mobile
   line-height: 9px;
 }
 
-.left-form-pane {
-  background: url("./assets/img/Wallpaper-Left.png");
-  border-right: solid 1px rgb(204, 204, 204);
-  background-size: cover;
-}
-
-.left-form-pane .bg-white-close-holes {
-  background: white;
-  display: flex;
-  flex-grow: 1;
-}
-
-.left-form-pane .search-dropdown .form-control {
-  color: #00aeef;
-  font-family: Dona-Bold;
-}
-
-.left-form-pane .search-dropdown input::placeholder {
-  color: #00aeef !important;
-}
-
 .design-revesion {
   margin-top: 22px;
 }
@@ -162,77 +141,9 @@ header.sticky {
   }
 }
 
-.left-form-pane .search-flight-home h3 {
-  font-weight: 600;
-  font-size: 32px;
-  padding-top: 25px;
-  color: #fff;
-  margin-bottom: 13px;
-  font-family: Dona-Black;
-}
-
-.left-form-pane .s-result-dropdown .btn {
-  margin-bottom: 16px;
-  padding: 10px 5px;
-  background: #fff;
-  color: #00b0f5;
-  font-family: Dona-Bold;
-}
-
-.left-form-pane .s-result-dropdown .btn:active {
-  border: 2px solid #ececec !important;
-  background: #fff !important;
-  color: #7d7d7d !important;
-}
-
-.left-form-pane .search-form-input {
-  color: #00b0f5;
-  font-family: Dona-Bold;
-}
-
 .airline-logo-holder.d-flex {
   width: 100px;
   flex-wrap: wrap;
-}
-
-.left-form-pane .search-dropdown {
-  margin-bottom: 16px;
-}
-
-.left-form-pane .filter-field b {
-  margin-bottom: 9px !important;
-  font-family: Dona-Black;
-  color: #fff !important;
-  font-size: 26px;
-}
-
-.left-form-pane h3 {
-  font-family: Dona-Black;
-  font-size: 33px;
-  padding-top: 20px;
-  color: #fff;
-}
-
-.left-form-pane p {
-  color: #fff;
-}
-
-.left-form-pane .search-f-dropdown {
-  margin-top: -13px;
-}
-
-.left-form-pane .passengers-dropdown {
-  margin-top: -13px;
-}
-
-.left-form-pane .airline-f-dropdown {
-  margin-top: 47px;
-}
-
-.left-form-pane .price-slider-container {
-  padding: 10px 15px;
-  width: 100%;
-  margin-top: 1px;
 }
 
 .main-landing {
@@ -260,7 +171,7 @@ header.sticky {
   font-weight: 900;
 
   .nav-item {
-    padding: 0 .5rem;
+    padding: 0 0.5rem;
     @include media-breakpoint-up(md) {
       padding: 0 1.5rem;
       &:last-child {
@@ -386,14 +297,6 @@ header.sticky {
   margin-bottom: 40px;
 }
 
-.left-form-pane .search-flight-home p {
-  font-size: 15px;
-  margin: 0;
-  padding-bottom: 18px;
-  color: #fff;
-  font-family: Dona-Bold;
-}
-
 .search-quick-filter .small {
   font-family: Dona-Bold;
   font-size: 11px;
@@ -506,45 +409,6 @@ header.sticky {
 .clicked .dat-blue-border {
   background: #fff;
   padding: 6px 8px;
-}
-
-.search-dropdown .form-control {
-  border-radius: 0px;
-  border-left: 0;
-  padding: 20px 0;
-  border: 2px solid #ececec;
-  border-left: none;
-  /*font-family: Dona-Bold;*/
-  color: #7d7d7d;
-}
-
-.search-dropdown .form-control::placeholder {
-  color: #7d7d7d;
-  font-family: Dona-Bold;
-}
-
-.search-dropdown .search-input:focus {
-  border-color: #ececec;
-  outline: 0;
-  box-shadow: none !important;
-}
-
-.search-button .btn {
-  background: transparent;
-  width: 100%;
-  padding: 9px 0;
-  font-size: 18px;
-  margin-top: 10px;
-  border-radius: 0;
-  font-weight: bold;
-  border: 2px solid #fff;
-  color: #fff;
-  opacity: 1;
-  font-family: Dona-Bold;
-}
-
-.search-button .btn:focus {
-  box-shadow: none !important;
 }
 
 .h-contentarea h3 {
@@ -684,13 +548,6 @@ header.sticky {
 
 .horizontal-form .search-dropdown {
   padding-right: 0px;
-}
-
-.horizontal-f-btn .btn-search {
-  background: #00b0f5;
-  border-color: #00b0f5;
-  padding: 7px 31px;
-  border: 1px solid #00b0f5;
 }
 
 .horizontal-f-btn .btn-search img {
@@ -1218,10 +1075,6 @@ header.sticky {
 
 .s-result-dropdown_seat-type .search-f-dropdown {
   min-width: 156px;
-}
-
-.left-form-pane .search-f-dropdown {
-  min-width: 123px;
 }
 
 .search-f-dropdown .s-dropdown-list {
@@ -2009,10 +1862,6 @@ This one is disabled until top blue line is back
     border: 2px solid #fff;
   }
 
-  .search-dropdown .form-control {
-    padding: 22px 0;
-  }
-
   .section2-content p {
     font-size: 17px;
     font-weight: 600;
@@ -2395,14 +2244,6 @@ This one is disabled until top blue line is back
     height: 37px;
     margin-left: 10px;
   }
-
-  .left-form-pane {
-    padding-left: 30px;
-  }
-
-  .left-form-pane .search-flight-home h3 {
-    font-size: 24px;
-  }
 }
 
 @media (max-width: 768px) {
@@ -2639,22 +2480,4 @@ This one is disabled until top blue line is back
   border: none !important;
   background: none !important;
   box-shadow: none !important;
-}
-
-.hero-search {
-  display: flex;
-  flex-direction: column;
-}
-
-@media screen and (min-width: 768px) {
-  .hero-search {
-    flex-direction: row;
-  }
-  .hero-search__item:not(.is-last) {
-    margin-right: 0.1rem;
-    flex-grow: 1;
-  }
-  .hero-search__item.is-wide {
-    flex-basis: 45%;
-  }
 }

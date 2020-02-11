@@ -1,7 +1,6 @@
 <template>
-  <div class="search-outer" :class="{ shadowsrch: focused }">
-    <div class="spacer" />
-    <div class="search-item">
+  <div :class="{ shadowsrch: focused }">
+    <div class="search-item" :class="{ 'is-wide': isWide }">
       <input
         type="text"
         autocomplete="disabled"
@@ -25,20 +24,15 @@
             :key="`place-${index}`"
             @click="choose(index)"
             :class="place.type"
+            class="dropdown-item"
           >
-            <div class="dropdown-icon">
-              <i v-if="place.type === 'airport'" class="fa fa-plane" />
-              <img
-                class="airport__icon"
-                v-else
-                src="@/assets/img/building.png"
-                alt="airport "
-              />
+            <div class="dropdown-label">
+              {{ place.type === "airport" ? "Airport" : "City" }}
             </div>
-            <div v-text="formatPlace(place)" />
+            <div class="dropdown-text" v-text="formatPlace(place)" />
           </li>
         </ul>
-        <p v-else-if="!requestProgress">Start typing city name...</p>
+        <!-- <p v-else-if="!requestProgress">Start typing city name...</p> -->
         <p v-else-if="requestProgress">Loading...</p>
       </div>
     </div>
@@ -76,6 +70,9 @@ export default {
       required: false,
       default: "both",
       validator: val => ["city", "airport", "both"].includes(val)
+    },
+    isWide: {
+      type: Boolean
     }
   },
   data() {

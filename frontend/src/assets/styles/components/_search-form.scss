@@ -1,0 +1,141 @@
+.search-form {
+  display: flex;
+  flex-direction: column;
+
+  @include media-breakpoint-up(md) {
+    flex-direction: row;
+  }
+
+  .form-control {
+    border-radius: 0px;
+    border-left: 0;
+    padding: 0.7rem;
+    border: 2px solid #ececec;
+    font-weight: bold;
+    color: #7d7d7d;
+    height: 44px;
+    font-size: .875rem;
+    &::placeholder {
+      color: #7d7d7d;
+      font-family: Dona-Bold;
+    }
+
+    &:focus {
+      border-color: #ececec;
+      outline: 0;
+      box-shadow: none !important;
+    }
+  }
+}
+
+.search-form__item {
+  &[data-label] {
+    position: relative;
+    .form-control {
+      padding-left: 50px;
+    }
+    &:before {
+      content: attr(data-label);
+      position: absolute;
+      left: 10px;
+      top: 50%;
+      font-weight: bold;
+      color: #7d7d7d;
+      transform: translateY(-50%);
+    }
+  }
+
+  @include media-breakpoint-up(md) {
+    &:not(.is-last) {
+      margin-right: 0.5rem;
+      flex-grow: 1;
+    }
+    &.is-wide {
+      flex-basis: 45%;
+    }
+    &.has-dropdown {
+      flex-basis: 90%;
+      display: flex;
+      position: relative;
+    }
+  }
+}
+
+.search-form__subitem {
+  flex: 1;
+  &:not(:last-child) {
+    margin-right: 0.5rem;
+  }
+}
+
+.search-dropdown-outer {
+  margin-bottom: 15px;
+}
+
+.search-form__filters {
+  display: flex;
+  justify-content: space-between;
+}
+
+.search-form-field__container {
+  margin-right: 0.5rem;
+  margin-bottom: 0.7rem;
+  width: 100%;
+  &:nth-child(n + 3) {
+    flex-basis: 50%;
+  }
+  @include mq(lg) {
+    margin-bottom: 0;
+  }
+  .search-item {
+    .form-control {
+      border: 2px solid #dcdcdc;
+      border-radius: 0;
+    }
+  }
+}
+
+.search-button .btn {
+  background: transparent;
+  width: 100%;
+  padding: 9px 0;
+  font-size: 18px;
+  margin-top: 10px;
+  border-radius: 0;
+  font-weight: bold;
+  border: 2px solid #fff;
+  color: #fff;
+  opacity: 1;
+  font-weight: bold;
+}
+
+.search-form__btn {
+  background: #00b0f5;
+  border-color: #00b0f5;
+  padding: 7px 31px;
+  border: 1px solid #00b0f5;
+  background-image: url('./assets/img/search.png');
+  background-position: center center;
+  background-size: 30%;
+  background-repeat: no-repeat;
+  font-weight: 900;
+  line-height: 28px;
+  height: 44px;
+  min-width: 90px;
+  color: #fff;
+  cursor: pointer;
+  &:disabled {
+    opacity: .7;
+    cursor: not-allowed;
+  }
+}
+
+.search-form__btn-txt {
+  @include media-breakpoint-up(md) {
+    display: none;
+  }
+}
+
+.search-button .btn:focus {
+  box-shadow: none !important;
+}
