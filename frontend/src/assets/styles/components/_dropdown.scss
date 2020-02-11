@@ -1,0 +1,144 @@
+@media (max-width: 768px) {
+  .search-item.shadowsrch .search-input {
+    border-color: grey;
+  }
+  .search-item.shadowsrch span {
+    border-color: grey;
+  }
+}
+
+.flight_name {
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: block;
+}
+.flight-clock {
+  font-size: 10px;
+  font-weight: 400;
+  color: #5f738c;
+  line-height: 16px;
+  text-align: left;
+  margin: 4px 0;
+}
+.child-li {
+  padding: 0px 30px;
+}
+.search-row .col-md-3 {
+  padding: 0 5px;
+}
+.search-row .col-md-2 {
+  padding: 0 5px;
+}
+.lightpick {
+  margin-left: -48px;
+  margin-top: 3px;
+}
+button.search_btn {
+  padding: 11.6px 40px !important;
+  width: 100% !important;
+  margin-bottom: 6px;
+  font-size: 18px;
+  font-family: Dona-Black;
+  color: #06aeef;
+}
+.search-results .btn {
+  font-size: 18px;
+  font-weight: bold;
+  color: #06aeef;
+}
+.dropdown-list {
+  position: absolute;
+  width: 100%;
+  top: 100%;
+  left: 0;
+  right: 0;
+  margin-top: 0.5rem;
+  background: #ffffff;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+  z-index: 120;
+
+  &.hidden {
+    display: none;
+  }
+
+  .city,
+  .airport {
+    border: 1px solid #ebebeb;
+    padding: 0.75rem 1rem;
+    display: flex;
+    align-items: center;
+    padding-left: 1rem !important;
+  }
+
+  .dropdown-label {
+    font-weight: bold;
+    font-size: 12px;
+    color: #000000;
+    text-align: center;
+    border: 2px solid #00afff;
+    padding: 7px 13px;
+    min-width: 100px;
+    margin-right: 20px;
+    display: none;
+    .search-item.is-wide & {
+      display: block;
+    }
+  }
+
+  p {
+    padding: 16px;
+  }
+}
+
+.dropdown-item {
+  cursor: pointer;
+  &:hover {
+    background-color: $gray-200;
+  }
+}
+
+.dropdown-text {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.dropdown-list .airport {
+  padding-left: 32px;
+}
+
+.dropdown-list {
+  color: black;
+  position: absolute;
+}
+
+.close-popup {
+  display: none;
+}
+
+.list-Sdown {
+  padding: 0;
+  margin: 0;
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+  .search-dropdown-outer {
+    margin-bottom: 10px;
+  }
+  .asset_box {
+    margin-top: 68px;
+  }
+  .search-row .col-md-2 {
+    padding: 0px 15px;
+  }
+  .search-row .col-md-3 {
+    padding: 0px 15px;
+  }
+  .search-item.shadowsrch {
+    padding-right: 30px;
+  }
+}

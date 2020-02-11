@@ -15,7 +15,6 @@ export default {
 </script>
 <style lang="scss">
 @import "./assets/css/resultpage-mobile-view.css";
-@import "./assets/css/dropdown.css";
 @import "./assets/css/footer.css";
 @import "./assets/css/results.css";
 @import "./assets/css/registration.css";

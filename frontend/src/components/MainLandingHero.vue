@@ -46,12 +46,11 @@
                       <div class="row">
                         <!-- TODO: insert controls -->
                         <div class="col">
-                          <div class="hero-search">
-                            <div class="hero-search__item is-wide">
-                              <div
-                                class="input-group input-group-sm search-dropdown"
-                              >
+                          <div class="search-form">
+                            <div class="search-form__item has-dropdown">
+                              <div class="search-form__subitem">
                                 <location-input
+                                  is-wide
                                   :prompt="'Departure City'"
                                   :promptMobile="'Departure City'"
                                   :promptMobileFocus="'From Where?'"
@@ -59,12 +58,9 @@
                                   @place-selected="updatePlaceFrom"
                                 />
                               </div>
-                            </div>
-                            <div class="hero-search__item is-wide">
-                              <div
-                                class="input-group input-group-sm search-dropdown"
-                              >
+                              <div class="search-form__subitem">
                                 <location-input
+                                  is-wide
                                   :prompt="'Arrival City'"
                                   :promptMobile="'Arrival City'"
                                   :promptMobileFocus="'To where?'"
@@ -74,56 +70,39 @@
                               </div>
                             </div>
                             <div
-                              class="hero-search__item"
+                              class="search-form__item"
                               v-if="form.searchType === 'dealAlerts'"
                             >
-                              <div
-                                class="input-group input-group-sm search-item search-dropdown"
-                              >
-                                <input
-                                  type="text"
-                                  placeholder="Email"
-                                  class="form-control search-input"
-                                  v-model="email"
-                                />
-                              </div>
+                              <input
+                                type="text"
+                                placeholder="Email"
+                                class="form-control search-input"
+                                v-model="email"
+                              />
                             </div>
                             <div
-                              class="hero-search__item"
+                              class="search-form__item"
                               v-if="form.searchType === 'dealAlerts'"
                             >
-                              <div
-                                class="input-group input-group-sm search-item search-dropdown"
-                              >
-                                <input
-                                  type="text"
-                                  placeholder="Max Price"
-                                  class="form-control search-input"
-                                />
-                              </div>
+                              <input
+                                type="text"
+                                placeholder="Max Price"
+                                class="form-control search-input"
+                              />
                             </div>
                             <div
-                              class="hero-search__item"
+                              class="search-form__item"
                               v-if="form.searchType === 'searchNBook'"
+                              data-label="Dep:"
                             >
-                              <div
-                                class="input-group input-group-sm search-dropdown home-date-field-dep"
-                              >
-                                <div class="dat-blue-border dep-date">
-                                  <input
-                                    type="text"
-                                    id="departure_date"
-                                    autocomplete="off"
-                                    aria-describedby="basic-addon3"
-                                    class="form-control search-input"
-                                    v-model="form.departure_date"
-                                  />
-                                  <span
-                                    class="input-group-text search-form-input"
-                                    >Dep:</span
-                                  >
-                                </div>
-                              </div>
+                              <input
+                                type="text"
+                                id="departure_date"
+                                autocomplete="off"
+                                aria-describedby="basic-addon3"
+                                class="form-control search-input"
+                                v-model="form.departure_date"
+                              />
                             </div>
 
                             <div
@@ -132,57 +111,42 @@
                                   form.searchType === 'searchNBook'
                               "
                             >
-                              <div class="hero-search__item">
-                                <div
-                                  class="input-group input-group-sm search-dropdown home-date-field-ret"
-                                >
-                                  <div class="dat-blue-border ret-date">
-                                    <input
-                                      type="text"
-                                      id="return_date"
-                                      autocomplete="off"
-                                      aria-describedby="basic-addon3"
-                                      class="form-control search-input"
-                                      v-model="form.return_date"
-                                    />
-                                    <span
-                                      class="input-group-text search-form-input"
-                                      >Ret:</span
-                                    >
-                                  </div>
-                                </div>
+                              <div class="search-form__item" data-label="Ret:">
+                                <input
+                                  type="text"
+                                  id="return_date"
+                                  autocomplete="off"
+                                  aria-describedby="basic-addon3"
+                                  class="form-control search-input"
+                                  v-model="form.return_date"
+                                />
                               </div>
                             </div>
                             <div
                               v-if="form.searchType === 'searchNBook'"
-                              class="hero-search__item is-last"
+                              class="search-form__item is-last"
                             >
-                              <div class="search-button horizontal-f-btn">
-                                <button
-                                  type="button"
-                                  class="btn-search"
-                                  @click="searchFromHome"
-                                  :disabled="isFormIncomplete"
+                              <button
+                                type="button"
+                                class="search-form__btn"
+                                :class="{ 'has-icon': $mq !== 'sm' }"
+                                @click="searchFromHome"
+                                :disabled="isFormIncomplete"
+                              >
+                                <span class="search-form__btn-txt"
+                                  >Search Flights</span
                                 >
-                                  <img
-                                    v-if="$mq !== 'sm'"
-                                    src="@/assets/img/search.png"
-                                  />
-                                  <span v-else>Search Flights</span>
-                                </button>
-                              </div>
+                              </button>
                             </div>
-                            <div v-else class="hero-search__item is-last">
-                              <div class="search-button horizontal-f-btn">
-                                <button
-                                  type="button"
-                                  class="btn-search"
-                                  @click="anonymousDealAlertsSubscribe"
-                                  :disabled="isDealFormIncomplete"
-                                >
-                                  <span>Set</span>
-                                </button>
-                              </div>
+                            <div v-else class="search-form__item is-last">
+                              <button
+                                type="button"
+                                class="search-form__btn"
+                                @click="anonymousDealAlertsSubscribe"
+                                :disabled="isDealFormIncomplete"
+                              >
+                                <span>Set</span>
+                              </button>
                             </div>
                           </div>
                         </div>
@@ -282,7 +246,8 @@
           </div>
           <div class="modal-body">
             <h1>
-              Seems like account with email {{ form.email }} already exists. Please
+              Seems like account with email {{ form.email }} already exists.
+              Please
               <router-link :to="{ name: 'sign-in' }">sign in</router-link>
             </h1>
           </div>
@@ -373,29 +338,3 @@ export default {
   }
 };
 </script>
-
-<style lang="scss">
-.hero-search {
-  .hero-search__item {
-    .search-form-input {
-      background: #fff;
-      border-radius: 0px;
-      border-right: none;
-      font-size: 0.8em;
-      font-weight: 600;
-      font-family: Dona-Bold;
-      color: #7d7d7d;
-      border: 2px solid #ececec;
-      border-right: transparent;
-    }
-    .search-input {
-      font-family: dona-black;
-      border: 2px solid #ececec;
-      border-left: none;
-    }
-    .search-input:focus + span {
-      border-color: #0aaeff;
-    }
-  }
-}
-</style>

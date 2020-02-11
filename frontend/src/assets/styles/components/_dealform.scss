@@ -1,31 +1,16 @@
 .h-dealform {
-  .dealform__filters {
-    width: 100%;
-  }
-
-  .search-dropdown {
-
-  }
-
-  .search-dropdown-outer {
-    margin-bottom: 15px;
-  }
-
-  .search-form__filters {
-    display: flex;
-    justify-content: space-between;
-  }
-
   &__dates {
     display: flex;
+  }
 
+  .dealform__filters {
+    width: 100%;
   }
 
   .filter-field {
     padding: 6px 0;
     display: flex;
   }
-
 
   .filter-devider {
     background: #fff;
@@ -41,5 +26,4 @@
   .filters__container + .filters__container {
     margin-left: 1em;
   }
-
 }

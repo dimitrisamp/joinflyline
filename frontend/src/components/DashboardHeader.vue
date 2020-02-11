@@ -84,24 +84,28 @@
             </div>
           </div>
           <div class="main-header__bottom">
-            <form action="">
-              <div class="search-form-field__container">
-                <location-input
-                  :prompt="'From:'"
-                  :initial-value="form.placeFrom"
-                  :promptMobile="'From Where?'"
-                  @place-selected="updatePlaceFrom"
-                />
+            <div class="search-form">
+              <div class="search-form__item has-dropdown">
+                <div class="search-form__subitem">
+                  <location-input
+                    is-wide
+                    :prompt="'From:'"
+                    :initial-value="form.placeFrom"
+                    :promptMobile="'From Where?'"
+                    @place-selected="updatePlaceFrom"
+                  />
+                </div>
+                <div class="search-form__subitem">
+                  <location-input
+                    is-wide
+                    :prompt="'To:'"
+                    :promptMobile="'To Where?'"
+                    :initial-value="form.placeTo"
+                    @place-selected="updatePlaceTo"
+                  />
+                </div>
               </div>
-              <div class="search-form-field__container">
-                <location-input
-                  :prompt="'To:'"
-                  :promptMobile="'To Where?'"
-                  :initial-value="form.placeTo"
-                  @place-selected="updatePlaceTo"
-                />
-              </div>
-              <div class="search-form-field__container">
+              <div class="search-form__item">
                 <input
                   type="text"
                   class="form-control"
@@ -113,7 +117,7 @@
               </div>
               <div
                 v-if="form.destinationTypeId === 'round'"
-                class="search-form-field__container"
+                class="search-form__item"
               >
                 <input
                   type="text"
@@ -124,12 +128,13 @@
                   placeholder="Ret: "
                 />
               </div>
-              <button class="btn btn-search" @click.prevent="doSearch">
-                <svg class="icon icon--search" width="21" height="21">
-                  <use xlink:href="#icon-search" />
-                </svg>
-              </button>
-            </form>
+              <div class="search-form__item">
+                <button
+                  class="search-form__btn"
+                  @click.prevent="doSearch"
+                ></button>
+              </div>
+            </div>
           </div>
         </div>
       </header>
