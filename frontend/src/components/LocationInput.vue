@@ -4,7 +4,11 @@
       <input
         type="text"
         autocomplete="disabled"
-        class="form-control search-input"
+        :class="{
+          [inputClass]: !!inputClass,
+          'form-control': !inputClass,
+          'search-input': !inputClass
+        }"
         :placeholder="
           $mq === 'sm' ? (focused ? promptMobileFocus : promptMobile) : prompt
         "
@@ -73,6 +77,9 @@ export default {
     },
     isWide: {
       type: Boolean
+    },
+    inputClass: {
+      type: String
     }
   },
   data() {

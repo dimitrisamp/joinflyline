@@ -65,23 +65,23 @@
               />
             </div>
             <div class="col-12 col-lg-6">
-              <input
+              <location-input
+                is-wide
                 type="text"
                 name="home_airport"
                 v-model="form.home_airport"
                 @keyup.enter="focusElement('plan')"
-                class="wizard__input"
+                input-class="wizard__input"
                 placeholder="Home Airport"
+                @place-selected="updatePlaceFrom"
               />
             </div>
             <div class="col-12 col-lg-6">
-              <input
-                type="text"
+              <dynamic-select
                 name="plan"
                 v-model="form.plan"
-                @keyup.enter="focusElement('promo_code')"
+                @data-arrived="updateSelectValue"
                 class="wizard__input"
-                placeholder="Select a Plan"
               />
             </div>
           </div>
@@ -184,6 +184,9 @@ import Vuex from "vuex";
 import { debounce } from "../utils/utils";
 import api from "../utils/http";
 import Vue from "vue";
+import LocationInput from "./LocationInput";
+import DynamicSelect from "./DynamicSelect";
+import moment from "moment";
 
 const Mode = {
   SIGNUP: 0,
@@ -200,7 +203,9 @@ const urls = {
 export default {
   name: "WizardGetStarted",
   components: {
+    DynamicSelect,
     WizardSlider,
+    LocationInput
   },
   metaInfo: {
     title: "Get Started | FlyLine"
@@ -401,7 +406,45 @@ export default {
         });
       });
     }
-  }
+  },
+  computed: {
+    trialDueDate() {
+      return moment()
+        .add(14, "days")
+        .format("M/D/Y");
+    },
+    emailInvalid() {
+      return this.form.email.length > 0 && !this.form.email.includes("@");
+    },
+    displayForm() {
+      if (!this.inviteMode && !this.activationMode) return true;
+      if (this.inviteCodeCheckProgress || this.activationCodeCheckProgress)
+        return false;
+      if (this.invite || this.activation) return true;
+      return false;
+    },
+    isStep1Complete() {
+      return (
+        this.form.home_airport !== "" &&
+        this.form.email !== "" &&
+        this.form.password !== "" &&
+        !this.emailExists
+      );
+    },
+    isStep2Complete() {
+      if (this.mode !== Mode.SIGNUP) {
+        return this.form.first_name !== "" && this.form.last_name !== "";
+      }
+      return (
+        this.form.first_name !== "" &&
+        this.form.last_name !== "" &&
+        this.form.card_number !== "" &&
+        this.form.expiry !== "" &&
+        this.form.cvc !== "" &&
+        !this.promoCheckProgress
+      );
+    }
+  },
 };
 </script>
 

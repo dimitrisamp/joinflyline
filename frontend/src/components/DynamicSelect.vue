@@ -29,11 +29,13 @@ export default {
     ...Vuex.mapState("plans", ["plans"]),
     items() {
       let result = {};
-      for (let [name, value] of Object.entries(this.plans)) {
-        if (this.discount) {
-          result[name] = `${value.name} ($${this.getPriceValue(value)}/yr)`;
-        } else {
-          result[name] = `${value.name} ($${this.getPriceValue(value)}/yr)`;
+      if (this.plans) {
+        for (let [name, value] of Object.entries(this.plans)) {
+          if (this.discount) {
+            result[name] = `${value.name} ($${this.getPriceValue(value)}/yr)`;
+          } else {
+            result[name] = `${value.name} ($${this.getPriceValue(value)}/yr)`;
+          }
         }
       }
       return result;
