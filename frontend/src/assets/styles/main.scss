@@ -31,12 +31,7 @@
 }
 
 // Configuration
-
-
-@import "~bootstrap/scss/functions";
-@import "variables";
-@import "~bootstrap/scss/mixins";
-@import "~bootstrap/scss/utilities";
+// All variables, mixins, and functions passed in vue.config.js file
 
 // Layout & components
 
@@ -121,6 +116,7 @@
 @import "components/overlay-component";
 @import "components/main-landing-hero";
 @import "components/dashboard";
+@import "components/registration";
 @import "components/apps";
 @import "components/dropdown";
 @import "components/search-form";

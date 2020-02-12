@@ -5,12 +5,11 @@
       <div class="apps__content">
         <div class="container">
           <h1 class="apps__title">
-            Get the app <br />
-            to go mobile
+            Welcome to FlyLine
           </h1>
           <p class="apps__lead">
-            Ready to save on flights? Start your 14 day free trial and download
-            the FlyLine app on iOS or Android
+            For the best FlyLine experience, use our desktop web app or download
+            our iOS or Android mobile app.
           </p>
           <div class="apps__badges">
             <img
@@ -31,14 +30,14 @@
     </main>
     <div class="container pb-5 pt-5">
       <div class="text-center">
-        <router-link class="apps__start" :to="{ name: 'get-started' }"
-          >Start 14 Day Free Trial
+        <router-link class="apps__about" :to="{ name: 'membership-explained' }"
+          >Memberships Explained
         </router-link>
       </div>
       <br />
       <div class="text-center">
         <router-link class="apps__about" :to="{ name: 'about' }"
-          >What is FlyLine
+          >FlyLine 101
         </router-link>
       </div>
     </div>

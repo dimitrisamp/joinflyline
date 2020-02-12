@@ -1,6 +1,7 @@
 <template>
-  <div class="get-started full-bg-image">
-    <div class="back-to-home">
+  <div class="get-started">
+    <Header />
+    <div class="back-to-home d-none d-md-block">
       <router-link v-if="step === 1" :to="{ name: 'index' }"
         >Back to Home</router-link
       >
@@ -47,7 +48,7 @@
                 <div><strong>Your activation code was not found</strong></div>
               </div>
               <template v-if="displayForm">
-                <div class="form-group form-group  step-f-inputs">
+                <div class="form-group form-group step-f-inputs">
                   <location-input
                     :prompt="'Home Airport'"
                     :prompt-mobile="'Home Airport'"
@@ -186,7 +187,7 @@
                     />
                   </div>
 
-                  <div class="form-group  step-f-inputs">
+                  <div class="form-group step-f-inputs">
                     <input
                       type="text"
                       class="form-control"
@@ -249,6 +250,8 @@
         </div>
       </div>
     </section>
+
+    <simple-footer />
   </div>
 </template>
 
@@ -257,6 +260,8 @@ import api from "../utils/http";
 import { debounce } from "../utils/utils";
 import DynamicSelect from "../components/DynamicSelect";
 import LocationInput from "../components/LocationInput";
+import Header from "../components/Header";
+import SimpleFooter from "../components/SimpleFooter";
 import Vuex from "vuex";
 import Vue from "vue";
 import moment from "moment";
@@ -276,7 +281,9 @@ const urls = {
 export default {
   components: {
     LocationInput,
-    DynamicSelect
+    DynamicSelect,
+    Header,
+    SimpleFooter
   },
   metaInfo: {
     title: "Get Started | FlyLine"
@@ -498,12 +505,6 @@ export default {
         !this.promoCheckProgress
       );
     }
-  },
-  mounted() {
-    document.getElementsByTagName("body")[0].classList.add("nopad");
-  },
-  beforeDestroy() {
-    document.getElementsByTagName("body")[0].classList.remove("nopad");
   }
 };
 </script>

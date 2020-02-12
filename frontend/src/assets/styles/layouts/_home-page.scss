@@ -150,11 +150,14 @@ header.sticky {
 }
 
 .navbar {
-  padding: 10px 0;
-  border-bottom: 1px solid #cfcfcf47;
+  padding: 17px 0;
+  border-bottom: 1px solid #d5d5d5;
+  text-align: center;
   @include media-breakpoint-up(md) {
+    border-color: #cfcfcf47;
     padding: 10px 1.5rem;
     background-color: #fff;
+    text-align-last: left;
     // position: absolute;
     // width: 100%;
     // left: 0;
