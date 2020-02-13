@@ -35,8 +35,8 @@ export default {
     title: "Subscription Flight Search, Deal Alerts, Direct Booking | FlyLine"
   },
   mounted() {
-    this.calcHeightOfHeader();
-    window.addEventListener("resize", this.calcHeightOfHeader);
+    //this.calcHeightOfHeader();
+    //window.addEventListener("resize", this.calcHeightOfHeader);
   },
   methods: {
     calcHeightOfHeader() {

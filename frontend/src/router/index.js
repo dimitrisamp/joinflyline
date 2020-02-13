@@ -24,9 +24,9 @@ import PasswordResetConfirm from "../views/PasswordResetConfirm";
 import Apps from "../views/Apps";
 import AppsStub from "../views/AppsStub";
 import DashboardHelp from "../views/DashboardHelp";
-import WizardGetStarted from "../components/WizardGetStarted";
-import WizardLogIn from "../components/WizardLogIn";
 import WizardForgetPassword from "../components/WizardForgetPassword";
+import WizardUniversal from "../views/WizardUniversal";
+import SignInUniversal from "../views/SignInUniversal";
 
 Vue.use(VueRouter);
 
@@ -112,7 +112,7 @@ const routes = [
   {
     path: "/sign-in",
     name: "sign-in",
-    component: WizardLogIn,
+    component: SignInUniversal,
     meta: {
       loginRequired: false
     }
@@ -190,7 +190,7 @@ const routes = [
   {
     path: "/get-started/:plan?",
     name: "get-started",
-    component: WizardGetStarted,
+    component: WizardUniversal,
     meta: {
       loginRequired: false
     }

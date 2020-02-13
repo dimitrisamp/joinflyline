@@ -251,8 +251,8 @@ export default {
     }
   },
   mounted() {
-    this.calcHeightOfHeader();
-    window.addEventListener("resize", this.calcHeightOfHeader);
+    //this.calcHeightOfHeader();
+    //window.addEventListener("resize", this.calcHeightOfHeader);
   },
   methods: {
     calcHeightOfHeader() {

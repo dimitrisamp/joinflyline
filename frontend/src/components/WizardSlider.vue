@@ -4,7 +4,11 @@
     <swiper-slide :key="slide.id" v-for="slide in slides">
       <div class="wizard-slide">
         <div class="wizard-slide__image">
-          <img :src="require(`@/assets/images/${slide.imgUrl}`)" :alt="slide.imgAlt" class="">
+          <img
+            :src="require(`@/assets/images/${slide.imgUrl}`)"
+            :alt="slide.imgAlt"
+            class=""
+          />
         </div>
         <div class="wizard-slide__content">
           <h3 class="wizard-slide__title">{{ slide.title }}</h3>
@@ -61,7 +65,7 @@ export default {
       left: 0;
       width: 100%;
       height: 100%;
-      background-color: transparentize(black, .85%);
+      background-color: transparentize(black, 0.85%);
     }
     img {
       width: 100%;
@@ -98,7 +102,9 @@ export default {
 .swiper-container-horizontal > .swiper-pagination-bullets {
   bottom: 40px;
 }
-.swiper-container-horizontal > .swiper-pagination-bullets .swiper-pagination-bullet {
+.swiper-container-horizontal
+  > .swiper-pagination-bullets
+  .swiper-pagination-bullet {
   margin: 0 10px;
 }
 .swiper-pagination-bullet {
@@ -110,7 +116,7 @@ export default {
 }
 .swiper-pagination-bullet-active {
   opacity: 1;
-  background: #00AEEF;
+  background: #00aeef;
   border: 0;
 }
 </style>
