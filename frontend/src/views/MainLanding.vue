@@ -1,5 +1,6 @@
 <template>
-  <div class="main-landing">
+  <apps-stub v-if="$mq === 'sm'"></apps-stub>
+  <div v-else class="main-landing">
     <Header />
     <main>
       <main-landing-hero />
@@ -18,9 +19,11 @@ import MainLandingDealsAlerts from "../components/MainLandingDealsAlerts";
 import MainLandingHero from "../components/MainLandingHero";
 import MainLandingAirlinesLogos from "../components/MainLandingAirlinesLogos";
 import Header from "../components/Header";
+import AppsStub from "./AppsStub";
 
 export default {
   components: {
+    AppsStub,
     Header,
     MainLandingHero,
     MainLandingAirlinesLogos,

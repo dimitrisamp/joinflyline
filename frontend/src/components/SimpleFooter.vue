@@ -11,6 +11,8 @@
 </template>
 
 <style lang="scss" scoped>
+@import "src/assets/styles/mixins/mq";
+
 .simple-footer {
   display: block;
   background-color: #f7f9fc;
@@ -27,7 +29,7 @@
     font-size: 14px;
   }
 
-  @include media-breakpoint-up(md) {
+  @include mq(md) {
     display: none;
   }
 }

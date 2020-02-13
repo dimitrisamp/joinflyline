@@ -45,6 +45,17 @@
               />
             </div>
             <div class="col-12 col-lg-6">
+              <small
+                v-if="emailVerified && emailExists"
+                class="form-text text-danger"
+                >User with that email is already registered. Is that you?
+                <router-link :to="{ name: 'sign-in' }"
+                  >Sign In</router-link
+                ></small
+              >
+              <small v-if="emailInvalid" class="form-text text-danger"
+                >Email is invalid</small
+              >
               <input
                 type="email"
                 name="email"
