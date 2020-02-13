@@ -13,18 +13,26 @@
             the FlyLine app on iOS or Android
           </p>
           <div class="apps__badges">
-            <img
-              width="130"
-              class="apps__badge"
-              src="@/assets/images/get_on_appstore.svg"
-              alt="appstore badge"
-            />
-            <img
-              width="130"
-              class="apps__badge"
-              src="@/assets/images/get_on_google_play.svg"
-              alt="google play badge"
-            />
+            <a
+              href="https://apps.apple.com/us/app/flyline-save-on-flights/id1497836049?ls=1"
+            >
+              <img
+                width="130"
+                class="apps__badge"
+                src="@/assets/images/get_on_appstore.svg"
+                alt="appstore badge"
+              />
+            </a>
+            <a
+              href="https://play.google.com/store/apps/details?id=com.wanderlift.flyline"
+            >
+              <img
+                width="130"
+                class="apps__badge"
+                src="@/assets/images/get_on_google_play.svg"
+                alt="google play badge"
+              />
+            </a>
           </div>
         </div>
       </div>
