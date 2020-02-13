@@ -59,11 +59,10 @@
               >
             </li>
             <li class="main-footer__item">
-              <router-link
-                :to="{ name: 'faq' }"
+              <a
+                href="https://intercom.help/flyline/en"
                 class="main-footer__link"
-                href="/"
-                >FAQ</router-link
+                >FAQ</a
               >
             </li>
             <li class="main-footer__item">
