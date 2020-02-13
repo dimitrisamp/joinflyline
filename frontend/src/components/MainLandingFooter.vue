@@ -37,6 +37,11 @@
                 >Download App</router-link
               >
             </li>
+            <li class="main-footer__item">
+              <a href="https://medium.com/flyline" class="main-footer__link"
+                >FlyLine Blog</a
+              >
+            </li>
           </ul>
         </div>
         <div class="col-6 col-md-2">
