@@ -8,9 +8,9 @@
     </div>
     <div class="wizard__content">
       <div class="wizard__top">
-        <router-link to="/" class="wizard__goback">Back Home</router-link>
+        <router-link :to="{ name: 'index'}" class="wizard__goback">Back Home</router-link>
         <span
-          >Already a member? <router-link to="/login">Log in</router-link></span
+          >Already a member? <router-link :to="{name: 'sign-in'}">Log in</router-link></span
         >
       </div>
       <div class="wizard__bottom">

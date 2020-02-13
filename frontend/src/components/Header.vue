@@ -13,6 +13,9 @@ export default {
   },
   mounted() {
     document.body.classList.add("has-fixed-nav");
+  },
+  beforeDestroy() {
+    document.body.classList.remove("has-fixed-nav");
   }
 };
 </script>

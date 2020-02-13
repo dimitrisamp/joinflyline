@@ -331,10 +331,9 @@ export default {
       "dealAlertsSubscribeFailure"
     ])
   },
-  beforeDestroy(to, from, next) {
+  beforeDestroy() {
     this.setDealAlertsSubscribeSuccess(false);
     this.setDealAlertsSubscribeFailure(false);
-    next();
   }
 };
 </script>

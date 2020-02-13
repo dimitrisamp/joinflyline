@@ -8,10 +8,14 @@
     </div>
     <div class="wizard__content">
       <div class="wizard__top">
-        <router-link to="/" class="wizard__goback">Back Home</router-link>
+        <router-link :to="{ name: 'index' }" class="wizard__goback"
+          >Back Home</router-link
+        >
         <span
           >Don’t have an account?
-          <router-link to="/login">Start 14 Day Free Trial</router-link></span
+          <router-link :to="{name: 'get-started'}"
+            >Start 14 Day Free Trial</router-link
+          ></span
         >
       </div>
       <div class="wizard__bottom">

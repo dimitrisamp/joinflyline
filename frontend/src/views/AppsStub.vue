@@ -9,8 +9,8 @@
             to go mobile
           </h1>
           <p class="apps__lead">
-            Ready to save on flights? Start your 14 day free trial and download
-            the FlyLine app on iOS or Android
+            For the best FlyLine experience, use our desktop web app or download
+            our iOS or Android mobile app.
           </p>
           <div class="apps__badges">
             <a
