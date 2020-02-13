@@ -41,7 +41,11 @@ export default {
         speed: 800,
         pagination: {
           el: ".swiper-pagination",
-          clickable: true
+          clickable: true,
+          type: "custom",
+          renderCustom() {
+            return "";
+          }
         }
       }
     };

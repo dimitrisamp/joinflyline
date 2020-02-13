@@ -1,6 +1,6 @@
 import stripe.error
 from django.conf import settings
-from django.db import transaction
+from django.db import transaction, IntegrityError
 from django.http import JsonResponse
 from django.utils.timezone import now
 from django.views.decorators.csrf import csrf_exempt
@@ -139,19 +139,26 @@ class WizardView(APIView):
         if not form.is_valid():
             return Response({"errors": form.errors.as_json()}, status=400)
         cd = form.cleaned_data
-        create_subscriber(
-            account=None,
-            email=cd["email"],
-            password=cd["password"],
-            first_name=cd["first_name"],
-            last_name=cd["last_name"],
-            zip=cd["zip"],
-            market=cd["home_airport"],
-            promo_code=cd["promo_code"],
-            card_number=cd["card_number"],
-            expiry=cd["expiry"],
-            cvc=cd["cvc"],
-            plan=cd["plan"],
-        )
+        try:
+            create_subscriber(
+                account=None,
+                email=cd["email"],
+                password=cd["password"],
+                first_name=cd["first_name"],
+                last_name=cd["last_name"],
+                zip=cd["zip"],
+                market=cd["home_airport"],
+                promo_code=cd["promo_code"],
+                card_number=cd["card_number"],
+                expiry=cd["expiry"],
+                cvc=cd["cvc"],
+                plan=cd["plan"],
+            )
+        except stripe.error.StripeError as e:
+            return Response({"message": e.user_message}, status=status.HTTP_400_BAD_REQUEST)
+        except IntegrityError as e:
+            return Response({"message": "User already exists"}, status=status.HTTP_400_BAD_REQUEST)
+        except Exception as e:
+            return Response({"message": "Something went wrong"}, status=status.HTTP_400_BAD_REQUEST)
         return Response({"success": True})
 

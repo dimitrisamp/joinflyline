@@ -5,7 +5,14 @@ import Vuex from "vuex";
 import App from "./App.vue";
 import VueMeta from "vue-meta";
 import VueMq from "vue-mq";
+import VueProgressBar from "vue-progressbar";
 import "@/global-components";
+
+Vue.use(VueProgressBar, {
+  color: "#00AEEF",
+  failedColor: "red",
+  height: "2px"
+});
 
 Vue.use(VueMeta);
 Vue.use(VueMq, {

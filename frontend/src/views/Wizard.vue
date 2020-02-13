@@ -125,6 +125,11 @@
               <div class="form-logo text-center">
                 <img src="@/assets/img/flyline_logos-01-1.png" />
               </div>
+              <div v-if="subscribeRequestFailed">
+                <div>
+                  <strong>{{ subscribeRequestErrorMessage }}</strong>
+                </div>
+              </div>
 
               <div class="form-descrption text-center">
                 <div><strong>Lets Get Started</strong></div>
@@ -322,6 +327,8 @@ export default {
       discount: null,
       promoCheckProgress: false,
       promoInvalid: false,
+      subscribeRequestFailed: false,
+      subscribeRequestErrorMessage: "",
       mode: this.$route.query.hasOwnProperty("code")
         ? Mode.INVITE
         : this.$route.query.hasOwnProperty("activation_code")
@@ -453,19 +460,28 @@ export default {
       if (!this.isStep2Complete) return;
       this.requestSent = true;
       Vue.nextTick().then(() => {
-        api.post(this.getPostUrl(), this.form).then(response => {
-          const data = response.data;
-          if (data.success) {
-            this.authenticate({
-              email: this.form.email,
-              password: this.form.password,
-              router: this.$router,
-              name: "account"
-            });
-          } else {
-            window.alert(JSON.stringify(data));
-          }
-        });
+        api
+          .post(this.getPostUrl(), this.form)
+          .then(response => {
+            const data = response.data;
+            if (data.success) {
+              this.authenticate({
+                email: this.form.email,
+                password: this.form.password,
+                router: this.$router,
+                name: "account"
+              });
+            }
+          })
+          .catch(reason => {
+            this.subscribeRequestFailed = true;
+            if (reason.response) {
+              this.subscribeRequestErrorMessage = reason.response.data.message;
+            }
+          })
+          .finally(() => {
+            this.requestSent = false;
+          });
       });
     }
   },

@@ -8,9 +8,12 @@
     </div>
     <div class="wizard__content">
       <div class="wizard__top">
-        <router-link :to="{ name: 'index'}" class="wizard__goback">Back home</router-link>
+        <router-link :to="{ name: 'index' }" class="wizard__goback"
+          >Back home</router-link
+        >
         <span
-          >Already a member? <router-link :to="{name: 'sign-in'}">Log in</router-link></span
+          >Already a member?
+          <router-link :to="{ name: 'sign-in' }">Log in</router-link></span
         >
       </div>
       <div class="wizard__bottom">
@@ -22,7 +25,14 @@
         </p>
 
         <div class="wizard__form">
-          <!--  Personal Information -->
+          <div class="col-12">
+            <div
+              v-if="subscribeRequestFailed"
+              class="alert alert-danger text-center"
+            >
+              {{ subscribeRequestErrorMessage }}
+            </div>
+          </div>
           <div class="row">
             <div class="col-12 col-lg-6">
               <input
@@ -63,6 +73,8 @@
                 @keyup.enter="focusElement('password')"
                 class="wizard__input"
                 placeholder="Email Address"
+                :class="{ 'email-exists': emailExists }"
+                @keyup="onEmailChange"
               />
             </div>
             <div class="col-12 col-lg-6">
@@ -103,7 +115,8 @@
             <div class="wizard-payment__heading">
               <h5 class="wizard-payment__title">Payment Information</h5>
               <p class="wizard-payment__text">
-                We will send you an email reminder 3 days before your trial ends.
+                We will send you an email reminder 3 days before your trial
+                ends.
               </p>
             </div>
             <div class="row">
@@ -166,8 +179,13 @@
                 <label class="control control--checkbox">
                   <span
                     >By creating a FlyLine account you agree with our
-                    <router-link :to="{name: 'terms-of-services'}">Terms of Use </router-link> and
-                    <router-link :to="{name: 'privacy-policy'}">Privacy Policy.</router-link></span
+                    <router-link :to="{ name: 'terms-of-services' }"
+                      >Terms of Use
+                    </router-link>
+                    and
+                    <router-link :to="{ name: 'privacy-policy' }"
+                      >Privacy Policy.</router-link
+                    ></span
                   >
                   <input
                     type="checkbox"
@@ -255,6 +273,8 @@ export default {
       discount: null,
       promoCheckProgress: false,
       promoInvalid: false,
+      subscribeRequestFailed: false,
+      subscribeRequestErrorMessage: "",
       mode: this.$route.query.hasOwnProperty("code")
         ? Mode.INVITE
         : this.$route.query.hasOwnProperty("activation_code")
@@ -265,22 +285,6 @@ export default {
         {
           id: 1,
           title: "Stop Paying Retail",
-          text:
-            "We source flights from 250+ airlines and sell them directly to you with zero markup.",
-          imgUrl: "wizard-slide-bg.jpg",
-          imgAlt: "Hawaii"
-        },
-        {
-          id: 2,
-          title: "Stop Paying Retail 2",
-          text:
-            "We source flights from 250+ airlines and sell them directly to you with zero markup.",
-          imgUrl: "wizard-slide-bg.jpg",
-          imgAlt: "Hawaii"
-        },
-        {
-          id: 3,
-          title: "Stop Paying Retail 3",
           text:
             "We source flights from 250+ airlines and sell them directly to you with zero markup.",
           imgUrl: "wizard-slide-bg.jpg",
@@ -402,21 +406,29 @@ export default {
     },
     submit() {
       if (!this.isStep2Complete) return;
-      this.requestSent = true;
+      this.$Progress.start();
       Vue.nextTick().then(() => {
-        api.post(this.getPostUrl(), this.form).then(response => {
-          const data = response.data;
-          if (data.success) {
-            this.authenticate({
-              email: this.form.email,
-              password: this.form.password,
-              router: this.$router,
-              name: "account"
-            });
-          } else {
-            window.alert(JSON.stringify(data));
-          }
-        });
+        api
+          .post(this.getPostUrl(), this.form)
+          .then(response => {
+            this.$Progress.finish();
+            const data = response.data;
+            if (data.success) {
+              this.authenticate({
+                email: this.form.email,
+                password: this.form.password,
+                router: this.$router,
+                name: "account"
+              });
+            }
+          })
+          .catch(reason => {
+            this.$Progress.fail();
+            this.subscribeRequestFailed = true;
+            if (reason.response) {
+              this.subscribeRequestErrorMessage = reason.response.data.message;
+            }
+          });
       });
     }
   },

@@ -250,24 +250,7 @@ export default {
       return this.$mq === "sm";
     }
   },
-  mounted() {
-    //this.calcHeightOfHeader();
-    //window.addEventListener("resize", this.calcHeightOfHeader);
-  },
   methods: {
-    calcHeightOfHeader() {
-      const headerEl = document.querySelector(".header");
-      const searchContainer = document.querySelector(".search-container");
-      const searchForm = document.querySelector(
-        ".search-result__container__left"
-      );
-      searchForm ? (searchForm.style.top = headerEl.offsetHeight + "px") : 0;
-      if (headerEl) {
-        const headerHeight = headerEl.offsetHeight;
-        searchContainer.style.paddingTop = headerHeight + "px";
-      }
-    },
-
     proceedToSearchResults() {
       this.$router.push({ name: "results" });
     }

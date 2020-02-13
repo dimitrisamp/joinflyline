@@ -100,22 +100,6 @@ export default {
           imgUrl: "wizard-slide-bg.jpg",
           imgAlt: "Hawaii"
         },
-        {
-          id: 2,
-          title: "Stop Paying Retail 2",
-          text:
-            "We source flights from 250+ airlines and sell them directly to you with zero markup.",
-          imgUrl: "wizard-slide-bg.jpg",
-          imgAlt: "Hawaii"
-        },
-        {
-          id: 3,
-          title: "Stop Paying Retail 3",
-          text:
-            "We source flights from 250+ airlines and sell them directly to you with zero markup.",
-          imgUrl: "wizard-slide-bg.jpg",
-          imgAlt: "Hawaii"
-        }
       ]
     };
   },
