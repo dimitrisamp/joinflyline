@@ -11,7 +11,7 @@
         <router-link to="/" class="wizard__goback">Back Home</router-link>
         <span
           >Don’t have an account?
-          <router-link to="/login">Start 14 Day Free Trial</router-link></span
+          <router-link to="/login">Start 14-day free trial</router-link></span
         >
       </div>
       <div class="wizard__bottom">
