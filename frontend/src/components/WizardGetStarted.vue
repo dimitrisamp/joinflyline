@@ -8,7 +8,7 @@
     </div>
     <div class="wizard__content">
       <div class="wizard__top">
-        <router-link :to="{ name: 'index'}" class="wizard__goback">Back Home</router-link>
+        <router-link :to="{ name: 'index'}" class="wizard__goback">Back home</router-link>
         <span
           >Already a member? <router-link :to="{name: 'sign-in'}">Log in</router-link></span
         >
@@ -16,9 +16,9 @@
       <div class="wizard__bottom">
         <h1 class="wizard__title">Lets Get Started</h1>
         <p class="wizard__info">
-          Enter a few details to start your 14 day free trial of FlyLine. You
+          Enter a few details to start your 14-day free trial of FlyLine. You
           won’t be charged until the completion of your trial and if your travel
-          plans change feel free to cancel at any time
+          plans change, feel free to cancel at any time.
         </p>
 
         <div class="wizard__form">
@@ -101,7 +101,7 @@
             <div class="wizard-payment__heading">
               <h5 class="wizard-payment__title">Payment Information</h5>
               <p class="wizard-payment__text">
-                We will send you an email reminder 3 days before your trial ends
+                We will send you an email reminder 3 days before your trial ends.
               </p>
             </div>
             <div class="row">
@@ -129,7 +129,7 @@
                 <input
                   type="email"
                   class="wizard__input"
-                  placeholder="Credut Card Number"
+                  placeholder="Credit Card Number"
                   name="card_number"
                   v-model="form.card_number"
                   @keyup.enter="focusElement('expiry')"
@@ -165,7 +165,7 @@
                   <span
                     >By creating a FlyLine account you agree with our
                     <router-link to="/">Terms of Use </router-link> and
-                    <router-link to="/">Privacy Policy</router-link></span
+                    <router-link to="/">Privacy Policy.</router-link></span
                   >
                   <input
                     type="checkbox"

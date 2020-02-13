@@ -15,9 +15,9 @@
           <div class="apps__content">
             <h1 class="apps__title">Get the app to go mobile</h1>
             <p class="apps__lead">
-              For the best FlyLine experience, use our desktop web app or
-              download our iOS or Android mobile app. <br />
-              Saving money on flights has never been easier.
+              For the best FlyLine experience, use our desktop web app <br /> or
+              download our iOS or Android mobile app. Saving money on <br />
+              flights has never been easier.
             </p>
             <div class="apps__badges">
               <a href="#" target="_blank" class="apps__badge">
@@ -95,8 +95,8 @@ export default {
 }
 
 .apps__lead {
-  font-weight: 400;
-  font-size: 18px;
+  font-weight: 600;
+  font-size: 16px;
   color: #b2b2b2;
   line-height: 30px;
   padding-bottom: 20px;

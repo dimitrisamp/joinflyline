@@ -9,12 +9,12 @@
     <div class="wizard__content">
       <div class="wizard__top">
         <router-link :to="{ name: 'index' }" class="wizard__goback"
-          >Back Home</router-link
+          >Back home</router-link
         >
         <span
           >Don’t have an account?
           <router-link :to="{name: 'get-started'}"
-            >Start 14 Day Free Trial</router-link
+            >Start 14-day free trial</router-link
           ></span
         >
       </div>
@@ -61,7 +61,7 @@
                 <router-link
                   class="wizard__forget-password"
                   :to="{ name: 'password-reset' }"
-                  >Forgot Password?</router-link
+                  >Forgot password?</router-link
                 >
               </div>
             </div>

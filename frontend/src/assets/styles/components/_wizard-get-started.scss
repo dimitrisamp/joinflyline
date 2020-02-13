@@ -38,7 +38,7 @@
     color: #929292;
   }
   .wizard__bottom {
-    padding-top: 1rem;
+    padding-top: 2.4rem;
   }
   .wizard__title {
     font-family: Dona-Black;
@@ -47,14 +47,17 @@
   .wizard__info {
     color: #9D9D9D;
     font-family: Dona-Bold;
+    font-size: 14px;
+    padding-top: 10px;
     padding-bottom: 33px;
     border-bottom: 1px solid #D8D8D8;
     margin-bottom: 33px;
   }
   .wizard__input {
     width: 100%;
+    font-size: 13.2px;
     background-color: white;
-    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.50);
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.20);
     color: #929292;
     border: 1px solid transparent;
     transition: all .2s ease-in-out;
@@ -63,7 +66,7 @@
     &:focus {
       border-color: #0aaeff;
       outline: none;
-      box-shadow: 0 2px 4px 0 rgba(0, 176, 245, 0.3);
+      box-shadow: 0 2px 4px 0 rgba(0, 176, 245, 0.4);
     }
   }
   .wizard-payment {
@@ -110,7 +113,7 @@
     color: white;
     width: 100%;
     padding: 1.4rem 1rem 1rem;
-    font-size: 22px;
+    font-size: 18px;
     font-family: Dona-Black;
     transition: background .2s ease-in-out;
     &:focus {
