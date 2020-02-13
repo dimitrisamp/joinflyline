@@ -59,7 +59,7 @@ export default {
           id: 4,
           title: "Airline Related Questions",
           values: [
-            "Take this link to find the contact number of your airline. <a href='#'>Airline Support Numbers</a>"
+            'Take this link to find the contact number of your airline. <a href="/airlines">Airline Support Numbers</a>'
           ]
         }
       ]

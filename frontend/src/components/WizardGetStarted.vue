@@ -78,6 +78,8 @@
             <div class="col-12 col-lg-6">
               <location-input
                 is-wide
+                prompt="Enter Home Airport"
+                prompt-mobile="Enter Home Airport"
                 type="text"
                 name="home_airport"
                 v-model="form.home_airport"
@@ -164,8 +166,8 @@
                 <label class="control control--checkbox">
                   <span
                     >By creating a FlyLine account you agree with our
-                    <router-link to="/">Terms of Use </router-link> and
-                    <router-link to="/">Privacy Policy.</router-link></span
+                    <router-link :to="{name: 'terms-of-services'}">Terms of Use </router-link> and
+                    <router-link :to="{name: 'privacy-policy'}">Privacy Policy.</router-link></span
                   >
                   <input
                     type="checkbox"
@@ -455,7 +457,7 @@ export default {
         !this.promoCheckProgress
       );
     }
-  },
+  }
 };
 </script>
 

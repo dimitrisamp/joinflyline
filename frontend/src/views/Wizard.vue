@@ -52,6 +52,7 @@
                   <location-input
                     :prompt="'Home Airport'"
                     :prompt-mobile="'Home Airport'"
+                    :prompt-mobile-focus="'Home Airport'"
                     :search-type="'city'"
                     :initial-value="form.home_airport"
                     @place-selected="updatePlaceFrom"

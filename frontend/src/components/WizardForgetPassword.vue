@@ -8,10 +8,14 @@
     </div>
     <div v-if="step === 1" class="wizard__content">
       <div class="wizard__top">
-        <router-link to="/" class="wizard__goback">Back Home</router-link>
+        <router-link :to="{ name: 'index' }" class="wizard__goback"
+          >Back Home</router-link
+        >
         <span
           >Don’t have an account?
-          <router-link to="/login">Start 14-day free trial</router-link></span
+          <router-link :to="{ name: 'get-started' }"
+            >Start 14-day free trial</router-link
+          ></span
         >
       </div>
       <div class="wizard__bottom">
@@ -23,6 +27,12 @@
           <!--  Personal Information -->
           <div class="row">
             <div class="col-12">
+              <small v-if="emailInvalid" class="form-text text-danger"
+                >Email is invalid</small
+              >
+              <small v-if="userNotFound" class="form-text text-danger"
+                >User not found</small
+              >
               <input
                 type="text"
                 class="wizard__input"

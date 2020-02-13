@@ -13,7 +13,7 @@
         >
         <span
           >Don’t have an account?
-          <router-link :to="{name: 'get-started'}"
+          <router-link :to="{ name: 'get-started' }"
             >Start 14-day free trial</router-link
           ></span
         >
@@ -24,6 +24,11 @@
         <div class="wizard__form">
           <!--  Personal Information -->
           <div class="row">
+            <div class="col-12">
+              <div v-if="authErrorText" class="alert alert-danger text-center">
+                {{ authErrorText }}
+              </div>
+            </div>
             <div class="col-12">
               <input
                 type="text"
