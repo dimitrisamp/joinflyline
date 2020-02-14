@@ -1,3 +1,4 @@
+from celery import shared_task
 from django.template.loader import render_to_string
 
 from apps.auth.models import User
@@ -20,6 +21,7 @@ def booking_success(booking):
                   [to_email], html_message=htm_content)
 
 
+@shared_task
 def signup_success(user_id):
     user = User.objects.get(pk=user_id)
     htm_content = render_to_string(

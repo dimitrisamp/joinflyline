@@ -61,9 +61,9 @@ def create_subscriber(
         if plan:
             add_to_stripe(new_user, card_number, expiry, cvc)
             add_subscription(account, plan, promo_code)
-            signup_success(new_user.pk)
+            signup_success.delay(new_user.pk)
         else:
-            send_activation_email(new_user.pk)
+            send_activation_email.delay(new_user.pk)
         return new_user
 
 
