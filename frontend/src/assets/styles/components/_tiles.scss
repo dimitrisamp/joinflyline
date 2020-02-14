@@ -6,13 +6,17 @@
 }
 
 .tile {
-  background: #ffffff;
-  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+  border-color: $gray;
+  border-style: solid;
+  border-width: 0 2px 2px 2px;
+  //min-height: 14rem;
+  margin-bottom: 1.875rem;
   position: relative;
+  //height: 100%;
   &::before {
     position: absolute;
     top: 0;
-    content: "";
+    content: '';
     background-image: url("assets/img/dashboard/tile-background.png");
     background-repeat: no-repeat;
     background-size: cover;
@@ -23,21 +27,23 @@
   }
 
   .tile__heading {
+    color: $primary;
     font-size: 1rem;
-    font-weight: 600;
+    font-family: $dona-bold;
     padding: 1rem 0.5rem;
-    border-bottom: .1px solid $border-color;
+    border-bottom: 1px solid $border-color;
+    border-top: 1px solid $border-color;
     background-color: $white;
     display: flex;
     justify-content: space-between;
     @include mq(lg) {
-      font-size: .9rem;
+      font-size: 1.125rem;
       padding: 1rem;
     }
     &-right {
       color: $gray;
       &:hover {
-        color: #00aeef;
+        color: #00AEEF;
         cursor: pointer;
       }
     }
@@ -60,31 +66,29 @@
     &-bottom {
       display: flex;
       flex-wrap: wrap;
-      font-size: 14px;
-      
       p {
         margin: 0;
       }
     }
     &-bottom {
-      font-size: 0.72rem;
       align-items: center;
       justify-content: space-between;
       padding-top: 1.5rem;
-      font-weight: bold;
-      color: #999A9C;
-
+      color: $primary;
+      font-family: $dona-bold;
 
       .booking {
-        font-weight: bold;
+        color: $primary;
+        font-family: $dona-bold;
       }
       .upgrade {
-        font-size: 0.72rem;
-        font-weight: bold;
-        color: #999A9C;
+        font-size: 0.85rem;
+        font-family: $dona-black;
+        color: $gray;
       }
     }
     &-top-numbers {
+      color: $primary;
       &:first-child {
         margin-right: 4rem;
         @include mq(lg) {
@@ -96,17 +100,17 @@
       }
       > span {
         font-family: $dona-black;
-        font-size: 2rem;
+        font-size: 1.875rem;
         + span {
           font-family: $dona-bold;
-          font-size: 1rem;
+          font-size: 1.25rem;
         }
       }
     }
 
     // Flight component
     strong,
-    .price-block h5 {
+    .price-block h5{
       font-family: $dona-black;
     }
     .small {
@@ -133,10 +137,6 @@
       border-bottom: 0;
       padding-bottom: 0;
     }
-  }
-
-  &__thumbnail {
-    width: 320px;
   }
 
   &__item-left {
@@ -166,6 +166,7 @@
     }
   }
 
+
   &--flights {
     .tile__body {
       background-color: $white;
@@ -177,35 +178,5 @@
       color: $savings-explained-text;
       font-size: 0.75rem;
     }
-  }
-}
-
-
-
-.tile--no-result {
-  min-height: 15.25rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-image: url("assets/images/arial_view_two.jpg");
-  background-size: cover;
-  background-position: center;
-  position: relative;
-  z-index: 10;
-  &:after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: transparentize($black, 0.6);
-  }
-  &__text {
-    position: relative;
-    z-index: 12;
-    color: $white;
-    font-size: 1.875rem;
-    font-family: $dona-bold;
   }
 }

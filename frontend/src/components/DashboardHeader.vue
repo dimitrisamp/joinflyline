@@ -62,80 +62,58 @@
     </div>
     <transition name="slide-up" mode="out-in" appear>
       <header class="main-header" v-show="isOpen">
-        <h1 class="main-header__title">Where are you going?</h1>
-        <div class="main-header__form">
-          <div class="main-header__top">
-            <div class="main-filters">
-              <div class="main-filters__item">
-                <select-destination
-                  :value="form.destinationTypeId"
-                  @select="setDestinationType"
-                />
-              </div>
-              <div class="main-filters__item">
-                <select-seat-type
-                  :value="form.seatType"
-                  @select="setSeatType"
-                />
-              </div>
-              <div class="main-filters__item">
-                <select-passenger-count />
-              </div>
+        <div class="main-header__top">
+          <select-destination
+            :value="form.destinationTypeId"
+            @select="setDestinationType"
+          />
+          <select-seat-type :value="form.seatType" @select="setSeatType" />
+          <select-passenger-count />
+        </div>
+        <div class="main-header__bottom">
+          <form action="">
+            <div class="search-form-field__container">
+              <location-input
+                :prompt="'From:'"
+                :initial-value="form.placeFrom"
+                :promptMobile="'From Where?'"
+                @place-selected="updatePlaceFrom"
+              />
             </div>
-          </div>
-          <div class="main-header__bottom">
-            <div class="search-form">
-              <div class="search-form__item has-dropdown">
-                <div class="search-form__subitem">
-                  <location-input
-                    is-wide
-                    :prompt="'From:'"
-                    :initial-value="form.placeFrom"
-                    :promptMobile="'From Where?'"
-                    @place-selected="updatePlaceFrom"
-                  />
-                </div>
-                <div class="search-form__subitem">
-                  <location-input
-                    is-wide
-                    :prompt="'To:'"
-                    :promptMobile="'To Where?'"
-                    :initial-value="form.placeTo"
-                    @place-selected="updatePlaceTo"
-                  />
-                </div>
-              </div>
-              <div class="search-form__item">
-                <input
-                  type="text"
-                  class="form-control"
-                  id="departure_date"
-                  autocomplete="off"
-                  v-model="form.departure_date"
-                  placeholder="Dep: "
-                />
-              </div>
-              <div
-                v-if="form.destinationTypeId === 'round'"
-                class="search-form__item"
-              >
-                <input
-                  type="text"
-                  class="form-control"
-                  id="return_date"
-                  v-model="form.return_date"
-                  autocomplete="off"
-                  placeholder="Ret: "
-                />
-              </div>
-              <div class="search-form__item">
-                <button
-                  class="search-form__btn"
-                  @click.prevent="doSearch"
-                ></button>
-              </div>
+            <div class="search-form-field__container">
+              <location-input
+                :prompt="'To:'"
+                :promptMobile="'To Where?'"
+                :initial-value="form.placeTo"
+                @place-selected="updatePlaceTo"
+              />
             </div>
-          </div>
+            <div class="search-form-field__container">
+              <input
+                type="text"
+                class="form-control"
+                id="departure_date"
+                autocomplete="off"
+                v-model="form.departure_date"
+                placeholder="Dep: "
+              />
+            </div>
+            <div v-if="form.destinationTypeId === 'round'" class="search-form-field__container">
+              <input
+                type="text"
+                class="form-control"
+                id="return_date"
+                v-model="form.return_date"
+                autocomplete="off"
+                placeholder="Ret: "
+              />
+            </div>
+            <button class="btn btn-search" @click.prevent="doSearch">
+              <svg class="icon icon--search" width="21" height="21">
+                <use xlink:href="#icon-search" />
+              </svg>
+            </button>
+          </form>
         </div>
       </header>
     </transition>

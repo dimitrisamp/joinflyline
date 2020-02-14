@@ -4,11 +4,9 @@
   position: fixed;
   top: 0;
   left: 0;
-  background: #f7f9fc;
-  border-right: .5px solid #999A9C;
-  box-shadow: 0 2px 2px 0 #999A9C;
+  background-color: $primary;
   transform: translateX(-100%);
-  transition: transform 0.4s $easeInOutQuad;
+  transition: transform .4s $easeInOutQuad;
   z-index: 150;
   @include mq(md) {
     width: $sidebar-width;
@@ -22,7 +20,7 @@
   &::after {
     position: absolute;
     top: 0;
-    content: "";
+    content: '';
     background-image: url("/static/home/img/dashboard/logo-repeated.png");
     background-repeat: repeat;
     background-size: contain;
@@ -44,18 +42,16 @@
       align-items: center;
     }
     &-info {
+      color: $white;
     }
     &-title {
-      font-size: 19px;
+      font-family: $dona-black;
       font-weight: 600;
-      margin-bottom: .6rem;
-      margin-top: 1.8rem;
+      margin-bottom: 0.3rem;
+      margin-top: 1.02rem;
     }
     &-text {
-      font-weight: bold;
-      font-size: 16px;
-      color: #7b7c7d;
-      text-align: center;
+      font-family: $dona-bold;
     }
   }
   &__list {
@@ -64,25 +60,24 @@
     margin: 0;
   }
   &__item {
-    margin-bottom: 1.8rem;
+    margin-bottom: 1.3rem;
   }
   &__link {
     padding: 0.3rem 2rem;
-    font-size: 16px;
-    color: #7b7c7d;
+    color: transparentize($white, 0.5);
     border-left: 0.6rem solid transparent;
     display: block;
-    font-weight: 550;
-    transition: color 0.2s ease-in-out;
+    font-family: $dona-bold;
+    transition: color .2s ease-in-out;
     will-change: color;
     &:hover {
       text-decoration: none;
     }
 
     &:hover,
-    &.exact-active {
-      border-color: #000000;
-      color: #000000;
+    &.exact-active{
+      border-color: $white;
+      color: $white;
     }
   }
 
@@ -94,18 +89,17 @@
     text-align: center;
     font-size: 1.25rem;
     font-family: $dona-bold;
-    color: #000000;
+    color: $white;
     padding: 0.5rem 0;
-    transition: all 0.2s ease-in-out;
-    border-top: 2px solid #d8d8d8;
-    cursor: pointer;
-
+    transition: all .2s ease-in-out;
     &:hover {
-      background-color: #e6e6e6;
+      color: $white;
+      background-color: transparentize($white, 0.8);
       text-decoration: none;
     }
   }
 }
+
 
 // Overlay for UX
 .overlay {
@@ -114,11 +108,11 @@
   left: 0;
   width: 100%;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.22);
+  background: rgba(0,0,0,0.22);
   z-index: 14;
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.2s ease-in-out, visibility 0.2s ease;
+  transition: opacity .2s ease-in-out, visibility .2s ease;
   &--active {
     opacity: 1;
     visibility: visible;
