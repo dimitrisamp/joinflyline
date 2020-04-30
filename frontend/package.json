@@ -13,7 +13,7 @@
     "bootstrap": "^4.4.1",
     "core-js": "^3.4.3",
     "env-path": "^1.0.7",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "lightpick": "^1.6.1",
     "moment": "^2.24.0",
     "vue": "^2.6.10",
